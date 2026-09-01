@@ -1,0 +1,11 @@
+{
+  "name": "knowledge-bus",
+  "owner": { "name": "Sterling Freeman" },
+  "plugins": [
+    {
+      "name": "knowledge-bus",
+      "source": "./",
+      "description": "Convert a scattered knowledge base into validated specs that agents can consume."
+    }
+  ]
+}

@@ -1,0 +1,711 @@
+guidance:
+  id: product-development-guidance
+  label: Product development — type guidance
+  version: 0.5
+  conforms_to: kbp/0.5
+  guides: product-development
+
+guidance_kinds:
+  - { id: convention, sourced: true }    # the established form, per an external authority
+  - { id: pitfall,    sourced: false }   # a named, recurring failure mode
+  - { id: heuristic,  sourced: false }   # a quality bar with no external authority
+  - { id: empty,      sourced: false }   # what an honest empty answer means
+  - { id: refresh,    sourced: false }   # what makes this stale
+  - { id: boundary,   sourced: false }   # the reason behind a declared distinct-from edge
+
+sources:
+
+  pichler:
+    cite: "Roman Pichler — Product Vision Board"
+    url: "https://www.romanpichler.com/tools/product-vision-board/"
+  moore:
+    cite: "Geoffrey Moore — Crossing the Chasm, the positioning template"
+    url: "https://the.gt/geoffrey-moore-positioning-statement/"
+  porter:
+    cite: "Michael E. Porter — What Is Strategy? (Harvard Business Review, Nov-Dec 1996)"
+    url: "https://hbr.org/1996/11/what-is-strategy"
+  bmc:
+    cite: "Strategyzer (Alexander Osterwalder) — The Business Model Canvas"
+    url: "https://www.strategyzer.com/library/the-business-model-canvas"
+  vpc:
+    cite: "Strategyzer — The Value Proposition Canvas"
+    url: "https://www.strategyzer.com/library/the-value-proposition-canvas"
+  lean-canvas:
+    cite: "Ash Maurya — Lean Canvas (2010)"
+    url: "https://leanspark.ai/leancanvas"
+    checked: 2026-07-22
+  pestle:
+    cite: "PESTLE — standard macro-environment framework; specific origin not yet traced"
+  ubl:
+    cite: "Malte Ubl — Design Docs at Google"
+    url: "https://www.industrialempathy.com/posts/design-docs-at-google/"
+  rust-rfc:
+    cite: "The Rust project — RFC template"
+    url: "https://github.com/rust-lang/rfcs/blob/master/0000-template.md"
+  madr:
+    cite: "MADR — Markdown Architectural Decision Records, template 4.x (Decision Drivers, Confirmation, More Information)"
+    url: "https://github.com/adr/madr/blob/main/template/adr-template.md"
+    checked: 2026-08-18
+  nygard-any:
+    cite: "MADR project history and the ADR organisation, on the form serving any decision — renamed to Markdown Any Decision Records in 3.0.0-beta and reverted in 4.0.0-beta with the same fields"
+    url: "https://adr.github.io/madr/"
+    checked: 2026-08-18
+  y-statement:
+    cite: "Olaf Zimmermann — Y-statement / (WH)Y-statement; Zdun, Capilla, Tran and Zimmermann, Sustainable Architectural Decisions, IEEE Software 30(6), 2013"
+    url: "https://socadk.github.io/design-practice-repository/artifact-templates/DPR-ArchitecturalDecisionRecordYForm.html"
+    checked: 2026-08-18
+  tyree-akerman:
+    cite: "Jeff Tyree and Art Akerman — Architecture Decisions: Demystifying Architecture, IEEE Software 22(2), 2005; the field table is derived from the REMAP and DRL rationale metamodels"
+    url: "https://doi.org/10.1109/MS.2005.27"
+    checked: 2026-08-18
+  iso-42010:
+    cite: "ISO/IEC/IEEE 42010 on architecture decisions and rationale, via the editor-maintained standard site (secondary; documents the 2011 edition, not the 2022 second edition)"
+    url: "http://www.iso-architecture.org/42010/"
+    checked: 2026-08-18
+  azure-waf:
+    cite: "Microsoft Azure Well-Architected Framework — Maintain an architecture decision record"
+    url: "https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record"
+    checked: 2026-08-18
+  nepa-rod:
+    cite: "NEPA Record of Decision, 40 CFR 1505.2 — last operative text (2024). The CEQ regulations at 40 CFR 1500-1508 were rescinded effective 2025-04-11 and finalised 91 FR 618 (2026-01-08); cited for the drafting convention, not as current law"
+    url: "https://www.govinfo.gov/content/pkg/CFR-2024-title40-vol37/xml/CFR-2024-title40-vol37-sec1505-2.xml"
+    checked: 2026-08-18
+  daci:
+    cite: "Atlassian Team Playbook — DACI: A Decision-Making Framework"
+    url: "https://www.atlassian.com/team-playbook/plays/daci"
+    checked: 2026-08-18
+  spade:
+    cite: "Gokul Rajaram — SPADE (Setting, People, Alternatives, Decide, Explain), via First Round Review"
+    url: "https://review.firstround.com/square-defangs-difficult-decisions-with-this-system-heres-how/"
+    checked: 2026-08-18
+  dq:
+    cite: "Strategic Decisions Group (Spetzler, Winter and Meyer) — the six requirements for decision quality and the weakest-link rule; Howard's Stanford lineage. Book chapter paywalled, cited to SDG"
+    url: "https://sdg.com/decision-quality/"
+    checked: 2026-08-18
+  options-paper:
+    cite: "The options-paper convention — issue, background, interests, criteria, enumerated options, optional recommendation; and the straw-man pathology (descriptive secondary source; no fetchable government drafting guide)"
+    url: "https://modeldiplomat.com/learn/glossary/options-paper"
+    checked: 2026-08-18
+  qoc:
+    cite: "MacLean, Young, Bellotti and Moran — Questions, Options, and Criteria: Elements of Design Space Analysis, Human-Computer Interaction 6(3-4), 1991. Full text paywalled; primitives quoted from the publisher abstract"
+    url: "https://doi.org/10.1080/07370024.1991.9667168"
+    checked: 2026-08-18
+  bezos-doors:
+    cite: "Jeff Bezos — 2015 Amazon letter to shareholders, on one-way and two-way doors and matching process weight to reversibility"
+    url: "https://www.sec.gov/Archives/edgar/data/1018724/000119312516530910/d168744dex991.htm"
+    checked: 2026-08-18
+  hashicorp:
+    cite: "HashiCorp — Writing Practices and Culture"
+    url: "https://www.hashicorp.com/how-hashicorp-works/articles/writing-practices-and-culture"
+  oxide:
+    cite: "Oxide — RFD 1: Requests for Discussion"
+    url: "https://rfd.shared.oxide.computer/rfd/0001"
+  sdd:
+    cite: "Pega Academy — Solution Design Document, an enterprise-implementation deliverable"
+    url: "https://academy.pega.com/topic/solution-design-document/v2"
+  product-brief:
+    cite: "Productboard — Product Brief"
+    url: "https://www.productboard.com/glossary/product-brief/"
+  north-star:
+    cite: "Amplitude — The North Star Playbook"
+    url: "https://amplitude.com/books/north-star/about-the-north-star-framework"
+  ns-one:
+    cite: "Amplitude — The North Star Playbook, ch. 1 § One North Star Metric and ch. 4 trap 3"
+    url: "https://amplitude.com/books/north-star/about-the-north-star-framework"
+    checked: 2026-08-12
+  ns-checklist:
+    cite: "Amplitude — The North Star Playbook, ch. 2 North Star checklist, check 2"
+    url: "https://amplitude.com/books/north-star/the-north-star-checklist"
+    checked: 2026-08-12
+  outcome:
+    cite: "Teresa Torres — Continuous Discovery Habits (2021), on shifting from outputs to outcomes"
+    url: "https://www.producttalk.org/2024/07/shifting-from-outputs-to-outcomes/"
+  omtm:
+    cite: "Alistair Croll and Benjamin Yoskovitz — Lean Analytics (O'Reilly, 2013)"
+    url: "https://leananalyticsbook.com/"
+  cascade:
+    cite: "John Doerr — Measure What Matters (2018), on rigid cascading's costs and aligned autonomy"
+    url: "https://www.whatmatters.com/faqs/cascading-top-down-okr-examples"
+  kpi:
+    cite: "David Parmenter — Key Performance Indicators (Wiley, 4th ed. 2020)"
+    url: "https://www.wiley.com/en-us/Key+Performance+Indicators%3A+Developing%2C+Implementing%2C+and+Using+Winning+KPIs%2C+4th+Edition-p-9781119620778"
+  guardrail-org:
+    cite: "Kohavi, Tang and Xu — Trustworthy Online Controlled Experiments (CUP, 2020), ch. 6 and ch. 21"
+    url: "https://experimentguide.com/"
+  working-backwards:
+    cite: "Colin Bryar and Bill Carr — Working Backwards, on Amazon's controllable input metrics"
+    url: "https://workingbackwards.com/"
+  c4:
+    cite: "Simon Brown — the C4 model"
+    url: "https://c4model.com/"
+  design-md:
+    cite: "Google — DESIGN.md format specification, google-labs-code/design.md (docs/spec.md, PHILOSOPHY.md), version alpha and explicitly unstable. Read from the repository; the published docs site returns an empty body"
+    url: "https://github.com/google-labs-code/design.md/blob/main/docs/spec.md"
+    checked: 2026-08-18
+  dtcg:
+    cite: "Design Tokens Community Group — Design Tokens Format Module 2025.10, a draft marked 'Do not implement this version'"
+    url: "https://www.designtokens.org/TR/drafts/format/"
+    checked: 2026-08-18
+  hig:
+    cite: "Apple — Human Interface Guidelines, the Foundations topic list. Client-rendered; read through a headless browser"
+    url: "https://developer.apple.com/design/human-interface-guidelines/"
+    checked: 2026-08-18
+  nng-moodboard:
+    cite: "Lillian Yang — Mood Boards in UX: How and Why to Use Them (Nielsen Norman Group, 26 February 2023)"
+    url: "https://www.nngroup.com/articles/mood-boards/"
+    checked: 2026-08-18
+  wcag22:
+    cite: "W3C — Web Content Accessibility Guidelines 2.2 (Recommendation, 12 December 2024)"
+    url: "https://www.w3.org/TR/WCAG22/"
+    checked: 2026-08-18
+  premortem:
+    cite: "Gary Klein — Performing a Project Premortem (Harvard Business Review, September 2007)"
+    url: "https://hbr.org/2007/09/performing-a-project-premortem"
+  jtbd-hbr:
+    cite: "Christensen, Hall, Dillon and Duncan — Know Your Customers' Jobs to Be Done (HBR, September 2016)"
+    url: "https://hbr.org/2016/09/know-your-customers-jobs-to-be-done"
+  job-story:
+    cite: "Alan Klement — Replacing The User Story With The Job Story"
+    url: "https://medium.com/@alanklement/replacing-the-user-story-with-the-job-story-af7cdee10c27"
+  risk-register:
+    cite: "Risk register — standard across PMBOK, PRINCE2 and ISO Guide 73"
+    url: "https://en.wikipedia.org/wiki/Risk_register"
+  message-house:
+    cite: "Product Marketing Alliance — product messaging framework; April Dunford on positioning as its input"
+    url: "https://www.productmarketingalliance.com/product-messaging-framework-template/"
+    checked: 2026-08-12
+  brand-guide:
+    cite: "GitLab Pajamas — a standing public brand guideline set"
+    url: "https://design.gitlab.com/"
+  scenario-walkthrough:
+    cite: "Alan Cooper et al. — About Face, on the key path scenario"
+    url: "https://medium.com/product-labs/how-to-write-a-useful-scenario-walkthrough-f48bf40b1b69"
+  adr:
+    cite: "Michael Nygard — Documenting Architecture Decisions (2011); templates at adr.github.io"
+    url: "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+  adr-boundary:
+    cite: "Azure Well-Architected — Architecture decision record, on boundary discipline"
+    url: "https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record"
+  canonical:
+    cite: "Enterprise Integration Patterns — Canonical Data Model; DDD's domain model and ubiquitous language"
+    url: "https://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html"
+
+elements:
+
+  product-vision:
+    - { kind: convention, source: pichler,
+        claim: "Describe the change in the world, not the product." }
+    - { kind: pitfall, source: asserted,
+        claim: "A standalone vision doc usually signals the strategy around it is missing — vision is the top block of a strategy artifact, not its own deliverable." }
+    - { kind: boundary, source: asserted,
+        claim: "Per-product visions nest under the company vision; left unnested they compete with it." }
+
+  positioning-statement:
+    - { kind: convention, source: moore,
+        claim: "For [segment] who [need], X is a [category] that [benefit], unlike [alternative]." }
+    - { kind: pitfall, source: asserted,
+        claim: "Brand-led organisations treat this as marketing's asset and product-led ones as product's. Settle ownership before it gets written twice." }
+    - { kind: empty, source: asserted, when: { maturity: [unproven] },
+        claim: "Pre-competition work often cannot fill the 'unlike' clause honestly. Leave it empty rather than fake it." }
+
+  customer-segments:
+    - { kind: pitfall, source: asserted,
+        claim: "Segment by shared job or behaviour, not demographics alone — demographic-only segments are the classic false-precision trap." }
+    - { kind: pitfall, source: asserted,
+        claim: "In B2B the buyer, the user and the payer differ; healthtech's patient/provider/payer triangle makes single-segment framing misleading." }
+    - { kind: pitfall, source: asserted, when: { maturity: [unproven] },
+        claim: "One beachhead segment. A long segment list this early signals unvalidated focus." }
+    - { kind: boundary, source: asserted,
+        claim: "This decides who is served. A named category set the product's own logic consumes is Canonical Model, not segmentation." }
+
+  value-proposition:
+    - { kind: heuristic, source: asserted,
+        claim: "Always relative to the segment's current alternative, including doing nothing." }
+    - { kind: pitfall, source: asserted,
+        claim: "One per segment. A single all-segment value proposition usually means the segments were never really split." }
+    - { kind: heuristic, source: asserted, when: { uptake: [bought] },
+        claim: "Quantify in time, cost or risk. Where there is no market, qualitative is fine — but still name the alternative." }
+
+  problem-statement:
+    - { kind: heuristic, source: asserted,
+        claim: "Pain, affected party, and why now — with no embedded solution." }
+    - { kind: pitfall, source: asserted,
+        claim: "Solution-shaped problems pre-commit the answer." }
+    - { kind: heuristic, source: asserted,
+        claim: "One quantified pain beats five asserted ones." }
+
+  solution-overview:
+    - { kind: boundary, source: asserted,
+        claim: "Approach and behaviour, not internals. How it technically holds together is architecture-phase territory by the Conclusion Test." }
+    - { kind: convention, source: lean-canvas,
+        claim: "A Lean Canvas keeps this deliberately thin — top features only; a design document gives it a full section." }
+    - { kind: heuristic, source: asserted,
+        claim: "State what the solution deliberately does not do. Pairs with Scope (In / Out)." }
+
+  goals-and-non-goals:
+    - { kind: convention, source: ubl,
+        claim: "A design-doc core section. Non-goals are outcome-level refusals — things that could reasonably be goals and are chosen against." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Scope (In / Out)'s feature-level lists and from Trade-offs' strategic refusals. Cheap insurance against drift." }
+
+  channels:
+    - { kind: convention, source: bmc,
+        claim: "A Business Model Canvas block spanning discovery, purchase, delivery and support — not just marketing reach." }
+    - { kind: heuristic, source: asserted,
+        claim: "Product-led versus sales-led growth is at bottom a channels choice. Regulated and enterprise markets often have imposed channels — brokers, distributors, procurement — that dominate the design." }
+    - { kind: heuristic, source: asserted,
+        claim: "For physical goods, delivery and service channels drive cost structure. Link the two." }
+
+  customer-relationships:
+    - { kind: convention, source: bmc,
+        claim: "A Business Model Canvas block: the mode per segment — self-serve, high-touch, community, automated." }
+    - { kind: pitfall, source: asserted,
+        claim: "The most commonly skipped Business Model Canvas block. Leaving it empty hides the retention model." }
+
+  revenue-streams:
+    - { kind: convention, source: bmc,
+        claim: "Core to the Business Model Canvas and the Lean Canvas. Strategy canvases often omit it, treating monetisation as downstream of positioning." }
+    - { kind: heuristic, source: asserted,
+        claim: "In regulated industries this is often fixed by regulation or reimbursement codes. Record it as a constraint, not a choice." }
+    - { kind: heuristic, source: asserted, when: { maturity: [unproven] },
+        claim: "A hypothesis to test, not a plan. Deep tech and hardware commonly defer it until technical maturity." }
+
+  cost-structure:
+    - { kind: heuristic, source: asserted,
+        claim: "The dominant driver is the insight, not the line items — services and construction run on per-project labour, software on headcount, hardware on cost of goods sold and capex." }
+    - { kind: heuristic, source: asserted,
+        claim: "Distinguish fixed from variable and note what scales with growth. The growth mechanism can invert the shape." }
+    - { kind: heuristic, source: asserted, when: { uptake: [given] },
+        claim: "Still applies at personal and household scale, where time is the usual dominant cost." }
+
+  key-resources:
+    - { kind: convention, source: bmc,
+        claim: "A Business Model Canvas block: data, intellectual property, licences, physical plant, brand." }
+    - { kind: heuristic, source: asserted,
+        claim: "Deep tech, EV and robotics are dominated by intellectual property and specialised equipment. Licences and certifications carry lead times — flag them early." }
+    - { kind: empty, source: asserted,
+        claim: "Software businesses often run thin here. Thin is an answer, not a gap." }
+
+  key-activities:
+    - { kind: convention, source: bmc,
+        claim: "A Business Model Canvas block. Everything not listed here is partnership material." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Capabilities: activities are what you do, capabilities are what you must be able to do. Strategy canvases use the latter." }
+
+  key-partnerships:
+    - { kind: convention, source: bmc,
+        claim: "A Business Model Canvas block: suppliers, integrators, resellers, platforms." }
+    - { kind: pitfall, source: asserted,
+        claim: "For platform-dependent products the platform is a partnership with unilateral terms. Track it as a risk too." }
+    - { kind: heuristic, source: asserted,
+        claim: "In construction and hardware, partner schedules land directly on the critical path." }
+
+  unfair-advantage:
+    - { kind: convention, source: lean-canvas,
+        claim: "Real forms are network effects, proprietary data, switching costs, regulatory moats, patents and brand." }
+    - { kind: pitfall, source: lean-canvas,
+        claim: "The Lean Canvas's hardest block — 'first mover' and 'passion' do not qualify." }
+    - { kind: empty, source: asserted, when: { maturity: [unproven] },
+        claim: "Usually empty at this stage. Honest emptiness beats an invented moat." }
+
+  trade-offs:
+    - { kind: convention, source: porter,
+        claim: "Strategy without refused options is not strategy. This element is the record of refusal." }
+    - { kind: boundary, source: asserted,
+        claim: "Absent from the Business Model Canvas and Lean Canvas by design; core to strategy canvases." }
+    - { kind: refresh, source: asserted,
+        claim: "Date each entry. Refused options get re-litigated when context shifts, and the date says whether that is due." }
+
+  growth-mechanism:
+    - { kind: heuristic, source: asserted,
+        claim: "Name the loop — viral, usage, content, referral, sales-led, paid — rather than writing a generic marketing plan. Loops compound; funnels do not." }
+    - { kind: heuristic, source: asserted,
+        claim: "Consumer runs on virality and habit, B2B on expansion revenue and referenceability; regulated growth is often gated by accreditation cycles." }
+
+  capabilities:
+    - { kind: heuristic, source: asserted,
+        claim: "The gap is the point: capability named minus capability possessed is the hiring, partnering and timeline reality." }
+    - { kind: heuristic, source: asserted,
+        claim: "Deep tech and regulated domains carry acquisition lead times — clearances, certifications, rare skills — that bound the strategy's clock." }
+
+  north-star-metric:
+    - { kind: convention, source: north-star,
+        claim: "Proxies customer value, not company results. Revenue is an outcome, not a North Star." }
+    - { kind: convention, source: ns-one,
+        claim: "One per space, at any abstraction, tested by real users, needs and strategy — never by the org chart. Distinct metrics only for genuinely distinct divisions and customer bases." }
+    - { kind: convention, source: outcome,
+        claim: "The name stays singular: an effort steers by a scope-named product outcome — a behavioural measure within its own influence that drives the star — and sets its success criteria on that." }
+    - { kind: convention, source: omtm,
+        claim: "The stage-scoped One Metric That Matters is the same move under another name — team- and period-scoped, complementing a durable star rather than competing with it." }
+    - { kind: convention, source: ns-checklist,
+        claim: "Represents vision and strategy without being either — a strong metric statement lets a reader recover both at a high level." }
+    - { kind: pitfall, source: asserted,
+        claim: "A North Star without input metrics is not actionable." }
+    - { kind: boundary, source: asserted,
+        claim: "Success Metrics owns the definition. A strategy canvas records the choice and links back rather than restating it, because copies drift." }
+
+  input-metrics:
+    - { kind: convention, source: working-backwards,
+        claim: "Leading and team-influenceable, or it is an output someone mislabelled." }
+    - { kind: heuristic, source: asserted,
+        claim: "Few and causal beats many and correlated." }
+    - { kind: convention, source: kpi,
+        claim: "The KPI umbrella distributes across this decomposition rather than joining it: the star is the one KPI promoted above the rest, input metrics are the leading team-influenceable ones, and lagging result indicators are the business results the star predicts." }
+
+  guardrail-health-metrics:
+    - { kind: heuristic, source: asserted,
+        claim: "The counterweight to any target — latency, churn, quality, trust; burnout at personal scale." }
+    - { kind: convention, source: guardrail-org,
+        claim: "Guardrails divide into trust-related and organisational, the latter largely shared across experiments — so a guardrail binds at the widest scope that must hold, wider than the initiative pushing against it." }
+    - { kind: pitfall, source: asserted,
+        claim: "Experimentation-heavy organisations formalise these as launch blockers; everywhere else they stay implicit until an incident. Write them down first." }
+    - { kind: boundary, source: lean-canvas,
+        claim: "Absent from the canvas tradition — the Business Model Canvas has no metrics block and the Lean Canvas's Key Metrics tracks performance, not counterweights. The standing home is Success Metrics." }
+
+  success-criteria:
+    - { kind: heuristic, source: asserted,
+        claim: "Per-initiative acceptance, set before the work, expiring with the effort — unlike metrics that run continuously." }
+    - { kind: pitfall, source: asserted,
+        claim: "'Improve X' invites post-hoc rationalisation. Set a threshold and a measurement date." }
+    - { kind: heuristic, source: asserted,
+        claim: "What a PRD loosely calls a launch's success metrics is this element. A key result is this element wearing OKR vocabulary — a time-boxed threshold, typically on an input metric." }
+    - { kind: convention, source: cascade,
+        claim: "The initiative inherits its space's star and guardrails by reference and authors its own commitments. The reference cascades; the goals do not." }
+
+  market-sizing:
+    - { kind: heuristic, source: asserted,
+        claim: "Run top-down and bottom-up. They should disagree, and reconciling them is the insight." }
+    - { kind: heuristic, source: asserted,
+        claim: "As much an investor convention as a planning one. Include it only when the bet's size justifies it." }
+    - { kind: pitfall, source: asserted, when: { maturity: [unproven] },
+        claim: "Pre-category, point estimates are fiction. Use scenario ranges." }
+
+  internal-strengths-weaknesses:
+    - { kind: pitfall, source: asserted,
+        claim: "Sanitised weaknesses are the most common SWOT failure." }
+    - { kind: heuristic, source: asserted,
+        claim: "Strengths only count against a stated goal or competitor. Context-free strengths are trivia." }
+
+  external-opportunities-threats:
+    - { kind: heuristic, source: asserted,
+        claim: "Feed this from PESTLE and competitor work, not from vacuum brainstorming." }
+    - { kind: pitfall, source: asserted,
+        claim: "A threat wants an owner and a trigger condition, or it is just weather." }
+
+  macro-environment-factors:
+    - { kind: convention, source: pestle,
+        claim: "Six lenses: political, economic, social, technological, legal, environmental." }
+    - { kind: heuristic, source: asserted,
+        claim: "Weight by industry — legal and political dominate banking and healthtech, environmental dominates construction and energy, social and technological dominate consumer." }
+    - { kind: refresh, source: asserted,
+        claim: "Dates fast. Refresh on regime change — election, regulation, platform shift." }
+
+  competitor-profile:
+    - { kind: heuristic, source: asserted,
+        claim: "Per competitor: offering, segment overlap, strengths and weaknesses, pricing where knowable." }
+    - { kind: pitfall, source: asserted,
+        claim: "Include indirect alternatives and doing nothing. The spreadsheet-and-email incumbent beats most challengers." }
+    - { kind: boundary, source: asserted,
+        claim: "Sales battlecards are the externalised descendant. Keep evidence separate from spin." }
+
+  jobs-to-be-done:
+    - { kind: convention, source: jtbd-hbr,
+        claim: "Jobs are circumstance-anchored and stable. Solutions churn; jobs do not." }
+    - { kind: convention, source: job-story,
+        claim: "The when / want / so-that job-story form captures circumstance better than persona-attached stories." }
+
+  pains-and-gains:
+    - { kind: convention, source: vpc,
+        claim: "Osterwalder's value-proposition-canvas pairing — pains before, gains after." }
+    - { kind: pitfall, source: asserted,
+        claim: "Source from evidence — interviews, support logs — not empathy-map guessing. Rank by severity times frequency or the list flattens." }
+
+  user-job-stories:
+    - { kind: convention, source: job-story,
+        claim: "A user story (as-a / I-want / so-that) presumes a persona; a job story (when / I-want / so-I-can) presumes a circumstance. Pick one per document; do not mix." }
+    - { kind: heuristic, source: asserted,
+        claim: "Acceptance criteria turn a story from a conversation-starter into testable scope." }
+
+  stepwise-trace:
+    - { kind: heuristic, source: asserted,
+        claim: "The joins are the content. No single story contains a seam, and a set of stories does not sum to one trace." }
+    - { kind: boundary, source: rust-rfc,
+        claim: "One actor, one concrete circumstance, full resolution — all-behaviour-in-outline is Solution Overview's axis. Inside a design document this lives in the RFC tradition's guide-level explanation." }
+
+  risks-and-assumptions:
+    - { kind: heuristic, source: asserted,
+        claim: "An assumption is believed true but unvalidated; a risk could go wrong. Each gets impact times likelihood and a response — mitigate, accept, watch." }
+    - { kind: convention, source: premortem,
+        claim: "Pre-mortem sorting — real tigers versus paper tigers — resists both alarmism and optimism." }
+    - { kind: convention, source: rust-rfc,
+        claim: "The RFC tradition records drawbacks — known, accepted costs — separately from risks, which are uncertainties." }
+    - { kind: heuristic, source: asserted, when: { authority: [approve, statutory] },
+        claim: "Regulated and safety domains make this element formal and auditable. Elsewhere the discipline is the same; the paperwork is not." }
+
+  scope-in-out:
+    - { kind: heuristic, source: asserted,
+        claim: "Three lists, not two: in, deferred with a revisit trigger, and refused with the reason." }
+    - { kind: heuristic, source: asserted,
+        claim: "The refused list is the valuable one — it prevents silent re-expansion." }
+    - { kind: convention, source: rust-rfc,
+        claim: "The deferred list is where natural extensions land — the RFC tradition's future possibilities." }
+
+  constraints:
+    - { kind: heuristic, source: asserted,
+        claim: "Imposed, not chosen: regulation, budget, deadline, platform, physics." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Trade-offs. Mislabelling a choice as a constraint hides a decision." }
+
+  cross-cutting-concerns:
+    - { kind: convention, source: ubl,
+        claim: "A design-doc core section: security, privacy, observability." }
+    - { kind: heuristic, source: asserted, when: { authority: [approve, statutory] },
+        claim: "Regulated domains extend the list — compliance, audit, accessibility." }
+    - { kind: heuristic, source: asserted,
+        claim: "Exists so these get weighed while change is still cheap." }
+    - { kind: convention, source: wcag22,
+        claim: "Accessibility minima come from outside, are testable, and bind whatever the identity says. They are obligations to meet, not renderings to choose." }
+
+  visual-identity-rules:
+    - { kind: heuristic, source: asserted,
+        claim: "A rule set with nothing forbidden is usually not settled yet." }
+    - { kind: heuristic, source: asserted,
+        claim: "Takes conclusions, not capture: adopted tokens and marks, never the mood boards and swatch explorations that led there." }
+    - { kind: pitfall, source: nng-moodboard,
+        claim: "A mood board is what a team makes to agree on a feeling before any rule exists. It is input to this element, not content for it." }
+    - { kind: convention, source: design-md,
+        claim: "The machine-readable form fixes the order the sections come in, and requires none of them except a primary colour palette." }
+    - { kind: convention, source: dtcg,
+        claim: "Token formats carry colour, size, type and timing. Icons, accessibility and writing rules fit in none of them, and are no less settled for that." }
+    - { kind: heuristic, source: design-md,
+        claim: "Name a specific reference rather than a list of adjectives. 'Modern, clean, premium' fits almost anything." }
+    - { kind: boundary, source: asserted,
+        claim: "These are the standing rules other designs comply with. Recording per-design that an obligation is met stays Cross-Cutting Concerns territory." }
+    - { kind: empty, source: asserted,
+        claim: "Most of these are only partly answered. A settled palette and nothing else is a real answer, not a stub." }
+
+  verbal-identity-rules:
+    - { kind: convention, source: hig,
+        claim: "Writing sits among the foundations as a peer of colour and typography, not beneath them." }
+    - { kind: convention, source: brand-guide,
+        claim: "The other common arrangement gives writing its own branch beside the visual one, under messaging or content. Both keep them apart; none of the sets surveyed merges them." }
+    - { kind: heuristic, source: asserted,
+        claim: "The words a brand refuses do as much work as the ones it adopts." }
+    - { kind: boundary, source: message-house,
+        claim: "Adopted standing copy — boilerplate, taglines, pitches at set lengths — is this territory. The message house is the assembled descendant, taking positioning as input and pillar claims from Value Proposition, restating neither." }
+    - { kind: empty, source: asserted,
+        claim: "Honestly empty where nothing is written down and every wording is decided in the moment." }
+
+  alternatives-considered:
+    - { kind: convention, source: rust-rfc,
+        claim: "Standard in RFCs, decision documents and decision records. This element holds the roads not taken." }
+    - { kind: boundary, source: adr,
+        claim: "The winner lives in Decision. Folding the chosen option in here structurally breaks that element." }
+    - { kind: convention, source: y-statement,
+        claim: "Naming the rejected options is grammatically obligatory in the Y-statement form — 'and neglected …' — not an optional courtesy to the reader." }
+    - { kind: convention, source: spade,
+        claim: "An option set earns its name by being feasible, diverse and comprehensive: realistic, not micro-variants of one another, and covering the problem space." }
+    - { kind: pitfall, source: options-paper,
+        claim: "Flanking a preferred course with two deliberately unattractive alternatives simulates choice rather than offering it." }
+    - { kind: heuristic, source: asserted,
+        claim: "Two honest alternatives beat five straw men. Absence invites re-litigation." }
+
+  decision-criteria:
+    - { kind: convention, source: qoc,
+        claim: "Criteria are a first-class object, not prose inside the rationale: options are assessed against them, and the assessment carries a sign. That is what lets a later reader see that two decisions were judged against the same criterion, or against conflicting ones." }
+    - { kind: convention, source: madr,
+        claim: "Stated before the options and referenced from the outcome, so the choice reads as 'best against these', not 'best because I say so'." }
+    - { kind: convention, source: nepa-rod,
+        claim: "Where an outside body reviews the decision, naming the factors balanced and how they entered the decision is the whole defence against a charge of arbitrariness. This is why the element hardens under external authority rather than being a nicety." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Goals & Non-Goals and from Constraints: a criterion is a dimension options are compared along, a goal is an outcome aimed for, and a constraint is a fixed limit that admits no trade-off." }
+    - { kind: empty, source: asserted,
+        claim: "Honestly empty means the choice was made on one dominant consideration already stated in the decision — not that the criteria were never articulated." }
+
+  decision:
+    - { kind: convention, source: adr,
+        claim: "One decision per record, dated, and never edited in place: a stale decision is superseded by a new record." }
+    - { kind: convention, source: y-statement,
+        claim: "Bad rationale has a recognisable shape — 'everybody does it', 'we have always done it like that', 'this will look good on my resume'. Reasoning that survives none of those is not reasoning." }
+    - { kind: boundary, source: asserted,
+        claim: "The reasoning belongs here, with the commitment it justifies. Splitting rationale into its own element leaves a decision that states what without why." }
+    - { kind: heuristic, source: tyree-akerman,
+        claim: "A decision that contributes to no stated objective or requirement is a decision worth not making." }
+
+  accepted-consequences:
+    - { kind: convention, source: adr,
+        claim: "All consequences belong here, not only the favourable ones — positive, negative and neutral alike. The consequences of one decision commonly become the context of the next." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Trade-offs: a strategy-altitude refusal versus the accepted consequences of a commitment already made." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Risks & Assumptions: a consequence is accepted and expected, a risk is uncertain. Filing a known cost as a risk hides that someone chose it." }
+    - { kind: empty, source: asserted,
+        claim: "Honestly empty means the option genuinely dominated on every criterion — rare enough that it is worth saying so explicitly." }
+
+  reversal-condition:
+    - { kind: heuristic, source: asserted,
+        claim: "An observable condition, not a review date: what would have to be seen for this to stop holding. 'Revisit in six months' is a calendar entry; 'if median latency exceeds the budget for two consecutive quarters' is a condition." }
+    - { kind: convention, source: madr,
+        claim: "Where the decision can be checked mechanically, name the check — a fitness function, a test, a review step — so that compliance is observable rather than assumed." }
+    - { kind: convention, source: azure-waf,
+        claim: "A decision taken at low confidence should say so, because recorded low confidence is what makes later reconsideration legitimate rather than second-guessing." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from Risks & Assumptions: a failing assumption is one trigger among several. A better alternative appearing, a constraint lifting, or an authority changing reopen the decision without any assumption having failed." }
+    - { kind: empty, source: asserted,
+        claim: "Honestly empty means nothing observable would reopen it — which is a strong claim about an irreversible commitment, and should read as one." }
+
+  prior-art:
+    - { kind: convention, source: rust-rfc,
+        claim: "A standard RFC section: precedent survey across other systems, organisations or communities." }
+    - { kind: boundary, source: asserted,
+        claim: "The internal and technical counterpart of Competitor Profile, which is market-facing. Absence invites reinvention." }
+
+  rollout-and-phasing:
+    - { kind: heuristic, source: asserted,
+        claim: "Pilot, beta and general availability; migration steps; kill criteria per phase." }
+    - { kind: heuristic, source: asserted,
+        claim: "Enterprise implementation practice treats this as a core deliverable section. Product briefs include it only when release risk warrants." }
+
+  sequence-and-foreclosure:
+    - { kind: convention, source: bezos-doors,
+        claim: "Sort the steps by whether they can be walked back. A step you can reverse is a two-way door and deserves speed; a step you cannot is a one-way door and deserves deliberation. Applying the heavy process to everything is as costly a mistake as applying the light one to the irreversible." }
+    - { kind: heuristic, source: asserted,
+        claim: "Name what each step forecloses, not merely what it enables. An order that closes no doors is a preference, not a sequence." }
+    - { kind: empty, source: asserted,
+        claim: "Honestly empty means every step is independently reversible in any order — in which case say so, because that is the licence to move fast." }
+
+  open-questions:
+    - { kind: heuristic, source: asserted,
+        claim: "Each wants an owner and a resolution path. An unowned question is a risk mislabelled." }
+    - { kind: heuristic, source: asserted,
+        claim: "Shrinking across drafts is the health signal. Growing means discovery is not done." }
+
+  system-boundary-and-context:
+    - { kind: convention, source: c4,
+        claim: "C4 level 1: the system, its users, and the external systems it exchanges with." }
+    - { kind: heuristic, source: asserted,
+        claim: "The boundary is a security and ownership decision, not just a drawing choice." }
+
+  components-and-responsibilities:
+    - { kind: convention, source: c4,
+        claim: "C4 container and component altitude. One responsibility per component is the test." }
+    - { kind: pitfall, source: asserted,
+        claim: "Keep to the artifact's altitude — component detail inside a context diagram is the split signal." }
+    - { kind: boundary, source: asserted,
+        claim: "Components run and own behaviour. The named categories the system reasons with are Canonical Model." }
+
+  data-flows-and-integrations:
+    - { kind: heuristic, source: asserted,
+        claim: "Flows name the contract — API, event, file — and the contract's owner." }
+    - { kind: heuristic, source: asserted, when: { authority: [approve, statutory] },
+        claim: "In regulated and privacy contexts flows are compliance surface. Annotate data classification — personally identifiable information, protected health information — where it applies." }
+
+  canonical-model:
+    - { kind: convention, source: canonical,
+        claim: "The names are load-bearing: stable identifiers the space's own logic consumes." }
+    - { kind: heuristic, source: asserted,
+        claim: "The element holds the model, not the instances. Bulk enumeration beyond what makes the model legible is product content, not documentation." }
+    - { kind: heuristic, source: asserted,
+        claim: "Takes its host's phase — behaviour-defining sets in a design document, schema-bound catalogues in an architecture overview. Promoted to a standalone document it would fail the one-phase rule." }
+
+artifacts:
+
+  product-strategy-canvas:
+    - { kind: heuristic, source: asserted,
+        claim: "A fluid type, so the core and situational split is genuine — unlike a fixed-format canvas, where standardisation is the block set." }
+
+  business-model-canvas:
+    - { kind: convention, source: bmc,
+        claim: "A fixed-format canvas is all-core by definition: the standardised block set is the artifact." }
+
+  lean-canvas:
+    - { kind: convention, source: lean-canvas,
+        claim: "A one-page adaptation of the Business Model Canvas for ventures under extreme uncertainty." }
+
+  competitor-analysis:
+    - { kind: boundary, source: asserted,
+        claim: "Sales battlecards are the externalised descendant of this artifact's content. Keep evidence separate from spin." }
+
+  opportunity-assessment:
+    - { kind: convention, source: product-brief,
+        claim: "Problem-focused, one to two pages, and it precedes any PRD." }
+
+  risk-assessment:
+    - { kind: convention, source: risk-register,
+        claim: "The risk register is standard across PMBOK, PRINCE2 and ISO Guide 73 — a record of information about identified risks." }
+
+  design-doc:
+    - { kind: convention, source: ubl,
+        claim: "Canonical sections: context and scope, goals and non-goals, the actual design, alternatives considered, cross-cutting concerns. Skip the document when the solution is unambiguous." }
+    - { kind: convention, source: hashicorp,
+        claim: "Most large projects start with a PRD to define the problem, followed by an RFC to propose a solution." }
+    - { kind: convention, source: oxide,
+        claim: "The request-for-discussion is the same document family, inspired by the IETF's RFC series." }
+    - { kind: pitfall, source: sdd,
+        claim: "Not to be confused with the Solution Design Document, an enterprise-implementation deliverable that is architecture-phase by the Conclusion Test." }
+
+  brand-identity-guide:
+    - { kind: convention, source: brand-guide,
+        claim: "The standard form travels under several names — brand guidelines, brand book, style guide — with contested boundaries between them." }
+    - { kind: boundary, source: asserted,
+        claim: "The brand book's strategy half — values, personality, purpose — belongs to Product Vision and Positioning Statement by the split rule. This type takes only the rules for expressing it, visual and verbal alike." }
+    - { kind: convention, source: design-md,
+        claim: "A machine-readable form of this type now exists, written for whoever renders the identity — a person or a coding agent alike. It carries the visual rules and no writing rules." }
+    - { kind: pitfall, source: asserted,
+        claim: "Instructions for revising the document are not part of the document. That is a process, and it belongs wherever the process is owned." }
+    - { kind: refresh, source: asserted,
+        claim: "Stale when an adopted token or mark changes. A guide describing renderings nobody ships any more misleads more confidently than a missing one." }
+
+  scenario-walkthrough:
+    - { kind: convention, source: scenario-walkthrough,
+        claim: "The key path scenario walks the primary pathways as user actions with product responses, deliberately concrete where a context scenario stays high-level." }
+    - { kind: pitfall, source: asserted,
+        claim: "Distinct from three unrelated walkthroughs: the live usability exercise, ATAM's quality-attribute review, and the inspection meeting." }
+
+  success-metrics:
+    - { kind: convention, source: north-star,
+        claim: "The North Star Metric and the input metrics that drive it." }
+
+  architecture-overview:
+    - { kind: convention, source: c4,
+        claim: "C4 levels 1 and 2 — system context and containers." }
+
+  system-context-diagram:
+    - { kind: convention, source: c4,
+        claim: "C4 level 1 exactly. Component detail inside it is the split signal toward the Architecture Overview." }
+
+  decision-brief:
+    - { kind: convention, source: daci,
+        claim: "Exactly one named decider. Without one, a brief produces discussion rather than a decision." }
+    - { kind: convention, source: daci, when: { authority: [approve, statutory] },
+        claim: "Beside the decider, list who contributes and who is only informed: contributors give input, those informed do not. Neither decides." }
+    - { kind: convention, source: spade,
+        claim: "The framing carries a date and the reason for that date. A brief with no deadline is a discussion document wearing a decision's clothes." }
+    - { kind: convention, source: dq,
+        claim: "Quality is judged before the outcome is known, on the frame, the alternatives, the information, the criteria and trade-offs, the reasoning, and the commitment to act — and is no better than the weakest of them." }
+    - { kind: convention, source: spade,
+        claim: "Finish with a commitment step: until the choice is voiced it is not taken." }
+    - { kind: convention, source: spade, when: { authority: [approve, statutory] },
+        claim: "Agreement obtained privately and never voiced does not bind, and the decision reopens the first time it meets friction." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from the Decision Record, which it feeds: the brief exists to make one choice by a date, and stops mattering once it is made. Criteria and rejected options do live work only before the decision; afterwards they are history." }
+    - { kind: boundary, source: asserted,
+        claim: "Distinct from the Opportunity Assessment, which asks whether to pursue one thing at all, and from the Design Doc, which offers one approach to react to. This one picks among several." }
+    - { kind: refresh, source: asserted,
+        claim: "It goes stale the moment the decision is taken. Keeping it live invites re-litigating a settled choice against criteria that have since moved." }
+
+  decision-record:
+    - { kind: convention, source: adr,
+        claim: "One decision per record — context, decision, status, consequences — with status moving proposed to accepted to deprecated or superseded." }
+    - { kind: convention, source: azure-waf,
+        claim: "The set of records is an append-only log. An accepted record is not edited; a changed decision is a new record that supersedes the old one, with the two linked, so the history of the thinking survives the change of direction." }
+    - { kind: heuristic, source: asserted,
+        claim: "Not every decision earns a record. Time-separation or irreversibility earns one; headcount and spend do not." }
+    - { kind: convention, source: iso-42010,
+        claim: "ISO 42010 weighs a decision by impact and cost of change: many stakeholders affected, expensive to enforce, costly to reverse, non-obvious reasoning, major expenditure. Only one of those is about architecture." }
+    - { kind: convention, source: nygard-any,
+        claim: "The form is not architecture-specific and never was. The same record shape serves a pricing, hiring or procurement decision; what changes with the domain is which decisions merit a record and what the record points at." }
+    - { kind: boundary, source: adr-boundary,
+        claim: "A decision record that grows into a design guide has stopped being a decision record." }
+    - { kind: refresh, source: asserted,
+        claim: "It goes stale when its reversal condition is met, not on a schedule — and a record whose reversal condition can no longer be evaluated is already stale." }

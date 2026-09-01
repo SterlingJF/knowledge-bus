@@ -1,0 +1,40 @@
+# A universe of factors and nothing else. This shape is why the downstream
+# contract's `minItems: 1` on statuses was wrong: a universe declaring no
+# element has no status to declare, and conforms anyway.
+universe:
+  id: factors-only
+  label: Factors only
+  version: 0.1
+  conforms_to: kbp/0.5
+  ordering_frame: stage
+
+statuses: []
+
+frames:
+  - id: stage
+    code: fb1b1
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values:
+      - { id: only, question: "Where in the sequence does this sit?" }
+
+factors:
+  - id: team-shape
+    code: kb1b1
+    question: "Who is doing the work?"
+    set_by: instance
+    values:
+      - { id: solo,  question: "Is one person accountable for the whole of it?" }
+      - { id: group, question: "Is accountability shared across people?" }
+
+empty_composition:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []
