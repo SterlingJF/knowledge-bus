@@ -1,47 +1,66 @@
-# Spec anatomy
+# Spec Anatomy
 
-A spec is two files: the spec itself, which the checker enforces, and a guidance file, which is advisory.
+A definition file describes the knowledge for a subject or area of work. The protocol calls this a **universe**. Companion guidance explains how to answer its questions well.
 
-## The two-file pair
+## Definition and Guidance Files
 
-A spec ships as a pair: the spec file, which the checker enforces, and a guidance file, which is
-advisory by rule. The spec carries only what something reads, and must stay valid with no guidance
-file present. The shipped pair to read: `universes/product-development/universe.kbp.yaml` and
-`type-guidance.kbp.yaml`. In the files themselves the format's term for a spec is `universe` —
-same thing, the format's internal name.
+The included example has two files:
 
-## What each key declares
+- [universe.kbp.yaml](../universes/product-development/universe.kbp.yaml): questions, document purposes, composition rules, and relationships.
+- [type-guidance.kbp.yaml](../universes/product-development/type-guidance.kbp.yaml): advice and sources attached to those definitions.
 
-| Key in the file | Prose name | What it declares |
-| --- | --- | --- |
-| `universe` | the header | id, version, `conforms_to`, ordering frame — what this spec is and which format version it obeys. |
-| `elements` | questions | units of conclusion, each identified by the question its content answers. |
-| `artifacts` | document types | compositions over elements, each identified by the decision or action it enables for a named actor. |
-| `frames` | indexing dimensions | dimensions the spec is indexed by; a frame can select, promote to core, gate an element, disable an artifact, or return empty. |
-| `factors` | declared-only dimensions | dimensions the spec declares and wires into nothing — whatever consumes the spec reads and sets them. |
-| `relation_kinds`, `relations` | edge types, edges | typed edges over element and artifact identities. |
-| `statuses` | answer lifecycle | the statuses an answer (one assertion by a party at a time) can carry. |
-| `empty_composition` | honest-empty rule | the frame condition under which a document legitimately composes nothing. |
+Guidance is optional. The universe must remain valid without it. When guidance is supplied, the checker validates its structure and references, not whether its advice is correct.
 
-The guidance file carries its own five: `guidance` (header), `guidance_kinds`, `sources`, and per-`elements` / per-`artifacts` entries.
+## Field Reference
 
-## Identity rules
+| Key | Purpose |
+| --- | --- |
+| `universe` | Identifies the definition set, its version, the protocol version it follows, and its ordering frame. |
+| `elements` | Defines knowledge units by the questions their contents answer. |
+| `artifacts` | Defines document types by the action or decision they enable for someone, and lists their contents. |
+| `frames` | Defines context used to organize or select content. A frame can make content required, exclude it, or determine that no document is needed. |
+| `factors` | Declares context that applications can use, without giving it control over document composition in the universe. Guidance can use a factor to select advice. |
+| `relation_kinds`, `relations` | Names the kinds of connections and the definitions they connect, such as dependencies or distinctions. |
+| `statuses` | Declares the statuses an assertion can carry. |
+| `empty_composition` | States the context in which no document is needed. |
+| `instances` | Holds asserted answers with their party, status, time, and other instance details. |
 
-An element is the question its content answers — two candidates answering the same question are
-one element. A document type is the decision or action it enables for a named actor — identity is
-`(action, actor)`, with timing to break ties. These rules are the collision tests that keep a spec
-from accumulating duplicates: every proposed addition is checked against every declared identity
-and ruled *sharpen existing / new / refused*.
+For example, a frame could make a section required in one situation and unnecessary in another. A factor could select relevant writing advice without changing the required sections.
 
-## Codes
+The guidance file has a header (`guidance`), declared advice kinds (`guidance_kinds`), a source registry (`sources`), and entries attached to `elements`, `artifacts`, or `factors`.
 
-Every declaration carries a 5-character code, kind-prefixed, from an alphabet omitting `i l o u`
-so no code parses as a bool, null, or number. Codes survive renames — an id is free to change; a
-code is never reused or reassigned. Mint new ones with `just mint <kind>`.
+## Defining Elements and Artifacts
 
-## The split rule
+An element is identified by its question. Two candidate sections answering the same question refer to the same element, regardless of their headings.
 
-A value belongs in the spec because something reads it; everything else belongs in guidance:
-conventions (which must cite a registered source), pitfalls, heuristics, what an honest empty
-answer means, refresh cadence, and boundary claims. Every guidance kind except convention may be
-asserted — but must say so.
+A document type is identified by the action or decision it enables and the actor who needs it. Its required contents are the information that actor needs to proceed. Other contents depend on the situation.
+
+Before adding a definition, compare it with existing questions and document purposes. You may need to clarify an existing definition rather than add another. `/kb-uncover-question` and `/kb-evolve` support that review.
+
+## Stable Codes
+
+Elements, artifact types, frames, and factors each carry a five-character code. The first character identifies the kind; the rest is an opaque handle. Codes do not encode meaning or order.
+
+People and agents use the readable id and question. Tools use the code to keep a stable reference when the same definition is renamed. Preserve its code and update references that use the changed id. Never reuse or reassign a retired code.
+
+From the repository root:
+
+```bash
+just mint element 3
+```
+
+This generates three element codes. Use `artifact`, `frame`, or `factor` for other kinds. See [Adapting the Example](adapting-the-example.md) for use with your own definitions.
+
+## Requirements vs. Recommendations
+
+Put declarations and structural rules in the universe file. Put recommendations and their reasoning in guidance.
+
+For example, a rule requiring a section belongs in the document's composition. Advice on writing that section clearly belongs in guidance.
+
+In the included guidance, conventions require registered sources. Other kinds, such as pitfalls and heuristics, may be marked `asserted`. Each guidance document declares which of its advice kinds require sources.
+
+## Validation Scope
+
+The checker validates supported structural rules in universe and guidance files. It does not yet provide a complete instance-validation path or validate ingestion's separate `answers.yaml` format.
+
+See [Validation](validation.md) for commands and limitations.

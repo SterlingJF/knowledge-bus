@@ -1,32 +1,67 @@
 # Validation
 
-The checker validates the format against itself before it validates anything of yours.
+Use the checker to find structural errors in definition and guidance files before people or tools rely on them.
 
-## Self-check first
+## What Gets Checked
 
-One convention binds the checker: a key the code subscripts must be a key the format requires,
-checked before anything reads it. An unsound format stops the run with a named failure, not a
-`KeyError` deep in a loop.
+The checker uses the protocol's conformance rules to check supported conditions, including:
 
-## What gets checked
+- required declarations and fields;
+- references to declared elements and document types;
+- duplicate codes;
+- protocol-version compatibility;
+- permitted uses of frames and factors;
+- guidance references, kinds, and source declarations;
+- fields that the format does not allow.
 
-Seventeen registered validity clauses — 11 on spec files, 6 on guidance files — plus the
-unsanctioned-field rule: a file carrying keys the format does not declare is refused, not skimmed.
+Guidance is checked against the universe it names, so provide both files in the same run.
 
-## The refusal corpus
+## What Requires Human Review
 
-Every registered refusal has a file in `tests/conformance/fail/` that must be refused for its own
-reason, not merely rejected — a refusal nobody has written a file for is a refusal nobody has
-tested. Five today: a duplicate code, a declaration missing a required key, a predicate naming a
-factor, a composition referencing an undeclared element, a wrong `conforms_to`.
+Passing means the files meet the checks currently implemented. It does not establish that a question is useful, that an answer is true, or that advice is well supported.
 
-## Running it
+The checker does not yet validate the `answers.yaml` output from ingestion. Protocol rules for instances and exchange should not be read as a claim that those workflows are fully checked.
+
+## Running the Checker
+
+Requires [`uv`](https://docs.astral.sh/uv/). Run these commands from a clone of the repository.
+
+Check the bundled definitions and guidance:
 
 ```bash
-uv run kbp                 # format self-check + every spec from the repo root
-uv run kbp --validate a.kbp.yaml b.kbp.yaml
-just test                  # the refusal corpus
+uv run kbp
 ```
 
-Exit is non-zero on any refusal. Given no arguments, the checker finds the format and every spec
-from the repository root; given nothing to check, it refuses rather than reporting success.
+Check a particular definition file and its guidance:
+
+```bash
+uv run kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
+```
+
+Paths in this example are placeholders for your files. A directory argument includes every `*.kbp.yaml` file beneath it.
+
+Without explicit paths, the checker searches upward from the working directory for a `spec/` directory and uses the accompanying `universes/` directory. It reports an error if it cannot find the protocol or has no documents to check.
+
+## Understanding Results
+
+The checker first reports whether the protocol is `SOUND`. It then reports whether each document conforms, with `FAIL` messages describing the problems it found.
+
+Fix the reported declaration or reference and run the check again. A non-zero exit status means the run failed, so scripts and CI can stop on that result.
+
+## Testing the Checker
+
+Before checking documents, the checker checks the protocol itself. This includes checking that fields it expects to read are declared as required. An inconsistent protocol stops the run.
+
+Run that check alone with:
+
+```bash
+uv run kbp --self-check
+```
+
+The test corpus includes valid documents and five deliberately invalid cases: a duplicate code, a missing required field, an invalid factor reference, an unknown element in a composition, and a mismatched protocol version. Each invalid case must fail with the expected reason. These cases do not cover every possible violation.
+
+Run the tests with:
+
+```bash
+just test
+```

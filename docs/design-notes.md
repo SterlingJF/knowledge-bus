@@ -1,44 +1,36 @@
-# Design notes
+# Design Notes
 
-## Identity by question
+Why the protocol uses questions to identify knowledge, separates guidance from requirements, and gives definitions stable codes.
 
-An element is the question it answers, not a label.
-Two specs sharing no vocabulary can still exchange answers keyed by question.
+## Identity by Question
 
-The most useful person in a meeting is not necessarily the one holding the most information, but rather it's the one
-who asks the question that points everyone at the right work. A knowledge base should be built out
-of those questions, not out of the information.
+Headings alone do not tell you whether two sections describe the same knowledge. Different documents can use different labels for the same question, or use the same label for different questions.
 
-Corroborating work:
+Knowledge Bus identifies each element by the question its content answers. This gives authors a way to check for overlap and gives receivers a basis for matching knowledge across different sets of definitions.
 
-- **Collingwood (1939)** — the logic of question and answer: a proposition's meaning and truth are relative to the question it answers; knowledge stripped of its question is unintelligible. *An Autobiography*, ch. V; *An Essay on Metaphysics* (1940). The anchor citation.
+The research below informs that choice; it does not establish that identifying equivalent questions is a solved problem.
+
+Related research:
+
+- **Collingwood (1939)** — the logic of question and answer: a proposition's meaning and truth are relative to the question it answers; knowledge stripped of its question is unintelligible. *An Autobiography*, ch. V; *An Essay on Metaphysics* (1940).
 - **Hamblin (1958)** — knowing what counts as an answer is equivalent to knowing the question; the formal converse of identity-by-question, and the foundation of modern question semantics. "Questions," *Australasian Journal of Philosophy* 36(3).
-- **Grüninger & Fox (1995)** — competency questions in ontology engineering: a knowledge artifact is specified and judged by the questions it can answer, built for interchange between parties with disjoint vocabularies. IJCAI-95 Workshop on Basic Ontological Issues in Knowledge Sharing. The closest design precedent.
+- **Grüninger & Fox (1995)** — competency questions in ontology engineering: a knowledge artifact is specified and judged by the questions it can answer, built for interchange between parties with disjoint vocabularies. IJCAI-95 Workshop on Basic Ontological Issues in Knowledge Sharing.
 
-Secondary: Bromberger (1992), *On What We Know We Don't Know* — ignorance too is question-shaped;
-Roberts (1996/2012), *Semantics and Pragmatics* 5(6) — discourse already exchanges information
-keyed to questions under discussion.
+Bromberger (1992), *On What We Know We Don't Know*, also examines questions and ignorance. Roberts (1996/2012), *Semantics and Pragmatics* 5(6), examines how questions under discussion organize discourse.
 
-<!-- slot: cautions, verified — fold into prose or leave as authoring notes:
-- Frame Collingwood as alignment with the correlativity thesis, not endorsement of his attack on
-  propositional logic (regarded as overreach).
-- Hamblin: cite the 1958 AJP paper, not 1973; postulate 3 (exhaustive, exclusive answers) is
-  contested — don't lean on it.
-- Bromberger disputes Hamblin on answerhood and calls question-individuation unsolved; one honest
-  sentence noting the identity criterion is a live research question strengthens the doc. -->
+These references have limits. The use of Collingwood concerns the relationship between questions and answers, not his broader criticism of propositional logic. Hamblin's account of exhaustive, exclusive answers is contested; the protocol does not rely on that claim. Bromberger's treatment also leaves the identification of questions unresolved.
 
-## The spec/guidance split
+## Separate Definitions and Guidance
 
-A value belongs in the spec because something reads it.
-Guidance constrains authoring without intervening in validation.
+Requirements and writing advice serve different purposes. If they share one undifferentiated list, readers cannot easily tell which statements determine document structure and which help them exercise judgment.
 
-The split follows Brézillon's model of context: context is what constrains an activity without
-intervening in it explicitly. The spec is what the mechanism reads — knowledge mobilized into
-composition and validation. Guidance is contextual: it shapes how a question gets answered well,
-and on whose authority, without the checker ever requiring it. The filing diagnostic: does
-something read this, or does it only inform the author?
+Knowledge Bus puts declarations and composition rules in the universe file. Guidance carries advice, its sources, and the reasoning behind those rules. A universe remains valid without guidance, and departing from advice does not itself violate the protocol.
 
-Corroborating work:
+For example, a requirement to include decision criteria belongs in the document definition. Advice on explaining those criteria belongs in guidance.
+
+The distinction draws on research into how context informs an activity and how some of that context becomes part of its explicit procedure.
+
+Related research:
 
 - **Pomerol & Brézillon (1999)** — contextual knowledge versus proceduralized context: the same
   material splits by whether it is mobilized into the decision or merely conditions it.
@@ -47,19 +39,20 @@ Corroborating work:
   stipulated, task-indexed model rather than waiting for a general one. "Understanding Context
   Before Using It," CONTEXT 2005, LNCS 3554.
 
-The deeper reason is change rate. How to answer a question well — the literature, conventions,
-and connotations underneath it — evolves rapidly and is unbounded; a search can surface new
-material the same day. The questions themselves are more stable, more structured, and easier to
-evaluate for cohesion. The split keeps the stable layer enforceable while the unbounded layer
-stays free to move.
+The split also lets advice evolve without making every change a structural requirement. A new source can improve guidance without changing the question being answered. If new evidence does change a requirement or relationship, the universe must be updated too.
 
-## Stable short codes
+## Stable Codes
 
-Codes are 5 characters from an alphabet omitting i, l, o, u, so no code parses as a bool, null, or number.
-Codes survive renames; questions do not.
+Readable ids and question wording can change as definitions improve. Tools need a reference that survives editorial changes to the same definition.
 
-Three alternatives were refused. Ids as the stable handle: a question is distinct within its
-spec's scope but shifts as the spec matures — inherently not character-stable. Sequential markers,
-issue-tracker style: elements and artifacts present in parallel and nonlinear ways; an ordering
-implies a sequence that doesn't exist. UUIDs: uniqueness is only ever needed within one spec's
-scope, so the length buys nothing.
+Each element, artifact type, frame, and factor therefore receives a stable five-character code. A code is never reused or reassigned. It does not establish equivalence between universes; that still depends on the question.
+
+The alphabet omits `i`, `l`, `o`, and `u` to avoid codes that parsers could interpret as booleans, nulls, or numbers.
+
+Alternatives considered:
+
+- **Readable ids:** useful to people, but changing an id would also change the stable reference.
+- **Sequential numbers:** can suggest an order that the definitions do not have.
+- **UUIDs:** provide broader uniqueness than needed for codes scoped to one universe.
+
+Codes solve reference stability. They do not remove the need to review whether an edited definition still means the same thing.

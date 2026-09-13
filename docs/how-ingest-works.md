@@ -1,61 +1,76 @@
-# How ingest works
+# How Ingest Works
 
-What `/kb-ingest` decides at each step, and what its report means.
+What `/kb-ingest` does with your folder, when it needs your input, and how to read the results.
 
-## What it assumes about your folder
+## Before You Start
 
-Markdown and plain text read best; other formats are inventoried and flagged rather than skipped
-silently. No structure is required — mixed dates, duplicate topics, and half-finished notes are the
-expected case, not a failure mode. The folder is never written; everything ingest produces lands in
-`<folder>-spec/` beside it.
+Markdown and plain text work best. Other formats are listed and flagged so you know which material needs attention. Your folder can contain mixed dates, overlapping topics, and unfinished notes.
 
-## The eight steps
+The source folder remains unchanged. Outputs go into a sibling folder named `<folder>-spec/`.
 
-**1. Confirm scope.** Only the source folder is asked for. The output location is convention, and
-the domain phrase is proposed later, from evidence — asking for it cold would put the burden of
-work on you before the skill has earned the right to ask anything.
+## The Eight Steps
 
-**2. Survey before reading.** Files, dates, and formats are counted and reported before any deep
-read. Every doc gets one of three staleness marks: **contradicted** (a newer source disputes it —
-mechanical), **unconfirmed** (old, but nothing disputes it), **confirmed** (you cleared it in the
-interview). The judgment here is restraint: confirmation questions come batched, after the whole
-survey, so you rule on genuine uncertainty rather than on what the corpus already settles.
+### 1. Choose the Folder
 
-**3. Position the domain, then choose the spec.** The skill reasons over the folder and whatever
-you supplied, calls `/kb-uncover-question` where the domain's questions are unclear, then
-interviews to place your domain against the built-in product-development spec: how regulated or
-commercial versus DIY, and where the abstraction layer sits — industry, company, product, or
-feature. Adopt, trim, or derive follows from that placement, not from a mapping-count threshold.
+Provide the source folder. The skill reviews the material before proposing what subject or work the definitions should cover.
 
-**4. Extract answers.** Each document section maps to a declared question — one answer per
-question per party and time. A collision (two docs answering the same question) is never resolved
-by recency: the older doc may be the forgotten original and the newer a lacking recollection.
-The collision is surfaced with its provenance and put to you as an informed question. Your ruling
-lands in the ingest log with its reasoning; answers stay clean. Decline to rule and the question
-files as **contested**.
+### 2. Review the Survey
 
-**5. Refuse honestly.** Content answering no declared question is flagged, never forced into a
-near-fit. Refusals repeating on one theme signal a missing question — the skill offers
-`/kb-evolve` — rather than off-domain content.
+The skill reports files, dates, and formats before reading in depth. It flags documents using three labels:
 
-**6. Write the outputs.** Spec file, guidance deltas, answers, and the ingest log, all in
-`<folder>-spec/`.
+- **Contradicted:** another, newer source disputes the content.
+- **Unconfirmed:** the content is old enough to need review, but nothing found disputes it.
+- **Confirmed:** you have confirmed that the content still holds.
 
-**7. Validate.** The bundled checker runs over everything written; every refusal is fixed or
-surfaced before you see a report.
+Age alone does not establish that information is wrong. The skill groups questions so you can review the uncertainties together.
 
-**8. Report coverage.** One table, contested first.
+### 3. Confirm the Definitions
 
-## Reading the coverage report
+The skill proposes whether to adopt the product-development starter, adapt it, or develop definitions for the material. It considers the work's purpose, audience, scale, and requirements.
 
-| Class | What it means | Your move |
+It may use `/kb-uncover-question` to clarify missing questions or `/kb-evolve` to change document types. You review the survey and proposed approach before answers are filed.
+
+### 4. Map Answers and Resolve Conflicts
+
+Each relevant section is mapped to a declared question. The skill keeps track of who supplied an answer and when.
+
+When files provide competing answers, it presents the claims and their sources for your review. A newer file does not automatically replace an older one.
+
+Your decision and reasoning go into `ingest-log.md`. If you leave a conflict unresolved, it remains marked **contested**.
+
+### 5. Review Material That Does Not Fit
+
+Content that answers no declared question is flagged rather than assigned to an approximate match.
+
+Repeated gaps around one topic may indicate that the definitions need extending. Other material may simply fall outside the scope. The skill explains the distinction and can offer `/kb-evolve`.
+
+### 6. Write the Outputs
+
+The sibling folder contains:
+
+- the adopted or adapted definitions;
+- companion guidance;
+- `answers.yaml`, containing sourced answers and gaps;
+- `ingest-log.md`, recording decisions made during the review.
+
+### 7. Check the Definition Files
+
+The bundled checker validates the definition and guidance files. Failures are corrected or reported before the final coverage report.
+
+The checker does not yet validate `answers.yaml` or the ingest log. Review those outputs for accuracy.
+
+### 8. Review Coverage
+
+The report lists unresolved conflicts first, followed by mapped content, potentially outdated content, material that did not fit, and unanswered questions.
+
+## Reading the Coverage Report
+
+| Class | What it means | What to do |
 | --- | --- | --- |
-| contested | a collision you declined to rule | rule it |
-| mapped | filed against a declared question | spot-check |
-| stale | contradicted, or merely unconfirmed | confirm or retire |
-| refused | answers no declared question | accept as off-domain, or add the question via `/kb-evolve` |
-| gap | a core question with no answer | answer it, or record what an honest empty means |
+| contested | Competing answers remain unresolved. | Decide which applies, or leave the disagreement recorded. |
+| mapped | Content was assigned to a declared question. | Spot-check the answer and source. |
+| stale | Content is contradicted or needs confirmation. | Confirm, revise, or retire it. |
+| refused | Content answers no declared question. | Accept that it is outside scope, or review whether a definition is missing. |
+| gap | A required question has no answer. | Supply an answer, or record why it remains unanswered. |
 
-Contested rows sit at the top because they block trust the most: until they are ruled, the spec
-carries two answers to one question.
-
+Unresolved conflicts appear first so you can see where the material does not yet provide an agreed answer.

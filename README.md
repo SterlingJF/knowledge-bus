@@ -1,91 +1,194 @@
-# knowledge-bus
+# Knowledge Bus
 
-Convert a scattered knowledge base into validated specs that agents can consume.
+Shared structure for the knowledge people and AI agents work with.
 
 [![ci](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml/badge.svg)](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml)
 
-Scattered docs fail humans and agents the same way: plenty of information, no orientation. Humans
-search stale files; agents re-read conflicting docs, bloat their context, and still miss
-the finer points.
+Define what your notes and documents need to answer, how their contents connect, and what someone should be able to do with them. Use those expectations to guide new work, review contributions, and exchange knowledge.
 
-knowledge-bus restructures the folder into a spec: a registry of the questions your domain has to answer, each
-with its sourced answers. Tools like [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) already try to solve the current-state problem;
-a knowledge-bus spec carries direction: what's answered, what's open, what to ask next. Fewer tokens to
-ground an agent; less effort to orient a human.
+## What is Knowledge Bus?
 
-## Install the plugin
+Knowledge Bus is a protocol for describing what knowledge means and how it fits together. It gives people and AI agents a common reference for writing, reading, and using notes and documents.
+
+For a project, subject, or area of responsibility, you can define:
+
+- the questions the content needs to answer;
+- the decisions or actions each document supports;
+- the information required for that purpose;
+- how information connects across documents;
+- which requirements change with the audience or situation;
+- guidance for answering well;
+- who supplied an answer, when it was established, and whether it is settled or disputed.
+
+These definitions can guide a personal notebook, a shared project folder, or documentation across teams. They give contributors clear expectations and help later readers understand the thinking behind the content.
+
+A template gives a document its sections. Knowledge Bus also defines what those sections mean, why they belong, and how their contents relate to other documents. Different documents can refer to the same knowledge, reducing the need to repeat the thinking or maintain separate copies.
+
+Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze existing material to explain its contents and connections. Knowledge Bus lets people and agents agree on what the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
+
+## Where It Helps
+
+- **Personal notes:** decide what you want to capture and keep enough context to understand it later.
+- **Everyday projects:** make clear what has been decided, what still needs answering, and what another person needs to take over.
+- **Team documentation:** give contributors shared expectations across briefs, plans, decisions, and handovers.
+- **AI collaboration:** give agents explicit definitions and guidance to follow when asking questions, drafting, or reviewing.
+- **Knowledge exchange:** describe how information can move between people and tools while retaining its meaning and context.
+
+You can adopt an existing set of definitions or develop one for your own work. The included product-development example provides a starting point; the protocol supports other subjects and uses.
+
+## Features
+
+- **Knowledge definitions** — identify each piece of knowledge by the question it answers, so different headings and filenames do not give it different meanings.
+- **Document composition rules** — define the decision or action a document supports, then specify the information someone needs to make that decision or take that action.
+- **Authoring guidance** — attach advice and its sources to relevant definitions, keeping recommendations separate from requirements.
+- **Attribution and history** — record who stated something, who is bound by it, its status, and when it was established. Preserve earlier versions when new assertions replace them.
+- **Knowledge exchange rules** — define how to share knowledge between different structures while preserving its meaning, source, and status. Keep disagreements visible for the receiver to resolve.
+- **Product-development starter** — adopt or adapt definitions for 19 document types, including briefs, plans, and decision records.
+- **Agent skills** — clarify questions and check for overlap, recover why a decision was made and what would warrant reconsidering it, and add or re-examine document types.
+- **Folder ingestion** — map existing notes to sourced answers, surface conflicts for your review, and report gaps without changing the originals.
+- **Conformance checker** — check definition and guidance files for missing declarations, unresolved references, and other structural errors.
+
+## The Built-in Example
+
+The included product-development definitions cover 58 questions across 19 document types, including strategy canvases, lean canvases, decision records, and design documents. They declare 45 relationships between those types and their contents.
+
+The companion guidance provides 194 entries citing 51 registered sources, including Pichler, Moore, Porter, Osterwalder, and Maurya.
+
+Use this as a starting point for your own work. You can adopt it, trim it, extend it, or develop a different set of definitions.
+
+See [Adapting the Example](docs/adapting-the-example.md).
+
+## Installation
+
+### Claude Plugin
 
 ```bash
 /plugin marketplace add SterlingJF/knowledge-bus
 /plugin install knowledge-bus
 ```
 
-Or clone this repo and use the checker alone, no plugin:
+Validation requires [`uv`](https://docs.astral.sh/uv/).
+
+### Standalone Checker
+
+Clone the repository and run the checker from its root:
 
 ```bash
+git clone https://github.com/SterlingJF/knowledge-bus.git
+cd knowledge-bus
 uv run kbp
 ```
 
-## Quick start
+The checker can be used without the plugin.
 
-1. Run `/kb-ingest` on a folder of notes or docs — it surveys, interviews you, and writes a spec to `<folder>-spec/` beside it.
-2. Review the coverage report: contested content first, then stale, refused, and gaps.
-3. Run `/kb-check` after any edit.
+## Quick Start
+
+### Working With Existing Notes
+
+Knowledge Bus can also help recover structure from existing files. The ingestion skill reads a folder, maps its contents to the questions they answer, and flags disagreements and missing information. It asks you to resolve uncertainty and writes its outputs beside the original folder.
+
+1. Run `/kb-ingest` with the path to a folder of notes or documents.
+2. Review its survey and proposed definitions. Answer any questions about conflicts or uncertain information.
+3. Review the outputs in `<folder>-spec/`: definitions, guidance, sourced answers, and a record of decisions made during ingestion.
+4. Review unresolved conflicts, potentially outdated content, material that did not fit, and unanswered questions.
+5. Run `/kb-check` after editing definition or guidance files.
+
+Your source folder remains unchanged.
+
+See the [Walkthrough](docs/walkthrough.md) for a complete example.
+
+## Limits
+
+- Skills are tested against Claude Opus 5 at high reasoning effort.
+- Formal testing for the skills is limited to Claude Opus 5 at high reasoning effort; other models are supported on a best-effort basis.
+- The checker validates definition and guidance files. It does not yet validate the `answers.yaml` files produced by ingestion.
+- Structural validation does not establish that an answer is true or that a definition captures the right question.
+- The protocol defines composition and exchange rules. Tools for composing documents and interpreting incoming knowledge remain planned work.
+
+## Roadmap
+
+### Planned
+
+- [ ] Universe visualizer for understanding and working with knowledge structures
+- [ ] Guided authoring of definitions for your own subject or work
+- [ ] Document composition from shared knowledge, purpose, and audience
+- [ ] Markdown interchange format
+- [ ] A standard folder location so tools can discover shared definitions
+- [ ] Validation of answer files
+
+### Further Exploration
+
+- Knowledge exchange between different sets of definitions
+- Forms and surveys designed around the decisions their answers support
+
+### Evaluation
+
+- How much reasoning is preserved when knowledge is extracted and turned back into a document?
+- How reliably do agents follow the definitions and guidance?
+- Do agents leave questions unanswered when they lack supporting information?
 
 ## Commands
 
 | Command | What it does |
 | --- | --- |
-| `/kb-ingest` | Converts a folder of scattered docs into a validated spec with sourced answers. |
-| `/kb-evolve` | Adds a document type a spec lacks, or re-examines one before it becomes load-bearing. |
-| `/kb-check` | Validates spec files and reports each failure with its registered reason. |
-| `/kb-uncover-question` | Elicits a clear, distinct, non-overlapping question a spec should declare. |
-| `/kb-uncover-decision` | Elicits a decision and the constraints that were live when it was made. |
+| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing one. |
+| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and conditions for reconsidering it. |
+| `/kb-evolve` | Adds or re-examines a document type, including its purpose, contents, relationships, and guidance. |
+| `/kb-ingest` | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps. |
+| `/kb-check` | Checks definition and guidance files and explains any conformance failures. |
 
-## How it works
+## How It Works
 
-- **Identity by question.** Documents (artifacts) are decomposed into their main sections (elements). Each artifact
-  and element is grouped and normalized by the questions it answers within the context of a domain (universe). Agents load
-  answers keyed by question instead of re-reading source docs.
-- **The spec/guidance split.** A universe spec holds the domain entities and relational mappings. A separate companion
-  file provides contextual guidance for agent (and human) reasoning.
-- **Mechanical validation.** 17 machine-checked validity clauses, plus a test corpus where every registered refusal
-  has a file that must fail for exactly that reason.
+### Questions Identify Knowledge
 
-## The built-in example
+A knowledge element is defined by the question its content answers. Two sections answering the same question refer to the same element, even if their headings differ.
 
-The built-in spec covers product development: 58 questions across 19 document types — strategy
-canvas, lean canvas, decision record, design doc — with 45 relations between them. Its guidance
-file carries 194 entries citing 51 registered sources (Pichler, Moore, Porter, Osterwalder,
-Maurya, ...). A product or idea knowledge base can ingest against it today. Niche or
-function-specific domains can still use it as a starting point.
+The protocol calls a declared set of knowledge elements, document types, and their relationships a **universe**.
 
-See [docs/adapting-the-example.md](docs/adapting-the-example.md) for making it yours.
+### Purpose Determines Document Contents
 
-## Limits
+A document type is called an **artifact** in the protocol. It is defined by the decision or action it enables and the person who needs to take it.
 
-- Skills are tested against Claude Opus 5 at high reasoning effort; other models are untested.
-- Claude-native. The checker CLI runs anywhere; the skills are best-effort outside Claude models.
-- The checker validates spec and guidance files; answers ship in a documented shape it does not yet check.
-- The validation step requires [`uv`](https://docs.astral.sh/uv/).
+Its core contents are the information that person needs to make the decision or take the action. Other contents depend on the situation.
+
+### Context Changes What Is Needed
+
+Context rules can change which information is included, promote it to a requirement, or disable a document type. The rules must also allow for situations where no document is needed.
+
+Relationships declare dependencies, distinctions, and other connections between knowledge elements and document types.
+
+### Guidance Stays Separate From Requirements
+
+The universe file holds the definitions and structural rules. A companion guidance file explains how to answer well and identifies the sources or assertions behind that advice.
+
+Guidance is advisory. You can depart from the advice and still follow the protocol's requirements.
+
+### Assertions Retain Their Context
+
+An **instance** records an asserted answer and who stated it. Its status indicates how the assertion should be treated; its timestamp records when the value was established, not when it expires. The protocol separately records who is bound by the assertion. For example, one person may state a requirement that another person must follow.
+
+Multiple assertions can coexist. A new assertion can replace an earlier one, while the earlier version remains available for reference.
+
+### Exchange Preserves Differences
+
+The protocol defines four steps: compose, transmit, decode, and reconcile.
+
+A sender composes knowledge for a purpose and audience. The receiver interprets it within their own definitions and context. The receiver matches information by the question it answers and records disagreements rather than silently overwriting them.
+
+### The Checker Verifies Structure
+
+The checker validates the protocol against itself, then checks definition and guidance files against supported conformance rules. It reports failures such as missing declarations, unresolved references, and invalid structural relationships.
+
+People still need to review the meaning: a definition can pass the checks and still ask the wrong question.
 
 ## Docs
 
-- [walkthrough.md](docs/walkthrough.md) — one messy folder through one ingest, start to finish.
-- [how-ingest-works.md](docs/how-ingest-works.md) — what actually happens when `/kb-ingest` runs on a messy folder.
-- [spec-anatomy.md](docs/spec-anatomy.md) — what is inside a spec file.
-- [validation.md](docs/validation.md) — what the checker verifies, and what it refuses.
-- [adapting-the-example.md](docs/adapting-the-example.md) — how to get a spec for your domain.
-- [design-notes.md](docs/design-notes.md) — why identity-by-question, the split, and stable codes.
-
-## Roadmap
-
-Planned measurement, not claims:
-
-- Round-trip context loss — express, regenerate, diff: how much of the reasoning survives?
-- Authoring reliability — given a spec, its guidance, and a situation, does an agent produce a conforming document?
-- Refusal trust — does an agent decline a question it has no basis for, or fill the field?
-- Answer-file validation — extend the checker to the `answers.yaml` shape ingest writes.
+- [Walkthrough](docs/walkthrough.md) — one folder through ingestion, start to finish.
+- [How Ingest Works](docs/how-ingest-works.md) — the steps, decisions, and coverage report.
+- [Spec Anatomy](docs/spec-anatomy.md) — the structure of a definition file.
+- [Validation](docs/validation.md) — what the checker verifies and rejects.
+- [Adapting the Example](docs/adapting-the-example.md) — adopt, trim, or extend the included definitions.
+- [Design Notes](docs/design-notes.md) — the reasoning behind question identity, separate guidance, and stable codes.
 
 ## License
 
