@@ -185,6 +185,8 @@ People still need to review the meaning: a definition can pass the checks and st
 
 ## Docs
 
+- [Versioning](docs/versioning.md) — release versions, protocol versions, and the release workflow.
+
 - [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
 
 - [Walkthrough](docs/walkthrough.md) — one folder through ingestion, start to finish.

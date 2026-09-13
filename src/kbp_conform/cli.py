@@ -2,6 +2,7 @@
 
     kbp [--validate] [<protocol.yaml>] [<document-or-directory>...]
     kbp --self-check [<protocol.yaml>]
+    kbp --version
     kbp --mint element|artifact|frame|factor [count] [<document-or-directory>...]
 
 `--validate` checks documents against the protocol and is what a bare `kbp`
@@ -15,6 +16,7 @@ of the working directory; installed packages carry their own protocol.
 """
 import os
 import sys
+from importlib.metadata import version
 from pathlib import Path
 
 import yaml
@@ -126,6 +128,16 @@ MODES = ("--validate", "--self-check", "--mint")
 
 def main(argv=()):
     argv = list(argv)
+    if argv == ["--version"]:
+        protocol_path = default_protocol()
+        if protocol_path is None:
+            print("no bundled protocol found")
+            return 1
+        with open(protocol_path, encoding="utf-8") as stream:
+            protocol = yaml.safe_load(stream)["protocol"]
+        print(f"Knowledge Bus {version('knowledge-bus')}")
+        print(f"Bundled protocol: {protocol['id']}/{protocol['version']}")
+        return 0
     mode = argv.pop(0) if argv and argv[0] in MODES else "--validate"
 
     unknown = next((a for a in argv if a.startswith("--")), None)

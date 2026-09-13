@@ -13,3 +13,15 @@ test:
 # Type-check the format definition itself
 self-check:
     uv run kbp --self-check
+
+# Prepare release metadata without committing or tagging.
+release-prepare version:
+    uv run --locked python scripts/release.py prepare {{quote(version)}}
+
+# Validate release metadata and distributions.
+release-check:
+    uv run --locked python scripts/release.py check
+
+# Verify clean main and create an annotated local tag. Never pushes.
+release-tag:
+    uv run --locked python scripts/release.py tag

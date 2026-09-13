@@ -1,0 +1,57 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --locked
+      - name: Verify tag and main ancestry
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: uv run --locked python scripts/release.py verify-tag "$RELEASE_TAG"
+      - name: Verify release and build distributions
+        run: uv run --locked python scripts/release.py check --output "$RUNNER_TEMP/release-artifacts"
+      - name: Extract release notes
+        run: uv run --locked python scripts/release.py notes > "$RUNNER_TEMP/release-artifacts/release-notes.md"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: ${{ runner.temp }}/release-artifacts/
+          if-no-files-found: error
+
+  publish:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: release-artifacts
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            --verify-tag --title "Knowledge Bus $RELEASE_TAG" \
+            --notes-file release-artifacts/release-notes.md \
+            release-artifacts/*.whl release-artifacts/*.tar.gz
