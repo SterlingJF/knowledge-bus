@@ -13,6 +13,10 @@ description: Elicit a decision and the constraints that were live when it was
 
 **Purpose — recover the constraints that were live when the decision was made, not just its output. A record that carries only the conclusion reads as true and is unusable.**
 
+## Knowledge Bus Directory
+
+Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
+
 ## Standing constraints
 
 - **Past tense throughout.** What was live, not what is sensible now.
@@ -32,4 +36,3 @@ description: Elicit a decision and the constraints that were live when it was
 - **5. Name the reversal condition.** What changing would reopen this.
 
 - **6. File as answers** against declared questions; flag what stayed ambiguous.
-

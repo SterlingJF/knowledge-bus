@@ -14,12 +14,10 @@ description: Validate spec files against the format and report each failure
 
 ## The flow
 
-- **1. Locate.** Installed as a plugin, the checker and the format definition live at `${CLAUDE_PLUGIN_ROOT}`;
-    the files to check are wherever the user's spec lives. In a clone of this repo, the checker walks up from
-    the working directory looking for `spec/` and finds everything itself.
+- **1. Locate.** The installed package supplies the checker and protocol. Explicit file or directory targets take precedence. Without a target, use the nearest `.knowledge-bus/` from the user's working directory upward. Pass the resolved absolute Knowledge Bus directory path when the agent host runs commands from a different directory. Never combine definitions from different Knowledge Bus directories. If no `.knowledge-bus/` exists, report it; checking never creates one. See [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). The implementation checkout retains its bundled-example default when no `.knowledge-bus/` directory is found.
 
 - **2. Run.**
-    `UV_PROJECT_ENVIRONMENT="${CLAUDE_PLUGIN_DATA}/venv" uv run --project "${CLAUDE_PLUGIN_ROOT}" kbp --validate "${CLAUDE_PLUGIN_ROOT}/spec/knowledge-bus-protocol.yaml" <files>`
+    `UV_PROJECT_ENVIRONMENT="${CLAUDE_PLUGIN_DATA}/venv" uv run --project "${CLAUDE_PLUGIN_ROOT}" kbp --validate "${CLAUDE_PLUGIN_ROOT}/spec/knowledge-bus-protocol.yaml" <resolved-target>`
     — the env var keeps uv's venv out of the read-only plugin cache; from a repo clone, bare `uv run kbp`
     works. The format self-check runs first; an unsound format stops the run. If `uv` is not installed, say
     so and point at the uv install docs — do not improvise an invocation.
@@ -34,7 +32,7 @@ Each row is a registered refusal; every one has a corpus file that must fail for
 
 | Refusal contains | Fix |
 | --- | --- |
-| `already carried by` | The code is taken. Mint a fresh one (`just mint <kind>`); never reuse or reassign a code. |
+| `already carried by` | The code is taken. Mint a fresh one (`kbp --mint <kind> 1 <resolved-target>`); never reuse or reassign a code. |
 | `missing required` | The declaration lacks a required key (`id`, `code`, its identity). Add it; the message names which. |
 | `may not be referenced by a universe` | A `when:` predicate names a factor. Factors are unwired by design — predicate on a frame instead. |
 | `composition refs unknown elements` | A composition entry names an element the spec never declares. Declare it or correct the id. |

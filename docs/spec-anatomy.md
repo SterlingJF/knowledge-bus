@@ -2,6 +2,8 @@
 
 A definition file describes the knowledge for a subject or area of work. The protocol calls this a **universe**. Companion guidance explains how to answer its questions well.
 
+User definitions live in `.knowledge-bus/` inside the folder they describe. See [Knowledge Bus Directory](knowledge-bus-directory.md) for directory selection rules.
+
 ## Definition and Guidance Files
 
 The included example has two files:
@@ -46,10 +48,10 @@ People and agents use the readable id and question. Tools use the code to keep a
 From the repository root:
 
 ```bash
-just mint element 3
+uv run kbp --mint element 3 path/to/project/.knowledge-bus/
 ```
 
-This generates three element codes. Use `artifact`, `frame`, or `factor` for other kinds. See [Adapting the Example](adapting-the-example.md) for use with your own definitions.
+Replace the example path with your `.knowledge-bus/` directory. This generates three element codes checked against its definitions. Use `artifact`, `frame`, or `factor` for other kinds. See [Adapting the Example](adapting-the-example.md) for use with your own definitions.
 
 ## Requirements vs. Recommendations
 

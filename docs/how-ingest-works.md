@@ -6,7 +6,7 @@ What `/kb-ingest` does with your folder, when it needs your input, and how to re
 
 Markdown and plain text work best. Other formats are listed and flagged so you know which material needs attention. Your folder can contain mixed dates, overlapping topics, and unfinished notes.
 
-The source folder remains unchanged. Outputs go into a sibling folder named `<folder>-spec/`.
+Existing source files remain unchanged. Outputs go into `<folder>/.knowledge-bus/`. The skill excludes that directory from its inputs and skips and reports nested folders that contain their own `.knowledge-bus/`. Those folders are ingested separately only when explicitly targeted.
 
 ## The Eight Steps
 
@@ -14,7 +14,7 @@ The source folder remains unchanged. Outputs go into a sibling folder named `<fo
 
 Provide the source folder. The skill reviews the material before proposing what subject or work the definitions should cover.
 
-### 2. Review the Survey
+### 2. Review the Initial Findings
 
 The skill reports files, dates, and formats before reading in depth. It flags documents using three labels:
 
@@ -28,7 +28,7 @@ Age alone does not establish that information is wrong. The skill groups questio
 
 The skill proposes whether to adopt the product-development starter, adapt it, or develop definitions for the material. It considers the work's purpose, audience, scale, and requirements.
 
-It may use `/kb-uncover-question` to clarify missing questions or `/kb-evolve` to change document types. You review the survey and proposed approach before answers are filed.
+It may use `/kb-uncover-question` to clarify missing questions or `/kb-evolve` to change document types. You review the initial findings and proposed approach before answers are filed.
 
 ### 4. Map Answers and Resolve Conflicts
 
@@ -46,7 +46,7 @@ Repeated gaps around one topic may indicate that the definitions need extending.
 
 ### 6. Write the Outputs
 
-The sibling folder contains:
+The `.knowledge-bus/` folder contains:
 
 - the adopted or adapted definitions;
 - companion guidance;

@@ -8,17 +8,14 @@
 does. `--self-check` checks the protocol against itself and stops there.
 `--mint` returns codes that collide with nothing the documents declare.
 
-Paths are arguments. Given none, the protocol and the universes are found by
-walking up from the working directory for a `spec/` directory — so a bare run
-inside the repository does the obvious thing, and a run anywhere else says what
-it could not find rather than checking nothing and reporting success.
-
-A directory argument contributes every `*.kbp.yaml` beneath it. A file argument
-contributes itself, whatever its name.
+Without targets, use the nearest ancestor's .knowledge-bus/ directory.
+Explicit targets take precedence. The implementation checkout retains its bundled
+universes/ default when no .knowledge-bus/ directory exists. Protocol discovery is independent
+of the working directory; installed packages carry their own protocol.
 """
 import os
 import sys
-import glob
+from pathlib import Path
 
 import yaml
 
@@ -27,65 +24,101 @@ from .checker import (
     check, check_guidance, mint, self_check,
 )
 
-SPEC_DIR = "spec"
+KNOWLEDGE_BUS_DIR = ".knowledge-bus"
 PROTOCOL_NAME = "knowledge-bus-protocol.yaml"
-UNIVERSE_DIR = "universes"
+PACKAGE_DIR = Path(__file__).resolve().parent
+CHECKOUT_ROOT = PACKAGE_DIR.parent.parent
 
 
-def find_root(start=None):
-    """The nearest ancestor holding `spec/`, or None."""
-    here = os.path.abspath(start or os.getcwd())
-    while True:
-        if os.path.isdir(os.path.join(here, SPEC_DIR)):
-            return here
-        parent = os.path.dirname(here)
-        if parent == here:
-            return None
-        here = parent
+def find_knowledge_bus_dir(start=None):
+    """Find the nearest .knowledge-bus/ directory, including calls from inside it."""
+    here = Path(start or os.getcwd()).resolve()
+    for candidate in (here, *here.parents):
+        if candidate.name == KNOWLEDGE_BUS_DIR and candidate.is_dir():
+            return candidate
+        knowledge_bus_dir = candidate / KNOWLEDGE_BUS_DIR
+        if knowledge_bus_dir.is_dir():
+            return knowledge_bus_dir
+    return None
 
 
-def default_protocol(root):
-    named = os.path.join(root, SPEC_DIR, PROTOCOL_NAME)
-    if os.path.exists(named):
-        return named
-    found = sorted(glob.glob(os.path.join(root, SPEC_DIR, "*.yaml")))
-    return found[0] if found else None
+def default_protocol():
+    """Use the installed resource, or the canonical file in a source checkout."""
+    for path in (
+        PACKAGE_DIR / PROTOCOL_NAME,
+        CHECKOUT_ROOT / "spec" / PROTOCOL_NAME,
+    ):
+        if path.is_file():
+            return str(path)
+    return None
 
 
 def expand(paths):
-    """File arguments as themselves; directory arguments as the documents in them."""
+    """Expand explicit targets without absorbing nested folders with their own .knowledge-bus/."""
     out = []
-    for p in paths:
-        if os.path.isdir(p):
-            out.extend(glob.glob(os.path.join(p, "**", "*.kbp.yaml"), recursive=True))
-        else:
-            out.append(p)
+    for raw in paths:
+        path = Path(raw).resolve()
+        if not path.exists():
+            raise ValueError(f"target does not exist: {path}")
+        if path.is_file():
+            out.append(str(path))
+            continue
+        knowledge_bus_dir = path if path.name == KNOWLEDGE_BUS_DIR else path / KNOWLEDGE_BUS_DIR
+        if knowledge_bus_dir.is_dir():
+            out.extend(str(p) for p in sorted(knowledge_bus_dir.glob("*.kbp.yaml")) if p.is_file())
+            continue
+        # Generic directory targets remain useful for reference sets and test corpora.
+        for directory, children, files in os.walk(path):
+            children[:] = [
+                name for name in children
+                if name != KNOWLEDGE_BUS_DIR
+                and not (Path(directory) / name / KNOWLEDGE_BUS_DIR).is_dir()
+                and not (Path(directory) / name).is_symlink()
+            ]
+            out.extend(
+                str(Path(directory) / name)
+                for name in files if name.endswith(".kbp.yaml")
+            )
     return sorted(set(out))
 
 
-def resolve(args):
-    """(protocol path, document paths, error message)."""
+def resolve(args, *, documents_required=True):
+    """Return the protocol, selected documents, and an actionable discovery error."""
     args = list(args)
     protocol = None
     if args and args[0].endswith((".yaml", ".yml")) and os.path.isfile(args[0]):
-        head = yaml.safe_load(open(args[0], encoding="utf-8")) or {}
-        if "protocol" in head:
+        with open(args[0], encoding="utf-8") as stream:
+            head = yaml.safe_load(stream) or {}
+        if isinstance(head, dict) and "protocol" in head:
             protocol = args.pop(0)
 
+    protocol = protocol or default_protocol()
     if protocol is None:
-        root = find_root()
-        if root is None:
-            return None, [], (
-                f"no protocol given and no `{SPEC_DIR}/` directory above "
-                f"{os.getcwd()} — pass the protocol as the first argument"
-            )
-        protocol = default_protocol(root)
-        if protocol is None:
-            return None, [], f"no protocol document in {os.path.join(root, SPEC_DIR)}"
-        if not args:
-            args = [os.path.join(root, UNIVERSE_DIR)]
+        return None, [], "no bundled protocol found; pass the protocol file explicitly"
+    if not documents_required:
+        return protocol, [], None
 
-    return protocol, expand(args), None
+    if not args:
+        knowledge_bus_dir = find_knowledge_bus_dir()
+        if knowledge_bus_dir is not None:
+            args = [str(knowledge_bus_dir)]
+        elif (
+            (CHECKOUT_ROOT / "spec" / PROTOCOL_NAME).is_file()
+            and Path.cwd().resolve().is_relative_to(CHECKOUT_ROOT)
+            and (CHECKOUT_ROOT / "universes").is_dir()
+        ):
+            args = [str(CHECKOUT_ROOT / "universes")]
+        else:
+            return protocol, [], (
+                f"no {KNOWLEDGE_BUS_DIR}/ found from {Path.cwd()} upward; "
+                "choose a folder with Knowledge Bus definitions or pass explicit files. "
+                "Checking does not initialize a folder."
+            )
+    try:
+        documents = expand(args)
+    except ValueError as error:
+        return protocol, [], str(error)
+    return protocol, documents, None
 
 
 MODES = ("--validate", "--self-check", "--mint")
@@ -121,7 +154,7 @@ def main(argv=()):
 
     self_only = mode == "--self-check"
 
-    protocol_path, doc_paths, err = resolve(argv)
+    protocol_path, doc_paths, err = resolve(argv, documents_required=not self_only)
     if err:
         print(err)
         return 1

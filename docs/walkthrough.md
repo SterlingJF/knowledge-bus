@@ -18,14 +18,14 @@ lunchbox-notes/
 └── todo-scratch.md                half-finished todos
 ```
 
-## The Survey
+## The Initial Findings
 
 `/kb-ingest lunchbox-notes/` reports before it reads deeply:
 
 > 8 files, all markdown. Dates 2025-03 to 2026-08. One pricing note is disputed by a newer one;
 > two notes are old but undisputed; one file looks off-topic.
 
-The survey identifies potential issues. It does not decide which conflicting note to use.
+These initial findings flag potential issues. They do not settle which conflicting note to use.
 
 ## The Interview
 
@@ -45,7 +45,7 @@ The owner confirmed which information still held. The review considered both the
 
 ## The Outputs
 
-`lunchbox-notes-spec/` appears beside the folder — the folder itself is untouched:
+Outputs go into `lunchbox-notes/.knowledge-bus/`. The original notes remain untouched:
 
 - the adopted spec and its guidance file, which the checker validates
 - `answers.yaml` — each answer keyed to the question it answers, with source, date, and what it

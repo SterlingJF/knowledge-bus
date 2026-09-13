@@ -16,7 +16,10 @@ description: Convert a folder of scattered or stale docs into a validated
 
 ## Standing constraints
 
-- **Sources are read-only.** Ingest never writes into the source folder; outputs land in a sibling directory.
+- **Source files are read-only.** Write only within `<target>/.knowledge-bus/`; never modify existing source files.
+- **Separate target folders.** Exclude every `.knowledge-bus/` directory from source discovery. Skip and report nested folders with their own `.knowledge-bus/`; ingest those separately only when explicitly targeted.
+- **Review existing outputs.** Before writing, inspect existing definitions, guidance, answers, and logs. Reuse the established definitions or propose deliberate changes. Preserve prior decisions and history; do not reset or blindly overwrite files. Stop on incompatible or ambiguous existing content and ask how to proceed.
+- **Directory contract.** Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). No sibling-output discovery or migration is performed.
 - **Questions are earned.** Reason through everything gathered so far before asking; a question the corpus can answer is never put to the user. The interview carries judgment to the user, not work.
 - **Interview in the user's language.** Format vocabulary — spec, collision, staleness marks, placement — never appears in a question. The user is asked about their project in its own terms; the mechanism stays in the reasoning and the log.
 - **A forced mapping is worse than a refusal.**
@@ -24,8 +27,8 @@ description: Convert a folder of scattered or stale docs into a validated
 
 ## The flow
 
-- **1. Confirm scope.** Only the source folder is asked for. Output goes to the `<folder>-spec/` sibling by
-    convention; the domain phrase is proposed after the survey and confirmed, never requested cold.
+- **1. Confirm the target folder.** Only the source folder is asked for. Output goes to `<target>/.knowledge-bus/` by
+    convention. Inspect that directory if it already exists; the domain phrase is proposed after the survey and confirmed, never requested cold.
 
 - **2. Survey before reading.** Inventory files, dates, and formats; report counts to the user before any deep read.
     Three staleness marks: **contradicted** (a newer source disputes it — mechanical), **unconfirmed**
@@ -49,16 +52,16 @@ description: Convert a folder of scattered or stale docs into a validated
 - **5. Refuse honestly.** Content answering no declared question is flagged, never forced into a near-fit; core questions with no answer are listed as gaps.
     Refusals repeating on one theme signal a missing question — offer `/kb-evolve` — rather than off-domain content.
 
-- **6. Write the outputs.** Spec file, guidance deltas, answers, and the ingest log — all in `<folder>-spec/`
-    beside the source folder. The source folder is never written. Answers go in `answers.yaml`, one record
+- **6. Write the outputs.** The universe (`universe.kbp.yaml`), optional guidance (`type-guidance.kbp.yaml`), answers, and the ingest log all go in `<target>/.knowledge-bus/`.
+    Existing source files remain untouched. Answers go in `answers.yaml`, one record
     per answer: `element`, `party`, `date`, `status`, `answer`, `source`, and `supersedes` where a ruling
     displaced something; gaps list `element` and `reason`. The shape is fixed; the checker does not yet
     validate it.
 
 - **7. Validate.** Run
-    `UV_PROJECT_ENVIRONMENT="${CLAUDE_PLUGIN_DATA}/venv" uv run --project "${CLAUDE_PLUGIN_ROOT}" kbp --validate "${CLAUDE_PLUGIN_ROOT}/spec/knowledge-bus-protocol.yaml" <written files>`
+    `UV_PROJECT_ENVIRONMENT="${CLAUDE_PLUGIN_DATA}/venv" uv run --project "${CLAUDE_PLUGIN_ROOT}" kbp --validate "${CLAUDE_PLUGIN_ROOT}/spec/knowledge-bus-protocol.yaml" <target>/.knowledge-bus/`
     — the env var keeps uv's venv out of the read-only plugin cache. Fix or surface every refusal before
-    reporting. In a clone of this repo, bare `uv run kbp` does the same.
+    reporting. Only definition and guidance files are checked; answers and the log require review. From a repo clone, use `uv run kbp --validate <target>/.knowledge-bus/`.
     If `uv` is not installed, say so and point at the uv install docs — do not improvise an invocation.
 
 - **8. Report coverage.** One table, **contested** first — unresolved collisions block trust — then mapped,

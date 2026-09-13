@@ -58,6 +58,8 @@ Use this as a starting point for your own work. You can adopt it, trim it, exten
 
 See [Adapting the Example](docs/adapting-the-example.md).
 
+Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. See [Knowledge Bus Directory](docs/knowledge-bus-directory.md) for discovery and write rules.
+
 ## Installation
 
 ### Claude Plugin
@@ -85,15 +87,15 @@ The checker can be used without the plugin.
 
 ### Working With Existing Notes
 
-Knowledge Bus can also help recover structure from existing files. The ingestion skill reads a folder, maps its contents to the questions they answer, and flags disagreements and missing information. It asks you to resolve uncertainty and writes its outputs beside the original folder.
+Knowledge Bus can also help recover structure from existing files. The ingestion skill reads a folder, maps its contents to the questions they answer, and flags disagreements and missing information. It asks you to resolve uncertainty and writes its outputs in `.knowledge-bus/` inside that folder.
 
 1. Run `/kb-ingest` with the path to a folder of notes or documents.
-2. Review its survey and proposed definitions. Answer any questions about conflicts or uncertain information.
-3. Review the outputs in `<folder>-spec/`: definitions, guidance, sourced answers, and a record of decisions made during ingestion.
+2. Review its initial findings and proposed definitions. Answer any questions about conflicts or uncertain information.
+3. Review the outputs in `<folder>/.knowledge-bus/`: definitions, guidance, sourced answers, and a record of decisions made during ingestion.
 4. Review unresolved conflicts, potentially outdated content, material that did not fit, and unanswered questions.
 5. Run `/kb-check` after editing definition or guidance files.
 
-Your source folder remains unchanged.
+Your existing source files remain unchanged.
 
 See the [Walkthrough](docs/walkthrough.md) for a complete example.
 
@@ -113,7 +115,7 @@ See the [Walkthrough](docs/walkthrough.md) for a complete example.
 - [ ] Guided authoring of definitions for your own subject or work
 - [ ] Document composition from shared knowledge, purpose, and audience
 - [ ] Markdown interchange format
-- [ ] A standard folder location so tools can discover shared definitions
+- [x] A standard `.knowledge-bus/` directory so tools can discover shared definitions
 - [ ] Validation of answer files
 
 ### Further Exploration
@@ -182,6 +184,8 @@ The checker validates the protocol against itself, then checks definition and gu
 People still need to review the meaning: a definition can pass the checks and still ask the wrong question.
 
 ## Docs
+
+- [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
 
 - [Walkthrough](docs/walkthrough.md) — one folder through ingestion, start to finish.
 - [How Ingest Works](docs/how-ingest-works.md) — the steps, decisions, and coverage report.

@@ -18,6 +18,10 @@ Two entry points share one spine. Run the spine; take the branch that applies.
 - **Path A — new type.** A form exists in the world and the spec does not carry it. Governing question: *does it enable something no declared type enables?*
 - **Path B — re-evaluation.** A declared type is about to become load-bearing and its basis is unexamined. Governing question: *what in this type is inherited rather than earned?*
 
+## Knowledge Bus Directory
+
+Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
+
 ## Standing constraints
 
 - **Deepen by sharpening questions, splits and cross-connections — never by growing per-cell density.** A fattening cell means the essence is not grasped yet.

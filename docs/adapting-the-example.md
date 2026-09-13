@@ -8,6 +8,8 @@ The starter defines 58 questions across 19 document types, with 45 relationships
 
 Its questions can be useful at different scales, from a personal project to a company. Review the definitions against your own purpose, audience, and requirements before adopting them.
 
+Keep your definitions in `.knowledge-bus/` inside the folder they describe. Guidance is optional; ingestion outputs are not required to start. See [Knowledge Bus Directory](knowledge-bus-directory.md).
+
 ## Choose a Starting Point
 
 | Approach | When it fits |
@@ -52,10 +54,10 @@ See [How Ingest Works](how-ingest-works.md).
 Each new element, document type, frame, or factor needs a code. From the repository root, generate three element codes with:
 
 ```bash
-just mint element 3
+uv run kbp --mint element 3 path/to/project/.knowledge-bus/
 ```
 
-Use `artifact`, `frame`, or `factor` for the other declaration kinds. Check generated codes against your own definitions if they are outside the repository's default search location.
+Use `artifact`, `frame`, or `factor` for the other declaration kinds. Replace the example path with your `.knowledge-bus/` directory so generated codes are checked against its existing definitions.
 
 Keep the code when renaming the same definition. Never reuse or reassign a retired code. Update any references that use the renamed id.
 
