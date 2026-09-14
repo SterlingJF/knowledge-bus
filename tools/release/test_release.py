@@ -62,6 +62,26 @@ def finish_notes(project):
     )
 
 
+def test_release_checks_run_full_suite_before_building(tmp_path, monkeypatch):
+    calls = []
+    monkeypatch.setattr(release, "check_metadata", lambda root: ("0.5.0", "notes"))
+    monkeypatch.setattr(release, "run", lambda *args, **kwargs: calls.append(args))
+    monkeypatch.setattr(release, "build_check", lambda *args: calls.append(("build",)))
+    monkeypatch.setattr(
+        release.plugins, "build", lambda *args, **kwargs: calls.append(("plugins",))
+    )
+    release.check(tmp_path)
+    assert calls[:3] == [
+        ("uv", "lock", "--check"),
+        ("pnpm", "install", "--frozen-lockfile", "--ignore-scripts"),
+        ("pnpm", "run", "check"),
+    ]
+    assert calls.index(("pnpm", "run", "check")) < calls.index(("build",))
+    for script in ("check_skills_install.py", "check_native_install.py"):
+        assert ("uv", "run", "--locked", "python", f"tools/plugin/{script}") in calls
+    assert ("plugins",) in calls
+
+
 def test_prepare_synchronizes_without_changing_protocol(project):
     protocol = (project / "protocol/knowledge-bus-protocol.yaml").read_bytes()
     release.prepare("0.6.0", project)

@@ -10,6 +10,35 @@ from pathlib import Path
 import plugin
 
 
+def check_marketplace(host, source, *, git_source, run):
+    """Check registration and repeat installation; refresh supported sources."""
+    run([host, "plugin", "marketplace", "add", source])
+    verb = "install" if host == "claude" else "add"
+    for _ in range(2):
+        run([host, "plugin", verb, "knowledge-bus@knowledge-bus"])
+    if host == "claude" or git_source:
+        run(
+            [
+                host,
+                "plugin",
+                "marketplace",
+                "update" if host == "claude" else "upgrade",
+                "knowledge-bus",
+            ]
+        )
+        run(
+            [
+                host,
+                "plugin",
+                "update" if host == "claude" else "add",
+                "knowledge-bus@knowledge-bus",
+            ]
+        )
+    listing = run([host, "plugin", "list"])
+    if "knowledge-bus" not in listing:
+        raise ValueError("Native plugin listing did not contain Knowledge Bus.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artifacts", type=Path, required=True)
@@ -71,30 +100,7 @@ def main():
 
         source = "SterlingJF/knowledge-bus" if args.public else str(catalog_root)
         if host in ("claude", "codex"):
-            run([host, "plugin", "marketplace", "add", source])
-            verb = "install" if host == "claude" else "add"
-            for _ in range(2):
-                run([host, "plugin", verb, "knowledge-bus@knowledge-bus"])
-            run(
-                [
-                    host,
-                    "plugin",
-                    "marketplace",
-                    "update" if host == "claude" else "upgrade",
-                    "knowledge-bus",
-                ]
-            )
-            run(
-                [
-                    host,
-                    "plugin",
-                    "update" if host == "claude" else "add",
-                    "knowledge-bus@knowledge-bus",
-                ]
-            )
-            listing = run([host, "plugin", "list"])
-            if "knowledge-bus" not in listing:
-                raise ValueError("Native plugin listing did not contain Knowledge Bus.")
+            check_marketplace(host, source, git_source=args.public, run=run)
         elif host == "pi":
             source = (
                 "npm:" + report["package"] + "@latest"
@@ -117,8 +123,10 @@ def main():
             if not all(name in discovered for name in plugin.SKILLS):
                 raise ValueError("OpenCode did not discover every bundled skill.")
         print(
-            f"{host}: native CLI registration/repeat/refresh passed ({'public' if args.public else 'local transport'})."
+            f"{host}: native CLI registration/repeat passed ({'public' if args.public else 'local transport'})."
         )
+        if args.public and host in ("claude", "codex"):
+            print("Git marketplace refresh passed.")
         print("This is not a chat interaction or model-quality test.")
 
 

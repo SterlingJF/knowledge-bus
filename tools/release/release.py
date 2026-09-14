@@ -245,16 +245,7 @@ def check(root=ROOT, output=None):
     version, _ = check_metadata(root)
     run("uv", "lock", "--check", root=root)
     run("pnpm", "install", "--frozen-lockfile", "--ignore-scripts", root=root)
-    run(
-        "uv",
-        "run",
-        "--locked",
-        "python",
-        "tools/plugin/skills.py",
-        "--check",
-        root=root,
-    )
-    run("uv", "run", "--locked", "pytest", "-q", root=root)
+    run("pnpm", "run", "check", root=root)
     run(
         "uv",
         "run",
@@ -263,7 +254,6 @@ def check(root=ROOT, output=None):
         "tools/plugin/check_skills_install.py",
         root=root,
     )
-    run("uv", "run", "--locked", "kbp", "--self-check", root=root)
     run(
         "uv",
         "run",

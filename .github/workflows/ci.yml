@@ -12,15 +12,16 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - run: pnpm install --frozen-lockfile --ignore-scripts
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install
       - run: uv sync --locked
+      - uses: extractions/setup-just@v4
       - run: pnpm run check
       - run: uv run --locked python tools/plugin/check_skills_install.py
       - run: uv run kbp --validate
@@ -33,12 +34,12 @@ jobs:
       matrix:
         host: [claude, codex, pi, opencode]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: pnpm/action-setup@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: pnpm/action-setup@v6
+      - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install
       - run: uv sync --locked
       - run: pnpm install --frozen-lockfile --ignore-scripts
