@@ -1,12 +1,6 @@
 ---
 name: kb-uncover-decision
-description: Elicit a decision and the constraints that were live when it was
-  made, so the record carries what made it actionable rather than only its
-  output. Interviews the decision-maker — what was decided, whose call it
-  was, what alternatives were live, which constraints bound, what would
-  reverse it — and files the result as answers to the spec's declared
-  questions. Use when invoked via /kb-uncover-decision, or when a decision
-  record reads as a conclusion without its conditions.
+description: Recover a decision's alternatives, constraints, authority, and reversal conditions when its record lacks context.
 ---
 
 # Uncover a Decision
@@ -15,7 +9,7 @@ description: Elicit a decision and the constraints that were live when it was
 
 ## Knowledge Bus Directory
 
-Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
+Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
 
 ## Standing constraints
 

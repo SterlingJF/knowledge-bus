@@ -1,0 +1,46 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "osvVulnerabilityAlerts": true,
+  "minimumReleaseAge": "14 days",
+  "automerge": false,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": false
+  },
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/.venv/**",
+    "dist/**",
+    "skills/*/references/**",
+    "skills/*/runtime/**"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "pin"
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["pep621"],
+      "matchFileNames": ["pyproject.toml"],
+      "matchDepTypes": ["dependency-groups"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["pep621"],
+      "matchPackageNames": ["knowledge-bus"],
+      "enabled": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "automerge": false
+  }
+}

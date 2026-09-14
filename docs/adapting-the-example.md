@@ -12,11 +12,11 @@ Keep your definitions in `.knowledge-bus/` inside the folder they describe. Guid
 
 ## Choose a Starting Point
 
-| Approach | When it fits |
-| --- | --- |
-| Adopt | The questions, document purposes, and requirements fit your work. |
-| Trim | The definitions fit, but your work needs only part of them. |
-| Extend | The structure fits, but a question, document type, or relationship is missing. |
+| Approach         | When it fits                                                                        |
+| ---------------- | ----------------------------------------------------------------------------------- |
+| Adopt            | The questions, document purposes, and requirements fit your work.                   |
+| Trim             | The definitions fit, but your work needs only part of them.                         |
+| Extend           | The structure fits, but a question, document type, or relationship is missing.      |
 | Develop your own | Your subject or work needs substantially different questions and document purposes. |
 
 For example, a solo project may need a decision record without the full set of product-planning documents. A research project may need definitions for evidence and methods that the starter does not cover.

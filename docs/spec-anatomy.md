@@ -15,17 +15,17 @@ Guidance is optional. The universe must remain valid without it. When guidance i
 
 ## Field Reference
 
-| Key | Purpose |
-| --- | --- |
-| `universe` | Identifies the definition set, its version, the protocol version it follows, and its ordering frame. |
-| `elements` | Defines knowledge units by the questions their contents answer. |
-| `artifacts` | Defines document types by the action or decision they enable for someone, and lists their contents. |
-| `frames` | Defines context used to organize or select content. A frame can make content required, exclude it, or determine that no document is needed. |
-| `factors` | Declares context that applications can use, without giving it control over document composition in the universe. Guidance can use a factor to select advice. |
-| `relation_kinds`, `relations` | Names the kinds of connections and the definitions they connect, such as dependencies or distinctions. |
-| `statuses` | Declares the statuses an assertion can carry. |
-| `empty_composition` | States the context in which no document is needed. |
-| `instances` | Holds asserted answers with their party, status, time, and other instance details. |
+| Key                           | Purpose                                                                                                                                                      |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `universe`                    | Identifies the definition set, its version, the protocol version it follows, and its ordering frame.                                                         |
+| `elements`                    | Defines knowledge units by the questions their contents answer.                                                                                              |
+| `artifacts`                   | Defines document types by the action or decision they enable for someone, and lists their contents.                                                          |
+| `frames`                      | Defines context used to organize or select content. A frame can make content required, exclude it, or determine that no document is needed.                  |
+| `factors`                     | Declares context that applications can use, without giving it control over document composition in the universe. Guidance can use a factor to select advice. |
+| `relation_kinds`, `relations` | Names the kinds of connections and the definitions they connect, such as dependencies or distinctions.                                                       |
+| `statuses`                    | Declares the statuses an assertion can carry.                                                                                                                |
+| `empty_composition`           | States the context in which no document is needed.                                                                                                           |
+| `instances`                   | Holds asserted answers with their party, status, time, and other instance details.                                                                           |
 
 For example, a frame could make a section required in one situation and unnecessary in another. A factor could select relevant writing advice without changing the required sections.
 

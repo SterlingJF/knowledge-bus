@@ -1,0 +1,12 @@
+node_modules/
+# Markdown style is managed by Markdownlint.
+**/*.md
+**/*.markdown
+**/*.mdx
+.venv/
+dist/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+skills/*/references/
+skills/*/runtime/

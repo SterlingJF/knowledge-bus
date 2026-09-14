@@ -5,13 +5,48 @@ on:
     branches: [main]
   pull_request:
 
+env:
+  UV_MANAGED_PYTHON: "true"
+
 jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - uses: astral-sh/setup-uv@v5
+      - run: uv python install
       - run: uv sync --locked
-      - run: uv run pytest -q
-      - run: uv run kbp --self-check
+      - run: pnpm run check
+      - run: uv run --locked python tools/plugin/check_skills_install.py
       - run: uv run kbp --validate
+      - run: uv run --locked python tools/plugin/check_native_install.py
+
+  native-hosts:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [claude, codex, pi, opencode]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install
+      - run: uv sync --locked
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Install pinned native CLIs in the disposable runner
+        run: npm install --global @anthropic-ai/claude-code@2.1.226 @openai/codex@0.149.0 @earendil-works/pi-coding-agent@0.85.1 opencode-ai@1.18.20
+      - name: Build host fixture and test native commands
+        env:
+          TEST_HOST: ${{ matrix.host }}
+        run: |
+          uv run --locked python tools/plugin/plugin.py check "$TEST_HOST" --output "$RUNNER_TEMP/host-package"
+          uv run --locked python tools/plugin/check_host_cli.py --host "$TEST_HOST" --artifacts "$RUNNER_TEMP/host-package"

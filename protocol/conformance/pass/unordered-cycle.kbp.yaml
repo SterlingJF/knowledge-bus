@@ -1,0 +1,51 @@
+universe:
+  id: minimal
+  label: Minimal
+  version: 0.1
+  conforms_to: kbp/0.5
+  ordering_frame: stage
+
+statuses: [conjecture, measured]
+
+frames:
+  - id: stage
+    code: fa1a1
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values:
+      - { id: only, question: "Where in the sequence does this sit?" }
+
+empty_composition:
+  when: {}
+
+relation_kinds:
+  - { id: informs, ordered: true }
+  - { id: relates, ordered: false }
+
+elements:
+  - id: the-question
+    code: ea1a1
+    question: "What is being asked?"
+    stage: only
+    cardinality: singleton
+
+  - id: another-question
+    code: ea1a2
+    question: "What else is being asked?"
+    stage: only
+    cardinality: singleton
+
+artifacts:
+  - id: the-record
+    code: aa1a1
+    enablement: "Lets someone state a question and be held to it."
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core:
+        - the-question
+
+relations:
+  - { from: the-question, to: the-record, kind: relates }
+  - { from: the-record, to: another-question, kind: relates }
+  - { from: another-question, to: the-question, kind: relates }

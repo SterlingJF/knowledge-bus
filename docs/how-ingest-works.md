@@ -65,12 +65,12 @@ The report lists unresolved conflicts first, followed by mapped content, potenti
 
 ## Reading the Coverage Report
 
-| Class | What it means | What to do |
-| --- | --- | --- |
-| contested | Competing answers remain unresolved. | Decide which applies, or leave the disagreement recorded. |
-| mapped | Content was assigned to a declared question. | Spot-check the answer and source. |
-| stale | Content is contradicted or needs confirmation. | Confirm, revise, or retire it. |
-| refused | Content answers no declared question. | Accept that it is outside scope, or review whether a definition is missing. |
-| gap | A required question has no answer. | Supply an answer, or record why it remains unanswered. |
+| Class     | What it means                                  | What to do                                                                  |
+| --------- | ---------------------------------------------- | --------------------------------------------------------------------------- |
+| contested | Competing answers remain unresolved.           | Decide which applies, or leave the disagreement recorded.                   |
+| mapped    | Content was assigned to a declared question.   | Spot-check the answer and source.                                           |
+| stale     | Content is contradicted or needs confirmation. | Confirm, revise, or retire it.                                              |
+| refused   | Content answers no declared question.          | Accept that it is outside scope, or review whether a definition is missing. |
+| gap       | A required question has no answer.             | Supply an answer, or record why it remains unanswered.                      |
 
 Unresolved conflicts appear first so you can see where the material does not yet provide an agreed answer.

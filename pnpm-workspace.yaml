@@ -1,0 +1,4 @@
+packages:
+  - plugins/*/knowledge-bus
+
+minimumReleaseAge: 20160

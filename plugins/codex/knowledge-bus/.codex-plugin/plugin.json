@@ -1,0 +1,18 @@
+{
+  "name": "knowledge-bus",
+  "version": "0.5.0",
+  "description": "Define, evolve, and check shared knowledge structures with people and agents.",
+  "author": {
+    "name": "Sterling Freeman"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Knowledge Bus",
+    "shortDescription": "Use Knowledge Bus in Codex.",
+    "longDescription": "Clarify questions, recover decisions, evolve definitions, map existing notes, and check conformance.",
+    "developerName": "Sterling Freeman",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Help me use Knowledge Bus."
+  }
+}

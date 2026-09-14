@@ -1,0 +1,432 @@
+protocol:
+  id: kbp
+  name: Knowledge Bus Protocol
+  version: 0.5
+  status: draft
+  purpose: >
+    The structured exchange of contextual knowledge rather than data. Defines what a
+    universe is, how knowledge decomposes within one, and what occurs when a composed
+    artifact crosses into a universe that need not match the sender's.
+
+concepts:
+
+  universe:
+    definition: >
+      An enumerated set of elements and artifacts for one domain, with the frames that
+      index them, the factors it declares without indexing by, and the relations
+      between them.
+    closed: [elements, artifacts, frames, factors, relation-kinds, statuses]
+    open: [instances]
+
+  element:
+    definition: A unit of conclusion, identified by the question its content answers.
+    standalone: false
+
+  artifact:
+    definition: >
+      A composition over elements, identified by the decision or action it enables for
+      a named actor.
+    standalone: true
+
+  frame:
+    definition: A dimension a universe is indexed by.
+    powers: [select, promote-to-core, gate-element, disable-artifact, return-empty]
+    declared_by: universe
+
+  factor:
+    definition: >
+      A dimension a universe declares and wires into nothing. It states that the
+      dimension exists and what its values are; whatever consumes the universe reads
+      it, sets it, and factors it in however it sees fit.
+    powers: []
+    declared_by: universe
+    valued_by: consumer
+    rules:
+      - >
+        A factor is referenced by nothing the universe declares. No element gate, no
+        artifact disabling, no composition entry, no empty composition, no relation
+        edge and no strength may name one.
+      - >
+        A guidance entry MAY condition on a factor the guided universe declares.
+        Selecting advice is not structure.
+
+  relation:
+    definition: A typed edge over element and artifact identities.
+    topology: [ordered, non-linear, cyclical, iterative, recursive]
+    kinds_declared_by: universe
+
+  instance:
+    definition: One asserted answer to an element's question, by a party, at a status, at a time.
+
+  guidance:
+    definition: >
+      Advisory content attached to an element, an artifact type or a factor — how to
+      answer its question well, and on whose authority.
+    advisory: true
+    standalone: false
+    attaches_to: [element, artifact, factor]
+    kinds_declared_by: guidance-document
+    rules:
+      - >
+        Guidance MUST NOT carry structure. Where a claim is load-bearing — where it
+        gates, orders, relates, or determines composition — it belongs in the universe
+        as a field or an edge, and guidance may only carry the reason for it.
+      - >
+        A value belongs in the universe because something reads it. Everything else
+        belongs in guidance. This is the whole of the split, and it is the rule to
+        apply where a declaration carries no structure for the first rule to bite on.
+      - >
+        A factor conditioning a guidance entry is not structure. It selects which
+        advice applies; it never selects what an artifact is made of.
+      - A universe MUST remain valid with no guidance document present.
+      - Divergence from a guidance claim is not non-conformance.
+
+declarations:
+
+  document_types:
+    dispatch: >
+      A document declares its type by its top-level header key. Both types below carry
+      a header block named for the type, and a reader selects the shape by that key.
+    kinds: [universe, guidance]
+
+  frame_predicate:
+    form: "{ <frame-id | factor-id>: [<value>, ...] }"
+    nested: "{ <frame-id | factor-id>: { <facet>: [<value>, ...] } }"
+    scope: >
+      A predicate in a universe names frames only. A factor id is legal in a guidance
+      entry's `when` and nowhere else.
+
+  universe:
+    document:
+      universe:
+        id: "<universe-id>"
+        label: "<human label>"
+        version: "<version>"
+        conforms_to: "<protocol-id>/<version>"
+        ordering_frame: "<frame-id>"
+        overview: { covers: "<prose>", for: "<prose>", excludes: "<prose>" }
+      statuses: ["<status>"]
+      frames: ["<frame>"]
+      factors: ["<factor>"]
+      empty_composition: { when: "<frame-predicate>" }
+      relation_kinds: ["<relation-kind>"]
+      elements: ["<element>"]
+      artifacts: ["<artifact>"]
+      relations: ["<edge>"]
+      instances: ["<instance-record>"]
+    required: [universe, statuses, frames, empty_composition, relation_kinds, elements, artifacts, relations]
+    header_required: [id, version, conforms_to, ordering_frame]
+
+  code:
+    form: "<kind-letter><four characters from the alphabet below>"
+    kinds: { element: e, artifact: a, frame: f, factor: k }
+    alphabet: "0123456789abcdefghjkmnpqrstvwxyz"
+    minted_by: "kbp-conform.py --mint <kind> [count]"
+    rules:
+      - >
+        A code is stable. Once published it never changes, whatever happens to the
+        slug id or the wording of the question, and it is never reused by a second
+        declaration after the first is retired.
+      - >
+        A code carries no order and no meaning. It is not derived from the id, the
+        question, or a position in any list. Order is the ordering frame's job.
+      - >
+        The kind letter is the set, so a code identifies its declaration across the
+        whole universe, and a code minted in one universe means nothing in another.
+      - >
+        Two readerships, two keys. A person or an agent keys on the id and the
+        question — that is what makes a universe readable. A tool or a backend keys
+        on the code, because it must survive editorial change without a migration. A
+        code is never rendered in copy a person reads.
+      - >
+        The alphabet omits i, l, o and u. That is what keeps a minted code out of
+        reach of a parser's implicit types: no code can spell a boolean, null, or
+        anything numeric.
+
+  element:
+    id: "<element-id>"
+    code: "<code>"
+    question: "<conclusion-test question>"
+    "<ordering-frame-id>": "<ordering-value>"
+    cardinality: singleton | "per-<dimension>"
+    closable: true | false
+    gate: "<frame-predicate>"
+    required: [id, code, question, "<ordering-frame-id>", cardinality]
+
+  artifact:
+    id: "<artifact-id>"
+    code: "<code>"
+    enablement:
+      action: "<what the actor can now do>"
+      actor: "<who does it>"
+      timing: "<when they do it>"
+    alias:
+      kind: descriptive | normative | none
+      form: "<external form>"
+      reason: "<required when kind is none>"
+    disabled_when: "<frame-predicate>"
+    composition:
+      core: ["<composition-entry>"]          # the enabled action cannot be taken without these
+      situational: ["<composition-entry>"]   # included when the frames call for them
+    required: [id, code, enablement, composition]
+
+  frame:
+    id: "<frame-id>"
+    code: "<code>"
+    role: ordering | applicability | gating | selection
+    set_by: universe | scope | instance
+    question: "<what the frame asks>"
+    values: '["<value>"] or [{ id: "<value>", question: "<conclusion-test question>" }]'
+    facets: { "<facet-id>": ["<value>"] }
+    attaches_to: "<what this frame indexes>"
+    source: "<external registry, where values are not declared inline>"
+    required: [id, code, role, set_by]
+    one_of: [values, facets, source]
+
+  factor:
+    id: "<factor-id>"
+    code: "<code>"
+    set_by: universe | scope | instance
+    question: "<what the factor asks>"
+    values: '["<value>"] or [{ id: "<value>", question: "<conclusion-test question>" }]'
+    facets: { "<facet-id>": ["<value>"] }
+    source: "<external registry, where values are not declared inline>"
+    required: [id, code, question, set_by]
+    one_of: [values, facets, source]
+    # The frame shape without `role` or `attaches_to`, because a factor has no job in
+    # the index and indexes nothing. `question` is required here and optional on a
+    # frame: a consumer that has to determine a value needs to know what is being asked.
+
+  relation_kind:
+    id: "<kind-id>"
+    ordered: true | false
+    required: [id, ordered]
+
+  guidance:
+    document:
+      guidance: { id: "<guidance-id>", label: "<human label>", version: "<version>", conforms_to: "<protocol-id>/<version>", guides: "<universe-id>" }
+      guidance_kinds: ["<guidance-kind>"]
+      sources: "{ <source-id>: <source> }"
+      elements: "{ <element-id>: [<guidance-entry>, ...] }"
+      artifacts: "{ <artifact-id>: [<guidance-entry>, ...] }"
+      factors: "{ <factor-id>: [<guidance-entry>, ...] }"
+    required: [guidance, guidance_kinds]
+    header_required: [id, version, conforms_to, guides]
+
+  guidance_kind:
+    id: "<kind-id>"
+    sourced: true | false
+    required: [id, sourced]
+
+  guidance_entry:
+    kind: "<guidance-kind>"
+    claim: "<one claim, in one sentence or two>"
+    source: "<source-id | asserted>"
+    when: "<frame-predicate>"
+    required: [kind, claim, source]
+
+  source:
+    cite: "<bibliographic reference>"
+    url: "<url>"
+    checked: "<date the source was last verified>"
+    required: [cite]
+
+identity:
+
+  element:
+    test: conclusion
+    question: "What question does this content answer?"
+    key: [question]
+    rules:
+      - Two candidates answering the same question are the same element, universe-wide.
+      - Local naming within an artifact does not affect identity.
+      - >
+        The code is a handle, not the key. It addresses an element without depending on
+        its wording; correspondence between universes remains by question.
+
+  instance:
+    key: [element, status, asserted_by]
+    rules:
+      - >
+        A universe MUST admit several concurrent instances of one element differing
+        only by status or asserting party. Collapsing them to a single current value
+        is non-conforming.
+
+  artifact:
+    test: enablement
+    question: "What decision or action does this enable, and for whom?"
+    key: [action, actor]
+    rules:
+      - Two compositions enabling the same action for the same actor are one artifact.
+      - An artifact MUST declare an enablement before it declares a composition.
+      - >
+        The code is a handle, not the key. Renaming an artifact type or restating its
+        enablement leaves the code untouched.
+
+  strength:
+    rule: >
+      An element is core to an artifact if and only if the enabled action cannot be
+      taken without it. All other composed elements are situational.
+    derived: true
+
+composition:
+
+  entry:
+    element: "<element-id>"
+    strength: core | situational
+    mode: owns | links
+    when: "<frame-predicate>"
+    shorthand:
+      form: "<element-id>"
+      expands_to: { element: "<element-id>", mode: owns }
+      note: strength comes from the core or situational list the entry appears in
+    required: [element]
+
+  rules:
+    - An element appears at most once per artifact.
+    - Exactly one artifact owns a given element instance; others link to the owner.
+    - Strength MAY be conditional on a frame predicate.
+    - A universe MAY disable an artifact type entirely under a frame predicate.
+    - >
+      A universe MUST be able to return the empty composition. Where no frame value
+      warrants structure, the conforming answer is no artifact.
+
+  ordering:
+    declared_by: universe
+    attaches_to: element
+    rule: >
+      A universe declares exactly one ordering frame, whose values are assigned to
+      elements. An artifact's position in the order, where required, is derived from
+      the elements it composes.
+
+relations:
+
+  edge:
+    from: "<element-id | artifact-id>"
+    to: "<element-id | artifact-id>"
+    kind: "<relation-kind>"
+    legality: permitted | permitted-if-logged | forbidden
+    gate: { authority: "<frame-value>", latency: "<duration>" }
+    freeze: open | baselined | superseded
+    required: [from, to, kind]
+
+  rules:
+    - Every edge declares a kind.
+    - Every edge on a cycle declares legality.
+    - >
+      permitted-if-logged requires the traversal to be recorded as an instance before
+      the resulting value is admitted.
+    - An edge into a baselined target is an event, not an edit; it MUST NOT mutate in place.
+
+instances:
+
+  record:
+    element: "<element-id>"
+    value: "<content>"
+    asserted_by: "<party>"
+    binding_on: ["<party>"]
+    status: "<status>"
+    observed_at: "<timestamp>"
+    supersedes: "<instance-id | null>"
+    exhaustive: unknown | true | false
+
+  rules:
+    - asserted_by and binding_on are independent.
+    - Every instance carries the time its value was established.
+    - An instance is never edited in place; a new instance supersedes it.
+    - A superseded instance remains retrievable and citable.
+    - >
+      exhaustive answers whether THIS set of instances is complete, and applies only
+      where cardinality is per-dimension. Default unknown.
+    - >
+      exhaustive MUST NOT be asserted true where the element declares closable false.
+      Whether a complete set can exist at all is the element's closable; whether one
+      has been assembled yet is this field.
+
+exchange:
+
+  premise: >
+    Within a boundary the body is shared whole and requires no protocol. The protocol
+    governs the crossing, where sender and receiver need not share a universe, a frame
+    set, or an authority.
+
+  sequence:
+    - step: compose
+      by: sender
+      input: [body, enablement, audience]
+      output: artifact
+    - step: transmit
+      carries: [artifact, composition, instance-records, universe-reference]
+      rule: Instance records travel with the artifact; asserted_by, status and observed_at MUST NOT be stripped.
+    - step: decode
+      by: receiver
+      output: [elements, decisions, assumptions]
+      rule: The receiver re-instantiates into their own universe and decides within their own frames.
+    - step: reconcile
+      by: receiver
+      rule: >
+        Where a decoded instance meets a local instance of the same element, the
+        receiver records disagreement. Silent overwrite is non-conforming.
+
+  correspondence:
+    rule: >
+      Two elements in different universes correspond when their questions are the same.
+      Names, local labels and host artifacts are irrelevant to the match.
+    receiver_obligations:
+      - MUST accept an artifact containing elements its own universe gates off.
+      - MUST hold uncorresponded elements as inert rather than rejecting the artifact.
+      - MUST NOT treat a decoded instance as a local decision.
+
+  aliases:
+    kinds:
+      descriptive: >
+        An external form the composition aligns with. The universe could derive it
+        independently; divergence is a variation.
+      normative: >
+        An external authority owns shape and content. It versions independently of the
+        universe, and local divergence renders the local artifact invalid.
+      none:
+        reason: no-aligned-form | non-decomposable
+    rules:
+      - An alias MAY map to a set of elements.
+      - Several aliases MAY map to one artifact.
+      - >
+        reason non-decomposable records an external form whose units confer effect
+        rather than answer questions. Such a form MUST NOT be aliased.
+
+conformance:
+
+  guidance_valid_if:
+    - >
+      Every element, artifact and factor key resolves to a declared id in the guided
+      universe.
+    - Every entry declares a kind drawn from the document's own guidance_kinds.
+    - >
+      Every entry declares a source that is either a key in sources or the literal
+      asserted. A kind declared sourced MUST NOT be satisfied by asserted.
+    - Every when predicate names a frame or a factor the guided universe declares.
+    - guides resolves to a universe declaring the same conforms_to.
+    - >
+      Guidance is advisory. No universe may depend on a guidance document to be valid,
+      and no guidance claim may be required for conformance.
+
+  universe_valid_if:
+    - Every element declares a question, and no two elements share one.
+    - Every artifact declares an enablement with both an action and an actor.
+    - Every core element is derivable from its artifact's enablement.
+    - Every relation edge declares a kind; every cyclical edge declares legality.
+    - Every instance declares asserted_by, status and observed_at.
+    - >
+      The element, artifact, frame, factor, relation-kind and status sets are
+      enumerated.
+    - >
+      Every element, artifact, frame and factor declares a code carrying its kind's
+      letter, and no two declarations in a universe share one.
+    - >
+      No predicate a universe declares names a factor. Factors are declared and wired
+      into nothing.
+    - Exactly one ordering frame is declared, and it attaches to elements.
+    - The empty composition is reachable.
+    - >
+      Every field a universe declares appears in the corresponding declarations shape.
+      A universe carrying fields the protocol does not sanction is non-conforming.

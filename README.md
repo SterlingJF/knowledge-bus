@@ -62,26 +62,82 @@ Definitions live in `.knowledge-bus/` inside the folder they describe. Checking 
 
 ## Installation
 
-### Claude Plugin
+Requires your agent's CLI and Node.js/npm. Checker-backed skills also require [uv](https://docs.astral.sh/uv/getting-started/installation/) and Python compatible with the [checker package requirement](checker/pyproject.toml).
 
-```bash
+### Claude Code
+
+In Claude Code chat:
+
+```text
 /plugin marketplace add SterlingJF/knowledge-bus
-/plugin install knowledge-bus
+/plugin install knowledge-bus@knowledge-bus
 ```
 
-Validation requires [`uv`](https://docs.astral.sh/uv/).
+Or in your terminal:
+
+```sh
+claude plugin marketplace add SterlingJF/knowledge-bus
+claude plugin install knowledge-bus@knowledge-bus
+```
+
+### Codex
+
+In your terminal:
+
+```sh
+codex plugin marketplace add SterlingJF/knowledge-bus
+codex plugin add knowledge-bus@knowledge-bus
+```
+
+Start a new session after installation.
+
+### Pi
+
+In your terminal:
+
+```sh
+pi install npm:@knowledge-bus/pi@latest
+```
+
+Run `/reload` in an existing Pi chat to load the skills.
+
+### OpenCode
+
+In your terminal:
+
+```sh
+opencode plugin @knowledge-bus/opencode@latest
+```
+
+Start a new session after installation. Add `--global` to use it across projects.
+
+### Other Agents or Individual Skills
+
+Choose your agent and skills:
+
+```sh
+npx skills add SterlingJF/knowledge-bus
+```
+
+Or select a specific skill:
+
+```sh
+npx skills add SterlingJF/knowledge-bus --skill kb-check
+```
+
+These commands use the default branch, not the latest release. Add `--global` to use the skills across projects. Choose either the plugin or individual skills for each agent to avoid duplicate entries.
+
+[Updates and troubleshooting](docs/agent-plugins.md)
 
 ### Standalone Checker
 
-Clone the repository and run the checker from its root:
+The checker also works without an agent:
 
-```bash
+```sh
 git clone https://github.com/SterlingJF/knowledge-bus.git
 cd knowledge-bus
 uv run kbp
 ```
-
-The checker can be used without the plugin.
 
 ## Quick Start
 
@@ -89,11 +145,11 @@ The checker can be used without the plugin.
 
 Knowledge Bus can also help recover structure from existing files. The ingestion skill reads a folder, maps its contents to the questions they answer, and flags disagreements and missing information. It asks you to resolve uncertainty and writes its outputs in `.knowledge-bus/` inside that folder.
 
-1. Run `/kb-ingest` with the path to a folder of notes or documents.
+1. Ask your agent to use `kb-ingest` with the path to a folder of notes or documents.
 2. Review its initial findings and proposed definitions. Answer any questions about conflicts or uncertain information.
 3. Review the outputs in `<folder>/.knowledge-bus/`: definitions, guidance, sourced answers, and a record of decisions made during ingestion.
 4. Review unresolved conflicts, potentially outdated content, material that did not fit, and unanswered questions.
-5. Run `/kb-check` after editing definition or guidance files.
+5. Use `kb-check` after editing definition or guidance files.
 
 Your existing source files remain unchanged.
 
@@ -131,13 +187,13 @@ See the [Walkthrough](docs/walkthrough.md) for a complete example.
 
 ## Commands
 
-| Command | What it does |
-| --- | --- |
-| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing one. |
-| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and conditions for reconsidering it. |
-| `/kb-evolve` | Adds or re-examines a document type, including its purpose, contents, relationships, and guidance. |
-| `/kb-ingest` | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps. |
-| `/kb-check` | Checks definition and guidance files and explains any conformance failures. |
+| Command                | What it does                                                                                       |
+| ---------------------- | -------------------------------------------------------------------------------------------------- |
+| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing one.                        |
+| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and conditions for reconsidering it.   |
+| `/kb-evolve`           | Adds or re-examines a document type, including its purpose, contents, relationships, and guidance. |
+| `/kb-ingest`           | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps.      |
+| `/kb-check`            | Checks definition and guidance files and explains any conformance failures.                        |
 
 ## How It Works
 
@@ -183,9 +239,49 @@ The checker validates the protocol against itself, then checks definition and gu
 
 People still need to review the meaning: a definition can pass the checks and still ask the wrong question.
 
+## Repository Map
+
+```text
+knowledge-bus/
+├── protocol/                       authored conformance contract
+│   ├── knowledge-bus-protocol.yaml
+│   ├── CHANGELOG.md                 protocol history
+│   └── conformance/                 shared valid and invalid examples
+├── checker/                        installable Python package: knowledge-bus
+│   ├── pyproject.toml               package metadata and release version
+│   ├── hatch_build.py               includes the protocol in distributions
+│   ├── src/kbp_conform/             validation library and kbp command
+│   └── tests/                       conformance and discovery tests
+├── universes/                      maintained reference definitions
+│   └── product-development/
+├── skills/                         authored workflows and generated portable resources
+├── plugins/                        agent adapters and shared runtime
+├── tools/
+│   ├── plugin/                     package assembly, inspection, and tests
+│   └── release/                    release commands and their tests
+├── docs/                           usage guides and explanations
+├── CONTRIBUTING.md                 development setup and checks
+├── .github/workflows/
+├── package.json                    pnpm orchestration only
+├── pnpm-workspace.yaml             agent package workspace
+├── pnpm-lock.yaml                  shared JS dependency lock
+├── pyproject.toml                  uv orchestration only
+├── uv.lock                         shared Python dependency lock
+├── justfile                        development commands
+└── CHANGELOG.md                    product release history
+```
+
+The protocol defines conformance; the checker implements it. Universes provide reference definitions, and skills guide agents in working with them.
+
+The checker distribution includes the protocol. Agent packages include their skills and runtime; individually installed skills carry their own required resources.
+
+See [Contributing](CONTRIBUTING.md) for development setup, source layout, and checks.
+
 ## Docs
 
-- [Versioning](docs/versioning.md) — release versions, protocol versions, and the release workflow.
+- [Agent Packages and Skills](docs/agent-plugins.md) — updates, requirements, and troubleshooting.
+
+- [Versioning](docs/versioning.md) — version meanings, compatibility, and installation versions.
 
 - [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
 

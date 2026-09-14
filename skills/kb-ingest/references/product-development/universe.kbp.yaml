@@ -1,0 +1,411 @@
+universe:
+  id: product-development
+  label: Product development
+  version: 0.5
+  conforms_to: kbp/0.5
+  ordering_frame: phase
+  overview:
+    covers: >
+      The reasoning around deliberate work — what makes it worth doing, what it should
+      be, and whether it held up. The work may produce something made or put in place,
+      a service rendered, or something learned; for a recipient — including your own
+      later self — who simply receives it, free to take it or leave it, or paying
+      for it.
+    for: >
+      Whoever is accountable for that judgement or has to account for it later — one person
+      on one machine, a group, or an organisation.
+    excludes: >
+      Doing or delivering the work itself.
+
+statuses: [conjecture, modelled, contracted, measured, adjudicated, superseded]
+
+frames:
+
+  - id: phase
+    code: ft1k1
+    role: ordering          # assigns every element its place in the sequence
+    set_by: universe        # fixed in this file, by whoever authors the universe
+    attaches_to: element
+    values:
+      - { id: strategy,     question: "Who are we, where are we going, and why that way?" }
+      - { id: discovery,    question: "What is worth solving, for whom, and is it viable?" }
+      - { id: design,       question: "What are we building and how does it behave?" }
+      - { id: validation,   question: "How do we know it works?" }
+      - { id: architecture, question: "How does it technically hold together?" }
+      - { id: operate,      question: "How is this carried out and kept working?" }
+
+  - id: time-separation
+    code: fn7cn
+    role: applicability     # decides whether writing anything down is warranted
+    set_by: instance        # per piece of work — this note, this effort
+    question: "Who has to reconstruct this reasoning without the author present?"
+    values: [none, across-sessions, across-people, across-organisations]
+
+  - id: reversibility
+    code: fzjkj
+    role: applicability
+    set_by: instance        # a given step is reversible or not; asked each time
+    question: "What does proceeding foreclose?"
+    values: [reversible, costly, irreversible]
+
+  - id: uptake
+    code: f6shk
+    role: gating            # switches elements and artifacts on or off
+    set_by: scope           # declared at whatever scope asserts it; narrower scopes inherit or re-declare
+    question: "How does the outcome reach the people it's for?"
+    values:
+      - { id: given,  question: "Does it arrive whether or not they'd choose it?" }
+      - { id: chosen, question: "Do they take it up only by deciding to, with nothing to pay?" }
+      - { id: bought, question: "Is paying how they take it up?" }
+
+  - id: authority
+    code: f6yr9
+    role: gating
+    set_by: scope
+    question: "Whose assent is a precondition?"
+    values: [none, discretionary, notify, approve, statutory]
+
+  - id: maturity
+    code: fcz7q
+    role: gating
+    set_by: scope           # re-asked as the work matures: unproven, proven, scaling
+    question: "How settled is the bet this work rests on?"
+    values: [unproven, proven, scaling]
+
+  - id: outcome
+    code: fdhsz
+    role: gating
+    set_by: instance        # per outcome-component: the chassis and the firmware answer differently
+    attaches_to: outcome-component
+    question: "What kind of thing does this work produce?"
+    facets:
+      form: [artifact, service, claim]
+      replication: [singular, serial, unbounded]
+      mutability: [fixed-at-delivery, field-updatable, continuously-deployed]
+
+  - id: audience
+    code: f80a5
+    role: selection         # shapes the composition when an artifact crosses
+    set_by: instance        # per crossing: this artifact, this recipient
+    values: [self, internal, counterparty, regulator, public]
+
+empty_composition:
+  when: { time-separation: [none], reversibility: [reversible] }
+
+relation_kinds:
+  - { id: presupposes,      ordered: true }
+  - { id: distinct-from,    ordered: false }
+  - { id: counterweight-to, ordered: false }
+  - { id: feeds,            ordered: true }
+  - { id: split-signal,     ordered: true }
+  - { id: descendant-of,    ordered: true }
+  - { id: requires,         ordered: true }
+  - { id: nests-under,      ordered: true }
+
+elements:
+
+  - { id: product-vision, code: emsdr, question: "What future are we committing to, and why is it worth wanting?", phase: strategy, cardinality: singleton }
+  - { id: positioning-statement, code: e9x77, question: "For whom, against what alternatives, why us?", phase: strategy, cardinality: per-segment, gate: { uptake: [chosen, bought] } }
+  - { id: customer-segments, code: ebvkm, question: "Who exactly is served, grouped how?", phase: discovery, cardinality: singleton }
+  - { id: value-proposition, code: edffx, question: "Why would a segment choose this over its alternatives?", phase: strategy, cardinality: per-segment, gate: { uptake: [bought] } }
+  - { id: case-for-change, code: eaddp, question: "Why is this worth doing at all, versus not doing it?", phase: strategy, cardinality: singleton }
+  - { id: problem-statement, code: eyhkm, question: "What pain, for whom, why now?", phase: discovery, cardinality: singleton }
+  - { id: solution-overview, code: eseq3, question: "What is the intended solution, in outline?", phase: design, cardinality: singleton }
+  - { id: goals-and-non-goals, code: ezw7x, question: "What outcomes is this aiming for — and pointedly not?", phase: design, cardinality: singleton }
+  - { id: channels, code: eeq3f, question: "How do we reach and deliver to each segment?", phase: strategy, cardinality: per-segment, gate: { uptake: [chosen, bought] } }
+  - { id: customer-relationships, code: e9h1v, question: "How is each segment acquired, retained, grown?", phase: strategy, cardinality: per-segment }
+  - { id: revenue-streams, code: ebs31, question: "How does delivered value convert to money?", phase: strategy, cardinality: per-stream, gate: { uptake: [bought] } }
+  - { id: funding-source, code: exzg8, question: "Where does the sustaining resource come from, with what conditions attached?", phase: strategy, cardinality: per-source }
+  - { id: cost-structure, code: ereet, question: "What does operating this cost, and what drives it?", phase: strategy, cardinality: singleton }
+  - { id: key-resources, code: e72wk, question: "What assets must be owned or controlled?", phase: strategy, cardinality: singleton }
+  - { id: key-activities, code: ea6q2, question: "What must be done ourselves, and done well?", phase: strategy, cardinality: singleton }
+  - { id: key-partnerships, code: er20v, question: "What is deliberately relied on others for?", phase: strategy, cardinality: per-partner }
+  - { id: unfair-advantage, code: e9g24, question: "What can't be easily copied or bought?", phase: strategy, cardinality: singleton, gate: { uptake: [bought] } }
+  - { id: trade-offs, code: e45f8, question: "What is deliberately not being done?", phase: strategy, cardinality: per-refusal }
+  - { id: growth-mechanism, code: evkfg, question: "How does usage compound?", phase: strategy, cardinality: singleton, gate: { uptake: [bought] } }
+  - { id: capabilities, code: eqsja, question: "What must we be able to do to execute?", phase: strategy, cardinality: singleton }
+  - { id: north-star-metric, code: ezg3v, question: "What single measure best proxies delivered value?", phase: validation, cardinality: singleton, gate: { uptake: [chosen, bought] } }
+  - { id: input-metrics, code: ehk97, question: "Which controllable measures drive the outcome?", phase: validation, cardinality: per-north-star }
+  - { id: guardrail-health-metrics, code: e2hrs, question: "What must not degrade while pushing forward?", phase: validation, cardinality: per-owner }
+  - { id: success-criteria, code: e0pge, question: "What observable result counts as 'it worked'?", phase: validation, cardinality: per-effort }
+  - { id: market-sizing, code: erw62, question: "How big is the addressable population, credibly?", phase: discovery, cardinality: singleton, gate: { uptake: [bought] } }
+  - { id: internal-strengths-weaknesses, code: ews8m, question: "Where are we strong or exposed, internally?", phase: strategy, cardinality: singleton }
+  - { id: external-opportunities-threats, code: egp69, question: "What outside forces help or endanger?", phase: strategy, cardinality: per-force, closable: false }
+  - { id: macro-environment-factors, code: earc7, question: "Which external forces shape the space?", phase: strategy, cardinality: per-lens, closable: true }
+  - { id: competitor-profile, code: e6fsz, question: "Who else solves this, how, and how well?", phase: discovery, cardinality: per-competitor, closable: false, gate: { uptake: [chosen, bought] } }
+  - { id: jobs-to-be-done, code: ev2wp, question: "What progress is being 'hired' for, in what circumstance?", phase: discovery, cardinality: per-job }
+  - { id: pains-and-gains, code: ekyn8, question: "What frustrates today, and what would better look like?", phase: discovery, cardinality: per-segment }
+  - { id: user-job-stories, code: ed6n5, question: "What behavior, in what situation, toward what outcome?", phase: design, cardinality: per-story }
+  - { id: stepwise-trace, code: e58p3, question: "What happens at each step, and what does each step hand to the next?", phase: design, cardinality: per-scenario }
+  - { id: risks-and-assumptions, code: edew6, question: "What must be true, what could break for us, and what's the response?", phase: discovery, cardinality: per-risk }
+  - { id: affected-and-interested-parties, code: eppxq, question: "Who is materially affected or burdened without owning this, and with what standing?", phase: discovery, cardinality: per-party }
+  - { id: decision-authority-and-approvals, code: eqj19, question: "Whose agreement is required for this to proceed, under what delegation?", phase: strategy, cardinality: per-gate }
+  - { id: consent-and-authority, code: e921t, question: "Under what authority is this permitted, from whom, obtained when, expiring when?", phase: strategy, cardinality: per-consent, gate: { authority: [discretionary, notify, approve, statutory] } }
+  - { id: scope-in-out, code: esk7t, question: "What is included now, deferred, or refused?", phase: design, cardinality: singleton }
+  - { id: constraints, code: emwtf, question: "What externally imposed fixed limits bound the work?", phase: design, cardinality: per-constraint }
+  - { id: as-built-survey, code: esy0b, question: "What is actually there, measured to what tolerance, observed when?", phase: discovery, cardinality: per-subject }
+  - { id: cross-cutting-concerns, code: eyn7j, question: "What system-wide obligations must the design uphold?", phase: design, cardinality: per-concern }
+  - { id: visual-identity-rules, code: ej174, question: "How must the brand be rendered, and what renderings are forbidden?", phase: design, cardinality: singleton }
+  - { id: verbal-identity-rules, code: ehpbb, question: "How must the brand be worded, and what wordings are forbidden?", phase: design, cardinality: singleton }
+  - { id: alternatives-considered, code: e7j8k, question: "What else could have been done, and why not?", phase: design, cardinality: per-decision }
+  - { id: decision-criteria, code: e32n2, question: "By what criteria are the options judged, and how are they traded off?", phase: design, cardinality: per-decision }
+  - { id: decision, code: e43c2, question: "What was decided, and on what reasoning?", phase: design, cardinality: per-decision }
+  - { id: accepted-consequences, code: er7ec, question: "What are we accepting as a consequence of this commitment?", phase: design, cardinality: per-decision }
+  - { id: reversal-condition, code: ebxtg, question: "What observable condition would reopen this?", phase: design, cardinality: per-decision }
+  - { id: hypothesis, code: eavvd, question: "What relation do we predict, and what observation would refute it?", phase: discovery, cardinality: per-hypothesis, gate: { outcome: { form: [claim] } } }
+  - { id: measurement-protocol, code: ewd2m, question: "By what prescribed procedure are data produced, and how is each construct operationalised into a measured quantity?", phase: validation, cardinality: per-construct, gate: { outcome: { form: [claim] } } }
+  - { id: prior-art, code: e0c8e, question: "How have others solved this, and what does that teach?", phase: design, cardinality: per-precedent }
+  - { id: rollout-and-phasing, code: erszc, question: "How does this reach reality, in graduated exposure, with kill criteria?", phase: operate, cardinality: singleton }
+  - { id: sequence-and-foreclosure, code: enbkd, question: "In what order must this be done, and what does each step foreclose?", phase: design, cardinality: singleton }
+  - { id: open-questions, code: edcxt, question: "What is knowingly unknown?", phase: design, cardinality: per-question }
+  - { id: system-boundary-and-context, code: ec73p, question: "What is inside the system, and what does it touch?", phase: architecture, cardinality: singleton }
+  - { id: components-and-responsibilities, code: eey7j, question: "What parts exist, each owning what?", phase: architecture, cardinality: per-component, gate: { outcome: { form: [artifact] } } }
+  - { id: data-flows-and-integrations, code: e11bw, question: "What moves where, over which contracts?", phase: architecture, cardinality: per-flow }
+  - { id: canonical-model, code: eenkt, question: "What named categories carve the domain, and what shape does each entry take?", phase: architecture, cardinality: singleton }
+
+artifacts:
+
+  - id: product-strategy-canvas
+    code: aqfpn
+    enablement: { action: "commit to a direction and the refusals that make it real", actor: decision-makers, timing: before allocating a cycle's resources }
+    alias: { kind: none, reason: no-aligned-form }
+    disabled_when: { uptake: [given] }
+    composition:
+      core: [product-vision, customer-segments, value-proposition, cost-structure, trade-offs,
+             north-star-metric, growth-mechanism, capabilities, unfair-advantage]
+      situational: [positioning-statement, input-metrics, revenue-streams, case-for-change]
+
+  - id: business-model-canvas
+    code: af0pt
+    enablement: { action: "judge whether the business logic closes — value, delivery and money", actor: operator or backer, timing: before or during commitment }
+    alias: { kind: normative, form: "Business Model Canvas (Osterwalder)" }
+    disabled_when: { uptake: [given, chosen] }
+    composition:
+      core: [customer-segments, value-proposition, channels, customer-relationships,
+             revenue-streams, key-resources, key-activities, key-partnerships, cost-structure]
+      situational: []
+
+  - id: lean-canvas
+    code: ajw0x
+    enablement: { action: "judge whether an early-stage bet is worth testing next", actor: founder or sponsor, timing: before fit is established }
+    alias: { kind: normative, form: "Lean Canvas (Maurya)" }
+    disabled_when: { uptake: [given, chosen] }
+    composition:
+      core: [problem-statement, customer-segments, value-proposition, solution-overview,
+             channels, revenue-streams, cost-structure, input-metrics, unfair-advantage]
+      situational: []
+
+  - id: startup-canvas
+    code: awrrs
+    enablement: { action: "commit to a venture direction with its business logic attached", actor: founder and backer, timing: at formation }
+    alias: { kind: none, reason: no-aligned-form }
+    disabled_when: { uptake: [given, chosen] }
+    composition:
+      core: [product-vision, customer-segments, value-proposition, cost-structure, trade-offs,
+             north-star-metric, growth-mechanism, capabilities, unfair-advantage, revenue-streams]
+      situational: [positioning-statement, input-metrics]
+
+  - id: swot-analysis
+    code: a7ds8
+    enablement: { action: "orient on position before choosing a direction", actor: planning group, timing: before strategy is set }
+    alias: { kind: normative, form: "SWOT" }
+    composition:
+      core: [internal-strengths-weaknesses, external-opportunities-threats]
+      situational: [macro-environment-factors, competitor-profile]
+
+  - id: pestle-analysis
+    code: amr2m
+    enablement: { action: "orient on external forces before committing to a direction", actor: planning group, timing: before strategy is set }
+    alias: { kind: normative, form: "PESTLE" }
+    composition:
+      core: [macro-environment-factors]
+      situational: [external-opportunities-threats, risks-and-assumptions]
+
+  - id: competitor-analysis
+    code: az67c
+    enablement: { action: "position against the alternatives a chooser actually has", actor: "strategy, marketing and sales", timing: continuous }
+    alias: { kind: descriptive, form: "competitor analysis" }
+    disabled_when: { uptake: [given] }
+    composition:
+      core: [competitor-profile]
+      situational: [positioning-statement, external-opportunities-threats, market-sizing]
+
+  - id: persona-profile
+    code: a7rcy
+    enablement: { action: "design for a specific circumstance rather than an average", actor: "designers, researchers and product", timing: before solution design }
+    alias: { kind: descriptive, form: "persona profile" }
+    composition:
+      core: [jobs-to-be-done, pains-and-gains]
+      situational: [customer-segments, user-job-stories, channels]
+
+  - id: opportunity-assessment
+    code: a2cwq
+    enablement: { action: "decide whether to pursue this at all", actor: sponsor, timing: before committing build resources }
+    alias: { kind: descriptive, form: "product brief / one-pager" }
+    composition:
+      core:
+        - { element: problem-statement, mode: owns }
+        - { element: case-for-change, mode: owns }
+        - { element: customer-segments, mode: owns }
+        - { element: risks-and-assumptions, mode: owns }
+        - { element: consent-and-authority, mode: owns, when: { authority: [approve, statutory] } }
+      situational: [market-sizing, value-proposition, competitor-profile, success-criteria,
+             affected-and-interested-parties, decision-authority-and-approvals, funding-source]
+
+  - id: risk-assessment
+    code: abewy
+    enablement: { action: "decide what to mitigate, accept or watch, and who owns each", actor: accountable owner, timing: before and throughout }
+    alias: { kind: descriptive, form: "risk register" }
+    composition:
+      core: [risks-and-assumptions, affected-and-interested-parties, scope-in-out]
+      situational: [guardrail-health-metrics, open-questions]
+
+  - id: design-doc
+    code: a0czz
+    enablement: { action: "agree or object to a proposed approach", actor: reviewer, timing: before build }
+    alias: { kind: descriptive, form: "RFC / RFD" }
+    composition:
+      core:
+        - { element: problem-statement, mode: links }
+        - { element: goals-and-non-goals, mode: owns }
+        - { element: solution-overview, mode: owns }
+        - { element: alternatives-considered, mode: owns }
+        - { element: open-questions, mode: owns }
+        - { element: constraints, mode: owns, when: { authority: [approve, statutory] } }
+        - { element: cross-cutting-concerns, mode: owns, when: { authority: [approve, statutory] } }
+        - { element: risks-and-assumptions, mode: owns, when: { authority: [approve, statutory] } }
+        - { element: sequence-and-foreclosure, mode: owns, when: { reversibility: [costly, irreversible] } }
+      situational: [rollout-and-phasing, prior-art, scope-in-out, success-criteria, user-job-stories,
+             stepwise-trace, canonical-model, as-built-survey, consent-and-authority]
+
+  - id: brand-identity-guide
+    code: atm2v
+    enablement: { action: "render and voice the identity correctly without asking", actor: anyone producing expression, timing: continuous }
+    alias: { kind: descriptive, form: "brand guidelines / style guide / DESIGN.md" }
+    composition:
+      core:
+        - { element: visual-identity-rules, mode: owns }
+        - { element: verbal-identity-rules, mode: owns }
+      situational:
+        - { element: product-vision, mode: links }
+        - { element: positioning-statement, mode: links }
+        - { element: constraints, mode: owns }
+        - { element: prior-art, mode: owns }
+        - { element: open-questions, mode: owns }
+
+  - id: scenario-walkthrough
+    code: azetx
+    enablement: { action: "verify one concrete path resolves end to end", actor: reviewer, timing: before build }
+    alias: { kind: descriptive, form: "key path scenario" }
+    composition:
+      core: [stepwise-trace]
+      situational: [user-job-stories, data-flows-and-integrations, constraints]
+
+  - id: success-metrics
+    code: ar2vy
+    enablement: { action: "tell whether the thing is working, and what to push and protect", actor: operator, timing: continuous after launch }
+    alias: { kind: descriptive, form: "North Star framework" }
+    disabled_when: { uptake: [given] }
+    composition:
+      core: [north-star-metric, input-metrics, guardrail-health-metrics]
+      situational: [success-criteria]
+
+  - id: architecture-overview
+    code: a74pm
+    enablement: { action: "understand the shape well enough to change part of it safely", actor: engineer or architect, timing: on joining or before changing }
+    alias: { kind: descriptive, form: "C4 levels 1–2" }
+    composition:
+      core: [system-boundary-and-context, components-and-responsibilities, data-flows-and-integrations]
+      situational: [constraints, trade-offs, risks-and-assumptions, canonical-model, as-built-survey]
+
+  - id: system-context-diagram
+    code: avxcm
+    enablement: { action: "see the boundary and what crosses it", actor: anyone new to the system, timing: on first contact }
+    alias: { kind: normative, form: "C4 level 1" }
+    composition:
+      core: [system-boundary-and-context, data-flows-and-integrations]
+      situational: []
+
+  - id: decision-brief
+    code: a20v3
+    enablement: { action: "choose among live alternatives by a set date", actor: the person accountable for the choice, timing: before the decision is taken }
+    alias: { kind: descriptive, form: "options paper / decision document (DACI, SPADE)" }
+    composition:
+      core:
+        - { element: alternatives-considered, mode: owns }
+        - { element: decision-criteria, mode: owns }
+        - { element: decision-authority-and-approvals, mode: owns, when: { authority: [approve, statutory] } }
+        - { element: problem-statement, mode: links }
+      situational: [constraints, risks-and-assumptions, prior-art, open-questions, scope-in-out]
+
+  - id: decision-record
+    code: ayx0k
+    enablement: { action: "know whether this decision still stands, and reopen it correctly if not", actor: future reader, timing: any time after }
+    alias: { kind: descriptive, form: "ADR (Nygard) / MADR / record of decision" }
+    composition:
+      core:
+        - { element: decision, mode: owns }
+        - { element: accepted-consequences, mode: owns }
+        - { element: reversal-condition, mode: owns }
+        - { element: alternatives-considered, mode: owns }
+        - { element: risks-and-assumptions, mode: owns }
+        - { element: problem-statement, mode: links }
+        - { element: decision-criteria, mode: links, when: { authority: [approve, statutory] } }
+      situational: [constraints, prior-art, open-questions]
+
+  - id: working-note
+    code: axh9h
+    enablement: { action: "resume your own work after a gap without re-deriving it", actor: the author at a later time, timing: across sessions }
+    alias: { kind: none, reason: no-aligned-form }
+    disabled_when: { time-separation: [none] }
+    composition:
+      core: [constraints, scope-in-out, open-questions]
+      situational: [trade-offs, as-built-survey, success-criteria]
+
+relations:
+
+  - { from: value-proposition, to: case-for-change, kind: distinct-from }
+  - { from: constraints, to: as-built-survey, kind: distinct-from }
+  - { from: constraints, to: trade-offs, kind: distinct-from }
+  - { from: goals-and-non-goals, to: scope-in-out, kind: distinct-from }
+  - { from: risks-and-assumptions, to: affected-and-interested-parties, kind: distinct-from }
+  - { from: hypothesis, to: success-criteria, kind: distinct-from }
+  - { from: hypothesis, to: risks-and-assumptions, kind: distinct-from }
+  - { from: rollout-and-phasing, to: sequence-and-foreclosure, kind: distinct-from }
+  - { from: key-activities, to: capabilities, kind: distinct-from }
+  - { from: components-and-responsibilities, to: canonical-model, kind: distinct-from }
+  - { from: customer-segments, to: canonical-model, kind: distinct-from }
+  - { from: prior-art, to: competitor-profile, kind: distinct-from }
+  - { from: accepted-consequences, to: trade-offs, kind: distinct-from }
+  - { from: alternatives-considered, to: decision, kind: distinct-from }
+  - { from: decision-criteria, to: goals-and-non-goals, kind: distinct-from }
+  - { from: decision-criteria, to: constraints, kind: distinct-from }
+  - { from: reversal-condition, to: risks-and-assumptions, kind: distinct-from }
+  - { from: goals-and-non-goals, to: trade-offs, kind: distinct-from }
+  - { from: visual-identity-rules, to: cross-cutting-concerns, kind: distinct-from }
+  - { from: verbal-identity-rules, to: positioning-statement, kind: distinct-from }
+  - { from: verbal-identity-rules, to: value-proposition, kind: distinct-from }
+  - { from: stepwise-trace, to: solution-overview, kind: distinct-from }
+  - { from: revenue-streams, to: funding-source, kind: distinct-from }
+  - { from: decision-authority-and-approvals, to: affected-and-interested-parties, kind: distinct-from }
+  - { from: constraints, to: consent-and-authority, kind: presupposes }
+  - { from: north-star-metric, to: input-metrics, kind: requires }
+  - { from: guardrail-health-metrics, to: input-metrics, kind: counterweight-to }
+  - { from: measurement-protocol, to: hypothesis, kind: presupposes }
+  - { from: external-opportunities-threats, to: macro-environment-factors, kind: feeds }
+  - { from: external-opportunities-threats, to: competitor-profile, kind: feeds }
+  - { from: as-built-survey, to: sequence-and-foreclosure, kind: feeds }
+  - { from: stepwise-trace, to: data-flows-and-integrations, kind: split-signal }
+  - { from: product-vision, to: product-vision, kind: nests-under, legality: permitted }
+  - { from: design-doc, to: opportunity-assessment, kind: presupposes }
+  - { from: persona-profile, to: problem-statement, kind: presupposes }
+  - { from: scenario-walkthrough, to: design-doc, kind: presupposes }
+  - { from: architecture-overview, to: design-doc, kind: presupposes }
+  - { from: success-metrics, to: north-star-metric, kind: requires }
+  - { from: success-criteria, to: trade-offs, kind: feeds, legality: permitted }
+  - { from: guardrail-health-metrics, to: decision, kind: feeds, legality: permitted, gate: { authority: approve } }
+  - { from: success-criteria, to: hypothesis, kind: feeds, legality: permitted-if-logged }
+  - { from: decision, to: scope-in-out, kind: feeds, freeze: baselined }
+  - { from: decision-criteria, to: decision, kind: feeds }
+  - { from: decision-record, to: design-doc, kind: distinct-from }
+  - { from: decision-brief, to: decision-record, kind: feeds }

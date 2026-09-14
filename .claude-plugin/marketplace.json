@@ -1,11 +1,15 @@
 {
   "name": "knowledge-bus",
-  "owner": { "name": "Sterling Freeman" },
-  "plugins": [
-    {
-      "name": "knowledge-bus",
-      "source": "./",
-      "description": "Convert a scattered knowledge base into validated specs that agents can consume."
+  "owner": {"name": "Sterling Freeman"},
+  "metadata": {"description": "Knowledge Bus skills and tools for shared knowledge definitions"},
+  "plugins": [{
+    "name": "knowledge-bus",
+    "description": "Shared knowledge definitions and workflows for people and agents",
+    "source": {
+      "source": "npm",
+      "package": "@knowledge-bus/claude",
+      "version": "latest",
+      "registry": "https://registry.npmjs.org"
     }
-  ]
+  }]
 }

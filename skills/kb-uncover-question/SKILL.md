@@ -1,13 +1,6 @@
 ---
 name: kb-uncover-question
-description: >-
-  Elicit from the user a clear, distinct, non-overlapping, tersely
-  stated question that a spec should declare — the unit of identity
-  everything else keys on. Interviews rather than reads: probes what the user
-  is trying to enable, tests candidate wordings against every declared
-  question for collision, and refuses near-duplicates. Use when invoked via
-  /kb-uncover-question, or during ingest or evolution when content answers no
-  declared question.
+description: Clarify a question a Knowledge Bus universe should declare, testing its purpose and overlap with existing questions.
 ---
 
 # Uncover a Question
@@ -16,7 +9,7 @@ description: >-
 
 ## Knowledge Bus Directory
 
-Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
+Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
 
 ## Standing constraints
 
@@ -39,4 +32,4 @@ Every round runs the same shape. Loop until a round changes nothing.
 
 - **4. Follow up or converge.** Where a test left ambiguity, ask a follow-up batch in the same sitting. A round that changes nothing ends the loop.
 
-- **5. Declare.** Freeze the wording last. Mint a code; record every refusal with its reason.
+- **5. Declare.** Freeze the wording last. Mint a code using [Checker for Agent Workflows](references/agent-runtime.md); record every refusal with its reason.

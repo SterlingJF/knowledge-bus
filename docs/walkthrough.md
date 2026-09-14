@@ -58,12 +58,12 @@ condition — a candidate for `/kb-uncover-decision`.
 
 ## The Coverage Report
 
-| Class | What landed there | The ask |
-| --- | --- | --- |
-| contested | none; the pricing conflict was resolved | no action needed |
-| mapped | vision, pricing, competitors; auth (flagged) | spot-check |
-| refused | packing list, todo scratch | confirm these are outside the chosen scope |
-| gaps | personas, north-star metric | answer, or record why these remain unanswered |
+| Class     | What landed there                            | The ask                                       |
+| --------- | -------------------------------------------- | --------------------------------------------- |
+| contested | none; the pricing conflict was resolved      | no action needed                              |
+| mapped    | vision, pricing, competitors; auth (flagged) | spot-check                                    |
+| refused   | packing list, todo scratch                   | confirm these are outside the chosen scope    |
+| gaps      | personas, north-star metric                  | answer, or record why these remain unanswered |
 
 The result gives a reader or agent answers organized by question, with sources and remaining gaps visible. The pricing answer includes the owner's decision and the caveat that the numbers are unchecked. The outdated personas remain an open question.
 

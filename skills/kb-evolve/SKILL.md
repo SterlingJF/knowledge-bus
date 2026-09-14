@@ -1,12 +1,6 @@
 ---
 name: kb-evolve
-description: Add a document type a spec does not carry, or re-examine one
-  about to become load-bearing, so that every declaration is earned by
-  evidence and every refusal is recorded with its reason. Runs a 12-step
-  procedure — state the suspicion, survey sources by enablement, run the
-  identity tests, derive strength, update spec and guidance, verify with the
-  bundled checker. Use when invoked via /kb-evolve, or when the user asks to
-  extend, deepen, or audit a spec's structure.
+description: Add or re-examine document types in a Knowledge Bus universe, grounding structural changes in evidence.
 ---
 
 # Evolve a Spec
@@ -20,7 +14,7 @@ Two entry points share one spine. Run the spine; take the branch that applies.
 
 ## Knowledge Bus Directory
 
-Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
+Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an explicit target when supplied; otherwise resolve the nearest `.knowledge-bus/` from the user's working directory. Inspect existing files before proposing changes and preserve existing definitions and decision history. Do not combine definitions from different Knowledge Bus directories. Write only inside the selected `.knowledge-bus/`; leave source files untouched. If definitions are absent, ask the user to select or explicitly create a set rather than inventing one silently.
 
 ## Standing constraints
 
@@ -34,36 +28,36 @@ Follow [Knowledge Bus Directory](../../docs/knowledge-bus-directory.md). Use an 
 ## The flow
 
 - **1. State the suspicion before searching.** Write down what you expect to find wrong, then go looking. This is what stops a first-hit lineage from being confirmed rather than tested.
-    - **A:** name the form and the gap it claims to fill.
-    - **B:** name what looks inherited — a word in the id, a single-tradition guidance base, a question doing more than one job, an enablement promising something no element delivers.
+  - **A:** name the form and the gap it claims to fill.
+  - **B:** name what looks inherited — a word in the id, a single-tradition guidance base, a question doing more than one job, an enablement promising something no element delivers.
 
 - **2. Group candidate sources by enablement, not by discipline.** Families are "what does this let someone *do*" — decide, know-what-stands, calibrate, follow-an-argument. Discipline groupings smuggle in the lineage you are trying to test.
 
 - **3. Fetch primary sources. Record every failed or degraded fetch.** Paywalled, rescinded, image-only, redirected — say so, and carry the caveat into the citation itself rather than leaving it for a reader to discover.
 
 - **4. Run the artifact test per family.** Identity is `(action, actor)`; add timing to break ties.
-    - **A:** if the enablement duplicates a declared type's, fold the form in as an alias — do not add a row.
-    - **B:** ask whether any *surveyed family* deserves a type the spec lacks. Refusing one is an output, not an omission — record why.
+  - **A:** if the enablement duplicates a declared type's, fold the form in as an alias — do not add a row.
+  - **B:** ask whether any *surveyed family* deserves a type the spec lacks. Refusing one is an output, not an omission — record why.
 
 - **5. Run the element test on every candidate field, against every declared question.** Identity is the question. Name the collision for each candidate and rule *sharpen existing / new / refused*.
-    - **A:** decompose the external form into its documented sections; reconcile each — fold into an existing row, split one, or add. Never duplicate.
-    - **B:** additionally audit the type's **existing** elements. A question with two conjunctions is usually two questions. A clause the instance layer already answers is a leak between levels, not a field.
+  - **A:** decompose the external form into its documented sections; reconcile each — fold into an existing row, split one, or add. Never duplicate.
+  - **B:** additionally audit the type's **existing** elements. A question with two conjunctions is usually two questions. A clause the instance layer already answers is a leak between levels, not a field.
 
 - **6. Derive strength; do not choose it.** Core iff the enabled action cannot be taken without it. Where a frame decides, express it as `when:` on a core entry rather than as a second row.
 
 - **7. Check the relation graph.**
-    - **A:** add boundaries for the near-misses step 5 surfaced.
-    - **B:** **re-point every edge naming a renamed or split declaration**, and promote any boundary that exists only as guidance prose into a `distinct-from` edge.
+  - **A:** add boundaries for the near-misses step 5 surfaced.
+  - **B:** **re-point every edge naming a renamed or split declaration**, and promote any boundary that exists only as guidance prose into a `distinct-from` edge.
 
 - **8. Write the spec file.** See § Outputs.
-    - **A:** mint codes for everything new.
-    - **B:** **retain the code on any declaration keeping its identity**; mint only for genuinely new ones. A rename with a stable code costs nothing downstream — that is what codes are for.
+  - **A:** mint codes for everything new.
+  - **B:** **retain the code on any declaration keeping its identity**; mint only for genuinely new ones. A rename with a stable code costs nothing downstream — that is what codes are for.
 
 - **9. Write the guidance file.** See § Outputs.
-    - **A:** guidance starts empty; author it.
-    - **B:** guidance already exists and is keyed on ids you may have changed. Rekey it, and re-home entries whose subject moved — a boundary claim follows the element it is about.
+  - **A:** guidance starts empty; author it.
+  - **B:** guidance already exists and is keyed on ids you may have changed. Rekey it, and re-home entries whose subject moved — a boundary claim follows the element it is about.
 
-- **10. Verify mechanically.** Run the checker; expect it to catch the rekeying you missed. Grep for downstream leakage. Count codes and entries against expectation. Confirm the protocol version did not move unless you meant it to.
+- **10. Verify mechanically.** Use [Checker for Agent Workflows](references/agent-runtime.md) for code minting and validation. Run the checker; expect it to catch the rekeying you missed. Grep for downstream leakage. Count codes and entries against expectation. Confirm the protocol version did not move unless you meant it to.
 
 - **11. Record the decision — including the refusals.** One record: what changed, why, what was refused and on what grounds, what would reverse it, what stayed ambiguous.
 
