@@ -2,3 +2,6 @@ packages:
   - plugins/*/knowledge-bus
 
 minimumReleaseAge: 20160
+minimumReleaseAgeExclude:
+  # Renovate security update: pnpm@11.11.0
+  - pnpm@11.11.0
