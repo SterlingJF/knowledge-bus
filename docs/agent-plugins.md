@@ -41,7 +41,7 @@ In your terminal:
 pi update --extension npm:@knowledge-bus/pi@latest
 ```
 
-Run `/reload` in an existing chat. An explicitly numbered package remains pinned; install a new version explicitly to change that pin.
+Run `/reload` in an existing chat. A package installed at a specific version stays at that version; install a new version explicitly to change that pin.
 
 ### OpenCode
 
@@ -85,7 +85,7 @@ Tests, contributor docs, build tools, and release tools stay out of packages. In
 
 Native packages install the latest published stable release. Individual skills installed with `npx skills add SterlingJF/knowledge-bus` come from the default branch and can include unreleased changes.
 
-Updates follow the agent's native refresh and cache behavior. Installing again does not universally guarantee a refresh, so use the host-specific update instructions above.
+Updates follow the agent's native refresh and cache behavior. Reinstalling may reuse a cached version, so use the host-specific update instructions above.
 
 See [Versioning](versioning.md) for version meanings and compatibility.
 

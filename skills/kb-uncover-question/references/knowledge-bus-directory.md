@@ -28,7 +28,7 @@ kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 
 Without an explicit target, the checker searches the current folder and then its parents for `.knowledge-bus/`. It uses the first one found and does not combine definitions from different directories. Calls from inside `.knowledge-bus/` use that directory. An empty or incomplete nearer directory does not fall back to a parent's `.knowledge-bus/`.
 
-The selected Knowledge Bus directory supplies its directly contained `*.kbp.yaml` files together, so guidance can resolve its universe. Answers and logs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
+The checker reads all `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, so it can check guidance against its referenced universe. Answers and logs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
 
 A generic directory target without its own `.knowledge-bus/` still scans for `*.kbp.yaml` files, for example a reference collection or test corpus. It skips metadata directories and nested folders that contain their own `.knowledge-bus/`. Directory scans do not follow nested directory symlinks.
 

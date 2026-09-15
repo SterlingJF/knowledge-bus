@@ -65,6 +65,6 @@ Keep the code when renaming the same definition. Never reuse or reassign a retir
 
 In the included guidance, a `convention` must cite a registered source. Other kinds can use `asserted` to identify advice supplied without an external citation. Preserve sourcing limitations, such as abstract-only access or a rescinded source, in the citation.
 
-Run the checker with both the definition and guidance files after editing. A passing result checks supported structural rules; you still need to review whether the definitions and advice fit your work.
+Run the checker with both the definition and guidance files after editing. Passing means the files satisfy the structural checks currently implemented. You still need to review whether the definitions and advice fit your work.
 
 See [Validation](validation.md) for commands and coverage.

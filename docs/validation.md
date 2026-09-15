@@ -20,7 +20,7 @@ Guidance is checked against the universe it names, so provide both files in the 
 
 Passing means the files meet the checks currently implemented. It does not establish that a question is useful, that an answer is true, or that advice is well supported.
 
-The checker does not yet validate the `answers.yaml` output from ingestion. Protocol rules for instances and exchange should not be read as a claim that those workflows are fully checked.
+The checker does not yet validate the `answers.yaml` output from ingestion. The protocol defines rules for instances and exchange, but the checker does not yet validate those workflows fully.
 
 ## Running the Checker
 

@@ -41,7 +41,7 @@ Before adding a definition, compare it with existing questions and document purp
 
 ## Stable Codes
 
-Elements, artifact types, frames, and factors each carry a five-character code. The first character identifies the kind; the rest is an opaque handle. Codes do not encode meaning or order.
+Elements, artifact types, frames, and factors each carry a five-character code. The first character identifies the kind; the remaining characters have no encoded meaning. Codes do not encode meaning or order.
 
 People and agents use the readable id and question. Tools use the code to keep a stable reference when the same definition is renamed. Preserve its code and update references that use the changed id. Never reuse or reassign a retired code.
 
@@ -63,6 +63,6 @@ In the included guidance, conventions require registered sources. Other kinds, s
 
 ## Validation Scope
 
-The checker validates supported structural rules in universe and guidance files. It does not yet provide a complete instance-validation path or validate ingestion's separate `answers.yaml` format.
+The checker validates supported structural rules in universe and guidance files. It does not yet fully validate instances or validate ingestion's separate `answers.yaml` format.
 
 See [Validation](validation.md) for commands and limitations.

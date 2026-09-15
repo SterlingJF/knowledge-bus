@@ -3,8 +3,8 @@
   "version": "0.5.0",
   "files": {
     "LICENSE": "499f70a7f18a24c238d6455f8eef6a6d9b9f2eb5c0b8b35dafbe5e345e8d6554",
-    "references/agent-runtime.md": "177cf420dc7746a56970832cd3b9179affdc37d2916367511945bbb35c09dea0",
-    "references/knowledge-bus-directory.md": "6d1e95fa3b7537b7e3c0ad30946e2c5dc2a1ac95214d3ec483012922f3ccbae6",
+    "references/agent-runtime.md": "13283c6c93cfabb9d0c15b7e9a3758fb68067a6663134fe1daf37c3e5359187e",
+    "references/knowledge-bus-directory.md": "bdd47351b5b1ec7307ae9b276bdce335a8ac22270ccd2504669465c6242f633b",
     "references/knowledge-bus-protocol.yaml": "205ae7f595685ba70a4a7835a0f064657d899104aecc11922d806c278eed1cec",
     "runtime/kbp.py": "e1ad713b68eab9555fdff27edc0eae4e2a6a48353d19adfcdf11789a53a31d56",
     "runtime/knowledge_bus-0.5.0-py3-none-any.whl": "9334bb61f23ba979e1a8466cce06a37388d71d38578870f9a8c8dff00c13cfc8",

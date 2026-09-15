@@ -1,10 +1,12 @@
 # Knowledge Bus
 
-Shared structure for the knowledge people and AI agents work with.
+A protocol for structuring knowledge so humans and AI agents can work from the same understanding.
 
-[![ci](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml/badge.svg)](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SterlingJF/knowledge-bus?label=release)](https://github.com/SterlingJF/knowledge-bus/releases/latest)
+[![CI](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/SterlingJF/knowledge-bus)](LICENSE)
 
-Define what your notes and documents need to answer, how their contents connect, and what someone should be able to do with them. Use those expectations to guide new work, review contributions, and exchange knowledge.
+Define the questions your notes and documents need to answer, how their contents connect, and the decisions and actions they should support. Use those expectations to guide new work, review contributions, and exchange knowledge.
 
 ## What is Knowledge Bus?
 
@@ -24,12 +26,12 @@ These definitions can guide a personal notebook, a shared project folder, or doc
 
 A template gives a document its sections. Knowledge Bus also defines what those sections mean, why they belong, and how their contents relate to other documents. Different documents can refer to the same knowledge, reducing the need to repeat the thinking or maintain separate copies.
 
-Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze existing material to explain its contents and connections. Knowledge Bus lets people and agents agree on what the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
+Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze existing material to explain its contents and connections. Knowledge Bus lets people and agents agree on the questions the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
 
 ## Where It Helps
 
 - **Personal notes:** decide what you want to capture and keep enough context to understand it later.
-- **Everyday projects:** make clear what has been decided, what still needs answering, and what another person needs to take over.
+- **Everyday projects:** record decisions, unanswered questions, and the information someone needs to take over.
 - **Team documentation:** give contributors shared expectations across briefs, plans, decisions, and handovers.
 - **AI collaboration:** give agents explicit definitions and guidance to follow when asking questions, drafting, or reviewing.
 - **Knowledge exchange:** describe how information can move between people and tools while retaining its meaning and context.
@@ -44,7 +46,7 @@ You can adopt an existing set of definitions or develop one for your own work. T
 - **Attribution and history** — record who stated something, who is bound by it, its status, and when it was established. Preserve earlier versions when new assertions replace them.
 - **Knowledge exchange rules** — define how to share knowledge between different structures while preserving its meaning, source, and status. Keep disagreements visible for the receiver to resolve.
 - **Product-development starter** — adopt or adapt definitions for 19 document types, including briefs, plans, and decision records.
-- **Agent skills** — clarify questions and check for overlap, recover why a decision was made and what would warrant reconsidering it, and add or re-examine document types.
+- **Agent skills** — clarify questions and check for overlap, recover a decision's reasoning and the conditions for reconsidering it, and add or re-examine document types.
 - **Folder ingestion** — map existing notes to sourced answers, surface conflicts for your review, and report gaps without changing the originals.
 - **Conformance checker** — check definition and guidance files for missing declarations, unresolved references, and other structural errors.
 
@@ -157,7 +159,6 @@ See the [Walkthrough](docs/walkthrough.md) for a complete example.
 
 ## Limits
 
-- Skills are tested against Claude Opus 5 at high reasoning effort.
 - Formal testing for the skills is limited to Claude Opus 5 at high reasoning effort; other models are supported on a best-effort basis.
 - The checker validates definition and guidance files. It does not yet validate the `answers.yaml` files produced by ingestion.
 - Structural validation does not establish that an answer is true or that a definition captures the right question.
@@ -211,7 +212,7 @@ Its core contents are the information that person needs to make the decision or 
 
 ### Context Changes What Is Needed
 
-Context rules can change which information is included, promote it to a requirement, or disable a document type. The rules must also allow for situations where no document is needed.
+Context rules can change which information is included or required, or disable a document type. The rules must also allow for situations where no document is needed.
 
 Relationships declare dependencies, distinctions, and other connections between knowledge elements and document types.
 

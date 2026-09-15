@@ -32,4 +32,4 @@ The references directory containing this guide includes `knowledge-bus-protocol.
 
 The checker first checks that its protocol is sound. It checks definitions and guidance for required fields, code collisions, references, version compatibility, and permitted structures. Include the universe when checking its guidance.
 
-Each failure names the offending declaration or reference. Explain the change it calls for. A passing result does not establish that a question is useful or that an answer is true. Answers and ingestion logs still require human review.
+Each failure names the offending declaration or reference. Explain how to correct the reported problem. A passing result does not establish that a question is useful or that an answer is true. Answers and ingestion logs still require human review.
