@@ -96,7 +96,7 @@ jobs:
           name: release
           path: release-artifacts
       - name: Ensure npm supports trusted publishing
-        run: npm install --global npm@11.11.0 --ignore-scripts
+        run: npm install --global npm@12.0.2 --ignore-scripts
       - name: Publish the GitHub release and npm packages through OIDC
         env:
           GH_TOKEN: ${{ github.token }}

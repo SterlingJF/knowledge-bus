@@ -230,6 +230,10 @@ test('tool preparation rejects stale locks and never falls back to the editable 
   const result = run(snapshot, '.venv/bin/python', ['-c', 'import kbp_conform'], { env });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /No module named 'kbp_conform'/);
+  const changedLock = readFileSync(path.join(cwd, 'pnpm-lock.yaml'), 'utf8').replace('husky:', 'unexpected-package:');
+  write(cwd, 'pnpm-lock.yaml', changedLock);
+  write(snapshot, 'pnpm-lock.yaml', changedLock);
+  assert.throws(() => prepareTools(cwd, snapshot, base), /Node dependencies are stale/);
   write(snapshot, 'uv.lock', 'different');
   assert.throws(() => prepareTools(cwd, snapshot, base), /uv.lock differs/);
 });

@@ -241,6 +241,22 @@ def test_npm_lookup_fails_closed_except_missing_versions(code, missing):
             publish.npm_view("package", "version", fail)
 
 
+@pytest.mark.parametrize("value", ["sha512-example", "0.5.0"])
+@pytest.mark.parametrize("wrapped", [False, True])
+def test_npm_lookup_normalizes_single_values(value, wrapped):
+    response = [value] if wrapped else value
+    assert (
+        publish.npm_view("package", "field", lambda *args: json.dumps(response))
+        == value
+    )
+
+
+@pytest.mark.parametrize("response", [[], ["a", "b"], {}, [None]])
+def test_npm_lookup_rejects_unexpected_results(response):
+    with pytest.raises(ValueError, match="Unexpected npm lookup"):
+        publish.npm_view("package", "field", lambda *args: json.dumps(response))
+
+
 def test_changed_local_assets_never_publish(release):
     folder, _ = release
     (folder / "pi.tgz").write_bytes(b"changed")
@@ -313,7 +329,7 @@ def test_release_workflow_uses_oidc_without_optional_publication():
     assert job["runs-on"] == "ubuntu-latest"
     assert "NPM_TOKEN" not in workflow_text and "NODE_AUTH_TOKEN" not in workflow_text
     steps = job["steps"]
-    assert any("npm@11.11.0" in s.get("run", "") for s in steps)
+    assert any("npm@12.0.2" in s.get("run", "") for s in steps)
     npm = next(
         i for i, s in enumerate(steps) if "publish.py publish" in s.get("run", "")
     )

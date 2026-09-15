@@ -2,6 +2,21 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { runScripts } from './run.mjs';
 
+test('executes the package manager directly, including native executables', () => {
+  const previous = process.env.npm_execpath;
+  process.env.npm_execpath = '/example/pnpm';
+  try {
+    assert.equal(runScripts(['lint'], (command, args) => {
+      assert.equal(command, '/example/pnpm');
+      assert.deepEqual(args, ['run', 'lint']);
+      return { status: 0 };
+    }), 0);
+  } finally {
+    if (previous === undefined) delete process.env.npm_execpath;
+    else process.env.npm_execpath = previous;
+  }
+});
+
 test('attempts later scripts and preserves earlier failures', () => {
   const visited = [];
   assert.equal(runScripts(['fix:python', 'fix:markdown', 'format'], (_cmd, args) => {

@@ -121,9 +121,19 @@ def write_manifest(folder, tag, commit, root=ROOT):
 
 
 def npm_view(spec, field, run=command):
+    """Read one registry value across npm's scalar and array JSON formats."""
     try:
         raw = run("npm", "view", spec, field, "--json", "--registry", REGISTRY)
-        return json.loads(raw) if raw.strip() else None
+        if not raw.strip():
+            return None
+        value = json.loads(raw)
+        if value is None:
+            return None
+        if isinstance(value, list) and len(value) == 1:
+            value = value[0]
+        if not isinstance(value, str) or not value:
+            raise ValueError(f"Unexpected npm lookup result for {spec} {field}")
+        return value
     except subprocess.CalledProcessError as error:
         for output in (error.stdout, error.stderr):
             try:

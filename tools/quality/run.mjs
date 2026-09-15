@@ -6,7 +6,7 @@ export function runScripts(scripts, run = spawnSync) {
   if (!scripts.length) return 1;
   let failed = false;
   for (const script of scripts) {
-    const result = run(process.execPath, [process.env.npm_execpath, 'run', script], {
+    const result = run(process.env.npm_execpath, ['run', script], {
       stdio: 'inherit',
     });
     if (result.error) console.error(result.error.message);

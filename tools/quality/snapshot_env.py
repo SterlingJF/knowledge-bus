@@ -7,7 +7,28 @@ import tomllib
 import venv
 from pathlib import Path
 
+import yaml
 from packaging.specifiers import SpecifierSet
+
+
+def check_node_dependencies(root):
+    """Compare installed dependencies, excluding pnpm's separate tooling document."""
+    documents = list(yaml.safe_load_all((root / "pnpm-lock.yaml").read_text()))
+    if len(documents) == 2:
+        tooling, dependencies = documents
+        if "packageManagerDependencies" not in tooling.get("importers", {}).get(
+            ".", {}
+        ):
+            raise ValueError("Unexpected pnpm tooling lockfile document.")
+    elif len(documents) == 1:
+        dependencies = documents[0]
+    else:
+        raise ValueError("Unexpected pnpm lockfile documents.")
+    installed = yaml.safe_load((root / "node_modules/.pnpm/lock.yaml").read_text())
+    if not isinstance(dependencies, dict) or dependencies != installed:
+        raise ValueError(
+            "Node dependencies are stale. Run pnpm install --frozen-lockfile first."
+        )
 
 
 def prepare(snapshot):
@@ -58,4 +79,5 @@ def prepare(snapshot):
 
 
 if __name__ == "__main__":
+    check_node_dependencies(Path(sys.argv[2]))
     prepare(Path(sys.argv[1]))

@@ -76,12 +76,9 @@ export function prepareTools(root, snapshot, base) {
       throw new Error(`${file} differs from the checkout. Set up dependencies for this snapshot before checking it.`);
     }
   }
-  if (!readFileSync(path.join(root, 'pnpm-lock.yaml')).equals(
-    readFileSync(path.join(root, 'node_modules/.pnpm/lock.yaml')),
-  )) throw new Error('Node dependencies are stale. Run pnpm install --frozen-lockfile first.');
   const python = path.join(root, '.venv/bin/python');
   if (!existsSync(python)) throw new Error('Python dependencies are missing. Run uv sync --locked first.');
-  command(python, ['-I', '-B', fileURLToPath(new URL('./snapshot_env.py', import.meta.url)), snapshot], {
+  command(python, ['-I', '-B', fileURLToPath(new URL('./snapshot_env.py', import.meta.url)), snapshot, root], {
     env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' },
   });
   symlinkSync(path.join(root, 'node_modules'), path.join(snapshot, 'node_modules'), 'dir');
