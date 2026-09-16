@@ -22,7 +22,7 @@ empty_composition:
   when: {}
 
 relation_kinds:
-  - { id: informs, ordered: true }
+  - { id: informs, ordered: true, phrasing: { forward: Context from } }
 
 elements:
   - id: the-question

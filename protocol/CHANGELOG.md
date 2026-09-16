@@ -2,6 +2,14 @@
 
 Conformance-contract history. Software releases are tracked in the [release changelog](../CHANGELOG.md).
 
+## 0.7 — draft
+
+- Relation kinds may declare plain-text phrasing: one forward phrase for unordered kinds, or forward and reverse phrases for ordered kinds.
+- Validate the complete phrasing shape and nonblank values; require boolean ordering.
+- Choose copy by displayed subject. Phrasing preserves shared meaning and attached restrictions.
+
+Declarations must name `kbp/0.7` exactly. Phrasing remains optional.
+
 ## 0.6 — draft
 
 - Define true, false, and unknown predicate results, with AND across dimensions and facets and OR across alternatives. Invalid local values are errors; missing or unresolved context is unknown.

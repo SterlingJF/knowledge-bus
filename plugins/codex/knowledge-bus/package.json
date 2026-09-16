@@ -1,10 +1,16 @@
 {
   "name": "@knowledge-bus/codex",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "description": "Knowledge Bus workflows for Codex",
   "license": "MIT",
-  "files": [".codex-plugin/plugin.json", "skills/", "references/", "runtime/", "LICENSE"],
+  "files": [
+    ".codex-plugin/plugin.json",
+    "skills/",
+    "references/",
+    "runtime/",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "uv run --locked --project ../../.. python ../../../tools/plugin/plugin.py build codex",
     "check": "uv run --locked --project ../../.. python ../../../tools/plugin/plugin.py check codex",

@@ -1,7 +1,7 @@
 protocol:
   id: kbp
   name: Knowledge Bus Protocol
-  version: 0.6
+  version: 0.7
   status: draft
   purpose: >
     The structured exchange of contextual knowledge rather than data. Defines what a
@@ -218,7 +218,27 @@ declarations:
   relation_kind:
     id: "<kind-id>"
     ordered: true | false
+    phrasing:
+      forward: "<plain-text phrase>"
+      reverse: "<plain-text phrase>"
     required: [id, ordered]
+    rules:
+      - ordered MUST be a boolean.
+      - >
+        phrasing is optional. When present it MUST be a mapping with exactly
+        forward for an unordered kind, or exactly forward and reverse for an
+        ordered kind. Each value MUST be a nonblank string.
+      - >
+        For an edge from A to B, forward reads A / phrase / B and reverse reads
+        B / phrase / A. An unordered kind uses forward from either endpoint.
+        Consumers choose the phrase by the displayed subject, not by selection
+        state. Phrases are plain text, without template interpretation or inferred
+        grammatical changes; endpoint names remain separate display components.
+      - >
+        Phrasing does not change the relation's meaning, direction or restrictions.
+        Shared kind contracts still apply. Without phrasing, consumers retain
+        shared explanations where defined and MUST NOT invent inverse wording for
+        custom kinds.
 
   guidance:
     document:

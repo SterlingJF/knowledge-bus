@@ -2,6 +2,15 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.7.0
+
+Bundled protocol: `kbp/0.7`.
+
+- Support optional universe-authored relation phrasing, with one phrase for unordered kinds and two for ordered kinds.
+- Reject incomplete phrasing, invalid values and nonboolean relation ordering with field-specific diagnostics.
+- Product-development universe 0.7 supplies "Context from" / "Context for" for `presupposes`, preserving all six edges.
+- Guidance 0.7 updates its protocol reference; advisory content is unchanged.
+
 ## 0.6.0 — unreleased
 
 Bundled protocol: `kbp/0.6`.

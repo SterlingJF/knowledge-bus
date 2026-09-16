@@ -1,8 +1,8 @@
 guidance:
   id: product-development-guidance
   label: Product development — type guidance
-  version: 0.6
-  conforms_to: kbp/0.6
+  version: 0.7
+  conforms_to: kbp/0.7
   guides: product-development
 
 guidance_kinds:

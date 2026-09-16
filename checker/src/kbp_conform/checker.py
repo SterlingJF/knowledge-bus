@@ -627,6 +627,29 @@ def check(p, u, name):
     declared_kinds = {k["id"] for k in u["relation_kinds"]}
     contracts = p.get("relations", {}).get("kind_contracts", {})
     for kind in u["relation_kinds"]:
+        where = f"relation kind '{kind.get('id')}'"
+        if not isinstance(kind.get("ordered"), bool):
+            fail.append(f"{where}.ordered: must be a boolean")
+            continue
+        if "phrasing" in kind:
+            phrasing = kind["phrasing"]
+            location = f"{where}.phrasing"
+            if not isinstance(phrasing, dict):
+                fail.append(f"{location}: must be a mapping")
+            else:
+                expected = {"forward", "reverse"} if kind["ordered"] else {"forward"}
+                missing = expected - phrasing.keys()
+                extra = phrasing.keys() - expected
+                if missing:
+                    fail.append(f"{location}: missing required {sorted(missing)}")
+                if extra:
+                    fail.append(f"{location}: unexpected keys {sorted(extra, key=str)}")
+                for direction in sorted(expected & phrasing.keys()):
+                    value = phrasing[direction]
+                    if not isinstance(value, str) or not value.strip():
+                        fail.append(
+                            f"{location}.{direction}: must be a nonblank string"
+                        )
         contract = contracts.get(kind.get("id"))
         if isinstance(contract, dict) and kind.get("ordered") is not contract.get(
             "ordered"

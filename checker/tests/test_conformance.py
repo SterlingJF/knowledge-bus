@@ -22,6 +22,8 @@ CORPUS = ROOT / "protocol" / "conformance"
 
 # filename stem -> the fragment the refusal must contain
 EXPECTED = {
+    "phrasing-missing-reverse": "phrasing: missing required ['reverse']",
+    "phrasing-unordered-reverse": "phrasing: unexpected keys ['reverse']",
     "conflicting-composition-strength": "conflicts with composition list",
     "shared-feeds-order": "ordered must be True under its shared contract",
     "shared-distinction-order": "ordered must be False under its shared contract",

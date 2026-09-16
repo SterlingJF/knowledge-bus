@@ -1,12 +1,23 @@
 {
   "name": "@knowledge-bus/pi",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "description": "Knowledge Bus workflows for Pi",
   "license": "MIT",
-  "keywords": ["pi-package"],
-  "pi": {"skills": ["./skills"]},
-  "files": ["skills/", "references/", "runtime/", "LICENSE"],
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
+  },
+  "files": [
+    "skills/",
+    "references/",
+    "runtime/",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "uv run --locked --project ../../.. python ../../../tools/plugin/plugin.py build pi",
     "check": "uv run --locked --project ../../.. python ../../../tools/plugin/plugin.py check pi",

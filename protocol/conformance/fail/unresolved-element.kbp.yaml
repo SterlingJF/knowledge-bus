@@ -4,7 +4,7 @@ universe:
   id: unresolved-element
   label: Minimal
   version: 0.1
-  conforms_to: kbp/0.6
+  conforms_to: kbp/0.7
   ordering_frame: stage
 
 statuses: [conjecture, measured]

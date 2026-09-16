@@ -1,8 +1,8 @@
 {
-  "version": "0.6.0",
-  "wheel": "knowledge_bus-0.6.0-py3-none-any.whl",
+  "version": "0.7.0",
+  "wheel": "knowledge_bus-0.7.0-py3-none-any.whl",
   "requires_python": ">=3.14",
-  "sha256": "2e629129f3ca45177e7420b3cc67131b89537866d8fe828a88411463e02413aa",
+  "sha256": "3e268b03cfbb3921dca88d85a877d92515e5d8a9ea31111054fbed8bfb5dcdb5",
   "dependencies": [
     "PyYAML==6.0.3"
   ]

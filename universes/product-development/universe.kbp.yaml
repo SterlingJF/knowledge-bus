@@ -1,8 +1,8 @@
 universe:
   id: product-development
   label: Product development
-  version: 0.6
-  conforms_to: kbp/0.6
+  version: 0.7
+  conforms_to: kbp/0.7
   ordering_frame: phase
   overview:
     covers: >
@@ -93,14 +93,44 @@ empty_composition:
   when: { time-separation: [none], reversibility: [reversible] }
 
 relation_kinds:
-  - { id: presupposes,      ordered: true }
-  - { id: distinct-from,    ordered: false }
-  - { id: counterweight-to, ordered: false }
-  - { id: feeds,            ordered: true }
-  - { id: split-signal,     ordered: true }
-  - { id: descendant-of,    ordered: true }
-  - { id: requires,         ordered: true }
-  - { id: nests-under,      ordered: true }
+  - id: presupposes
+    ordered: true
+    phrasing:
+      forward: Context from
+      reverse: Context for
+  - id: distinct-from
+    ordered: false
+    phrasing:
+      forward: Not interchangeable with
+  - id: counterweight-to
+    ordered: false
+    phrasing:
+      forward: Balances
+  - id: feeds
+    ordered: true
+    phrasing:
+      forward: Can inform
+      reverse: Can be informed by
+  - id: split-signal
+    ordered: true
+    phrasing:
+      forward: May need detail moved to
+      reverse: May receive detail moved from
+  - id: descendant-of
+    ordered: true
+    phrasing:
+      forward: Adapted from
+      reverse: Adapted into
+  - id: requires
+    ordered: true
+    phrasing:
+      forward: Needs
+      reverse: Needed by
+  - id: nests-under
+    ordered: true
+    phrasing:
+      forward: Within the scope of
+      reverse: Broader scope for
 
 elements:
 

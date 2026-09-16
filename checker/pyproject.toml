@@ -1,6 +1,6 @@
 [project]
 name = "knowledge-bus"
-version = "0.6.0"
+version = "0.7.0"
 description = "Convert a scattered knowledge base into validated specs that agents can consume"
 requires-python = ">=3.14"
 dependencies = ["PyYAML>=6.0"]
