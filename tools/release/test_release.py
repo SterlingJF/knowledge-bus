@@ -31,6 +31,14 @@ def project(tmp_path, monkeypatch):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / name, target)
     # Keep release-transition fixtures stable after the project itself advances.
+    protocol_file = tmp_path / "protocol/knowledge-bus-protocol.yaml"
+    protocol_file.write_text(
+        protocol_file.read_text().replace(
+            f"version: {release.metadata(ROOT)[2].split('/')[1]}",
+            "version: 0.5",
+            1,
+        )
+    )
     project_file = tmp_path / "checker/pyproject.toml"
     project_file.write_text(
         project_file.read_text().replace(
@@ -228,7 +236,7 @@ def test_version_without_user_directory(tmp_path):
     assert result.returncode == 0, result.stderr
     assert (
         result.stdout
-        == f"Knowledge Bus {release.metadata(ROOT)[0]}\nBundled protocol: kbp/0.5\n"
+        == f"Knowledge Bus {release.metadata(ROOT)[0]}\nBundled protocol: {release.metadata(ROOT)[2]}\n"
     )
 
 

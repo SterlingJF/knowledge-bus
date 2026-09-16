@@ -1,12 +1,10 @@
 universe:
-  id: minimal
-  label: Minimal
+  id: behavior-test
+  label: Behavior test
   version: 0.1
   conforms_to: kbp/0.6
   ordering_frame: stage
-
 statuses: [conjecture, measured]
-
 frames:
   - id: stage
     code: fa1a1
@@ -15,27 +13,15 @@ frames:
     attaches_to: element
     values:
       - { id: only, question: "Where in the sequence does this sit?" }
-
 empty_composition:
   when: {}
-
-relation_kinds:
-  - { id: informs, ordered: true }
-  - { id: relates, ordered: false }
-
+relation_kinds: [{ id: distinct-from, ordered: true }]
 elements:
   - id: the-question
     code: ea1a1
     question: "What is being asked?"
     stage: only
     cardinality: singleton
-
-  - id: another-question
-    code: ea1a2
-    question: "What else is being asked?"
-    stage: only
-    cardinality: singleton
-
 artifacts:
   - id: the-record
     code: aa1a1
@@ -44,8 +30,4 @@ artifacts:
     composition:
       core:
         - the-question
-
-relations:
-  - { from: the-question, to: the-record, kind: informs, legality: permitted }
-  - { from: the-record, to: another-question, kind: informs }
-  - { from: another-question, to: the-question, kind: informs, legality: permitted }
+relations: []

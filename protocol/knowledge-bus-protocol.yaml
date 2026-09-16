@@ -1,7 +1,7 @@
 protocol:
   id: kbp
   name: Knowledge Bus Protocol
-  version: 0.5
+  version: 0.6
   status: draft
   purpose: >
     The structured exchange of contextual knowledge rather than data. Defines what a
@@ -95,6 +95,24 @@ declarations:
     scope: >
       A predicate in a universe names frames only. A factor id is legal in a guidance
       entry's `when` and nowhere else.
+    evaluation:
+      result: true | false | unknown
+      rules:
+        - Named dimensions and named facets are combined with AND.
+        - Values in each predicate list are alternatives combined with OR.
+        - An empty predicate is true; an empty alternatives list is false.
+        - >
+          Missing context is unknown, not false. AND is false if any operand is
+          false, true if all are true, and unknown otherwise.
+        - >
+          Context supplies one resolved value per dimension or facet at the scope
+          being evaluated. Consumers MUST NOT guess a missing value, merge distinct
+          outcome-components, or substitute an artifact's placement for an element's
+          ordering value. Evaluate each applicable scope separately.
+        - >
+          Invalid locally enumerated values and undeclared facets are errors, not
+          unknown. Source-backed values require resolution against their registry;
+          lack of that resolution leaves the affected context unknown.
 
   universe:
     document:
@@ -284,12 +302,40 @@ composition:
 
   rules:
     - An element appears at most once per artifact.
+    - An explicit entry strength MUST agree with its containing composition list.
     - Exactly one artifact owns a given element instance; others link to the owner.
     - Strength MAY be conditional on a frame predicate.
+    - >
+      On a core entry, when controls requiredness: true means core, false means
+      situationally available, and unknown means unresolved requiredness. A false
+      strength predicate does not exclude the element or require a second entry.
+    - >
+      On a situational entry, when controls situational availability: true means
+      available, false means excluded, and unknown means unresolved availability.
+      With no when, the entry has its containing list's strength and is available,
+      subject to the independent applicability rules below.
     - A universe MAY disable an artifact type entirely under a frame predicate.
     - >
       A universe MUST be able to return the empty composition. Where no frame value
       warrants structure, the conforming answer is no artifact.
+
+  evaluation:
+    precedence:
+      - >
+        Evaluate artifact disabled_when and universe empty_composition.when first.
+        A true disabled_when returns disabled; otherwise a true empty predicate
+        returns empty. Either definite outcome suppresses all members, even when
+        the other predicate is unknown. If neither is true and either is unknown,
+        the artifact result is unresolved, not an asserted usable composition.
+      - >
+        For an applicable artifact, evaluate each element gate at its applicable
+        scope. A false gate excludes the member regardless of strength; an unknown
+        gate leaves applicability unresolved. An absent gate allows the member.
+      - >
+        Apply the entry's strength/availability rule only to applicable members.
+        Preserve unresolved members as unresolved rather than silently discarding
+        or promoting them. These results describe requirements and availability;
+        they do not assert that instances exist or that the action is ready.
 
   ordering:
     declared_by: universe
@@ -300,6 +346,29 @@ composition:
       the elements it composes.
 
 relations:
+
+  kind_contracts:
+    scope: >
+      Universes still declare their kinds. The following ids have shared meanings
+      in this protocol version and MUST use the stated ordered value. Other ids
+      remain universe-defined; consumers MUST NOT infer a shared meaning from
+      their names. These contracts do not generate extra edges.
+    distinct-from:
+      ordered: false
+      meaning: >
+        The definitions answer different questions or enable different actions and
+        must not be substituted for one another. The distinction is symmetric.
+      limits: >
+        Not transitive. Does not imply opposites, disjoint contents or disjoint
+        instances. Different ids alone do not warrant emitting an edge.
+    feeds:
+      ordered: true
+      meaning: Knowledge from the source can inform the target.
+      limits: >
+        Source to recipient. Does not imply mandatory sequence, causation, proof,
+        ownership, copying or actual instance provenance. A feeds B and B feeds C
+        do not entail A feeds C. Gate, legality and freeze restrictions remain
+        attached and MUST NOT be lost when displaying or aggregating connections.
 
   edge:
     from: "<element-id | artifact-id>"

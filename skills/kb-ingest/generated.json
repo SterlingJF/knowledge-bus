@@ -1,15 +1,15 @@
 {
   "generated_by": "just skills-build",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "files": {
     "LICENSE": "499f70a7f18a24c238d6455f8eef6a6d9b9f2eb5c0b8b35dafbe5e345e8d6554",
     "references/agent-runtime.md": "13283c6c93cfabb9d0c15b7e9a3758fb68067a6663134fe1daf37c3e5359187e",
     "references/knowledge-bus-directory.md": "bdd47351b5b1ec7307ae9b276bdce335a8ac22270ccd2504669465c6242f633b",
-    "references/knowledge-bus-protocol.yaml": "205ae7f595685ba70a4a7835a0f064657d899104aecc11922d806c278eed1cec",
-    "references/product-development/type-guidance.kbp.yaml": "41eda0d2b4d02cea6cfcdfd19d66db8c92d879493f563c25b62f5085c437881d",
-    "references/product-development/universe.kbp.yaml": "065a857655b2ba7d964b11bcc7d6c15a17342e063c8e2573d8d11f996563838e",
+    "references/knowledge-bus-protocol.yaml": "8f8e6949cf064a4e7f634aefc0a5fea81dcace51518245616b35559d9ca36098",
+    "references/product-development/type-guidance.kbp.yaml": "976a56746ee09d8889021f1ae4c3afa521b265e53874d6ad868749fdac4edae3",
+    "references/product-development/universe.kbp.yaml": "df2cd2933cf6e945c9cd59cc04076fa7fcb3b7407fcc0154f50b331864381470",
     "runtime/kbp.py": "e1ad713b68eab9555fdff27edc0eae4e2a6a48353d19adfcdf11789a53a31d56",
-    "runtime/knowledge_bus-0.5.0-py3-none-any.whl": "9334bb61f23ba979e1a8466cce06a37388d71d38578870f9a8c8dff00c13cfc8",
-    "runtime/requirements.json": "4470755396340e6e7d45bac62f31765dec7eaa9c3d4afa2fa0e76343ecd92a93"
+    "runtime/knowledge_bus-0.6.0-py3-none-any.whl": "2e629129f3ca45177e7420b3cc67131b89537866d8fe828a88411463e02413aa",
+    "runtime/requirements.json": "b5ddfab12b0168230ab83b95e710b61160d6ba2d57730dd63e5161721bf5c805"
   }
 }

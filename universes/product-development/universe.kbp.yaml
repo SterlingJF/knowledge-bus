@@ -1,8 +1,8 @@
 universe:
   id: product-development
   label: Product development
-  version: 0.5
-  conforms_to: kbp/0.5
+  version: 0.6
+  conforms_to: kbp/0.6
   ordering_frame: phase
   overview:
     covers: >
@@ -172,7 +172,7 @@ artifacts:
     disabled_when: { uptake: [given] }
     composition:
       core: [product-vision, customer-segments, value-proposition, cost-structure, trade-offs,
-             north-star-metric, growth-mechanism, capabilities, unfair-advantage]
+             { element: north-star-metric, mode: links }, growth-mechanism, capabilities, unfair-advantage]
       situational: [positioning-statement, input-metrics, revenue-streams, case-for-change]
 
   - id: business-model-canvas
@@ -202,7 +202,7 @@ artifacts:
     disabled_when: { uptake: [given, chosen] }
     composition:
       core: [product-vision, customer-segments, value-proposition, cost-structure, trade-offs,
-             north-star-metric, growth-mechanism, capabilities, unfair-advantage, revenue-streams]
+             { element: north-star-metric, mode: links }, growth-mechanism, capabilities, unfair-advantage, revenue-streams]
       situational: [positioning-statement, input-metrics]
 
   - id: swot-analysis
@@ -392,8 +392,8 @@ relations:
   - { from: north-star-metric, to: input-metrics, kind: requires }
   - { from: guardrail-health-metrics, to: input-metrics, kind: counterweight-to }
   - { from: measurement-protocol, to: hypothesis, kind: presupposes }
-  - { from: external-opportunities-threats, to: macro-environment-factors, kind: feeds }
-  - { from: external-opportunities-threats, to: competitor-profile, kind: feeds }
+  - { from: macro-environment-factors, to: external-opportunities-threats, kind: feeds }
+  - { from: competitor-profile, to: external-opportunities-threats, kind: feeds }
   - { from: as-built-survey, to: sequence-and-foreclosure, kind: feeds }
   - { from: stepwise-trace, to: data-flows-and-integrations, kind: split-signal }
   - { from: product-vision, to: product-vision, kind: nests-under, legality: permitted }

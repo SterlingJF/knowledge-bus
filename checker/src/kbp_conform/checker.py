@@ -85,6 +85,7 @@ NEEDS = [
     ("declarations", "guidance_kind", "required"),
     ("declarations", "guidance_entry", "required"),
     ("composition", "entry", "mode"),
+    ("composition", "entry", "strength"),
     ("composition", "entry", "required"),
     ("relations", "edge", "required"),
 ]
@@ -100,19 +101,48 @@ def alts(value):
     return {x.strip().strip('"') for x in str(value).split("|")}
 
 
-def check_pred(pred, where, allowed, fail, forbidden=frozenset(), noun="frame"):
+def check_pred(
+    pred,
+    where,
+    allowed,
+    fail,
+    forbidden=frozenset(),
+    noun="frame",
+    definitions=None,
+):
     """Validate predicate values, distinguishing forbidden factors from unknown IDs."""
+
+    def check_values(values, declared, location):
+        # Source-backed dimensions have no local enumeration to validate against.
+        if declared is None or not isinstance(values, list):
+            return
+        known = [v.get("id") if isinstance(v, dict) else v for v in declared]
+        for value in values:
+            if value not in known:
+                fail.append(f"{location}: unknown predicate value {value!r}")
+
     for fid, val in pred.items():
         if fid in forbidden:
             fail.append(f"{where}: factor '{fid}' may not be referenced by a universe")
         elif fid not in allowed:
             fail.append(f"{where}: unknown {noun} '{fid}'")
+        definition = (definitions or {}).get(fid, {})
         if isinstance(val, dict):
             for facet, fv in val.items():
                 if not isinstance(fv, list):
                     fail.append(f"{where}.{fid}.{facet}: not a list")
+                if definition:
+                    facets = definition.get("facets", {})
+                    if facet not in facets:
+                        fail.append(f"{where}.{fid}: unknown facet '{facet}'")
+                    else:
+                        check_values(fv, facets.get(facet), f"{where}.{fid}.{facet}")
         elif not isinstance(val, list):
             fail.append(f"{where}: predicate '{fid}' value is a scalar, must be a list")
+        else:
+            if definition.get("facets"):
+                fail.append(f"{where}.{fid}: faceted predicate must name facets")
+            check_values(val, definition.get("values"), f"{where}.{fid}")
 
 
 def _walk_shapes(node, path=()):
@@ -160,6 +190,22 @@ def self_check(p, source=None):
     """The protocol against itself. Soundness, not conformance."""
     fail = []
     d = p.get("declarations") or {}
+
+    relations = p.get("relations", {})
+    if isinstance(relations, dict):
+        contracts = relations.get("kind_contracts")
+        if not isinstance(contracts, dict):
+            fail.append("relations.kind_contracts: must be a mapping")
+        else:
+            for kind, ordered in (("distinct-from", False), ("feeds", True)):
+                contract = contracts.get(kind)
+                if (
+                    not isinstance(contract, dict)
+                    or contract.get("ordered") is not ordered
+                ):
+                    fail.append(
+                        f"relations.kind_contracts.{kind}.ordered: must be {ordered}"
+                    )
 
     for path in NEEDS:
         node = p
@@ -392,12 +438,21 @@ def check(p, u, name):
 
     entry_keys = sanc(entry)
     modes = alts(entry["mode"])
+    strengths = alts(entry["strength"])
     declared_lists = set(d["artifact"]["composition"])
     for a in u["artifacts"]:
+        members = set()
         for lst in a["composition"]:
             if lst not in declared_lists:
                 fail.append(f"{a['id']}: composition list '{lst}' not declared")
             for it in a["composition"].get(lst) or []:
+                member = it.get("element") if isinstance(it, dict) else it
+                if isinstance(member, str):
+                    if member in members:
+                        fail.append(
+                            f"{a['id']}: duplicate composition member '{member}'"
+                        )
+                    members.add(member)
                 if isinstance(it, str):
                     continue
                 if not isinstance(it, dict):
@@ -409,10 +464,25 @@ def check(p, u, name):
                         f"{a['id']}/{lst}/{it.get('element')}: "
                         f"unsanctioned entry keys {sorted(bad)}"
                     )
-                if "mode" in it and it["mode"] not in modes:
+                if "mode" in it and (
+                    not isinstance(it["mode"], str) or it["mode"] not in modes
+                ):
                     fail.append(
                         f"{a['id']}/{it.get('element')}: "
                         f"mode '{it['mode']}' not in {sorted(modes)}"
+                    )
+                if "strength" in it and (
+                    not isinstance(it["strength"], str)
+                    or it["strength"] not in strengths
+                ):
+                    fail.append(
+                        f"{a['id']}/{it.get('element')}: "
+                        f"strength '{it['strength']}' not in {sorted(strengths)}"
+                    )
+                elif "strength" in it and it["strength"] != lst:
+                    fail.append(
+                        f"{a['id']}/{it.get('element')}: explicit strength "
+                        f"'{it['strength']}' conflicts with composition list '{lst}'"
                     )
 
     for kind, items in [("frame", u["frames"]), ("factor", factors)]:
@@ -436,7 +506,14 @@ def check(p, u, name):
     factor_ids = {k["id"] for k in factors if "id" in k}
 
     def pred(p_, where):
-        check_pred(p_, where, frame_ids, fail, forbidden=factor_ids)
+        check_pred(
+            p_,
+            where,
+            frame_ids,
+            fail,
+            forbidden=factor_ids,
+            definitions={f["id"]: f for f in u["frames"]},
+        )
 
     pred(u["empty_composition"]["when"], "empty_composition.when")
     for e in u["elements"]:
@@ -548,6 +625,16 @@ def check(p, u, name):
     if dangling:
         fail.append(f"dangling relation refs: {dangling}")
     declared_kinds = {k["id"] for k in u["relation_kinds"]}
+    contracts = p.get("relations", {}).get("kind_contracts", {})
+    for kind in u["relation_kinds"]:
+        contract = contracts.get(kind.get("id"))
+        if isinstance(contract, dict) and kind.get("ordered") is not contract.get(
+            "ordered"
+        ):
+            fail.append(
+                f"relation kind '{kind.get('id')}': ordered must be "
+                f"{contract.get('ordered')} under its shared contract"
+            )
     undeclared = {r["kind"] for r in edges} - declared_kinds
     if undeclared:
         fail.append(f"undeclared relation kinds in use: {sorted(undeclared)}")
@@ -697,6 +784,10 @@ def check_guidance(p, g, universes, name):
                         frame_ids | factor_ids,
                         fail,
                         noun="frame or factor",
+                        definitions={
+                            f.get("id"): f
+                            for f in u["frames"] + (u.get("factors") or [])
+                        },
                     )
 
     unused = sources - {

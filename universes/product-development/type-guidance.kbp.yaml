@@ -1,8 +1,8 @@
 guidance:
   id: product-development-guidance
   label: Product development — type guidance
-  version: 0.5
-  conforms_to: kbp/0.5
+  version: 0.6
+  conforms_to: kbp/0.6
   guides: product-development
 
 guidance_kinds:
@@ -143,8 +143,8 @@ sources:
     url: "https://github.com/google-labs-code/design.md/blob/main/docs/spec.md"
     checked: 2026-08-18
   dtcg:
-    cite: "Design Tokens Community Group — Design Tokens Format Module 2025.10, a draft marked 'Do not implement this version'"
-    url: "https://www.designtokens.org/TR/drafts/format/"
+    cite: "Design Tokens Community Group — Design Tokens Format Module 2025.10, published version"
+    url: "https://www.designtokens.org/TR/2025.10/format/"
     checked: 2026-08-18
   hig:
     cite: "Apple — Human Interface Guidelines, the Foundations topic list. Client-rendered; read through a headless browser"
@@ -178,7 +178,7 @@ sources:
     cite: "GitLab Pajamas — a standing public brand guideline set"
     url: "https://design.gitlab.com/"
   scenario-walkthrough:
-    cite: "Alan Cooper et al. — About Face, on the key path scenario"
+    cite: "Gardenia Durian — How to write a useful scenario walkthrough (Pivotal Labs, 2016)"
     url: "https://medium.com/product-labs/how-to-write-a-useful-scenario-walkthrough-f48bf40b1b69"
   adr:
     cite: "Michael Nygard — Documenting Architecture Decisions (2011); templates at adr.github.io"
@@ -336,7 +336,7 @@ elements:
     - { kind: convention, source: outcome,
         claim: "The name stays singular: an effort steers by a scope-named product outcome — a behavioural measure within its own influence that drives the star — and sets its success criteria on that." }
     - { kind: convention, source: omtm,
-        claim: "The stage-scoped One Metric That Matters is the same move under another name — team- and period-scoped, complementing a durable star rather than competing with it." }
+        claim: "A North Star tracks customer value within its framework. The One Metric That Matters identifies the current metric to focus on and may change with the business stage or bottleneck; the names are not interchangeable." }
     - { kind: convention, source: ns-checklist,
         claim: "Represents vision and strategy without being either — a strong metric statement lets a reader recover both at a high level." }
     - { kind: pitfall, source: asserted,
@@ -369,8 +369,8 @@ elements:
         claim: "'Improve X' invites post-hoc rationalisation. Set a threshold and a measurement date." }
     - { kind: heuristic, source: asserted,
         claim: "What a PRD loosely calls a launch's success metrics is this element. A key result is this element wearing OKR vocabulary — a time-boxed threshold, typically on an input metric." }
-    - { kind: convention, source: cascade,
-        claim: "The initiative inherits its space's star and guardrails by reference and authors its own commitments. The reference cascades; the goals do not." }
+    - { kind: heuristic, source: asserted,
+        claim: "KB recommendation: inherit shared metrics by reference and state local commitments explicitly." }
 
   market-sizing:
     - { kind: heuristic, source: asserted,
@@ -434,7 +434,7 @@ elements:
 
   risks-and-assumptions:
     - { kind: heuristic, source: asserted,
-        claim: "An assumption is believed true but unvalidated; a risk could go wrong. Each gets impact times likelihood and a response — mitigate, accept, watch." }
+        claim: "For an assumption, state what is being relied on and how it will be checked. For a risk, state what could happen, its significance, and the response." }
     - { kind: convention, source: premortem,
         claim: "Pre-mortem sorting — real tigers versus paper tigers — resists both alarmism and optimism." }
     - { kind: convention, source: rust-rfc,
@@ -498,9 +498,9 @@ elements:
 
   alternatives-considered:
     - { kind: convention, source: rust-rfc,
-        claim: "Standard in RFCs, decision documents and decision records. This element holds the roads not taken." }
-    - { kind: boundary, source: adr,
-        claim: "The winner lives in Decision. Folding the chosen option in here structurally breaks that element." }
+        claim: "Standard in RFCs, decision documents and decision records. Describe the options considered, including the chosen option." }
+    - { kind: boundary, source: madr,
+        claim: "Describe and compare the options here, including the chosen option. Decision records the commitment and why it was chosen." }
     - { kind: convention, source: y-statement,
         claim: "Naming the rejected options is grammatically obligatory in the Y-statement form — 'and neglected …' — not an optional courtesy to the reader." }
     - { kind: convention, source: spade,
@@ -540,19 +540,19 @@ elements:
     - { kind: boundary, source: asserted,
         claim: "Distinct from Risks & Assumptions: a consequence is accepted and expected, a risk is uncertain. Filing a known cost as a risk hides that someone chose it." }
     - { kind: empty, source: asserted,
-        claim: "Honestly empty means the option genuinely dominated on every criterion — rare enough that it is worth saying so explicitly." }
+        claim: "An option can outperform every alternative and still have consequences. Distinguish none identified from not assessed; neither follows from the option dominating the comparison." }
 
   reversal-condition:
     - { kind: heuristic, source: asserted,
         claim: "An observable condition, not a review date: what would have to be seen for this to stop holding. 'Revisit in six months' is a calendar entry; 'if median latency exceeds the budget for two consecutive quarters' is a condition." }
-    - { kind: convention, source: madr,
-        claim: "Where the decision can be checked mechanically, name the check — a fitness function, a test, a review step — so that compliance is observable rather than assumed." }
+    - { kind: boundary, source: asserted,
+        claim: "Checking that a decision was implemented and deciding whether it should change are different activities. Implementation compliance is not itself a condition for reconsideration." }
     - { kind: convention, source: azure-waf,
-        claim: "A decision taken at low confidence should say so, because recorded low confidence is what makes later reconsideration legitimate rather than second-guessing." }
+        claim: "Record uncertainty that may warrant revisiting the decision. New evidence or changed circumstances can justify reconsideration regardless of its original confidence." }
     - { kind: boundary, source: asserted,
         claim: "Distinct from Risks & Assumptions: a failing assumption is one trigger among several. A better alternative appearing, a constraint lifting, or an authority changing reopen the decision without any assumption having failed." }
     - { kind: empty, source: asserted,
-        claim: "Honestly empty means nothing observable would reopen it — which is a strong claim about an irreversible commitment, and should read as one." }
+        claim: "State what would warrant reconsideration. If no trigger has been identified, say so; this does not establish that the commitment is irreversible." }
 
   prior-art:
     - { kind: convention, source: rust-rfc,
@@ -606,7 +606,7 @@ elements:
     - { kind: heuristic, source: asserted,
         claim: "The element holds the model, not the instances. Bulk enumeration beyond what makes the model legible is product content, not documentation." }
     - { kind: heuristic, source: asserted,
-        claim: "Takes its host's phase — behaviour-defining sets in a design document, schema-bound catalogues in an architecture overview. Promoted to a standalone document it would fail the one-phase rule." }
+        claim: "Canonical Model is assigned to Architecture in this universe. Referencing it from another artifact does not change its phase." }
 
 artifacts:
 
@@ -650,7 +650,7 @@ artifacts:
     - { kind: boundary, source: asserted,
         claim: "The brand book's strategy half — values, personality, purpose — belongs to Product Vision and Positioning Statement by the split rule. This type takes only the rules for expressing it, visual and verbal alike." }
     - { kind: convention, source: design-md,
-        claim: "A machine-readable form of this type now exists, written for whoever renders the identity — a person or a coding agent alike. It carries the visual rules and no writing rules." }
+        claim: "DESIGN.md represents visual design-system rules. It can supply the visual portion of a brand guide; it does not represent its verbal rules." }
     - { kind: pitfall, source: asserted,
         claim: "Instructions for revising the document are not part of the document. That is a process, and it belongs wherever the process is owned." }
     - { kind: refresh, source: asserted,
@@ -658,7 +658,7 @@ artifacts:
 
   scenario-walkthrough:
     - { kind: convention, source: scenario-walkthrough,
-        claim: "The key path scenario walks the primary pathways as user actions with product responses, deliberately concrete where a context scenario stays high-level." }
+        claim: "A useful scenario walkthrough follows a person pursuing a goal. It can help a team determine what the product should do early, without prescribing detailed interface design." }
     - { kind: pitfall, source: asserted,
         claim: "Distinct from three unrelated walkthroughs: the live usability exercise, ATAM's quality-attribute review, and the inspection meeting." }
 
@@ -672,7 +672,7 @@ artifacts:
 
   system-context-diagram:
     - { kind: convention, source: c4,
-        claim: "C4 level 1 exactly. Component detail inside it is the split signal toward the Architecture Overview." }
+        claim: "Show people and external systems at C4 level 1. Use the Architecture Overview for internal containers and their interactions at level 2. C4 component-level detail is a further level." }
 
   decision-brief:
     - { kind: convention, source: daci,
@@ -708,4 +708,4 @@ artifacts:
     - { kind: boundary, source: adr-boundary,
         claim: "A decision record that grows into a design guide has stopped being a decision record." }
     - { kind: refresh, source: asserted,
-        claim: "It goes stale when its reversal condition is met, not on a schedule — and a record whose reversal condition can no longer be evaluated is already stale." }
+        claim: "Reassess the decision when a reconsideration trigger occurs or its supporting circumstances change. If a trigger cannot be evaluated, establish what evidence is missing. If the decision changes, create a superseding record and retain the original." }

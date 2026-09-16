@@ -22,6 +22,14 @@ CORPUS = ROOT / "protocol" / "conformance"
 
 # filename stem -> the fragment the refusal must contain
 EXPECTED = {
+    "conflicting-composition-strength": "conflicts with composition list",
+    "shared-feeds-order": "ordered must be True under its shared contract",
+    "shared-distinction-order": "ordered must be False under its shared contract",
+    "faceted-predicate-without-facet": "faceted predicate must name facets",
+    "duplicate-composition-member": "duplicate composition member",
+    "invalid-composition-strength": "strength 'banana' not in",
+    "unknown-predicate-value": "unknown predicate value 'banana'",
+    "unknown-predicate-facet": "unknown facet 'banana'",
     "unresolved-element": "composition refs unknown elements",
     "universe-predicate-names-factor": "may not be referenced by a universe",
     "element-missing-required": "missing required",
