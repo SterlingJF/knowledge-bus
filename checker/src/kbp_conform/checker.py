@@ -43,7 +43,7 @@ import os
 import re
 import secrets
 
-import yaml
+from ._vendor import yaml
 
 META = {
     "required",

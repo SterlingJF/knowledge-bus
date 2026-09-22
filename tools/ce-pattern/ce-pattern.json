@@ -1,0 +1,11 @@
+{
+  "tooling": "tools/ce-pattern",
+  "packageManager": "pnpm",
+  "library": {
+    "dir": "explorer",
+    "alias": "@knowledge-bus/explorer",
+    "preset": "none",
+    "style": null
+  },
+  "consumers": []
+}

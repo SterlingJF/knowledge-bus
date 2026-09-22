@@ -1,7 +1,7 @@
 universe:
   id: product-development
   label: Product development
-  version: 0.7
+  version: 0.8
   conforms_to: kbp/0.7
   ordering_frame: phase
   overview:
@@ -382,15 +382,6 @@ artifacts:
         - { element: problem-statement, mode: links }
         - { element: decision-criteria, mode: links, when: { authority: [approve, statutory] } }
       situational: [constraints, prior-art, open-questions]
-
-  - id: working-note
-    code: axh9h
-    enablement: { action: "resume your own work after a gap without re-deriving it", actor: the author at a later time, timing: across sessions }
-    alias: { kind: none, reason: no-aligned-form }
-    disabled_when: { time-separation: [none] }
-    composition:
-      core: [constraints, scope-in-out, open-questions]
-      situational: [trade-offs, as-built-survey, success-criteria]
 
 relations:
 

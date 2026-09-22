@@ -10,8 +10,14 @@ my-folder/
 └── .knowledge-bus/
     ├── universe.kbp.yaml
     ├── type-guidance.kbp.yaml   # optional
+    ├── marks.explorer.yaml      # optional presentation declarations
     ├── answers.yaml            # when recording answers
-    └── ingest-log.md           # when ingesting existing material
+    ├── ingest-log.md           # when ingesting existing material
+    └── explorer/               # optional generated read-only projection
+        └── <universe-id>/
+            ├── index.html
+            ├── model.json
+            └── receipt.json
 ```
 
 Any folder can contain a `.knowledge-bus/` directory. Git is not required. Define the structure before creating documents, or derive it from existing material through ingestion. Answers and an ingest log are not prerequisites for authoring a universe.
@@ -28,7 +34,26 @@ kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 
 Without an explicit target, the checker searches the current folder and then its parents for `.knowledge-bus/`. It uses the first one found and does not combine definitions from different directories. Calls from inside `.knowledge-bus/` use that directory. An empty or incomplete nearer directory does not fall back to a parent's `.knowledge-bus/`.
 
-The checker reads all `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, so it can check guidance against its referenced universe. Answers and logs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
+The checker reads the `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, so it can check guidance against its universe. Duplicate universe ids fail. Answers, logs, presentation marks, and Explorer outputs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
+
+## Several Universes in One Scope
+
+Several universes may be direct siblings in one `.knowledge-bus/`. Prefix filenames for people, but rely on semantic headers for identity and association:
+
+```text
+.knowledge-bus/
+├── product-development.universe.kbp.yaml
+├── product-development.type-guidance.kbp.yaml
+├── product-development.marks.explorer.yaml
+├── team-operations.universe.kbp.yaml
+├── team-operations.type-guidance.kbp.yaml
+├── team-operations.marks.explorer.yaml
+└── explorer/
+    ├── product-development/{index.html,model.json,receipt.json}
+    └── team-operations/{index.html,model.json,receipt.json}
+```
+
+`universe.id` identifies a universe. `guidance.guides` and `marks.marks_for` associate its companion files. When the directory contains several universes, inspection requires an id or universe file. Duplicate ids and ambiguous companion files fail. Generated Explorers stay under their universe ids. Nested `.knowledge-bus/` directories remain separate.
 
 A generic directory target without its own `.knowledge-bus/` still scans for `*.kbp.yaml` files, for example a reference collection or test corpus. It skips metadata directories and nested folders that contain their own `.knowledge-bus/`. Directory scans do not follow nested directory symlinks.
 

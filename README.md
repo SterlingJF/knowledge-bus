@@ -1,3 +1,8 @@
+<!-- markdownlint-disable MD033 MD041 -->
+<div align="center">
+
+<img src="docs/assets/knowledge-bus-readme-hero.png" alt="Knowledge Bus Explorer showing project notes, decisions, and handovers connected around a shared goal" width="960" />
+
 # Knowledge Bus
 
 A protocol for structuring knowledge so humans and AI agents can work from the same understanding.
@@ -5,6 +10,13 @@ A protocol for structuring knowledge so humans and AI agents can work from the s
 [![Release](https://img.shields.io/github/v/release/SterlingJF/knowledge-bus?label=release)](https://github.com/SterlingJF/knowledge-bus/releases/latest)
 [![CI](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/SterlingJF/knowledge-bus)](LICENSE)
+
+[What is Knowledge Bus?](#what-is-knowledge-bus) • [Where It Helps](#where-it-helps) • [Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [How It Works](#how-it-works) • [Docs](#docs)
+
+</div>
+<!-- markdownlint-enable MD033 MD041 -->
+
+---
 
 Define the questions your notes and documents need to answer, how their contents connect, and the decisions and actions they should support. Use those expectations to guide new work, review contributions, and exchange knowledge.
 
@@ -14,19 +26,19 @@ Knowledge Bus is a protocol for describing what knowledge means and how it fits 
 
 For a project, subject, or area of responsibility, you can define:
 
-- the questions the content needs to answer;
-- the decisions or actions each document supports;
-- the information required for that purpose;
-- how information connects across documents;
-- which requirements change with the audience or situation;
-- guidance for answering well;
-- who supplied an answer, when it was established, and whether it is settled or disputed.
+- **Questions** — the questions the content needs to answer;
+- **Outcomes** — the decisions or actions each document supports;
+- **Requirements** — the information required for that purpose;
+- **Relationships** — how information connects across documents;
+- **Conditions** — which requirements change with the audience or situation;
+- **Quality** — guidance for answering well;
+- **Provenance** — who is expected to provide an answer and how to know if the answer is premature or stale.
 
 These definitions can guide a personal notebook, a shared project folder, or documentation across teams. They give contributors clear expectations and help later readers understand the thinking behind the content.
 
 A template gives a document its sections. Knowledge Bus also defines what those sections mean, why they belong, and how their contents relate to other documents. Different documents can refer to the same knowledge, reducing the need to repeat the thinking or maintain separate copies.
 
-Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze existing material to explain its contents and connections. Knowledge Bus lets people and agents agree on the questions the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
+Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze *existing* material to explain its contents and connections. Knowledge Bus lets people and agents agree on the questions the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
 
 ## Where It Helps
 
@@ -49,6 +61,7 @@ You can adopt an existing set of definitions or develop one for your own work. T
 - **Agent skills** — clarify questions and check for overlap, recover a decision's reasoning and the conditions for reconsidering it, and add or re-examine document types.
 - **Folder ingestion** — map existing notes to sourced answers, surface conflicts for your review, and report gaps without changing the originals.
 - **Conformance checker** — check definition and guidance files for missing declarations, unresolved references, and other structural errors.
+- **Universe explorer** — Visualize your knowledge spec as an interactive offline map and export it as SVG.
 
 ## The Built-in Example
 
@@ -141,7 +154,18 @@ cd knowledge-bus
 uv run kbp
 ```
 
+The checkout can inspect a universe without writing or generate an offline Explorer at an explicit destination:
+
+```sh
+uv run kbp --inspect path/to/.knowledge-bus/
+uv run kbp --explore --output path/to/.knowledge-bus/explorer/<universe-id> path/to/.knowledge-bus/
+```
+
 ## Quick Start
+
+### Start With Expectations
+
+Begin with what the knowledge needs to answer and what it should enable. Adapt a reference or develop definitions for the work, then check and explore them. Existing documents are optional inputs.
 
 ### Working With Existing Notes
 
@@ -159,21 +183,21 @@ See the [Walkthrough](docs/walkthrough.md) for a complete example.
 
 ## Limits
 
-- Formal testing for the skills is limited to Claude Opus 5 at high reasoning effort; other models are supported on a best-effort basis.
+- Agent output still requires review.
 - The checker validates definition and guidance files. It does not yet validate the `answers.yaml` files produced by ingestion.
-- Structural validation does not establish that an answer is true or that a definition captures the right question.
+- Structural checking and Explorer rendering do not establish that an answer is true or that a definition captures the right question.
 - The protocol defines composition and exchange rules. Tools for composing documents and interpreting incoming knowledge remain planned work.
 
 ## Roadmap
 
 ### Planned
 
-- [ ] Universe visualizer for understanding and working with knowledge structures
-- [ ] Guided authoring of definitions for your own subject or work
-- [ ] Document composition from shared knowledge, purpose, and audience
+- [x] Interactive, zero-dependency UI board for understanding and exploring knowledge structures ([Knowledge Bus Explorer](docs/knowledge-bus-explorer.md))
+- [x] Guided authoring of definitions for your own subject or work
+- [x] Document composition from shared knowledge, purpose, and audience
 - [ ] Markdown interchange format
 - [x] A standard `.knowledge-bus/` directory so tools can discover shared definitions
-- [ ] Validation of answer files
+- [ ] Evaluation framework to measure definition quality.
 
 ### Further Exploration
 
@@ -193,6 +217,7 @@ See the [Walkthrough](docs/walkthrough.md) for a complete example.
 | `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing one.                        |
 | `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and conditions for reconsidering it.   |
 | `/kb-evolve`           | Adds or re-examines a document type, including its purpose, contents, relationships, and guidance. |
+| `/kb-explore`          | Opens a universe as an interactive map with local export options.                                  |
 | `/kb-ingest`           | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps.      |
 | `/kb-check`            | Checks definition and guidance files and explains any conformance failures.                        |
 
@@ -255,9 +280,16 @@ knowledge-bus/
 │   └── tests/                       conformance and discovery tests
 ├── universes/                      maintained reference definitions
 │   └── product-development/
+├── explorer/                       @knowledge-bus/explorer: universe viewer and SVG export
+│   ├── src/                         CE Pattern layers: elements, patterns, lib
+│   ├── prebuilt/                    installed Explorer viewer
+│   ├── styles/                      visual token authority and generated CSS
+│   └── test/                        unit, adapter, fixture, and browser tests
 ├── skills/                         authored workflows and generated portable resources
 ├── plugins/                        agent adapters and shared runtime
 ├── tools/
+│   ├── explorer/                   model adapter, build, render, and explorer checks
+│   ├── ce-pattern/                 vendored CE Pattern tooling and project config
 │   ├── plugin/                     package assembly, inspection, and tests
 │   └── release/                    release commands and their tests
 ├── docs/                           usage guides and explanations
@@ -290,6 +322,7 @@ See [Contributing](CONTRIBUTING.md) for development setup, source layout, and ch
 - [How Ingest Works](docs/how-ingest-works.md) — the steps, decisions, and coverage report.
 - [Spec Anatomy](docs/spec-anatomy.md) — the structure of a definition file.
 - [Validation](docs/validation.md) — what the checker verifies and rejects.
+- [Visualization](docs/visualization.md) — explore a universe as a map and export it.
 - [Adapting the Example](docs/adapting-the-example.md) — adopt, trim, or extend the included definitions.
 - [Design Notes](docs/design-notes.md) — the reasoning behind question identity, separate guidance, and stable codes.
 

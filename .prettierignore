@@ -10,3 +10,7 @@ dist/
 __pycache__/
 skills/*/references/
 skills/*/runtime/
+explorer/dist/
+dist/explorer/
+explorer/test/fixtures/
+explorer/styles/tokens.css

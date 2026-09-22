@@ -49,6 +49,8 @@ def command(arguments, runtime=None, environ=None):
         raise ValueError("The runtime cache must be outside the installed plugin.")
     env["UV_CACHE_DIR"] = str(cache)
     env["UV_PYTHON_DOWNLOADS"] = "never"
+    env["UV_OFFLINE"] = "1"
+    env["UV_NO_INDEX"] = "1"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     for key in (
         "UV_PROJECT_ENVIRONMENT",
@@ -60,11 +62,29 @@ def command(arguments, runtime=None, environ=None):
         "VIRTUAL_ENV",
         "PYTHONPATH",
         "PYTHONHOME",
+        "KNOWLEDGE_BUS_EXPLORER_BUNDLE",
+        "KNOWLEDGE_BUS_EXPLORER_BUNDLE_MANIFEST",
     ):
         env.pop(key, None)
+    viewer = runtime / "explorer-viewer.js"
+    viewer_manifest = runtime / "explorer-viewer.json"
+    if viewer.is_file() or viewer_manifest.is_file():
+        if not viewer.is_file() or not viewer_manifest.is_file():
+            raise ValueError("Bundled Explorer viewer is incomplete.")
+        declared = json.loads(viewer_manifest.read_text())
+        actual = "sha256:" + hashlib.sha256(viewer.read_bytes()).hexdigest()
+        if (
+            declared.get("digest") != actual
+            or declared.get("bytes") != viewer.stat().st_size
+        ):
+            raise ValueError("Bundled Explorer viewer does not match its manifest.")
+        env["KNOWLEDGE_BUS_EXPLORER_BUNDLE"] = str(viewer)
+        env["KNOWLEDGE_BUS_EXPLORER_BUNDLE_MANIFEST"] = str(viewer_manifest)
     args = [
         uv,
         "run",
+        "--offline",
+        "--no-index",
         "--no-project",
         "--no-config",
         "--isolated",

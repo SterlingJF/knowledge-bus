@@ -2,7 +2,7 @@
   "name": "@knowledge-bus/codex",
   "version": "0.7.0",
   "private": true,
-  "description": "Knowledge Bus workflows for Codex",
+  "description": "Define, inspect, and check Knowledge Bus expectations in Codex",
   "license": "MIT",
   "files": [
     ".codex-plugin/plugin.json",

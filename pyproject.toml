@@ -6,7 +6,7 @@ members = ["checker"]
 knowledge-bus = { workspace = true }
 
 [dependency-groups]
-dev = ["knowledge-bus", "pytest>=8.0", "ruff"]
+dev = ["knowledge-bus", "pytest>=8.0", "PyYAML==6.0.3", "ruff"]
 
 [tool.pytest.ini_options]
 testpaths = ["checker/tests", "tools/release", "tools/plugin"]
@@ -15,5 +15,9 @@ testpaths = ["checker/tests", "tools/release", "tools/plugin"]
 target-version = "py314"
 src = ["checker/src"]
 # Check authored sources rather than generated copies bundled with skills.
-extend-exclude = ["skills/*/runtime", "skills/*/references"]
+extend-exclude = [
+    "checker/src/kbp_conform/_vendor",
+    "skills/*/runtime",
+    "skills/*/references",
+]
 force-exclude = true

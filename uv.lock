@@ -11,6 +11,7 @@ members = [
 dev = [
     { name = "knowledge-bus", editable = "checker" },
     { name = "pytest", specifier = ">=8.0" },
+    { name = "pyyaml", specifier = "==6.0.3" },
     { name = "ruff" },
 ]
 
@@ -36,12 +37,6 @@ wheels = [
 name = "knowledge-bus"
 version = "0.7.0"
 source = { editable = "checker" }
-dependencies = [
-    { name = "pyyaml" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "pyyaml", specifier = ">=6.0" }]
 
 [[package]]
 name = "packaging"

@@ -2,7 +2,7 @@
   "name": "@knowledge-bus/pi",
   "version": "0.7.0",
   "private": true,
-  "description": "Knowledge Bus workflows for Pi",
+  "description": "Define, inspect, and check Knowledge Bus expectations in Pi",
   "license": "MIT",
   "keywords": [
     "pi-package"

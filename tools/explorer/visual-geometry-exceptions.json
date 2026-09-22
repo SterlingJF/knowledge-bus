@@ -1,0 +1,58 @@
+[
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 879,
+    "property": "flex",
+    "value": "1",
+    "reason": "Flex growth factor: how leftover space is shared between siblings, not an authored size."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 989,
+    "property": "opacity",
+    "value": "1",
+    "reason": "Fully opaque. The dimming scale lives in the authority; restoring full opacity is the absence of an effect."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 1076,
+    "property": "left",
+    "value": "50%",
+    "reason": "Parent-relative centring of the empty-state message; half of the containing box, not an authored offset."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 1077,
+    "property": "top",
+    "value": "50%",
+    "reason": "Parent-relative centring of the empty-state message; half of the containing box, not an authored offset."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 570,
+    "property": "max-width",
+    "value": "calc(100% - var(--kb-overlay-clearance) * 2)",
+    "reason": "Full width minus the tokenised clearance on each side. The only literal is the parent's own width."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 1140,
+    "property": "width",
+    "value": "calc(100% - var(--kb-overlay-clearance) * 2)",
+    "reason": "Full width minus the tokenised clearance on each side. The only literal is the parent's own width."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 1095,
+    "property": "@container",
+    "value": "(max-width: 1050px)",
+    "reason": "Container query condition. CSS custom properties cannot be used in query conditions, so the threshold stays a reviewed structural constant."
+  },
+  {
+    "file": "explorer/styles/patterns.css",
+    "line": 1105,
+    "property": "@container",
+    "value": "(max-width: 740px)",
+    "reason": "Container query condition. CSS custom properties cannot be used in query conditions, so the threshold stays a reviewed structural constant."
+  }
+]

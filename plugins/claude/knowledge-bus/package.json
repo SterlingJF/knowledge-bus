@@ -2,7 +2,7 @@
   "name": "@knowledge-bus/claude",
   "version": "0.7.0",
   "private": true,
-  "description": "Knowledge Bus workflows for Claude Code",
+  "description": "Define, inspect, and check Knowledge Bus expectations in Claude Code",
   "license": "MIT",
   "files": [
     ".claude-plugin/plugin.json",

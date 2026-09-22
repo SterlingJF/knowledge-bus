@@ -1,10 +1,10 @@
 default:
     @just --list
 
-# Run one root package script.
+# Run one root package script, forwarding any trailing arguments to it.
 [private]
-_pnpm_run SCRIPT:
-    pnpm run {{quote(SCRIPT)}}
+_pnpm_run SCRIPT *ARGS:
+    pnpm run {{quote(SCRIPT)}} {{ARGS}}
 
 # Run repository checks.
 check: (_pnpm_run 'check')
@@ -84,3 +84,24 @@ release-check:
 # Verify clean main and create an annotated local tag. Never pushes.
 release-tag:
     uv run --locked python tools/release/release.py tag
+
+# Build the explorer library and standalone bundle.
+explorer-build: (_pnpm_run 'build:explorer')
+
+# Render the bundled universe to a self-contained page and a dual-theme SVG.
+explorer-render: (_pnpm_run 'render:explorer')
+
+# Regenerate the explorer token stylesheet from its authority.
+explorer-tokens: (_pnpm_run 'generate:explorer:tokens')
+
+# Format, comment, type, token, and CE layer checks for the explorer package.
+explorer-check: (_pnpm_run 'check:explorer')
+
+# Explorer unit, adapter, and browser tests plus generated-artifact checks.
+explorer-test: (_pnpm_run 'test:explorer')
+
+# Capture the step tier of explorer shots and their geometry into dist/explorer-shots/step.
+explorer-capture-step: (_pnpm_run 'capture:explorer:step')
+
+# Compare two captured shot directories pixel by pixel and by geometry.
+explorer-compare LEFT RIGHT: (_pnpm_run 'compare:explorer:shots' LEFT RIGHT)

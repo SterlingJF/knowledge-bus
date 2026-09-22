@@ -1,4 +1,8 @@
 packages:
   - plugins/*/knowledge-bus
+  - explorer
+
+allowBuilds:
+  esbuild: set this to true or false
 
 minimumReleaseAge: 20160
