@@ -2,6 +2,14 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.8.0
+
+Bundled protocol: `kbp/0.7`.
+
+- Remove the `working-note` artifact from product-development universe `0.8`.
+- Add `kb-explore` for read-only universe inspection and offline Explorer artifacts.
+- Add `@knowledge-bus/explorer`, a dependency-free universe viewer with a self-contained offline HTML artifact and a dual-theme SVG export.
+
 ## 0.7.0
 
 Bundled protocol: `kbp/0.7`.

@@ -1,7 +1,7 @@
 {
-  "version": "0.7.0",
-  "wheel": "knowledge_bus-0.7.0-py3-none-any.whl",
+  "version": "0.8.0",
+  "wheel": "knowledge_bus-0.8.0-py3-none-any.whl",
   "requires_python": ">=3.14",
-  "sha256": "ba15744560cc5edd4efb18a53a1f8da0cd252c49fc8112d1188c26ef3b0961cc",
+  "sha256": "93563734c693aff63a44edda8bd941d45ce7a3388e6055045de3f8cd792727b9",
   "dependencies": []
 }
