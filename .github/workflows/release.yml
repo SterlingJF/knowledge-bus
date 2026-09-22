@@ -29,6 +29,8 @@ jobs:
         with:
           node-version: 24
       - uses: pnpm/action-setup@v6
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm exec playwright install --with-deps chromium
       - run: uv sync --locked
       - uses: extractions/setup-just@v4
       - name: Verify tag and main ancestry
