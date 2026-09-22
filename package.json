@@ -12,7 +12,7 @@
     "esbuild": "0.28.2",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.23.2",
-    "oxc-parser": "0.147.0",
+    "oxc-parser": "0.149.0",
     "prettier": "3.9.6",
     "tsx": "4.23.13",
     "typescript": "7.0.2"
