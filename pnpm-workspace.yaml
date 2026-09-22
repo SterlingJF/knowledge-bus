@@ -3,6 +3,6 @@ packages:
   - explorer
 
 allowBuilds:
-  esbuild: set this to true or false
+  esbuild: false
 
 minimumReleaseAge: 20160
