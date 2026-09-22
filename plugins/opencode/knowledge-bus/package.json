@@ -1,13 +1,22 @@
 {
   "name": "@knowledge-bus/opencode",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "private": true,
-  "description": "Knowledge Bus workflows for OpenCode",
+  "description": "Define, inspect, and check Knowledge Bus expectations in OpenCode",
   "license": "MIT",
   "type": "module",
   "main": "./index.js",
-  "exports": {".": "./index.js", "./server": "./index.js"},
-  "files": ["index.js", "skills/", "references/", "runtime/", "LICENSE"],
+  "exports": {
+    ".": "./index.js",
+    "./server": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "skills/",
+    "references/",
+    "runtime/",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "uv run --locked --project ../../.. python ../../../tools/plugin/plugin.py build opencode",
     "check": "uv run --locked --project ../../.. python ../../../tools/plugin/plugin.py check opencode",

@@ -66,10 +66,16 @@ test('Markdownlint owns emphasis and indentation; Prettier skips Markdown', () =
   }
 });
 
-test('formatting commands do not include Markdown or Prettier', () => {
+test('formatting commands exclude Markdown; Prettier covers explorer sources only', () => {
   const { scripts } = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
-  assert.equal(scripts.format, 'pnpm run format:python');
+  assert.equal(scripts.format, 'node tools/quality/run.mjs format:python format:explorer');
   assert.equal(scripts['check:format'], 'pnpm run check:format:python');
   assert.equal(scripts['format:markdown'], undefined);
   assert.equal(scripts['check:format:markdown'], undefined);
+  for (const script of ['format:explorer', 'check:explorer:format']) {
+    assert.match(scripts[script], /^prettier --(?:write|check) "explorer\/\*\*\/\*\.\{ts,css,json\}" "tools\/explorer\/\*\*\/\*\.\{ts,mjs,json\}"$/);
+    assert.doesNotMatch(scripts[script], /md|markdown/);
+  }
+  const ignored = readFileSync(path.join(root, '.prettierignore'), 'utf8');
+  assert.match(ignored, /explorer\/styles\/tokens\.css/);
 });

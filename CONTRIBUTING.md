@@ -28,6 +28,9 @@ Run the checker from source with `uv run kbp`. Build its wheel and source archiv
 | `plugins/<agent>/knowledge-bus/` | Agent-specific adapters                                              |
 | `plugins/shared/runtime/`        | The shared checker launcher                                          |
 | `tools/plugin/`                  | Package assembly, generated skill resources, and installation checks |
+| `explorer/`                      | Universe viewer package, its token authority, and its tests          |
+| `tools/explorer/`                | Model adapter, build and render commands, and explorer checks        |
+| `tools/ce-pattern/`              | Vendored CE Pattern tooling; update through its `UPSTREAM.md`        |
 | `docs/`                          | Usage guides and explanations                                        |
 
 Agent packages combine their adapter with shared skills, references, and runtime files. `just plugin-build <agent>` builds an isolated package; `just plugin-build all` builds the configured integrations. Build packages through these commands rather than packing source adapter directories directly.
@@ -51,12 +54,16 @@ Include the generated changes with the source changes so individually installed 
 | --------------------------- | ------------------------------------------------------------------------------- |
 | `just check`                | Formatting, lint, protocol, generated resources, packages, and regression tests |
 | `just test`                 | Checker, packaging, and release-tool regression tests                           |
+| `just explorer-check`       | Explorer formatting, comments, types, visual tokens, and CE layers              |
+| `just explorer-test`        | Explorer unit, adapter, and browser tests plus generated-artifact checks        |
 | `just self-check`           | Protocol soundness                                                              |
 | `just skills-check`         | Generated resources and skill references                                        |
 | `just skills-install-check` | Individual-skill installation and updates using the skills CLI                  |
 | `just plugin-check all`     | Package contents, versions, references, and bundled checker execution           |
 | `just native-install-check` | npm installation, repeat installation, and installed file integrity             |
 | `just release-check`        | Combined checks, lockfile consistency, and built distributions                  |
+
+`pnpm run render:explorer:release-example` builds the release example. Browser automation is used only for SVG export.
 
 ### Git Hooks
 
@@ -75,6 +82,8 @@ Include the generated changes with the source changes so individually installed 
 | Report lint | `just lint` | `pnpm run lint:python` | `pnpm run lint:markdown` |
 | Format files | `just format` | `pnpm run format:python` | — |
 | Apply lint fixes | `just fix` | `pnpm run fix:python` | `pnpm run fix:markdown` |
+
+Prettier formats the explorer package and its tools only (`pnpm run format:explorer`); Markdown stays with Markdownlint. Explorer source carries no comments: `check:explorer:source` fails on one, because a claim that matters belongs in a name, a type or a test. The explorer browser tests need a Playwright Chromium: `pnpm exec playwright install chromium` locally, `--with-deps` in CI.
 
 ### Installation Checks
 

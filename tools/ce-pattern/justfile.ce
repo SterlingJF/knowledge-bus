@@ -1,0 +1,5 @@
+# --- CE pattern -----------------------------------------------------------
+
+# Classify the component layers; refuse rule violations.
+check_component_layers:
+  pnpm run check:component-layers

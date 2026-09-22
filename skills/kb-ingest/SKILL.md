@@ -24,16 +24,12 @@ description: Map existing notes or documents into Knowledge Bus definitions and 
   convention. Inspect that directory if it already exists; the domain phrase is proposed after the survey and confirmed, never requested cold.
 
 - **2. Survey before reading.** Inventory files, dates, and formats; report counts to the user before any deep read.
-  Three staleness marks: **contradicted** (a newer source disputes it — mechanical), **unconfirmed**
+  Three staleness marks: **contradicted** (sources disagree), **unconfirmed**
   (older than the corpus's age threshold, nothing disputes it), **confirmed** (cleared during the interview).
   Confirmation questions come batched and informed — reason through the whole survey first so the user rules
   on genuine uncertainty, not on what the corpus already settles.
 
-- **3. Position the domain, then choose the spec.** Locate the starter using [Checker for Agent Workflows](references/agent-runtime.md). Reason over the folder
-  and whatever the user supplied, clarifying unclear questions by probing what answering each would enable and checking for overlap,
-  then interview to place the domain against the product-agnostic built-in: how regulated or commercial
-  versus DIY, and where the abstraction layer sits — industry, company, product, or feature. Adopt, trim,
-  or derive follows from that placement; structural changes require the user's review. If `kb-evolve` is installed, offer it; otherwise explain the proposed change and stop before changing the structure.
+- **3. Choose the definitions.** Use supplied definitions when they fit. Treat the bundled starter as an optional reference, not a universal lens. If no set fits, propose an adaptation for review. Structural changes require the user's approval. Use `kb-evolve` when available; otherwise explain the proposed change and stop.
 
 - **4. Extract answers.** Map each document section to a declared question; one answer per question per party and time.
   A collision — two docs answering the same question — is never resolved by recency. The older doc may be the

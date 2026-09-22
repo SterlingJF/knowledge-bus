@@ -7,10 +7,11 @@ description: Add or re-examine document types in a Knowledge Bus universe, groun
 
 **Purpose — add a type the spec does not carry, or deepen one it already declares, so that every declaration is earned by evidence, every refusal is recorded with its reason, and the framework stays cohesive rather than locally patched.**
 
-Two entry points share one spine. Run the spine; take the branch that applies.
+Run the shared spine through the path that applies.
 
 - **Path A — new type.** A form exists in the world and the spec does not carry it. Governing question: *does it enable something no declared type enables?*
 - **Path B — re-evaluation.** A declared type is about to become load-bearing and its basis is unexamined. Governing question: *what in this type is inherited rather than earned?*
+- **Path C — greenfield or adaptation.** Start from what the user needs to understand, decide, or do. External references are optional.
 
 ## Knowledge Bus Directory
 
@@ -30,10 +31,11 @@ Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an 
 - **1. State the suspicion before searching.** Write down what you expect to find wrong, then go looking. This is what stops a first-hit lineage from being confirmed rather than tested.
   - **A:** name the form and the gap it claims to fill.
   - **B:** name what looks inherited — a word in the id, a single-tradition guidance base, a question doing more than one job, an enablement promising something no element delivers.
+  - **C:** name the intended decision, action, or understanding and the smallest suspected set of questions.
 
 - **2. Group candidate sources by enablement, not by discipline.** Families are "what does this let someone *do*" — decide, know-what-stands, calibrate, follow-an-argument. Discipline groupings smuggle in the lineage you are trying to test.
 
-- **3. Fetch primary sources. Record every failed or degraded fetch.** Paywalled, rescinded, image-only, redirected — say so, and carry the caveat into the citation itself rather than leaving it for a reader to discover.
+- **3. Gather proportionate evidence.** Prefer primary sources for reference-led work and record access limitations. For greenfield work, use the user's intent and reviewed local examples without inventing a lineage.
 
 - **4. Run the artifact test per family.** Identity is `(action, actor)`; add timing to break ties.
   - **A:** if the enablement duplicates a declared type's, fold the form in as an alias — do not add a row.

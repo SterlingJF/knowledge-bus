@@ -57,6 +57,9 @@ def payloads(root=ROOT):
                         ).encode(),
                     }
                 )
+            if name == "kb-explore":
+                for source, target in plugin.EXPLORER_ASSETS.items():
+                    files[target] = (root / source).read_bytes()
             if name == "kb-ingest":
                 for path in sorted(
                     (root / "universes/product-development").glob("*.kbp.yaml")

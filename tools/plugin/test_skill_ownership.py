@@ -110,3 +110,21 @@ def test_broken_or_escaping_links_are_refused(generator, tmp_path, link):
     with pytest.raises(ValueError, match="reference escapes or is missing"):
         module.generate(tmp_path)
     assert (tmp_path / "outside.md").read_text() == "# Outside\n"
+
+
+def test_explorer_viewer_bytes_belong_only_to_explore_standalone_skill():
+    """Unrelated standalone skills do not absorb the optional viewer payload."""
+    for directory in (ROOT / "skills").iterdir():
+        if not directory.is_dir():
+            continue
+        assets = {
+            path.relative_to(directory).as_posix()
+            for path in directory.rglob("explorer-viewer.*")
+        }
+        if directory.name == "kb-explore":
+            assert assets == {
+                "runtime/explorer-viewer.js",
+                "runtime/explorer-viewer.json",
+            }
+        else:
+            assert assets == set()

@@ -1,0 +1,8 @@
+{
+  "acknowledged": [
+    {
+      "file": "src/component-patterns/minimap.ts",
+      "note": "Reviewed and kept as a pattern. It imports one element but composes a positioned panel, an overview plot, a camera rectangle, a drag handle and two independent pointer gestures into one purposeful surface. CE Rule 4 keeps a pattern a pattern; nothing here is a reusable single-source enrichment."
+    }
+  ]
+}

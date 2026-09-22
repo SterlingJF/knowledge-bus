@@ -2,6 +2,33 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.7.0
+
+Bundled protocol: `kbp/0.7`.
+
+- Support optional universe-authored relation phrasing, with one phrase for unordered kinds and two for ordered kinds.
+- Reject incomplete phrasing, invalid values and nonboolean relation ordering with field-specific diagnostics.
+- Product-development universe 0.7 supplies "Context from" / "Context for" for `presupposes`, preserving all six edges.
+- Guidance 0.7 updates its protocol reference; advisory content is unchanged.
+
+## 0.6.0 — unreleased
+
+Bundled protocol: `kbp/0.6`.
+
+### Protocol and universe updates
+
+- Define shared `distinct-from` and `feeds` relation contracts.
+- Add context validation and three-valued predicate evaluation, including conditional composition and artifact suppression.
+- Reject duplicate composition members, conflicting or invalid strengths, invalid predicate values and facets, and incompatible shared-relation ordering.
+- Bundle product-development universe and guidance revisions `0.6`: correct feed direction and North Star ownership, refine advice and source attribution, and document the universe evolution.
+- Refresh self-contained skills and native agent packages with the updated checker and definitions.
+
+### Compatibility
+
+- Protocol matching remains exact: documents declaring `kbp/0.5` do not conform to `kbp/0.6`. Review declarations against the new rules before updating `conforms_to`.
+- Some declarations accepted by the previous checker are now rejected by the validation rules listed above.
+- Missing context evaluates as unknown, not false. A false condition on a core member leaves it situationally available; a false condition on a situational member excludes it. Element gates and artifact suppression are evaluated separately.
+
 ## 0.5.0
 
 Bundled protocol: `kbp/0.5`.

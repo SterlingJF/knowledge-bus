@@ -56,7 +56,7 @@ def test_all_adapters_share_skills_and_references(tmp_path, wheel):
     for host in plugin.HOSTS:
         path = tmp_path / host / "knowledge-bus"
         report = plugin.assemble(host, path, wheel)
-        assert len(report["skills"]) == 5
+        assert len(report["skills"]) == 6
         assert report["context_measurement"].startswith("Static characters")
         outputs.append(path)
     for folder in ("skills", "references", "runtime"):
@@ -72,6 +72,15 @@ def test_all_adapters_share_skills_and_references(tmp_path, wheel):
                 if p.is_file()
             }
             assert left == right
+
+
+def test_host_package_carries_one_fresh_shared_viewer_bundle(assembled):
+    """All six host skills share one verified prebuilt viewer payload."""
+    viewers = list(assembled.rglob("explorer-viewer.js"))
+    assert viewers == [assembled / "runtime/explorer-viewer.js"]
+    assert (
+        viewers[0].read_bytes() == (ROOT / "explorer/prebuilt/viewer.js").read_bytes()
+    )
 
 
 def test_opencode_hook_preserves_existing_config_and_registers_once(tmp_path, wheel):
@@ -186,6 +195,14 @@ def test_launcher_uses_bundled_runtime_external_cache_and_preserves_arguments(
     assert "UV_PROJECT_ENVIRONMENT" in env
     assert command[command.index("--python") + 1] == sys.executable
     assert actual["UV_PYTHON_DOWNLOADS"] == "never"
+    assert actual["UV_OFFLINE"] == "1"
+    assert "--offline" in command
+    assert not json.loads((assembled / "runtime/requirements.json").read_text())[
+        "dependencies"
+    ]
+    assert actual["KNOWLEDGE_BUS_EXPLORER_BUNDLE"] == str(
+        assembled / "runtime/explorer-viewer.js"
+    )
 
 
 def test_python_configuration_is_consistent():

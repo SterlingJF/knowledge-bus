@@ -22,7 +22,7 @@ Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an 
 
 ## The loop
 
-Every round runs the same shape. Loop until a round changes nothing.
+Repeat only while a follow-up can resolve stated uncertainty. Stop when the tests settle the candidate or when resolution requires missing evidence or another person.
 
 - **1. Reason first.** Re-read everything held — the material, prior answers, every declared question. Draft what the next batch must uncover; discard whatever the record already settles.
 
@@ -30,6 +30,6 @@ Every round runs the same shape. Loop until a round changes nothing.
 
 - **3. Reflect and test.** Against the answers, run the tests: an enablement a declared question already covers is a collision — rule *sharpen existing / new / refused*; two jobs is a split; a candidate with no honest empty answer is not load-bearing.
 
-- **4. Follow up or converge.** Where a test left ambiguity, ask a follow-up batch in the same sitting. A round that changes nothing ends the loop.
+- **4. Follow up or stop.** Ask another batch only when it can resolve stated ambiguity. A round that changes nothing ends the loop; unresolved uncertainty stays unresolved.
 
 - **5. Declare.** Freeze the wording last. Mint a code using [Checker for Agent Workflows](references/agent-runtime.md); record every refusal with its reason.

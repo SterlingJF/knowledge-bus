@@ -1,0 +1,15 @@
+{
+  "generated_by": "just skills-build",
+  "version": "0.7.0",
+  "files": {
+    "LICENSE": "499f70a7f18a24c238d6455f8eef6a6d9b9f2eb5c0b8b35dafbe5e345e8d6554",
+    "references/agent-runtime.md": "af8a8c3146b5a5c1c9ed57aa0472bdd637f6f7682cff2e90ffa7f08b5e27f9dc",
+    "references/knowledge-bus-directory.md": "e1efcbfe1f85b9dfbbe5af8e525a7ef7907dbef88a6fb0c61f706fa04507d93d",
+    "references/knowledge-bus-protocol.yaml": "09225d5d0d444be07bf8c815e9b38341b7868d1bf0c03073136b2072b7713d95",
+    "runtime/explorer-viewer.js": "9c18839590e8974c94c87a51d15914619745a82a62e36266c3c0ce1662e669f8",
+    "runtime/explorer-viewer.json": "d20e2e0b9c55200d24a41bfb03c6b9f9b0283366da38f7196913d28099e883b1",
+    "runtime/kbp.py": "3937ebe885eccb5668963f05e1876e72902dfdb925fa9aec2269e0ae06b34f90",
+    "runtime/knowledge_bus-0.7.0-py3-none-any.whl": "ba15744560cc5edd4efb18a53a1f8da0cd252c49fc8112d1188c26ef3b0961cc",
+    "runtime/requirements.json": "02702339bedf6336cb314a0e9492132f88c2f354435cdb6efeed8aaa03135cf7"
+  }
+}

@@ -18,9 +18,9 @@ Guidance is checked against the universe it names, so provide both files in the 
 
 ## What Requires Human Review
 
-Passing means the files meet the checks currently implemented. It does not establish that a question is useful, that an answer is true, or that advice is well supported.
+Passing means the definitions and guidance meet the structural checks currently implemented. Explorer inspection separately reports whether the selected universe can be rendered. Neither result establishes that a question is useful, that an answer is true, or that advice is well supported.
 
-The checker does not yet validate the `answers.yaml` output from ingestion. Protocol rules for instances and exchange should not be read as a claim that those workflows are fully checked.
+The checker does not validate `answers.yaml` or `ingest-log.md`. Both are review-only. The protocol defines rules for instances and exchange, but the checker does not validate those workflows fully.
 
 ## Running the Checker
 
@@ -41,6 +41,14 @@ uv run kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 Paths in this example are placeholders for your files. A target folder with `.knowledge-bus/` selects the definition and guidance files in that directory. Explicit file arguments select exactly those files. Generic directory arguments scan `*.kbp.yaml` files while excluding nested folders that contain their own `.knowledge-bus/`.
 
 Without explicit targets, the checker uses the nearest `.knowledge-bus/` from the working directory upward. It never combines definitions from different Knowledge Bus directories or creates a missing `.knowledge-bus/`. In the implementation checkout, it checks bundled `universes/` when no `.knowledge-bus/` directory is found. The package supplies the protocol independently of the working directory. See [Knowledge Bus Directory](knowledge-bus-directory.md).
+
+Inspect one universe without writing:
+
+```bash
+uv run kbp --inspect path/to/.knowledge-bus/
+```
+
+When the scope contains several universes, select one with `--universe <id>` or target its file. Duplicate ids and ambiguous guidance or marks fail.
 
 ## Understanding Results
 

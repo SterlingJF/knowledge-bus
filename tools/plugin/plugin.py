@@ -22,10 +22,15 @@ HOSTS = ("claude", "codex", "pi", "opencode")
 SKILLS = (
     "kb-check",
     "kb-evolve",
+    "kb-explore",
     "kb-ingest",
     "kb-uncover-decision",
     "kb-uncover-question",
 )
+EXPLORER_ASSETS = {
+    "explorer/prebuilt/viewer.js": "runtime/explorer-viewer.js",
+    "explorer/prebuilt/viewer.json": "runtime/explorer-viewer.json",
+}
 REFERENCES = {
     "docs/agent-runtime.md": "references/agent-runtime.md",
     "docs/knowledge-bus-directory.md": "references/knowledge-bus-directory.md",
@@ -70,17 +75,11 @@ def check_versions(root=ROOT):
 
 
 def dependencies(root=ROOT):
-    """Resolve pinned runtime dependencies; reject unreviewed dependency changes."""
+    """Reject new external runtime dependencies; installed use is offline."""
     project = tomllib.loads((root / "checker/pyproject.toml").read_text())["project"]
-    if project["dependencies"] != ["PyYAML>=6.0"]:
-        raise ValueError(
-            "Review plugin runtime dependencies after changing checker dependencies."
-        )
-    lock = tomllib.loads((root / "uv.lock").read_text())
-    (pyyaml,) = [package for package in lock["package"] if package["name"] == "pyyaml"]
-    if pyyaml.get("dependencies"):
-        raise ValueError("Review new transitive runtime dependencies.")
-    return [f"PyYAML=={pyyaml['version']}"]
+    if project["dependencies"]:
+        raise ValueError("Installed runtime dependencies must be bundled in the wheel.")
+    return []
 
 
 def wheel_python_requirement(wheel):
@@ -161,6 +160,8 @@ def assemble(host, destination, wheel, root=ROOT):
         target.write_text(text)
     copy(root / "plugins/shared/runtime/kbp.py", destination / "runtime/kbp.py", root)
     shutil.copyfile(wheel, destination / "runtime" / wheel.name)
+    for source, target in EXPLORER_ASSETS.items():
+        copy(root / source, destination / target, root)
     json_write(
         destination / "runtime/requirements.json", runtime_requirements(wheel, root)
     )
@@ -174,6 +175,7 @@ def inspect(plugin, host, version):
         "LICENSE",
         "runtime/kbp.py",
         "runtime/requirements.json",
+        *EXPLORER_ASSETS.values(),
         "runtime/" + config["wheel"],
         *REFERENCES.values(),
         *(f"skills/{name}/SKILL.md" for name in SKILLS),
@@ -225,6 +227,14 @@ def inspect(plugin, host, version):
         raise ValueError(
             "Runtime Python requirement differs from bundled wheel metadata."
         )
+    viewer = plugin / "runtime/explorer-viewer.js"
+    viewer_manifest = json.loads((plugin / "runtime/explorer-viewer.json").read_text())
+    if (
+        viewer_manifest.get("digest")
+        != "sha256:" + hashlib.sha256(viewer.read_bytes()).hexdigest()
+        or viewer_manifest.get("bytes") != viewer.stat().st_size
+    ):
+        raise ValueError("Explorer viewer bundle differs from its manifest.")
     with zipfile.ZipFile(wheel) as archive:
         names = archive.namelist()
         if "kbp_conform/knowledge-bus-protocol.yaml" not in names:
@@ -308,7 +318,16 @@ def runtime_check(plugin, root=ROOT):
             p.chmod(0o555 if p.is_dir() else 0o444)
         with tempfile.TemporaryDirectory(prefix="knowledge-bus-runtime-") as temporary:
             base = Path(temporary)
-            env = {**os.environ, "KNOWLEDGE_BUS_CACHE_DIR": str(base / "cache")}
+            env = {
+                **os.environ,
+                "KNOWLEDGE_BUS_CACHE_DIR": str(base / "cache"),
+                "UV_OFFLINE": "1",
+                "UV_NO_INDEX": "1",
+                "HTTP_PROXY": "http://127.0.0.1:9",
+                "HTTPS_PROXY": "http://127.0.0.1:9",
+                "ALL_PROXY": "http://127.0.0.1:9",
+                "NO_PROXY": "",
+            }
             launcher = str(plugin / "runtime/kbp.py")
             version = json.loads((plugin / "package.json").read_text())["version"]
             if f"Knowledge Bus {version}\n" not in run(
@@ -336,6 +355,35 @@ def runtime_check(plugin, root=ROOT):
                 cwd=base,
                 env=env,
             )
+            inspected = json.loads(
+                run(
+                    sys.executable,
+                    launcher,
+                    "--inspect",
+                    str(target),
+                    cwd=base,
+                    env=env,
+                )
+            )
+            if inspected.get("schema") != "knowledge-bus/explorer-model/1":
+                raise ValueError("Installed inspection returned an unsupported model.")
+            artifact = base / "portable/product-development"
+            receipt = json.loads(
+                run(
+                    sys.executable,
+                    launcher,
+                    "--explore",
+                    "--output",
+                    str(artifact),
+                    str(target),
+                    cwd=base,
+                    env=env,
+                )
+            )
+            if receipt.get("schema") != "knowledge-bus/explorer-artifact/1" or {
+                path.name for path in artifact.iterdir()
+            } != {"index.html", "model.json", "receipt.json"}:
+                raise ValueError("Installed static Explorer artifact is incomplete.")
             for fixture in sorted(
                 (root / "protocol/conformance/pass").glob("*.kbp.yaml")
             ):

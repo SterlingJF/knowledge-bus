@@ -18,11 +18,24 @@ jobs:
           node-version: 24
       - uses: pnpm/action-setup@v6
       - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm exec playwright install --with-deps chromium
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install
       - run: uv sync --locked
       - uses: extractions/setup-just@v4
       - run: pnpm run check
+      - uses: actions/upload-artifact@v7
+        with:
+          name: explorer
+          path: dist/explorer/
+          if-no-files-found: error
+      - name: Capture KB Explorer snapshots
+        run: pnpm run capture:explorer:step
+      - uses: actions/upload-artifact@v7
+        with:
+          name: explorer-shots-step
+          path: dist/explorer-shots/step/
+          if-no-files-found: error
       - run: uv run --locked python tools/plugin/check_skills_install.py
       - run: uv run kbp --validate
       - run: uv run --locked python tools/plugin/check_native_install.py

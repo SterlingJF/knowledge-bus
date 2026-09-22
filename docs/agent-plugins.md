@@ -41,7 +41,7 @@ In your terminal:
 pi update --extension npm:@knowledge-bus/pi@latest
 ```
 
-Run `/reload` in an existing chat. An explicitly numbered package remains pinned; install a new version explicitly to change that pin.
+Run `/reload` in an existing chat. A package installed at a specific version stays at that version; install a new version explicitly to change that pin.
 
 ### OpenCode
 
@@ -73,19 +73,19 @@ Do not install both a full package and standalone copies of the same skills in o
 
 ## Package Contents
 
-Each native package includes the Knowledge Bus skills, shared references, and bundled checker. It installs only the selected agent's integration.
+Each native package includes the Knowledge Bus skills, shared references, bundled checker, and Explorer viewer. It installs only the selected agent's integration.
 
 Pi discovers the bundled skills through its package manifest. OpenCode adds the bundled skill directory to its in-memory configuration without copying files, changing user config on disk, or injecting all skill bodies into every conversation.
 
-Individual skills carry their own required resources. Only ingestion includes the product-development starter; the decision-interview skill has no checker runtime.
+Individual skills carry the resources they need. Ingestion includes the product-development starter, `kb-explore` includes the Explorer viewer, and the decision-interview skill does not include the checker.
 
-Tests, contributor docs, build tools, and release tools stay out of packages. Installed packages have no npm lifecycle scripts or npm runtime dependencies. The checker cache stays outside the installed package.
+Tests, contributor docs, build tools, browser automation, and release tools stay out of packages. Installed packages have no npm lifecycle scripts or npm runtime dependencies. The bundled checker and Explorer work without network access, and their cache stays outside the installation.
 
 ## Versions
 
 Native packages install the latest published stable release. Individual skills installed with `npx skills add SterlingJF/knowledge-bus` come from the default branch and can include unreleased changes.
 
-Updates follow the agent's native refresh and cache behavior. Installing again does not universally guarantee a refresh, so use the host-specific update instructions above.
+Updates follow the agent's native refresh and cache behavior. Reinstalling may reuse a cached version, so use the host-specific update instructions above.
 
 See [Versioning](versioning.md) for version meanings and compatibility.
 

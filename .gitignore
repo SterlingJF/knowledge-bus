@@ -4,3 +4,12 @@ __pycache__/
 .DS_Store
 node_modules/
 /dist/
+
+# Explorer generated artifacts
+explorer/dist/
+dist/explorer/
+explorer/test-results/
+explorer/playwright-report/
+
+# Local evidence archive
+/.evidence/

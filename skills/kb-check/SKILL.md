@@ -15,7 +15,7 @@ description: Validate Knowledge Bus definitions and guidance after edits, and ex
 
 - **3. Interpret.** Every refusal names its clause. Translate each into the edit it calls for; see [Checker for Agent Workflows](references/agent-runtime.md) for the clause families.
 
-- **4. Report.** Per-file pass/fail, then refusals grouped by fix, not by file.
+- **4. Report.** Per-file pass/fail, then refusals grouped by fix, not by file. If Explorer inspection was also requested, report renderability separately.
 
 ## Common failures
 

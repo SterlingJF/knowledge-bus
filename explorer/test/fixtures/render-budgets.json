@@ -1,0 +1,210 @@
+{
+  "frames · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "artifacts/off · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "artifacts/off · card": {
+    "length": 0,
+    "crossings": 0
+  },
+  "artifacts/relations/lines · no selection": {
+    "length": 66970,
+    "crossings": 1064
+  },
+  "artifacts/relations/lines · card": {
+    "length": 66970,
+    "crossings": 1064
+  },
+  "artifacts/relations/lines · connection": {
+    "length": 66970,
+    "crossings": 1064
+  },
+  "artifacts/relations/counts · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "artifacts/relations/counts · card": {
+    "length": 9406,
+    "crossings": 25
+  },
+  "artifacts/relations/counts · connection": {
+    "length": 594,
+    "crossings": 0
+  },
+  "artifacts/composition/lines/uniform · no selection": {
+    "length": 20267,
+    "crossings": 91
+  },
+  "artifacts/composition/lines/uniform · card": {
+    "length": 20267,
+    "crossings": 91
+  },
+  "artifacts/composition/lines/uniform · connection": {
+    "length": 20267,
+    "crossings": 91
+  },
+  "artifacts/composition/lines/distinct · no selection": {
+    "length": 59582,
+    "crossings": 871
+  },
+  "artifacts/composition/lines/distinct · card": {
+    "length": 59582,
+    "crossings": 871
+  },
+  "artifacts/composition/lines/distinct · connection": {
+    "length": 59582,
+    "crossings": 871
+  },
+  "artifacts/composition/counts · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "artifacts/composition/counts · card": {
+    "length": 5929,
+    "crossings": 10
+  },
+  "artifacts/composition/counts · connection": {
+    "length": 317,
+    "crossings": 0
+  },
+  "elements/grouped/off · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/grouped/off · card": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/grouped/relations/lines · no selection": {
+    "length": 61113,
+    "crossings": 171
+  },
+  "elements/grouped/relations/lines · card": {
+    "length": 61113,
+    "crossings": 171
+  },
+  "elements/grouped/relations/lines · connection": {
+    "length": 61113,
+    "crossings": 171
+  },
+  "elements/grouped/relations/counts · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/grouped/relations/counts · card": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/grouped/relations/counts · connection": {
+    "length": 323,
+    "crossings": 0
+  },
+  "elements/grouped/composition/lines/uniform · no selection": {
+    "length": 169807,
+    "crossings": 1794
+  },
+  "elements/grouped/composition/lines/uniform · card": {
+    "length": 169807,
+    "crossings": 1794
+  },
+  "elements/grouped/composition/lines/uniform · connection": {
+    "length": 169807,
+    "crossings": 1794
+  },
+  "elements/grouped/composition/lines/distinct · no selection": {
+    "length": 292476,
+    "crossings": 5010
+  },
+  "elements/grouped/composition/lines/distinct · card": {
+    "length": 292476,
+    "crossings": 5010
+  },
+  "elements/grouped/composition/lines/distinct · connection": {
+    "length": 292476,
+    "crossings": 5010
+  },
+  "elements/grouped/composition/counts · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/grouped/composition/counts · card": {
+    "length": 20929,
+    "crossings": 65
+  },
+  "elements/grouped/composition/counts · connection": {
+    "length": 672,
+    "crossings": 0
+  },
+  "elements/flat/off · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/flat/off · card": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/flat/relations/lines · no selection": {
+    "length": 53077,
+    "crossings": 185
+  },
+  "elements/flat/relations/lines · card": {
+    "length": 53077,
+    "crossings": 185
+  },
+  "elements/flat/relations/lines · connection": {
+    "length": 53077,
+    "crossings": 185
+  },
+  "elements/flat/relations/counts · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/flat/relations/counts · card": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/flat/relations/counts · connection": {
+    "length": 348,
+    "crossings": 0
+  },
+  "elements/flat/composition/lines/uniform · no selection": {
+    "length": 152632,
+    "crossings": 1634
+  },
+  "elements/flat/composition/lines/uniform · card": {
+    "length": 152632,
+    "crossings": 1634
+  },
+  "elements/flat/composition/lines/uniform · connection": {
+    "length": 152632,
+    "crossings": 1634
+  },
+  "elements/flat/composition/lines/distinct · no selection": {
+    "length": 251293,
+    "crossings": 5051
+  },
+  "elements/flat/composition/lines/distinct · card": {
+    "length": 251293,
+    "crossings": 5051
+  },
+  "elements/flat/composition/lines/distinct · connection": {
+    "length": 251293,
+    "crossings": 5051
+  },
+  "elements/flat/composition/counts · no selection": {
+    "length": 0,
+    "crossings": 0
+  },
+  "elements/flat/composition/counts · card": {
+    "length": 22073,
+    "crossings": 57
+  },
+  "elements/flat/composition/counts · connection": {
+    "length": 580,
+    "crossings": 0
+  }
+}

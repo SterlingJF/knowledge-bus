@@ -15,13 +15,13 @@ universes/ default when no .knowledge-bus/ directory exists. Protocol discovery 
 of the working directory; installed packages carry their own protocol.
 """
 
+import json
 import os
 import sys
 from importlib.metadata import version
 from pathlib import Path
 
-import yaml
-
+from ._vendor import yaml
 from .checker import (
     CODE_PREFIX,
     CODED,
@@ -139,7 +139,82 @@ def resolve(args, *, documents_required=True):
     return protocol, documents, None
 
 
-MODES = ("--validate", "--self-check", "--mint")
+MODES = ("--validate", "--self-check", "--mint", "--inspect", "--explore")
+
+
+def _option(arguments, name, *, required=False):
+    found = [index for index, value in enumerate(arguments) if value == name]
+    if len(found) > 1:
+        raise ValueError(f"{name} may be supplied once")
+    if not found:
+        if required:
+            raise ValueError(f"{name} is required")
+        return None
+    index = found[0]
+    if index + 1 >= len(arguments) or arguments[index + 1].startswith("--"):
+        raise ValueError(f"{name} requires a value")
+    value = arguments[index + 1]
+    del arguments[index : index + 2]
+    return value
+
+
+def _explorer_mode(mode, argv):
+    from . import artifact, explorer
+
+    try:
+        universe_id = _option(argv, "--universe")
+        output = _option(argv, "--output", required=mode == "--explore")
+        replace = "--replace" in argv
+        if argv.count("--replace") > 1:
+            raise ValueError("--replace may be supplied once")
+        argv = [value for value in argv if value != "--replace"]
+        unknown = next((value for value in argv if value.startswith("--")), None)
+        if unknown:
+            raise ValueError(f"unknown option {unknown}")
+        paths, file_selection = explorer.resolve_inspection_targets(argv)
+        if not paths:
+            raise explorer.InspectionError(
+                "selection", "No Knowledge Bus definitions in the selected scope"
+            )
+        if universe_id and file_selection and universe_id != file_selection:
+            raise explorer.InspectionError(
+                "selection", "The explicit universe id conflicts with the selected file"
+            )
+        protocol = default_protocol()
+        if protocol is None:
+            raise explorer.InspectionError("protocol", "No bundled protocol found")
+        model = explorer.inspect_paths(
+            protocol,
+            paths,
+            universe_id=universe_id or file_selection,
+            release_version=version("knowledge-bus"),
+        )
+        if mode == "--inspect":
+            print(json.dumps(model, ensure_ascii=False, sort_keys=True))
+        else:
+            receipt = artifact.generate(model, output, replace=replace)
+            print(json.dumps(receipt, ensure_ascii=False, sort_keys=True))
+        return 0
+    except explorer.InspectionError as error:
+        print(
+            json.dumps(error.as_dict(), ensure_ascii=False, sort_keys=True),
+            file=sys.stderr,
+        )
+    except (artifact.ArtifactError, OSError, ValueError) as error:
+        print(
+            json.dumps(
+                {
+                    "schema": "knowledge-bus/explorer-error/1",
+                    "status": "error",
+                    "category": "generation" if mode == "--explore" else "selection",
+                    "message": str(error),
+                },
+                ensure_ascii=False,
+                sort_keys=True,
+            ),
+            file=sys.stderr,
+        )
+    return 1
 
 
 def main(argv=()):
@@ -155,6 +230,9 @@ def main(argv=()):
         print(f"Bundled protocol: {protocol['id']}/{protocol['version']}")
         return 0
     mode = argv.pop(0) if argv and argv[0] in MODES else "--validate"
+
+    if mode in ("--inspect", "--explore"):
+        return _explorer_mode(mode, argv)
 
     unknown = next((a for a in argv if a.startswith("--")), None)
     if unknown:
@@ -218,7 +296,7 @@ def main(argv=()):
         )
         docs.append((os.path.basename(path), header, doc))
 
-    ok, universes = True, {}
+    ok, universes, universe_names = True, {}, {}
     for name, header, doc in docs:
         if header != "universe":
             continue
@@ -228,7 +306,16 @@ def main(argv=()):
             print(f"  FAIL  conforms_to '{declared}' does not match '{expected}'\n")
             ok = False
             continue
-        universes[doc["universe"].get("id")] = doc
+        universe_id = doc["universe"].get("id")
+        if universe_id in universes:
+            print(
+                f"  FAIL  duplicate universe id '{universe_id}' also declared by "
+                f"{universe_names[universe_id]}\n"
+            )
+            ok = False
+        else:
+            universes[universe_id] = doc
+            universe_names[universe_id] = name
         ok = check(protocol, doc, name) and ok
         print()
 

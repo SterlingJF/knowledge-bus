@@ -15,7 +15,7 @@ Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an 
 
 - **Past tense throughout.** What was live, not what is sensible now.
 - **Reconstruction is flagged as reconstruction.** Memory is not evidence.
-- **A decision with no reversal condition is not fully recovered.**
+- **Do not fill missing history.**
 
 ## The flow
 
@@ -27,6 +27,6 @@ Follow [Knowledge Bus Directory](references/knowledge-bus-directory.md). Use an 
 
 - **4. Recover the binding constraints.** What ruled options out, in force at the time.
 
-- **5. Name the reversal condition.** What changing would reopen this.
+- **5. Seek the reversal condition.** Record it when supported; otherwise mark it unknown.
 
-- **6. File as answers** against declared questions; flag what stayed ambiguous.
+- **6. File as answers** against declared questions; label fact, recollection, reconstruction, and missing evidence. Flag what stayed ambiguous.

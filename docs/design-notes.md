@@ -28,16 +28,14 @@ Knowledge Bus puts declarations and composition rules in the universe file. Guid
 
 For example, a requirement to include decision criteria belongs in the document definition. Advice on explaining those criteria belongs in guidance.
 
-The distinction draws on research into how context informs an activity and how some of that context becomes part of its explicit procedure.
+Research on context informs this design, particularly the distinction between knowledge that helps people understand a situation and knowledge they draw on to act.
 
 Related research:
 
-- **Pomerol & Brézillon (1999)** — contextual knowledge versus proceduralized context: the same
-  material splits by whether it is mobilized into the decision or merely conditions it.
-  "Dynamics between contextual knowledge and proceduralized context," CONTEXT-99, LNAI 1688.
-- **Bazire & Brézillon (2005)** — 150 definitions of context yield no consensus; adopt a
-  stipulated, task-indexed model rather than waiting for a general one. "Understanding Context
-  Before Using It," CONTEXT 2005, LNCS 3554.
+- **Pomerol & Brézillon (1999)** distinguish knowledge relevant to a situation from the portion organized and used to address the current problem. That distinction changes as the problem develops. "Dynamics between contextual knowledge and proceduralized context," CONTEXT-99, LNAI 1688.
+- **Bazire & Brézillon (2005)** compare definitions of context across disciplines and propose a working model that relates context to the person, task, and situation. "Understanding Context Before Using It," CONTEXT 2005, LNCS 3554.
+
+These studies concern how knowledge is used, not whether following it is mandatory. Knowledge Bus makes that separate distinction explicit: requirements determine whether an artifact meets its definition; guidance supports judgment without imposing additional requirements.
 
 The split also lets advice evolve without making every change a structural requirement. A new source can improve guidance without changing the question being answered. If new evidence does change a requirement or relationship, the universe must be updated too.
 

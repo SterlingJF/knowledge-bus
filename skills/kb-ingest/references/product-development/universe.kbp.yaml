@@ -1,8 +1,8 @@
 universe:
   id: product-development
   label: Product development
-  version: 0.5
-  conforms_to: kbp/0.5
+  version: 0.8
+  conforms_to: kbp/0.7
   ordering_frame: phase
   overview:
     covers: >
@@ -93,14 +93,44 @@ empty_composition:
   when: { time-separation: [none], reversibility: [reversible] }
 
 relation_kinds:
-  - { id: presupposes,      ordered: true }
-  - { id: distinct-from,    ordered: false }
-  - { id: counterweight-to, ordered: false }
-  - { id: feeds,            ordered: true }
-  - { id: split-signal,     ordered: true }
-  - { id: descendant-of,    ordered: true }
-  - { id: requires,         ordered: true }
-  - { id: nests-under,      ordered: true }
+  - id: presupposes
+    ordered: true
+    phrasing:
+      forward: Context from
+      reverse: Context for
+  - id: distinct-from
+    ordered: false
+    phrasing:
+      forward: Not interchangeable with
+  - id: counterweight-to
+    ordered: false
+    phrasing:
+      forward: Balances
+  - id: feeds
+    ordered: true
+    phrasing:
+      forward: Can inform
+      reverse: Can be informed by
+  - id: split-signal
+    ordered: true
+    phrasing:
+      forward: May need detail moved to
+      reverse: May receive detail moved from
+  - id: descendant-of
+    ordered: true
+    phrasing:
+      forward: Adapted from
+      reverse: Adapted into
+  - id: requires
+    ordered: true
+    phrasing:
+      forward: Needs
+      reverse: Needed by
+  - id: nests-under
+    ordered: true
+    phrasing:
+      forward: Within the scope of
+      reverse: Broader scope for
 
 elements:
 
@@ -172,7 +202,7 @@ artifacts:
     disabled_when: { uptake: [given] }
     composition:
       core: [product-vision, customer-segments, value-proposition, cost-structure, trade-offs,
-             north-star-metric, growth-mechanism, capabilities, unfair-advantage]
+             { element: north-star-metric, mode: links }, growth-mechanism, capabilities, unfair-advantage]
       situational: [positioning-statement, input-metrics, revenue-streams, case-for-change]
 
   - id: business-model-canvas
@@ -202,7 +232,7 @@ artifacts:
     disabled_when: { uptake: [given, chosen] }
     composition:
       core: [product-vision, customer-segments, value-proposition, cost-structure, trade-offs,
-             north-star-metric, growth-mechanism, capabilities, unfair-advantage, revenue-streams]
+             { element: north-star-metric, mode: links }, growth-mechanism, capabilities, unfair-advantage, revenue-streams]
       situational: [positioning-statement, input-metrics]
 
   - id: swot-analysis
@@ -353,15 +383,6 @@ artifacts:
         - { element: decision-criteria, mode: links, when: { authority: [approve, statutory] } }
       situational: [constraints, prior-art, open-questions]
 
-  - id: working-note
-    code: axh9h
-    enablement: { action: "resume your own work after a gap without re-deriving it", actor: the author at a later time, timing: across sessions }
-    alias: { kind: none, reason: no-aligned-form }
-    disabled_when: { time-separation: [none] }
-    composition:
-      core: [constraints, scope-in-out, open-questions]
-      situational: [trade-offs, as-built-survey, success-criteria]
-
 relations:
 
   - { from: value-proposition, to: case-for-change, kind: distinct-from }
@@ -392,8 +413,8 @@ relations:
   - { from: north-star-metric, to: input-metrics, kind: requires }
   - { from: guardrail-health-metrics, to: input-metrics, kind: counterweight-to }
   - { from: measurement-protocol, to: hypothesis, kind: presupposes }
-  - { from: external-opportunities-threats, to: macro-environment-factors, kind: feeds }
-  - { from: external-opportunities-threats, to: competitor-profile, kind: feeds }
+  - { from: macro-environment-factors, to: external-opportunities-threats, kind: feeds }
+  - { from: competitor-profile, to: external-opportunities-threats, kind: feeds }
   - { from: as-built-survey, to: sequence-and-foreclosure, kind: feeds }
   - { from: stepwise-trace, to: data-flows-and-integrations, kind: split-signal }
   - { from: product-vision, to: product-vision, kind: nests-under, legality: permitted }

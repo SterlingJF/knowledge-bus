@@ -2,7 +2,25 @@
 
 Conformance-contract history. Software releases are tracked in the [release changelog](../CHANGELOG.md).
 
-## 0.5 — draft
+## 0.7 — draft
+
+- Relation kinds may declare plain-text phrasing: one forward phrase for unordered kinds, or forward and reverse phrases for ordered kinds.
+- Validate the complete phrasing shape and nonblank values; require boolean ordering.
+- Choose copy by displayed subject. Phrasing preserves shared meaning and attached restrictions.
+
+Declarations must name `kbp/0.7` exactly. Phrasing remains optional.
+
+## 0.6 — draft
+
+- Define true, false, and unknown predicate results, with AND across dimensions and facets and OR across alternatives. Invalid local values are errors; missing or unresolved context is unknown.
+- Specify artifact suppression and element-gate precedence before member evaluation.
+- Distinguish conditional core requiredness from conditional situational availability. A false core condition leaves the member situationally available rather than excluding it.
+- Require unique composition membership and agreement between explicit strength and the containing list.
+- Define shared meanings and ordering for `distinct-from` and `feeds`, without transitive inference or generated edges.
+
+Breaking: declarations must name `kbp/0.6` exactly and satisfy the stricter predicate, composition, and shared-relation rules. Updating `conforms_to` alone does not establish conformance.
+
+## 0.5
 
 The checker validates the protocol against itself before any document, and an unsound protocol
 stops the run. One convention binds the checker: a key the code subscripts must be a key the

@@ -1,0 +1,11 @@
+{
+  "tooling": {
+    "oxc-parser": "0.147.0",
+    "tsx": "4.23.12"
+  },
+  "presets": {
+    "react-shadcn": {
+      "shadcn": "4.18.0"
+    }
+  }
+}

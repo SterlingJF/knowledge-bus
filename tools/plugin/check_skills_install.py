@@ -37,6 +37,73 @@ def file_hashes(directory):
     }
 
 
+def exercise_runtime(installed, project, env, *, explore=False):
+    """Run a read-only installed skill from an empty cache with network denied."""
+    paths = [installed, *installed.rglob("*")]
+    modes = {path: path.stat().st_mode for path in paths}
+    runtime_env = {
+        **env,
+        "KNOWLEDGE_BUS_CACHE_DIR": str(project / "cold-runtime-cache"),
+        "UV_OFFLINE": "1",
+        "UV_NO_INDEX": "1",
+        "HTTP_PROXY": "http://127.0.0.1:9",
+        "HTTPS_PROXY": "http://127.0.0.1:9",
+        "ALL_PROXY": "http://127.0.0.1:9",
+        "NO_PROXY": "",
+    }
+    try:
+        for path in paths:
+            path.chmod(0o555 if path.is_dir() else 0o444)
+        launcher = installed / "runtime/kbp.py"
+        subprocess.run(
+            [sys.executable, str(launcher), "--self-check"],
+            cwd=project,
+            env=runtime_env,
+            check=True,
+            capture_output=True,
+            timeout=60,
+        )
+        if explore:
+            scope = project / "notes/.knowledge-bus"
+            shutil.copytree(plugin.ROOT / "universes/product-development", scope)
+            inspected = subprocess.run(
+                [sys.executable, str(launcher), "--inspect", str(scope)],
+                cwd=project,
+                env=runtime_env,
+                check=True,
+                capture_output=True,
+                text=True,
+                timeout=60,
+            )
+            if "knowledge-bus/explorer-model/1" not in inspected.stdout:
+                raise ValueError("Standalone inspection did not return a model.")
+            output = project / "portable"
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(launcher),
+                    "--explore",
+                    "--output",
+                    str(output),
+                    str(scope),
+                ],
+                cwd=project,
+                env=runtime_env,
+                check=True,
+                capture_output=True,
+                timeout=60,
+            )
+            if {path.name for path in output.iterdir()} != {
+                "index.html",
+                "model.json",
+                "receipt.json",
+            }:
+                raise ValueError("Standalone Explorer output is incomplete.")
+    finally:
+        for path, mode in modes.items():
+            path.chmod(mode)
+
+
 def main():
     with tempfile.TemporaryDirectory(prefix="knowledge-bus-skills-cli-") as temporary:
         base = Path(temporary).resolve()
@@ -95,14 +162,7 @@ def main():
                         f"Installed skill content differs from source: {name}"
                     )
             if name != "kb-uncover-decision":
-                subprocess.run(
-                    [sys.executable, str(installed / "runtime/kbp.py"), "--self-check"],
-                    cwd=project,
-                    env=env,
-                    check=True,
-                    capture_output=True,
-                    timeout=60,
-                )
+                exercise_runtime(installed, project, env, explore=name == "kb-explore")
             print(
                 f"{name}: selection, file closure, repeat installation, and applicable runtime passed."
             )

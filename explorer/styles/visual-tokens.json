@@ -1,0 +1,1156 @@
+{
+  "version": 2,
+  "scope": ".shell",
+  "roles": {
+    "color": {
+      "canvas": {
+        "kind": "color",
+        "value": "light-dark(#f5f5f1,#171e22)",
+        "role": "Canvas and recessed controls"
+      },
+      "surface": {
+        "kind": "color",
+        "value": "light-dark(#fff,#22292e)",
+        "role": "Cards, menus and detail surfaces"
+      },
+      "text": {
+        "kind": "color",
+        "value": "light-dark(#263638,#e5eceb)",
+        "role": "Primary readable content"
+      },
+      "text-muted": {
+        "kind": "color",
+        "value": "light-dark(#617171,#a6b5b5)",
+        "role": "Secondary descriptions and metadata"
+      },
+      "border": {
+        "kind": "color",
+        "value": "light-dark(#d7dddf,#3b454c)",
+        "role": "Surface boundaries and dividers"
+      },
+      "element": {
+        "kind": "color",
+        "value": "light-dark(#347773,#93c5bf)",
+        "role": "Element identity; legacy direct-connection and UI accent route"
+      },
+      "artifact": {
+        "kind": "color",
+        "value": "light-dark(#8c6242,#dbaf87)",
+        "role": "Artifact identity"
+      },
+      "frame": {
+        "kind": "color",
+        "value": "light-dark(#736293,#b7a6d0)",
+        "role": "Frame and factor identity"
+      },
+      "accent": {
+        "kind": "color",
+        "value": "var(--kb-element)",
+        "role": "Current control accent; independent route for later overhaul"
+      },
+      "focus": {
+        "kind": "color",
+        "value": "var(--kb-accent)",
+        "role": "Keyboard focus"
+      },
+      "shadow-faint": {
+        "kind": "color",
+        "value": "#0001",
+        "role": "Faint elevation"
+      },
+      "shadow-soft": {
+        "kind": "color",
+        "value": "#0002",
+        "role": "Light elevation"
+      },
+      "shadow-medium": {
+        "kind": "color",
+        "value": "#0003",
+        "role": "Popover elevation"
+      },
+      "shadow-strong": {
+        "kind": "color",
+        "value": "#0004",
+        "role": "Strong popover elevation"
+      }
+    },
+    "type": {
+      "caption": {
+        "kind": "length",
+        "value": "11px",
+        "role": "Caption — stats, legend keys, metadata and code snippets"
+      },
+      "body-sm": {
+        "kind": "length",
+        "value": "12px",
+        "role": "Small body — card subtitles, hints and field labels"
+      },
+      "button": {
+        "kind": "length",
+        "value": "12px",
+        "role": "Control label — dock, view tabs, chips and segmented buttons"
+      },
+      "body": {
+        "kind": "length",
+        "value": "13px",
+        "role": "Body — the board default reading size"
+      },
+      "body-lg": {
+        "kind": "length",
+        "value": "14px",
+        "role": "Large body — element and option card titles, section paragraphs and statements"
+      },
+      "title": {
+        "kind": "length",
+        "value": "17px",
+        "role": "Heading — scope boundary titles, detail questions and the overview title"
+      }
+    },
+    "font": {
+      "sans": {
+        "kind": "font",
+        "value": "-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif",
+        "role": "Interface font stack"
+      },
+      "mono": {
+        "kind": "font",
+        "value": "ui-monospace,monospace",
+        "role": "Raw source snippets"
+      }
+    },
+    "space": {
+      "1": {
+        "kind": "length",
+        "value": "4px",
+        "role": "Small control padding, and the gap inside dock, result, search and stat rows, chips, the legend and utilities"
+      },
+      "2": {
+        "kind": "length",
+        "value": "8px",
+        "role": "Standard gap and padding across the dock, panels, menus, buttons, card footers, dividers and the search field"
+      },
+      "3": {
+        "kind": "length",
+        "value": "12px",
+        "role": "Card padding on the map, panel, overview and top bar padding, and the gap between fact and condition rows"
+      },
+      "4": {
+        "kind": "length",
+        "value": "16px",
+        "role": "Panel body and overview head padding, top bar side padding, and the board edge inset for the dock, legend and minimap"
+      },
+      "5": {
+        "kind": "length",
+        "value": "20px",
+        "role": "Boundary title and caption inset from the boundary edge, section padding, and rule card and source block padding"
+      },
+      "base": 4,
+      "fineWork": [1, 2, 3, 6, 10],
+      "0-25": {
+        "kind": "length",
+        "value": "1px",
+        "role": "Hairline gap between the rails of the view tabs and the dock groups"
+      },
+      "0-5": {
+        "kind": "length",
+        "value": "2px",
+        "role": "Tightest gap: selected card outline offset, section list and stat rows"
+      },
+      "0-75": {
+        "kind": "length",
+        "value": "3px",
+        "role": "Focus ring offset, and the tightest gap inside cards, the dock, segments and stats"
+      },
+      "1-5": {
+        "kind": "length",
+        "value": "6px",
+        "role": "Gap between paired items: chips, utilities, condition rows, card stats and count badges"
+      },
+      "2-5": {
+        "kind": "length",
+        "value": "10px",
+        "role": "Panel head and body padding, and the gap inside entries, fields, minimap and stats"
+      }
+    },
+    "bleed": {
+      "row": {
+        "kind": "length",
+        "value": "-8px",
+        "role": "Negative inset pulling reference rows and the show-all row out to their panel edge"
+      }
+    },
+    "radius": {
+      "2xs": {
+        "kind": "length",
+        "value": "2px",
+        "role": "Connection sample endpoint — corner"
+      },
+      "xs": {
+        "kind": "length",
+        "value": "3px",
+        "role": "Connection label — corner, on the map and in the SVG export"
+      },
+      "sm": {
+        "kind": "length",
+        "value": "4px",
+        "role": "Minimap plot — corner"
+      },
+      "md": {
+        "kind": "length",
+        "value": "6px",
+        "role": "The one button and card corner: every card, every button, pills, references, conditions and the search field"
+      },
+      "lg": {
+        "kind": "length",
+        "value": "8px",
+        "role": "Corner of the minimap, the legend, the segmented control, the view tab rail and the sample badge"
+      },
+      "xl": {
+        "kind": "length",
+        "value": "9px",
+        "role": "Corner of the dock rail and the card frame overflow pill"
+      },
+      "2xl": {
+        "kind": "length",
+        "value": "10px",
+        "role": "Corner of rule cards, the share menu and the connection count badge"
+      },
+      "3xl": {
+        "kind": "length",
+        "value": "12px",
+        "role": "Corner of floating panels"
+      },
+      "4xl": {
+        "kind": "length",
+        "value": "14px",
+        "role": "Corner of frame boundaries, on the map and in the SVG export"
+      }
+    },
+    "stroke": {
+      "xs": {
+        "kind": "length",
+        "value": "1px",
+        "role": "Hairline border on cards, panels, controls and the connection count badge"
+      },
+      "md": {
+        "kind": "length",
+        "value": "2px",
+        "role": "Selected card border, focus ring and legend swatch"
+      },
+      "lg": {
+        "kind": "length",
+        "value": "3px",
+        "role": "Kind accent bar down the left edge of a card, on the map and in the SVG export"
+      },
+      "sm": {
+        "kind": "length",
+        "value": "1.5px",
+        "role": "Icon stroke, and the connector drawn in the connection sample"
+      }
+    },
+    "leading": {
+      "tight": {
+        "kind": "number",
+        "value": "1.3",
+        "role": "Leading for tight two-line labels: rule card titles, panel headings, settings buttons and view tabs"
+      },
+      "normal": {
+        "kind": "number",
+        "value": "1.5",
+        "role": "Leading the board sets as its default, and the leading of running copy: card subtitles, captions, facts, hints, section paragraphs, stats and code"
+      },
+      "loose": {
+        "kind": "number",
+        "value": "1.65",
+        "role": "Leading for statements and condition lists"
+      }
+    },
+    "icon": {
+      "base": {
+        "kind": "length",
+        "value": "16px",
+        "role": "Icon size on the map and in the SVG export: board controls, card titles, card frames, option cards and the frame name"
+      }
+    },
+    "lift": {
+      "chrome": {
+        "kind": "shadow",
+        "value": "0 4px 14px var(--kb-shadow-soft)",
+        "role": "Chrome that floats over the map, clear of it without resting on it"
+      }
+    },
+    "ground": {
+      "frame": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-frame) 3%,var(--kb-canvas))",
+        "role": "Ground of a frame or one of its values — the wash its boundary lays on the map, and what a dimmed card standing on it paints to stay level with it"
+      }
+    },
+    "layer": {
+      "under-map": {
+        "kind": "number",
+        "value": "-1",
+        "role": "Boundary ground, beneath the wires, count badges and cards the map draws on top of it"
+      },
+      "over-map": {
+        "kind": "number",
+        "value": "3",
+        "role": "Legend and inset count badge, each above the map it sits on"
+      },
+      "over-viewport": {
+        "kind": "number",
+        "value": "20",
+        "role": "Top bar and dock"
+      },
+      "over-chrome": {
+        "kind": "number",
+        "value": "30",
+        "role": "Detail, search and minimap panels"
+      },
+      "over-everything": {
+        "kind": "number",
+        "value": "60",
+        "role": "View options and share menus"
+      },
+      "over-panels": {
+        "kind": "number",
+        "value": "40",
+        "role": "Backdrop dimming the board behind an overlay"
+      },
+      "over-scrim": {
+        "kind": "number",
+        "value": "41",
+        "role": "Universe overview above its backdrop"
+      }
+    },
+    "opacity": {
+      "disabled": {
+        "kind": "number",
+        "value": ".4",
+        "role": "Disabled control opacity"
+      },
+      "dimmed": {
+        "kind": "number",
+        "value": ".13",
+        "role": "Opacity of the contents of a dimmed card"
+      },
+      "hushed": {
+        "kind": "number",
+        "value": ".5",
+        "role": "Opacity of the contents of a hushed card"
+      }
+    },
+    "weight": {
+      "medium": {
+        "kind": "number",
+        "value": "500",
+        "role": "Weight for titles and headings across the map and the panels"
+      },
+      "regular": {
+        "kind": "number",
+        "value": "400",
+        "role": "Weight returning share menu help text to normal"
+      },
+      "emphasis": {
+        "kind": "number",
+        "value": "600",
+        "role": "Weight for the title of a selected card"
+      }
+    },
+    "motion": {
+      "camera": {
+        "kind": "duration",
+        "value": "420ms",
+        "role": "Selection and overview camera transition; cubic ease-out remains behavior"
+      },
+      "glance": {
+        "kind": "duration",
+        "value": "140ms",
+        "role": "Ease of the one thing under the pointer as it lights"
+      },
+      "hush": {
+        "kind": "duration",
+        "value": "160ms",
+        "role": "Ease of the board as its emphasis changes"
+      },
+      "dwell": {
+        "kind": "duration",
+        "value": "90ms",
+        "role": "Rest the pointer must take before the board follows it"
+      }
+    },
+    "size": {
+      "2xs": {
+        "kind": "length",
+        "value": "16px",
+        "role": "Reference chevron column, sample badge minimum width, and the dock side margin when it wraps"
+      },
+      "xs": {
+        "kind": "length",
+        "value": "24px",
+        "role": "Side margin overlays leave at the viewport edge, and the width of the stroke sample"
+      },
+      "sm": {
+        "kind": "length",
+        "value": "32px",
+        "role": "Settings header height and the width of the connection sample"
+      },
+      "md": {
+        "kind": "length",
+        "value": "40px",
+        "role": "Coarse-pointer minimum target height for board controls and the close button"
+      },
+      "lg": {
+        "kind": "length",
+        "value": "90px",
+        "role": "Top bar height, which the search and settings panels hang beneath"
+      },
+      "xl": {
+        "kind": "length",
+        "value": "220px",
+        "role": "Minimap and share menu width"
+      },
+      "2xl": {
+        "kind": "length",
+        "value": "370px",
+        "role": "Search panel width and the top bar identity column minimum"
+      },
+      "narrow-threshold": {
+        "kind": "length",
+        "value": "740px",
+        "role": "Narrow layout threshold, matching the container query"
+      }
+    },
+    "zoom": {
+      "step": {
+        "kind": "number",
+        "value": "1.25",
+        "role": "One click of the zoom control, the factor every zoom growth is counted in"
+      },
+      "growth-sm": {
+        "kind": "number",
+        "value": "1",
+        "role": "Count badges and boundary headings grow by one zoom click as the camera zooms out"
+      },
+      "growth-lg": {
+        "kind": "number",
+        "value": "2",
+        "role": "Connection labels grow by two zoom clicks as the camera zooms out"
+      }
+    },
+    "control": {
+      "height": {
+        "kind": "length",
+        "value": "28px",
+        "role": "Compact pointer control height"
+      },
+      "transition": {
+        "kind": "transition",
+        "value": "background-color .12s,border-color .12s",
+        "role": "Ease a control applies to its background and border when its state changes"
+      },
+      "selected-bg": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-accent) 18%,var(--kb-surface))",
+        "role": "Pressed control — background"
+      },
+      "selected-ring": {
+        "kind": "shadow",
+        "value": "inset 0 0 0 1px var(--kb-control-selected-border)",
+        "role": "Pressed or open control — inner ring"
+      },
+      "hover-bg": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-text) 7%,var(--kb-surface))",
+        "role": "Hovered control — background"
+      },
+      "selected-hover-bg": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-accent) 25%,var(--kb-surface))",
+        "role": "Hovered pressed control — background"
+      },
+      "selected-border": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-accent) 48%,transparent)",
+        "role": "Persistent control selection border"
+      }
+    },
+    "overlay": {
+      "clearance": {
+        "kind": "length",
+        "value": "12px",
+        "role": "Detail surface clearance from viewport"
+      }
+    },
+    "connection": {
+      "rolled": {
+        "kind": "color",
+        "value": "light-dark(#99603b,#e4aa7f)",
+        "role": "Rolled-up connection identity"
+      },
+      "stroke-nub": {
+        "kind": "length",
+        "value": "1.5px",
+        "role": "Count connector stroke"
+      },
+      "opacity-idle": {
+        "kind": "number",
+        "value": "0.14",
+        "role": "Idle connection opacity"
+      },
+      "dash-situational": {
+        "kind": "number",
+        "value": "7 5",
+        "role": "Situational connector dash pattern"
+      },
+      "dash-mixed": {
+        "kind": "number",
+        "value": "12 3 3 3",
+        "role": "Mixed-strength connector dash pattern"
+      }
+    }
+  },
+  "parts": {
+    "connection": {
+      "selectors": [".wire", ".arrowhead"],
+      "stroke-base": {
+        "kind": "length",
+        "value": "1px",
+        "role": "Normal connection stroke"
+      },
+      "stroke-selected": {
+        "kind": "length",
+        "value": "2.5px",
+        "role": "Selected connection stroke"
+      },
+      "stroke-preview": {
+        "kind": "length",
+        "value": "1.8px",
+        "role": "Preview connection stroke"
+      },
+      "stroke-leader": {
+        "kind": "length",
+        "value": "0.7px",
+        "role": "Label leader stroke"
+      },
+      "stroke-hit": {
+        "kind": "length",
+        "value": "12px",
+        "role": "Connection hit target width"
+      },
+      "opacity-label-faint": {
+        "kind": "number",
+        "value": "0.08",
+        "role": "Unrelated label opacity"
+      },
+      "opacity-normal": {
+        "kind": "number",
+        "value": "0.5",
+        "role": "Unselected map connection opacity"
+      },
+      "label-height": {
+        "kind": "length",
+        "value": "24px",
+        "role": "Connection label line box"
+      },
+      "label-baseline-offset": {
+        "kind": "length",
+        "value": "4px",
+        "role": "Drop from the centre of a label or count badge to its text baseline in the SVG export"
+      },
+      "dash-frame": {
+        "kind": "number",
+        "value": "4 3",
+        "role": "Frame connector dash pattern"
+      },
+      "count-size": {
+        "kind": "length",
+        "value": "26px",
+        "role": "Connection count badge size"
+      },
+      "label-padding": {
+        "kind": "length",
+        "value": "16px",
+        "role": "Combined horizontal label padding"
+      }
+    },
+    "scrim": {
+      "selectors": [".scrim"],
+      "background": {
+        "kind": "color",
+        "value": "#0008",
+        "role": "Universe overlay backdrop"
+      }
+    },
+    "sample": {
+      "selectors": [".sample"],
+      "badge-text": {
+        "kind": "length",
+        "value": "10px",
+        "role": "Connection sample badge — count digit in the display menu"
+      },
+      "height": {
+        "kind": "length",
+        "value": "20px",
+        "role": "Connection sample — row height"
+      },
+      "endpoint-width": {
+        "kind": "length",
+        "value": "7px",
+        "role": "Connection sample — endpoint width"
+      },
+      "endpoint-height": {
+        "kind": "length",
+        "value": "10px",
+        "role": "Connection sample — endpoint height"
+      },
+      "badge-height": {
+        "kind": "length",
+        "value": "15px",
+        "role": "Connection sample badge — text box height"
+      }
+    },
+    "card": {
+      "selectors": [".card"],
+      "text": {
+        "kind": "length",
+        "value": "15px",
+        "role": "Card text — the size the title inherits and the layout and SVG export measure titles at"
+      },
+      "rule-title-text": {
+        "kind": "length",
+        "value": "21px",
+        "role": "Rule card title on the map"
+      },
+      "selected-ring-element": {
+        "kind": "shadow",
+        "value": "0 0 0 5px color-mix(in srgb,var(--kb-element) 12%,transparent)",
+        "role": "Selected element card — ring"
+      },
+      "selected-ring-artifact": {
+        "kind": "shadow",
+        "value": "0 0 0 5px color-mix(in srgb,var(--kb-artifact) 12%,transparent)",
+        "role": "Selected artifact card — ring"
+      },
+      "selected-ring-frame": {
+        "kind": "shadow",
+        "value": "0 0 0 5px color-mix(in srgb,var(--kb-frame) 12%,transparent)",
+        "role": "Selected frame, factor, option or rule card — ring"
+      },
+      "selected-background-element": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-element) 15%,var(--kb-surface))",
+        "role": "Selected element card — background"
+      },
+      "selected-background-frame": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-frame) 15%,var(--kb-surface))",
+        "role": "Selected frame, factor, option or rule card — background"
+      },
+      "border-artifact": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-artifact) 45%,var(--kb-border))",
+        "role": "Artifact card — border"
+      },
+      "background-artifact": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-artifact) 5%,var(--kb-surface))",
+        "role": "Artifact card — background"
+      },
+      "selected-background-artifact": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-artifact) 15%,var(--kb-surface))",
+        "role": "Selected artifact card — background"
+      },
+      "rule-padding-x": {
+        "kind": "length",
+        "value": "24px",
+        "role": "Rule card — horizontal padding"
+      },
+      "selected-background-option": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-frame) 12%,var(--kb-surface))",
+        "role": "Selected option card — background"
+      },
+      "dimmed-border": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-border) 30%,var(--kb-canvas))",
+        "role": "Dimmed card — border"
+      },
+      "preview-glow-element": {
+        "kind": "shadow",
+        "value": "0 0 7px color-mix(in srgb,var(--kb-element) 13%,transparent)",
+        "role": "Previewed element card — glow"
+      },
+      "preview-glow-artifact": {
+        "kind": "shadow",
+        "value": "0 0 7px color-mix(in srgb,var(--kb-artifact) 13%,transparent)",
+        "role": "Previewed artifact card — glow"
+      },
+      "preview-glow-frame": {
+        "kind": "shadow",
+        "value": "0 0 7px color-mix(in srgb,var(--kb-frame) 13%,transparent)",
+        "role": "Previewed frame, factor, option or rule card — glow"
+      },
+      "element-indent": {
+        "kind": "length",
+        "value": "40px",
+        "role": "Element card — left padding that clears the kind icon in its corner"
+      },
+      "hover-filter": {
+        "kind": "filter",
+        "value": "brightness(1.04)",
+        "role": "Card hover luminance"
+      },
+      "frames-overflow-height": {
+        "kind": "length",
+        "value": "17px",
+        "role": "Card frame overflow pill — text box height"
+      },
+      "frames-height": {
+        "kind": "length",
+        "value": "18px",
+        "role": "Card frame icon row — height"
+      }
+    },
+    "identity": {
+      "selectors": [".identity"],
+      "title-text": {
+        "kind": "length",
+        "value": "16px",
+        "role": "Universe title in the top bar"
+      },
+      "narrow-clearance": {
+        "kind": "length",
+        "value": "78px",
+        "role": "Top bar identity — right padding keeping the universe title clear of the utility buttons once the bar wraps"
+      }
+    },
+    "panel": {
+      "selectors": [".panel"],
+      "head-text": {
+        "kind": "length",
+        "value": "18px",
+        "role": "Detail, search and minimap panel heading"
+      },
+      "height-max": {
+        "kind": "length",
+        "value": "480px",
+        "role": "Upper bound for floating detail surfaces"
+      },
+      "box-shadow": {
+        "kind": "shadow",
+        "value": "0 12px 32px var(--kb-shadow-medium)",
+        "role": "Floating panel — lift"
+      },
+      "height-fraction": {
+        "kind": "number",
+        "value": "0.64",
+        "role": "Maximum detail height relative to viewport"
+      },
+      "height-narrow-fraction": {
+        "kind": "number",
+        "value": "0.4",
+        "role": "Narrow detail height relative to viewport"
+      },
+      "height-narrow-max": {
+        "kind": "length",
+        "value": "260px",
+        "role": "Narrow detail height ceiling"
+      }
+    },
+    "boundary": {
+      "selectors": [".boundary"],
+      "title-text": {
+        "kind": "length",
+        "value": "22px",
+        "role": "Frame boundary heading on the map and in the SVG export"
+      },
+      "caption-top": {
+        "kind": "length",
+        "value": "28px",
+        "role": "Boundary caption — drop below the boundary edge, on the map and in the SVG export"
+      },
+      "scope-border": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-frame) 45%,var(--kb-border))",
+        "role": "Scope boundary — border"
+      }
+    },
+    "chip": {
+      "selectors": [".chip"],
+      "pressed-box-shadow": {
+        "kind": "shadow",
+        "value": "inset 0 0 0 1px var(--kb-element)",
+        "role": "Pressed display chip — inner ring"
+      },
+      "pressed-background": {
+        "kind": "color",
+        "value": "color-mix(in srgb,var(--kb-element) 12%,var(--kb-surface))",
+        "role": "Pressed display chip — background"
+      },
+      "box-shadow": {
+        "kind": "shadow",
+        "value": "inset 0 0 0 1px var(--kb-border)",
+        "role": "Display chip — inner ring"
+      }
+    },
+    "minimap": {
+      "selectors": [".minimap"],
+      "bottom": {
+        "kind": "length",
+        "value": "85px",
+        "role": "Minimap — height above the viewport floor that clears the dock"
+      },
+      "narrow-bottom": {
+        "kind": "length",
+        "value": "150px",
+        "role": "Minimap — height above the viewport floor once the dock wraps in the narrow layout"
+      },
+      "clearance": {
+        "kind": "length",
+        "value": "8px",
+        "role": "Minimum draggable minimap edge clearance"
+      },
+      "narrow-width": {
+        "kind": "length",
+        "value": "166px",
+        "role": "Minimap — width in the narrow layout"
+      }
+    },
+    "share-menu": {
+      "selectors": [".share-menu"],
+      "box-shadow": {
+        "kind": "shadow",
+        "value": "0 12px 35px var(--kb-shadow-strong)",
+        "role": "Share menu — lift"
+      }
+    },
+    "legend": {
+      "selectors": [".legend"],
+      "bottom": {
+        "kind": "length",
+        "value": "56px",
+        "role": "Legend — height above the viewport floor that clears the dock"
+      },
+      "narrow-bottom": {
+        "kind": "length",
+        "value": "117px",
+        "role": "Legend — height above the viewport floor once the dock wraps in the narrow layout"
+      },
+      "swatch-width": {
+        "kind": "length",
+        "value": "22px",
+        "role": "Legend key — width of the line swatch"
+      }
+    },
+    "scene": {
+      "selectors": [".world"],
+      "margin": {
+        "kind": "length",
+        "value": "24px",
+        "role": "Margin the minimap, the fit camera and the SVG export leave around the whole map"
+      }
+    },
+    "view-tabs": {
+      "selectors": [".view-tabs"],
+      "box-shadow": {
+        "kind": "shadow",
+        "value": "0 2px 8px var(--kb-shadow-faint)",
+        "role": "View tab rail — lift"
+      },
+      "narrow-button-height": {
+        "kind": "length",
+        "value": "36px",
+        "role": "View tab — button height once its label wraps in the narrow layout"
+      }
+    },
+    "dock": {
+      "selectors": [".dock"],
+      "box-shadow-2": {
+        "kind": "shadow",
+        "value": "0 8px 24px var(--kb-shadow-soft)",
+        "role": "Dock — lift"
+      }
+    },
+    "settings": {
+      "selectors": [".settings"],
+      "box-shadow": {
+        "kind": "shadow",
+        "value": "0 12px 40px var(--kb-shadow-medium)",
+        "role": "Display settings menu — lift"
+      },
+      "width": {
+        "kind": "length",
+        "value": "320px",
+        "role": "Display settings menu — width"
+      }
+    },
+    "utility": {
+      "selectors": [".utilities"],
+      "control-size": {
+        "kind": "length",
+        "value": "30px",
+        "role": "Top utility button size"
+      }
+    },
+    "viewport": {
+      "selectors": [".viewport"],
+      "background": {
+        "kind": "paint",
+        "value": "radial-gradient(var(--kb-border) .7px,transparent .7px) 0 0/24px 24px",
+        "role": "Viewport — dotted board field behind the map"
+      }
+    },
+    "detail": {
+      "selectors": [".detail"],
+      "width": {
+        "kind": "length",
+        "value": "360px",
+        "role": "Desktop detail width"
+      }
+    },
+    "plot": {
+      "selectors": [".plot"],
+      "entity-opacity": {
+        "kind": "number",
+        "value": "0.65",
+        "role": "Minimap entity — opacity"
+      },
+      "height": {
+        "kind": "length",
+        "value": "116px",
+        "role": "Minimap plot — height"
+      },
+      "camera-stroke": {
+        "kind": "length",
+        "value": "1.5px",
+        "role": "Minimap camera outline — stroke"
+      },
+      "camera-fill-opacity": {
+        "kind": "number",
+        "value": "0.14",
+        "role": "Minimap camera outline — fill opacity"
+      }
+    },
+    "zoom-readout": {
+      "selectors": [".zoom-readout"],
+      "width": {
+        "kind": "length",
+        "value": "34px",
+        "role": "Zoom readout — width that holds the percentage without shifting the dock"
+      }
+    },
+    "disclosure": {
+      "selectors": [".disclosure"],
+      "value-width": {
+        "kind": "length",
+        "value": "160px",
+        "role": "Disclosure row — width cap on the value shown at the right"
+      }
+    },
+    "overview": {
+      "selectors": [".overview"],
+      "width": {
+        "kind": "length",
+        "value": "440px",
+        "role": "Universe overview — width"
+      }
+    },
+    "topbar": {
+      "selectors": [".topbar"],
+      "narrow-height": {
+        "kind": "length",
+        "value": "132px",
+        "role": "Top bar — height once it wraps in the narrow layout"
+      },
+      "compact-identity-column": {
+        "kind": "length",
+        "value": "230px",
+        "role": "Top bar — identity column minimum in the compact layout"
+      },
+      "utilities-column": {
+        "kind": "length",
+        "value": "85px",
+        "role": "Top bar — utilities column minimum"
+      }
+    },
+    "facts": {
+      "selectors": [".facts"],
+      "term-column": {
+        "kind": "length",
+        "value": "95px",
+        "role": "Fact list — width of the term column"
+      }
+    },
+    "active-dot": {
+      "selectors": [".active-dot"],
+      "size": {
+        "kind": "length",
+        "value": "5px",
+        "role": "Active dot — diameter of the marker on the universe title"
+      }
+    },
+    "divider": {
+      "selectors": [".divider"],
+      "thickness": {
+        "kind": "length",
+        "value": "1px",
+        "role": "Divider — rule thickness inside panels"
+      }
+    },
+    "label": {
+      "selectors": [".label", ".leader"],
+      "closed": true,
+      "char-width": {
+        "kind": "length",
+        "value": "6.4px",
+        "role": "Approximate explorer label character advance"
+      },
+      "text": {
+        "kind": "length",
+        "value": "var(--kb-type-body-sm)",
+        "role": "Connection label — text"
+      },
+      "radius": {
+        "kind": "length",
+        "value": "var(--kb-radius-xs)",
+        "role": "Connection label — corner radius"
+      },
+      "border": {
+        "kind": "length",
+        "value": "var(--kb-stroke-xs)",
+        "role": "Connection label — border width"
+      },
+      "leader": {
+        "kind": "length",
+        "value": "var(--kb-connection-stroke-leader)",
+        "role": "Connection label — leader stroke"
+      },
+      "surface": {
+        "kind": "color",
+        "value": "var(--kb-canvas)",
+        "role": "Connection label — fill"
+      },
+      "edge": {
+        "kind": "color",
+        "value": "var(--kb-border)",
+        "role": "Connection label — border colour"
+      },
+      "ink": {
+        "kind": "color",
+        "value": "var(--kb-text)",
+        "role": "Connection label — text colour"
+      },
+      "line": {
+        "kind": "color",
+        "value": "var(--kb-element)",
+        "role": "Connection label — leader colour"
+      },
+      "zoom-growth": {
+        "kind": "number",
+        "value": "var(--kb-zoom-growth-lg)",
+        "role": "Connection label — zoom growth limit"
+      }
+    },
+    "count": {
+      "selectors": [".count", ".nub-line"],
+      "closed": true,
+      "size": {
+        "kind": "length",
+        "value": "var(--kb-connection-count-size)",
+        "role": "Count badge — box"
+      },
+      "gap": {
+        "kind": "length",
+        "value": "var(--kb-space-1-5)",
+        "role": "Count badge — gap to its card"
+      },
+      "text": {
+        "kind": "length",
+        "value": "var(--kb-type-body-sm)",
+        "role": "Count badge — digit"
+      },
+      "radius": {
+        "kind": "length",
+        "value": "var(--kb-radius-2xl)",
+        "role": "Count badge — corner radius"
+      },
+      "border": {
+        "kind": "length",
+        "value": "var(--kb-stroke-xs)",
+        "role": "Count badge — border width"
+      },
+      "stroke": {
+        "kind": "length",
+        "value": "var(--kb-connection-stroke-nub)",
+        "role": "Count badge — leader stroke"
+      },
+      "inset": {
+        "kind": "length",
+        "value": "var(--kb-space-1)",
+        "role": "Count badge — inset offset"
+      },
+      "surface": {
+        "kind": "color",
+        "value": "var(--kb-canvas)",
+        "role": "Count badge — fill"
+      },
+      "edge": {
+        "kind": "color",
+        "value": "var(--kb-border)",
+        "role": "Count badge — border colour"
+      },
+      "ink": {
+        "kind": "color",
+        "value": "var(--kb-text)",
+        "role": "Count badge — digit colour"
+      },
+      "line": {
+        "kind": "color",
+        "value": "var(--kb-element)",
+        "role": "Count badge — leader colour"
+      },
+      "zoom-growth": {
+        "kind": "number",
+        "value": "var(--kb-zoom-growth-sm)",
+        "role": "Count badge — zoom growth limit"
+      },
+      "layer": {
+        "kind": "number",
+        "value": "var(--kb-layer-over-map)",
+        "role": "Count badge — stacking layer when inset"
+      }
+    },
+    "heading": {
+      "selectors": [".boundary-title", ".boundary-caption"],
+      "zoom-growth": {
+        "kind": "number",
+        "value": "var(--kb-zoom-growth-sm)",
+        "role": "Boundary heading — zoom growth limit"
+      }
+    },
+    "card-heading": {
+      "selectors": [".card-title", ".card-subtitle"],
+      "zoom-growth": {
+        "kind": "number",
+        "value": "var(--kb-zoom-growth-sm)",
+        "role": "Card heading — zoom growth limit"
+      },
+      "description-lines": {
+        "kind": "number",
+        "value": "2",
+        "role": "Frame and factor card description — lines drawn before the text clips"
+      },
+      "option-description-lines": {
+        "kind": "number",
+        "value": "3",
+        "role": "Option card description — lines drawn before the text clips"
+      }
+    }
+  },
+  "baseline": {
+    "source": "knowledge-bus-ui-prototype-tmp/kb-visualizer/visual-tokens.json",
+    "digest": "sha256:ff654f90adce890365954cc48388cbd3b50a01b0332084cd7b63f2d7feb04905"
+  }
+}

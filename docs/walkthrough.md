@@ -58,7 +58,7 @@ condition — a candidate for `/kb-uncover-decision`.
 
 ## The Coverage Report
 
-| Class     | What landed there                            | The ask                                       |
+| Class     | Content                                      | Action                                        |
 | --------- | -------------------------------------------- | --------------------------------------------- |
 | contested | none; the pricing conflict was resolved      | no action needed                              |
 | mapped    | vision, pricing, competitors; auth (flagged) | spot-check                                    |
