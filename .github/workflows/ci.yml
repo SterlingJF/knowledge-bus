@@ -9,7 +9,38 @@ env:
   UV_MANAGED_PYTHON: "true"
 
 jobs:
-  checks:
+  checks-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v6
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install
+      - run: uv sync --locked
+      - uses: extractions/setup-just@v4
+      - run: pnpm run check:fast
+      - run: pnpm run check:plugins
+      - run: pnpm run test
+      - run: uv run --locked python tools/plugin/check_skills_install.py
+      - run: uv run kbp --validate
+      - run: uv run --locked python tools/plugin/check_native_install.py
+
+  explorer-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v6
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm run test:explorer:unit
+
+  explorer-browser:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -22,13 +53,32 @@ jobs:
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install
       - run: uv sync --locked
-      - uses: extractions/setup-just@v4
-      - run: pnpm run check
+      - run: pnpm run test:explorer:adapter
+      - run: pnpm run build:explorer
+      - run: pnpm run render:explorer
+      - run: pnpm run test:explorer:browser
+      - run: pnpm run check:explorer:artifacts
       - uses: actions/upload-artifact@v7
         with:
           name: explorer
           path: dist/explorer/
           if-no-files-found: error
+
+  explorer-shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v6
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm exec playwright install --with-deps chromium
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install
+      - run: uv sync --locked
+      - run: pnpm run build:explorer
+      - run: pnpm run render:explorer
       - name: Capture KB Explorer snapshots
         run: pnpm run capture:explorer:step
       - uses: actions/upload-artifact@v7
@@ -36,9 +86,18 @@ jobs:
           name: explorer-shots-step
           path: dist/explorer-shots/step/
           if-no-files-found: error
-      - run: uv run --locked python tools/plugin/check_skills_install.py
-      - run: uv run kbp --validate
-      - run: uv run --locked python tools/plugin/check_native_install.py
+
+  checks:
+    needs: [checks-static, explorer-unit, explorer-browser, explorer-shots]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every check lane to pass
+        run: |
+          test "${{ needs.checks-static.result }}" = success
+          test "${{ needs.explorer-unit.result }}" = success
+          test "${{ needs.explorer-browser.result }}" = success
+          test "${{ needs.explorer-shots.result }}" = success
 
   native-hosts:
     runs-on: ubuntu-latest
