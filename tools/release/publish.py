@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import tarfile
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -14,6 +15,8 @@ REPOSITORY = "SterlingJF/knowledge-bus"
 HOSTS = ("claude", "codex", "pi", "opencode")
 REGISTRY = "https://registry.npmjs.org/"
 TAG = re.compile(r"v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$")
+VISIBILITY_CHECKS = 31
+VISIBILITY_INTERVAL = 10
 
 
 def version_key(tag):
@@ -123,7 +126,16 @@ def write_manifest(folder, tag, commit, root=ROOT):
 def npm_view(spec, field, run=command):
     """Read one registry value across npm's scalar and array JSON formats."""
     try:
-        raw = run("npm", "view", spec, field, "--json", "--registry", REGISTRY)
+        raw = run(
+            "npm",
+            "view",
+            spec,
+            field,
+            "--json",
+            "--prefer-online",
+            "--registry",
+            REGISTRY,
+        )
         if not raw.strip():
             return None
         value = json.loads(raw)
@@ -147,17 +159,27 @@ def npm_view(spec, field, run=command):
 def check_packages(metadata, run=command):
     """Preflight every target before changing GitHub or npm state."""
     version = metadata["tag"][1:]
-    for item in metadata["packages"].values():
-        found = npm_view(item["name"] + "@" + version, "dist.integrity", run)
-        if found is not None and found != item["integrity"]:
-            raise ValueError("Published bytes differ; never overwrite an npm version.")
-        latest = npm_view(item["name"], "dist-tags.latest", run)
-        if latest and version_key("v" + latest) > version_key(metadata["tag"]):
-            raise ValueError("Refusing to move a newer npm latest tag backwards.")
-        if found is not None and latest != version:
-            raise ValueError(
-                "Existing version is not latest; repair its tag interactively before retrying."
-            )
+    for attempt in range(VISIBILITY_CHECKS):
+        pending = []
+        for item in metadata["packages"].values():
+            found = npm_view(item["name"] + "@" + version, "dist.integrity", run)
+            if found is not None and found != item["integrity"]:
+                raise ValueError(
+                    "Published bytes differ; never overwrite an npm version."
+                )
+            latest = npm_view(item["name"], "dist-tags.latest", run)
+            if latest and version_key("v" + latest) > version_key(metadata["tag"]):
+                raise ValueError("Refusing to move a newer npm latest tag backwards.")
+            if found is not None and latest != version:
+                pending.append(item["name"])
+        if not pending:
+            return
+        if attempt + 1 < VISIBILITY_CHECKS:
+            time.sleep(VISIBILITY_INTERVAL)
+    raise ValueError(
+        "Existing version is not latest after the registry visibility window; "
+        "repair its tag interactively before retrying."
+    )
 
 
 def publish_packages(folder, metadata, run=command):
@@ -165,6 +187,10 @@ def publish_packages(folder, metadata, run=command):
     for item in metadata["packages"].values():
         spec = item["name"] + "@" + version
         found = npm_view(spec, "dist.integrity", run)
+        if found is not None and found != item["integrity"]:
+            raise ValueError(
+                f"Published bytes differ for {spec}; never overwrite an npm version."
+            )
         if found is None:
             run(
                 "npm",
@@ -178,15 +204,34 @@ def publish_packages(folder, metadata, run=command):
                 "--registry",
                 REGISTRY,
             )
+
+
+def verify_packages(metadata, run=command):
+    """Wait for the complete release to become visible before exposing GitHub."""
+    version = metadata["tag"][1:]
+    for attempt in range(VISIBILITY_CHECKS):
+        pending = []
+        for item in metadata["packages"].values():
+            spec = item["name"] + "@" + version
             found = npm_view(spec, "dist.integrity", run)
-        if found != item["integrity"]:
-            raise ValueError(
-                f"Published bytes differ for {spec}; never overwrite an npm version."
-            )
-        if npm_view(item["name"], "dist-tags.latest", run) != version:
-            raise ValueError(
-                "Published version is not latest; inspect registry state before retrying."
-            )
+            if found is not None and found != item["integrity"]:
+                raise ValueError(
+                    f"Published bytes differ for {spec}; never overwrite an npm version."
+                )
+            latest = npm_view(item["name"], "dist-tags.latest", run)
+            if latest and version_key("v" + latest) > version_key(metadata["tag"]):
+                raise ValueError("Refusing to move a newer npm latest tag backwards.")
+            if found != item["integrity"] or latest != version:
+                pending.append(spec)
+        if not pending:
+            return
+        if attempt + 1 < VISIBILITY_CHECKS:
+            time.sleep(VISIBILITY_INTERVAL)
+    raise TimeoutError(
+        f"{', '.join(pending)} did not appear with the expected integrity and latest "
+        f"tag within {(VISIBILITY_CHECKS - 1) * VISIBILITY_INTERVAL} seconds; "
+        "repair a missing latest tag interactively before retrying."
+    )
 
 
 def should_be_latest(tag, releases, on_main):
@@ -296,14 +341,58 @@ def publish(folder, tag, run=command):
             folder / "release.json",
             folder / "SHA256SUMS",
         ]
-        run("gh", "release", "upload", tag, *map(str, paths), "--clobber")
+        manifest_path = folder / "release.json"
+        if existing is None:
+            run("gh", "release", "upload", tag, str(manifest_path))
+            run(
+                "gh",
+                "release",
+                "upload",
+                tag,
+                *map(str, (p for p in paths if p != manifest_path)),
+            )
+        else:
+            remote = json.loads(run("gh", "release", "view", tag, "--json", "assets"))
+            sizes = {a["name"]: a["size"] for a in remote["assets"]}
+            if "release.json" in sizes:
+                remote_manifest = json.loads(
+                    run(
+                        "gh",
+                        "release",
+                        "download",
+                        tag,
+                        "--pattern",
+                        "release.json",
+                        "--output",
+                        "-",
+                    )
+                )
+                if remote_manifest != metadata:
+                    raise ValueError(
+                        "Never overwrite an existing release with different content."
+                    )
+            elif sizes:
+                raise ValueError(
+                    "Existing draft has assets without a release manifest."
+                )
+            else:
+                run("gh", "release", "upload", tag, str(manifest_path))
+            run(
+                "gh",
+                "release",
+                "upload",
+                tag,
+                *map(str, (p for p in paths if p != manifest_path)),
+                "--clobber",
+            )
         remote = json.loads(run("gh", "release", "view", tag, "--json", "assets"))
         sizes = {a["name"]: a["size"] for a in remote["assets"]}
         if any(sizes.get(p.name) != p.stat().st_size for p in paths):
             raise ValueError("Uploaded release assets are missing or incomplete.")
+    publish_packages(folder, metadata, run)
+    verify_packages(metadata, run)
     if not published:
         run("gh", "release", "edit", tag, "--draft=false", "--latest=true")
-    publish_packages(folder, metadata, run)
 
 
 if __name__ == "__main__":

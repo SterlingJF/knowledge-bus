@@ -108,10 +108,10 @@ export function prepareTools(root, snapshot, base) {
 export async function runCheck(snapshot, script, env) {
   return new Promise((resolve, reject) => {
     const child = spawn('pnpm', ['run', script], { cwd: snapshot, env, stdio: 'inherit', detached: true });
-    let interrupted = false;
+    let interruptedSignal;
     let timer;
     const stop = (signal) => {
-      interrupted = true;
+      interruptedSignal = signal;
       try { process.kill(-child.pid, signal); } catch { /* Already exited. */ }
       timer = setTimeout(() => {
         try { process.kill(-child.pid, 'SIGKILL'); } catch { /* Already exited. */ }
@@ -128,13 +128,61 @@ export async function runCheck(snapshot, script, env) {
     };
     child.once('error', (error) => { cleanup(); reject(error); });
     child.once('close', (code) => {
-      if (interrupted) {
+      if (interruptedSignal) {
         try { process.kill(-child.pid, 'SIGKILL'); } catch { /* Already exited. */ }
       }
       cleanup();
-      resolve(interrupted ? 1 : code ?? 1);
+      resolve(interruptedSignal === 'SIGTERM' ? 143 : interruptedSignal === 'SIGINT' ? 130 : code ?? 1);
     });
   });
+}
+
+export async function runPushChecks(snapshot, env, run = runCheck) {
+  let unit;
+  let interrupted = false;
+  try {
+    unit = Promise.resolve(run(snapshot, 'test:explorer:unit', env))
+      .then((code) => {
+        if (code === 130 || code === 143) interrupted = true;
+        return code;
+      })
+      .catch((error) => {
+        console.error(`test:explorer:unit failed: ${error.message}`);
+        return 1;
+      });
+  } catch (error) {
+    console.error(`test:explorer:unit failed: ${error.message}`);
+    unit = Promise.resolve(1);
+  }
+  let failed = false;
+  for (const script of [
+    'check:fast',
+    'check:plugins',
+    'test',
+    'test:explorer:adapter',
+    'build:explorer',
+    'render:explorer',
+    'test:explorer:browser',
+    'check:explorer:artifacts',
+  ]) {
+    if (interrupted) break;
+    try {
+      const code = await run(snapshot, script, env);
+      if (code === 130 || code === 143) interrupted = true;
+      if (code !== 0) {
+        console.error(`${script} failed.`);
+        failed = true;
+      }
+    } catch (error) {
+      console.error(`${script} failed: ${error.message}`);
+      failed = true;
+    }
+  }
+  if (await unit !== 0) {
+    console.error('test:explorer:unit failed.');
+    failed = true;
+  }
+  return failed ? 1 : 0;
 }
 
 export async function checkSnapshots({ root, mode, input = '', prepare = prepareTools, run = runCheck }) {
@@ -146,7 +194,8 @@ export async function checkSnapshots({ root, mode, input = '', prepare = prepare
       const snapshot = exportSnapshot(root, base, revision);
       console.log(`Checking ${revision ? `outgoing commit ${revision}` : 'staged content'} (isolated snapshot).`);
       const env = prepare(root, snapshot, base);
-      if (await run(snapshot, mode === 'staged' ? 'check:fast' : 'check', env) !== 0) return 1;
+      const result = mode === 'staged' ? await run(snapshot, 'check:fast', env) : await runPushChecks(snapshot, env, run);
+      if (result !== 0) return 1;
     } finally {
       rmSync(base, { recursive: true, force: true });
     }

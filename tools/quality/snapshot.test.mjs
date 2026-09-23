@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { checkSnapshots, exportSnapshot, prepareTools, pushTips } from './snapshot.mjs';
+import { checkSnapshots, exportSnapshot, prepareTools, pushTips, runPushChecks } from './snapshot.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const zero = '0'.repeat(40);
@@ -105,11 +105,36 @@ test('pre-push selects unique outgoing branch tips, not HEAD, tags or deletions'
   assert.throws(() => pushTips('bad input'), /Expected Git/);
   const seen = [];
   assert.equal(await checkSnapshots({ root: cwd, mode: 'push', input, prepare: () => ({}), run: (snapshot, script) => {
-    assert.equal(script, 'check');
-    seen.push(readFileSync(path.join(snapshot, 'value.txt'), 'utf8'));
+    seen.push([readFileSync(path.join(snapshot, 'value.txt'), 'utf8'), script]);
     return 0;
   } }), 0);
-  assert.deepEqual(seen, ['valid', 'second']);
+  const scripts = ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts'];
+  assert.deepEqual(seen, ['valid', 'second'].flatMap((value) => scripts.map((script) => [value, script])));
+});
+
+test('pre-push overlaps unit tests, waits for bundle readers, and reports failures from both lanes', async () => {
+  const seen = [];
+  let finishUnit;
+  const unit = new Promise((resolve) => { finishUnit = resolve; });
+  const pending = runPushChecks('snapshot', {}, (_snapshot, script) => {
+    seen.push(script);
+    if (script === 'test:explorer:unit') return unit;
+    return 0;
+  });
+  let settled = false;
+  void pending.then(() => { settled = true; });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(seen, ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts']);
+  assert.equal(settled, false);
+  finishUnit(1);
+  assert.equal(await pending, 1);
+  assert.equal(await runPushChecks('snapshot', {}, (_snapshot, script) => script === 'check:plugins' ? 1 : 0), 1);
+  const interrupted = [];
+  assert.equal(await runPushChecks('snapshot', {}, (_snapshot, script) => {
+    interrupted.push(script);
+    return script === 'check:fast' ? 143 : 0;
+  }), 1);
+  assert.deepEqual(interrupted, ['test:explorer:unit', 'check:fast']);
 });
 
 test('escaping symlinks and unresolved indexes fail closed', async (t) => {
@@ -135,7 +160,15 @@ function hookedRepository(t) {
   write(cwd, 'package.json', JSON.stringify({ ...JSON.parse(readFileSync(path.join(root, 'package.json'))), scripts: {
     'check:staged': 'node tools/quality/snapshot.mjs staged',
     'check:push': 'node tools/quality/snapshot.mjs push',
-    'check:fast': 'node verify.mjs', check: 'node verify.mjs',
+    'check:fast': 'node verify.mjs',
+    'check:plugins': 'node verify.mjs',
+    test: 'node verify.mjs',
+    'test:explorer:unit': 'node verify.mjs',
+    'test:explorer:adapter': 'node verify.mjs',
+    'build:explorer': 'node verify.mjs',
+    'render:explorer': 'node verify.mjs',
+    'test:explorer:browser': 'node verify.mjs',
+    'check:explorer:artifacts': 'node verify.mjs',
   } }));
   write(cwd, 'justfile', 'check-staged:\n    node tools/quality/snapshot.mjs staged\ncheck-push:\n    node tools/quality/snapshot.mjs push\n');
   write(cwd, 'verify.mjs', `import { readFileSync } from 'node:fs';
@@ -258,5 +291,43 @@ setInterval(() => {}, 1000);
   child.kill('SIGTERM');
   assert.notEqual(await done, 0);
   assert.ok(!existsSync(snapshot));
+  assert.deepEqual(state(cwd), before);
+});
+
+test('pre-push interruption stops both lanes and cleans the snapshot', async (t) => {
+  const cwd = hookedRepository(t);
+  write(cwd, 'verify.mjs', `import { writeFileSync } from 'node:fs';
+writeFileSync(${JSON.stringify(path.join(cwd, 'started-'))} + process.env.npm_lifecycle_event, process.pid + '\\n' + process.cwd());
+setInterval(() => {}, 1000);
+`);
+  git(cwd, 'add', 'verify.mjs');
+  git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Long running checks');
+  const before = state(cwd);
+  const oid = git(cwd, 'rev-parse', 'HEAD');
+  const child = spawn(process.execPath, ['tools/quality/snapshot.mjs', 'push'], { cwd, stdio: ['pipe', 'ignore', 'ignore'] });
+  t.after(() => { if (child.exitCode === null) child.kill('SIGKILL'); });
+  child.stdin.end(`refs/heads/main ${oid} refs/heads/main ${zero}\n`);
+  const done = new Promise((resolve) => child.once('exit', resolve));
+  const markers = ['test:explorer:unit', 'check:fast'].map((script) => path.join(cwd, `started-${script}`));
+  const deadline = Date.now() + 15000;
+  while (!markers.every(existsSync) && Date.now() < deadline && child.exitCode === null)
+    await new Promise((resolve) => setTimeout(resolve, 30));
+  assert.ok(markers.every(existsSync), 'both concurrent checks started');
+  const running = markers.map((marker) => {
+    const [pid, snapshot] = readFileSync(marker, 'utf8').split('\n');
+    return { pid: Number(pid), snapshot };
+  });
+  child.kill('SIGTERM');
+  assert.notEqual(await done, 0);
+  assert.ok(!existsSync(path.join(cwd, 'started-check:plugins')));
+  assert.ok(running.every(({ snapshot }) => !existsSync(snapshot)));
+  const stopped = (pid) => {
+    try { process.kill(pid, 0); return false; }
+    catch (error) { if (error.code === 'ESRCH') return true; throw error; }
+  };
+  const stopDeadline = Date.now() + 3000;
+  while (running.some(({ pid }) => !stopped(pid)) && Date.now() < stopDeadline)
+    await new Promise((resolve) => setTimeout(resolve, 30));
+  assert.ok(running.every(({ pid }) => stopped(pid)), 'both check processes stopped');
   assert.deepEqual(state(cwd), before);
 });

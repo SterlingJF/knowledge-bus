@@ -218,7 +218,12 @@ def test_python_configuration_is_consistent():
         assert workflow["env"]["UV_MANAGED_PYTHON"] == "true"
         for job in workflow["jobs"].values():
             steps = job["steps"]
-            assert any(step.get("run") == "uv python install" for step in steps)
+            if any(
+                step.get("uses", "").startswith("astral-sh/setup-uv@")
+                or step.get("run", "").startswith("uv ")
+                for step in steps
+            ):
+                assert any(step.get("run") == "uv python install" for step in steps)
             assert not any("python-version" in step.get("with", {}) for step in steps)
 
 
