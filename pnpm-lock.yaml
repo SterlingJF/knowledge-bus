@@ -185,8 +185,8 @@ importers:
         specifier: 0.150.0
         version: 0.150.0
       prettier:
-        specifier: 3.9.6
-        version: 3.9.6
+        specifier: 3.9.7
+        version: 3.9.7
       tsx:
         specifier: 4.23.13
         version: 4.23.13
@@ -906,8 +906,8 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  prettier@3.9.6:
-    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
+  prettier@3.9.7:
+    resolution: {integrity: sha512-T3mF5P7HFzZVLDQuCUNtJj6WK1pcpLMweMNUVwGb01bLNkH9AkKxtZvmInw8K6bnn2O3d6/5RHl6zSHiBAD0Og==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1598,7 +1598,7 @@ snapshots:
     dependencies:
       playwright-core: 1.63.0
 
-  prettier@3.9.6: {}
+  prettier@3.9.7: {}
 
   punycode.js@2.3.1: {}
 
