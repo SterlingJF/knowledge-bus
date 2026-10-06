@@ -9,8 +9,10 @@ The checker uses the protocol's conformance rules to check supported conditions,
 - required declarations and fields;
 - references to declared elements and document types;
 - duplicate codes;
-- protocol-version compatibility;
+- protocol-version compatibility, including fields an older declared version does not allow and keys renamed between versions (a `kbp/0.8` universe writes `no_artifact`; a `kbp/0.7` universe writes `empty_composition`);
+- universe `terms`: unique, with a nonblank term and meaning;
 - permitted uses of frames and factors;
+- relation edge gates: from `kbp/0.8`, each key is a declared frame or `latency`, each value is one that frame declares, `latency` is a nonblank string, and no frame is named `latency`;
 - guidance references, kinds, and source declarations;
 - fields that the format does not allow.
 
@@ -20,7 +22,7 @@ Guidance is checked against the universe it names, so provide both files in the 
 
 Passing means the definitions and guidance meet the structural checks currently implemented. Explorer inspection separately reports whether the selected universe can be rendered. Neither result establishes that a question is useful, that an answer is true, or that advice is well supported.
 
-The checker does not validate `answers.yaml` or `ingest-log.md`. Both are review-only. The protocol defines rules for instances and exchange, but the checker does not validate those workflows fully.
+The checker does not yet validate `answers.yaml` or `ingest-log.md`, the files that ingestion writes. Both are review-only for now; validating them is on the [roadmap](../README.md#roadmap). The protocol defines rules for instances and exchange, but the checker does not validate those workflows fully.
 
 ## Running the Checker
 
@@ -66,7 +68,7 @@ Run that check alone with:
 uv run kbp --self-check
 ```
 
-The test corpus includes valid documents and five deliberately invalid cases: a duplicate code, a missing required field, an invalid factor reference, an unknown element in a composition, and a mismatched protocol version. Each invalid case must fail with the expected reason. These cases do not cover every possible violation.
+The test corpus includes valid documents and 31 deliberately invalid cases, among them a duplicate code, a missing required field, an unknown element in a composition, a mismatched protocol version, and a document using a key from the wrong protocol version. Each invalid case must fail with the expected reason. These cases do not cover every possible violation.
 
 Run the tests with:
 

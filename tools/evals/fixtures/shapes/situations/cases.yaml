@@ -1,0 +1,109 @@
+# Test fixture for the eval tooling, not eval items: cases shared by notice-readers and
+# field-study, written after the kinds of situation public guidance describes.
+schema: evals-cases/1
+tags:
+  who:
+    one: One person who reads the notice.
+    group: Several people who read the notice together.
+    organisation: A body that reads the notice as itself.
+cases:
+- id: n01
+  text: A tourist stepping off a ferry sees a sign about which ticket covers the harbour bus.
+  field: notice-readers
+  tags: {who: one}
+- id: n02
+  text: A family who moved to the town last week goes through a letter on how bin days are set, sentence by sentence.
+  field: notice-readers
+  tags: {who: group}
+- id: n03
+  text: Parents at their first school open evening are handed a sheet on paying for lunches and take it home to study.
+  field: notice-readers
+  tags: {who: group}
+- id: n04
+  text: A charity stall hands a card to passers-by who have never claimed housing support, and most look at it for a moment.
+  field: notice-readers
+  tags: {who: organisation}
+- id: n05
+  text: A commuter who takes the same train every day walks past a poster saying the timetable changes next month.
+  field: notice-readers
+  tags: {who: one}
+- id: n06
+  text: Members of an allotment society get the yearly letter on plot fees, as they have for years, and check every figure in it.
+  field: notice-readers
+  tags: {who: group}
+- id: n07
+  text: A firm that has filed its accounts with the same office for years gets this year's reminder and looks only at the date.
+  field: notice-readers
+  tags: {who: organisation}
+- id: n08
+  text: A patient who picks up the same prescription monthly sees the pharmacy's sign about opening hours while queueing.
+  field: notice-readers
+  tags: {who: one}
+- id: n09
+  text: An electrician checks a wiring regulation leaflet clause by clause before signing off a job.
+  field: notice-readers
+  tags: {who: one}
+- id: n10
+  text: A hospital's infection control team goes over the updated guidance on hand gels word for word.
+  field: notice-readers
+  tags: {who: organisation}
+- id: n11
+  text: Two solicitors compare the court's revised rules on filing deadlines in detail.
+  field: notice-readers
+  tags: {who: group}
+- id: n12
+  text: A pharmacist walking past a drug-recall poster on the ward takes in the headline in passing.
+  field: notice-readers
+  tags: {who: one}
+- id: n13
+  text: Before giving a finger-prick of blood, a volunteer who has never joined a trial studies every paragraph of the consent sheet.
+  field: notice-readers
+  tags: {who: one}
+- id: s01
+  text: Two psychologists are choosing which unnamed reaction-time task volunteers will do at a computer in the department's testing room.
+  field: field-study
+  tags: {who: group}
+- id: s02
+  text: A physiologist is deciding how much blood to draw by finger prick from healthy adult volunteers in her lab, a small amount at low risk.
+  field: field-study
+  tags: {who: one}
+- id: s03
+  text: A charity's survey team is preparing interviews with teenagers in care homes about their mental health, which could upset some of them.
+  field: field-study
+  tags: {who: organisation}
+- id: s04
+  text: An ecologist arranges to record farmers on their land describing their water use, keeping their names on file.
+  field: field-study
+  tags: {who: one}
+- id: s05
+  text: Volunteers count how many cyclists pass a junction each hour, noting no faces or names.
+  field: field-study
+  tags: {who: group}
+- id: s06
+  text: A university sleep unit records healthy adults' brain waves overnight with scalp pads.
+  field: field-study
+  tags: {who: organisation}
+- id: s07
+  text: A hospital trials unit gives patients an untested dose of a new drug and watches them for side effects.
+  field: field-study
+  tags: {who: organisation}
+- id: s08
+  text: A student hands out an anonymous paper questionnaire about commuting on a station platform; one item asks about fare dodging.
+  field: field-study
+  tags: {who: one}
+- id: s09
+  text: An economist runs figures on a public, anonymous survey of household spending that a statistics office carried out door to door.
+  field: field-study
+  tags: {who: one}
+- id: s10
+  text: Three researchers go back over stored blood specimens from an earlier trial, which carry patient codes that could be traced.
+  field: field-study
+  tags: {who: group}
+- id: s11
+  text: A pair of anthropologists transcribe interviews with undocumented migrants in which people describe crossing borders illegally.
+  field: field-study
+  tags: {who: group}
+- id: s12
+  text: A drug company's lab re-examines saliva from a past trial to test for a gene linked to a disease, a finding the donors were never told of.
+  field: field-study
+  tags: {who: organisation}

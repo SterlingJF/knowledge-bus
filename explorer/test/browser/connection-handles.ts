@@ -41,6 +41,7 @@ const edge = (name: string, points: { x: number; y: number }[]): SceneEdge => ({
   drawn: true,
   on: true,
   emphasized: false,
+  onDemand: false,
   dash: 'none',
   grade: null,
   paint: 'element',

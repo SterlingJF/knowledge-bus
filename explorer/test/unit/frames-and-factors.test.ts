@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { type Boundary, type Layout, layoutFor } from '@/src/lib/layout';
 import { type Entity, type ExplorerModel, initialOptions, updateOptions } from '@/src/lib/model';
+import { cardAnatomy } from '@/src/lib/card';
 import { roleCopy } from '@/src/lib/phrasing';
 import { model } from './render-states';
 
@@ -28,7 +29,8 @@ const boundariesStatingARule = (layout: Layout): Set<string> =>
 const dimensionBoundaries = (layout: Layout): Boundary[] => layout.boundaries.filter((boundary) => !boundary.scopeId);
 
 const FRAMES_CAPTION = 'Your situation. These change what you need.';
-const EXCEPTIONS_CAPTION = 'Your special cases. These mean no artifact is needed.';
+const NO_ARTIFACT_TITLE = 'When to skip the artifact';
+const NO_ARTIFACT_CAPTION = 'When every frame here matches, no artifact is needed.';
 const FACTORS_CAPTION = 'Your conditions. These shape how you go about the work.';
 const FACTORS_NONE = 'This universe declares no factors.';
 
@@ -64,14 +66,15 @@ test('the frames view draws two top-level boundaries, Frames and Factors, and ev
   assert.deepEqual(misplaced, []);
 
   const rules = [...boundariesStatingARule(layout)];
-  assert.deepEqual(rules, ['scope:rule'], 'declared rules share the Exceptions boundary');
-  const exceptions = layout.boundaries.find((boundary) => boundary.id === rules[0]);
-  assert.ok(exceptions, 'the rule boundary is drawn');
-  assert.equal(exceptions.scopeId, frames.id, 'the rule boundary is nested inside Frames');
+  assert.deepEqual(rules, ['scope:rule'], 'declared rules share the no-artifact boundary');
+  const noArtifact = layout.boundaries.find((boundary) => boundary.id === rules[0]);
+  assert.ok(noArtifact, 'the rule boundary is drawn');
+  assert.equal(noArtifact.title, NO_ARTIFACT_TITLE);
+  assert.equal(noArtifact.scopeId, frames.id, 'the rule boundary is nested inside Frames');
   assert.deepEqual(
-    new Set(layout.cards.filter((card) => card.scopeId === exceptions.id).map((card) => card.id)),
+    new Set(layout.cards.filter((card) => card.scopeId === noArtifact.id).map((card) => card.id)),
     new Set(populated.rules.map((rule) => rule.id)),
-    'Exceptions holds every declared rule and nothing else',
+    `${NO_ARTIFACT_TITLE} holds every declared rule and nothing else`,
   );
 });
 
@@ -132,13 +135,13 @@ test('no dimension boundary is titled with a frame role or a phrase describing o
   assert.deepEqual(failures, []);
 });
 
-test('Frames, Exceptions and Factors are the only boundaries that carry a caption, and their captions are the authored ones', () => {
+test('Frames, When to skip the artifact, and Factors are the only boundaries that carry a caption, and their captions are the authored ones', () => {
   const layout = framesView(withOneFactor(model));
   assert.deepEqual(
     layout.boundaries.filter((boundary) => boundary.caption).map((boundary) => [boundary.title, boundary.caption]),
     [
       ['Frames', FRAMES_CAPTION],
-      ['Exceptions', EXCEPTIONS_CAPTION],
+      [NO_ARTIFACT_TITLE, NO_ARTIFACT_CAPTION],
       ['Factors', FACTORS_CAPTION],
     ],
   );
@@ -180,8 +183,18 @@ test('a universe declaring no factor draws no boundary around none, and Factors 
     'no boundary but Factors earns a note when it holds nothing',
   );
   assert.equal(
-    noteless.boundaries.find((boundary) => boundary.title === 'Exceptions'),
+    noteless.boundaries.find((boundary) => boundary.title === NO_ARTIFACT_TITLE),
     undefined,
-    'the general rule still holds: a universe stating no rule draws no Exceptions boundary',
+    'the general rule still holds: a universe stating no rule draws no no-artifact boundary',
   );
+});
+
+test('the no-artifact card says in plain words that matching frames mean nothing needs writing down', () => {
+  const layout = framesView(model);
+  const card = layout.cards.find((placed) => placed.kind === 'rule');
+  assert.ok(card, 'the reference universe declares when no artifact is needed');
+  assert.equal(card.id, 'rule:no-artifact');
+  const anatomy = cardAnatomy(card, model);
+  assert.equal(anatomy.title, 'No artifact needed');
+  assert.equal(anatomy.subtitle, 'These frames match, so nothing needs writing down.');
 });

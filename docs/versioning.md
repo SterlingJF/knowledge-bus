@@ -25,7 +25,7 @@ Release versions use `X.Y.Z`. While releases remain `0.x`, patches preserve docu
 
 The protocol version changes when its conformance rules change. Universe and guidance versions track changes to their definitions and advice. Explorer-only and packaging changes leave those versions unchanged.
 
-The checker requires an exact protocol-version match. It does not infer compatibility between protocol versions.
+The checker requires `conforms_to` to name the bundled protocol version or an earlier version the protocol lists in `accepts`. A document declaring an earlier version is checked as that version, so fields introduced later are refused there. The checker does not infer compatibility beyond that list.
 
 ## Installation Versions
 

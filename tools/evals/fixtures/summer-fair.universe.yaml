@@ -1,0 +1,17 @@
+# Test-only: a tiny invented universe for the recognition tests, with one plain frame and one ladder.
+universe:
+  id: summer-fair
+  label: Summer fair
+  overview:
+    covers: The stalls, acts and games at a village summer fair.
+    for: Whoever runs a stall, an act or a game, alone or as a club.
+frames:
+  - id: entry
+    question: "How does a visitor get in to see it?"
+    values:
+      - { id: open, question: "Can anyone wander up?" }
+      - { id: ticketed, question: "Is a paid pass needed?" }
+      - { id: invited, question: "Is it only for people on a list?" }
+  - id: permission
+    question: "Who has to agree before it starts?"
+    values: [nobody, organiser, council]

@@ -1,6 +1,7 @@
 import { panel } from '../component-elements/panel';
-import { type ExplorerModel, human } from '../lib/model';
-import { countOf, listedGroup, paragraph, section } from './detail-copy';
+import { type ExplorerModel, human, universeTerms } from '../lib/model';
+import { limitsCopy } from '../lib/phrasing';
+import { countOf, groupBox, listedGroup, paragraph, section } from './detail-copy';
 
 export interface OverviewParts {
   scrim: HTMLElement;
@@ -28,6 +29,13 @@ export function universeStats(model: ExplorerModel): HTMLElement {
   return stats;
 }
 
+function termRow(held: { term: string; means: string }): HTMLElement {
+  const row = document.createElement('div');
+  row.className = 'entry';
+  row.append(paragraph(held.term, 'semantic-name'), paragraph(held.means, 'semantic-description'));
+  return row;
+}
+
 export function universeOverview(model: ExplorerModel, close: () => void): OverviewParts {
   const scrim = document.createElement('div');
   scrim.className = 'scrim';
@@ -48,7 +56,14 @@ export function universeOverview(model: ExplorerModel, close: () => void): Overv
   ] as const) {
     const block = section(title, overview[key] ? [paragraph(overview[key])] : []);
     if (block) surface.body.append(block);
+    if (key === 'for') {
+      const terms = universeTerms(model);
+      const glossary = section('Terms', terms.length ? [groupBox(countOf(terms.length, 'term'), terms.map(termRow))] : []);
+      if (glossary) surface.body.append(glossary);
+    }
   }
+  const limits = limitsCopy(model);
+  if (limits) surface.body.append(paragraph(limits, 'muted overview-limits'));
 
   const details = document.createElement('details');
   details.className = 'source';

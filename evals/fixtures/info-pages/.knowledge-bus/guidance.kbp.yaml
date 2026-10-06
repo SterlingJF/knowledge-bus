@@ -1,0 +1,19 @@
+guidance:
+  id: page-readers-guidance
+  label: Page readers guidance
+  version: 0.1
+  conforms_to: kbp/0.8
+  guides: page-readers
+
+guidance_kinds:
+  - { id: heuristic, sourced: false }
+
+factors:
+  prior-knowledge:
+    - kind: heuristic
+      claim: Use words this reader already knows and is at ease with. Plain words are not a way of writing down to the reader.
+      source: asserted
+    - kind: heuristic
+      claim: Do not pitch the page at a school reading level when the reader is a specialist.
+      source: asserted
+      when: { prior-knowledge: [expert] }

@@ -1,0 +1,35 @@
+# The runs behind evals/report.md, one entry per run folder:
+#
+#   - side: anthropic         # anthropic or openai
+#     folder: .evidence/<date>/evals/<run-id>
+#     universe: <universe-id>   # for a run that graded a universe (run.json names it when recorded)
+#
+# A side lists at most one run per measure, and per universe for the universe grade, recognition
+# and sorting; the report keeps one section per universe and never compares across universes.
+# A run's judge, light, filer and agent models must belong to its side's company (codex:<model>
+# on the openai side, any other name on the anthropic side); Jev serves both sides.
+# `just evals-report` summarises each folder into evals/results/<run-id>.json and writes
+# evals/report.md; commit both with this file.
+runs:
+  - side: anthropic
+    folder: .evidence/2026-10-06/evals/examples-universe-20261006T060659282403Z
+  - side: anthropic
+    folder: .evidence/2026-10-06/evals/examples-skills-20261006T134912752473Z
+  - side: anthropic
+    folder: .evidence/2026-10-06/evals/universe-20261006T050614485618Z
+    universe: product-development
+  - side: anthropic
+    folder: .evidence/2026-10-06/evals/play-20261006T134912768658Z
+  - side: openai
+    folder: .evidence/2026-10-06/evals/examples-universe-20261006T132135450769Z
+  - side: openai
+    folder: .evidence/2026-10-06/evals/examples-skills-20261006T132135451472Z
+  - side: openai
+    folder: .evidence/2026-10-06/evals/universe-20261006T132135451825Z
+    universe: product-development
+# Who wrote and labelled each universe's situations, one line per side, shown with its recognition.
+# Kept here, not in evals/situations/, since those files name no vendor.
+labelled_by:
+  product-development:
+    - "Anthropic side: extracted and written, and labelled blind, by Claude Fable 5.1 and Claude Opus 5.5"
+    - "OpenAI side: labelled blind by GPT-6-Astra at xhigh, in the Codex app for rounds 1 and 2 and through the Codex CLI for round 3"

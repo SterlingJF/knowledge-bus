@@ -16,6 +16,7 @@ import { bundleExpandedPairs, bundleFocusCard } from './bundles';
 import { placeLabels, sampleCount, type PlacedLabel, type LabelCandidate, type HorizontalRail } from './labels';
 import { placeNubs, type PlacedNub } from './nubs';
 import { type Holding, holdingOf } from './composition-grouping';
+import type { EdgeEmphasis } from './emphasis';
 
 export interface SceneEdge extends DisplayEdge {
   drawn: boolean;
@@ -23,6 +24,7 @@ export interface SceneEdge extends DisplayEdge {
   points: Point[];
   on: boolean;
   emphasized: boolean;
+  onDemand: boolean;
   dash: 'none' | 'situational' | 'mixed' | 'frame';
   grade: 'required' | 'situational' | 'mixed' | null;
   paint: 'element' | 'rolled' | 'frame';
@@ -84,6 +86,13 @@ function baseEdges(model: ExplorerModel, options: ViewOptions): DisplayEdge[] {
 }
 
 const SITUATIONAL = 'situational';
+
+export const KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED = 'distinct-from';
+
+const kindsCarried = (edge: DisplayEdge): string[] => (edge.members?.length ? edge.members.flatMap(kindsCarried) : [edge.kind ?? '']);
+
+export const onlyMarksADistinction = (edge: DisplayEdge): boolean =>
+  kindsCarried(edge).every((kind) => kind === KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED);
 
 const onlyRequiredCompositionIsDrawn = (options: ViewOptions): boolean =>
   options.connections === 'composition' && options.display === 'lines' && options.lineStyle === 'uniform';
@@ -203,13 +212,15 @@ export function buildScene(
             ? 'mixed'
             : 'required';
     const dash: SceneEdge['dash'] = edge.targetPair ? 'frame' : grade === 'situational' || grade === 'mixed' ? grade : 'none';
+    const emphasized = emphasisActive && options.emphasis.includes(edge.kind ?? '');
     return {
       ...edge,
       drawn: !countsOnly || on || selection.connection === edge.path,
       d,
       points,
       on,
-      emphasized: emphasisActive && options.emphasis.includes(edge.kind ?? ''),
+      emphasized,
+      onDemand: options.connections === 'relations' && !emphasized && onlyMarksADistinction(edge),
       dash,
       grade,
       paint: edge.targetPair ? 'frame' : edge.rolled ? 'rolled' : 'element',
@@ -257,8 +268,10 @@ const drawnEdgeEachLegendRowDescribes: Record<LegendRow, (edge: SceneEdge) => bo
   links: (edge) => holdingDrawn(edge) === 'links',
 };
 
-export const legendRows = (scene: Scene): LegendRow[] =>
-  LEGEND_ROWS.filter((row) => scene.edges.some((edge) => edge.drawn && drawnEdgeEachLegendRowDescribes[row](edge)));
+export const legendRows = (scene: Scene, treatments?: ReadonlyMap<string, EdgeEmphasis>): LegendRow[] =>
+  LEGEND_ROWS.filter((row) =>
+    scene.edges.some((edge) => edge.drawn && treatments?.get(edge.path) !== 'hidden' && drawnEdgeEachLegendRowDescribes[row](edge)),
+  );
 
 export function subjectBounds(scene: Scene, selection: Selection): Rect | null {
   const subject = selection.entity || nubOwnerCard(selection.connection) || selection.option;

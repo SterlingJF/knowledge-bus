@@ -1,0 +1,400 @@
+# The product-development universe's answers for the recognition check: for each set, the value
+# each shared case in cases.yaml belongs to, labelled against the meanings below. Labelled blind
+# on both sides; a case is kept only where both agree. Written by tools/evals/intake.py apply.
+# Changing a meaning, or the universe's values, makes a set's answers stale until relabelled. The
+# last apply kept 31 of 31. Answers per set: phase 36; time-separation 31; reversibility 19;
+# uptake 19; authority 40; maturity 25; outcome.form 20; audience 28; outcome.replication 18;
+# outcome.mutability 16. Status: development situations, interim.
+schema: evals-answers/1
+universe: product-development
+field: product-development
+frames:
+  phase:
+    fingerprint: sha256:0444344a02067e9f
+    means:
+      strategy: Knowledge about the direction and footing of the whole effort, such as what it stands
+        for, the lasting change it aims for, how it pays its way and who funds it, how it reaches people,
+        what it must own, do or rely on others for, what keeps it ahead of rivals, which tempting paths
+        it turns down, which outside conditions bear on it, and whose approval or licence it needs.
+      discovery: Knowledge gathered before any answer is chosen, about one problem and the people who
+        have it, such as which groups it affects, how real, how big and how pressing it is, what those
+        people use today instead, measurements of how things stand now, what they are trying to achieve,
+        what could harm the effort or prove untrue, and predictions to test.
+      design: Knowledge about the chosen answer and the choices behind it, such as what it lets people
+        do, what is in, deferred or out, which options were weighed and by what criteria, what was decided
+        and what would reopen it, the limits and requirements it must respect, the look and wording rules
+        of its brand, how others handled similar problems, and questions still open.
+      validation: Knowledge about checking results, such as the measures, targets and success conditions
+        that show whether the answer delivers what it promised once people use it, the ranges those measures
+        must stay within, and how each quantity is measured.
+      architecture: Knowledge about the inside of the solution, such as what it is and is not responsible
+        for, its components and what each one is responsible for, how they connect, what information passes
+        between them, and the named categories it uses.
+      operate: Knowledge for putting the result into use and looking after it afterwards, such as how
+        it is rolled out and to whom first, who looks after it, the routines it needs and what to do when
+        it breaks.
+    answers:
+      s-1d2f7fa: strategy
+      s-393c6fc: strategy
+      s-8fb5823: strategy
+      s-8afc9a8: strategy
+      s-2935114: strategy
+      s-388b8fd: discovery
+      s-8f97f37: discovery
+      s-30ed9b3: discovery
+      s-c8c6632: discovery
+      s-eae350d: discovery
+      s-646b488: discovery
+      s-99d7942: design
+      s-1b77779: design
+      s-b0ed85a: design
+      s-f06513d: design
+      s-14187eb: design
+      s-4e0e4d1: design
+      s-fba5932: validation
+      s-0f2ba4a: validation
+      s-9abd39d: validation
+      s-794a6f9: validation
+      s-ed89100: validation
+      s-c44d389: validation
+      s-d3462ba: validation
+      s-6876e4f: architecture
+      s-9e2c6aa: architecture
+      s-41a65eb: architecture
+      s-89950dd: architecture
+      s-e77ed0a: architecture
+      s-a2e7a6d: architecture
+      s-59554ee: operate
+      s-7356094: operate
+      s-8639edc: operate
+      s-6c8c625: operate
+      s-ae842cf: operate
+      s-ed195cc: operate
+  time-separation:
+    ladder: true
+    fingerprint: sha256:e2f38ce8c63c68fa
+    means:
+      none: Nobody will later need to retrace why it was done this way, not even the person who thought
+        it through; the thinking is used up in the moment.
+      across-sessions: The furthest later reader is the same person who thought it through, coming back
+        after hours, months or years; nobody else will need it.
+      across-people: The furthest later reader is someone else inside the same circle, meaning the household,
+        team, club or company that did the thinking, such as a housemate, colleague or successor; nobody
+        outside that circle will need it.
+      across-organisations: The furthest later reader sits outside the circle that did the thinking, such
+        as a client, an auditor, another company or an unknown reader years on.
+    answers:
+      s-73ea1bf: none
+      s-6397b15: {value: none, near: across-sessions}
+      s-2acd52b: {value: none, near: across-sessions}
+      s-d8dd03f: none
+      s-af6c1e8: none
+      s-dddecb8: none
+      s-c41cec2: none
+      s-9fc531c: across-sessions
+      s-18f690b: across-sessions
+      s-1fb74ea: across-sessions
+      s-428b4a0: across-sessions
+      s-0b46f4e: {value: across-sessions, near: none}
+      s-5017099: {value: across-sessions, near: across-people}
+      s-85e2388: across-people
+      s-269351f: across-people
+      s-a422961: across-people
+      s-2f592bf: across-people
+      s-5dbe19c: across-people
+      s-168d0b6: {value: across-people, near: across-sessions}
+      s-2b53bc9: {value: across-people, near: across-organisations}
+      s-31eb4b6: {value: across-organisations, near: across-people}
+      s-610ef8f: across-organisations
+      s-fbaf3fc: across-organisations
+      s-ec71e15: across-organisations
+      s-253bf3e: {value: across-organisations, near: across-people}
+      s-f7a1f15: across-organisations
+      s-a94599e: across-organisations
+      s-c7f0e43: across-organisations
+      s-267c5f7: across-organisations
+      s-d5c9cdd: across-organisations
+      s-9b2333d: across-organisations
+  reversibility:
+    ladder: true
+    fingerprint: sha256:261a8b8b99b3eb42
+    means:
+      reversible: The move can be taken back quickly and cheaply, leaving things much as they were, so
+        trying it and backing out is nearly free.
+      costly: The move can still be taken back, but only by losing real money, time, effort or goodwill
+        along the way.
+      irreversible: Once done, the move cannot be taken back at any price, because what it changed or
+        used up is gone for good.
+    answers:
+      s-2f38532: reversible
+      s-7127c05: reversible
+      s-8633a6a: reversible
+      s-ed8de4b: reversible
+      s-8583047: reversible
+      s-59bd7a6: costly
+      s-441f5d2: costly
+      s-4b5e086: costly
+      s-be86557: {value: costly, near: reversible}
+      s-f9a4df6: {value: costly, near: irreversible}
+      s-7ae9316: {value: irreversible, near: costly}
+      s-afe76e6: irreversible
+      s-9b6a3be: {value: irreversible, near: costly}
+      s-2d715ab: irreversible
+      s-7723de8: irreversible
+      s-e26fa02: irreversible
+      s-b1ccec7: irreversible
+      s-92665f4: {value: reversible, near: costly}
+      s-0e91316: {value: reversible, near: costly}
+  uptake:
+    fingerprint: sha256:314ce526cd2be815
+    means:
+      given: Those it is for receive it as a matter of course, by rule, by default or by someone else's
+        call, with no real option to opt out, even if they must pay for it.
+      chosen: Those it is for are free to use it or ignore it, and using it costs them no money, only
+        their time, attention or effort.
+      bought: Those it is for are free to buy it or do without, and getting it means handing over money,
+        as a price, a fee or a subscription.
+    answers:
+      s-8a10565: given
+      s-8022b23: given
+      s-570c6b7: given
+      s-eb453a3: given
+      s-2a4cbc3: given
+      s-63da2d5: given
+      s-fa15be6: given
+      s-f476466: chosen
+      s-054bd72: chosen
+      s-4783303: chosen
+      s-059adc7: chosen
+      s-9c66076: chosen
+      s-c97db3e: chosen
+      s-cde32ea: chosen
+      s-73fa1d0: bought
+      s-ea665b3: bought
+      s-b112707: bought
+      s-9c84464: bought
+      s-ad82ad9: bought
+  authority:
+    ladder: true
+    fingerprint: sha256:a840e099da882807
+    means:
+      none: The person or group doing it can just proceed; nobody else has any reason to be consulted
+        or informed beforehand, because it touches nobody else's say or interests.
+      discretionary: Others are affected or might like a say, so checking with them beforehand is a considerate
+        step, but it may be dropped, and proceeding unannounced breaks no rule, agreement or law.
+      notify: Another party must be informed beforehand, because a rule, agreement or law says so, but
+        they have no power to stop it, so once informed the doer may proceed even over their objection.
+      approve: A particular person or body, such as a manager, client, committee, landlord or co-owner,
+        must agree beforehand because an agreement, role or house rule gives them that say, and they can
+        stop it by saying no.
+      statutory: The law itself sets the condition, so a permit, licence or legal consent must be granted
+        beforehand, by an official body or by a person the law names, and proceeding before it is granted
+        is unlawful.
+    answers:
+      s-7d31dfd: none
+      s-be3e256: none
+      s-be30caa: none
+      s-a67382f: none
+      s-28b9de1: none
+      s-fa2a6aa: {value: none, near: discretionary}
+      s-ba5184c: none
+      s-6ae1b20: {value: none, near: discretionary}
+      s-a78a20d: none
+      s-229e071: {value: discretionary, near: none}
+      s-b05538a: {value: discretionary, near: notify}
+      s-a02bac4: discretionary
+      s-46081f1: discretionary
+      s-8fd30f3: discretionary
+      s-4a171e9: {value: notify, near: approve}
+      s-455a7a5: {value: notify, near: approve}
+      s-850f021: {value: notify, near: approve}
+      s-52c9dca: notify
+      s-08c13e3: notify
+      s-c9b5737: {value: notify, near: discretionary}
+      s-c01f0e0: approve
+      s-1756498: approve
+      s-e851d58: approve
+      s-aeef2ac: approve
+      s-d1af880: approve
+      s-f138c16: {value: approve, near: statutory}
+      s-7e9a38e: {value: approve, near: statutory}
+      s-17ab42c: {value: approve, near: notify}
+      s-c264ee7: {value: statutory, near: approve}
+      s-e97b82d: {value: statutory, near: approve}
+      s-c27a39e: statutory
+      s-27e99e8: statutory
+      s-3edb519: statutory
+      s-11142e6: statutory
+      s-e33915c: {value: statutory, near: approve}
+      s-87da0c3: {value: statutory, near: approve}
+      s-32121db: statutory
+      s-1c74a3c: statutory
+      s-892ca0b: statutory
+      s-22f3b88: statutory
+  maturity:
+    ladder: true
+    fingerprint: sha256:fe7ccde3239c1138
+    means:
+      unproven: There is no real evidence yet that the main premise behind the effort holds for those
+        it is for; it is still a guess, being tested or not yet tried.
+      proven: Real use with people like those it is for has shown the main premise holds, and the effort
+        is repeating or refining it at about that size.
+      scaling: With the premise already shown to hold, the effort is now deliberately widening its reach
+        well beyond the size at which that was shown, to many more users, places or volume, and keeping
+        it sound as it grows.
+    answers:
+      s-cd879fe: unproven
+      s-8fbd4e1: unproven
+      s-8d135d7: unproven
+      s-a1f4ef8: unproven
+      s-d38ce02: unproven
+      s-669e5d0: unproven
+      s-001f15c: unproven
+      s-87a81c3: unproven
+      s-de2e049: proven
+      s-c818bd8: {value: proven, near: unproven}
+      s-dafa654: proven
+      s-c013995: proven
+      s-e7dea9c: proven
+      s-2de5093: {value: proven, near: scaling}
+      s-52692bf: scaling
+      s-bf806d1: scaling
+      s-e06173d: scaling
+      s-5d20421: scaling
+      s-55cf836: scaling
+      s-360c69e: {value: scaling, near: proven}
+      s-42e31b0: scaling
+      s-d13ec30: scaling
+      s-d63326c: {value: unproven, near: proven}
+      s-23b6f58: {value: unproven, near: proven}
+      s-bd0868f: {value: unproven, near: proven}
+  outcome.form:
+    fingerprint: sha256:467d5a584a6a827b
+    means:
+      creation: The result is a made piece, such as an object, building, program or document, whose worth
+        lies in the piece itself; it is handed over or put in place and goes on existing after its makers
+        step away.
+      service: The result is the doing itself, carried out for someone as they receive it, such as care,
+        coaching, repair, teaching or transport; once it is done, no new made piece or stated conclusion
+        is left to hand over.
+      finding: The result is something learned and stated, such as an answer, a measurement, a diagnosis
+        or a tested conclusion, whose worth lies in being true and relied on; any document carrying it
+        is only the vehicle.
+    answers:
+      s-baac0ed: creation
+      s-56d550b: creation
+      s-028b619: creation
+      s-5bbc5fe: creation
+      s-3ff908b: creation
+      s-42c5c2b: service
+      s-ca7026a: service
+      s-30cbe0b: service
+      s-48c3c0d: service
+      s-332b784: service
+      s-bbec40b: service
+      s-578fe78: service
+      s-acc3798: service
+      s-eb016ad: finding
+      s-2ff6765: finding
+      s-16ad40a: finding
+      s-e40ae78: finding
+      s-41e9a79: finding
+      s-06301e4: finding
+      s-d48339a: finding
+  audience:
+    fingerprint: sha256:f567a19d62b7c2fe
+    means:
+      self: The write-up is for the person who wrote it, as their own notes, plan or reminder, and nobody
+        else is meant to read it.
+      internal: The write-up goes to others on the same side who share the aim, such as teammates, managers,
+        family members or fellow club members.
+      counterparty: The write-up goes to an outside party on the other side of a deal or arrangement,
+        such as a client, supplier, partner firm, funder or landlord, who has interests of their own.
+      regulator: The write-up goes to an official body that oversees, licenses or inspects, to be checked
+        against rules it enforces.
+      public: The write-up goes to anyone at all who comes across it, such as readers of a published notice,
+        a website or a talk, with no particular tie to the writers.
+    answers:
+      s-411a69c: self
+      s-1733fa5: self
+      s-57cc568: self
+      s-96357dd: self
+      s-2224d16: self
+      s-f248260: self
+      s-1a2347e: internal
+      s-ec49a51: internal
+      s-b8e6f3b: internal
+      s-fca66f3: internal
+      s-1fca19f: internal
+      s-c2c992d: counterparty
+      s-285fc19: counterparty
+      s-eed6439: counterparty
+      s-960e1ec: counterparty
+      s-c54d7c8: counterparty
+      s-d5c9cdd: counterparty
+      s-6889084: regulator
+      s-c5b761d: regulator
+      s-b40e64c: regulator
+      s-3f3fc79: regulator
+      s-e1cff4b: regulator
+      s-6c58ce1: regulator
+      s-267c5f7: public
+      s-b7f3dff: public
+      s-9740c74: public
+      s-9b2333d: public
+      s-c1af13c: public
+  outcome.replication:
+    fingerprint: sha256:b8bcb259622df73b
+    means:
+      singular: One unique instance is made or done for one place, client or occasion, and a second one
+        would be a fresh effort.
+      serial: The same design is made or done again and again in counted runs, each copy or session taking
+        its own materials or labour.
+      unbounded: Once it exists, any number of copies or uses can be had at almost no extra effort each,
+        such as a downloadable app, a published recipe or a recorded lesson.
+    answers:
+      s-8b7577a: singular
+      s-ae5ff64: singular
+      s-6feb887: singular
+      s-1e1857a: singular
+      s-af79b65: singular
+      s-b908ab8: singular
+      s-06d09e8: serial
+      s-36e5330: serial
+      s-6cdc2c5: serial
+      s-b3ebd53: serial
+      s-89c107e: serial
+      s-958695f: serial
+      s-d2a014c: unbounded
+      s-13f16c2: unbounded
+      s-d61be7a: unbounded
+      s-5fe4118: unbounded
+      s-415d3c1: unbounded
+      s-889f611: unbounded
+  outcome.mutability:
+    fingerprint: sha256:5eb1bb5cb3a22d12
+    means:
+      fixed-at-delivery: Once handed over it stays exactly as it was made, and any change means a recall,
+        a replacement or a new edition.
+      field-updatable: After handover it can be changed where it is already in use, now and then in separate
+        planned rounds such as a patch, a refit or a revised rulebook sent to existing holders.
+      continuously-deployed: Changes flow into the version in use so often and so smoothly that there
+        is no separate round; it is simply always being changed, and there is never a final handed-over
+        form.
+    answers:
+      s-8e7df19: fixed-at-delivery
+      s-0cfdcce: fixed-at-delivery
+      s-00c90ce: fixed-at-delivery
+      s-ced0fb2: fixed-at-delivery
+      s-ee9ced6: field-updatable
+      s-5dd70d4: field-updatable
+      s-8840345: field-updatable
+      s-f09e5a0: field-updatable
+      s-b1c35a9: field-updatable
+      s-e83f5ec: field-updatable
+      s-dde1a35: field-updatable
+      s-836f127: continuously-deployed
+      s-d6c6326: continuously-deployed
+      s-1bba769: continuously-deployed
+      s-5995b98: continuously-deployed
+      s-00beddc: continuously-deployed

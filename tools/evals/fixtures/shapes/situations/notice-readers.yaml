@@ -1,0 +1,44 @@
+# Test fixture for the eval tooling: notice-readers' answers over cases.yaml.
+schema: evals-answers/1
+universe: notice-readers
+field: notice-readers
+factors:
+  familiarity:
+    fingerprint: sha256:3aae80559d5586a1
+    means:
+      newcomer: The reader meets the topic for the first time.
+      regular: The reader has met the same topic before, as a member of the public.
+      specialist: The topic is the reader's trade or profession.
+    answers:
+      n01: newcomer
+      n02: newcomer
+      n03: newcomer
+      n04: newcomer
+      n05: regular
+      n06: regular
+      n07: regular
+      n08: regular
+      n09: specialist
+      n10: specialist
+      n11: specialist
+      n12: specialist
+      n13: newcomer
+  attention:
+    fingerprint: sha256:2a478143076e7074
+    means:
+      glance: The reader takes in a few words in passing.
+      close-reading: The reader goes through every part with care.
+    answers:
+      n01: glance
+      n02: close-reading
+      n03: close-reading
+      n04: glance
+      n05: glance
+      n06: close-reading
+      n07: glance
+      n08: glance
+      n09: close-reading
+      n10: close-reading
+      n11: close-reading
+      n12: glance
+      n13: close-reading

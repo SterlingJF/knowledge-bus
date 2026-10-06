@@ -11,23 +11,38 @@ import {
   buildScene,
   holdingDrawn,
   legendRows,
+  onlyMarksADistinction,
 } from '@/src/lib/scene';
 import { type Holding } from '@/src/lib/composition-grouping';
 import { type Boundary, type Layout, boundaryHeads, layoutFor, roleOfTheBoundaryEachCardStandsIn } from '@/src/lib/layout';
 import { connectedLayout } from '@/src/lib/connected-layout';
+import { type EdgeEmphasis, emphasise } from '@/src/lib/emphasis';
 import { type ExplorerModel, type Entity, type ViewOptions, emptySelection, initialOptions, updateOptions } from '@/src/lib/model';
-import { buildFresh, everyState, geometryStates, labelStates, model, routeStates, sceneFor, type RenderState } from './render-states';
+import {
+  buildFresh,
+  everyState,
+  geometryStates,
+  labelStates,
+  model,
+  renderStates,
+  routeStates,
+  sceneFor,
+  type RenderState,
+} from './render-states';
 
 const cardRect = (c: { x: number; y: number; w: number; h: number }): Rect => ({ x: c.x, y: c.y, w: c.w, h: c.h });
 const cardsOf = (scene: Scene) => scene.layout.cards.map(cardRect);
 const labelBoxes = (scene: Scene) => scene.labels.map((l) => l.box);
 
-const crossingsOfTheSameEdges = new WeakMap<SceneEdge[], Point[]>();
+const crossingsOfTheSameEdges = new WeakMap<SceneEdge[], Map<string, Point[]>>();
 
-function crossings(edges: SceneEdge[]): Point[] {
-  const seen = crossingsOfTheSameEdges.get(edges);
+function crossings(edges: SceneEdge[], visible: (edge: SceneEdge) => boolean = () => true): Point[] {
+  const drawn = edges.filter((e) => e.drawn && e.points.length > 1 && visible(e));
+  const key = drawn.map((e) => e.path).join('\n');
+  const byVisible = crossingsOfTheSameEdges.get(edges) ?? new Map<string, Point[]>();
+  crossingsOfTheSameEdges.set(edges, byVisible);
+  const seen = byVisible.get(key);
   if (seen) return seen;
-  const drawn = edges.filter((e) => e.drawn && e.points.length > 1);
   const segments = drawn.map((e) => e.points.slice(1).map((p, i) => ({ a: e.points[i], b: p })));
   const meeting = (s: { a: Point; b: Point }, t: { a: Point; b: Point }): Point | null => {
     const sH = s.a.y === s.b.y;
@@ -46,7 +61,7 @@ function crossings(edges: SceneEdge[]): Point[] {
           const p = meeting(s, t);
           if (p) found.push(p);
         }
-  crossingsOfTheSameEdges.set(edges, found);
+  byVisible.set(key, found);
   return found;
 }
 
@@ -203,8 +218,15 @@ const drawnEdgeTheSwatchDescribes: Record<LegendRow, (edge: SceneEdge) => boolea
   links: (edge) => holdingDrawn(edge) === 'links',
 };
 
-const legendRowDescribingNothingDrawn = (rows: readonly LegendRow[], scene: Scene): string | null => {
-  const drawn = scene.edges.filter((e) => e.drawn);
+const shownBy = (scene: Scene, shown?: ReadonlyMap<string, EdgeEmphasis>): SceneEdge[] =>
+  scene.edges.filter((e) => e.drawn && shown?.get(e.path) !== 'hidden');
+
+const legendRowDescribingNothingDrawn = (
+  rows: readonly LegendRow[],
+  scene: Scene,
+  shown?: ReadonlyMap<string, EdgeEmphasis>,
+): string | null => {
+  const drawn = shownBy(scene, shown);
   const unmatched = rows.filter((row) => !drawn.some(drawnEdgeTheSwatchDescribes[row]));
   return unmatched.length ? `legend row ${unmatched.join(' and ')} describes nothing this scene draws` : null;
 };
@@ -241,8 +263,12 @@ const marksADrawnEdgeShows = (edge: SceneEdge): DrawnMark[] => {
   ];
 };
 
-const drawnMarkNoMountedRowExplains = (rows: readonly LegendRow[], scene: Scene): string | null => {
-  for (const edge of scene.edges.filter((e) => e.drawn))
+const drawnMarkNoMountedRowExplains = (
+  rows: readonly LegendRow[],
+  scene: Scene,
+  shown?: ReadonlyMap<string, EdgeEmphasis>,
+): string | null => {
+  for (const edge of shownBy(scene, shown))
     for (const mark of marksADrawnEdgeShows(edge)) {
       const row = rowExplainingDrawnMark[mark];
       if (row === NO_ROW_DESCRIBES_IT) return `${edge.path} draws ${mark}, and ${NO_ROW_DESCRIBES_IT}`;
@@ -518,16 +544,36 @@ each(routeStates(), 'P3 no drawn route passes through a card', (scene) => {
   return null;
 });
 
-each(labelStates(), 'P4 no label box contains an intersection of two drawn routes', (scene) => {
-  const points = crossings(scene.edges);
-  for (const label of scene.labels) {
+function labelOverAVisibleCrossing(scene: Pick<Scene, 'edges' | 'labels'>, shown: Map<string, EdgeEmphasis>): string | null {
+  const visible = (path: string) => shown.get(path) !== 'hidden';
+  const points = crossings(scene.edges, (e) => visible(e.path));
+  for (const label of scene.labels.filter((l) => visible(l.edge))) {
     const hit = points.find(
       (p) => p.x >= label.box.x && p.x <= label.box.x + label.box.w && p.y >= label.box.y && p.y <= label.box.y + label.box.h,
     );
     if (hit) return `label "${label.text}" on ${label.edge} covers a crossing at ${hit.x},${hit.y}`;
   }
   return null;
+}
+
+test('a label over a crossing of two hidden routes is not reported, and one over a crossing of two visible routes is', () => {
+  const route = (path: string, from: Point, to: Point) => ({ path, drawn: true, points: [from, to] }) as SceneEdge;
+  const across = route('across', { x: 0, y: 50 }, { x: 100, y: 50 });
+  const down = route('down', { x: 50, y: 0 }, { x: 50, y: 100 });
+  const labelled = route('labelled', { x: 0, y: 200 }, { x: 100, y: 200 });
+  const label = { edge: 'labelled', text: 'Balances', numeric: false, anchor: { x: 50, y: 50 }, box: { x: 40, y: 40, w: 20, h: 20 } };
+  const scene = { edges: [across, down, labelled], labels: [label] };
+  const shown = (hidden: string[]) =>
+    new Map<string, EdgeEmphasis>(scene.edges.map((e) => [e.path, hidden.includes(e.path) ? 'hidden' : 'active']));
+  assert.equal(labelOverAVisibleCrossing(scene, shown(['across', 'down'])), null);
+  assert.equal(labelOverAVisibleCrossing(scene, shown(['across'])), null);
+  assert.equal(labelOverAVisibleCrossing(scene, shown([])), 'label "Balances" on labelled covers a crossing at 50,50');
+  assert.equal(labelOverAVisibleCrossing(scene, shown(['labelled'])), null, 'a hidden label covers nothing');
 });
+
+each(labelStates(), 'P4 no label box the state shows contains an intersection of two routes it shows', (scene, state) =>
+  labelOverAVisibleCrossing(scene, emphasise(scene, state.selection, '').edges),
+);
 
 each(labelStates(), 'P5 no label box overlaps a card, a boundary heading, or another label', (scene) => {
   const cards = [...cardsOf(scene), ...boundaryHeads(scene.layout)];
@@ -605,9 +651,47 @@ each(
   (scene) => boundaryNotSizedFromWhatDeclaresIt(scene.layout, gapsEveryBoundaryGets),
 );
 
-each(everyState(), "P11 every drawn edge's paint and dash is described by a row the legend mounts", (scene) =>
-  drawnMarkNoMountedRowExplains(legendRows(scene), scene),
+const shownAtRest = (scene: Scene, state: RenderState) => emphasise(scene, state.selection, '').edges;
+
+each(everyState(), "P11 every drawn edge's paint and dash the state shows is described by a row the legend mounts", (scene, state) =>
+  drawnMarkNoMountedRowExplains(legendRows(scene, shownAtRest(scene, state)), scene, shownAtRest(scene, state)),
 );
+
+each(everyState(), 'P11 no row the legend mounts describes only edges the state does not show', (scene, state) =>
+  legendRowDescribingNothingDrawn(legendRows(scene, shownAtRest(scene, state)), scene, shownAtRest(scene, state)),
+);
+
+test('a legend row describing only connections the state hides is reported, and the mounted legend drops it', () => {
+  const state = firstStateWhere(
+    (s) => s.edges.some((e) => e.drawn && e.paint === 'rolled') && s.edges.some((e) => e.drawn && e.paint === 'element'),
+  );
+  const scene = sceneFor(state);
+  const hidingRolled = new Map<string, EdgeEmphasis>(scene.edges.map((e) => [e.path, e.paint === 'rolled' ? 'hidden' : 'rest']));
+  assert.equal(legendRowDescribingNothingDrawn(['direct', 'rolled'], scene), null, `${state.name} draws both paints`);
+  assert.equal(
+    legendRowDescribingNothingDrawn(['direct', 'rolled'], scene, hidingRolled),
+    'legend row rolled describes nothing this scene draws',
+  );
+  assert.deepEqual(legendRows(scene, hidingRolled), ['direct']);
+  assert.equal(drawnMarkNoMountedRowExplains(['direct'], scene, hidingRolled), null, 'a hidden edge needs no row');
+});
+
+test('at rest the relation legend describes only what is shown once distinctions wait for a selection', () => {
+  for (const state of renderStates().filter((s) => s.options.connections === 'relations' && s.name.endsWith('no selection'))) {
+    const scene = sceneFor(state);
+    const shown = shownAtRest(scene, state);
+    const distinctions = scene.edges.filter((e) => e.drawn && onlyMarksADistinction(e));
+    assert.ok(
+      distinctions.every((e) => shown.get(e.path) === 'hidden'),
+      `${state.name}: no distinction is shown at rest`,
+    );
+    assert.deepEqual(
+      legendRows(scene, shown),
+      LEGEND_ROWS.filter((row) => scene.edges.some((e) => e.drawn && !onlyMarksADistinction(e) && drawnEdgeTheSwatchDescribes[row](e))),
+      state.name,
+    );
+  }
+});
 
 test('the stylesheet gives the ground to the boundary roles that name a frame or one of its values, and to no other', () => {
   assert.deepEqual([...groundedRoles].sort(), BOUNDARY_ROLES.filter(boundaryNamesAFrameOrOneOfItsValues).sort());

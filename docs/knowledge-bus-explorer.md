@@ -8,15 +8,17 @@ Every render produces a single HTML file. Open it directly: it needs no server a
 
 Three views sit behind the tabs at the top:
 
-- **Dimensions** — the frames the universe is indexed by, with the ordering frame and its values nested among them, the exceptions that mean no artifact is needed, and any declared factors.
+- **Dimensions** — the frames the universe is indexed by, with the ordering frame and its values nested among them, a *When to skip the artifact* section holding the frame values under which no artifact is needed, and any declared factors.
 - **Artifacts** — document types alone, arranged so connected ones sit near each other, with element-level relations rolled up onto them.
 - **Artifacts & Elements** — both, with elements grouped by the ordering frame.
 
+Selecting the universe's name opens its overview: what it covers, who it is for, what it leaves out, its terms, and a reminder that the map shows declarations without evaluating your situation.
+
 ## Reading Connections
 
-Each card shows a count of its connections by default. Switching Display to Lines draws the routes instead, labelled with the wording the universe authors declared. Composition can be shown uniformly or with required and situational membership distinguished, with a legend explaining the strokes.
+Each card shows a count of its connections by default. Switching Display to Lines draws the routes instead, labelled with the wording the universe authors declared. Composition can be shown uniformly or with required and situational membership distinguished, with a legend explaining the strokes. Distinctions (`distinct-from`) stay hidden until you select a card or connection that has one, or emphasise them in the menu.
 
-Selecting a card, a connection, a count or a group heading opens its details and frames the selected set beside the panel. Details give the requirement, where the answer is kept, any conditions that apply, and related knowledge in the universe's own phrasing. Long lists start at three entries with the rest one click away.
+Selecting a card, a connection, a count or a group heading opens its details and frames the selected set beside the panel. Details give the requirement, where the answer is kept, any conditions that apply, related knowledge in the universe's own phrasing, and guidance notes with their kind and source. Long lists start at three entries with the rest one click away.
 
 Close the panel, press Escape, or press an empty part of the canvas to return to the overview.
 

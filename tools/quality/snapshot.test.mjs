@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { checkSnapshots, exportSnapshot, prepareTools, pushTips, runPushChecks } from './snapshot.mjs';
+import { checkSnapshots, exportSnapshot, nodeVersionProblem, prepareTools, pushTips, runPushChecks } from './snapshot.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const zero = '0'.repeat(40);
@@ -43,6 +43,17 @@ function state(cwd) {
     staged: git(cwd, 'diff', '--cached', '--binary'),
   };
 }
+
+test('hooks stop early with a clear message when Node is older than package.json engines', () => {
+  const message = nodeVersionProblem('>=22', '16.13.2', '/old/node');
+  assert.match(message, /need Node 22 or newer/);
+  assert.match(message, /running Node 16\.13\.2 \(\/old\/node\)/);
+  assert.match(message, /CONTRIBUTING\.md, Git Hooks/);
+  assert.equal(nodeVersionProblem('>=22', '22.0.0', '/node'), null);
+  assert.equal(nodeVersionProblem('>=22', '24.21.0', '/node'), null);
+  assert.equal(nodeVersionProblem('>=22', '21.9.0', '/node') === null, false);
+  assert.throws(() => nodeVersionProblem('latest', '24.0.0', '/node'), /engines\.node/);
+});
 
 test('staged snapshots preserve partial staging, additions, deletions and renames', async (t) => {
   const cwd = repository(t);
@@ -108,7 +119,7 @@ test('pre-push selects unique outgoing branch tips, not HEAD, tags or deletions'
     seen.push([readFileSync(path.join(snapshot, 'value.txt'), 'utf8'), script]);
     return 0;
   } }), 0);
-  const scripts = ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts'];
+  const scripts = ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts', 'check:explorer:gallery'];
   assert.deepEqual(seen, ['valid', 'second'].flatMap((value) => scripts.map((script) => [value, script])));
 });
 
@@ -124,7 +135,7 @@ test('pre-push overlaps unit tests, waits for bundle readers, and reports failur
   let settled = false;
   void pending.then(() => { settled = true; });
   await new Promise((resolve) => setImmediate(resolve));
-  assert.deepEqual(seen, ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts']);
+  assert.deepEqual(seen, ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts', 'check:explorer:gallery']);
   assert.equal(settled, false);
   finishUnit(1);
   assert.equal(await pending, 1);
@@ -169,6 +180,7 @@ function hookedRepository(t) {
     'render:explorer': 'node verify.mjs',
     'test:explorer:browser': 'node verify.mjs',
     'check:explorer:artifacts': 'node verify.mjs',
+    'check:explorer:gallery': 'node verify.mjs',
   } }));
   write(cwd, 'justfile', 'check-staged:\n    node tools/quality/snapshot.mjs staged\ncheck-push:\n    node tools/quality/snapshot.mjs push\n');
   write(cwd, 'verify.mjs', `import { readFileSync } from 'node:fs';

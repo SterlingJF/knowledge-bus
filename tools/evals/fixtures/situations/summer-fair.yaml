@@ -1,0 +1,44 @@
+# Test-only answers for tools/evals/fixtures/summer-fair.universe.yaml, over cases.yaml. Invented.
+schema: evals-answers/1
+universe: summer-fair
+field: summer-fair
+frames:
+  entry:
+    fingerprint: sha256:f9e3d6541c54f89a
+    means:
+      open: Nothing stands between a passer-by and the stall or act.
+      ticketed: Money changes hands before a person is let in.
+      invited: Only people asked in advance are let in.
+    answers:
+      c01: open
+      c02: open
+      c03: open
+      c04: open
+      c05: ticketed
+      c06: ticketed
+      c07: ticketed
+      c08: ticketed
+      c09: invited
+      c10: invited
+      c11: invited
+      c12: invited
+  permission:
+    ladder: true
+    fingerprint: sha256:3d0cac78c02fdcec
+    means:
+      nobody: The stall or act can go ahead without anyone's yes.
+      organiser: The fair committee must say yes first.
+      council: A licence from the local authority must come first.
+    answers:
+      c13: nobody
+      c14: nobody
+      c15: nobody
+      c16: {value: nobody, near: organiser}
+      c17: {value: organiser, near: nobody}
+      c18: organiser
+      c19: {value: organiser, near: council}
+      c20: organiser
+      c21: {value: council, near: organiser}
+      c22: council
+      c23: council
+      c24: council

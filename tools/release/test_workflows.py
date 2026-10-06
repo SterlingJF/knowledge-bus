@@ -42,7 +42,7 @@ def test_ci_checks_aggregate_every_split_lane_and_keep_outputs():
     }
     assert all(
         f"pnpm run {script}" in commands["checks-static"]
-        for script in ("check:fast", "check:plugins", "test")
+        for script in ("check:fast", "check:plugins", "test", "check:explorer:gallery")
     )
     assert all(
         command in commands["checks-static"]

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { type CardEmphasis, type EdgeEmphasis, emphasise } from '@/src/lib/emphasis';
-import { type Selection, emptySelection } from '@/src/lib/model';
+import { type DisplayEdge, type Selection, type ViewOptions, emptySelection, initialOptions, updateOptions } from '@/src/lib/model';
 import { type Scene } from '@/src/lib/scene';
 import { renderStates, sceneFor, type RenderState } from './render-states';
 
@@ -109,7 +109,8 @@ function actAs(row: Row, scene: Scene): { selection: Selection; hover: string; s
   if (row.subject.endsWith('card')) {
     kin.add(card);
     for (const other of scene.edges)
-      if (touches(other, card)) for (const id of [other.from, other.to, ...(other.targetPair ?? [])]) kin.add(id);
+      if (touches(other, card) && (row.subject !== 'hovered card' || !onlyADistinction(other)))
+        for (const id of [other.from, other.to, ...(other.targetPair ?? [])]) kin.add(id);
   }
   const pick = {
     none: { selection: emptySelection(), hover: '', subject: '' },
@@ -163,13 +164,17 @@ test('E1 emphasis follows the declared table in every state that draws connectio
       }
       for (const edge of scene.edges) {
         const mine = row.subject.endsWith('connection') ? edge.path === act.subject : touches(edge, act.subject);
-        const want = !act.subject
-          ? row.otherEdges
-          : row.hoveredEdge && edge.path === hovered
-            ? row.hoveredEdge
-            : mine
-              ? (row.itsEdges ?? 'active')
-              : row.otherEdges;
+        const asked = row.subject.endsWith('connection') ? edge.path === act.subject : !!act.selection.entity && mine;
+        const want =
+          state.options.connections === 'relations' && onlyADistinction(edge) && !asked
+            ? 'hidden'
+            : !act.subject
+              ? row.otherEdges
+              : row.hoveredEdge && edge.path === hovered
+                ? row.hoveredEdge
+                : mine
+                  ? (row.itsEdges ?? 'active')
+                  : row.otherEdges;
         compare(shown.edges.get(edge.path), want, `edge ${edge.path}`);
       }
       for (const nub of scene.nubs) {
@@ -258,4 +263,140 @@ test('E2 exactly one subject wins, in the declared order', () => {
   const edgeHoverOverCardHover = emphasise(scene, emptySelection(), edge.path);
   assert.equal(edgeHoverOverCardHover.edges.get(edge.path), 'active', 'a hovered connection is the subject, not its cards');
   assert.notEqual(edgeHoverOverCardHover.cards.get(edge.from), 'active');
+});
+
+const THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED = 'distinct-from';
+
+const kindsCarried = (edge: DisplayEdge): string[] => (edge.members?.length ? edge.members.flatMap(kindsCarried) : [edge.kind ?? '']);
+
+const onlyADistinction = (edge: DisplayEdge): boolean =>
+  kindsCarried(edge).every((kind) => kind === THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED);
+
+const relationBoard = (tag: string, patch: Partial<ViewOptions>, selection: Selection = emptySelection()): RenderState => ({
+  name: `boundaries on demand · ${tag} · ${JSON.stringify(selection)}`,
+  options: updateOptions(initialOptions(), { connections: 'relations', ...patch }),
+  selection,
+});
+
+const RELATION_BOARDS: { tag: string; patch: Partial<ViewOptions> }[] = [
+  { tag: 'artifacts lines', patch: { view: 'artifacts', display: 'lines' } },
+  { tag: 'artifacts counts', patch: { view: 'artifacts', display: 'counts' } },
+  { tag: 'grouped elements lines', patch: { view: 'elements', group: true, display: 'lines' } },
+  { tag: 'grouped elements counts', patch: { view: 'elements', group: true, display: 'counts' } },
+  { tag: 'flat elements lines', patch: { view: 'elements', group: false, display: 'lines' } },
+];
+
+const selecting = (entity: string): Selection => ({ entity, connection: '', option: '' });
+
+test('V1 at rest no relation view shows a connection that only marks a distinction, and shows every other one', () => {
+  for (const { tag, patch } of RELATION_BOARDS) {
+    const scene = sceneFor(relationBoard(tag, patch));
+    const distinctions = scene.edges.filter(onlyADistinction);
+    assert.ok(distinctions.length > 0, `${tag}: the board must hold a distinction for this case to mean anything`);
+    assert.ok(scene.edges.length > distinctions.length, `${tag}: the board must hold other relations too`);
+    const shown = emphasise(scene, emptySelection(), '');
+    assert.deepEqual(
+      scene.edges.filter((edge) => (shown.edges.get(edge.path) === 'hidden') !== onlyADistinction(edge)).map((edge) => edge.path),
+      [],
+      `${tag}: exactly the distinctions are hidden`,
+    );
+    assert.deepEqual(
+      [...new Set(scene.edges.filter((edge) => !onlyADistinction(edge)).map((edge) => shown.edges.get(edge.path)))],
+      ['rest'],
+    );
+  }
+});
+
+test('V1 a pair of cards carrying a distinction beside another relation is still shown at rest', () => {
+  const scene = sceneFor(relationBoard('artifacts lines', { view: 'artifacts', display: 'lines' }));
+  const mixed = scene.edges.filter(
+    (edge) => kindsCarried(edge).includes(THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED) && !onlyADistinction(edge),
+  );
+  assert.ok(mixed.length > 0, 'the artifacts board must collapse a distinction with another relation for this case to mean anything');
+  const shown = emphasise(scene, emptySelection(), '');
+  assert.deepEqual([...new Set(mixed.map((edge) => shown.edges.get(edge.path)))], ['rest']);
+});
+
+test('V2 selecting a card shows the distinctions that touch it with the selection treatment, and no other distinction', () => {
+  for (const { tag, patch } of RELATION_BOARDS) {
+    const rest = sceneFor(relationBoard(tag, patch));
+    const card = rest.layout.cards.find((c) => rest.edges.some((edge) => onlyADistinction(edge) && touches(edge, c.id)))!.id;
+    const selection = selecting(card);
+    const scene = sceneFor(relationBoard(tag, patch, selection));
+    const shown = emphasise(scene, selection, '');
+    const own = scene.edges.filter((edge) => onlyADistinction(edge) && touches(edge, card));
+    const far = scene.edges.filter((edge) => onlyADistinction(edge) && !touches(edge, card));
+    assert.ok(own.length > 0, `${tag}: ${card} must touch a distinction`);
+    assert.deepEqual([...new Set(own.map((edge) => shown.edges.get(edge.path)))], ['active'], `${tag}: ${card}'s own distinctions`);
+    assert.deepEqual([...new Set(far.map((edge) => shown.edges.get(edge.path)))], far.length ? ['hidden'] : []);
+    for (const edge of own)
+      for (const end of [edge.from, edge.to]) assert.notEqual(shown.cards.get(end), 'dimmed', `${tag}: ${end} is kin of ${card}`);
+  }
+});
+
+test('V3 a distinction rolled up onto the selected artifact is shown with the selection treatment', () => {
+  const patch: Partial<ViewOptions> = { view: 'artifacts', display: 'lines' };
+  const rest = sceneFor(relationBoard('artifacts lines', patch));
+  const rolled = rest.edges.find((edge) => onlyADistinction(edge) && edge.paint === 'rolled');
+  assert.ok(rolled, 'the artifacts board must roll a distinction up onto its artifacts for this case to mean anything');
+  const selection = selecting(rolled.to);
+  const scene = sceneFor(relationBoard('artifacts lines', patch, selection));
+  assert.equal(emphasise(scene, selection, '').edges.get(rolled.path), 'active');
+  assert.equal(
+    emphasise(scene, selection, scene.edges.find((e) => e.path !== rolled.path && touches(e, rolled.to))?.path ?? '').edges.get(
+      rolled.path,
+    ),
+    'rest',
+  );
+});
+
+test('V4 the distinction chip shows every distinction at once, and a selection then hides only what it hides of any relation', () => {
+  for (const { tag, patch } of RELATION_BOARDS) {
+    const chipped = { ...patch, emphasis: [THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED] };
+    const scene = sceneFor(relationBoard(`${tag} chipped`, chipped));
+    const distinctions = scene.edges.filter(onlyADistinction);
+    const shown = emphasise(scene, emptySelection(), '');
+    assert.deepEqual([...new Set(distinctions.map((edge) => shown.edges.get(edge.path)))], ['rest'], tag);
+    assert.ok(
+      distinctions.every((edge) => edge.emphasized),
+      `${tag}: the chip emphasises what it reveals`,
+    );
+    const card = scene.layout.cards.find((c) => scene.edges.some((edge) => !onlyADistinction(edge) && touches(edge, c.id)))!.id;
+    const selection = selecting(card);
+    const selected = sceneFor(relationBoard(`${tag} chipped`, chipped, selection));
+    const settled = emphasise(selected, selection, '');
+    for (const edge of selected.edges)
+      assert.equal(settled.edges.get(edge.path), touches(edge, card) ? 'active' : 'hidden', `${tag}: ${edge.path}`);
+  }
+});
+
+test('V5 a hovered card reveals no distinction, and a card it only distinguishes is not its kin', () => {
+  const patch: Partial<ViewOptions> = { view: 'elements', group: true, display: 'lines' };
+  const scene = sceneFor(relationBoard('grouped elements lines', patch));
+  const card = scene.layout.cards.find((c) => {
+    const distinguished = scene.edges.filter((edge) => onlyADistinction(edge) && touches(edge, c.id)).flatMap((e) => [e.from, e.to]);
+    const related = new Set(scene.edges.filter((edge) => !onlyADistinction(edge) && touches(edge, c.id)).flatMap((e) => [e.from, e.to]));
+    return distinguished.some((id) => id !== c.id && !related.has(id)) && related.size > 0;
+  });
+  assert.ok(card, 'the board must hold a card distinguished from one it has no other relation with');
+  const shown = emphasise(scene, emptySelection(), card.id);
+  const own = scene.edges.filter((edge) => onlyADistinction(edge) && touches(edge, card.id));
+  assert.deepEqual([...new Set(own.map((edge) => shown.edges.get(edge.path)))], ['hidden']);
+  const related = new Set(scene.edges.filter((edge) => !onlyADistinction(edge) && touches(edge, card.id)).flatMap((e) => [e.from, e.to]));
+  for (const id of own.flatMap((edge) => [edge.from, edge.to]).filter((id) => id !== card.id && !related.has(id)))
+    assert.equal(shown.cards.get(id), 'hushed', `${id} is only distinguished from ${card.id}`);
+});
+
+test('V6 showing distinctions on demand moves no route: every edge routes the same with the chip on as at rest', () => {
+  for (const { tag, patch } of RELATION_BOARDS) {
+    const rest = sceneFor(relationBoard(tag, patch));
+    const chipped = sceneFor(relationBoard(`${tag} chipped`, { ...patch, emphasis: [THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED] }));
+    assert.deepEqual(
+      chipped.edges.map((edge) => [edge.path, edge.d, edge.drawn]),
+      rest.edges.map((edge) => [edge.path, edge.d, edge.drawn]),
+      tag,
+    );
+    assert.deepEqual(chipped.labels, rest.labels, tag);
+    assert.deepEqual(chipped.nubs, rest.nubs, tag);
+  }
 });

@@ -57,6 +57,34 @@ skills-check:
 skills-install-check:
     uv run --locked python tools/plugin/check_skills_install.py
 
+# Check the eval spec's structure and the generated runner files.
+evals-check:
+    uv run --locked pytest -q tools/evals
+
+# Regenerate the Claude plugin-eval cases from evals/universe.yaml.
+evals-write:
+    uv run --locked python tools/evals/write_claude.py
+
+# Run the generated Claude cases against the assembled plugin. Calls paid models; pass e.g. --runs 1.
+evals-run-claude *ARGS:
+    uv run --locked python tools/evals/run_claude.py {{ARGS}}
+
+# Play the skills scenarios with a scripted owner, then grade them. Calls paid models; pass e.g. --scenario ID --agent codex --model M.
+evals-play *ARGS:
+    uv run --locked python tools/evals/play.py {{ARGS}}
+
+# Grade a universe; results go to .evidence/. The decision, judgment, sort and recognise tiers call paid models.
+evals-grade universe="universes/product-development/universe.kbp.yaml" tiers="deterministic,decision,judgment,sort,recognise":
+    uv run --locked python tools/evals/grade.py universe --universe {{quote(universe)}} --tiers {{quote(tiers)}}
+
+# Score each tier alone, then the chain, on the owner's labelled examples.
+evals-calibrate slice="universe" tiers="deterministic,decision,judgment,sort,recognise":
+    uv run --locked python tools/evals/grade.py examples --slice {{quote(slice)}} --tiers {{quote(tiers)}}
+
+# Write evals/report.md and evals/results/ from the run folders listed in evals/runs.yaml. Calls no model.
+evals-report:
+    uv run --locked python tools/evals/report.py
+
 # Assemble agent-only npm tarballs. Host: claude, codex, pi, opencode, or all.
 plugin-build host="all":
     uv run --locked python tools/plugin/plugin.py build {{quote(host)}}
@@ -91,13 +119,16 @@ explorer-build: (_pnpm_run 'build:explorer')
 # Render the bundled universe to a self-contained page and a dual-theme SVG.
 explorer-render: (_pnpm_run 'render:explorer')
 
+# Regenerate the README's gallery map and its readable crop (docs/assets/product-development-map*.svg) from the bundled universe.
+explorer-gallery: (_pnpm_run 'render:explorer:gallery')
+
 # Regenerate the explorer token stylesheet from its authority.
 explorer-tokens: (_pnpm_run 'generate:explorer:tokens')
 
 # Format, comment, type, token, and CE layer checks for the explorer package.
 explorer-check: (_pnpm_run 'check:explorer')
 
-# Explorer unit, adapter, and browser tests plus generated-artifact checks.
+# Explorer unit, adapter, and browser tests plus generated-artifact and gallery-map freshness checks.
 explorer-test: (_pnpm_run 'test:explorer')
 
 # Capture the step tier of explorer shots and their geometry into dist/explorer-shots/step.

@@ -44,7 +44,7 @@ Rendering validates the universe through the existing checker first; a non-confo
 
 Three views share one world:
 
-- **Dimensions** shows the frames the universe is indexed by, the ordering frame and its values nested among them, the exceptions that mean no artifact is needed, and any declared factors.
+- **Dimensions** shows the frames the universe is indexed by, the ordering frame and its values nested among them, the "When to skip the artifact" rule, and any declared factors.
 - **Artifacts** places document types by how they connect, rolling element-level relations up onto the artifacts that contain them.
 - **Artifacts & Elements** shows both, with elements grouped by the ordering frame.
 
@@ -113,4 +113,4 @@ The browser suite mutates tokens at runtime and asserts the change reaches contr
 
 - Context evaluation stays in the checker. Frames, gates and conditions are shown as declared; the viewer never decides whether an artifact applies.
 - Text measurement uses the local system font stack, so two machines with different fonts may wrap labels differently in the SVG.
-- Raster export, clipboard copy and route playback are out of scope; the export menu shows them disabled, as the prototype did.
+- Raster export, clipboard copy and route playback are out of scope; the export menu shows them disabled.

@@ -80,6 +80,7 @@
     return c.ordered && subject === c.to ? c.phrasing.reverse : c.phrasing.forward;
   }
   var human = (s) => s ? s.replaceAll("-", " ").replace(/^./, (c) => c.toUpperCase()) : "";
+  var universeTerms = (model) => model.universe.terms ?? [];
   var relationKinds = (model) => model.source.relation_kinds ?? [];
   var compositionEntries = (model) => model.connections.filter((c) => c.kind === "composition").map((c) => ({ from: c.from, to: c.to, strength: c.strength, mode: c.mode, when: c.when, path: c.sourcePath }));
   var relationEdges = (model) => model.connections.filter((c) => c.kind !== "composition").map((c) => ({
@@ -292,10 +293,11 @@
   var SECTION_X = 40;
   var SECTION_W = 1100;
   var FRAMES_BOUNDARY = "scope:frames";
-  var EXCEPTIONS_BOUNDARY = "scope:rule";
+  var NO_ARTIFACT_BOUNDARY = "scope:rule";
   var FACTORS_BOUNDARY = "scope:factors";
   var FRAMES_CAPTION = "Your situation. These change what you need.";
-  var EXCEPTIONS_CAPTION = "Your special cases. These mean no artifact is needed.";
+  var NO_ARTIFACT_TITLE = "When to skip the artifact";
+  var NO_ARTIFACT_CAPTION = "When every frame here matches, no artifact is needed.";
   var FACTORS_CAPTION = "Your conditions. These shape how you go about the work.";
   var FACTORS_NONE_DECLARED = "This universe declares no factors.";
   var FRAME_CARDS_X = 85;
@@ -487,19 +489,19 @@
         id: rule.id,
         entity: null,
         kind: "rule",
-        scopeId: EXCEPTIONS_BOUNDARY,
+        scopeId: NO_ARTIFACT_BOUNDARY,
         x: RULE_CARD_X,
         y: RULE_CARD_Y,
         w: RULE_CARD_W,
         h: RULE_CARD_H
       };
       cards.push(ruleCard);
-      const exceptions = placedToHold(
-        { id: EXCEPTIONS_BOUNDARY, title: "Exceptions", caption: EXCEPTIONS_CAPTION, role: "section", scopeId: FRAMES_BOUNDARY },
+      const noArtifact = placedToHold(
+        { id: NO_ARTIFACT_BOUNDARY, title: NO_ARTIFACT_TITLE, caption: NO_ARTIFACT_CAPTION, role: "section", scopeId: FRAMES_BOUNDARY },
         [ruleCard]
       );
-      nested.push(exceptions);
-      insideFrames.push(exceptions);
+      nested.push(noArtifact);
+      insideFrames.push(noArtifact);
     }
     const boundaries = insideFrames.length ? [
       placedToHold({ id: FRAMES_BOUNDARY, title: "Frames", caption: FRAMES_CAPTION, role: "section", scopeId: "" }, insideFrames),
@@ -2231,6 +2233,8 @@
     };
   }
   var GUIDANCE_HEADING = "How to do this well";
+  var kindNoun = (kind) => kind === "option" ? "value" : kind;
+  var limitsCopy = (model) => model.evaluation?.status === "unresolved" ? "The Explorer shows what this universe declares; it does not evaluate your situation." : null;
   var guidanceCountCopy = (count) => `${count} ${count === 1 ? "note" : "notes"}`;
   var cardinalityCopy = (cardinality) => cardinality === "singleton" ? "One answer" : cardinality?.startsWith("per-") ? "One per " + cardinality.slice(4).replaceAll("-", " ") : cardinality ? "Answers" : "";
   var cardinalityDetail = (cardinality) => cardinality === "singleton" ? "Not divided into separate answers" : cardinality?.startsWith("per-") ? "One per " + cardinality.slice(4).replaceAll("-", " ") : cardinality || "Not specified";
@@ -2322,6 +2326,9 @@
     return [...source, ...options.connections === "relations" ? wiringEdges(model) : []];
   }
   var SITUATIONAL = "situational";
+  var KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED = "distinct-from";
+  var kindsCarried = (edge) => edge.members?.length ? edge.members.flatMap(kindsCarried) : [edge.kind ?? ""];
+  var onlyMarksADistinction = (edge) => kindsCarried(edge).every((kind) => kind === KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED);
   var onlyRequiredCompositionIsDrawn = (options) => options.connections === "composition" && options.display === "lines" && options.lineStyle === "uniform";
   function visibleEdges(model, options, layout, selection) {
     const present = new Set(layout.cards.map((c) => c.id));
@@ -2409,13 +2416,15 @@
       const on = !!focus && (edge.from === focus || edge.to === focus || edge.targetPair?.includes(focus) === true);
       const grade = edge.targetPair || options.lineStyle !== "distinct" || options.connections !== "composition" ? null : edge.strength === "situational" ? "situational" : edge.strength === "mixed" ? "mixed" : "required";
       const dash = edge.targetPair ? "frame" : grade === "situational" || grade === "mixed" ? grade : "none";
+      const emphasized = emphasisActive && options.emphasis.includes(edge.kind ?? "");
       return {
         ...edge,
         drawn: !countsOnly || on || selection.connection === edge.path,
         d,
         points,
         on,
-        emphasized: emphasisActive && options.emphasis.includes(edge.kind ?? ""),
+        emphasized,
+        onDemand: options.connections === "relations" && !emphasized && onlyMarksADistinction(edge),
         dash,
         grade,
         paint: edge.targetPair ? "frame" : edge.rolled ? "rolled" : "element",
@@ -2456,7 +2465,9 @@
     owns: (edge) => holdingDrawn(edge) === "owns",
     links: (edge) => holdingDrawn(edge) === "links"
   };
-  var legendRows = (scene) => LEGEND_ROWS.filter((row) => scene.edges.some((edge) => edge.drawn && drawnEdgeEachLegendRowDescribes[row](edge)));
+  var legendRows = (scene, treatments) => LEGEND_ROWS.filter(
+    (row) => scene.edges.some((edge) => edge.drawn && treatments?.get(edge.path) !== "hidden" && drawnEdgeEachLegendRowDescribes[row](edge))
+  );
   function subjectBounds(scene, selection) {
     const subject = selection.entity || nubOwnerCard(selection.connection) || selection.option;
     if (subject) {
@@ -2490,6 +2501,48 @@
       if (selection.connection && edge.path === selection.connection || selection.entity && edge.on)
         boxes.push(union(edge.points.map((p) => ({ x: p.x, y: p.y, w: 0, h: 0 }))));
     return boxes.length ? union(boxes) : null;
+  }
+
+  // src/lib/emphasis.ts
+  function emphasise(scene, selection, hover) {
+    const cards = /* @__PURE__ */ new Map();
+    const edges = /* @__PURE__ */ new Map();
+    const nubs = /* @__PURE__ */ new Map();
+    const edgeIds = new Set(scene.edges.map((e) => e.path));
+    const ownedByNub = nubOwnerCard(selection.connection);
+    const selectedCard = selection.entity || selection.option || ownedByNub;
+    const hoveredEdge = edgeIds.has(hover) ? hover : "";
+    const hoveredCard = hoveredEdge ? "" : hover;
+    const subjectEdge = (ownedByNub ? "" : selection.connection) || (selectedCard ? "" : hoveredEdge);
+    const subjectCard = selectedCard || (subjectEdge ? "" : hoveredCard);
+    const settled = !!selectedCard || !!selection.connection;
+    const preview = hoveredCard && hoveredCard !== selectedCard && !subjectEdge ? hoveredCard : "";
+    const quietest = settled ? "dimmed" : "hushed";
+    const faintest = settled ? "hidden" : "rest";
+    const hoveredInsideSubjectSet = !subjectEdge && subjectCard && scene.edges.some((e) => e.path === hoveredEdge && edgeTouches(e, subjectCard)) ? hoveredEdge : "";
+    const shownOnDemand = (edge) => !edge.onDemand || edge.path === subjectEdge || !!selectedCard && edgeTouches(edge, selectedCard);
+    const showable = scene.edges.filter(shownOnDemand);
+    const kin = /* @__PURE__ */ new Set();
+    if (subjectEdge) {
+      const edge = scene.edges.find((e) => e.path === subjectEdge);
+      if (edge) for (const id of [edge.from, edge.to, ...edge.targetPair ?? []]) kin.add(id);
+    } else if (subjectCard) for (const id of cardWithKin(showable, subjectCard)) kin.add(id);
+    for (const card of scene.layout.cards)
+      cards.set(card.id, settled && !subjectEdge && card.id === subjectCard ? "active" : !kin.size || kin.has(card.id) ? "idle" : quietest);
+    for (const edge of scene.edges) {
+      if (!shownOnDemand(edge)) edges.set(edge.path, "hidden");
+      else if (subjectEdge) edges.set(edge.path, edge.path === subjectEdge ? "active" : faintest);
+      else if (subjectCard)
+        edges.set(
+          edge.path,
+          edgeTouches(edge, subjectCard) ? !hoveredInsideSubjectSet || edge.path === hoveredInsideSubjectSet ? "active" : "rest" : faintest
+        );
+      else edges.set(edge.path, "rest");
+    }
+    const subject = subjectCard || subjectEdge;
+    for (const nub of scene.nubs)
+      nubs.set(nub.id, !subject ? "active" : nub.id === subjectCard ? "active" : kin.has(nub.id) ? "rest" : faintest);
+    return { cards, edges, nubs, preview, settled };
   }
 
   // src/lib/icons.ts
@@ -2600,7 +2653,7 @@
     return lines;
   }
   function subtitleFor(card, entity, model) {
-    if (card.kind === "rule") return "No artifact contents are required in this context.";
+    if (card.kind === "rule") return "These frames match, so nothing needs writing down.";
     if (!entity) return "";
     if (entity.kind === "element") return cardinalityCopy(entity.raw.cardinality);
     if (entity.kind === "frame" || entity.kind === "factor") return entity.description || setByCopy(entity.raw.set_by);
@@ -3005,45 +3058,6 @@
     return surface;
   }
 
-  // src/lib/emphasis.ts
-  function emphasise(scene, selection, hover) {
-    const cards = /* @__PURE__ */ new Map();
-    const edges = /* @__PURE__ */ new Map();
-    const nubs = /* @__PURE__ */ new Map();
-    const edgeIds = new Set(scene.edges.map((e) => e.path));
-    const ownedByNub = nubOwnerCard(selection.connection);
-    const selectedCard = selection.entity || selection.option || ownedByNub;
-    const hoveredEdge = edgeIds.has(hover) ? hover : "";
-    const hoveredCard = hoveredEdge ? "" : hover;
-    const subjectEdge = (ownedByNub ? "" : selection.connection) || (selectedCard ? "" : hoveredEdge);
-    const subjectCard = selectedCard || (subjectEdge ? "" : hoveredCard);
-    const settled = !!selectedCard || !!selection.connection;
-    const preview = hoveredCard && hoveredCard !== selectedCard && !subjectEdge ? hoveredCard : "";
-    const quietest = settled ? "dimmed" : "hushed";
-    const faintest = settled ? "hidden" : "rest";
-    const hoveredInsideSubjectSet = !subjectEdge && subjectCard && scene.edges.some((e) => e.path === hoveredEdge && edgeTouches(e, subjectCard)) ? hoveredEdge : "";
-    const kin = /* @__PURE__ */ new Set();
-    if (subjectEdge) {
-      const edge = scene.edges.find((e) => e.path === subjectEdge);
-      if (edge) for (const id of [edge.from, edge.to, ...edge.targetPair ?? []]) kin.add(id);
-    } else if (subjectCard) for (const id of cardWithKin(scene.edges, subjectCard)) kin.add(id);
-    for (const card of scene.layout.cards)
-      cards.set(card.id, settled && !subjectEdge && card.id === subjectCard ? "active" : !kin.size || kin.has(card.id) ? "idle" : quietest);
-    for (const edge of scene.edges) {
-      if (subjectEdge) edges.set(edge.path, edge.path === subjectEdge ? "active" : faintest);
-      else if (subjectCard)
-        edges.set(
-          edge.path,
-          edgeTouches(edge, subjectCard) ? !hoveredInsideSubjectSet || edge.path === hoveredInsideSubjectSet ? "active" : "rest" : faintest
-        );
-      else edges.set(edge.path, "rest");
-    }
-    const subject = subjectCard || subjectEdge;
-    for (const nub of scene.nubs)
-      nubs.set(nub.id, !subject ? "active" : nub.id === subjectCard ? "active" : kin.has(nub.id) ? "rest" : faintest);
-    return { cards, edges, nubs, preview, settled };
-  }
-
   // src/component-patterns/universe-map.ts
   var SVG2 = "http://www.w3.org/2000/svg";
   var MAX_DISPLAY_COUNT3 = 9;
@@ -3239,10 +3253,19 @@
     root.append(labelsLayer);
     const nubNodes = /* @__PURE__ */ new Map();
     let nubTreatment = /* @__PURE__ */ new Map();
+    function reachableOnlyInSight(holder, focusable, hidden, tabIndexInSight) {
+      if (hidden) holder.setAttribute("aria-hidden", "true");
+      else holder.removeAttribute("aria-hidden");
+      if (!focusable) return;
+      if (hidden) focusable.setAttribute("tabindex", "-1");
+      else if (tabIndexInSight) focusable.setAttribute("tabindex", tabIndexInSight);
+      else focusable.removeAttribute("tabindex");
+    }
     function dressNub(node, treatment) {
       node.dataset.emphasis = treatment;
       node.style.opacity = treatment === "hidden" ? "0" : treatment === "rest" ? String(tokenNumber("--kb-connection-opacity-idle")) : "1";
       node.style.pointerEvents = treatment === "hidden" ? "none" : "";
+      reachableOnlyInSight(node, node.matches("button") ? node : node.querySelector("button"), treatment === "hidden");
     }
     const countScale = (zoom) => grow(zoom, "--kb-count-zoom-growth");
     function setAttributeIfDifferent(node, name, value) {
@@ -3354,6 +3377,7 @@
         group.dataset.emphasis = treatment;
         group.style.opacity = treatment === "active" || emphasisHold ? "1" : treatment === "hidden" ? "0" : String(tokenNumber("--kb-connection-opacity-idle"));
         group.style.pointerEvents = treatment === "hidden" ? "none" : "";
+        reachableOnlyInSight(group, group.querySelector(".wire-hit"), treatment === "hidden", "0");
         const wire = group.querySelector(".wire");
         if (wire)
           wire.style.strokeWidth = treatment === "active" ? String(tokenNumber("--kb-connection-stroke-selected")) : edge.emphasized ? String(tokenNumber("--kb-connection-stroke-preview")) : "";
@@ -3364,6 +3388,7 @@
         const treatment = shown.edges.get(path) ?? "rest";
         group.style.opacity = treatment === "hidden" ? "0" : treatment === "active" ? "1" : String(tokenNumber("--kb-connection-opacity-label-faint"));
         group.style.pointerEvents = treatment === "hidden" ? "none" : "";
+        reachableOnlyInSight(group, group.querySelector("button"), treatment === "hidden");
       }
     }
     function drawnBounds() {
@@ -3529,6 +3554,11 @@
     return group;
   }
 
+  // src/lib/guidance-reading.ts
+  var guidanceEntries = (model) => model.guidance?.entries ?? [];
+  var guidanceFor = (model, subject) => guidanceEntries(model).filter((entry) => entry.subject === subject);
+  var guidanceNoteCopy = (model, entry) => `${human(entry.kind)} · ${model.guidance?.sources[entry.source]?.cite || entry.source}`;
+
   // src/component-patterns/detail-copy.ts
   function section(title, body) {
     if (!body.length) return null;
@@ -3645,7 +3675,7 @@
   var countOf = (many, noun, plural = `${noun}s`) => `${many} ${many === 1 ? noun : plural}`;
   var countingWhatTheRowsAre = (context, targets) => {
     const kinds = new Set(targets.map((target) => context.named.get(target)?.kind).filter(Boolean));
-    return countOf(targets.length, kinds.size === 1 ? [...kinds][0] : "entry");
+    return countOf(targets.length, kinds.size === 1 ? kindNoun([...kinds][0]) : "entry");
   };
   function groupBox(heading, body) {
     const block = document.createElement("div");
@@ -3730,7 +3760,7 @@
     for (const entry of entries) {
       const held = document.createElement("div");
       held.className = "entry claim";
-      held.append(paragraph(entry.claim));
+      held.append(paragraph(entry.claim), paragraph(guidanceNoteCopy(context.model, entry), "muted guidance-note"));
       if (entry.when && Object.keys(entry.when).length) {
         const block = section("Applies when", [conditions(context, entry.when)]);
         if (block) held.append(block);
@@ -3848,12 +3878,8 @@
     return row;
   }
 
-  // src/lib/guidance-reading.ts
-  var guidanceEntries = (model) => model.guidance?.entries ?? [];
-  var guidanceFor = (model, subject) => guidanceEntries(model).filter((entry) => entry.subject === subject);
-
   // src/component-patterns/detail-overlay.ts
-  var SECTION_TITLES = { contents: ["Contents", "Used in", "Options"], related: ["Related knowledge"] };
+  var SECTION_TITLES = { contents: ["Contents", "Used in", "Values"], related: ["Related knowledge"] };
   function facts(rows) {
     const list = document.createElement("dl");
     list.className = "facts";
@@ -3937,7 +3963,7 @@
       const values = model.entities.filter((e) => e.kind === "element" && (e.frameValues[ordering] ?? e.raw[ordering]) === entity.sourceId);
       const ids = new Set(values.map((e) => e.id));
       const owners = model.entities.filter((e) => e.kind === "artifact" && composition.some((c) => c.from === e.id && ids.has(c.to)));
-      body.prepend(paragraph(frame ? `${frame.label} option` : "Option", "detail-kind"));
+      body.prepend(paragraph(frame ? `${frame.label} value` : "Value", "detail-kind"));
       body.append(
         facts([
           ["Artifacts", String(owners.length)],
@@ -3962,7 +3988,7 @@
       }
       const options = model.entities.filter((e) => e.kind === "option" && e.id.startsWith(`option:${entity.sourceId}:`));
       if (options.length) {
-        const block = section("Options", [
+        const block = section("Values", [
           semanticGroup(
             context,
             options.map((option) => option.id)
@@ -3971,7 +3997,7 @@
         if (block) body.append(block);
       }
       for (const [facet, values] of Object.entries(entity.raw.facets ?? {})) {
-        const block = section(human(facet), [listedGroup(countOf(values.length, "option"), values.map(human))]);
+        const block = section(human(facet), [listedGroup(countOf(values.length, "value"), values.map(human))]);
         if (block) body.append(block);
       }
     } else if (rule) {
@@ -4087,6 +4113,12 @@
     }
     return stats;
   }
+  function termRow(held) {
+    const row = document.createElement("div");
+    row.className = "entry";
+    row.append(paragraph(held.term, "semantic-name"), paragraph(held.means, "semantic-description"));
+    return row;
+  }
   function universeOverview(model, close) {
     const scrim = document.createElement("div");
     scrim.className = "scrim";
@@ -4106,7 +4138,14 @@
     ]) {
       const block2 = section(title, overview[key] ? [paragraph(overview[key])] : []);
       if (block2) surface.body.append(block2);
+      if (key === "for") {
+        const terms = universeTerms(model);
+        const glossary = section("Terms", terms.length ? [groupBox(countOf(terms.length, "term"), terms.map(termRow))] : []);
+        if (glossary) surface.body.append(glossary);
+      }
     }
+    const limits = limitsCopy(model);
+    if (limits) surface.body.append(paragraph(limits, "muted overview-limits"));
     const details = document.createElement("details");
     details.className = "source";
     const summary = document.createElement("summary");
@@ -4519,8 +4558,8 @@
         const frames = otherFrames.filter((e) => e.kind === "frame");
         const factors = otherFrames.filter((e) => e.kind === "factor");
         for (const [label, items] of [
-          ["Referenced frames", frames],
-          ["Referenced factors", factors]
+          ["Other frames", frames],
+          ["Factors", factors]
         ])
           if (items.length)
             panel2.append(
@@ -4626,12 +4665,12 @@
                   {
                     value: "uniform",
                     label: "Required",
-                    tooltip: "Hide situational connections",
+                    tooltip: "Hide when-applicable connections",
                     content: () => strokeSample(false)
                   },
                   {
                     value: "distinct",
-                    label: "Required / optional",
+                    label: "Required / when applicable",
                     tooltip: "Show all connections",
                     content: () => strokeStack()
                   }
@@ -4942,11 +4981,13 @@
       if (animation) cancelAnimationFrame(animation);
       animation = 0;
     }
-    function animateTo(target) {
+    function animateTo(target, settled = () => {
+    }) {
       stopMotion();
       const goal = constrainCamera({ ...target, z: clampZoom(target.z) }, mapBounds(), viewportSize(), insets);
       if (reducedMotion()) {
         applyCamera(goal);
+        settled();
         return;
       }
       const from = { ...camera };
@@ -4956,6 +4997,7 @@
         const fraction = Math.min(1, (now - started) / duration);
         applyCamera(interpolate(from, goal, fraction));
         animation = fraction < 1 ? requestAnimationFrame(step) : 0;
+        if (fraction >= 1) settled();
       };
       animation = requestAnimationFrame(step);
     }
@@ -4992,7 +5034,7 @@
       menu.render();
       legendBox?.remove();
       legendBox = null;
-      const rows = legendRows(scene);
+      const rows = legendRows(scene, emphasise(scene, selection, "").edges);
       if (rows.length) {
         legendBox = legend(rows);
         shell.append(legendBox);
@@ -5044,7 +5086,7 @@
       if (!target) return;
       const goal = constrainCamera({ ...target, z: clampZoom(target.z) }, mapBounds(), viewportSize(), insets);
       placeDetail(goal);
-      animateTo(goal);
+      animateTo(goal, () => placeDetail());
     }
     function clearSelection(refit = true) {
       selection = emptySelection();

@@ -1,0 +1,99 @@
+# Test fixture for the eval tooling, not an eval item: a research universe with an ordering frame,
+# a ladder (ethics oversight, after the exempt, expedited and full-board tiers of human-subjects
+# review) and a relation edge gated on a frame other than authority, as kbp/0.8 allows.
+universe:
+  id: field-study
+  label: Field study
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: stage
+  overview:
+    covers: The records a research team keeps from shaping a study to sharing what it found.
+    for: Research teams that work with people, places or specimens.
+    excludes: Grant applications and publishing.
+
+statuses: [draft, agreed]
+
+frames:
+  - id: stage
+    code: ft7z2
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    question: Which part of the project is this?
+    values:
+      - { id: plan, question: "Is the work still being designed?" }
+      - { id: collect, question: "Are measurements being taken?" }
+      - { id: analyse, question: "Are the results being worked through?" }
+  - id: review
+    code: f7nje
+    role: gating
+    set_by: scope
+    question: How much ethics oversight must the project clear before it begins?
+    values: [exempt, expedited, full-board]
+  - id: setting
+    code: fhjja
+    role: applicability
+    set_by: instance
+    question: Where are the samples gathered?
+    values: [laboratory, field]
+
+no_artifact:
+  when: { review: [exempt], setting: [laboratory] }
+
+relation_kinds:
+  - { id: feeds, ordered: true }
+
+elements:
+  - id: research-question
+    code: encmx
+    question: What does the team want to find out?
+    stage: plan
+    cardinality: singleton
+  - id: consent-process
+    code: ekqyk
+    question: How do participants agree to take part?
+    stage: plan
+    cardinality: singleton
+    gate: { review: [expedited, full-board] }
+  - id: site-permission
+    code: ej5z3
+    question: Who allowed the team onto the site?
+    stage: collect
+    cardinality: per-site
+    gate: { setting: [field] }
+  - id: measurements
+    code: eevnp
+    question: Where are the raw measurements kept?
+    stage: collect
+    cardinality: singleton
+  - id: findings
+    code: eqvkr
+    question: What did the measurements show?
+    stage: analyse
+    cardinality: singleton
+
+artifacts:
+  - id: study-protocol
+    code: ayfjc
+    enablement:
+      action: start taking measurements
+      actor: the principal investigator
+      timing: once the committee has answered
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [research-question]
+      situational: [consent-process, site-permission]
+  - id: results-summary
+    code: a6yhf
+    enablement:
+      action: decide whether the results are ready to share
+      actor: the research lead
+      timing: after the last measurement is in
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [findings, measurements]
+
+relations:
+  - { from: site-permission, to: measurements, kind: feeds, gate: { setting: field, latency: 7d } }
+  - { from: research-question, to: findings, kind: feeds }

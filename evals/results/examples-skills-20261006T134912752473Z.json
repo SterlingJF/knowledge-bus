@@ -1,0 +1,839 @@
+{
+ "adapters": {
+  "decision": "jev jev-1.13.0",
+  "judgment": "judges: claude-opus-5-5, claude-fable-5-1"
+ },
+ "chain": {
+  "acts-only-on-the-ask": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "answers-the-question-it-is-filed-under": [
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ]
+  ],
+  "asks-only-what-is-open": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "asks-the-owner-to-choose": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "asks-with-a-reading-and-options": [
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "undecided",
+    "owner"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ]
+  ],
+  "checks-current-sources": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "claims-match-the-evidence": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "explains-from-purpose-down": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "gives-its-own-verdict": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "keeps-source-meaning-in-records": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "keeps-working-until-blocked": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "records-stand-alone": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "restates-the-ask-before-acting": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "revises-only-the-flagged-part": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "settles-substance-before-wording": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "shows-exact-text-for-review": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "treats-source-instructions-as-evidence": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ]
+ },
+ "id": "examples-skills-20261006T134912752473Z",
+ "inputs": {
+  "evals/skills.yaml": "sha256:e3ec1d4224e88d87b2fd1147df40eda13c0ba7d3bd895cd3dd8378554f8332fa",
+  "evals/universe.yaml": "sha256:c60e8732e8686698653c27ca9c09971ef234f61fa5408f4f2559f750aafc5936"
+ },
+ "kind": "calibration",
+ "kinds": {
+  "evals/skills.yaml": "skills-spec",
+  "evals/universe.yaml": "spec"
+ },
+ "label": "anthropic-side",
+ "measures": [
+  "calibration-skills"
+ ],
+ "misses": [],
+ "notes": [
+  "decision tokens: 14010",
+  "judgment cost: $3.01"
+ ],
+ "side": "anthropic",
+ "slice": "skills",
+ "table": [
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "records-stand-alone",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 0,
+   "undecided": 6
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 7,
+   "rule": "asks-with-a-reading-and-options",
+   "tier": "decision",
+   "tn": 4,
+   "tp": 2,
+   "undecided": 1
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "answers-the-question-it-is-filed-under",
+   "tier": "decision",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "asks-the-owner-to-choose",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "asks-only-what-is-open",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 7,
+   "rule": "keeps-working-until-blocked",
+   "tier": "judgment",
+   "tn": 4,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "restates-the-ask-before-acting",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "checks-current-sources",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "claims-match-the-evidence",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "gives-its-own-verdict",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "acts-only-on-the-ask",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "keeps-source-meaning-in-records",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "treats-source-instructions-as-evidence",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "revises-only-the-flagged-part",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "shows-exact-text-for-review",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "records-stand-alone",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "settles-substance-before-wording",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "explains-from-purpose-down",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 7,
+   "rule": "asks-with-a-reading-and-options",
+   "tier": "chain",
+   "tn": 4,
+   "tp": 2,
+   "undecided": 1
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "asks-the-owner-to-choose",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "asks-only-what-is-open",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 7,
+   "rule": "keeps-working-until-blocked",
+   "tier": "chain",
+   "tn": 4,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "restates-the-ask-before-acting",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "checks-current-sources",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "claims-match-the-evidence",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "gives-its-own-verdict",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "acts-only-on-the-ask",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "keeps-source-meaning-in-records",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "treats-source-instructions-as-evidence",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "answers-the-question-it-is-filed-under",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "revises-only-the-flagged-part",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "shows-exact-text-for-review",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "records-stand-alone",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "settles-substance-before-wording",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "explains-from-purpose-down",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  }
+ ],
+ "tiers": [
+  "deterministic",
+  "decision",
+  "judgment",
+  "sort",
+  "recognise"
+ ],
+ "universe": null
+}

@@ -1,0 +1,55 @@
+universe:
+  id: food-bank-parcels
+  label: Food bank parcels
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: parcel-stage
+  overview:
+    covers: The details a community food bank records for each household it gives a food parcel.
+    for: The food bank coordinator and the volunteers who pack and hand out parcels.
+    excludes: Fundraising and the food the food bank buys.
+
+statuses: [proposed, agreed, retired]
+
+frames:
+  - id: parcel-stage
+    code: f19gq
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [referral, packing, collection]
+
+  - id: visit-kind
+    code: f0fpp
+    role: applicability
+    set_by: instance
+    question: Does the household take a parcel on this visit or come for advice only?
+    values: [parcel, advice-only]
+
+empty_composition:
+  when: { visit-kind: [advice-only] }
+
+relation_kinds:
+  - id: feeds
+    ordered: true
+    phrasing:
+      forward: Feeds
+      reverse: Fed by
+
+elements:
+  - { id: referral-agency, code: ee17c, question: "Which agency referred the household to the food bank?", parcel-stage: referral, cardinality: per-household }
+  - { id: household-size, code: ez7mn, question: "How many adults and how many children does the parcel feed?", parcel-stage: packing, cardinality: per-household }
+  - { id: dietary-needs, code: ebhep, question: "Which foods must the parcel leave out for the household's diet or allergies?", parcel-stage: packing, cardinality: per-household }
+  - { id: collection-slot, code: e0b43, question: "On what day and at what time does the household collect the parcel?", parcel-stage: collection, cardinality: per-household }
+
+artifacts:
+  - id: parcel-slip
+    code: ae22h
+    enablement: { action: "pack a parcel that suits the household", actor: volunteer packer, timing: before the household's collection slot }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [household-size, dietary-need, collection-slot]
+      situational: [referral-agency]
+
+relations:
+  - { from: referral-agency, to: household-size, kind: feeds }

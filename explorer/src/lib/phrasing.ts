@@ -1,4 +1,4 @@
-import { type Connection, type Entity, type RelationKind, human } from './model';
+import { type Connection, type Entity, type ExplorerModel, type RelationKind, human } from './model';
 
 export interface Phrasing {
   subject: string;
@@ -32,6 +32,11 @@ export function compositionDetails(entry: { strength?: string; when?: unknown })
 }
 
 export const GUIDANCE_HEADING = 'How to do this well';
+
+export const kindNoun = (kind: string): string => (kind === 'option' ? 'value' : kind);
+
+export const limitsCopy = (model: ExplorerModel): string | null =>
+  model.evaluation?.status === 'unresolved' ? 'The Explorer shows what this universe declares; it does not evaluate your situation.' : null;
 
 export const guidanceCountCopy = (count: number) => `${count} ${count === 1 ? 'note' : 'notes'}`;
 

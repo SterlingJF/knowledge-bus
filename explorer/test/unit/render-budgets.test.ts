@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { polylineCrossings } from '@/src/lib/geometry';
+import { emphasise } from '@/src/lib/emphasis';
 import { renderStates, sceneFor } from './render-states';
 
 const visualCeilings = JSON.parse(readFileSync(new URL('../fixtures/render-budgets.json', import.meta.url), 'utf8')) as Record<
@@ -13,7 +14,8 @@ const states = renderStates();
 
 function measure(state: (typeof states)[number]) {
   const scene = sceneFor(state);
-  const drawn = scene.edges.filter((e) => e.drawn);
+  const shown = emphasise(scene, state.selection, '').edges;
+  const drawn = scene.edges.filter((e) => e.drawn && shown.get(e.path) !== 'hidden');
   const length = drawn.reduce(
     (total, edge) =>
       total + edge.points.slice(1).reduce((n, p, i) => n + Math.abs(p.x - edge.points[i].x) + Math.abs(p.y - edge.points[i].y), 0),

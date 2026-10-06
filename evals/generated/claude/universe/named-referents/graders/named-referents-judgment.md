@@ -1,0 +1,7 @@
+---
+type: llm
+focus: last_message
+---
+
+PASS if a reader can tell what every pronoun, subject and object refers to from the text and plain sense alone. That holds when a pronoun has one noun in the text that it sensibly fits, even if other nouns come before it; when a bare one or a number such as the two stands for a noun the text has just named; when we, you or our means the writer or the reader; when a word such as anyone or every covers a group the text describes, such as anyone who joins the team; when a question word asks for the unknown, wherever it sits in a question or after a verb of finding out such as decide, determine, establish or know; when where opens a condition; and when an instruction leaves out its doer.
+FAIL if any pronoun, subject or object leaves the reader to guess what it refers to. That happens when a pronoun has no noun in the text that it can fit, or two nouns that it fits equally well; when a word such as nothing or something hides which thing is meant or missing; when a bare one has no noun to stand for; when a placeholder noun such as the element, the item or this entry says only that something is meant and not what it is; when a clause that opens with who, what, where or how stands in for a thing that has a name and is acted on, as in signs what the clerk prepared where the forms are meant; or when a statement that is not an instruction never says what it is about.

@@ -25,7 +25,7 @@ export interface DetailOverlay {
   subject: string;
 }
 
-const SECTION_TITLES = { contents: ['Contents', 'Used in', 'Options'], related: ['Related knowledge'] };
+const SECTION_TITLES = { contents: ['Contents', 'Used in', 'Values'], related: ['Related knowledge'] };
 
 function facts(rows: [string, string][]): HTMLElement {
   const list = document.createElement('dl');
@@ -119,7 +119,7 @@ export function detailOverlay(model: ExplorerModel, subject: string, close: () =
     const values = model.entities.filter((e) => e.kind === 'element' && (e.frameValues[ordering] ?? e.raw[ordering]) === entity.sourceId);
     const ids = new Set(values.map((e) => e.id));
     const owners = model.entities.filter((e) => e.kind === 'artifact' && composition.some((c) => c.from === e.id && ids.has(c.to)));
-    body.prepend(paragraph(frame ? `${frame.label} option` : 'Option', 'detail-kind'));
+    body.prepend(paragraph(frame ? `${frame.label} value` : 'Value', 'detail-kind'));
     body.append(
       facts([
         ['Artifacts', String(owners.length)],
@@ -146,7 +146,7 @@ export function detailOverlay(model: ExplorerModel, subject: string, close: () =
     }
     const options = model.entities.filter((e) => e.kind === 'option' && e.id.startsWith(`option:${entity.sourceId}:`));
     if (options.length) {
-      const block = section('Options', [
+      const block = section('Values', [
         semanticGroup(
           context,
           options.map((option) => option.id),
@@ -155,7 +155,7 @@ export function detailOverlay(model: ExplorerModel, subject: string, close: () =
       if (block) body.append(block);
     }
     for (const [facet, values] of Object.entries((entity.raw.facets ?? {}) as Record<string, string[]>)) {
-      const block = section(human(facet), [listedGroup(countOf(values.length, 'option'), values.map(human))]);
+      const block = section(human(facet), [listedGroup(countOf(values.length, 'value'), values.map(human))]);
       if (block) body.append(block);
     }
   } else if (rule) {

@@ -7,15 +7,17 @@ import yaml
 
 
 @pytest.mark.parametrize(
-    ("artifact_id", "expected_mode"),
+    ("artifact_id", "expected_strength", "expected_mode"),
     [
-        ("product-strategy-canvas", "links"),
-        ("startup-canvas", "links"),
-        ("success-metrics", "owns"),
+        ("product-strategy-canvas", "core", "links"),
+        ("startup-canvas", "situational", "links"),
+        ("success-metrics", "core", "owns"),
     ],
     ids=["strategy-references", "startup-references", "metrics-owns"],
 )
-def test_north_star_is_core_with_declared_ownership(artifact_id, expected_mode):
+def test_north_star_has_declared_strength_and_ownership(
+    artifact_id, expected_strength, expected_mode
+):
     path = (
         Path(__file__).resolve().parents[2]
         / "universes/product-development/universe.kbp.yaml"
@@ -29,7 +31,7 @@ def test_north_star_is_core_with_declared_ownership(artifact_id, expected_mode):
         for entry in [member if isinstance(member, dict) else {"element": member}]
         if entry["element"] == "north-star-metric"
     ]
-    assert matches == [("core", expected_mode, None)]
+    assert matches == [(expected_strength, expected_mode, None)]
 
 
 @pytest.mark.parametrize("source", ["macro-environment-factors", "competitor-profile"])

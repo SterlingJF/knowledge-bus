@@ -15,6 +15,14 @@ function git(root, args, env = process.env) {
   return command('git', ['-C', root, ...args], { env });
 }
 
+export function nodeVersionProblem(range, version, execPath) {
+  const minimum = Number(/\d+/.exec(range)?.[0]);
+  if (!Number.isInteger(minimum)) throw new Error(`Cannot read a minimum Node version from engines.node: ${range}`);
+  if (Number(version.split('.')[0]) >= minimum) return null;
+  return `knowledge-bus checks need Node ${minimum} or newer; this hook is running Node ${version} (${execPath}). `
+    + "Git hooks don't load your shell profile: see CONTRIBUTING.md, Git Hooks.";
+}
+
 export function pushTips(input) {
   const tips = new Set();
   for (const line of input.trim().split('\n').filter(Boolean)) {
@@ -164,6 +172,7 @@ export async function runPushChecks(snapshot, env, run = runCheck) {
     'render:explorer',
     'test:explorer:browser',
     'check:explorer:artifacts',
+    'check:explorer:gallery',
   ]) {
     if (interrupted) break;
     try {
@@ -204,6 +213,12 @@ export async function checkSnapshots({ root, mode, input = '', prepare = prepare
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const engines = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8')).engines.node;
+  const problem = nodeVersionProblem(engines, process.versions.node, process.execPath);
+  if (problem) {
+    console.error(problem);
+    process.exit(1);
+  }
   try {
     const root = git(process.cwd(), ['rev-parse', '--show-toplevel']).trim();
     process.exitCode = await checkSnapshots({

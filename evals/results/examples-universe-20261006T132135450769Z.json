@@ -1,0 +1,867 @@
+{
+ "adapters": {
+  "decision": "jev jev-1.13.0",
+  "judgment": "judges: codex:gpt-6-astra, codex:gpt-6.1-sol",
+  "recognise": "filers: codex:gpt-6-astra, codex:gpt-6.1-sol, jev jev-1.13.0, codex:gpt-6-luna",
+  "sort": "filers: codex:gpt-6-astra, codex:gpt-6.1-sol, jev jev-1.13.0, codex:gpt-6-luna"
+ },
+ "chain": {
+  "action-names-an-action": [
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ]
+  ],
+  "direct-statement": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "deterministic"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "enablements-distinct": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "holds-across-scope": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "named-referents": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "one-point-terse": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "one-question": [
+   [
+    "fail",
+    "deterministic"
+   ],
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "fail",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ],
+   [
+    "pass",
+    "decision"
+   ]
+  ],
+  "one-term-per-concept": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "plain-words": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "point-first": [
+   [
+    "fail",
+    "deterministic"
+   ],
+   [
+    "fail",
+    "deterministic"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "present-state": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "questions-distinct": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "siblings-differ": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "sorts-reliably": [
+   [
+    "pass",
+    "sort"
+   ],
+   [
+    "fail",
+    "sort"
+   ],
+   [
+    "fail",
+    "sort"
+   ],
+   [
+    "pass",
+    "sort"
+   ],
+   [
+    "pass",
+    "sort"
+   ],
+   [
+    "pass",
+    "sort"
+   ]
+  ],
+  "strength-follows-the-action": [
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "fail",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ],
+   [
+    "pass",
+    "judgment"
+   ]
+  ],
+  "values-recognised": [
+   [
+    "fail",
+    "recognise"
+   ],
+   [
+    "fail",
+    "recognise"
+   ],
+   [
+    "pass",
+    "recognise"
+   ],
+   [
+    "pass",
+    "recognise"
+   ],
+   [
+    "pass",
+    "recognise"
+   ]
+  ]
+ },
+ "id": "examples-universe-20261006T132135450769Z",
+ "inputs": {
+  "evals/skills.yaml": "sha256:9fbf6e93c67aa396328fc01395d4d18fc8d2cf2d461b876613c6ba580947933f",
+  "evals/universe.yaml": "sha256:c60e8732e8686698653c27ca9c09971ef234f61fa5408f4f2559f750aafc5936"
+ },
+ "kind": "calibration",
+ "kinds": {
+  "evals/skills.yaml": "skills-spec",
+  "evals/universe.yaml": "spec"
+ },
+ "label": "openai-side",
+ "measures": [
+  "calibration-universe"
+ ],
+ "misses": [
+  {
+   "label": "fail",
+   "rule": "sorts-reliably",
+   "text": "Which ingredients go into the loaf?",
+   "tier": "sort"
+  },
+  {
+   "label": "fail",
+   "rule": "sorts-reliably",
+   "text": "Which ingredients go into the loaf?",
+   "tier": "chain"
+  }
+ ],
+ "notes": [
+  "decision tokens: 8337, spent by examples-universe-20261006T060659282403Z and reused here",
+  "judgment cost: n/a (answered in the Codex app, which reports no cost)",
+  "sort and recognise cost: n/a (answered in the Codex app, which reports no cost)",
+  "sort and recognise decision tokens: 9434, spent by examples-universe-20261006T060659282403Z and reused here",
+  "sort and recognise: the decision model is unsure below confidence 0.6",
+  "reused from examples-universe-20261006T060659282403Z, the Anthropic-side run of the same inputs (digests checked): the deterministic tier, the decision tier (Jev) and Jev's filings",
+  "judgment, sort and recognise answered in the Codex desktop app, one session per model (codex:gpt-6-astra, codex:gpt-6.1-sol, codex:gpt-6-luna), every packet in one prompt rather than one CLI call per batch; each packet is the prompt grade.py sends, in grade.py's order, and the instructions grade.py sends as the system prompt are given once at the top of the session",
+  "prompts grade.py sends more than once (25) were asked once and the answer serves each",
+  "reasoning effort set in the app: codex:gpt-6-astra medium, codex:gpt-6.1-sol low, codex:gpt-6-luna medium"
+ ],
+ "side": "openai",
+ "slice": "universe",
+ "table": [
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "one-question",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 1,
+   "undecided": 5
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "named-referents",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 0,
+   "undecided": 5
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "direct-statement",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 1,
+   "undecided": 5
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "plain-words",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 0,
+   "undecided": 6
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "one-point-terse",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 0,
+   "undecided": 5
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "point-first",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 2,
+   "undecided": 4
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "present-state",
+   "tier": "deterministic",
+   "tn": 0,
+   "tp": 0,
+   "undecided": 6
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "one-question",
+   "tier": "decision",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "action-names-an-action",
+   "tier": "decision",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 1
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "one-question",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "named-referents",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "direct-statement",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "plain-words",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "one-point-terse",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "point-first",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "holds-across-scope",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "one-term-per-concept",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "present-state",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 4,
+   "rule": "siblings-differ",
+   "tier": "judgment",
+   "tn": 2,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "action-names-an-action",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "questions-distinct",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "enablements-distinct",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "strength-follows-the-action",
+   "tier": "judgment",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 1,
+   "fp": 0,
+   "n": 6,
+   "rule": "sorts-reliably",
+   "tier": "sort",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "values-recognised",
+   "tier": "recognise",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "one-question",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "named-referents",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "direct-statement",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "plain-words",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "one-point-terse",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "point-first",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "holds-across-scope",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "one-term-per-concept",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "present-state",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 4,
+   "rule": "siblings-differ",
+   "tier": "chain",
+   "tn": 2,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "action-names-an-action",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "questions-distinct",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "enablements-distinct",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 6,
+   "rule": "strength-follows-the-action",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 3,
+   "undecided": 0
+  },
+  {
+   "fn": 1,
+   "fp": 0,
+   "n": 6,
+   "rule": "sorts-reliably",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  },
+  {
+   "fn": 0,
+   "fp": 0,
+   "n": 5,
+   "rule": "values-recognised",
+   "tier": "chain",
+   "tn": 3,
+   "tp": 2,
+   "undecided": 0
+  }
+ ],
+ "tiers": [
+  "deterministic",
+  "decision",
+  "judgment",
+  "sort",
+  "recognise"
+ ],
+ "universe": null
+}

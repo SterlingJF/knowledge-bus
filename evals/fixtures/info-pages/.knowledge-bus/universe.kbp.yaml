@@ -1,0 +1,38 @@
+universe:
+  id: page-readers
+  label: Page readers
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: stage
+  overview:
+    covers: What a writer needs to know about the reader of an information page before writing it.
+    for: The writers and editors of the information pages.
+    excludes: Page design, and testing pages with readers.
+
+statuses: []
+
+frames:
+  - id: stage
+    code: fd4qe
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [only]
+
+factors:
+  - id: prior-knowledge
+    code: kmpxj
+    question: How much does the reader already know about the subject?
+    set_by: instance
+    values: [new, familiar, expert]
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []

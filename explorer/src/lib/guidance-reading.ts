@@ -1,4 +1,4 @@
-import { type ExplorerModel, type GuidanceEntry } from './model';
+import { type ExplorerModel, type GuidanceEntry, human } from './model';
 
 export const guidanceKindIds = (model: ExplorerModel): string[] => (model.guidance?.kinds ?? []).map((kind) => kind.id);
 
@@ -15,3 +15,6 @@ export const subjectsTheGuidanceLeavesBare = (model: ExplorerModel, kinds: strin
   const carried = new Set(subjectsCarryingGuidance(model));
   return model.entities.filter((entity) => kinds.includes(entity.kind) && !carried.has(entity.id)).map((entity) => entity.id);
 };
+
+export const guidanceNoteCopy = (model: ExplorerModel, entry: GuidanceEntry): string =>
+  `${human(entry.kind)} \u00b7 ${model.guidance?.sources[entry.source]?.cite || entry.source}`;

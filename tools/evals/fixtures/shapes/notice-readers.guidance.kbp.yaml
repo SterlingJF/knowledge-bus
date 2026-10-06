@@ -1,0 +1,21 @@
+# Test fixture for the eval tooling: guidance keyed to the factors of notice-readers.
+guidance:
+  id: notice-readers-guidance
+  label: Notice readers guidance
+  version: 0.1
+  conforms_to: kbp/0.8
+  guides: notice-readers
+
+guidance_kinds:
+  - { id: convention, sourced: false }
+
+factors:
+  familiarity:
+    - kind: convention
+      claim: Explain each term a newcomer meets for the first time.
+      source: asserted
+      when: { familiarity: [newcomer] }
+  attention:
+    - kind: convention
+      claim: Put the one action the reader must take in the first line.
+      source: asserted

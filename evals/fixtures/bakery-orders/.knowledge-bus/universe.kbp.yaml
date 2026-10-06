@@ -1,0 +1,53 @@
+universe:
+  id: cake-orders
+  label: Cake orders
+  version: 0.2
+  conforms_to: kbp/0.7
+  ordering_frame: order-stage
+  overview:
+    covers: The details a bakery records for each made-to-order cake, from the counter to collection.
+    for: Counter staff and the kitchen.
+    excludes: The bakery's daily shelf stock.
+
+statuses: [taken, confirmed, collected, cancelled]
+
+frames:
+  - id: order-stage
+    code: f6pwg
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [intake, baking, collection]
+
+  - id: order-kind
+    code: f9bqa
+    role: applicability
+    set_by: instance
+    question: Is the cake made to order or taken from the shelf?
+    values: [shelf, made-to-order]
+
+empty_composition:
+  when: { order-kind: [shelf] }
+
+relation_kinds:
+  - id: feeds
+    ordered: true
+
+elements:
+  - { id: cake-request, code: ea4y3, question: "What does the customer want, when do they need it, and how much are they willing to pay?", order-stage: intake, cardinality: per-order }
+  - { id: allergens-excluded, code: eh6b3, question: "Which allergens must the cake leave out?", order-stage: intake, cardinality: per-order }
+  - { id: collection-time, code: e70zj, question: "On what date and at what hour does the customer collect the cake?", order-stage: collection, cardinality: per-order }
+  - { id: quoted-price, code: ek67f, question: "What price did the bakery quote for the cake?", order-stage: intake, cardinality: per-order }
+  - { id: deposit-paid, code: ezqxx, question: "What deposit has the customer paid?", order-stage: intake, cardinality: per-order }
+
+artifacts:
+  - id: order-slip
+    code: a2w9d
+    enablement: { action: "bake the cake the customer ordered", actor: kitchen staff, timing: before baking starts }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [cake-request, allergens-excluded, collection-time]
+      situational: [quoted-price, deposit-paid]
+
+relations:
+  - { from: quoted-price, to: deposit-paid, kind: feeds }

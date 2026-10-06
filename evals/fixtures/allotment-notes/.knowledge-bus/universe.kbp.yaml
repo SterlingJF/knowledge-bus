@@ -1,0 +1,55 @@
+universe:
+  id: allotment-plots
+  label: Allotment plots
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: growing-stage
+  overview:
+    covers: The arrangements a community garden keeps for the people who rent its plots.
+    for: The garden committee and the plot holders.
+    excludes: What each plot holder grows.
+
+statuses: [proposed, agreed, retired]
+
+frames:
+  - id: growing-stage
+    code: f8zfe
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [winter, growing, harvest]
+
+  - id: shared-with
+    code: fc6xt
+    role: applicability
+    set_by: instance
+    question: Who reads this arrangement besides the committee?
+    values: [nobody, plot-holders]
+
+no_artifact:
+  when: { shared-with: [nobody] }
+
+relation_kinds:
+  - id: feeds
+    ordered: true
+    phrasing:
+      forward: Feeds
+      reverse: Fed by
+
+elements:
+  - { id: plot-rent, code: epdqn, question: "What does each plot holder pay the garden each year?", growing-stage: winter, cardinality: singleton }
+  - { id: water-season, code: eqnj1, question: "In which months are the garden's mains taps turned on?", growing-stage: growing, cardinality: singleton }
+  - { id: work-days, code: ejx1v, question: "On which dates does the garden hold its shared work days?", growing-stage: growing, cardinality: singleton }
+  - { id: waiting-list-order, code: e57sh, question: "In what order does the garden offer a free plot to the people waiting?", growing-stage: winter, cardinality: singleton }
+
+artifacts:
+  - id: plot-holder-sheet
+    code: a8y9k
+    enablement: { action: "look after a plot for a year without asking the committee", actor: plot holder, timing: when the plot holder signs the yearly agreement }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [plot-rent, water-season, work-days]
+      situational: [waiting-list-order]
+
+relations:
+  - { from: water-season, to: work-days, kind: feeds }

@@ -40,6 +40,19 @@ EXPECTED = {
     "ordered-self-loop-missing-legality": "relation the-question->the-question (informs) is on a cycle and declares no legality",
     "ordered-cycle-missing-legality": "relation the-record->another-question (informs) is on a cycle and declares no legality",
     "relation-missing-required": "missing required ['to']",
+    "terms-in-0-7": "universe header: unsanctioned ['terms']",
+    "terms-duplicate": "universe terms: duplicate term 'question'",
+    "terms-missing-means": "universe terms[0]: missing required ['means']",
+    "terms-blank-term": "universe terms[0].term: must be a nonblank string",
+    "terms-unsanctioned-field": "universe terms[0]: unsanctioned ['example']",
+    "terms-not-a-list": "universe terms: not a list of { term, means }",
+    "empty-composition-in-0-8": "missing required 'no_artifact' (kbp/0.8 renamed 'empty_composition' to 'no_artifact')",
+    "no-artifact-in-0-7": "missing required 'empty_composition' (a kbp/0.7 document names it 'empty_composition'; 'no_artifact' arrives in kbp/0.8)",
+    "edge-gate-unknown-frame": "relation the-question->the-record.gate: unknown frame 'authority'",
+    "edge-gate-unknown-value": "relation the-question->the-record.gate.review: unknown predicate value 'banana'",
+    "edge-gate-not-a-mapping": "relation the-question->the-record.gate: not a mapping of { <frame-id>: <value> }",
+    "edge-gate-latency-not-a-string": "relation the-question->the-record.gate.latency: must be a nonblank string",
+    "frame-named-latency": "frame 'latency': reserved for an edge gate's duration",
 }
 
 

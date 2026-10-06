@@ -1,0 +1,108 @@
+# Test-only shared cases for the recognition tests. Invented.
+schema: evals-cases/1
+tags:
+  kind:
+    food: Something to eat or drink, made or sold.
+    music: Something played or sung for listeners.
+    craft: Something made by hand, shown or taught.
+  who:
+    one: One person whose stall or act it is.
+    group: Several people running the stall or act together.
+    organisation: A club, troop or other body acting as itself.
+cases:
+- id: c01
+  text: A retired baker sets out flapjacks by the duck pond, and strollers help themselves for a coin in the tin.
+  field: summer-fair
+  tags: {kind: food, who: one}
+- id: c02
+  text: The brass band plays on the green all afternoon, and families drift over from the tea tent to sit on the grass.
+  field: summer-fair
+  tags: {kind: music, who: group}
+- id: c03
+  text: The scout troop runs a knot-tying table where any child can try a reef knot.
+  field: summer-fair
+  tags: {kind: craft, who: organisation}
+- id: c04
+  text: Two sisters set up a lemonade stand at the corner by the church.
+  field: summer-fair
+  tags: {kind: food, who: group}
+- id: c05
+  text: The pottery club demonstrates its wheel in the barn, and a wristband bought at the cashbox lets you through the door.
+  field: summer-fair
+  tags: {kind: craft, who: group}
+- id: c06
+  text: The village choir's evening concert in the marquee takes coins at the flap before you sit.
+  field: summer-fair
+  tags: {kind: music, who: organisation}
+- id: c07
+  text: My cream-tea garden behind the vicarage has a hand stamp at the hedge gap for each guest who hands over a coin.
+  field: summer-fair
+  tags: {kind: food, who: one}
+- id: c08
+  text: I run the quilt show in the reading room, and a pound at the table buys a stamped card to go in.
+  field: summer-fair
+  tags: {kind: craft, who: one}
+- id: c09
+  text: The silver band's rehearsal tent is for members' families, whose names the secretary checks at the flap.
+  field: summer-fair
+  tags: {kind: music, who: organisation}
+- id: c10
+  text: The sponsors' lunch in the cricket pavilion seats the twenty households who sent back a card.
+  field: summer-fair
+  tags: {kind: food, who: group}
+- id: c11
+  text: My weaving workshop takes the six neighbours I wrote to last month, and no others.
+  field: summer-fair
+  tags: {kind: craft, who: one}
+- id: c12
+  text: The bowls club holds a supper in its clubhouse for the helpers it sent cards to.
+  field: summer-fair
+  tags: {kind: food, who: organisation}
+- id: c13
+  text: I bring a cool box of ice lollies and sell them from my own front garden on the fair route.
+  field: summer-fair
+  tags: {kind: food, who: one}
+- id: c14
+  text: Three friends play fiddles on the porch of their shared cottage.
+  field: summer-fair
+  tags: {kind: music, who: group}
+- id: c15
+  text: The knitting circle hangs bunting along its own clubhouse fence.
+  field: summer-fair
+  tags: {kind: craft, who: organisation}
+- id: c16
+  text: A child sets out a jam-jar stall on the family's drive, just beyond the field the committee runs.
+  field: summer-fair
+  tags: {kind: food, who: one}
+- id: c17
+  text: A neighbour's cake table goes on the green, so the fair committee's yes comes first, though it rarely says no.
+  field: summer-fair
+  tags: {kind: food, who: one}
+- id: c18
+  text: The ukulele group wants the bandstand slot at three, which the fair committee hands out.
+  field: summer-fair
+  tags: {kind: music, who: group}
+- id: c19
+  text: The woodworking guild turns bowls on a lathe in the field; the committee checks its insurance, and no road is closed.
+  field: summer-fair
+  tags: {kind: craft, who: organisation}
+- id: c20
+  text: The cricket club's burger van parks inside the fair field on a pitch the committee allocates.
+  field: summer-fair
+  tags: {kind: food, who: organisation}
+- id: c21
+  text: The parade needs the high street closed for an hour, which only the town hall can sign off.
+  field: summer-fair
+  tags: {kind: music, who: organisation}
+- id: c22
+  text: A family's hog roast sells hot food from a trailer on the road, which needs a street trading licence from the district.
+  field: summer-fair
+  tags: {kind: food, who: group}
+- id: c23
+  text: My raku firing burns gas in a public square, and the district's licensing office must sign it.
+  field: summer-fair
+  tags: {kind: craft, who: one}
+- id: c24
+  text: I plan an amplified set after ten at night, which needs a late music licence from the borough.
+  field: summer-fair
+  tags: {kind: music, who: one}

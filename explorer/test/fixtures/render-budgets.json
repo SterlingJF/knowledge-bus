@@ -100,7 +100,7 @@
     "crossings": 0
   },
   "elements/grouped/relations/counts · connection": {
-    "length": 323,
+    "length": 2470,
     "crossings": 0
   },
   "elements/grouped/composition/lines/uniform · no selection": {
@@ -168,11 +168,11 @@
     "crossings": 0
   },
   "elements/flat/relations/counts · connection": {
-    "length": 348,
+    "length": 660,
     "crossings": 0
   },
   "elements/flat/composition/lines/uniform · no selection": {
-    "length": 152632,
+    "length": 154770,
     "crossings": 1634
   },
   "elements/flat/composition/lines/uniform · card": {

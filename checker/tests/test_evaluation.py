@@ -93,34 +93,35 @@ def test_unconditional_member_keeps_declared_strength(strength):
 
 
 @pytest.mark.parametrize(
-    "disabled,empty,expected",
+    "disabled,no_artifact,expected",
     [
         (True, True, "disabled"),
         (True, False, "disabled"),
         (True, None, "disabled"),
-        (False, True, "empty"),
+        (False, True, "no_artifact"),
         (False, False, "applicable"),
         (False, None, "unresolved"),
-        (None, True, "empty"),
+        (None, True, "no_artifact"),
         (None, False, "unresolved"),
         (None, None, "unresolved"),
     ],
 )
-def test_artifact_suppression_precedes_membership(disabled, empty, expected):
+def test_artifact_suppression_precedes_membership(disabled, no_artifact, expected):
     context = {
         key: "yes" if value else "no"
-        for key, value in [("disabled", disabled), ("empty", empty)]
+        for key, value in [("disabled", disabled), ("no_artifact", no_artifact)]
         if value is not None
     }
     assert (
-        artifact_availability({"disabled": ["yes"]}, {"empty": ["yes"]}, context)
+        artifact_availability({"disabled": ["yes"]}, {"no_artifact": ["yes"]}, context)
         == expected
     )
 
 
 def test_artifact_without_disable_condition_is_applicable():
     assert (
-        artifact_availability(None, {"empty": ["yes"]}, {"empty": "no"}) == "applicable"
+        artifact_availability(None, {"no_artifact": ["yes"]}, {"no_artifact": "no"})
+        == "applicable"
     )
 
 

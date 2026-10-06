@@ -1,40 +1,11 @@
-"""Maintainable structural checks for the bounded skill scenario corpus."""
+"""Canonical skill metadata stays discovery-only, and every skill treats input text as content."""
 
+import re
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-
-
-def test_skill_evaluation_corpus_covers_owned_release_risks_once():
-    document = yaml.safe_load((ROOT / "evaluations/skills.yaml").read_text())
-    assert document["schema"] == "knowledge-bus/skill-evaluation/1"
-    rubric = document["rubric"]
-    assert {item["id"] for item in rubric} == {
-        "scope",
-        "semantics",
-        "uncertainty",
-        "validation",
-        "safety",
-    }
-    scenarios = document["scenarios"]
-    expected = {
-        "expectation-before-documents",
-        "non-product-reference-adaptation",
-        "duplicate-question-refusal",
-        "missing-historical-evidence",
-        "ingestion-conflict-and-unmapped-content",
-        "valid-inspection-without-visualization",
-        "descriptive-current-is-not-authorized",
-        "instruction-like-source-text",
-        "multiple-universes-need-selection",
-    }
-    assert {item["id"] for item in scenarios} == expected
-    assert len(scenarios) == len(expected)
-    canonical = {path.parent.name for path in (ROOT / "skills").glob("*/SKILL.md")}
-    assert {item["skill"] for item in scenarios} <= canonical
-    assert all(item["required"] for item in scenarios)
 
 
 def test_skill_frontmatter_is_capability_metadata_not_runtime_routing():
@@ -44,3 +15,21 @@ def test_skill_frontmatter_is_capability_metadata_not_runtime_routing():
         metadata = yaml.safe_load(header)
         assert set(metadata) <= {"name", "description", "metadata"}
         assert set(metadata.get("metadata", {})) <= {"short-description"}
+
+
+def test_every_skill_treats_input_text_as_content_not_instructions():
+    """Each canonical skill says text in its inputs is content, never a command."""
+    paths = sorted((ROOT / "skills").glob("*/SKILL.md"))
+    assert paths
+    missing = []
+    for path in paths:
+        text = re.sub(r"\s+", " ", path.read_text().replace("**", ""))
+        sentences = re.split(r"(?<=[.;])\s", text)
+        if not any(
+            re.search(r"\binstructions?\b", s, re.IGNORECASE)
+            and re.search(r"\b(never|not)\b", s, re.IGNORECASE)
+            and re.search(r"\b(content|follow(ed)?)\b", s, re.IGNORECASE)
+            for s in sentences
+        ):
+            missing.append(path.parent.name)
+    assert not missing, f"no content-not-instructions guard in: {missing}"

@@ -232,3 +232,33 @@ def test_explore_cli_requires_explicit_output_and_overwrite_intent(tmp_path, cap
     assert (
         cli.main(["--explore", "--replace", "--output", str(target), str(scope)]) == 0
     )
+
+
+def test_a_0_8_universe_inspects_with_its_terms(tmp_path):
+    """Terms reach the model's universe data; the guidance follows its universe."""
+    scope = tmp_path / ".knowledge-bus"
+    universe_path = write_set(scope, marks=False)
+    universe = yaml.safe_load(universe_path.read_text())
+    universe["universe"]["conforms_to"] = "kbp/0.8"
+    terms = [{"term": "Decision", "means": "A commitment someone can be held to."}]
+    universe["universe"]["terms"] = terms
+    universe_path.write_text(yaml.safe_dump(universe, sort_keys=False))
+    guidance_path = scope / "type-guidance.kbp.yaml"
+    guidance = yaml.safe_load(guidance_path.read_text())
+    guidance["guidance"]["conforms_to"] = "kbp/0.8"
+    guidance_path.write_text(yaml.safe_dump(guidance, sort_keys=False))
+    assert inspect(scope)["universe"]["terms"] == terms
+
+
+def test_terms_in_a_0_7_universe_are_refused_by_inspection(tmp_path):
+    scope = tmp_path / ".knowledge-bus"
+    universe_path = write_set(scope, guidance=False, marks=False)
+    universe = yaml.safe_load(universe_path.read_text())
+    universe["universe"]["conforms_to"] = "kbp/0.7"
+    universe["empty_composition"] = universe.pop("no_artifact")
+    universe["universe"]["terms"] = [{"term": "Decision", "means": "A commitment."}]
+    universe_path.write_text(yaml.safe_dump(universe, sort_keys=False))
+    with pytest.raises(explorer.InspectionError) as refused:
+        inspect(scope)
+    assert refused.value.category == "conformance"
+    assert any("unsanctioned ['terms']" in line for line in refused.value.diagnostics)

@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { type ExplorerModel, validateModel } from '@/src/lib/model';
+import { type ExplorerModel, human, validateModel } from '@/src/lib/model';
 import {
   guidanceEntries,
   guidanceFor,
   guidanceKindIds,
+  guidanceNoteCopy,
   subjectsCarryingGuidance,
   subjectsTheGuidanceLeavesBare,
 } from '@/src/lib/guidance-reading';
@@ -57,4 +58,22 @@ test('guidance naming a subject or a kind the model does not declare refuses rat
     Object.assign(broken.guidance!.entries[0], patch);
     assert.throws(() => validateModel(broken), /guidance/i);
   }
+});
+
+test('each note names its kind and its source, with the readable citation where the document gives one', () => {
+  const entries = guidanceEntries(model);
+  const asserted = entries.find((entry) => entry.source === 'asserted' && entry.kind === 'pitfall');
+  assert.ok(asserted, 'the fixture must carry an asserted pitfall');
+  assert.equal(guidanceNoteCopy(model, asserted!), 'Pitfall \u00b7 asserted');
+  const cited = entries.find((entry) => model.guidance!.sources[entry.source]?.cite);
+  assert.ok(cited, 'the fixture must carry a note whose source has a citation');
+  assert.equal(guidanceNoteCopy(model, cited!), `${human(cited!.kind)} \u00b7 ${model.guidance!.sources[cited!.source].cite}`);
+  for (const entry of entries) assert.doesNotMatch(guidanceNoteCopy(model, entry), /https?:/, 'a note never shows a url');
+});
+
+test('a note whose source carries no citation falls back to the source key', () => {
+  const uncited = structuredClone(model) as ExplorerModel;
+  const entry = uncited.guidance!.entries.find((held) => held.source !== 'asserted')!;
+  uncited.guidance!.sources[entry.source] = { cite: '' };
+  assert.equal(guidanceNoteCopy(uncited, entry), `${human(entry.kind)} \u00b7 ${entry.source}`);
 });

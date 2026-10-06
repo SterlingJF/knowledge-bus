@@ -1,0 +1,86 @@
+# The frame fails of the last full grade, retired by the owner decision below.
+# Read by tools/evals/report.py; the report lists them once.
+decision: 'Owner, 2026-10-05: the wording rules one-question, named-referents, direct-statement, plain-words,
+  one-point-terse and holds-across-scope no longer apply to the questions of frames or factors, and siblings-differ
+  applies only between frames or between factors. Frames are measured by whether readers recognise their
+  values (values-recognised), because recognition is what frames are for.'
+graded_in: universe-20261005T045435502585Z
+fails:
+- rule: one-question
+  ref: frames[reversibility].question
+  text: Can this step be undone, and at what cost?
+- rule: one-question
+  ref: frames[phase].values[strategy].question
+  text: Who are we, where are we going, and why that way?
+- rule: one-question
+  ref: frames[phase].values[discovery].question
+  text: What is worth solving, for whom, and is it viable?
+- rule: one-question
+  ref: frames[phase].values[design].question
+  text: What are we building and how does it behave?
+- rule: one-question
+  ref: frames[phase].values[operate].question
+  text: How is this carried out and kept working?
+- rule: named-referents
+  ref: frames[phase].question
+  text: Which stage of the work is this part of?
+- rule: named-referents
+  ref: frames[phase].values[validation].question
+  text: How do we know it works?
+- rule: named-referents
+  ref: frames[phase].values[architecture].question
+  text: How does it technically hold together?
+- rule: named-referents
+  ref: frames[phase].values[operate].question
+  text: How is this carried out and kept working?
+- rule: named-referents
+  ref: frames[uptake].values[given].question
+  text: Does it arrive whether or not they'd choose it?
+- rule: named-referents
+  ref: frames[uptake].values[chosen].question
+  text: Do they take it up only by deciding to, with nothing to pay?
+- rule: named-referents
+  ref: frames[uptake].values[bought].question
+  text: Is paying how they take it up?
+- rule: direct-statement
+  ref: frames[reversibility].question
+  text: Can this step be undone, and at what cost?
+- rule: direct-statement
+  ref: frames[authority].question
+  text: Who has to be asked or told before the work goes ahead?
+- rule: direct-statement
+  ref: frames[phase].values[operate].question
+  text: How is this carried out and kept working?
+- rule: direct-statement
+  ref: frames[uptake].values[chosen].question
+  text: Do they take it up only by deciding to, with nothing to pay?
+- rule: direct-statement
+  ref: frames[authority].values[notify].question
+  text: Must someone be told first, with no yes needed?
+- rule: plain-words
+  ref: frames[maturity].question
+  text: How settled is the bet this work rests on?
+- rule: plain-words
+  ref: frames[audience].question
+  text: Who is this artifact going to?
+- rule: plain-words
+  ref: frames[phase].values[strategy].question
+  text: Who are we, where are we going, and why that way?
+- rule: plain-words
+  ref: frames[phase].values[architecture].question
+  text: How does it technically hold together?
+- rule: holds-across-scope
+  ref: frames[phase].values[design].question
+  text: What are we building and how does it behave?
+- rule: holds-across-scope
+  ref: frames[phase].values[architecture].question
+  text: How does it technically hold together?
+- rule: siblings-differ
+  ref: frames[phase].values[strategy].question ~ frames[phase].values[discovery].question
+  text: Who are we, where are we going, and why that way?
+- rule: siblings-differ
+  ref: frames[authority].values[none].question ~ frames[authority].values[discretionary].question
+  text: Can the work go ahead without asking or telling anyone?
+- rule: siblings-differ
+  ref: frames[authority].values[approve].question ~ frames[authority].values[statutory].question
+  text: Does someone's yes have to come first?

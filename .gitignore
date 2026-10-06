@@ -13,3 +13,6 @@ explorer/playwright-report/
 
 # Local evidence archive
 /.evidence/
+
+# Eval runner output
+/evals/generated/*/results/

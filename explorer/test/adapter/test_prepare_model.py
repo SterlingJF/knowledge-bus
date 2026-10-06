@@ -1,13 +1,17 @@
 """Adapter contract tests using the authored reference universe."""
 
+import contextlib
 import copy
 import importlib.util
+import io
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
 import yaml
+
+from kbp_conform.checker import check
 
 ROOT = Path(__file__).resolve().parents[3]
 SPEC = importlib.util.spec_from_file_location(
@@ -286,6 +290,31 @@ class PrepareModelTests(unittest.TestCase):
                 self.assertEqual(edge["phrasing"], definition["phrasing"])
                 self.assertEqual("reverse" in edge["phrasing"], edge["ordered"])
 
+    def test_declared_terms_reach_the_universe_data_verbatim(self):
+        source = copy.deepcopy(self.source)
+        source["universe"]["conforms_to"] = "kbp/0.8"
+        terms = [
+            {"term": "Decision", "means": "A commitment someone can be held to."},
+            {"term": "the bet", "means": "What the work stakes on being right."},
+        ]
+        source["universe"]["terms"] = copy.deepcopy(terms)
+        model = MODULE.prepare_model(source, self.protocol)
+        self.assertEqual(model["universe"]["terms"], terms)
+        self.assertEqual(model["universe"]["overview"], source["universe"]["overview"])
+
+    def test_a_universe_without_terms_carries_an_empty_list(self):
+        source = copy.deepcopy(self.source)
+        source["universe"].pop("terms", None)
+        model = MODULE.prepare_model(source, self.protocol)
+        self.assertEqual(model["universe"]["terms"], [])
+        self.assertNotIn("terms", model["source"]["universe"])
+
+    def test_terms_in_a_0_7_universe_are_refused(self):
+        source = self.as_0_7()
+        source["universe"]["terms"] = [{"term": "Decision", "means": "A commitment."}]
+        with self.assertRaisesRegex(ValueError, "unsanctioned \\['terms'\\]"):
+            MODULE.prepare_model(source, self.protocol)
+
     def test_canonical_fixture_is_fresh_and_projection_is_deterministic(self):
         first = MODULE.prepare_model(
             self.source, self.protocol, self.guidance, self.marks
@@ -343,7 +372,7 @@ class PrepareModelTests(unittest.TestCase):
                 "disabled_when",
                 "composition.when",
                 "relation.gate",
-                "empty_composition.when",
+                "no_artifact.when",
             },
         )
         for entry in model["wiring"]:
@@ -358,16 +387,106 @@ class PrepareModelTests(unittest.TestCase):
         for entry in conditional:
             self.assertEqual(len(entry["targetPair"]), 2)
             self.assertIn(entry["to"], entry["targetPair"])
-        rule = [e for e in model["wiring"] if e["kind"] == "empty_composition.when"]
+        rule = [e for e in model["wiring"] if e["kind"] == "no_artifact.when"]
         self.assertTrue(rule)
         for entry in rule:
             self.assertEqual(entry["to"], model["rules"][0]["id"])
+
+    def as_0_7(self):
+        """The reference universe written as kbp/0.7: old key name, no terms."""
+        source = copy.deepcopy(self.source)
+        self.assertEqual(source["universe"]["conforms_to"], "kbp/0.8")
+        source["universe"]["conforms_to"] = "kbp/0.7"
+        source["universe"].pop("terms", None)
+        source["empty_composition"] = source.pop("no_artifact")
+        return source
+
+    def test_no_artifact_rule_has_one_shape_whichever_version_is_declared(self):
+        for source, key in [
+            (self.source, "no_artifact"),
+            (self.as_0_7(), "empty_composition"),
+        ]:
+            model = MODULE.prepare_model(source, self.protocol)
+            self.assertEqual(
+                model["rules"],
+                [
+                    {
+                        "id": "rule:no-artifact",
+                        "kind": "no-artifact",
+                        "raw": source[key],
+                        "sourcePath": key,
+                    }
+                ],
+            )
+            wired = [e for e in model["wiring"] if e["to"] == "rule:no-artifact"]
+            self.assertTrue(wired)
+            for entry in wired:
+                self.assertEqual(entry["kind"], "no_artifact.when")
+                self.assertEqual(entry["sourcePath"], f"{key}.when")
+
+    def test_a_0_8_universe_using_the_old_key_is_refused(self):
+        source = copy.deepcopy(self.source)
+        source["empty_composition"] = source.pop("no_artifact")
+        with self.assertRaisesRegex(ValueError, "renamed 'empty_composition'"):
+            MODULE.prepare_model(source, self.protocol)
 
     def test_wiring_refuses_an_undeclared_frame(self):
         source = copy.deepcopy(self.source)
         source["elements"][0]["gate"] = {"not-a-frame": ["yes"]}
         with self.assertRaises(ValueError):
             MODULE.prepare_model(source, self.protocol)
+
+    def with_relation_gate(self, gate, version="kbp/0.8"):
+        source = self.as_0_7() if version == "kbp/0.7" else copy.deepcopy(self.source)
+        index = next(i for i, r in enumerate(source["relations"]) if "gate" in r)
+        source["relations"][index]["gate"] = gate
+        return source, index
+
+    def test_a_relation_gate_wires_the_frames_it_names_and_not_latency(self):
+        for version, gate, wired in [
+            (
+                "kbp/0.8",
+                {"uptake": "bought", "latency": "2d"},
+                [("uptake", ["bought"])],
+            ),
+            ("kbp/0.8", {"latency": "2d"}, []),
+            ("kbp/0.7", {"authority": "approve"}, [("authority", ["approve"])]),
+            ("kbp/0.7", {"sign-off": "yes", "latency": "2d"}, []),
+        ]:
+            with self.subTest(version=version, gate=gate):
+                source, index = self.with_relation_gate(gate, version)
+                model = MODULE.prepare_model(source, self.protocol)
+                self.assertEqual(
+                    [
+                        (entry["sourceFrameId"], entry["value"])
+                        for entry in model["wiring"]
+                        if entry["sourcePath"] == f"relations[{index}].gate"
+                    ],
+                    wired,
+                )
+
+    def test_explorer_accepts_exactly_the_relation_gates_the_checker_accepts(self):
+        for version, gate in [
+            ("kbp/0.8", {"authority": "approve"}),
+            ("kbp/0.8", {"uptake": ["chosen", "bought"], "latency": "2d"}),
+            ("kbp/0.8", {"latency": "2d"}),
+            ("kbp/0.8", {"sign-off": "yes"}),
+            ("kbp/0.8", {"uptake": "banana"}),
+            ("kbp/0.8", {"latency": ["2d"]}),
+            ("kbp/0.7", {"authority": "approve", "latency": "2d"}),
+            ("kbp/0.7", {"sign-off": "yes", "latency": "2d"}),
+            ("kbp/0.7", "approve"),
+        ]:
+            with self.subTest(version=version, gate=gate):
+                source, _ = self.with_relation_gate(gate, version)
+                with contextlib.redirect_stdout(io.StringIO()):
+                    conforms = check(self.protocol, copy.deepcopy(source), "probe")
+                try:
+                    MODULE.prepare_model(source, self.protocol)
+                    renders = True
+                except ValueError:
+                    renders = False
+                self.assertEqual(renders, conforms)
 
     def test_cli_output_round_trip(self):
         with tempfile.TemporaryDirectory() as directory:

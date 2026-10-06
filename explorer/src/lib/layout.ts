@@ -44,10 +44,11 @@ const SECTION_X = 40;
 const SECTION_W = 1100;
 
 const FRAMES_BOUNDARY = 'scope:frames';
-const EXCEPTIONS_BOUNDARY = 'scope:rule';
+const NO_ARTIFACT_BOUNDARY = 'scope:rule';
 const FACTORS_BOUNDARY = 'scope:factors';
 const FRAMES_CAPTION = 'Your situation. These change what you need.';
-const EXCEPTIONS_CAPTION = 'Your special cases. These mean no artifact is needed.';
+const NO_ARTIFACT_TITLE = 'When to skip the artifact';
+const NO_ARTIFACT_CAPTION = 'When every frame here matches, no artifact is needed.';
 const FACTORS_CAPTION = 'Your conditions. These shape how you go about the work.';
 const FACTORS_NONE_DECLARED = 'This universe declares no factors.';
 
@@ -273,19 +274,19 @@ function framesLayout(model: ExplorerModel): Layout {
       id: rule.id,
       entity: null,
       kind: 'rule',
-      scopeId: EXCEPTIONS_BOUNDARY,
+      scopeId: NO_ARTIFACT_BOUNDARY,
       x: RULE_CARD_X,
       y: RULE_CARD_Y,
       w: RULE_CARD_W,
       h: RULE_CARD_H,
     };
     cards.push(ruleCard);
-    const exceptions = placedToHold(
-      { id: EXCEPTIONS_BOUNDARY, title: 'Exceptions', caption: EXCEPTIONS_CAPTION, role: 'section', scopeId: FRAMES_BOUNDARY },
+    const noArtifact = placedToHold(
+      { id: NO_ARTIFACT_BOUNDARY, title: NO_ARTIFACT_TITLE, caption: NO_ARTIFACT_CAPTION, role: 'section', scopeId: FRAMES_BOUNDARY },
       [ruleCard],
     );
-    nested.push(exceptions);
-    insideFrames.push(exceptions);
+    nested.push(noArtifact);
+    insideFrames.push(noArtifact);
   }
 
   const boundaries: Boundary[] = insideFrames.length

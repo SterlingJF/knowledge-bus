@@ -54,12 +54,14 @@
     "test:explorer:browser:exclusive": "KB_EXPLORER_LANE=exclusive playwright test --config tools/explorer/playwright.config.ts",
     "test:explorer:adapter": "uv run --locked python -m unittest discover -s explorer/test/adapter",
     "check:explorer:artifacts": "node tools/explorer/check-artifacts.mjs dist/explorer",
+    "render:explorer:gallery": "node tools/explorer/gallery-map.mjs --write",
+    "check:explorer:gallery": "node tools/explorer/gallery-map.mjs --check",
     "capture:explorer:step": "node tools/explorer/shots.mjs --out dist/explorer-shots/step --tier step",
     "compare:explorer:shots": "node tools/explorer/shots.mjs --compare",
     "format:explorer": "prettier --write \"explorer/**/*.{ts,css,json}\" \"tools/explorer/**/*.{ts,mjs,json}\"",
     "check:explorer:format": "prettier --check \"explorer/**/*.{ts,css,json}\" \"tools/explorer/**/*.{ts,mjs,json}\"",
     "generate:explorer:tokens": "node tools/explorer/generate-tokens.mjs",
     "check:explorer:source": "node tools/explorer/check-source.mjs",
-    "test:explorer": "node tools/quality/run.mjs test:explorer:unit test:explorer:adapter build:explorer render:explorer test:explorer:browser check:explorer:artifacts"
+    "test:explorer": "node tools/quality/run.mjs test:explorer:unit test:explorer:adapter build:explorer render:explorer test:explorer:browser check:explorer:artifacts check:explorer:gallery"
   }
 }

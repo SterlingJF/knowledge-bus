@@ -15,7 +15,18 @@ fields, conditional requirements, composition-entry shape including the
 declared shorthand, frame and factor value shapes, the `one_of` choice
 between `values`, `facets` and `source`, frame predicates — including the
 rule that a universe predicate may never name a factor — enums, codes,
-relation edge shape, cycle legality, and referential integrity.
+relation edge shape, edge gates against the declared frames, cycle legality,
+and referential integrity. Header terms must be unique, case-insensitively,
+with nonblank `term` and `means`.
+
+A document is checked as the protocol version it declares, when the protocol
+accepts it: a header key whose `header_since` is later is unsanctioned there,
+and a document key listed in `renamed` keeps its earlier name before `since`.
+A field listed in `reshaped` keeps its earlier shape, unchecked, before `since`.
+kbp/0.8 names `no_artifact` what kbp/0.7 names `empty_composition`; `check`
+reads the declared name and then works on the current one. A kbp/0.8 edge
+gate is keyed by declared frames plus `latency`, a nonblank string that no
+frame may take as its id; a kbp/0.7 one is not checked.
 
 Guidance checks: sanctioned field names, required fields, key resolution
 against the guided universe, declared kinds, source resolution including the
@@ -49,6 +60,9 @@ META = {
     "required",
     "one_of",
     "header_required",
+    "header_since",
+    "renamed",
+    "reshaped",
     "document",
     "shorthand",
     "qualified_values_when",
@@ -67,6 +81,8 @@ NEEDS = [
     ("declarations", "universe", "document"),
     ("declarations", "universe", "required"),
     ("declarations", "universe", "header_required"),
+    ("declarations", "universe", "header_since"),
+    ("declarations", "universe", "renamed"),
     ("declarations", "guidance", "document"),
     ("declarations", "guidance", "required"),
     ("declarations", "guidance", "header_required"),
@@ -82,12 +98,14 @@ NEEDS = [
     ("declarations", "factor", "set_by"),
     ("declarations", "factor", "one_of"),
     ("declarations", "relation_kind", "required"),
+    ("declarations", "term", "required"),
     ("declarations", "guidance_kind", "required"),
     ("declarations", "guidance_entry", "required"),
     ("composition", "entry", "mode"),
     ("composition", "entry", "strength"),
     ("composition", "entry", "required"),
     ("relations", "edge", "required"),
+    ("relations", "edge", "reshaped"),
 ]
 
 SUBSCRIPTS = [("check", "u", "universe"), ("check_guidance", "g", "guidance")]
@@ -99,6 +117,109 @@ def sanc(shape):
 
 def alts(value):
     return {x.strip().strip('"') for x in str(value).split("|")}
+
+
+def _version_key(value):
+    return tuple(int(part) for part in str(value).split("."))
+
+
+def accepted_versions(p):
+    """The conforms_to values a document may declare, the current version first."""
+    protocol = p["protocol"]
+    earlier = protocol.get("accepts")
+    earlier = earlier if isinstance(earlier, list) else []
+    return [f"{protocol['id']}/{v}" for v in [protocol["version"], *earlier]]
+
+
+def declared_version(p, header):
+    """The version a document is checked as: the one it declares, when accepted."""
+    declared = header.get("conforms_to")
+    if declared in accepted_versions(p):
+        return declared.split("/", 1)[1]
+    return str(p["protocol"]["version"])
+
+
+def introduced_after(p, shape, version):
+    """Header keys a later protocol version introduced, unsanctioned at `version`."""
+    since = p["declarations"][shape].get("header_since") or {}
+    return {k for k, v in since.items() if _version_key(v) > _version_key(version)}
+
+
+def earlier_names(p, shape, version):
+    """Current document key -> the earlier name a document at `version` uses."""
+    renamed = p["declarations"][shape].get("renamed") or {}
+    return {
+        key: entry["was"]
+        for key, entry in renamed.items()
+        if _version_key(entry["since"]) > _version_key(version)
+    }
+
+
+def document_key(p, shape, key, version):
+    """The name a document declaring `version` uses for the current key `key`."""
+    return earlier_names(p, shape, version).get(key, key)
+
+
+def reshaped_after(shape, field, version):
+    """Whether a field keeps its earlier, unchecked shape at `version`."""
+    entry = (shape.get("reshaped") or {}).get(field) or {}
+    return "since" in entry and _version_key(entry["since"]) > _version_key(version)
+
+
+def renamed_counterpart(p, shape, key):
+    """The other name of a renamed document key, or None."""
+    for current, entry in (p["declarations"][shape].get("renamed") or {}).items():
+        if key == current:
+            return entry["was"]
+        if key == entry["was"]:
+            return current
+    return None
+
+
+def rename_hint(p, shape, key, version):
+    """Plain words saying which name of a renamed key a document's version uses."""
+    pid = p["protocol"]["id"]
+    for current, entry in (p["declarations"][shape].get("renamed") or {}).items():
+        was, since = entry["was"], entry["since"]
+        if key not in (current, was):
+            continue
+        if _version_key(since) > _version_key(version):
+            return (
+                f"a {pid}/{version} document names it '{was}'; "
+                f"'{current}' arrives in {pid}/{since}"
+            )
+        return f"{pid}/{since} renamed '{was}' to '{current}'"
+    return None
+
+
+def check_terms(terms, shape):
+    """A universe's own words: a list of unique, nonblank term and means pairs."""
+    if not isinstance(terms, list):
+        return ["universe terms: not a list of { term, means }"]
+    # Every term field is required, so the required list is the whole shape.
+    fields = set(shape["required"])
+    fail, seen = [], set()
+    for i, entry in enumerate(terms):
+        where = f"universe terms[{i}]"
+        if not isinstance(entry, dict):
+            fail.append(f"{where}: not a mapping of {{ term, means }}")
+            continue
+        bad = set(entry) - fields
+        if bad:
+            fail.append(f"{where}: unsanctioned {sorted(bad, key=str)}")
+        missing = fields - set(entry)
+        if missing:
+            fail.append(f"{where}: missing required {sorted(missing)}")
+        for field in sorted(fields & set(entry)):
+            value = entry[field]
+            if not isinstance(value, str) or not value.strip():
+                fail.append(f"{where}.{field}: must be a nonblank string")
+        term = entry.get("term")
+        if isinstance(term, str) and term.strip():
+            if term.casefold() in seen:
+                fail.append(f"universe terms: duplicate term {term!r}")
+            seen.add(term.casefold())
+    return fail
 
 
 def check_pred(
@@ -186,6 +307,59 @@ def _document_keys(source):
     return out
 
 
+def _renamed_soundness(p, shape, where):
+    """A rename names a current document key, its earlier name and a real version."""
+    renamed = shape["renamed"]
+    if not isinstance(renamed, dict):
+        return [f"{where}.renamed: not a mapping of {{ <key>: {{ was, since }} }}"]
+    document = shape.get("document") if isinstance(shape.get("document"), dict) else {}
+    fail = []
+    bad = [k for k in renamed if k not in document]
+    if bad:
+        fail.append(f"{where}.renamed names {bad}, which `document` does not declare")
+    current = (p.get("protocol") or {}).get("version")
+    for key, entry in renamed.items():
+        at = f"{where}.renamed.{key}"
+        if not isinstance(entry, dict) or set(entry) != {"was", "since"}:
+            fail.append(f"{at}: needs {{ was, since }}")
+            continue
+        if entry["was"] in document:
+            fail.append(f"{at}.was: {entry['was']!r} is still a document key")
+        try:
+            later = _version_key(entry["since"]) > _version_key(current)
+        except TypeError, ValueError:
+            fail.append(f"{at}.since: {entry['since']!r} is not a version")
+            continue
+        if later:
+            fail.append(f"{at}.since: {entry['since']} is later than protocol.version")
+    return fail
+
+
+def _reshaped_soundness(p, shape, where):
+    """A reshape names a field of its shape, the earlier shape and a real version."""
+    reshaped = shape["reshaped"]
+    if not isinstance(reshaped, dict):
+        return [f"{where}.reshaped: not a mapping of {{ <field>: {{ was, since }} }}"]
+    fail = []
+    bad = [k for k in reshaped if k not in sanc(shape)]
+    if bad:
+        fail.append(f"{where}.reshaped names {bad}, which the shape does not declare")
+    current = (p.get("protocol") or {}).get("version")
+    for key, entry in reshaped.items():
+        at = f"{where}.reshaped.{key}"
+        if not isinstance(entry, dict) or set(entry) != {"was", "since"}:
+            fail.append(f"{at}: needs {{ was, since }}")
+            continue
+        try:
+            later = _version_key(entry["since"]) > _version_key(current)
+        except TypeError, ValueError:
+            fail.append(f"{at}.since: {entry['since']!r} is not a version")
+            continue
+        if later:
+            fail.append(f"{at}.since: {entry['since']} is later than protocol.version")
+    return fail
+
+
 def self_check(p, source=None):
     """The protocol against itself. Soundness, not conformance."""
     fail = []
@@ -206,6 +380,10 @@ def self_check(p, source=None):
                     fail.append(
                         f"relations.kind_contracts.{kind}.ordered: must be {ordered}"
                     )
+
+    accepts = (p.get("protocol") or {}).get("accepts", [])
+    if not isinstance(accepts, list):
+        fail.append("protocol.accepts: not a list")
 
     for path in NEEDS:
         node = p
@@ -263,6 +441,23 @@ def self_check(p, source=None):
                         f"{where}.header_required names {bad}, which "
                         f"`document.{own}` does not declare"
                     )
+        if "header_since" in shape:
+            since = shape["header_since"]
+            own = path[-1] if path else ""
+            header = (shape.get("document") or {}).get(own)
+            if not isinstance(since, dict):
+                fail.append(f"{where}.header_since: not a mapping")
+            elif isinstance(header, dict):
+                bad = [k for k in since if k not in header]
+                if bad:
+                    fail.append(
+                        f"{where}.header_since names {bad}, which "
+                        f"`document.{own}` does not declare"
+                    )
+        if "renamed" in shape:
+            fail.extend(_renamed_soundness(p, shape, where))
+        if "reshaped" in shape:
+            fail.extend(_reshaped_soundness(p, shape, where))
 
     declared = {k for k, v in d.items() if isinstance(v, dict) and "document" in v}
     kinds = set((d.get("document_types") or {}).get("kinds") or [])
@@ -292,13 +487,29 @@ def self_check(p, source=None):
     return fail
 
 
-def missing_preconditions(d, doc, shape, name):
-    """Report missing document or header keys before dependent checks."""
-    fail = [
-        f"document: missing required '{k}'"
-        for k in d[shape]["required"]
-        if k not in doc
-    ]
+def missing_preconditions(p, doc, shape, name):
+    """Report missing document or header keys before dependent checks.
+
+    A required key is looked for under the name the document's declared
+    version uses for it.
+    """
+    d = p["declarations"]
+    header = doc.get(shape)
+    version = declared_version(p, header if isinstance(header, dict) else {})
+    earlier = earlier_names(p, shape, version)
+    fail = []
+    for k in d[shape]["required"]:
+        k = earlier.get(k, k)
+        if k in doc:
+            continue
+        hint = (
+            rename_hint(p, shape, k, version)
+            if renamed_counterpart(p, shape, k) in doc
+            else None
+        )
+        fail.append(
+            f"document: missing required '{k}'" + (f" ({hint})" if hint else "")
+        )
     if not fail:
         fail = [
             f"header: missing required '{k}'"
@@ -318,16 +529,23 @@ def check(p, u, name):
     """Validate a universe and report conformance failures."""
     d = p["declarations"]
     fail, warn = [], []
-    if missing_preconditions(d, u, "universe", name):
+    if missing_preconditions(p, u, "universe", name):
         return False
+    version = declared_version(p, u["universe"])
+    earlier = earlier_names(p, "universe", version)
+    current = {was: key for key, was in earlier.items()}
+    written = set(u)
+    # From here on the document is read by current key names.
+    u = {current.get(k, k): v for k, v in u.items() if k not in earlier}
     ordering = u["universe"]["ordering_frame"]
     entry = p["composition"]["entry"]
     factors = u.get("factors") or []
 
     doc_shape = d["universe"]["document"]
+    header_keys = set(doc_shape["universe"]) - introduced_after(p, "universe", version)
     for label, used, allowed in [
-        ("document", set(u), set(doc_shape)),
-        ("universe header", set(u["universe"]), set(doc_shape["universe"])),
+        ("document", written, {earlier.get(k, k) for k in doc_shape}),
+        ("universe header", set(u["universe"]), header_keys),
         *(
             [
                 (
@@ -364,9 +582,16 @@ def check(p, u, name):
         bad = used - allowed
         print(f"  {label:18} unsanctioned={sorted(bad) or 'none'}")
         if bad:
-            fail.append(f"{label}: unsanctioned {sorted(bad)}")
+            hints = [rename_hint(p, "universe", k, version) for k in sorted(bad)]
+            hints = "; ".join(h for h in hints if h) if label == "document" else ""
+            fail.append(
+                f"{label}: unsanctioned {sorted(bad)}"
+                + (f" ({hints})" if hints else "")
+            )
     if "overview" in u["universe"] and not isinstance(u["universe"]["overview"], dict):
         fail.append("universe overview: not a mapping of { covers, for, excludes }")
+    if "terms" in u["universe"] and "terms" in header_keys:
+        fail.extend(check_terms(u["universe"]["terms"], d["term"]))
 
     roles = alts(d["frame"]["role"])
     set_bys = alts(d["frame"]["set_by"])
@@ -515,7 +740,8 @@ def check(p, u, name):
             definitions={f["id"]: f for f in u["frames"]},
         )
 
-    pred(u["empty_composition"]["when"], "empty_composition.when")
+    no_artifact = earlier.get("no_artifact", "no_artifact")
+    pred(u["no_artifact"]["when"], f"{no_artifact}.when")
     for e in u["elements"]:
         if "gate" in e:
             pred(e["gate"], f"element {e['id']}.gate")
@@ -615,6 +841,31 @@ def check(p, u, name):
             )
             continue
         edges.append(r)
+
+    edge_shape = p["relations"]["edge"]
+    if not reshaped_after(edge_shape, "gate", version):
+        if "latency" in frame_ids:
+            fail.append("frame 'latency': reserved for an edge gate's duration")
+        for r in edges:
+            if "gate" not in r:
+                continue
+            where = f"relation {r['from']}->{r['to']}.gate"
+            if not isinstance(r["gate"], dict):
+                fail.append(f"{where}: not a mapping of {{ <frame-id>: <value> }}")
+                continue
+            if "latency" in r["gate"]:
+                latency = r["gate"]["latency"]
+                if not isinstance(latency, str) or not latency.strip():
+                    fail.append(f"{where}.latency: must be a nonblank string")
+            # latency is a duration, not a frame; a bare value is a one-value list.
+            pred(
+                {
+                    k: v if isinstance(v, (list, dict)) else [v]
+                    for k, v in r["gate"].items()
+                    if k != "latency"
+                },
+                where,
+            )
 
     known = ids | {a["id"] for a in u["artifacts"]}
     dangling = [
@@ -718,7 +969,7 @@ def check_guidance(p, g, universes, name):
     """Validate guidance against its declared universe."""
     d = p["declarations"]
     fail, warn = [], []
-    if missing_preconditions(d, g, "guidance", name):
+    if missing_preconditions(p, g, "guidance", name):
         return False
 
     doc_shape = d["guidance"]["document"]

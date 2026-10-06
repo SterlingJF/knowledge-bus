@@ -17,15 +17,17 @@ Guidance is optional. The universe must remain valid without it. When guidance i
 
 | Key                           | Purpose                                                                                                                                                      |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `universe`                    | Identifies the definition set, its version, the protocol version it follows, and its ordering frame.                                                         |
+| `universe`                    | Identifies the definition set, its version, the protocol version it follows, and its ordering frame. May add an `overview` and, from `kbp/0.8`, `terms`.     |
 | `elements`                    | Defines knowledge units by the questions their contents answer.                                                                                              |
 | `artifacts`                   | Defines document types by the action or decision they enable for someone, and lists their contents.                                                          |
 | `frames`                      | Defines context used to organize or select content. A frame can make content required, exclude it, or determine that no document is needed.                  |
 | `factors`                     | Declares context that applications can use, without giving it control over document composition in the universe. Guidance can use a factor to select advice. |
 | `relation_kinds`, `relations` | Names the kinds of connections and the definitions they connect, such as dependencies or distinctions.                                                       |
 | `statuses`                    | Declares the statuses an assertion can carry.                                                                                                                |
-| `empty_composition`           | States the context in which no document is needed.                                                                                                           |
+| `no_artifact`                 | Says when no artifact is needed: when each frame it names has one of the listed values, nothing needs writing down. `kbp/0.7` calls it `empty_composition`.  |
 | `instances`                   | Holds asserted answers with their party, status, time, and other instance details.                                                                           |
+
+The optional `terms` list names the universe's own words, each with the one meaning it has throughout the definitions: `{ term, means }`, each term once, compared case-insensitively. Terms carry no structure, and universes still correspond by question, not by term.
 
 For example, a frame could make a section required in one situation and unnecessary in another. A factor could select relevant writing advice without changing the required sections.
 

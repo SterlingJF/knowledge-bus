@@ -34,7 +34,7 @@ export interface Wiring {
   from: string;
   sourceFrameId: string;
   to: string;
-  kind: 'gate' | 'ordering' | 'disabled_when' | 'composition.when' | 'relation.gate' | 'empty_composition.when';
+  kind: 'gate' | 'ordering' | 'disabled_when' | 'composition.when' | 'relation.gate' | 'no_artifact.when';
   value: string[];
   sourcePath: string;
   targetPair?: [string, string];
@@ -97,6 +97,11 @@ export interface RelationKind {
   phrasing?: { forward?: string; reverse?: string };
 }
 
+export interface Term {
+  term: string;
+  means: string;
+}
+
 export interface ExplorerModel {
   schema: 'knowledge-bus/explorer-model/1';
   protocolVersion: string;
@@ -108,6 +113,7 @@ export interface ExplorerModel {
     conforms_to?: string;
     ordering_frame: string;
     overview?: Record<string, string>;
+    terms?: Term[];
   };
   orderingFrameId: string;
   entities: Entity[];
@@ -297,6 +303,8 @@ export function phraseFor(c: Connection, subject: string): string {
 }
 
 export const human = (s: string) => (s ? s.replaceAll('-', ' ').replace(/^./, (c) => c.toUpperCase()) : '');
+
+export const universeTerms = (model: ExplorerModel): Term[] => model.universe.terms ?? [];
 
 export const relationKinds = (model: ExplorerModel): RelationKind[] => (model.source.relation_kinds ?? []) as RelationKind[];
 

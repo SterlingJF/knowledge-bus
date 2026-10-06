@@ -28,8 +28,8 @@ export const shared = {
   tsconfig: path.join(explorerDir, 'tsconfig.json'),
 };
 
-export async function buildStandaloneSource() {
-  const result = await build({ ...shared, entryPoints: ['src/standalone.ts'], format: 'iife', write: false });
+export async function buildStandaloneSource({ plugins = [] } = {}) {
+  const result = await build({ ...shared, plugins, entryPoints: ['src/standalone.ts'], format: 'iife', write: false });
   const source = result.outputFiles[0].text;
   if (EXTERNAL_IMPORT.test(source) || DYNAMIC_LOAD.test(source)) throw new Error('standalone.js reaches outside the bundle.');
   return source;

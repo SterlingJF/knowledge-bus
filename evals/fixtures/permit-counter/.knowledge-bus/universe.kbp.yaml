@@ -1,0 +1,53 @@
+universe:
+  id: office-decisions
+  label: Permit office decisions
+  version: 0.1
+  conforms_to: kbp/0.7
+  ordering_frame: decision-stage
+  overview:
+    covers: The reasoning behind each operating decision a building-permit office makes.
+    for: Office staff who must apply or revisit a decision after the people who made it have moved on.
+    excludes: Rulings on individual permit applications.
+
+statuses: [recorded, recollected, reconstructed, unknown]
+
+frames:
+  - id: decision-stage
+    code: f0tws
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [before, at-decision, after]
+
+  - id: reach
+    code: f5c72
+    role: applicability
+    set_by: instance
+    question: Does the decision change what applicants see or do?
+    values: [internal-only, applicant-facing]
+
+empty_composition:
+  when: { reach: [internal-only] }
+
+relation_kinds:
+  - id: feeds
+    ordered: true
+
+elements:
+  - { id: decision-made, code: e45hc, question: "What did the office decide?", decision-stage: at-decision, cardinality: per-decision }
+  - { id: decision-authority, code: ey9hz, question: "Who had the authority to make the decision?", decision-stage: at-decision, cardinality: per-decision }
+  - { id: options-considered, code: et7hp, question: "Which options did the office consider at the time?", decision-stage: before, cardinality: per-decision }
+  - { id: binding-limits, code: ecswy, question: "Which limits ruled options out at the time?", decision-stage: before, cardinality: per-decision }
+  - { id: reopen-condition, code: exjz2, question: "What observable event would reopen the decision?", decision-stage: after, cardinality: per-decision }
+
+artifacts:
+  - id: decision-record
+    code: acxhh
+    enablement: { action: "apply or revisit an office decision without asking the people who made it", actor: office staff, timing: when the decision is questioned }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [decision-made, decision-authority, options-considered, binding-limits]
+      situational: [reopen-condition]
+
+relations:
+  - { from: binding-limits, to: options-considered, kind: feeds }

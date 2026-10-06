@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { relationPhrasing, compositionDetails, cardinalityCopy, cardinalityDetail } from '@/src/lib/phrasing';
-import type { Connection } from '@/src/lib/model';
+import { readFileSync } from 'node:fs';
+import { relationPhrasing, compositionDetails, cardinalityCopy, cardinalityDetail, kindNoun, limitsCopy } from '@/src/lib/phrasing';
+import { type Connection, type ExplorerModel, universeTerms, validateModel } from '@/src/lib/model';
 
 const edge = { from: 'constraints', to: 'authority', kind: 'custom' } as Connection;
 const directional = { id: 'custom', ordered: true, phrasing: { forward: 'Context from', reverse: 'Context for' } };
@@ -66,4 +67,34 @@ test('membership mode and cardinality read as audience copy', () => {
   assert.equal(cardinalityCopy('per-segment'), 'One per segment');
   assert.equal(cardinalityDetail('singleton'), 'Not divided into separate answers');
   assert.equal(cardinalityDetail(undefined), 'Not specified');
+});
+
+const fixture = validateModel(JSON.parse(readFileSync(new URL('../fixtures/product-development.json', import.meta.url), 'utf8')));
+
+test('a frame value reads as a value, whatever the model calls its kind', () => {
+  assert.equal(kindNoun('option'), 'value');
+  for (const kind of ['artifact', 'element', 'frame', 'factor']) assert.equal(kindNoun(kind), kind);
+});
+
+test('the universe terms reach the reader verbatim, and a universe declaring none has none', () => {
+  assert.deepEqual(universeTerms(fixture), fixture.universe.terms);
+  const untermed = structuredClone(fixture) as ExplorerModel;
+  delete (untermed.universe as { terms?: unknown }).terms;
+  assert.deepEqual(universeTerms(validateModel(untermed)), []);
+  const terms = [
+    { term: 'Offering', means: 'Whatever the work puts in front of a recipient.' },
+    { term: 'Recipient', means: 'Whoever receives the offering.' },
+  ];
+  const termed = structuredClone(fixture) as ExplorerModel;
+  termed.universe.terms = terms;
+  assert.deepEqual(universeTerms(validateModel(termed)), terms);
+});
+
+test('the limits line says the explorer shows declarations and evaluates nothing, as one sentence', () => {
+  assert.equal(fixture.evaluation.status, 'unresolved');
+  const line = limitsCopy(fixture);
+  assert.ok(line, 'an unresolved model states its limits');
+  assert.match(line!, /declares/);
+  assert.match(line!, /does not evaluate/);
+  assert.equal(line!.split(/[.!?](\s|$)/).filter((part) => part && part.trim()).length, 1);
 });

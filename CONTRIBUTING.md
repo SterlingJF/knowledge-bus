@@ -19,19 +19,21 @@ Run the checker from source with `uv run kbp`. Build its wheel and source archiv
 
 ## Source Layout
 
-| Path                             | Edit here for                                                        |
-| -------------------------------- | -------------------------------------------------------------------- |
-| `protocol/`                      | Conformance rules and shared valid/invalid examples                  |
-| `checker/`                       | Validation, code minting, and checker tests                          |
-| `universes/`                     | Reference definitions and guidance                                   |
-| `skills/<name>/SKILL.md`         | Agent workflow instructions                                          |
-| `plugins/<agent>/knowledge-bus/` | Agent-specific adapters                                              |
-| `plugins/shared/runtime/`        | The shared checker launcher                                          |
-| `tools/plugin/`                  | Package assembly, generated skill resources, and installation checks |
-| `explorer/`                      | Universe viewer package, its token authority, and its tests          |
-| `tools/explorer/`                | Model adapter, build and render commands, and explorer checks        |
-| `tools/ce-pattern/`              | Vendored CE Pattern tooling; update through its `UPSTREAM.md`        |
-| `docs/`                          | Usage guides and explanations                                        |
+| Path                             | Edit here for                                                                            |
+| -------------------------------- | ---------------------------------------------------------------------------------------- |
+| `protocol/`                      | Conformance rules and shared valid/invalid examples                                      |
+| `checker/`                       | Validation, code minting, and checker tests                                              |
+| `universes/`                     | Reference definitions and guidance                                                       |
+| `skills/<name>/SKILL.md`         | Agent workflow instructions                                                              |
+| `plugins/<agent>/knowledge-bus/` | Agent-specific adapters                                                                  |
+| `plugins/shared/runtime/`        | The shared checker launcher                                                              |
+| `tools/plugin/`                  | Package assembly, generated skill resources, and installation checks                     |
+| `evals/`                         | Eval rules, agent behaviours, fixtures, and situations                                   |
+| `tools/evals/`                   | Eval reader, tier engine, grader, scenario player, report builder, and runner generators |
+| `explorer/`                      | Universe viewer package, its token authority, and its tests                              |
+| `tools/explorer/`                | Model adapter, build and render commands, and explorer checks                            |
+| `tools/ce-pattern/`              | Vendored CE Pattern tooling; update through its `UPSTREAM.md`                            |
+| `docs/`                          | Usage guides and explanations                                                            |
 
 Agent packages combine their adapter with shared skills, references, and runtime files. `just plugin-build <agent>` builds an isolated package; `just plugin-build all` builds the configured integrations. Build packages through these commands rather than packing source adapter directories directly.
 
@@ -53,7 +55,7 @@ Include the generated changes with the source changes so individually installed 
 | Command                     | Checks                                                                          |
 | --------------------------- | ------------------------------------------------------------------------------- |
 | `just check`                | Formatting, lint, protocol, generated resources, packages, and regression tests |
-| `just test`                 | Checker, packaging, and release-tool regression tests                           |
+| `just test`                 | Checker, packaging, release-tool, and eval-spec regression tests                |
 | `just explorer-check`       | Explorer formatting, comments, types, visual tokens, and CE layers              |
 | `just explorer-test`        | Explorer unit, adapter, and browser tests plus generated-artifact checks        |
 | `just self-check`           | Protocol soundness                                                              |
@@ -65,6 +67,8 @@ Include the generated changes with the source changes so individually installed 
 
 `pnpm run render:explorer:release-example` builds the release example. Browser automation is used only for SVG export.
 
+`just explorer-gallery` regenerates the README's map, `docs/assets/product-development-map.svg`, and its readable crop, `docs/assets/product-development-map-crop.svg`. `just explorer-test` and CI fail when the definitions or explorer code changed since it was rendered.
+
 ### Git Hooks
 
 | Entry point | Content checked | Checks |
@@ -73,6 +77,8 @@ Include the generated changes with the source changes so individually installed 
 | `just check-staged` / pre-commit | Staged snapshot | Formatting, lint, protocol, generated resources |
 | Pre-push | Each distinct outgoing branch tip | Full suite |
 | CI | Checked-out commit | Full suite |
+
+Hooks don't load your shell profile, so they can pick an older Node (common when committing from an app). Load your version manager in `~/.config/husky/init.sh`, which husky reads before every hook; for nvm, `export NVM_DIR="$HOME/.nvm"` and source `"$NVM_DIR/nvm.sh"`, with an nvm default of 22 or newer (`nvm alias default 22`).
 
 ### Lint and Formatting
 

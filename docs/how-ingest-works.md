@@ -18,7 +18,7 @@ Provide the source folder. The skill reviews the material before proposing what 
 
 The skill reports files, dates, and formats before reading in depth. It flags documents using three labels:
 
-- **Contradicted:** another, newer source disputes the content.
+- **Contradicted:** another source disputes the content.
 - **Unconfirmed:** the content is old enough to need review, but nothing found disputes it.
 - **Confirmed:** you have confirmed that the content still holds.
 
@@ -71,6 +71,6 @@ The report lists unresolved conflicts first, followed by mapped content, potenti
 | mapped    | Content was assigned to a declared question.   | Spot-check the answer and source.                                           |
 | stale     | Content is contradicted or needs confirmation. | Confirm, revise, or retire it.                                              |
 | refused   | Content answers no declared question.          | Accept that it is outside scope, or review whether a definition is missing. |
-| gap       | A required question has no answer.             | Supply an answer, or record why it remains unanswered.                      |
+| gaps      | A required question has no answer.             | Supply an answer, or record why it remains unanswered.                      |
 
 Unresolved conflicts appear first so you can see where the material does not yet provide an agreed answer.

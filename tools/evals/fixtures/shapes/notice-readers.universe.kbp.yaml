@@ -1,0 +1,49 @@
+# Test fixture for the eval tooling, not an eval item: a factor-only universe. It carries the one
+# placeholder ordering frame the protocol requires. Shaped on public plain-language guidance:
+# write for what readers already know and for how long they will look.
+universe:
+  id: notice-readers
+  label: Notice readers
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: stage
+  overview:
+    covers: What a writer should know about the people a public notice is for.
+    for: Whoever writes notices for a council, a clinic or a club.
+    excludes: Layout, printing and translation.
+
+statuses: []
+
+frames:
+  - id: stage
+    code: fvp3z
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [only]
+
+factors:
+  - id: familiarity
+    code: k0aeq
+    question: How well does the reader know the subject already?
+    set_by: instance
+    values:
+      - { id: newcomer, question: "Is the subject new to them?" }
+      - { id: regular, question: "Have they dealt with it before?" }
+      - { id: specialist, question: "Is it their own line of work?" }
+  - id: attention
+    code: k3mta
+    question: How long will the reader spend on the notice?
+    set_by: instance
+    values: [glance, close-reading]
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []

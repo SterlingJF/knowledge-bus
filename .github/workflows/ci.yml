@@ -25,6 +25,7 @@ jobs:
       - run: pnpm run check:fast
       - run: pnpm run check:plugins
       - run: pnpm run test
+      - run: pnpm run check:explorer:gallery
       - run: uv run --locked python tools/plugin/check_skills_install.py
       - run: uv run kbp --validate
       - run: uv run --locked python tools/plugin/check_native_install.py

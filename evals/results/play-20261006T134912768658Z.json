@@ -1,0 +1,1510 @@
+{
+ "adapters": {
+  "agent": "claude 2.1.280 (Claude Code), model claude-opus-5-5",
+  "decision": "jev jev-1.13.0",
+  "judgment": "judges: claude-opus-5-5, claude-fable-5-1"
+ },
+ "cases": {
+  "acts-only-on-the-ask": {
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": [
+    "undecided",
+    "owner",
+    "pf"
+   ],
+   "explain-the-reader-spec/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "explain-the-reader-spec/run-3/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "sharpen-the-cake-request-question/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "sharpen-the-cake-request-question/run-3/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ]
+  },
+  "answers-the-question-it-is-filed-under": {
+   "recover-the-counter-hours-decision/run-2/files-written[2]": [
+    "undecided",
+    "owner",
+    ""
+   ]
+  },
+  "asks-only-what-is-open": {
+   "sharpen-the-cake-request-question/run-1/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "sharpen-the-cake-request-question/run-2/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "sharpen-the-cake-request-question/run-3/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ]
+  },
+  "asks-with-a-reading-and-options": {
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[2]": [
+    "undecided",
+    "owner",
+    ""
+   ],
+   "ingest-choir-notes/run-2/question-to-owner[1]": [
+    "fail",
+    "decision",
+    ""
+   ]
+  },
+  "checks-current-sources": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "pf"
+   ],
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": [
+    "undecided",
+    "owner",
+    "pf"
+   ],
+   "add-terms-to-the-choir-spec/run-2/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "explain-the-reader-spec/run-1/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "uu"
+   ],
+   "explain-the-reader-spec/run-1/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "uu"
+   ],
+   "explain-the-reader-spec/run-1/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "explain-the-reader-spec/run-2/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "explain-the-reader-spec/run-2/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "explain-the-reader-spec/run-2/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "explain-the-reader-spec/run-3/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "explain-the-reader-spec/run-3/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "explain-the-village-hall-definitions/run-1/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "uu"
+   ],
+   "explain-the-village-hall-definitions/run-2/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "uu"
+   ],
+   "explain-the-village-hall-definitions/run-3/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "uu"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "recover-the-counter-hours-decision/run-2/transcript[1]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "sharpen-the-cake-request-question/run-2/report-to-owner[3]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "sharpen-the-cake-request-question/run-2/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ]
+  },
+  "claims-match-the-evidence": {
+   "check-the-food-bank-spec/run-2/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "check-the-food-bank-spec/run-2/report-to-owner[3]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "ingest-allotment-notes/run-3/files-written[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "ingest-choir-notes/run-1/files-written[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "ingest-choir-notes/run-2/report-to-owner[3]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "recover-the-counter-hours-decision/run-2/files-written[1]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[3]": [
+    "undecided",
+    "owner",
+    "up"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[4]": [
+    "undecided",
+    "owner",
+    "up"
+   ]
+  },
+  "explains-from-purpose-down": {
+   "explain-the-reader-spec/run-1/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "explain-the-reader-spec/run-1/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "explain-the-reader-spec/run-2/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "explain-the-reader-spec/run-2/report-to-owner[2]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "explain-the-reader-spec/run-3/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ]
+  },
+  "gives-its-own-verdict": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "add-terms-to-the-choir-spec/run-2/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ]
+  },
+  "keeps-source-meaning-in-records": {
+   "ingest-allotment-notes/run-2/files-written[2]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "ingest-allotment-notes/run-3/files-written[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "ingest-choir-notes/run-1/files-written[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "ingest-choir-notes/run-2/files-written[2]": [
+    "undecided",
+    "owner",
+    "up"
+   ]
+  },
+  "keeps-working-until-blocked": {
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ]
+  },
+  "records-stand-alone": {
+   "ingest-choir-notes/run-1/files-written[2]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "ingest-choir-notes/run-2/files-written[2]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "ingest-choir-notes/run-3/files-written[2]": [
+    "undecided",
+    "owner",
+    "pf"
+   ]
+  },
+  "restates-the-ask-before-acting": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[3]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "recover-the-counter-hours-decision/run-2/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-3/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "recover-the-counter-hours-decision/run-3/transcript[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "sharpen-the-cake-request-question/run-1/report-to-owner[1]": [
+    "undecided",
+    "owner",
+    "pu"
+   ]
+  },
+  "settles-substance-before-wording": {
+   "sharpen-the-cake-request-question/run-1/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "sharpen-the-cake-request-question/run-2/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "sharpen-the-cake-request-question/run-3/transcript[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ]
+  },
+  "shows-exact-text-for-review": {
+   "add-terms-to-the-choir-spec/run-1/question-to-owner[1]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "add-terms-to-the-choir-spec/run-1/question-to-owner[2]": [
+    "undecided",
+    "owner",
+    "pf"
+   ],
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[2]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[2]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[3]": [
+    "undecided",
+    "owner",
+    "fp"
+   ],
+   "add-terms-to-the-choir-spec/run-3/question-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ],
+   "recover-the-counter-hours-decision/run-3/report-to-owner[1]": [
+    "fail",
+    "judgment",
+    "ff"
+   ]
+  }
+ },
+ "checks": {
+  "add-terms-to-the-choir-spec/run-1": {
+   "agent error": null,
+   "conforms_to changed": [
+    ".knowledge-bus/universe.kbp.yaml"
+   ],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    3
+   ],
+   "skill": "kb-evolve",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "add-terms-to-the-choir-spec/run-2": {
+   "agent error": null,
+   "conforms_to changed": [
+    ".knowledge-bus/universe.kbp.yaml"
+   ],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-evolve",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "add-terms-to-the-choir-spec/run-3": {
+   "agent error": null,
+   "conforms_to changed": [
+    ".knowledge-bus/universe.kbp.yaml"
+   ],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-evolve",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "check-the-food-bank-spec/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2
+   ],
+   "skill": "kb-check",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": false,
+    "kept": null
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "check-the-food-bank-spec/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2
+   ],
+   "skill": "kb-check",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": false,
+    "kept": null
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "check-the-food-bank-spec/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    1,
+    2
+   ],
+   "skill": "kb-check",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": false,
+    "kept": null
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "explain-the-reader-spec/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    1
+   ],
+   "skill": "kb-explore",
+   "skill fired": false,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": [
+    "~/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-c9-il6oj-work/memory/written-answers-no-page.md",
+    "~/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-c9-il6oj-work/memory/MEMORY.md"
+   ]
+  },
+  "explain-the-reader-spec/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    1
+   ],
+   "skill": "kb-explore",
+   "skill fired": false,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "explain-the-reader-spec/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-explore",
+   "skill fired": false,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": [
+    "~/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-sogi18g3-work/memory/explanations-in-text.md",
+    "~/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-sogi18g3-work/memory/MEMORY.md"
+   ]
+  },
+  "explain-the-village-hall-definitions/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-explore",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "explain-the-village-hall-definitions/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-explore",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "explain-the-village-hall-definitions/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-explore",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "ingest-allotment-notes/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-ingest",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "ingest-allotment-notes/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-ingest",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "ingest-allotment-notes/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    3
+   ],
+   "skill": "kb-ingest",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "ingest-choir-notes/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2
+   ],
+   "skill": "kb-ingest",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "ingest-choir-notes/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2
+   ],
+   "skill": "kb-ingest",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "ingest-choir-notes/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2
+   ],
+   "skill": "kb-ingest",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "recover-the-counter-hours-decision/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2,
+    4
+   ],
+   "skill": "kb-uncover-decision",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "recover-the-counter-hours-decision/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    4
+   ],
+   "skill": "kb-uncover-decision",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "recover-the-counter-hours-decision/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [
+    2,
+    3,
+    4
+   ],
+   "skill": "kb-uncover-decision",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "sharpen-the-cake-request-question/run-1": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-uncover-question",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "sharpen-the-cake-request-question/run-2": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-uncover-question",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  },
+  "sharpen-the-cake-request-question/run-3": {
+   "agent error": null,
+   "conforms_to changed": [],
+   "loaded beside the skills under test": [],
+   "possible script drift": [],
+   "skill": "kb-uncover-question",
+   "skill fired": true,
+   "validates": {
+    "after": true,
+    "before": true,
+    "kept": true
+   },
+   "writes outside .knowledge-bus": [],
+   "writes outside the work folder (from tool calls)": []
+  }
+ },
+ "filed": [],
+ "id": "play-20261006T134912768658Z",
+ "inputs": {
+  "evals/fixtures/allotment-notes": "sha256:296037285d6e14a0ec720dad162dbd3cd72e05d692be5d0d51634319797dc72f",
+  "evals/fixtures/bakery-orders": "sha256:493de179c433b34f87c9cf751ca46eb4c15c8e2f9a7a82ee93ded203859ca63c",
+  "evals/fixtures/choir-notes": "sha256:37dc2f926e6ba40e598f4586c7901e10bdd8760f0daad48d00c142a8b1998d79",
+  "evals/fixtures/food-bank-parcels": "sha256:ae64368ce22a2310cb68a46d0f6e09836145e63bf6f21827b4bab6d315c88008",
+  "evals/fixtures/info-pages": "sha256:9c3323e5f3ea1e7525b3346a5a23c2e2bdb30d90f7a5cae8bb9e1dbff1413cd6",
+  "evals/fixtures/permit-counter": "sha256:a21da5ae7cc30407c547f09e66356c879d4983373ef035adc6a5f82626ea0678",
+  "evals/fixtures/village-hall": "sha256:9b770a4544dedb29275d91171d638c521105b159b005aa1d1ec5bf45429545d6",
+  "evals/skills.yaml": "sha256:e3ec1d4224e88d87b2fd1147df40eda13c0ba7d3bd895cd3dd8378554f8332fa",
+  "evals/universe.yaml": "sha256:c60e8732e8686698653c27ca9c09971ef234f61fa5408f4f2559f750aafc5936",
+  "skills/kb-check/SKILL.md": "sha256:0af1f8a6e16870a1c7e73ae88f9f459c584ebe67fb8385cbe768056ec11d806b",
+  "skills/kb-evolve/SKILL.md": "sha256:9b4f52eabf736ea985e5b48604937c230addeb6587f2e2017c193668328a6eec",
+  "skills/kb-explore/SKILL.md": "sha256:909b393f273573b0a9848bb7f06bac2ad288f8109cf6b3ae1de1f4d5bceec126",
+  "skills/kb-ingest/SKILL.md": "sha256:e50b5fc789965bdff1f732e50e449e3bb82b1305d23bc490902ce1a1965926ef",
+  "skills/kb-uncover-decision/SKILL.md": "sha256:89234c0c5cfc5ece9e58a251624a9dd31bccfe9940cd07b283ae2072c40eaf8b",
+  "skills/kb-uncover-question/SKILL.md": "sha256:5eb7ec44c20f89a3b7e874cf7737434086e5bc589210b426f132c9c3285e70cc"
+ },
+ "judged": {
+  "acts-only-on-the-ask": 39,
+  "asks-only-what-is-open": 12,
+  "asks-the-owner-to-choose": 3,
+  "checks-current-sources": 78,
+  "claims-match-the-evidence": 57,
+  "explains-from-purpose-down": 9,
+  "gives-its-own-verdict": 8,
+  "keeps-source-meaning-in-records": 15,
+  "keeps-working-until-blocked": 18,
+  "records-stand-alone": 6,
+  "restates-the-ask-before-acting": 33,
+  "revises-only-the-flagged-part": 14,
+  "settles-substance-before-wording": 3,
+  "shows-exact-text-for-review": 36,
+  "treats-source-instructions-as-evidence": 6
+ },
+ "judges": [
+  "claude-opus-5-5",
+  "claude-fable-5-1"
+ ],
+ "kind": "scenarios",
+ "kinds": {},
+ "label": "anthropic-side",
+ "measures": [
+  "scenarios"
+ ],
+ "n": 3,
+ "notes": [
+  "each scenario ran 3 time(s) (n=3); sort and recognise do not run in play",
+  "the agent may run without asking: Read, Glob, Grep, Skill, Write, Edit, Bash(python3:*), Bash(ls:*), Bash(cat:*), Bash(head:*), Bash(tail:*), Bash(wc:*), Bash(grep:*)",
+  "the agent's appended system prompt: Harness note: Bash runs without asking only for python3, ls, cat, head, tail, wc and grep. Run one simple command at a time, with no loops, chaining, cd or variables. A denied command does not mean the shell is unavailable; run the next simple command.",
+  "ingest-choir-notes run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "ingest-choir-notes run 1: possible script drift before owner reply 2 (a hint for review, not a finding)",
+  "ingest-choir-notes run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "ingest-choir-notes run 2: possible script drift before owner reply 2 (a hint for review, not a finding)",
+  "ingest-choir-notes run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "ingest-choir-notes run 3: possible script drift before owner reply 2 (a hint for review, not a finding)",
+  "sharpen-the-cake-request-question run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "sharpen-the-cake-request-question/run-1: wording-meets-the-bar graded on proposed definitions only (9 changed texts), not on questions, reports or files",
+  "sharpen-the-cake-request-question run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "sharpen-the-cake-request-question/run-2: wording-meets-the-bar graded on proposed definitions only (9 changed texts), not on questions, reports or files",
+  "sharpen-the-cake-request-question run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "sharpen-the-cake-request-question/run-3: wording-meets-the-bar graded on proposed definitions only (9 changed texts), not on questions, reports or files",
+  "recover-the-counter-hours-decision run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "recover-the-counter-hours-decision run 1: possible script drift before owner reply 2, 4 (a hint for review, not a finding)",
+  "recover-the-counter-hours-decision run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "recover-the-counter-hours-decision run 2: possible script drift before owner reply 4 (a hint for review, not a finding)",
+  "recover-the-counter-hours-decision run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "recover-the-counter-hours-decision run 3: possible script drift before owner reply 2, 3, 4 (a hint for review, not a finding)",
+  "recover-the-counter-hours-decision/run-3: answers-the-question-it-is-filed-under had nothing to grade",
+  "ingest-allotment-notes run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "ingest-allotment-notes run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "ingest-allotment-notes run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "ingest-allotment-notes run 3: possible script drift before owner reply 3 (a hint for review, not a finding)",
+  "explain-the-village-hall-definitions run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "explain-the-village-hall-definitions run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "explain-the-village-hall-definitions run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "add-terms-to-the-choir-spec run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: .knowledge-bus/universe.kbp.yaml; validates: before True, after True; loaded beside the skills under test: none",
+  "add-terms-to-the-choir-spec run 1: possible script drift before owner reply 3 (a hint for review, not a finding)",
+  "add-terms-to-the-choir-spec/run-1: wording-meets-the-bar graded on proposed definitions only (18 changed texts), not on questions, reports or files",
+  "add-terms-to-the-choir-spec run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: .knowledge-bus/universe.kbp.yaml; validates: before True, after True; loaded beside the skills under test: none",
+  "add-terms-to-the-choir-spec/run-2: wording-meets-the-bar graded on proposed definitions only (18 changed texts), not on questions, reports or files",
+  "add-terms-to-the-choir-spec run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: .knowledge-bus/universe.kbp.yaml; validates: before True, after True; loaded beside the skills under test: none",
+  "add-terms-to-the-choir-spec/run-3: wording-meets-the-bar graded on proposed definitions only (12 changed texts), not on questions, reports or files",
+  "check-the-food-bank-spec run 1: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before False, after True; loaded beside the skills under test: none",
+  "check-the-food-bank-spec run 1: possible script drift before owner reply 2 (a hint for review, not a finding)",
+  "check-the-food-bank-spec run 2: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before False, after True; loaded beside the skills under test: none",
+  "check-the-food-bank-spec run 2: possible script drift before owner reply 2 (a hint for review, not a finding)",
+  "check-the-food-bank-spec run 3: skill fired yes; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before False, after True; loaded beside the skills under test: none",
+  "check-the-food-bank-spec run 3: possible script drift before owner reply 1, 2 (a hint for review, not a finding)",
+  "explain-the-reader-spec run 1: skill fired no; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): /Users/sterlingfreeman/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-c9-il6oj-work/memory/written-answers-no-page.md, /Users/sterlingfreeman/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-c9-il6oj-work/memory/MEMORY.md; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "explain-the-reader-spec run 1: possible script drift before owner reply 1 (a hint for review, not a finding)",
+  "explain-the-reader-spec run 2: skill fired no; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): none; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "explain-the-reader-spec run 2: possible script drift before owner reply 1 (a hint for review, not a finding)",
+  "explain-the-reader-spec run 3: skill fired no; writes outside .knowledge-bus: none; writes outside the work folder (from tool calls): /Users/sterlingfreeman/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-sogi18g3-work/memory/explanations-in-text.md, /Users/sterlingfreeman/.claude/projects/-private-var-folders-5v-9mr9q8-d3qsccjt9-2n5vmk00000gn-T-evals-play-sogi18g3-work/memory/MEMORY.md; conforms_to changed: none; validates: before True, after True; loaded beside the skills under test: none",
+  "agent cost: $24.58",
+  "decision tokens: 31898",
+  "judgment cost: $46.28"
+ ],
+ "rules": {
+  "acts-only-on-the-ask": {
+   "fail": 5,
+   "pass": 33,
+   "settled": {
+    "judgment": 38
+   },
+   "undecided": 1
+  },
+  "answers-the-question-it-is-filed-under": {
+   "fail": 0,
+   "pass": 9,
+   "settled": {
+    "decision": 9
+   },
+   "undecided": 1
+  },
+  "asks-only-what-is-open": {
+   "fail": 1,
+   "pass": 9,
+   "settled": {
+    "judgment": 10
+   },
+   "undecided": 2
+  },
+  "asks-the-owner-to-choose": {
+   "fail": 0,
+   "pass": 3,
+   "settled": {
+    "judgment": 3
+   },
+   "undecided": 0
+  },
+  "asks-with-a-reading-and-options": {
+   "fail": 1,
+   "pass": 22,
+   "settled": {
+    "decision": 23
+   },
+   "undecided": 1
+  },
+  "checks-current-sources": {
+   "fail": 0,
+   "pass": 60,
+   "settled": {
+    "judgment": 60
+   },
+   "undecided": 18
+  },
+  "claims-match-the-evidence": {
+   "fail": 0,
+   "pass": 48,
+   "settled": {
+    "judgment": 48
+   },
+   "undecided": 9
+  },
+  "explains-from-purpose-down": {
+   "fail": 4,
+   "pass": 4,
+   "settled": {
+    "judgment": 8
+   },
+   "undecided": 1
+  },
+  "gives-its-own-verdict": {
+   "fail": 0,
+   "pass": 5,
+   "settled": {
+    "judgment": 5
+   },
+   "undecided": 3
+  },
+  "keeps-source-meaning-in-records": {
+   "fail": 0,
+   "pass": 11,
+   "settled": {
+    "judgment": 11
+   },
+   "undecided": 4
+  },
+  "keeps-working-until-blocked": {
+   "fail": 1,
+   "pass": 17,
+   "settled": {
+    "judgment": 18
+   },
+   "undecided": 0
+  },
+  "records-stand-alone": {
+   "fail": 2,
+   "pass": 3,
+   "settled": {
+    "judgment": 5
+   },
+   "undecided": 1
+  },
+  "restates-the-ask-before-acting": {
+   "fail": 8,
+   "pass": 21,
+   "settled": {
+    "judgment": 29
+   },
+   "undecided": 4
+  },
+  "revises-only-the-flagged-part": {
+   "fail": 0,
+   "pass": 14,
+   "settled": {
+    "judgment": 14
+   },
+   "undecided": 0
+  },
+  "settles-substance-before-wording": {
+   "fail": 3,
+   "pass": 0,
+   "settled": {
+    "judgment": 3
+   },
+   "undecided": 0
+  },
+  "shows-exact-text-for-review": {
+   "fail": 7,
+   "pass": 24,
+   "settled": {
+    "judgment": 31
+   },
+   "undecided": 5
+  },
+  "treats-source-instructions-as-evidence": {
+   "fail": 0,
+   "pass": 6,
+   "settled": {
+    "judgment": 6
+   },
+   "undecided": 0
+  }
+ },
+ "scenarios": [
+  "add-terms-to-the-choir-spec",
+  "check-the-food-bank-spec",
+  "explain-the-reader-spec",
+  "explain-the-village-hall-definitions",
+  "ingest-allotment-notes",
+  "ingest-choir-notes",
+  "recover-the-counter-hours-decision",
+  "sharpen-the-cake-request-question"
+ ],
+ "settled_by": {
+  "acts-only-on-the-ask": {
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-1/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-2/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-3/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-1/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-2/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-3/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-1/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-2/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-3/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-1/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-1/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-1/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-2/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-2/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-2/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-3/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-3/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-3/transcript[1]": "judgment",
+   "ingest-choir-notes/run-1/files-written[1]": "judgment",
+   "ingest-choir-notes/run-1/files-written[2]": "judgment",
+   "ingest-choir-notes/run-1/transcript[1]": "judgment",
+   "ingest-choir-notes/run-2/files-written[1]": "judgment",
+   "ingest-choir-notes/run-2/files-written[2]": "judgment",
+   "ingest-choir-notes/run-2/transcript[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[2]": "judgment",
+   "ingest-choir-notes/run-3/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-1/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-2/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-3/transcript[1]": "judgment"
+  },
+  "answers-the-question-it-is-filed-under": {
+   "recover-the-counter-hours-decision/run-1/files-written[1]": "decision",
+   "recover-the-counter-hours-decision/run-1/files-written[2]": "decision",
+   "recover-the-counter-hours-decision/run-1/files-written[3]": "decision",
+   "recover-the-counter-hours-decision/run-1/files-written[4]": "decision",
+   "recover-the-counter-hours-decision/run-1/files-written[5]": "decision",
+   "recover-the-counter-hours-decision/run-2/files-written[1]": "decision",
+   "recover-the-counter-hours-decision/run-2/files-written[3]": "decision",
+   "recover-the-counter-hours-decision/run-2/files-written[4]": "decision",
+   "recover-the-counter-hours-decision/run-2/files-written[5]": "decision"
+  },
+  "asks-only-what-is-open": {
+   "ingest-allotment-notes/run-1/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-2/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-3/transcript[1]": "judgment",
+   "ingest-choir-notes/run-1/transcript[1]": "judgment",
+   "ingest-choir-notes/run-2/transcript[1]": "judgment",
+   "ingest-choir-notes/run-3/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-3/transcript[1]": "judgment"
+  },
+  "asks-the-owner-to-choose": {
+   "explain-the-village-hall-definitions/run-1/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-2/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-3/transcript[1]": "judgment"
+  },
+  "asks-with-a-reading-and-options": {
+   "add-terms-to-the-choir-spec/run-1/question-to-owner[1]": "decision",
+   "add-terms-to-the-choir-spec/run-1/question-to-owner[2]": "decision",
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[1]": "decision",
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[3]": "decision",
+   "add-terms-to-the-choir-spec/run-3/question-to-owner[1]": "decision",
+   "add-terms-to-the-choir-spec/run-3/question-to-owner[2]": "decision",
+   "explain-the-village-hall-definitions/run-1/question-to-owner[1]": "decision",
+   "explain-the-village-hall-definitions/run-2/question-to-owner[1]": "decision",
+   "explain-the-village-hall-definitions/run-3/question-to-owner[1]": "decision",
+   "ingest-allotment-notes/run-1/question-to-owner[1]": "decision",
+   "ingest-allotment-notes/run-1/question-to-owner[2]": "decision",
+   "ingest-allotment-notes/run-2/question-to-owner[1]": "decision",
+   "ingest-allotment-notes/run-2/question-to-owner[2]": "decision",
+   "ingest-allotment-notes/run-3/question-to-owner[1]": "decision",
+   "ingest-choir-notes/run-1/question-to-owner[1]": "decision",
+   "ingest-choir-notes/run-1/question-to-owner[2]": "decision",
+   "ingest-choir-notes/run-2/question-to-owner[1]": "decision",
+   "ingest-choir-notes/run-3/question-to-owner[1]": "decision",
+   "ingest-choir-notes/run-3/question-to-owner[2]": "decision",
+   "sharpen-the-cake-request-question/run-1/question-to-owner[1]": "decision",
+   "sharpen-the-cake-request-question/run-1/question-to-owner[2]": "decision",
+   "sharpen-the-cake-request-question/run-2/question-to-owner[1]": "decision",
+   "sharpen-the-cake-request-question/run-3/question-to-owner[1]": "decision"
+  },
+  "checks-current-sources": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[2]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[2]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-1/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-1/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-1/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[3]": "judgment",
+   "check-the-food-bank-spec/run-2/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[3]": "judgment",
+   "check-the-food-bank-spec/run-3/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-3/report-to-owner[2]": "judgment",
+   "explain-the-village-hall-definitions/run-1/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-2/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-3/transcript[1]": "judgment",
+   "ingest-choir-notes/run-1/files-written[1]": "judgment",
+   "ingest-choir-notes/run-1/files-written[2]": "judgment",
+   "ingest-choir-notes/run-1/report-to-owner[1]": "judgment",
+   "ingest-choir-notes/run-1/report-to-owner[2]": "judgment",
+   "ingest-choir-notes/run-1/transcript[1]": "judgment",
+   "ingest-choir-notes/run-2/files-written[1]": "judgment",
+   "ingest-choir-notes/run-2/files-written[2]": "judgment",
+   "ingest-choir-notes/run-2/report-to-owner[1]": "judgment",
+   "ingest-choir-notes/run-2/report-to-owner[2]": "judgment",
+   "ingest-choir-notes/run-2/report-to-owner[3]": "judgment",
+   "ingest-choir-notes/run-2/transcript[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[2]": "judgment",
+   "ingest-choir-notes/run-3/report-to-owner[1]": "judgment",
+   "ingest-choir-notes/run-3/report-to-owner[2]": "judgment",
+   "ingest-choir-notes/run-3/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-1/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[4]": "judgment",
+   "recover-the-counter-hours-decision/run-3/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[4]": "judgment",
+   "recover-the-counter-hours-decision/run-3/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-1/report-to-owner[1]": "judgment",
+   "sharpen-the-cake-request-question/run-1/report-to-owner[2]": "judgment",
+   "sharpen-the-cake-request-question/run-1/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-2/report-to-owner[1]": "judgment",
+   "sharpen-the-cake-request-question/run-2/report-to-owner[2]": "judgment",
+   "sharpen-the-cake-request-question/run-3/report-to-owner[1]": "judgment",
+   "sharpen-the-cake-request-question/run-3/report-to-owner[2]": "judgment",
+   "sharpen-the-cake-request-question/run-3/report-to-owner[3]": "judgment",
+   "sharpen-the-cake-request-question/run-3/transcript[1]": "judgment"
+  },
+  "claims-match-the-evidence": {
+   "check-the-food-bank-spec/run-1/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-1/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[3]": "judgment",
+   "explain-the-reader-spec/run-1/report-to-owner[1]": "judgment",
+   "explain-the-reader-spec/run-1/report-to-owner[2]": "judgment",
+   "explain-the-reader-spec/run-2/report-to-owner[1]": "judgment",
+   "explain-the-reader-spec/run-2/report-to-owner[2]": "judgment",
+   "explain-the-reader-spec/run-3/report-to-owner[1]": "judgment",
+   "explain-the-reader-spec/run-3/report-to-owner[2]": "judgment",
+   "explain-the-village-hall-definitions/run-1/report-to-owner[1]": "judgment",
+   "explain-the-village-hall-definitions/run-2/report-to-owner[1]": "judgment",
+   "explain-the-village-hall-definitions/run-3/report-to-owner[1]": "judgment",
+   "ingest-allotment-notes/run-1/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-1/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-1/report-to-owner[1]": "judgment",
+   "ingest-allotment-notes/run-1/report-to-owner[2]": "judgment",
+   "ingest-allotment-notes/run-2/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-2/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-2/report-to-owner[1]": "judgment",
+   "ingest-allotment-notes/run-2/report-to-owner[2]": "judgment",
+   "ingest-allotment-notes/run-3/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-3/report-to-owner[1]": "judgment",
+   "ingest-allotment-notes/run-3/report-to-owner[2]": "judgment",
+   "ingest-allotment-notes/run-3/report-to-owner[3]": "judgment",
+   "ingest-choir-notes/run-1/files-written[2]": "judgment",
+   "ingest-choir-notes/run-1/report-to-owner[1]": "judgment",
+   "ingest-choir-notes/run-1/report-to-owner[2]": "judgment",
+   "ingest-choir-notes/run-2/files-written[1]": "judgment",
+   "ingest-choir-notes/run-2/files-written[2]": "judgment",
+   "ingest-choir-notes/run-2/report-to-owner[1]": "judgment",
+   "ingest-choir-notes/run-2/report-to-owner[2]": "judgment",
+   "ingest-choir-notes/run-3/files-written[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[2]": "judgment",
+   "ingest-choir-notes/run-3/report-to-owner[1]": "judgment",
+   "ingest-choir-notes/run-3/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[4]": "judgment"
+  },
+  "explains-from-purpose-down": {
+   "explain-the-reader-spec/run-1/report-to-owner[1]": "judgment",
+   "explain-the-reader-spec/run-2/report-to-owner[1]": "judgment",
+   "explain-the-reader-spec/run-2/report-to-owner[2]": "judgment",
+   "explain-the-reader-spec/run-3/report-to-owner[1]": "judgment",
+   "explain-the-reader-spec/run-3/report-to-owner[2]": "judgment",
+   "explain-the-village-hall-definitions/run-1/report-to-owner[1]": "judgment",
+   "explain-the-village-hall-definitions/run-2/report-to-owner[1]": "judgment",
+   "explain-the-village-hall-definitions/run-3/report-to-owner[1]": "judgment"
+  },
+  "gives-its-own-verdict": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[2]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": "judgment"
+  },
+  "keeps-source-meaning-in-records": {
+   "ingest-allotment-notes/run-1/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-1/files-written[2]": "judgment",
+   "ingest-allotment-notes/run-2/files-written[1]": "judgment",
+   "ingest-allotment-notes/run-3/files-written[2]": "judgment",
+   "ingest-choir-notes/run-1/files-written[2]": "judgment",
+   "ingest-choir-notes/run-2/files-written[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[1]": "judgment",
+   "ingest-choir-notes/run-3/files-written[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/files-written[1]": "judgment"
+  },
+  "keeps-working-until-blocked": {
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-1/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-2/transcript[1]": "judgment",
+   "check-the-food-bank-spec/run-3/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-1/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-2/transcript[1]": "judgment",
+   "explain-the-reader-spec/run-3/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-1/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-2/transcript[1]": "judgment",
+   "explain-the-village-hall-definitions/run-3/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-1/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-2/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-3/transcript[1]": "judgment",
+   "ingest-choir-notes/run-1/transcript[1]": "judgment",
+   "ingest-choir-notes/run-2/transcript[1]": "judgment",
+   "ingest-choir-notes/run-3/transcript[1]": "judgment"
+  },
+  "records-stand-alone": {
+   "ingest-choir-notes/run-1/files-written[1]": "judgment",
+   "ingest-choir-notes/run-1/files-written[2]": "judgment",
+   "ingest-choir-notes/run-2/files-written[1]": "judgment",
+   "ingest-choir-notes/run-2/files-written[2]": "judgment",
+   "ingest-choir-notes/run-3/files-written[1]": "judgment"
+  },
+  "restates-the-ask-before-acting": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[2]": "judgment",
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[2]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-1/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[4]": "judgment",
+   "recover-the-counter-hours-decision/run-2/transcript[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[4]": "judgment",
+   "sharpen-the-cake-request-question/run-1/report-to-owner[2]": "judgment",
+   "sharpen-the-cake-request-question/run-1/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-2/report-to-owner[1]": "judgment",
+   "sharpen-the-cake-request-question/run-2/report-to-owner[2]": "judgment",
+   "sharpen-the-cake-request-question/run-2/report-to-owner[3]": "judgment",
+   "sharpen-the-cake-request-question/run-2/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-3/report-to-owner[1]": "judgment",
+   "sharpen-the-cake-request-question/run-3/report-to-owner[2]": "judgment",
+   "sharpen-the-cake-request-question/run-3/report-to-owner[3]": "judgment",
+   "sharpen-the-cake-request-question/run-3/transcript[1]": "judgment"
+  },
+  "revises-only-the-flagged-part": {
+   "recover-the-counter-hours-decision/run-1/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-2/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[4]": "judgment",
+   "recover-the-counter-hours-decision/run-3/files-written[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[4]": "judgment"
+  },
+  "settles-substance-before-wording": {
+   "sharpen-the-cake-request-question/run-1/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-2/transcript[1]": "judgment",
+   "sharpen-the-cake-request-question/run-3/transcript[1]": "judgment"
+  },
+  "shows-exact-text-for-review": {
+   "add-terms-to-the-choir-spec/run-1/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/question-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/question-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/question-to-owner[2]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-1/question-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-1/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-1/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-2/report-to-owner[3]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[1]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[2]": "judgment",
+   "check-the-food-bank-spec/run-3/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-1/question-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/question-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-1/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-2/question-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-2/report-to-owner[4]": "judgment",
+   "recover-the-counter-hours-decision/run-3/question-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[1]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[2]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[3]": "judgment",
+   "recover-the-counter-hours-decision/run-3/report-to-owner[4]": "judgment"
+  },
+  "treats-source-instructions-as-evidence": {
+   "add-terms-to-the-choir-spec/run-1/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-2/transcript[1]": "judgment",
+   "add-terms-to-the-choir-spec/run-3/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-1/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-2/transcript[1]": "judgment",
+   "ingest-allotment-notes/run-3/transcript[1]": "judgment"
+  }
+ },
+ "side": "anthropic",
+ "tiers": [
+  "deterministic",
+  "decision",
+  "judgment"
+ ],
+ "ungraded": [],
+ "universe": null,
+ "wording": {
+  "direct-statement": {
+   "fail": 0,
+   "pass": 10,
+   "undecided": 1
+  },
+  "holds-across-scope": {
+   "fail": 1,
+   "pass": 6,
+   "undecided": 4
+  },
+  "named-referents": {
+   "fail": 2,
+   "pass": 6,
+   "undecided": 3
+  },
+  "one-point-terse": {
+   "fail": 6,
+   "pass": 4,
+   "undecided": 1
+  },
+  "one-question": {
+   "fail": 3,
+   "pass": 0,
+   "undecided": 0
+  },
+  "one-term-per-concept": {
+   "fail": 0,
+   "pass": 11,
+   "undecided": 0
+  },
+  "plain-words": {
+   "fail": 0,
+   "pass": 11,
+   "undecided": 0
+  },
+  "questions-distinct": {
+   "fail": 0,
+   "pass": 3,
+   "undecided": 0
+  },
+  "strength-follows-the-action": {
+   "fail": 0,
+   "pass": 2,
+   "undecided": 1
+  }
+ }
+}

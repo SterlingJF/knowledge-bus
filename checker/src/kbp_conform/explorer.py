@@ -12,7 +12,14 @@ import sys
 from pathlib import Path
 
 from ._vendor import yaml
-from .checker import check, check_guidance, self_check
+from .checker import (
+    accepted_versions,
+    check,
+    check_guidance,
+    declared_version,
+    document_key,
+    self_check,
+)
 
 ROOT = Path(__file__).resolve().parents[3]
 SCHEMA = "knowledge-bus/explorer-model/1"
@@ -314,14 +321,22 @@ def prepare_model(source, protocol, guidance=None, marks=None):
         unsound = self_check(protocol)
         if unsound:
             raise ValueError("Unsound protocol: " + "; ".join(map(str, unsound)))
-        expected = f"{protocol['protocol']['id']}/{protocol['protocol']['version']}"
+        accepted = accepted_versions(protocol)
         if not isinstance(source, dict) or not isinstance(source.get("universe"), dict):
             raise TypeError("Input must be a universe document")
-        if source["universe"].get("conforms_to") != expected:
-            raise ValueError(f"Universe conforms_to must match {expected}")
+        if source["universe"].get("conforms_to") not in accepted:
+            raise ValueError(f"Universe conforms_to must match {' or '.join(accepted)}")
         valid = check(protocol, source, "explorer input")
     if not valid:
         raise ValueError("Universe conformance failed:\n" + diagnostics.getvalue())
+    # kbp/0.8 writes `no_artifact`; kbp/0.7 wrote `empty_composition`. The model
+    # has one shape either way, and sourcePath names the key the file uses.
+    no_artifact_key = document_key(
+        protocol,
+        "universe",
+        "no_artifact",
+        declared_version(protocol, source["universe"]),
+    )
 
     entities = []
     endpoints = {}
@@ -426,7 +441,7 @@ def prepare_model(source, protocol, guidance=None, marks=None):
                         "raw": entry,
                     }
                 )
-    wiring = build_wiring(source, connections, endpoints, frame_ids)
+    wiring = build_wiring(source, connections, endpoints, frame_ids, no_artifact_key)
     canonical = json.dumps(
         source, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     )
@@ -434,7 +449,10 @@ def prepare_model(source, protocol, guidance=None, marks=None):
         "schema": SCHEMA,
         "sourceDigest": "sha256:" + hashlib.sha256(canonical.encode()).hexdigest(),
         "protocolVersion": str(protocol["protocol"]["version"]),
-        "universe": source["universe"],
+        "universe": {
+            **source["universe"],
+            "terms": source["universe"].get("terms", []),
+        },
         "orderingFrameId": "frame:" + source["universe"]["ordering_frame"],
         "entities": entities,
         "connections": connections,
@@ -445,10 +463,10 @@ def prepare_model(source, protocol, guidance=None, marks=None):
         "wiring": wiring,
         "rules": [
             {
-                "id": "rule:empty-composition",
-                "kind": "empty-composition",
-                "raw": source["empty_composition"],
-                "sourcePath": "empty_composition",
+                "id": "rule:no-artifact",
+                "kind": "no-artifact",
+                "raw": source[no_artifact_key],
+                "sourcePath": no_artifact_key,
             }
         ],
         "source": source,
@@ -581,10 +599,10 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
         else None
     )
     structural = io.StringIO()
-    expected = f"{protocol['protocol']['id']}/{protocol['protocol']['version']}"
+    accepted = accepted_versions(protocol)
     with contextlib.redirect_stdout(structural):
         declared = source.get("universe", {}).get("conforms_to")
-        valid = declared == expected and check(protocol, source, "selected universe")
+        valid = declared in accepted and check(protocol, source, "selected universe")
         if guidance is not None:
             valid = (
                 check_guidance(
@@ -596,8 +614,10 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
         findings = [
             line.strip() for line in structural.getvalue().splitlines() if line.strip()
         ]
-        if declared != expected:
-            findings.insert(0, f"conforms_to {declared!r} does not match {expected!r}")
+        if declared not in accepted:
+            findings.insert(
+                0, f"conforms_to {declared!r} does not match {' or '.join(accepted)}"
+            )
         raise InspectionError(
             "conformance",
             "Selected definitions do not conform to the bundled protocol",
@@ -649,7 +669,7 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
     return model
 
 
-def build_wiring(source, connections, endpoints, frame_ids):
+def build_wiring(source, connections, endpoints, frame_ids, no_artifact_key):
     wiring = []
     known = set(frame_ids) | {factor["id"] for factor in source.get("factors") or []}
 
@@ -703,9 +723,11 @@ def build_wiring(source, connections, endpoints, frame_ids):
                 targetLabel=f"{connection['strength']} · {connection['mode']}",
             )
     for index, relation in enumerate(source.get("relations") or []):
-        if relation.get("gate"):
+        if isinstance(relation.get("gate"), dict):
+            # Only frame keys are wiring. latency is a duration, and a kbp/0.7
+            # gate is not checked against frames, so other keys stay unwired.
             reference(
-                relation["gate"],
+                {k: v for k, v in relation["gate"].items() if k in frame_ids},
                 endpoints[relation["from"]],
                 f"relations[{index}].gate",
                 "relation.gate",
@@ -713,10 +735,10 @@ def build_wiring(source, connections, endpoints, frame_ids):
                 targetLabel=relation["kind"],
             )
     reference(
-        source["empty_composition"].get("when"),
-        "rule:empty-composition",
-        "empty_composition.when",
-        "empty_composition.when",
+        source[no_artifact_key].get("when"),
+        "rule:no-artifact",
+        f"{no_artifact_key}.when",
+        "no_artifact.when",
     )
     return wiring
 

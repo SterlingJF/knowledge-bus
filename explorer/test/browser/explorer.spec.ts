@@ -166,6 +166,10 @@ test('the universe overview opens from the title and reports its counts', async 
   await expect(overview).toContainText('About');
   await expect(overview).toContainText('Who it is for');
   await expect(overview).toContainText('Outside its scope');
+  await expect(overview.locator('.section h3').filter({ hasText: /^Terms$/ })).toHaveCount(1);
+  await expect(overview.locator('.overview-limits')).toHaveText(
+    'The Explorer shows what this universe declares; it does not evaluate your situation.',
+  );
   const model = await embeddedModel(page);
   await expect(overview.locator('.stats > span')).toHaveText([
     ...(['artifact', 'element', 'frame', 'factor'] as const).map(
@@ -176,6 +180,53 @@ test('the universe overview opens from the title and reports its counts', async 
   await expect(explorer(page, '.scrim')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(overview).toHaveCount(0);
+});
+
+test('a universe that declares its terms lists each with its meaning after who it is for', async ({ page }) => {
+  await open(page);
+  const panels = await build({
+    tsconfig: path.join(root, 'explorer/tsconfig.test.json'),
+    stdin: {
+      contents: "export { universeOverview } from './component-patterns/universe-overview';",
+      resolveDir: path.join(root, 'explorer/src'),
+      loader: 'ts',
+    },
+    bundle: true,
+    format: 'iife',
+    globalName: 'ExplorerOverview',
+    loader: { '.css': 'text' },
+    write: false,
+    logLevel: 'silent',
+  });
+  await page.addScriptTag({ content: panels.outputFiles[0].text });
+  const terms = [
+    { term: 'Offering', means: 'Whatever the work puts in front of a recipient.' },
+    { term: 'Recipient', means: 'Whoever receives the offering, free to take it or leave it.' },
+  ];
+  const read = await page.evaluate((declared) => {
+    type Overview = { universeOverview(model: unknown, close: () => void): { root: HTMLElement } };
+    const lib = (globalThis as unknown as { ExplorerOverview: Overview }).ExplorerOverview;
+    const model = JSON.parse(document.getElementById('explorer-model')!.textContent!);
+    const readPanel = (universe: unknown) => {
+      const root = lib.universeOverview(universe, () => {}).root;
+      const sections = [...root.querySelectorAll<HTMLElement>('.panel-body > .section')];
+      const termsSection = sections.find((section) => section.querySelector('h3')?.textContent === 'Terms');
+      return {
+        titles: sections.map((section) => section.querySelector('h3')?.textContent ?? ''),
+        rows: [...(termsSection?.querySelectorAll<HTMLElement>('.entry') ?? [])].map((row) => [
+          row.querySelector('.semantic-name')?.textContent ?? '',
+          row.querySelector('.semantic-description')?.textContent ?? '',
+        ]),
+      };
+    };
+    return {
+      termed: readPanel({ ...model, universe: { ...model.universe, terms: declared } }),
+      empty: readPanel({ ...model, universe: { ...model.universe, terms: [] } }),
+    };
+  }, terms);
+  expect(read.termed.titles.slice(0, 3)).toEqual(['About', 'Who it is for', 'Terms']);
+  expect(read.termed.rows).toEqual(terms.map((held) => [held.term, held.means]));
+  expect(read.empty.titles).not.toContain('Terms');
 });
 
 test('cards carry ordering icons, cardinality and referenced-frame icons', async ({ page }) => {
@@ -195,9 +246,9 @@ test('selection frames the subject beside the overlay and dismissal returns to t
   expect((await state(page)).selection.entity).toBe('artifact:product-strategy-canvas');
   const detail = explorer(page, '.detail');
   await expect(detail).toBeVisible();
-  await expect(detail).toContainText('commit to a direction');
+  await expect(detail).toContainText('choose what an offering will aim for next and what it will refuse');
   await expect(detail).toContainText('Who uses it');
-  await expect(detail).toContainText('Do not use when');
+  await expect(detail).not.toContainText('Do not use when');
   await expect(detail.locator('.section > h3').filter({ hasText: 'Contents' })).toHaveCount(1);
   const card = await explorer(page, '.card[data-state="selected"]').boundingBox();
   const overlay = await detail.boundingBox();
@@ -255,6 +306,27 @@ test('previewing a card while another is selected keeps it dimmed and only recol
   expect(previewed.title).toBe(dimmed.title);
   expect(previewed.border).toBe(light('--kb-element'));
   await expect(other).toHaveAttribute('data-state', 'dimmed');
+});
+
+test('an artifact the universe can disable says when not to use it', async ({ page }) => {
+  await open(page);
+  const detail = await selectDetail(page, 'artifact:business-model-canvas');
+  await expect(detail).toContainText('Do not use when');
+  await expect(detail).toContainText('Uptake');
+});
+
+test('the frames view says in plain words when to skip the artifact', async ({ page }) => {
+  await open(page);
+  await explorer(page, '.view-tabs [data-value="frames"]').click();
+  await settle(page);
+  const boundary = explorer(page, '.boundary[data-id="scope:rule"]');
+  await expect(boundary.locator('.boundary-title')).toHaveText('When to skip the artifact');
+  await expect(boundary.locator('.boundary-caption')).toHaveText('When every frame here matches, no artifact is needed.');
+  const card = explorer(page, '.card[data-id="rule:no-artifact"]');
+  await expect(card).toContainText('No artifact needed');
+  await expect(card).toContainText('These frames match, so nothing needs writing down.');
+  const detail = await selectDetail(page, 'rule:no-artifact');
+  await expect(detail).toContainText('No artifact needed when');
 });
 
 test('detail sections navigate, lists disclose after three, and inline references move the selection', async ({ page }) => {
@@ -370,6 +442,96 @@ test('composition line style marks required and situational memberships', async 
   expect(await explorer(page, '.wire[data-dash="situational"]').count()).toBeGreaterThan(0);
   await expect(explorer(page, '.legend span[data-key="situational"]')).toHaveText('When applicable');
   await expect(explorer(page, '.legend span[data-key="required"]')).toHaveText('Required');
+});
+
+test('the composition line choices and dimension groups use the reader words', async ({ page }) => {
+  await open(page);
+  await showLines(page);
+  await openMenu(page);
+  const uniform = explorer(page, '.settings [data-value="uniform"]');
+  const distinct = explorer(page, '.settings [data-value="distinct"]');
+  await expect(uniform).toHaveAttribute('title', 'Hide when-applicable connections');
+  await expect(uniform).toHaveText('Required');
+  await expect(distinct).toHaveText('Required / when applicable');
+  await expect(explorer(page, '.settings')).not.toContainText(/situational|optional/i);
+  await explorer(page, '.settings [data-page="frames"]').click();
+  const groups = await explorer(page, '.settings .field-label').allTextContents();
+  expect(groups).toContain('Other frames');
+  expect(groups.filter((label) => /Referenced/.test(label))).toEqual([]);
+
+  const menus = await build({
+    tsconfig: path.join(root, 'explorer/tsconfig.test.json'),
+    stdin: {
+      contents: "export { viewOptionsMenu } from './component-patterns/view-options';",
+      resolveDir: path.join(root, 'explorer/src'),
+      loader: 'ts',
+    },
+    bundle: true,
+    format: 'iife',
+    globalName: 'ExplorerMenus',
+    loader: { '.css': 'text' },
+    write: false,
+    logLevel: 'silent',
+  });
+  await page.addScriptTag({ content: menus.outputFiles[0].text });
+  const withAFactor = await page.evaluate(() => {
+    type Menus = {
+      viewOptionsMenu(model: unknown, current: () => unknown, apply: () => void, reset: () => void): { panel: HTMLElement; open(): void };
+    };
+    const lib = (globalThis as unknown as { ExplorerMenus: Menus }).ExplorerMenus;
+    const model = JSON.parse(document.getElementById('explorer-model')!.textContent!);
+    model.entities.push({
+      id: 'factor:team-size',
+      sourceId: 'team-size',
+      kind: 'factor',
+      label: 'Team size',
+      description: '',
+      frameValues: {},
+      raw: { id: 'team-size' },
+    });
+    const viewer = (document.getElementById('explorer') as unknown as { explorerViewer: { getState(): { options: unknown } } })
+      .explorerViewer;
+    const menu = lib.viewOptionsMenu(
+      model,
+      () => viewer.getState().options,
+      () => {},
+      () => {},
+    );
+    document.body.append(menu.panel);
+    menu.open();
+    menu.panel.querySelector<HTMLElement>('[data-page="frames"]')!.click();
+    const labels = [...menu.panel.querySelectorAll('.field-label')].map((label) => label.textContent ?? '');
+    menu.panel.remove();
+    return labels;
+  });
+  expect(withAFactor.slice(1)).toEqual(['Other frames', 'Factors']);
+});
+
+test('a frame value reads as a value wherever its panels name it', async ({ page }) => {
+  await open(page);
+  const model = await embeddedModel(page);
+  const explorerCopy = (panel: ReturnType<typeof explorer>) =>
+    panel.locator('.section h3, .section h4, .detail-kind, .sections button').allTextContents();
+  const phase = await selectDetail(page, 'frame:phase');
+  const values = model.entities.filter((entity) => entity.kind === 'option' && entity.frameId === 'frame:phase');
+  await expect(phase.locator('.section h3').filter({ hasText: /^Values$/ })).toHaveCount(1);
+  await expect(phase.locator('.section', { has: page.locator('h3:text-is("Values")') }).locator('h4')).toHaveText(
+    `${values.length} values`,
+  );
+  await expect(phase.locator('.sections')).toContainText('Contents');
+  const copy = await explorerCopy(phase);
+  const outcome = await selectDetail(page, 'frame:outcome');
+  const facets = Object.entries(model.entities.find((entity) => entity.id === 'frame:outcome')!.raw.facets as Record<string, string[]>);
+  expect(facets.length).toBeGreaterThan(0);
+  for (const [facet, held] of facets)
+    await expect(
+      outcome.locator('.section', { has: page.locator(`h3:text-is("${facet[0].toUpperCase()}${facet.slice(1)}")`) }).locator('h4'),
+    ).toHaveText(`${held.length} ${held.length === 1 ? 'value' : 'values'}`);
+  copy.push(...(await explorerCopy(outcome)));
+  const value = await selectDetail(page, values[0].id);
+  await expect(value.locator('.detail-kind')).toHaveText('Phase value');
+  copy.push(...(await explorerCopy(value)));
+  expect(copy.filter((line) => /\boptions?\b/i.test(line))).toEqual([]);
 });
 
 test('every view lays out, and the artifact view rolls connections up', async ({ page }) => {
@@ -1670,6 +1832,194 @@ test('hovering one connection of the selected card lights it and rests its sibli
   await expect(explorer(page, '.wires g[data-emphasis="active"]')).toHaveAttribute('data-connection', sibling!.connection);
 });
 
+const THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED = 'distinct-from';
+
+async function relationLines(page: Page) {
+  await open(page);
+  await openMenu(page);
+  await explorer(page, '.settings [data-value="relations"]').click();
+  await openMenu(page);
+  await explorer(page, '.settings [data-value="lines"]').click();
+  await page.keyboard.press('Escape');
+  await settle(page);
+}
+
+test('a distinction waits for a selection of its own card, and its chip shows every one at once', async ({ page }) => {
+  await relationLines(page);
+  const model = await embeddedModel(page);
+  const distinctions = model.connections.filter((c) => c.kind === THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED);
+  const paths = new Set(distinctions.map((c) => c.sourcePath!));
+  expect(paths.size, 'the universe must declare a distinction for this case to mean anything').toBeGreaterThan(0);
+  const distinctionRows = async () => (await connectionStrengths(page)).filter((row) => paths.has(row.connection));
+  const otherRows = async () => (await connectionStrengths(page)).filter((row) => !paths.has(row.connection));
+
+  const atRest = await distinctionRows();
+  expect(atRest.length).toBeGreaterThan(0);
+  expect([...new Set(atRest.map((row) => `${row.emphasis}@${row.opacity}`))]).toEqual(['hidden@0']);
+  expect((await otherRows()).filter((row) => row.emphasis === 'hidden')).toEqual([]);
+  await expect(explorer(page, '.legend span[data-key="direct"]')).toHaveCount(1);
+
+  const subject = distinctions[0].from;
+  await selectDetail(page, subject);
+  const own = new Set(distinctions.filter((c) => c.from === subject || c.to === subject).map((c) => c.sourcePath!));
+  const selected = await distinctionRows();
+  const ownRows = selected.filter((row) => own.has(row.connection));
+  expect(ownRows.length, `${subject} must draw a distinction of its own`).toBeGreaterThan(0);
+  expect([...new Set(ownRows.map((row) => `${row.emphasis}@${row.opacity}`))]).toEqual(['active@1']);
+  expect([...new Set(selected.filter((row) => !own.has(row.connection)).map((row) => row.emphasis))]).toEqual(['hidden']);
+  await expect(explorer(page, '.legend span[data-key="direct"]')).toHaveCount(1);
+
+  await page.evaluate(() =>
+    (document.getElementById('explorer') as unknown as { explorerViewer: { select(value: string | null): void } }).explorerViewer.select(
+      null,
+    ),
+  );
+  await settle(page);
+  await openMenu(page);
+  await explorer(page, '.settings [data-page="emphasis"]').click();
+  await explorer(page, `.settings .chip[data-value="${THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED}"]`).click();
+  await page.keyboard.press('Escape');
+  await settle(page);
+  expect((await state(page)).options.emphasis).toEqual([THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED]);
+  const revealed = await distinctionRows();
+  expect(revealed.length).toBe(atRest.length);
+  expect([...new Set(revealed.map((row) => `${row.emphasis}@${row.opacity}`))]).toEqual(['rest@1']);
+});
+
+type EmphasisedPart = 'connection' | 'label' | 'count';
+
+interface Sighting {
+  part: EmphasisedPart;
+  id: string;
+  emphasis: string;
+  opacity: string;
+}
+
+interface Reach extends Sighting {
+  tabIndex: number;
+  exposed: boolean;
+}
+
+const EMPHASISED_PARTS = '.wires g[data-connection], g[data-label], [data-nub]';
+
+const everyEmphasisedPartsReach = (page: Page): Promise<Reach[]> =>
+  page.evaluate((selector) => {
+    const shell = document.getElementById('explorer')!.shadowRoot!;
+    return [...shell.querySelectorAll<HTMLElement | SVGElement>(selector)].map((holder) => {
+      const focusable = holder.matches('button') ? holder : holder.querySelector<HTMLElement | SVGElement>('.wire-hit, button')!;
+      return {
+        part: holder.dataset.connection !== undefined ? 'connection' : holder.dataset.label !== undefined ? 'label' : 'count',
+        id: holder.dataset.connection ?? holder.dataset.label ?? holder.dataset.nub ?? '',
+        emphasis: holder.dataset.emphasis ?? '',
+        opacity: holder.style.opacity,
+        tabIndex: focusable.tabIndex,
+        exposed: !focusable.closest('[aria-hidden="true"]'),
+      } satisfies Reach;
+    });
+  }, EMPHASISED_PARTS);
+
+const outOfSight = (row: Pick<Sighting, 'emphasis' | 'opacity'>) => row.emphasis === 'hidden' || row.opacity === '0';
+const ofPart = (part: EmphasisedPart) => (row: Sighting) => row.part === part;
+const unreachableWhileOutOfSight = (rows: Reach[]) => rows.filter((row) => outOfSight(row) && (row.tabIndex !== -1 || row.exposed));
+const reachableWhileInSight = (rows: Reach[]) => rows.filter((row) => !outOfSight(row) && (row.tabIndex !== 0 || !row.exposed));
+
+const TAB_PRESS_LIMIT = 1500;
+
+async function emphasisedPartsTheTabKeyLandsOn(page: Page) {
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  const landed: Sighting[] = [];
+  let enteredTheExplorer = false;
+  for (let press = 0; press < TAB_PRESS_LIMIT; press += 1) {
+    await page.keyboard.press('Tab');
+    const at = await page.evaluate((selector) => {
+      const active = document.getElementById('explorer')!.shadowRoot!.activeElement;
+      const holder = active?.closest<HTMLElement | SVGElement>(selector);
+      return {
+        inside: !!active,
+        sighting: holder
+          ? ({
+              part: holder.dataset.connection !== undefined ? 'connection' : holder.dataset.label !== undefined ? 'label' : 'count',
+              id: holder.dataset.connection ?? holder.dataset.label ?? holder.dataset.nub ?? '',
+              emphasis: holder.dataset.emphasis ?? '',
+              opacity: holder.style.opacity,
+            } satisfies Sighting)
+          : null,
+      };
+    }, EMPHASISED_PARTS);
+    if (at.inside) enteredTheExplorer = true;
+    else if (enteredTheExplorer) return landed;
+    if (at.sighting) landed.push(at.sighting);
+  }
+  throw new Error(`the Tab key did not leave the explorer within ${TAB_PRESS_LIMIT} presses`);
+}
+
+test('a connection, label or count out of sight is out of the tab order and the accessibility tree, and a distinction its selected card shows is back in both', async ({
+  page,
+}) => {
+  await relationLines(page);
+  const model = await embeddedModel(page);
+  const distinctions = model.connections.filter((c) => c.kind === THE_KIND_THE_PROTOCOL_SAYS_MUST_NOT_BE_SUBSTITUTED);
+  const wires = explorer(page, '.wires');
+
+  const atRest = (await everyEmphasisedPartsReach(page)).filter(ofPart('connection'));
+  const shownAtRest = atRest.filter((row) => !outOfSight(row));
+  expect(atRest.filter(outOfSight).length, 'the distinctions a resting board holds back are what this case is about').toBeGreaterThan(0);
+  expect(unreachableWhileOutOfSight(atRest)).toEqual([]);
+  expect(reachableWhileInSight(atRest)).toEqual([]);
+  await expect(wires.getByRole('button')).toHaveCount(shownAtRest.length);
+  const tabbedAtRest = await emphasisedPartsTheTabKeyLandsOn(page);
+  expect(tabbedAtRest.filter(outOfSight)).toEqual([]);
+  expect(new Set(tabbedAtRest.filter(ofPart('connection')).map((row) => row.id))).toEqual(new Set(shownAtRest.map((row) => row.id)));
+
+  const subject = distinctions[0].from;
+  await selectDetail(page, subject);
+  const own = new Set(distinctions.filter((c) => c.from === subject || c.to === subject).map((c) => c.sourcePath!));
+  const selected = await everyEmphasisedPartsReach(page);
+  const connections = selected.filter(ofPart('connection'));
+  const labels = selected.filter(ofPart('label'));
+  const ownRows = connections.filter((row) => own.has(row.id));
+  expect(ownRows.length, `${subject} must draw a distinction of its own`).toBeGreaterThan(0);
+  expect(ownRows.filter(outOfSight)).toEqual([]);
+  expect(connections.filter(outOfSight).length).toBeGreaterThan(0);
+  expect(labels.length, `${subject} labels its own connections`).toBeGreaterThan(0);
+  expect(unreachableWhileOutOfSight(selected)).toEqual([]);
+  expect(reachableWhileInSight(selected)).toEqual([]);
+  await expect(wires.getByRole('button')).toHaveCount(connections.filter((row) => !outOfSight(row)).length);
+  const tabbedSelected = await emphasisedPartsTheTabKeyLandsOn(page);
+  expect(tabbedSelected.filter(outOfSight)).toEqual([]);
+  expect(tabbedSelected.filter(ofPart('connection')).map((row) => row.id)).toEqual(expect.arrayContaining([...own]));
+  expect(new Set(tabbedSelected.filter(ofPart('label')).map((row) => row.id))).toEqual(
+    new Set(labels.filter((row) => !outOfSight(row)).map((row) => row.id)),
+  );
+
+  await page.evaluate(() =>
+    (document.getElementById('explorer') as unknown as { explorerViewer: { select(value: string | null): void } }).explorerViewer.select(
+      null,
+    ),
+  );
+  await settle(page);
+  await openMenu(page);
+  await explorer(page, '.settings [data-value="counts"]').click();
+  await page.keyboard.press('Escape');
+  await expect.poll(async () => (await state(page)).options.display).toBe('counts');
+  await settle(page);
+  const countAtRest = (await everyEmphasisedPartsReach(page)).filter(ofPart('count'));
+  expect(countAtRest.length).toBeGreaterThan(0);
+  const owner = countAtRest[0].id;
+  await explorer(page, `[data-nub="${owner}"] button, button[data-nub="${owner}"]`).first().click({ force: true });
+  await settle(page);
+  expect((await state(page)).selection.connection).toBe(`nub:${owner}`);
+  const counts = (await everyEmphasisedPartsReach(page)).filter(ofPart('count'));
+  expect(counts.filter(outOfSight).length, 'a selected count hides the counts outside its kin').toBeGreaterThan(0);
+  expect(unreachableWhileOutOfSight(counts)).toEqual([]);
+  expect(reachableWhileInSight(counts)).toEqual([]);
+  const tabbedCounts = await emphasisedPartsTheTabKeyLandsOn(page);
+  expect(tabbedCounts.filter(outOfSight)).toEqual([]);
+  expect(new Set(tabbedCounts.filter(ofPart('count')).map((row) => row.id))).toEqual(
+    new Set(counts.filter((row) => !outOfSight(row)).map((row) => row.id)),
+  );
+});
+
 test('an emphasised connection holds full strength on an idle board and gives it up inside a selection', async ({ page }) => {
   await emphasisedRelationLines(page);
   const preview = String(metric('--kb-connection-stroke-preview'));
@@ -2585,7 +2935,7 @@ test('chrome that floats over the map is a lifted surface; a card at rest is not
 });
 
 const P21 =
-  'P21 every claim the guidance document makes reaches its own subject verbatim, and the copy explorer writes around it is never a guidance kind id';
+  'P21 every claim the guidance document makes reaches its own subject verbatim with its kind and source, and the copy explorer writes around it names a kind only on that line';
 
 test(P21, async ({ page }) => {
   await open(page);
@@ -2610,10 +2960,11 @@ test(P21, async ({ page }) => {
       subject: string;
       kind: string;
       claim: string;
+      source: string;
     }
     interface Model {
       entities: { id: string; kind: string; label: string; description: string }[];
-      guidance: { kinds: { id: string }[]; entries: Entry[] };
+      guidance: { kinds: { id: string }[]; sources: Record<string, { cite?: string }>; entries: Entry[] };
     }
     type Panels = { detailOverlay(model: Model, subject: string, close: () => void, select: (id: string) => void): { root: HTMLElement } };
     const lib = (globalThis as unknown as { ExplorerPanels: Panels }).ExplorerPanels;
@@ -2647,6 +2998,7 @@ test(P21, async ({ page }) => {
       const claimsNotDrawnVerbatim: string[] = [];
       const claimsDrawnMoreThanOnce: string[] = [];
       const claimsDrawnInsideARelationRow: string[] = [];
+      const notesMisnamingTheirKindOrSource: string[] = [];
       const kindIdsReachingTheReader = new Set<string>();
       let claimsExpected = 0;
       let claimsDrawn = 0;
@@ -2663,7 +3015,15 @@ test(P21, async ({ page }) => {
           continue;
         }
         const text = body.innerText;
+        const notes = [...body.querySelectorAll<HTMLElement>('.claim > .guidance-note')];
         const relationText = [...body.querySelectorAll<HTMLElement>('.relation')].map((row) => row.innerText);
+        entries.forEach((entry, position) => {
+          const said = notes[position]?.innerText ?? '';
+          const expected = `${entry.kind[0].toUpperCase()}${entry.kind.slice(1)} \u00b7 ${source.guidance.sources[entry.source]?.cite || entry.source}`;
+          if (said !== expected) notesMisnamingTheirKindOrSource.push(`${subject}: "${said}" rather than "${expected}"`);
+        });
+        if (notes.length !== entries.length)
+          notesMisnamingTheirKindOrSource.push(`${subject}: ${notes.length} notes for ${entries.length} claims`);
         for (const entry of entries) {
           const occurrences = text.split(entry.claim).length - 1;
           if (occurrences === 0) claimsNotDrawnVerbatim.push(`${subject}: ${entry.claim}`);
@@ -2671,7 +3031,8 @@ test(P21, async ({ page }) => {
           if (occurrences > 1) claimsDrawnMoreThanOnce.push(`${subject}: ${entry.claim}`);
           if (relationText.some((row) => row.includes(entry.claim))) claimsDrawnInsideARelationRow.push(`${subject}: ${entry.claim}`);
         }
-        for (const kind of kindIdsIn(text)) kindIdsReachingTheReader.add(kind);
+        const aroundTheNotes = notes.reduce((held, note) => held.replace(note.innerText, ''), text);
+        for (const kind of kindIdsIn(aroundTheNotes)) kindIdsReachingTheReader.add(kind);
       }
       return {
         claimsExpected,
@@ -2681,6 +3042,7 @@ test(P21, async ({ page }) => {
         claimsNotDrawnVerbatim,
         claimsDrawnMoreThanOnce,
         claimsDrawnInsideARelationRow,
+        notesMisnamingTheirKindOrSource,
         kindIdsReachingTheReader: [...kindIdsReachingTheReader].sort(),
       };
     };
@@ -2769,6 +3131,8 @@ test(P21, async ({ page }) => {
   expect(measured.asAuthored.claimsDrawnMoreThanOnce).toEqual([]);
   expect(measured.asAuthored.claimsDrawnInsideARelationRow).toEqual([]);
   expect(measured.asAuthored.claimsDrawn).toBe(measured.asAuthored.claimsExpected);
+  expect(measured.asAuthored.notesMisnamingTheirKindOrSource).toEqual([]);
+  expect(measured.withTheDocumentsOwnWordsRenamed.notesMisnamingTheirKindOrSource).toEqual([]);
 
   expect(
     measured.asAuthored.kindIdsReachingTheReader.length,
@@ -3082,7 +3446,7 @@ test('frame and frame-option panels keep every authored row meaning with its own
       describedOptions += options.filter((option) => option.description.trim()).length;
       undescribedOptions += options.filter((option) => !option.description.trim()).length;
       const body = panelFor(frame.id);
-      checkRows(frame.id, sectionNamed(body, 'Options')?.querySelector<HTMLElement>('.group'), options);
+      checkRows(frame.id, sectionNamed(body, 'Values')?.querySelector<HTMLElement>('.group'), options);
     }
     for (const option of model.entities.filter((entity) => entity.kind === 'option')) {
       const elements = elementsByOption.get(option.id) ?? [];
@@ -3104,7 +3468,7 @@ test('frame and frame-option panels keep every authored row meaning with its own
 test('frame options are complete static values while long element groups disclose once', async ({ page }) => {
   await open(page);
   const phase = await selectDetail(page, 'frame:phase');
-  const phaseOptions = phase.locator('.section').filter({ hasText: /^Options/ });
+  const phaseOptions = phase.locator('.section').filter({ hasText: /^Values/ });
   const phaseRows = phaseOptions.locator('.semantic-row');
   const expectedPhaseOptions = await page.evaluate(
     () =>
@@ -3158,7 +3522,7 @@ test('semantic rows remain quiet, whole and reachable in capped desktop and narr
   const phaseLayout = await phase.evaluate((panel) => {
     const body = panel.querySelector<HTMLElement>('.panel-body')!;
     const group = [...panel.querySelectorAll<HTMLElement>('.section')]
-      .find((section) => section.querySelector('h3')?.textContent === 'Options')!
+      .find((section) => section.querySelector('h3')?.textContent === 'Values')!
       .querySelector<HTMLElement>('.group')!;
     const rows = [...group.querySelectorAll<HTMLElement>('.semantic-row')];
     const measureText = (node: HTMLElement) => ({

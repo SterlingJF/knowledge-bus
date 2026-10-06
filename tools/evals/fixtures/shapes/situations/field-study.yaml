@@ -1,0 +1,64 @@
+# Test fixture for the eval tooling: field-study's answers over cases.yaml, one of them a case
+# from notice-readers' field.
+schema: evals-answers/1
+universe: field-study
+field: field-study
+frames:
+  stage:
+    fingerprint: sha256:5acc8815e1b4ece1
+    means:
+      plan: The study is being shaped, before any data exist.
+      collect: Data are being taken from people, places or specimens.
+      analyse: The data exist and are being examined.
+    answers:
+      s01: plan
+      s02: plan
+      s03: plan
+      s04: plan
+      s05: collect
+      s06: collect
+      s07: collect
+      s08: collect
+      s09: analyse
+      s10: analyse
+      s11: analyse
+      s12: analyse
+  review:
+    ladder: true
+    fingerprint: sha256:033290466ce5b816
+    means:
+      exempt: People are involved only in listed low-risk ways, so no committee needs to meet.
+      expedited: Minimal risk to participants, beyond the listed kinds; one reviewer can approve.
+      full-board: More than minimal risk, or vulnerable participants; the whole committee must approve.
+    answers:
+      s01: exempt
+      s02: {value: expedited, near: exempt}
+      s03: full-board
+      s04: expedited
+      s05: exempt
+      s06: expedited
+      s07: full-board
+      s08: {value: exempt, near: expedited}
+      s09: exempt
+      s10: {value: expedited, near: full-board}
+      s11: full-board
+      s12: {value: full-board, near: expedited}
+      n13: expedited
+  setting:
+    fingerprint: sha256:1c6bcf1bdedb2d48
+    means:
+      laboratory: The data come from controlled work indoors.
+      field: The data come from where the people or things studied are found.
+    answers:
+      s01: laboratory
+      s02: laboratory
+      s03: field
+      s04: field
+      s05: field
+      s06: laboratory
+      s07: laboratory
+      s08: field
+      s09: field
+      s10: laboratory
+      s11: field
+      s12: laboratory

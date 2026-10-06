@@ -1,0 +1,49 @@
+# A kbp/0.8 edge gate latency is one nonblank string, such as 2d.
+universe:
+  id: edge-gate-latency-not-a-string
+  label: Minimal
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: stage
+
+statuses: [conjecture, measured]
+
+frames:
+  - id: stage
+    code: fa1a1
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values:
+      - { id: only, question: "Where in the sequence does this sit?" }
+  - id: review
+    code: fa1a2
+    role: gating
+    set_by: scope
+    attaches_to: artifact
+    values: [light, full]
+
+no_artifact:
+  when: {}
+
+relation_kinds:
+  - { id: informs, ordered: true }
+
+elements:
+  - id: the-question
+    code: ea1a1
+    question: "What is being asked?"
+    stage: only
+    cardinality: singleton
+
+artifacts:
+  - id: the-record
+    code: aa1a1
+    enablement: "Lets someone state a question and be held to it."
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core:
+        - the-question
+
+relations:
+  - { from: the-question, to: the-record, kind: informs, gate: { latency: [2d] } }

@@ -1,0 +1,53 @@
+universe:
+  id: choir-operations
+  label: Choir operations
+  version: 0.1
+  conforms_to: kbp/0.7
+  ordering_frame: season-stage
+  overview:
+    covers: The arrangements a volunteer choir keeps for its singers across one season.
+    for: The choir board and the singers.
+    excludes: The music the choir sings.
+
+statuses: [proposed, agreed, retired]
+
+frames:
+  - id: season-stage
+    code: fjwn1
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [planning, rehearsing, performing]
+
+  - id: shared-with
+    code: ftda2
+    role: applicability
+    set_by: instance
+    question: Who reads this arrangement besides the person who made it?
+    values: [nobody, board, all-singers]
+
+empty_composition:
+  when: { shared-with: [nobody] }
+
+relation_kinds:
+  - id: feeds
+    ordered: true
+
+elements:
+  - { id: rehearsal-schedule, code: egmht, question: "What weekday, hour and room does the choir rehearse in?", season-stage: rehearsing, cardinality: singleton }
+  - { id: member-dues, code: e7p9y, question: "What does each singer pay the choir each year?", season-stage: planning, cardinality: singleton }
+  - { id: fund-target, code: emd3m, question: "What amount does each fund aim to raise?", season-stage: planning, cardinality: per-fund }
+  - { id: concert-dates, code: e180t, question: "On which dates does the choir perform this season?", season-stage: performing, cardinality: singleton }
+  - { id: room-key-holder, code: en9t8, question: "Which singer holds the key to the rehearsal room?", season-stage: rehearsing, cardinality: singleton }
+
+artifacts:
+  - id: season-sheet
+    code: a3z5t
+    enablement: { action: "plan a week of choir life without asking the board", actor: singer, timing: at the start of each season }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [rehearsal-schedule, concert-dates, member-dues]
+      situational: [fund-target, room-key-holder]
+
+relations:
+  - { from: concert-dates, to: rehearsal-schedule, kind: feeds }

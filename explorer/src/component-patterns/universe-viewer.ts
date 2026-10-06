@@ -14,6 +14,7 @@ import {
 } from '../lib/model';
 import { type Rect, type Point } from '../lib/geometry';
 import { buildScene, legendRows, selectionBounds, subjectBounds, type Scene, type PathSampler } from '../lib/scene';
+import { emphasise } from '../lib/emphasis';
 import { serializeSvg, type SvgExportOptions } from '../lib/export';
 import { type TextMeasurer, approximateText } from '../lib/card';
 import {
@@ -177,11 +178,12 @@ export function mountUniverseViewer(host: HTMLElement, input: unknown, viewerOpt
     animation = 0;
   }
 
-  function animateTo(target: Camera) {
+  function animateTo(target: Camera, settled: () => void = () => {}) {
     stopMotion();
     const goal = constrainCamera({ ...target, z: clampZoom(target.z) }, mapBounds(), viewportSize(), insets);
     if (reducedMotion()) {
       applyCamera(goal);
+      settled();
       return;
     }
     const from = { ...camera };
@@ -191,6 +193,7 @@ export function mountUniverseViewer(host: HTMLElement, input: unknown, viewerOpt
       const fraction = Math.min(1, (now - started) / duration);
       applyCamera(interpolate(from, goal, fraction));
       animation = fraction < 1 ? requestAnimationFrame(step) : 0;
+      if (fraction >= 1) settled();
     };
     animation = requestAnimationFrame(step);
   }
@@ -228,7 +231,7 @@ export function mountUniverseViewer(host: HTMLElement, input: unknown, viewerOpt
     menu.render();
     legendBox?.remove();
     legendBox = null;
-    const rows = legendRows(scene);
+    const rows = legendRows(scene, emphasise(scene, selection, '').edges);
     if (rows.length) {
       legendBox = legend(rows);
       shell.append(legendBox);
@@ -292,7 +295,7 @@ export function mountUniverseViewer(host: HTMLElement, input: unknown, viewerOpt
     if (!target) return;
     const goal = constrainCamera({ ...target, z: clampZoom(target.z) }, mapBounds(), viewportSize(), insets);
     placeDetail(goal);
-    animateTo(goal);
+    animateTo(goal, () => placeDetail());
   }
 
   function clearSelection(refit = true) {

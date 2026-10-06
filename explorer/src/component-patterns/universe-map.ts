@@ -244,10 +244,20 @@ export function universeMap(scene: Scene, model: ExplorerModel, actions: MapActi
   const nubNodes = new Map<string, HTMLElement | SVGElement>();
   let nubTreatment = new Map<string, EdgeEmphasis>();
 
+  function reachableOnlyInSight(holder: Element, focusable: Element | null, hidden: boolean, tabIndexInSight?: string) {
+    if (hidden) holder.setAttribute('aria-hidden', 'true');
+    else holder.removeAttribute('aria-hidden');
+    if (!focusable) return;
+    if (hidden) focusable.setAttribute('tabindex', '-1');
+    else if (tabIndexInSight) focusable.setAttribute('tabindex', tabIndexInSight);
+    else focusable.removeAttribute('tabindex');
+  }
+
   function dressNub(node: HTMLElement | SVGElement, treatment: EdgeEmphasis) {
     node.dataset.emphasis = treatment;
     node.style.opacity = treatment === 'hidden' ? '0' : treatment === 'rest' ? String(tokenNumber('--kb-connection-opacity-idle')) : '1';
     node.style.pointerEvents = treatment === 'hidden' ? 'none' : '';
+    reachableOnlyInSight(node, node.matches('button') ? node : node.querySelector('button'), treatment === 'hidden');
   }
 
   const countScale = (zoom: number) => grow(zoom, '--kb-count-zoom-growth');
@@ -369,6 +379,7 @@ export function universeMap(scene: Scene, model: ExplorerModel, actions: MapActi
       group.style.opacity =
         treatment === 'active' || emphasisHold ? '1' : treatment === 'hidden' ? '0' : String(tokenNumber('--kb-connection-opacity-idle'));
       group.style.pointerEvents = treatment === 'hidden' ? 'none' : '';
+      reachableOnlyInSight(group, group.querySelector('.wire-hit'), treatment === 'hidden', '0');
       const wire = group.querySelector<SVGPathElement>('.wire');
       if (wire)
         wire.style.strokeWidth =
@@ -385,6 +396,7 @@ export function universeMap(scene: Scene, model: ExplorerModel, actions: MapActi
       group.style.opacity =
         treatment === 'hidden' ? '0' : treatment === 'active' ? '1' : String(tokenNumber('--kb-connection-opacity-label-faint'));
       group.style.pointerEvents = treatment === 'hidden' ? 'none' : '';
+      reachableOnlyInSight(group, group.querySelector('button'), treatment === 'hidden');
     }
   }
 

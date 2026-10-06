@@ -1,5 +1,5 @@
 import { type Selection } from './model';
-import { type Scene, cardWithKin, edgeTouches, nubOwnerCard } from './scene';
+import { type Scene, type SceneEdge, cardWithKin, edgeTouches, nubOwnerCard } from './scene';
 
 export type CardEmphasis = 'active' | 'idle' | 'hushed' | 'dimmed';
 export type EdgeEmphasis = 'active' | 'rest' | 'hidden';
@@ -30,17 +30,22 @@ export function emphasise(scene: Scene, selection: Selection, hover: string): Em
   const hoveredInsideSubjectSet =
     !subjectEdge && subjectCard && scene.edges.some((e) => e.path === hoveredEdge && edgeTouches(e, subjectCard)) ? hoveredEdge : '';
 
+  const shownOnDemand = (edge: SceneEdge): boolean =>
+    !edge.onDemand || edge.path === subjectEdge || (!!selectedCard && edgeTouches(edge, selectedCard));
+  const showable = scene.edges.filter(shownOnDemand);
+
   const kin = new Set<string>();
   if (subjectEdge) {
     const edge = scene.edges.find((e) => e.path === subjectEdge);
     if (edge) for (const id of [edge.from, edge.to, ...(edge.targetPair ?? [])]) kin.add(id);
-  } else if (subjectCard) for (const id of cardWithKin(scene.edges, subjectCard)) kin.add(id);
+  } else if (subjectCard) for (const id of cardWithKin(showable, subjectCard)) kin.add(id);
 
   for (const card of scene.layout.cards)
     cards.set(card.id, settled && !subjectEdge && card.id === subjectCard ? 'active' : !kin.size || kin.has(card.id) ? 'idle' : quietest);
 
   for (const edge of scene.edges) {
-    if (subjectEdge) edges.set(edge.path, edge.path === subjectEdge ? 'active' : faintest);
+    if (!shownOnDemand(edge)) edges.set(edge.path, 'hidden');
+    else if (subjectEdge) edges.set(edge.path, edge.path === subjectEdge ? 'active' : faintest);
     else if (subjectCard)
       edges.set(
         edge.path,

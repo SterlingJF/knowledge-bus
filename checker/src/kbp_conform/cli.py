@@ -25,6 +25,7 @@ from ._vendor import yaml
 from .checker import (
     CODE_PREFIX,
     CODED,
+    accepted_versions,
     check,
     check_guidance,
     mint,
@@ -279,7 +280,11 @@ def main(argv=()):
     if unsound or self_only:
         return 1 if unsound else 0
 
-    expected = f"{protocol['protocol']['id']}/{protocol['protocol']['version']}"
+    accepted = accepted_versions(protocol)
+    expected = accepted[0]
+    refusal = f"does not match '{expected}'" + (
+        f" or an accepted earlier version {accepted[1:]}" if accepted[1:] else ""
+    )
     types = protocol["declarations"]["document_types"]["kinds"]
     if not doc_paths:
         print("no documents to check")
@@ -300,10 +305,12 @@ def main(argv=()):
     for name, header, doc in docs:
         if header != "universe":
             continue
-        print(f"=== {name} against {expected} ===")
         declared = doc["universe"].get("conforms_to", "")
-        if declared != expected:
-            print(f"  FAIL  conforms_to '{declared}' does not match '{expected}'\n")
+        print(
+            f"=== {name} against {declared if declared in accepted else expected} ==="
+        )
+        if declared not in accepted:
+            print(f"  FAIL  conforms_to '{declared}' {refusal}\n")
             ok = False
             continue
         universe_id = doc["universe"].get("id")
@@ -322,16 +329,18 @@ def main(argv=()):
     for name, header, doc in docs:
         if header == "universe":
             continue
-        print(f"=== {name} against {expected} ===")
+        declared = doc[header].get("conforms_to", "") if header else ""
+        print(
+            f"=== {name} against {declared if declared in accepted else expected} ==="
+        )
         if header is None:
             print(
                 f"  FAIL  no top-level header key from {types}; document type unknown\n"
             )
             ok = False
             continue
-        declared = doc[header].get("conforms_to", "")
-        if declared != expected:
-            print(f"  FAIL  conforms_to '{declared}' does not match '{expected}'\n")
+        if declared not in accepted:
+            print(f"  FAIL  conforms_to '{declared}' {refusal}\n")
             ok = False
             continue
         ok = check_guidance(protocol, doc, universes, name) and ok

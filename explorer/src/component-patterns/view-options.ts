@@ -172,8 +172,8 @@ export function viewOptionsMenu(
       const frames = otherFrames.filter((e) => e.kind === 'frame');
       const factors = otherFrames.filter((e) => e.kind === 'factor');
       for (const [label, items] of [
-        ['Referenced frames', frames],
-        ['Referenced factors', factors],
+        ['Other frames', frames],
+        ['Factors', factors],
       ] as const)
         if (items.length)
           panel.append(
@@ -271,12 +271,12 @@ export function viewOptionsMenu(
                 {
                   value: 'uniform',
                   label: 'Required',
-                  tooltip: 'Hide situational connections',
+                  tooltip: 'Hide when-applicable connections',
                   content: () => strokeSample(false),
                 },
                 {
                   value: 'distinct',
-                  label: 'Required / optional',
+                  label: 'Required / when applicable',
                   tooltip: 'Show all connections',
                   content: () => strokeStack(),
                 },

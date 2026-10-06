@@ -4,7 +4,7 @@ Follow a small example folder through `/kb-ingest`. The example includes conflic
 
 ## The Folder
 
-Eight files for a solo side project — a meal-prep planning app:
+Eight files for a solo side project — a meal-prep planning app — ingested in August 2026:
 
 ```txt
 lunchbox-notes/
@@ -22,7 +22,7 @@ lunchbox-notes/
 
 `/kb-ingest lunchbox-notes/` reports before it reads deeply:
 
-> 8 files, all markdown. Dates 2025-03 to 2026-08. One pricing note is disputed by a newer one;
+> 8 files, all markdown. Six are dated, 2025-03 to 2026-02; two are undated. One pricing note is disputed by a newer one;
 > two notes are old but undisputed; one file looks off-topic.
 
 These initial findings flag potential issues. They do not settle which conflicting note to use.
@@ -58,12 +58,13 @@ condition — a candidate for `/kb-uncover-decision`.
 
 ## The Coverage Report
 
-| Class     | Content                                      | Action                                        |
-| --------- | -------------------------------------------- | --------------------------------------------- |
-| contested | none; the pricing conflict was resolved      | no action needed                              |
-| mapped    | vision, pricing, competitors; auth (flagged) | spot-check                                    |
-| refused   | packing list, todo scratch                   | confirm these are outside the chosen scope    |
-| gaps      | personas, north-star metric                  | answer, or record why these remain unanswered |
+| Class     | Content                                                             | Action                                        |
+| --------- | ------------------------------------------------------------------- | --------------------------------------------- |
+| contested | none; the pricing conflict was resolved                             | no action needed                              |
+| mapped    | vision, pricing, competitors; auth (flagged)                        | spot-check                                    |
+| stale     | none; the owner confirmed the vision, and the personas became a gap | no action needed                              |
+| refused   | packing list, todo scratch                                          | confirm these are outside the chosen scope    |
+| gaps      | personas, north-star metric                                         | answer, or record why these remain unanswered |
 
 The result gives a reader or agent answers organized by question, with sources and remaining gaps visible. The pricing answer includes the owner's decision and the caveat that the numbers are unchecked. The outdated personas remain an open question.
 

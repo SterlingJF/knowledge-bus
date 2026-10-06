@@ -1,7 +1,8 @@
 protocol:
   id: kbp
   name: Knowledge Bus Protocol
-  version: 0.7
+  version: 0.8
+  accepts: [0.7]
   status: draft
   purpose: >
     The structured exchange of contextual knowledge rather than data. Defines what a
@@ -30,7 +31,7 @@ concepts:
 
   frame:
     definition: A dimension a universe is indexed by.
-    powers: [select, promote-to-core, gate-element, disable-artifact, return-empty]
+    powers: [select, promote-to-core, gate-element, disable-artifact, say-no-artifact-needed]
     declared_by: universe
 
   factor:
@@ -44,7 +45,7 @@ concepts:
     rules:
       - >
         A factor is referenced by nothing the universe declares. No element gate, no
-        artifact disabling, no composition entry, no empty composition, no relation
+        artifact disabling, no composition entry, no no_artifact condition, no relation
         edge and no strength may name one.
       - >
         A guidance entry MAY condition on a factor the guided universe declares.
@@ -123,17 +124,37 @@ declarations:
         conforms_to: "<protocol-id>/<version>"
         ordering_frame: "<frame-id>"
         overview: { covers: "<prose>", for: "<prose>", excludes: "<prose>" }
+        terms: ["<term>"]
       statuses: ["<status>"]
       frames: ["<frame>"]
       factors: ["<factor>"]
-      empty_composition: { when: "<frame-predicate>" }
+      no_artifact: { when: "<frame-predicate>" }
       relation_kinds: ["<relation-kind>"]
       elements: ["<element>"]
       artifacts: ["<artifact>"]
       relations: ["<edge>"]
       instances: ["<instance-record>"]
-    required: [universe, statuses, frames, empty_composition, relation_kinds, elements, artifacts, relations]
+    required: [universe, statuses, frames, no_artifact, relation_kinds, elements, artifacts, relations]
     header_required: [id, version, conforms_to, ordering_frame]
+    header_since: { terms: 0.8 }
+    renamed: { no_artifact: { was: empty_composition, since: 0.8 } }
+
+  term:
+    term: "<word or phrase>"
+    means: "<prose>"
+    required: [term, means]
+    rules:
+      - >
+        terms is optional. When present it MUST be a list of terms. Each term
+        carries exactly term and means, each a nonblank string, and no two terms
+        in a universe share a term, compared case-insensitively.
+      - >
+        A term is one of the universe's own words, with the one fixed meaning it
+        has wherever the universe's definitions use it.
+      - >
+        Terms carry no structure. Nothing gates, orders, relates or composes on a
+        term, and correspondence between universes remains by question, never by
+        term.
 
   code:
     form: "<kind-letter><four characters from the alphabet below>"
@@ -336,15 +357,17 @@ composition:
       subject to the independent applicability rules below.
     - A universe MAY disable an artifact type entirely under a frame predicate.
     - >
-      A universe MUST be able to return the empty composition. Where no frame value
-      warrants structure, the conforming answer is no artifact.
+      A universe MUST be able to say that no artifact is needed. Its no_artifact
+      condition names the frame values under which nothing needs writing down;
+      where no frame value warrants structure, the conforming answer is no artifact.
 
   evaluation:
     precedence:
       - >
-        Evaluate artifact disabled_when and universe empty_composition.when first.
-        A true disabled_when returns disabled; otherwise a true empty predicate
-        returns empty. Either definite outcome suppresses all members, even when
+        Evaluate artifact disabled_when and universe no_artifact.when first.
+        A true disabled_when means the artifact is disabled; otherwise a true
+        no_artifact.when means no artifact is needed. Either definite outcome
+        suppresses all members, even when
         the other predicate is unknown. If neither is true and either is unknown,
         the artifact result is unresolved, not an asserted usable composition.
       - >
@@ -395,12 +418,18 @@ relations:
     to: "<element-id | artifact-id>"
     kind: "<relation-kind>"
     legality: permitted | permitted-if-logged | forbidden
-    gate: { authority: "<frame-value>", latency: "<duration>" }
+    gate: { "<frame-id>": "<frame-value>", latency: "<duration>" }
     freeze: open | baselined | superseded
     required: [from, to, kind]
+    reshaped: { gate: { was: '{ authority: "<frame-value>", latency: "<duration>" }', since: 0.8 } }
 
   rules:
     - Every edge declares a kind.
+    - >
+      A gate is keyed by frames the universe declares. Each value takes the value
+      forms a frame predicate allows, and a single value may be written bare.
+      latency is reserved: its value is a duration, one nonblank string such as 2d,
+      in a format the protocol does not fix. No frame is named latency.
     - Every edge on a cycle declares legality.
     - >
       permitted-if-logged requires the traversal to be recorded as an instance before
@@ -442,7 +471,7 @@ exchange:
   sequence:
     - step: compose
       by: sender
-      input: [body, enablement, audience]
+      input: [body, enablement, "the universe's selection frames, if any"]
       output: artifact
     - step: transmit
       carries: [artifact, composition, instance-records, universe-reference]
@@ -485,6 +514,16 @@ exchange:
 
 conformance:
 
+  declared_version: >
+    A document's conforms_to names this protocol version or one listed in
+    protocol.accepts. A document declaring an accepted earlier version is checked
+    as that version: a header field whose header_since is later than the declared
+    version is unsanctioned there, and a document key listed in renamed carries
+    its earlier name (was) when the declared version is earlier than since. A
+    field listed in reshaped likewise keeps its earlier shape (was). So a kbp/0.7
+    universe writes empty_composition where kbp/0.8 writes no_artifact, with the
+    same shape, and its edge gates are not checked, nor is latency reserved.
+
   guidance_valid_if:
     - >
       Every element, artifact and factor key resolves to a declared id in the guided
@@ -504,6 +543,10 @@ conformance:
     - Every artifact declares an enablement with both an action and an actor.
     - Every core element is derivable from its artifact's enablement.
     - Every relation edge declares a kind; every cyclical edge declares legality.
+    - >
+      Every relation edge gate key other than latency names a declared frame, with
+      values that frame declares; latency is one nonblank string, and no frame is
+      named latency.
     - Every instance declares asserted_by, status and observed_at.
     - >
       The element, artifact, frame, factor, relation-kind and status sets are
@@ -514,8 +557,11 @@ conformance:
     - >
       No predicate a universe declares names a factor. Factors are declared and wired
       into nothing.
+    - >
+      Every term declares a nonblank term and a nonblank meaning, and no two terms
+      share a term, compared case-insensitively.
     - Exactly one ordering frame is declared, and it attaches to elements.
-    - The empty composition is reachable.
+    - Some context exists in which no artifact is needed.
     - >
       Every field a universe declares appears in the corresponding declarations shape.
       A universe carrying fields the protocol does not sanction is non-conforming.

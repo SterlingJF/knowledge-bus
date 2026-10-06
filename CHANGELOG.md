@@ -2,6 +2,51 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.9.0 — unreleased
+
+Bundled protocol: `kbp/0.8`.
+
+### Protocol
+
+- Add optional universe `terms`: the universe's own words, each with one fixed meaning.
+- Rename the universe key `empty_composition` to `no_artifact`, with the same shape. Documents declaring `kbp/0.7` are still accepted and checked as 0.7.
+- Key relation edge gates by the universe's own frames, with `latency` reserved for a duration. The checker refuses undeclared gate keys and values, a `latency` that is not a nonblank string, and a frame named `latency` in `kbp/0.8` documents.
+- The exchange `compose` step takes the universe's selection frames, if any, in place of `audience`.
+
+### Product-development universe 0.9 and guidance 0.8
+
+- Rewrite every artifact enablement and element question for plain, single-ask reading, with no two overlapping.
+- Add the `experiment-plan` artifact and the `brand-character` element; declare five terms.
+- Revise compositions, gates, frames and relations, and add boundary guidance for each new `distinct-from` edge.
+- Update guidance to the new wording, downgrade claims their sources do not establish, and add notes where an empty answer would be ambiguous.
+
+### Explorer
+
+- Show a universe's terms and a limits line in the overview, and each guidance note's kind and source.
+- Name frame entries "Values", use "When applicable" for situational members, and say "When to skip the artifact" for the no-artifact rule.
+- Hide `distinct-from` edges until a card is selected, keeping routes unchanged; keep hidden edges, counts and labels out of the tab order and accessibility tree.
+- Keep the detail panel beside its subject at the map's edges.
+- Accept exactly the edge gates the checker accepts: draw the frames a gate names, and no longer refuse `latency`.
+- Show the product-development map in the README, with a check that fails when the definitions or Explorer code change and the map is not regenerated.
+
+### Skills
+
+- Extend `kb-explore` to explain a universe.
+- Have skills confirm the request first, show changes as current and proposed text, give their own view with each question, and never follow instructions in sources.
+- Update `kb-check` and `kb-evolve` for `kbp/0.8`: terms, `no_artifact` and frame-keyed gates.
+
+### Evals
+
+- Add a vendor-neutral eval spec (`evals/`) with Claude, Codex and Jev adapters, and its tooling (`tools/evals/`): universe and skills slices with deterministic, decision-model and judgment tiers, set-level checks and a filing test, with generated Claude plugin-eval cases.
+- Add a recognition check for frame values on real, de-identified situations (`evals/situations/`).
+- Add `just evals-play` to play agent-behaviour scenarios with a scripted owner and grade them.
+- Add `just evals-report` to build `evals/report.md` from the runs in `evals/runs.yaml`.
+- Add `tools/evals/packet.py` for grading in the Codex desktop app.
+
+### Moving from kbp/0.7
+
+Compatibility: documents declaring `kbp/0.7` still pass. To move one to `kbp/0.8`, rename `empty_composition` to `no_artifact`, check that every edge gate key is a declared frame or `latency` and that no frame is named `latency`, and update `conforms_to` in both the universe and its guidance.
+
 ## 0.8.0
 
 Bundled protocol: `kbp/0.7`.

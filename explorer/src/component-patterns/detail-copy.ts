@@ -17,10 +17,12 @@ import {
   freezeCopy,
   friendly,
   guidanceCountCopy,
+  kindNoun,
   legalityCopy,
   relationPhrasing,
 } from '../lib/phrasing';
 import { marksOf } from '../lib/icons';
+import { guidanceNoteCopy } from '../lib/guidance-reading';
 
 export interface CopyContext {
   model: ExplorerModel;
@@ -154,7 +156,7 @@ export const countOf = (many: number, noun: string, plural = `${noun}s`): string
 
 const countingWhatTheRowsAre = (context: CopyContext, targets: string[]): string => {
   const kinds = new Set(targets.map((target) => context.named.get(target)?.kind).filter(Boolean));
-  return countOf(targets.length, kinds.size === 1 ? [...kinds][0]! : 'entry');
+  return countOf(targets.length, kinds.size === 1 ? kindNoun([...kinds][0]!) : 'entry');
 };
 
 export function groupBox(heading: string, body: Node[]): HTMLElement {
@@ -251,7 +253,7 @@ export function guidanceDisclosure(context: CopyContext, entries: GuidanceEntry[
   for (const entry of entries) {
     const held = document.createElement('div');
     held.className = 'entry claim';
-    held.append(paragraph(entry.claim));
+    held.append(paragraph(entry.claim), paragraph(guidanceNoteCopy(context.model, entry), 'muted guidance-note'));
     if (entry.when && Object.keys(entry.when).length) {
       const block = section('Applies when', [conditions(context, entry.when)]);
       if (block) held.append(block);

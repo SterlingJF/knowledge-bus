@@ -1,0 +1,1327 @@
+# Real situations for the recognition check, shared by every universe and stored once each,
+# with the field each comes from and its tags. Of the tags, kind says what the work produces,
+# and who is the party whose situation or decision it is, not the other side. Each is a
+# de-identified paraphrase of one real public case: no names, places, dates or identifiers, and
+# no run of 7 words shared with its source; sources and provenance are kept privately outside
+# the repository. Each universe's answers sit beside this file in <universe-id>.yaml. Written
+# by tools/evals/intake.py apply.
+schema: evals-cases/1
+tags:
+  kind:
+    creation: The result is a made piece, such as an object, building, program or document, whose worth
+      lies in the piece itself; it is handed over or put in place and goes on existing after its makers
+      step away.
+    service: The result is the doing itself, carried out for someone as they receive it, such as care,
+      coaching, repair, teaching or transport; once it is done, no new made piece or stated conclusion
+      is left to hand over.
+    finding: The result is something learned and stated, such as an answer, a measurement, a diagnosis
+      or a tested conclusion, whose worth lies in being true and relied on; any document carrying it is
+      only the vehicle.
+  who:
+    one: One person whose situation or decision it is, even when acting in a role, such as a club secretary
+      or a council officer.
+    group: Several people acting together whose shared situation or decision it is, such as a household,
+      a couple, a team, a committee or volunteers, even inside a bigger body.
+    organisation: A body acting as itself, such as a company, council, charity, university, school, agency
+      or regulator.
+cases:
+- id: s-1d2f7fa
+  text: A home baker wants to find out whether they must register with the local council as a food business
+    before selling cakes from their kitchen, how long beforehand, and whether the council can refuse.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-393c6fc
+  text: People setting up a new charity want to find out which kinds of purpose the sector regulator recognises,
+    and whether the aim must benefit the public, before they can be registered.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-8fb5823
+  text: A lone open-source maintainer wants to read how others earn a living from their projects, for
+    example through ongoing retainer agreements with companies that depend on the code rather than selling
+    hours of support.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-8afc9a8
+  text: Someone hoping to cook and sell hot meals at a pavement stall wants to find out which council
+    licence is required, how many weekdays ahead to apply, and whether offering alcohol requires a separate
+    permit.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-2935114
+  text: A youth homelessness charity wants the written account of the lasting difference it aims to make
+    for young people, drawn up after consulting both young people and staff.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-388b8fd
+  text: A programming language community wants survey results on why people who have not adopted it have
+    held off, why past users left, and what current users worry about.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-8f97f37
+  text: A public web team wants research findings on how people cope today with juggling many accounts
+    and passwords, and whether they use password managers, before settling on a single account.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-30ed9b3
+  text: A council wants to learn what residents who never use libraries would want in order to come in,
+    after finding that most survey replies came from regular borrowers.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-c8c6632
+  text: A county wants to find out how many older residents often feel lonely and which groups face extra
+    barriers, before deciding which services to commission.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-eae350d
+  text: A solo founder wants to find out what people already use and pay for to manage their tasks, and
+    whether the problem is real, rather than only asking whether they would try a new tool.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-646b488
+  text: A volunteer park group wants to find out where visitors would like money spent, which events they
+    want and how they hear about the park, using a short visitor survey.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-99d7942
+  text: A contributor to a programming language wants to find out which alternative spellings and rule
+    changes were weighed and rejected for a proposed new form of assignment, and how the common objections
+    were answered.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-1b77779
+  text: A user wants to find out which features a fast bundling tool plans to add, such as better code
+    splitting, and which it will leave out of the core, such as type checking, preferring plugins.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-b0ed85a
+  text: A writer for a public service wants the rules for wording its content, such as keeping legal text
+    in everyday language and adding a plain summary whenever jargon must be published.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-f06513d
+  text: A package-manager contributor wants to find out how another language's tooling coped with the
+    same index growth step by step, and which matters about setting an index's fetch method remain unsettled.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-14187eb
+  text: A team wants to find out why an online service for teachers trained abroad offers simple sign-in
+    rather than an identity-check journey, given that many applicants lack the documents the checks need.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-4e0e4d1
+  text: A trial team wants to find out why the study assigns whole areas instead of individual couples
+    to a programme, accepting lower statistical power so that nobody in one area gets both versions.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-fba5932
+  text: A service team wants to find out how the share of people who finish an online transaction is counted,
+    including assisted completions, and when a transaction counts as failed.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-0f2ba4a
+  text: 'A freelance site builder wants the thresholds for a good page experience: how fast the main content
+    must appear, how quickly the page must react, how little the layout may shift, and across what share
+    of visits.'
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-9abd39d
+  text: A doctor running a school trial wants to find out how the main outcome, weekly physical activity,
+    is gathered by questionnaire and converted into standard energy units.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-794a6f9
+  text: A council officer wants the target for reported missed bin collections per number of collections,
+    the level counted as good, and the latest monthly reading against it.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-ed89100
+  text: A contributor to a scientific code project wants to find out how much slower than a stored baseline
+    a typical run may get before the automated speed check fails, and how noisy the runs are.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-c44d389
+  text: A repair-café group wants to find out how the emissions saved per completed repair and the repair
+    success rate are calculated from records of attempted repairs.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-d3462ba
+  text: A user of a government messaging service wants its target for how fast most messages are sent,
+    and which things, such as whether emails are opened, it does not measure.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-6876e4f
+  text: 'A new contributor wants a map of the pieces of a code-editor helper: where it starts, which piece
+    replies to editor requests, and how analysis is recomputed lazily when one file is edited.'
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-9e2c6aa
+  text: 'A developer wants to read how a bundler''s two main phases divide the job: locating every required
+    module in parallel from the entry files, then compiling and linking them into the final bundle.'
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-41a65eb
+  text: 'A volunteer wants to understand how a food bank is organised: donations go to a warehouse, volunteers
+    stock distribution centres from it, and partner agencies assess people in crisis and issue electronic
+    vouchers exchanged for a few days of food.'
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-89950dd
+  text: 'A newcomer to a container platform wants to find out what it does not do: it neither compiles
+    applications from source nor ships built-in middleware, and many pieces are optional and pluggable.'
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-e77ed0a
+  text: 'A wildlife recorder wants to find out how sightings travel: records stay on the website unless
+    an expert verifier checks them, and depending on who verifies may also pass to a national society''s
+    database or a local records centre.'
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-a2e7a6d
+  text: A statistician wants to find out how a national statistics office sorts jobs into nested groups,
+    from broad major groups down to unit groups, by skill level and specialisation.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-59554ee
+  text: 'The owner of a small cafe wants a pack of routines for a food business: opening and closing checks,
+    staff training records, a daily diary and a periodic review.'
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-7356094
+  text: A user wants to find which supported release lines a language project has, who manages each, whether
+    each still gets bug fixes or only security fixes, and when each reaches end of life.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-8639edc
+  text: A government forms service wants to find out how early access is opened to more organisations
+    after a first group of private-beta partners, with a yearly cap on submissions per form.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-6c8c625
+  text: 'A new on-call engineer wants the guide on what to do when paged: keep a laptop and connection
+    to hand, expect escalation within minutes, and judge whether an alert needs action now or can wait
+    until morning.'
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-ae842cf
+  text: 'A village hall committee wants the routine safety checks that keep the hall running: recorded
+    regular inspections of paths, lighting, escape routes and ladders, recorded training, and a yearly
+    fire review.'
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-ed195cc
+  text: 'A small-business owner wants to find out what a freelance developer''s maintenance service covers
+    after launch: routine updates, regular backups, monitoring and priority help when something breaks.'
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-2acd52b
+  text: Two developers spend a week writing a crude throwaway program just to see whether an approach
+    can work, expecting to delete it once it answers the question, though now and then one is kept.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-73ea1bf
+  text: A programmer explains their code line by line aloud to a rubber duck on the desk and spots the
+    bug mid-sentence; nothing is written down.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-6397b15
+  text: A learner tries out database commands in an online sandbox that wipes its data when the temporary
+    run expires, though a short history of queries lingers until they clear it.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-d8dd03f
+  text: Someone opens a disposable virtual desktop to see what an untrusted program does, and everything
+    is wiped when they close the window.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-af6c1e8
+  text: A product team mocks up a rough app screen flow to get early stakeholder feedback, having agreed
+    from the start that it will be thrown away and never handed to developers.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-dddecb8
+  text: An interpreter jots shorthand during an interpreted conversation only to hold the details in mind,
+    then destroys the notes once the meeting is over.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-c41cec2
+  text: A team at a two-hour hackathon builds a working demo that they all agree should be thrown away
+    rather than carried into production.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-9fc531c
+  text: A scholar keeps a personal box of linked notes, writing down why each link was made because months
+    later they will have forgotten, and nobody else is meant to use it.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-18f690b
+  text: A home gardener logs soil tests, pests, plantings and spending in a binder each season, to decide
+    what to do in later years.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-1fb74ea
+  text: A student keeps a research log of where they searched, which keywords worked and how each source
+    might be used, so nothing is lost by the time they write up.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-428b4a0
+  text: A developer keeps a private file of fixes they have worked out, so that when the same problem
+    comes back they can look up their own earlier answer.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-0b46f4e
+  text: At the end of each stretch of writing, a graduate writer leaves themselves notes on next steps
+    for when they come back to it.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-5017099
+  text: Someone who makes weighty decisions, such as whether to add staff, keeps a personal journal of
+    each one, noting what they weighed, what they expected and how sure they were, and rereads it every
+    few months to see how their own judgement held up.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-85e2388
+  text: An outgoing club officer writes a few pages for their successor on the weekly routine, unfinished
+    jobs, coming deadlines and the logins, because the role will outlast them.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-269351f
+  text: A household talks through how they will get alerts, where they will shelter, which way they will
+    leave and how they will reach each other, and keeps the plan for everyone at home.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-a422961
+  text: After a major outage, a company's engineers write a blameless review, have senior colleagues check
+    it and file it in an internal archive of past incidents for other staff to learn from.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-2f592bf
+  text: At shift change, outgoing ward nurses pass each patient's situation, background, assessment and
+    recommendation to the incoming nurses using a standard handover format.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-5dbe19c
+  text: A software team writes each significant design decision with its context and consequences in a
+    short record, so that someone joining later does not have to accept or reverse it blindly.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-168d0b6
+  text: An operations team writes step-by-step runbooks for recurring jobs and incidents so newcomers
+    can follow them and old hands can refresh their own memory.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-2b53bc9
+  text: A student in a university lab keeps the experiment notebook neat and legible for others, because
+    it belongs to the research group rather than to them, and at the end of term signs it and hands it
+    to the supervisor so the group can replicate and troubleshoot the work later.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-31eb4b6
+  text: A volunteer club secretary takes minutes of each committee meeting so later committees know what
+    was decided, and keeps them for years because a regulator or a dispute may one day call for them.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-610ef8f
+  text: A drug trial's sponsor must keep the essential trial files and participants' records for decades
+    so that regulators and auditors can later check how the trial was run.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-fbaf3fc
+  text: A web designer finishing a customer's website hands over a document with the logins, a project
+    summary and special instructions, which the customer, and later staff unfamiliar with the project,
+    can keep on hand and refer back to.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-ec71e15
+  text: An aircraft owner must keep maintenance and inspection records, some of which go with the plane
+    when it is sold, so a later owner and any inspector can see its history.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-253bf3e
+  text: A sole trader keeps income and expense records for years after each tax deadline, because the
+    tax office may one day check them, though it may never do so.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-f7a1f15
+  text: A researcher registers the hypotheses and analysis plan before seeing the data, so readers of
+    the eventual paper can tell planned tests from exploratory ones; the registration becomes public after
+    any embargo.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-a94599e
+  text: A research team depositing a dataset in a public repository writes a file-by-file description
+    and commented scripts so that researchers they will never meet can reanalyse it.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-c7f0e43
+  text: A programming-language community keeps its design proposals as public documents under version
+    control, so their revision history serves as the record of each feature for anyone who looks later.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-2f38532
+  text: A researcher spots a mistake in a paper sent to a preprint server before it has been publicly
+    listed, so the paper goes to draft, the files are corrected and it is submitted again; nothing public
+    ever showed the flawed version, and the only effect is a slightly later listing.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-7127c05
+  text: A blogger changes a page, dislikes the result and returns to the earlier saved version with one
+    button press, because the site keeps every previous version of the page.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-8633a6a
+  text: The operators of a busy online shop switch off a non-essential panel on the home page during a
+    traffic surge and switch it on again afterwards, with nothing lost in between.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-ed8de4b
+  text: A self-published author notices a typo in a book that has been on sale for months and uploads
+    a corrected file, which the print-on-demand distributor now accepts as often as wanted without any
+    fee.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-8583047
+  text: A government office that posts letters in a batch printed each afternoon lets a department call
+    off a letter at any point before the print run; a letter cancelled in time is never printed or posted.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-59bd7a6
+  text: A food producer finds unsafe products already in shops and has to pull them from shelves, tell
+    customers and notify the authorities, paying in staff time, money and shoppers' trust.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-441f5d2
+  text: Someone who withdraws a council planning application gets no fee refunded, and putting in a fresh
+    application means paying again, plus more time from the consultants who prepared the reports.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-4b5e086
+  text: A team wants a file removed from its shared code history, which means rewriting that history,
+    so every collaborator's copy and every open change request has to be redone, and a leaked secret must
+    also be replaced.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-be86557
+  text: A group that booked a village hall calls off its event inside the final fortnight and gets back
+    only half the hire charge, where cancelling earlier would have lost it nothing.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-f9a4df6
+  text: An owner who altered a protected historic property without consent can be served a notice, even
+    years later, to restore its earlier condition, or to reduce the harm where that is impractical, all
+    at their own expense.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-7ae9316
+  text: 'A maintainer releases a library to a registry run as a permanent archive: that release can neither
+    be overwritten nor deleted, and the most that can be done is flag it as withdrawn so newcomers steer
+    clear while existing users keep working.'
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-afe76e6
+  text: During routine maintenance an engineer deleted rows from a hosting platform's main database, and
+    because the backups did not cover the gap, several hours of users' changes were lost for good.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-9b6a3be
+  text: A researcher's preprint has already been publicly announced; withdrawing it only adds a new version
+    flagged as withdrawn with a reason, while the earlier versions and full text stay readable.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-2d715ab
+  text: A research team pulls a registered study plan from an online registry, which wipes its form and
+    files and keeps only a public entry with the title, dates and reason; every administrator had to consent,
+    and the platform warns there is no way back.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-7723de8
+  text: A health service's patient newsletter goes out with every recipient's address in plain view, most
+    showing full names, instead of hidden, and a regulator later fines the trust that runs it.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-e26fa02
+  text: A researcher asks a natural history museum for a bone or feather sample from a specimen for genetic
+    testing; the museum screens such requests strictly because sampling uses up part of a finite, unreplaceable
+    collection.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-b1ccec7
+  text: An archaeology team digs a site, and the digging itself permanently destroys the layers and the
+    context of the finds, leaving only the team's records.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-92665f4
+  text: Someone pulls a planning application back while the council is still checking that it is complete,
+    and gets the whole fee returned; once the council has accepted it and opened it to public comment,
+    pulling it back would forfeit the fee.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-0e91316
+  text: A company that sells web addresses deletes one registered by mistake while still inside the short
+    grace window that follows a new registration, and the registry credits back the whole fee; a few days
+    later that fee would be spent for good.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-8a10565
+  text: Every household must complete the national census, and those who ignore it get reminders and visits,
+    and in the end can be taken to court.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-8022b23
+  text: A code-hosting site told all its contributors to switch on a second login check by a set date,
+    after which anyone who had not done so was locked out.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-570c6b7
+  text: Flat owners must pay whatever service charge their lease sets for upkeep and insurance, though
+    they can ask for a breakdown and challenge unreasonable sums.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-eb453a3
+  text: A council moved every household to a longer cycle of rubbish collection to meet recycling targets,
+    and residents could not opt out, though some households could ask for extra capacity.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-2a4cbc3
+  text: Households are supplied with water by whichever company covers their address and cannot switch,
+    while only businesses may pick another supplier.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-63da2d5
+  text: Staff in health settings must complete set training on fire safety, infection control and safeguarding,
+    with the content fixed nationally and the timing set by their employer.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-fa15be6
+  text: A landlord must fit smoke alarms and a carbon monoxide alarm and keep the gas and electrics safe,
+    and tenants have these without having to ask.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-f476466
+  text: A tax agency trialled an online filing tool at no charge, stressing that the way each person files
+    is up to them, and many thousands of taxpayers used it.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-054bd72
+  text: Volunteers hold drop-in sessions at no charge, at which anyone with a broken toaster or lamp can
+    mend it alongside them.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-4783303
+  text: A university puts its course materials online with no sign-up, so anyone who wants to can browse,
+    download and reuse them at their own pace.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-059adc7
+  text: One developer maintains a command-line search tool under a permissive licence, with ready-built
+    downloads for every release that anyone can install.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-9c66076
+  text: Every autumn the health service makes a flu jab available at no charge to the elderly, carers
+    and anyone at greater risk, who can book it or leave it.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-c97db3e
+  text: A local charity gives private advice on debt, housing and benefits, at no charge, to anyone who
+    asks.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-cde32ea
+  text: Volunteers scan and proofread old books whose copyright has lapsed, free for anyone to download.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-73fa1d0
+  text: 'A council sells an optional garden-waste service: a yearly subscription buys a bin and fortnightly
+    collections, on top of the ordinary rounds.'
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-ea665b3
+  text: A council sells optional advice before a planning application is lodged, with the price rising
+    with the size of the scheme, and the advice is not binding.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-b112707
+  text: A council leisure centre runs children's swimming lessons for a monthly direct-debit fee that
+    also covers practice swims and badges.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-9c84464
+  text: Readers of an independent newsletter who want more than its one free edition a week pay a subscription
+    that brings extra updates and entry to a members' community.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-ad82ad9
+  text: A part-time piano tuner charges per visit, more for long distances, and quotes separately for
+    large pitch corrections.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-7d31dfd
+  text: A trader whose side business earns less than the small yearly tax-free trading allowance generally
+    owes the tax office no return or word about it and simply carries on.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-be3e256
+  text: A developer copies an open code repository into their own account and starts changing it independently,
+    never saying a word to its maintainers.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-be30caa
+  text: A writer publishes a new piece and never files it with any copyright office, because it is protected
+    from the moment it is fixed and filing is optional.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-a67382f
+  text: A homeowner retiles the kitchen and fits new countertops, jobs the city lists as exempt from building
+    permits, so there is nothing to apply for.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-28b9de1
+  text: A friend of the family who babysits for a couple of hours in the evening has no childcare registration
+    to make and can simply start.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-fa2a6aa
+  text: A stranger reuses and reworks a picture that its maker has dedicated to the public domain, with
+    no need to contact the maker at all.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-ba5184c
+  text: A researcher analysing an openly available, de-identified dataset needs no ethics-board review,
+    because the university's ethics office says such analysis is not research on human subjects.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-6ae1b20
+  text: Residents hold a get-together on their own driveway and front gardens, with the road left open
+    and no alcohol sold; the council's street-party guidance says such a private party needs no licence,
+    and consultation only arises when a road is closed.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-a78a20d
+  text: A landowner cutting wood for their own use on their land is exempt from the harvest form that
+    commercial logging calls for, so no agency hears about it.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-229e071
+  text: A university beekeeping guide recommends that a beekeeper with hives in a back garden have a friendly
+    word with the neighbours unless the hives are well out of the way, while granting that some keepers
+    hold off and respond to queries as they arise.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-b05538a
+  text: A homeowner may cut a neighbour's overhanging branches back to the boundary on their own say-so,
+    and the council merely recommends a word with the neighbour in advance; stepping onto the neighbour's
+    land to do it would be another matter.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-a02bac4
+  text: A building contractor may join an industry body's voluntary code under which sites keep nearby
+    residents up to date and treat them courteously; joining and the updates are optional, and skipping
+    them is not illegal.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-46081f1
+  text: A council's building-control page says the regulations place no duty on a homeowner to give the
+    neighbours word of planned building, and the council will not contact them either, though a courteous
+    chat is advised.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-8fd30f3
+  text: A reporter about to publish an investigation is urged by a professional ethics code to give its
+    subject a fair chance to respond, but the code calls itself a guide that cannot be enforced.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-4a171e9
+  text: A homeowner planning to cut into the wall shared with next door must serve written notice on the
+    neighbour in advance; the neighbour can dissent, but that only sends the terms to surveyors and cannot
+    forbid the job.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-455a7a5
+  text: A parent who plans to teach their child at home sends the school district a letter of intent by
+    the yearly deadline and may begin once it is filed; the district has no say in the matter.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-850f021
+  text: A cook opening a small catering business from their kitchen must sign up on the council's food
+    business list about a month before trading; it costs nothing and the council has no power to refuse.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-52c9dca
+  text: Before digging in their garden, a homeowner is legally bound to phone the utility-locating line
+    a few days earlier so buried cables and pipes get marked; the call seeks no one's yes to dig.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-08c13e3
+  text: A woodland owner about to carry out a commercial timber harvest must file a form with the state
+    forest service beforehand, and the form is expressly not a permit, so the service cannot block the
+    cut.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-c9b5737
+  text: A landlord who needs to get into a tenant's flat for a necessary repair must give a day's written
+    warning naming a time in normal hours, and the tenant is expected to let them in.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-c01f0e0
+  text: Volunteers on an open-source project cannot publish an official release until their project's
+    committee has voted in favour of it; if too few vote yes, it is not published.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-1756498
+  text: A contributor who wants a new feature in a programming language writes a design proposal, and
+    only if the project's governing council accepts it may the change be built into the language.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-e851d58
+  text: A substantial change to a programming language starts as a public design document, and it moves
+    to its closing comment stage only after every member of the responsible sub-team has signed off.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-aeef2ac
+  text: A volunteer who writes a script to make automated edits on a volunteer-run wiki must describe
+    each task to the community's bot review group, which can turn it down, before the script may run.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-d1af880
+  text: A researcher who wants a survey dataset that the archive holds under depositor permission must
+    justify the project and wait for the original depositor to agree before downloading it.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-f138c16
+  text: A hobbyist with a metal detector must get the yes of both the landowner and any tenant before
+    searching a field or even a public beach, and either can simply refuse.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-7e9a38e
+  text: A homeowner on a planned estate who wants to alter the outside of the house must submit the plans
+    to the residents' design committee, which can refuse under the estate covenants.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-17ab42c
+  text: A volunteer who wants to add a brand-new package to a community-run software collection begins
+    by posting a public notice of intent so others can comment, but the package only enters the collection
+    once its package-store keepers have reviewed it, and they can reject it.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-c264ee7
+  text: Where a parent wants to teach their child at home, state law has the local school district sign
+    off the plan in advance, and it may ask for changes or refuse; sending a letter of intent alone does
+    not let lessons begin.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-e97b82d
+  text: A landowner planning a very large clearcut must send the state forest service a harvest plan two
+    months in advance and may not cut until the service has given its sign-off under the forestry rules,
+    whereas smaller harvests only need a form filed.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-c27a39e
+  text: A childminder who wants to be paid to look after other families' young children in their own home
+    cannot take on a single child until the government inspectorate has enrolled them, which it can refuse.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-27e99e8
+  text: A drug company planning a trial of a new medicine on volunteers may not start it until the government's
+    medicines agency has reviewed and authorised the study.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-3edb519
+  text: A photographer who wants to take paid aerial pictures with a small drone has to pass an exam and
+    hold a pilot certificate from the aviation authority, and flying for clients with no certificate is
+    illegal.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-11142e6
+  text: A university lab planning experiments on live animals needs three government licences, for the
+    building, the project and each researcher, before the opening procedure.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-e33915c
+  text: A detectorist hoping to search a protected ancient monument needs a licence from the heritage
+    body, plus the landowner's own separate agreement; searching with no licence is a crime.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-87da0c3
+  text: A restaurant that wants to serve wine with meals must hold a premises licence from the local licensing
+    authority before the opening glass is sold; neighbours can object while it is considered, but only
+    the authority grants or refuses it.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-32121db
+  text: A tree surgeon hired to fell a tree covered by a preservation order has to hold the council's
+    signed clearance, since cutting it otherwise is an offence.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-1c74a3c
+  text: A home cook who wants to sell food made in their own kitchen must send labels and a fee to the
+    state agriculture department and may not sell anything until the permit is issued, and must apply
+    again after moving house.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-892ca0b
+  text: A driver who wants to carry paying passengers in their own car needs the car licensed by the council
+    as a private-hire vehicle, and taking fares before that can lead to prosecution.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-22f3b88
+  text: A developer planning a high-rise block of flats must get building-control sign-off from the country's
+    building safety watchdog before any construction starts.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-cd879fe
+  text: A national health body is designing a website where staff and the public look up and order vaccine
+    leaflets; so far it has only interviewed users and has never put a clickable mock-up in front of them.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-8fbd4e1
+  text: Two public health bodies are sketching one website where people can look up and apply for health
+    volunteering roles; they have run surveys, interviews and paper mock-ups, but nobody has yet tried
+    the whole journey end to end.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-8d135d7
+  text: A county library has just begun letting adults take a few packets of seeds a month at a handful
+    of branches, and is asking borrowers for tips and stories to shape a scheme with no results yet.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-a1f4ef8
+  text: A lone developer kept spending months building apps nobody had asked for and launching them to
+    almost no sign-ups; now he puts up a one-page advert first and builds only if enough strangers respond.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-d38ce02
+  text: For six months a council is letting residents turn up without booking at one recycling centre
+    on quiet weekdays, to see whether that helps; booking still applies on busy days, and nothing has
+    been reported yet.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-669e5d0
+  text: A county council is paying for an hourly bus between two towns and several villages for one year,
+    and whether it stays depends on rider numbers nobody can know yet.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-001f15c
+  text: An open-source infrastructure project ships each new feature switched off by default and marked
+    experimental, possibly buggy and liable to change or vanish, for use only in short-lived test setups,
+    before anyone relies on it.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-87a81c3
+  text: A research team plans a small trial of a single nurse-led counselling talk for people admitted
+    to hospital after poisoning themselves, mainly to learn whether such a trial can be run at all before
+    testing whether the talk helps.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-de2e049
+  text: A volunteer repair group has met once a month, mostly at one community house, for about twelve
+    years, mending thousands of items for thousands of visitors, and a new city grant keeps it steady.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-c818bd8
+  text: A council blocked one residential junction to through traffic with posts for a six-month experiment;
+    traffic on the street dropped sharply, more people walked and main-road trips slowed by only seconds,
+    so officers recommended keeping it for good.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-dafa654
+  text: After a year at a magazine, a writer went freelance and followed where the enquiries were, into
+    web writing paid on monthly contracts; from two or three clients in the first year, the business now
+    turns over enough to need help with the accounts and has three regular writers.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-c013995
+  text: A pilot shared community fridge in one small town ran for seven months and passed on thousands
+    of food items, enough to show the idea holds up there.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-e7dea9c
+  text: About forty volunteers drive older people to appointments and visits in their own cars; the scheme
+    has won a national volunteering award, riders say it helps them stay independent, and it carries on,
+    adjusted over time by riders' feedback.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-2de5093
+  text: A council closed roads outside four schools at school-run times, saw more families leave the car
+    at home and most parents ask for it full-time, so it kept the closures there and began trials at two
+    more schools.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-52692bf
+  text: A police force trialled trained volunteers checking vehicle speeds in a few small areas, and once
+    it paid off rolled the scheme out across its whole region within months.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-bf806d1
+  text: After a catch-up teaching method had succeeded elsewhere for years, an education ministry tried
+    three versions in eighty schools with an outside check, then planned to take the chosen one to some
+    eighteen hundred schools over three years.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-e06173d
+  text: A national health agency began testing sewage for disease at a few hundred sites and within two
+    years had over a thousand, covering almost half the population, while striving to keep sampling and
+    lab methods comparable.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-5d20421
+  text: A charity whose remedial-learning programme had succeeded in a much smaller earlier trial set
+    out to take it to tens of thousands of villages across four states, while an outside team ran a second
+    trial of the enlarged programme and checked the charity's own figures.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-55cf836
+  text: A sample job description for a small charity running a programme at several sites asks its new
+    head to draw up a national expansion into new areas, build ties with funders and community leaders
+    at each new site, and publish the local programme's results as an example to repeat across the country.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-360c69e
+  text: After road closures at drop-off time outside three schools took a couple of hundred children out
+    of cars, a borough council proposed extending them to twelve schools in two phases.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-42e31b0
+  text: A government trial gave international postgraduates a lighter visa process and extra help in finding
+    jobs, starting at four universities; after its first stage was judged a success it was widened to
+    over twenty more.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-d13ec30
+  text: A charity that trialled one community fridge in a town now helps groups elsewhere open their own
+    with guidance, donated fridges and peer support, as openings climb towards a target of over two hundred.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-d63326c
+  text: A government has finished paying a regular no-strings income to young people leaving care, and
+    so far has only their own and their workers' accounts of how it went; the comparison with similar
+    young people who did not get the money, which will show whether it helped, is due next.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-23b6f58
+  text: A drug company has finished signing up patients for the final large trial of a daily pill meant
+    to cut dangerous blood-sugar lows in people who rely on insulin; its safety and benefit are not yet
+    established, and the first results are expected within the year.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-bd0868f
+  text: A transport department paid for uniformed safety patrols on buses and trains in a few areas; by
+    the end of the trial, passengers felt safer in some areas but not in others, and the evaluators said
+    a longer study was needed before any firm verdict.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-baac0ed
+  text: A city council had a contractor build a long footbridge for walkers and cyclists over a river,
+    which was officially opened to the public and stays in daily use long after the builders left.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-56d550b
+  text: Seven families on modest incomes spent about a year building their own houses together, each labouring
+    on the others' homes under a supervisor, and nobody moved in until every house was done.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-028b619
+  text: Nearly a hundred company volunteers, with a play charity and a housing co-op, put up a new playground
+    in one day from drawings by the co-op's children.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-5bbc5fe
+  text: A town council planted a community orchard on borrowed land with grant-funded trees, held an official
+    opening, and left it for residents to enjoy for years to come.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-3ff908b
+  text: A cabinet maker spent over a decade building a large three-deck boat in his backyard from an online
+    plan, doing all the woodwork himself, so he could one day sail it away.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-42c5c2b
+  text: A council brings a hot midday meal to older or unwell people who struggle to cook, and the staff
+    check they are comfortable and safe and help plate the food if needed.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-ca7026a
+  text: A county library drops chosen books at the doors of housebound residents every four weeks, and
+    a small team phones isolated residents for a chat and a welfare check.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-30cbe0b
+  text: About forty volunteers use their own cars to drive older people door to door to medical appointments,
+    shops and social visits, for a small yearly fee and a mileage rate.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-48c3c0d
+  text: A sole trader cleans homes and businesses for paying clients, visit by visit.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-332b784
+  text: A charity matches a volunteer to visit a lonely, housebound older person at home each week for
+    company, small practical help and short outings.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-bbec40b
+  text: A self-employed driving instructor with a dual-control car teaches learners on the road and can
+    go with them to their test.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-578fe78
+  text: Skilled volunteers, including retired engineers and sewing and bike menders, repair visitors'
+    broken belongings for free at a monthly session in a community house.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-acc3798
+  text: A council runs a free community bus between a village and a nearby town a couple of times on most
+    weekdays, stopping at a country park, a supermarket and a community hospital.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-eb016ad
+  text: Council officers inspect cafes, takeaways and care homes for how food is handled and how clean
+    they are, then give a hygiene score from zero to five that is posted online for diners.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-2ff6765
+  text: A water company tests thousands of samples a year for regulated substances and tells customers,
+    in a yearly report, where their water comes from and that it meets health standards.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-16ad40a
+  text: An independent expert is asked for a written opinion in a court case on a technical matter beyond
+    the court's own knowledge, setting out facts, assumptions and reasoning that the judge and both sides
+    rely on.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-e40ae78
+  text: Four researchers pooled the results of some twenty controlled trials of treatments for young people
+    who self-harm and concluded, with moderate confidence, that one type of therapy cuts repeat self-harm.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-41e9a79
+  text: Residents and school pupils, led by a small archaeology firm, dug two ruined buildings at an abandoned
+    settlement and concluded that a sizeable, fairly well-off community lived there centuries ago, though
+    the dating was weak.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-06301e4
+  text: A national statistics office surveys randomly chosen households about jobs, training and health,
+    and publishes the official employment and unemployment figures that government relies on for policy
+    and funding.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-d48339a
+  text: A university, a state wildlife agency and partners had volunteers set trail cameras across a whole
+    state for three years, then had experts check the species in the photos, and concluded the volunteer
+    method was a reliable, cheaper way to record wildlife.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-411a69c
+  text: A vegetable grower jots down what she sowed, where, and when, plus pests and yields, so that next
+    spring she can time her sowings and rotate her crops.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-1733fa5
+  text: Before a big decision, I put on paper the options I weighed, how likely I thought each outcome
+    was and how I felt, so I can read it back later and see how my thinking held up.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-57cc568
+  text: After every interview, a doctoral student sits in her car and scribbles raw impressions and half-formed
+    ideas before they fade, to draw on for her own analysis later.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-96357dd
+  text: A programmer keeps a daybook of what she did, what she learned, quick sketches and the values
+    she saw while debugging, as a better memory than her own.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-2224d16
+  text: A runner records each outing with the weather, the ground underfoot and how it felt, so that years
+    on he can compare one winter with another and spot what led to an illness.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-f248260
+  text: A gardener keeps a binder of bed layouts, soil results, planting and harvest dates, and goes through
+    it over winter to decide what to grow more of and which seeds to reorder.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-1a2347e
+  text: After an outage, the engineers write up what happened, why, and what will change, and it goes
+    round the company's engineering staff for everyone to learn from.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-ec49a51
+  text: When one shift hands over to the next, the outgoing operators leave a written log of the plant's
+    state and the jobs in progress for the incoming crew.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-b8e6f3b
+  text: Before writing any code, a few engineers draft a design document of their approach and the trade-offs,
+    and pass it to teammates and senior colleagues in the same company for comment.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-fca66f3
+  text: The minutes of a charity's general meeting record the decisions taken and the full reasons for
+    them, and are made available to its trustees and members.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-1fca19f
+  text: A development team writes its plan for the next two weeks for itself, keeps it up to date, and
+    refines it at the end of each cycle in light of how the team worked.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-c2c992d
+  text: At move-in, a landlord records the contents and condition of the flat in a list, walks through
+    it with the new tenant, and has the tenant sign it, so it can settle a dispute over the deposit.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-285fc19
+  text: A university team holding a research grant must send its funder a yearly account of what the project
+    has achieved, or the money can be stopped.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-eed6439
+  text: A sole-trader plumber sends a customer an invoice stating what is owed and by when.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-960e1ec
+  text: At the close of the early design stage, an architecture team gives its paying client a report
+    with the concept, an outline specification and a cost update for sign-off before detailed work begins.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-c54d7c8
+  text: A wedding photographer sends a couple a contract covering what they will get, the turnaround,
+    the deposit and balance payments, and what follows if the date is changed or dropped.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-d5c9cdd
+  text: When a web project ends, the agency hands the client who commissioned it the code, logins and
+    a readme explaining setup, deployment and who to contact for support.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-6889084
+  text: A registered charity must file a yearly return with the body that oversees charities, attaching
+    its accounts and declaring that every serious incident has been reported.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-c5b761d
+  text: A company that trades nothing at all still has to confirm to the companies registry once a year
+    that its listed details are right, or face a fine and possible removal.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-b40e64c
+  text: After a data breach that could put people at risk, an organisation has a short window to tell
+    the data-protection authority what went wrong, who might be hit and how it is responding.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-3f3fc79
+  text: A medical device maker must send the national medicines and devices authority a submission showing
+    its device is equivalent to one already sold, and may not sell until clearance comes back.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-e1cff4b
+  text: A homeowner who wants to build an extension applies to the local planning authority, because building
+    without permission can end in an order to tear it down.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-6c58ce1
+  text: A freelancer whose earnings had no tax deducted up front reports them to the tax authority in
+    an annual return, with interest and penalties if late.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-267c5f7
+  text: After a short worldwide outage, a company publishes on an open blog what caused it, why the fix
+    was slow and what it changed, meant for customers and engineers everywhere.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-b7f3dff
+  text: Before collecting data, a researcher lodges a time-stamped plan of hypotheses and analyses in
+    an open repository, so any reader can later tell planned work from exploratory work.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-9740c74
+  text: A home cook puts her recipes and technique tutorials on her own website for any cook who happens
+    to find it.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-9b2333d
+  text: A council posts a news item on its website explaining a change to rubbish collection, who is exempt,
+    and how residents' views will be heard, for any resident or visitor to read.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-c1af13c
+  text: When a planning application comes in, the authority puts up site notices and posts it on its website
+    so that anyone at all can comment during the consultation period.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-8b7577a
+  text: A park agency had a tall old lighthouse, left close to the surf by erosion, jacked off its base
+    and rolled far inland on rails over a few weeks, after moving the keepers' houses first.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-ae5ff64
+  text: A bride had one dressmaker design and sew her wedding gown from scratch, blending two vintage
+    styles, using her measurements, a plain linen trial version and a photo of the nearly finished gown.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-6feb887
+  text: A national rail accident investigator looked into why a passenger train came off the tracks after
+    weekend track maintenance, found a length of old rail left behind and a misunderstood inspection,
+    and made recommendations.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-1e1857a
+  text: Churches and mental-health workers, with an arts centre, had two local artists design a paint-by-number
+    mural for one wall, which dozens of residents then painted over several weekends.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-af79b65
+  text: Dozens of volunteer mountain rescuers searched a mountain in poor weather for a walker reported
+    overdue, found him injured in a ravine after a day and a night, and carried him out on a stretcher.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-b908ab8
+  text: A town committee had its old brick lighthouse lifted on jacks and pushed along steel rails some
+    way back from a crumbling cliff edge, paid for with donations and grants.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-06d09e8
+  text: A small brewery made its beers in batches of about twenty barrels, each brew taking six to eight
+    hours, turning out roughly the same amount every week from its own recipes.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-36e5330
+  text: A potter spent a few days making a fresh lot of stamped mugs to restock for craft fairs, throwing
+    every body first, then stamping them, adding handles and firing them twice.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-6cdc2c5
+  text: A small professional theatre company takes two or three shows a year round village halls and community
+    centres, mostly playing one night in each place before moving on in its truck.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-b3ebd53
+  text: Every newborn is offered the same heel-prick test at about five days old, with a few drops of
+    blood put on a card and sent to a laboratory that checks for a set list of rare conditions.
+  field: product-development
+  tags: {kind: finding, who: one}
+- id: s-89c107e
+  text: Volunteers from a river association test the water at twenty sites along a river and its streams
+    every month for nutrients, bacteria, oxygen and acidity, and publish each year's results.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-958695f
+  text: A sports centre runs the same one-day workplace first aid course, with hands-on practice, classroom
+    sessions and an assessment, on about a dozen dates in a single season, charging each attendee.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-d2a014c
+  text: A tutor recorded thousands of short maths and science lessons almost entirely by himself and put
+    them online free, where learners around the world watch them.
+  field: product-development
+  tags: {kind: service, who: one}
+- id: s-13f16c2
+  text: Teachers recorded hundreds of lessons a week for an online classroom during school closures, and
+    in its first term pupils took millions of lessons from it at no charge.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-d61be7a
+  text: A self-taught teenager built phone apps on his own, such as a grade-average calculator and a typing
+    game, kept them free to install, and passed a million installs within a few years.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-5fe4118
+  text: A national statistics office opened an online tool that lets anyone build their own tables from
+    its anonymised census figures, with automatic safeguards so no individual can be picked out.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-415d3c1
+  text: After years of fieldwork by thousands of volunteer birdwatchers, a research charity put the resulting
+    distribution maps online for anyone to view free, alongside a printed book.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-889f611
+  text: A sight-loss organisation designed a typeface with highly distinct letters and numbers for easy
+    reading, and gives it away as a free download for personal and commercial use.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-8e7df19
+  text: Researchers found that the codes for two infection-prevention methods had been swapped at one
+    hospital in their published trial, so they asked the journal to withdraw the article and print a corrected
+    replacement.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-0cfdcce
+  text: A research group found a one-line coding mistake behind some results in its published cancer study;
+    the journal chose to withdraw the paper, and the group reported the corrected figures in a separate
+    letter.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-00c90ce
+  text: A poet found that dozens of lines of one poem were missing from her newly printed book, though
+    her proof had been right; nothing could be done until the copies sold out and a corrected new edition
+    was printed.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-ced0fb2
+  text: A toy company recalled light-up headbands and toy pet cages because children could open the battery
+    compartments, telling buyers to throw them away and send a photo for a full refund.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-ee9ced6
+  text: A game developer on his own put out another free numbered patch for his title, repairing bugs
+    and adjusting items for people who already own it, on computers and phones first and consoles later.
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-5dd70d4
+  text: Engineers sent a software patch up to probes already far out in space to stop a recurring computer
+    glitch, and changed how often they fire their thrusters.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-8840345
+  text: A small team of volunteer editors kept a world list of bird species and their names, revising
+    it twice a year with new species, name changes and reclassifications, until a last version.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-f09e5a0
+  text: A free operating system project announced another round of corrections to its stable release,
+    mostly security repairs, which machines already running it can pull in without reinstalling.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-b1c35a9
+  text: A rail company retimed every one of its main-line trains from a set date in winter, a change four
+    years in the planning, and asked passengers to check their times before travelling.
+  field: product-development
+  tags: {kind: service, who: organisation}
+- id: s-e83f5ec
+  text: A national statistics office publishes monthly, quarterly and yearly estimates of economic output,
+    and revises earlier figures at stages announced a year ahead as fuller data come in.
+  field: product-development
+  tags: {kind: finding, who: organisation}
+- id: s-dde1a35
+  text: An international team kept a health research review open for two years, searching for new studies
+    every month and publishing three full revisions whenever set triggers were met.
+  field: product-development
+  tags: {kind: finding, who: group}
+- id: s-836f127
+  text: A large shopping website pushes changes to its live site about fifty times a day through an automated
+    pipeline, with many small changes, close monitoring and chat-based coordination.
+  field: product-development
+  tags: {kind: creation, who: organisation}
+- id: s-d6c6326
+  text: A bank's engineers push changes to its live systems more than a hundred times a day, each needing
+    just one review, relying on automated checks and monitoring rather than batching changes up.
+  field: product-development
+  tags: {kind: service, who: group}
+- id: s-1bba769
+  text: A volunteer-built online map takes edits straight away and shows them within minutes, and its
+    makers say it can never be complete because roads and buildings keep changing.
+  field: product-development
+  tags: {kind: creation, who: group}
+- id: s-5995b98
+  text: 'A solo maker of paid websites skips any test server: one key press sends each small fix live
+    within seconds, many times a day.'
+  field: product-development
+  tags: {kind: creation, who: one}
+- id: s-00beddc
+  text: A national environment agency publishes river level readings and a flood warnings list on the
+    web, the warnings refreshed every quarter of an hour and readings taken about as often.
+  field: product-development
+  tags: {kind: finding, who: organisation}

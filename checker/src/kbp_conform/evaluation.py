@@ -73,17 +73,21 @@ def evaluate_predicate(predicate, context):
     return _all(results)
 
 
-def artifact_availability(disabled_when, empty_when, context):
-    """Resolve global suppression before evaluating any members."""
+def artifact_availability(disabled_when, no_artifact_when, context):
+    """Resolve global suppression before evaluating any members.
+
+    `no_artifact_when` is the universe's no_artifact.when (kbp/0.7 called it
+    empty_composition.when). A true result means no artifact is needed.
+    """
     disabled = (
         False if disabled_when is None else evaluate_predicate(disabled_when, context)
     )
-    empty = evaluate_predicate(empty_when, context)
+    no_artifact = evaluate_predicate(no_artifact_when, context)
     if disabled is True:
         return "disabled"
-    if empty is True:
-        return "empty"
-    if disabled is None or empty is None:
+    if no_artifact is True:
+        return "no_artifact"
+    if disabled is None or no_artifact is None:
         return "unresolved"
     return "applicable"
 

@@ -4,7 +4,7 @@ Start with the included product-development definitions, keep what fits your wor
 
 ## What the Starter Contains
 
-The starter defines 58 questions across 19 document types, with 45 relationships and guidance citing 51 registered sources. It covers documents such as strategy canvases, decision records, and design documents.
+The starter defines questions, the document types that hold them, the relationships between them, and guidance that cites registered sources. It covers documents such as strategy canvases, decision records, design documents, and experiment plans. Run `uv run kbp` in a clone to see current counts.
 
 Its questions can be useful at different scales, from a personal project to a company. Review the definitions against your own purpose, audience, and requirements before adopting them.
 

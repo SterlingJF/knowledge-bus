@@ -1,0 +1,1316 @@
+# The universe slice: rules for the text of definitions. Examples are constructed. See README.md.
+schema: evals/1
+slice: universe
+subjects:
+  element.question: elements[].question
+  artifact.action: artifacts[].enablement.action
+  artifact.actor: artifacts[].enablement.actor
+  artifact.timing: artifacts[].enablement.timing
+  artifact.enablement: artifacts[].enablement
+  artifact.composition: artifacts[].composition
+  frame.own_question: frames[].question
+  frame.question: frames[].values[].question
+  factor.own_question: factors[].question
+  factor.question: factors[].values[].question
+  frame.value: frames[].{values,facets}
+  factor.value: factors[].{values,facets}
+  guidance.claim: 'guidance: {elements,artifacts,factors}.<id>[].claim'
+  universe.overview: universe.overview.{covers,for,excludes}
+  universe.term: universe.terms[].means
+cases:
+  default:
+    skill: kb-evolve
+    ask: Improve this definition text. Reply with the improved text only.
+  element.question:
+    skill: kb-uncover-question
+    ask: Improve this element question. Reply with the question only.
+rules:
+  one-question:
+    rule: Each question asks one thing, so that one answer settles it.
+    why: A question that bundles several asks gets partial answers, and the reader cannot tell which ask
+      an answer covers.
+    applies_to:
+    - element.question
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - pattern: \?[^?]*\?
+        then: fail
+      - pattern: '[^?]\s*$'
+        then: fail
+      - pattern: (—|–|\s-\s|;)
+        then: flag
+      - pattern: ',\s*(and\s+|or\s+)?(what|why|how|who|whom|whose|where|when|which|does|do|did|is|are|was|were|can|will|should|must)\b'
+        ignore_case: true
+        then: flag
+      - pattern: \b(and|or)\s+(what|why|how|who|whom|where|when|which)\b
+        ignore_case: true
+        then: flag
+    decision:
+      ask: Does this question contain two or more asks that each need a separate answer?
+      type: yes-no
+      criteria:
+        'yes': The question joins two or more asks, or adds a second ask for a reason, a condition or
+          a status.
+        'no': One answer settles the whole question, and every clause narrows that same ask.
+      fail_when: 'yes'
+    judgment:
+      pass: PASS if one answer settles the question and every clause narrows that same ask. A question
+        whose single answer is a list, such as "Which items does the volunteer record?", asks one thing.
+      fail: FAIL if the question joins two or more asks, or adds a second ask for a reason, a condition
+        or a status, as in "Which teacher cancels the trip, and why?".
+    examples:
+    - text: Does the trip leave the school grounds? Which teacher signs the leave form?
+      verdict: fail
+      subject: element.question
+      note: The text holds two separate questions, one about leaving the grounds and one about the signing
+        teacher.
+    - text: Which volunteer approves each donation, and how many days does the approval take?
+      verdict: fail
+      subject: element.question
+      note: The question joins two asks, who approves and how long approval takes, and each needs its
+        own answer.
+    - text: Which teacher cancels a trip when rain is forecast, and why?
+      verdict: fail
+      subject: element.question
+      note: The closing 'and why' adds a second ask for a reason after the first ask about the teacher.
+    - text: Which building type does the permit application cover?
+      verdict: pass
+      subject: element.question
+      note: One answer, a building type, settles the question.
+    - text: Which parent, guardian or caregiver signs the trip permission form?
+      verdict: pass
+      subject: element.question
+      note: The commas list alternatives for one signer, so a single answer settles the question.
+    - text: Which volunteer approves each donation at intake?
+      verdict: pass
+      subject: element.question
+      note: One answer, the name of a volunteer, settles the whole question.
+  named-referents:
+    rule: Each pronoun and each subject or object points to a thing the text names.
+    why: 'A pronoun with no noun it can fit, a bare "one" with no noun to stand for, a word such as "nothing"
+      that hides which thing is meant, or a clause standing in for a thing that has a name makes the reader
+      guess the referent, and different readers guess differently. A pronoun whose noun plain sense settles
+      does not make anyone guess. A statement also names its own subject in its own words: the heading
+      or field it sits under does not count, because a reader who meets the sentence alone cannot tell
+      what it is about.'
+    applies_to:
+    - element.question
+    - artifact.action
+    - artifact.actor
+    - artifact.timing
+    - guidance.claim
+    - universe.overview
+    - universe.term
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - pattern: ^(what|who|how)\b[^?]*$
+        ignore_case: true
+        then: fail
+      - pattern: ^where\b[^?]*$
+        ignore_case: true
+        then: flag
+      - pattern: \bdefine (what|who|where|how)\b
+        ignore_case: true
+        then: flag
+      - pattern: (^|[.;:]\s+)(it|this|that|these|those)\b
+        ignore_case: true
+        then: flag
+      - pattern: \b(it|this)\s*([.?!,;:]|$)
+        ignore_case: true
+        then: flag
+      - terms:
+        - nothing
+        - none
+        - something
+        - anything
+        - everything
+        then: flag
+      - pattern: \b(each|every|the|this|that|which) one\b
+        ignore_case: true
+        then: flag
+    judgment:
+      pass: PASS if a reader can tell what every pronoun, subject and object refers to from the text and
+        plain sense alone. That holds when a pronoun has one noun in the text that it sensibly fits, even
+        if other nouns come before it; when a bare one or a number such as the two stands for a noun the
+        text has just named; when we, you or our means the writer or the reader; when a word such as anyone
+        or every covers a group the text describes, such as anyone who joins the team; when a question
+        word asks for the unknown, wherever it sits in a question or after a verb of finding out such
+        as decide, determine, establish or know; when where opens a condition; and when an instruction
+        leaves out its doer.
+      fail: FAIL if any pronoun, subject or object leaves the reader to guess what it refers to. That
+        happens when a pronoun has no noun in the text that it can fit, or two nouns that it fits equally
+        well; when a word such as nothing or something hides which thing is meant or missing; when a bare
+        one has no noun to stand for; when a placeholder noun such as the element, the item or this entry
+        says only that something is meant and not what it is; when a clause that opens with who, what,
+        where or how stands in for a thing that has a name and is acted on, as in signs what the clerk
+        prepared where the forms are meant; or when a statement that is not an instruction never says
+        what it is about.
+    examples:
+    - text: What does the charge nurse do when nothing covers the night shift?
+      verdict: fail
+      subject: element.question
+      note: The word nothing stands for a thing the text could name, such as no nurse, so the reader has
+        to guess the referent.
+    - text: Once the electrician completes what the inspector listed.
+      verdict: fail
+      subject: artifact.timing
+      note: The clause what the inspector listed stands in for a nameable thing such as the required corrections,
+        although the subject and the verb look complete.
+    - text: The contractor logs each opened wall with its photograph.
+      verdict: pass
+      subject: guidance.claim
+      note: The pronoun its has one possible noun, wall, stated in the same sentence, so every reader
+        resolves it the same way.
+    - text: Approve the revised kitchen budget before ordering the cabinets.
+      verdict: pass
+      subject: artifact.action
+      note: Every object is a named noun and no pronoun or stand-in word appears.
+    - text: Which skill grade does the covering nurse hold?
+      verdict: pass
+      subject: element.question
+      note: The question names the skill grade and the covering nurse, so the reader can identify both.
+  direct-statement:
+    rule: Each statement says only what holds, in plain verbs, and names who acts whenever it describes
+      an action someone takes.
+    why: A denial, a double negative, a vague verb phrase or a hidden actor makes the reader picture a
+      rejected alternative or rebuild a meaning that one direct clause would state.
+    applies_to:
+    - element.question
+    - artifact.action
+    - artifact.actor
+    - artifact.timing
+    - guidance.claim
+    - universe.overview
+    - universe.term
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - pattern: ',\s*(and\s+|but\s+)?(not|never)\b'
+        ignore_case: true
+        then: fail
+      - terms:
+        - need not
+        - needn't
+        then: fail
+      - pattern: \bnot\b[^.?]*,? but\b
+        ignore_case: true
+        then: flag
+      - terms:
+        - instead of
+        - rather than
+        then: flag
+      - pattern: \b(cannot|can't|not|no)\b[^.;?]*\bwithout\b
+        ignore_case: true
+        then: flag
+      - terms:
+        - belongs to
+        - turns on
+        - hinges on
+        - waits on
+        - gives rise to
+        - in terms of
+        - with respect to
+        - serves to
+        then: flag
+    judgment:
+      pass: PASS if the text states only what holds, every verb is plain, nothing is denied or set against
+        a rejected option, and every action someone takes either names who takes it or is an instruction
+        to the reader. Labels, lists, short fragments and questions pass when they contain none of the
+        faults in the FAIL line. A comparison such as better than states what holds. A question that asks
+        about alternatives rejects none. A condition that names a real case, such as if not, states when
+        something applies. A word that describes a thing, such as measured or observed, needs no actor.
+        A phrase used in its literal sense, such as an oven that turns on, is plain.
+      fail: FAIL if the text says what something is not, never does or does not need; defines something
+        by what it is distinct from; sets its claim against a rejected option, as with instead of, rather
+        than or a trailing not followed by that option; uses a double negative such as nothing leaves
+        unlabeled; uses a vague verb phrase such as turns on or takes care of where a plain verb exists;
+        or uses a passive clause such as is set or are placed that leaves out who acts, unless the person
+        given an instruction is the one who acts.
+    examples:
+    - text: No baked good leaves the counter unlabeled.
+      verdict: fail
+      subject: guidance.claim
+      note: The double negative 'No ... unlabeled' makes the reader rebuild the plain statement that staff
+        label every baked good before it leaves the counter.
+    - text: Which chaperone leads each student group, not the classroom teacher?
+      verdict: fail
+      subject: element.question
+      note: The question names a rejected alternative, the classroom teacher, after a comma and the word
+        not.
+    - text: Does the release checklist take care of every breaking change?
+      verdict: fail
+      subject: element.question
+      note: The vague verb phrase 'take care of' leaves open whether the checklist lists, announces or
+        resolves each change, although a plain verb exists.
+    - text: The head baker reads the bake plan before each oven turns on.
+      verdict: pass
+      subject: artifact.timing
+      note: The phrase 'turns on' is meant literally (the oven is switched on), and the head baker is
+        the named actor with the plain verb 'reads'.
+    - text: The choir universe covers planning, rehearsing and performing a season.
+      verdict: pass
+      subject: universe.overview
+      note: A named subject and the plain verb 'covers' state the point directly.
+    - text: Each reception table seats eight, ten or twelve guests.
+      verdict: pass
+      subject: guidance.claim
+      note: The claim states the range by listing its values and denies no alternative.
+  plain-words:
+    rule: Each definition uses everyday words in their literal meaning, so a reader new to the universe
+      grasps it alone.
+    why: A figure of speech, a specialist or formal word, or the file format's own vocabulary makes the
+      reader interpret the text before applying it, and different readers interpret it differently.
+    applies_to:
+    - element.question
+    - artifact.action
+    - artifact.actor
+    - artifact.timing
+    - guidance.claim
+    - universe.overview
+    - universe.term
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - terms:
+        - indexed by
+        - declared in
+        - schema
+        - instantiate
+        - instantiated
+        - enum
+        - payload
+        - cardinality
+        then: flag
+    judgment:
+      pass: PASS if a semi-technical reader who has never seen the file format, and recalls nothing from
+        earlier text, grasps the text on first read and can apply it to their own case. Every word is
+        a term the universe defines or a common word in the sense people use every day for this kind of
+        subject, with no picture of something else behind it, such as drives meaning causes, covers meaning
+        includes, or a support that carries weight. A word that is a little formal still passes when it
+        has one clear literal meaning that this reader knows from daily life, and any effect the text
+        names is one the reader can picture.
+      fail: FAIL if the reader must stop and work out what a word or phrase means before applying the
+        text. That happens when the text uses a metaphor, an idiom, an analogy or a quotable saying, meaning
+        a word that asks the reader to picture something else, such as a body part, a pulse, waves spreading
+        or the narrow neck of a bottle, even when the phrase is common; when it uses a specialist, formal
+        or abstract word that the reader cannot work out from daily life or could read more than one way,
+        where an everyday word exists, such as naming the length of time a building lasts where preventing
+        mold is meant; or when it needs the file format's own vocabulary, such as a field or section named
+        without saying what it holds.
+    examples:
+    - text: Approve the fenestration schedule once the load-path assessment covers every opening.
+      verdict: fail
+      subject: artifact.action
+      note: The words fenestration and load-path are specialist terms where everyday words such as window
+        list and weight-bearing check exist.
+    - text: Which downstream consumers face a backward-incompatible change to the public interface contract?
+      verdict: fail
+      subject: element.question
+      note: The question uses specialist terms such as downstream consumers, backward-incompatible and
+        interface contract that a reader new to the universe cannot apply to their own case.
+    - text: The written inspection record is the heartbeat of every repair decision.
+      verdict: fail
+      subject: guidance.claim
+      note: Heartbeat is a metaphor that gives the record a life it does not have, and a quotable line
+        takes the place of a literal statement.
+    - text: The homeowner picks the paint colour for each room.
+      verdict: pass
+      subject: artifact.action
+      note: Plain words name a person and an action that any reader can picture.
+    - text: A crack that widens between two inspections shows that the structure is moving.
+      verdict: pass
+      subject: guidance.claim
+      note: Widens and moving describe measurable physical change in a crack and a structure, so each
+        word keeps its literal meaning.
+    - text: A moisture reading before the crew closes the wall prevents mold behind the paint.
+      verdict: pass
+      subject: guidance.claim
+      note: The consequence, mold behind the paint, is one the reader has seen or can picture, and every
+        word is everyday.
+  one-point-terse:
+    rule: Each definition makes one point in the fewest plain words it needs.
+    why: Stacked qualifiers, extra clauses and compound nouns bury the point and make the definition slower
+      to read and apply. A short caveat, exception, instruction or example that applies the point is part
+      of that point, not a second one. Saying where the subject is standard or where it comes from is
+      a second point beside the definition.
+    applies_to:
+    - element.question
+    - artifact.action
+    - artifact.actor
+    - artifact.timing
+    - guidance.claim
+    - universe.overview
+    - universe.term
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - words:
+          max: 30
+        then: flag
+    judgment:
+      pass: PASS if the text makes one point in plain words and nothing in it could be cut without losing
+        meaning. Short material that applies that same point is part of it, not a second point, whether
+        it is a caveat, an exception, an instruction, examples, or the reason the point holds. A plain
+        list of the items or traits the point covers passes, and so do short linked parts that together
+        state one idea, such as questions that frame one subject.
+      fail: FAIL if the text adds a second point that stands on its own, such as where the subject is
+        standard, where it comes from, a second instruction that does not apply the first, or a separate
+        observation about another case or a later effect; stacks two or more qualifiers that narrow when,
+        which or how the one point applies; or keeps words, repeats or compound nouns that could be cut
+        or shortened without losing meaning.
+    examples:
+    - text: The universe covers a volunteer choir's season, which includes rehearsals, concerts, music
+        purchases and member sign-ups, and it also covers the roles volunteers hold and the way the board
+        decides which pieces the choir sings, and it applies to choirs of any size.
+      verdict: fail
+      subject: universe.overview
+      note: Three chained clauses make three separate points, where one short statement of scope would
+        serve.
+    - text: How many approved adult supervisors does the trip supervision plan assign to each group transport
+        vehicle?
+      verdict: fail
+      subject: element.question
+      note: The question is short, but compound and qualified nouns ('trip supervision plan', 'group transport
+        vehicle', 'approved adult supervisors') stand where 'plan', 'bus' and 'adults' would serve.
+    - text: Confirm the head count with the coach company.
+      verdict: pass
+      subject: artifact.action
+      note: One action in plain words, and each word is needed.
+    - text: Which venue hosts the ceremony?
+      verdict: pass
+      subject: element.question
+      note: One point in five plain words, with nothing removable.
+    - text: Each vendor receives the schedule for the day, the venue address, the load-in time and a planner
+        contact.
+      verdict: pass
+      subject: guidance.claim
+      note: The sentence is long for its word count, but it makes one point and each listed item is needed.
+  point-first:
+    rule: Each text states its main point in its opening words.
+    why: A reader who stops after the opening words misses a point placed after a label, a concession,
+      background or another lead-in. The text is judged as a whole, so a later sentence may explain, qualify
+      or extend the point without opening with a point of its own.
+    applies_to:
+    - guidance.claim
+    - universe.overview
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - pattern: ^\s*(although|though|even though|even if|because|whereas|despite|in spite of)\b
+        ignore_case: true
+        then: fail
+    judgment:
+      pass: PASS if the opening words already state a point the text makes, so a reader who stops there
+        has it. That opening may be a claim, a judgment, an instruction, or a statement that names what
+        the text is about and says what it is or does, and everything after it, whether a later clause,
+        a list, a colon-led detail or a later sentence, may explain, qualify, extend or act on it. A text
+        whose opening sentence makes a claim of its own passes even when a later sentence gives an instruction
+        or a further point that follows from it, and a short phrase that only says which case or stage
+        the point covers is not a lead-in.
+      fail: FAIL if a reader who stops after the opening words has not yet been told any point the text
+        makes, because the text opens with a tag that says what kind of statement follows, a clause that
+        concedes something or gives a reason before the main clause, or background, such as a scene-setting
+        fact or a plain description, from which a later sentence then draws the point.
+    examples:
+    - text: Although permit offices differ in size, the universe covers the work of every permit office
+        from application intake to final inspection.
+      verdict: fail
+      subject: universe.overview
+      note: The main point about coverage comes after an opening concession clause, even though that clause
+        is short and relevant.
+    - text: Because a food bank's volunteer shifts change every week, the universe covers the tasks a
+        shift lead assigns, from intake to pickup.
+      verdict: fail
+      subject: universe.overview
+      note: The statement of what the universe covers comes after a lead-in clause about changing shifts.
+    - text: A permit file contains many pages — the reviewer who signs a permit is accountable for every
+        code check recorded in the file.
+      verdict: fail
+      subject: guidance.claim
+      note: The main point about the signing reviewer's accountability comes after a dash, behind a lead-in
+        about the number of pages.
+    - text: The zoning reviewer approves a permit application when the site plan matches the zoning map.
+      verdict: pass
+      subject: guidance.claim
+      note: The approval is stated in the opening words and the later "when" clause supports it.
+    - text: 'The food bank coordinator sets the weekly bag limit: households of 1 to 3 people receive
+        two bags and households of 4 or more people receive four bags.'
+      verdict: pass
+      subject: guidance.claim
+      note: The point is in the opening words and the colon introduces the values that support it.
+    - text: The shift lead writes each volunteer's task on the shift sheet.
+      verdict: pass
+      subject: guidance.claim
+      note: The opening words name the shift lead and the action, which is the whole point.
+  holds-across-scope:
+    rule: Definitions hold for every topic, industry and depth of work the universe covers, and a note
+      meant for only part of it says which part.
+    why: Wording that assumes one product, trade, audience or kind of outcome misleads readers whose work
+      differs, and examples from one field read as the whole scope. A note that names the part of the
+      scope it is for misleads no one outside that part. Words such as build, product or customer assume
+      one kind of work unless the text names the part of the scope it is for.
+    applies_to:
+    - element.question
+    - artifact.action
+    - artifact.actor
+    - artifact.timing
+    - guidance.claim
+    - universe.overview
+    - universe.term
+    scope: item
+    judgment:
+      pass: 'PASS if the text fits every field, team size and depth of work in the universe''s scope,
+        or it is a note that names the part of the scope it is for and holds within that part. Judge the
+        text''s own words as a careful reader takes them; the id and other fields given with it only help
+        you read it, and their wording does not count for or against it. A text whose own words name a
+        method, document type or part of the universe other than the thing being defined, as where it
+        applies, is a note for that part and may assume what that part is about, but nothing narrower.
+        A question, actor or timing may assume what the thing it belongs to is about, but nothing narrower.
+        Naming the thing being defined or another part of the same universe, or saying how the two relate
+        or differ, is not an assumption, and a question that asks whether something holds does not assume
+        it. Advice is judged by what its words assume, not by whether every kind of work needs it; it
+        fails only when its words assume one product, trade, audience, size of work, depth of work or
+        kind of outcome. A single example that shows what a general definition means is an illustration
+        and does not narrow the text. A list is judged as a whole: it passes when its items together reach
+        across the scope, even if one item is worded in terms of one field, and it does not have to name
+        every possible kind.'
+      fail: FAIL if a question, actor or timing fits only part of what it belongs to; if a text that names
+        no part of the scope as its condition uses wording that assumes one product, trade, audience,
+        size of work or kind of outcome; if it presents one field's habit as what most work does; or if
+        it lists several items or examples and all of them come from one field or one end of the scope,
+        so some part of the scope fits none of them.
+    examples:
+    - text: Which browser versions does the release support?
+      verdict: fail
+      subject: element.question
+      context:
+        scope: Releases of any library, in any language, from one maintainer's patch release to a multi-team
+          major release; libraries include command-line tools, data format readers, numeric code and web
+          interface parts.
+      note: The question assumes every library runs in a browser, so maintainers of command-line, data
+        or numeric libraries cannot answer it.
+    - text: The rope-access technician who climbs the steel arch.
+      verdict: fail
+      subject: artifact.actor
+      context:
+        scope: Inspection of bridges of every type, material and size, from timber footbridges to concrete
+          rail viaducts, by teams of any size.
+      note: The actor assumes one trade and one bridge type, so teams that inspect concrete, timber or
+        masonry bridges from the ground or a boat have no matching actor.
+    - text: Before the crew closes the traffic lane.
+      verdict: fail
+      subject: artifact.timing
+      context:
+        scope: Inspection of bridges of every type, material and size, from timber footbridges to concrete
+          rail viaducts, by teams of any size.
+      note: The timing assumes road traffic and a lane closure, so footbridge, rail and waterway inspections
+        have no moment that matches it.
+    - text: Which parts of the bridge does the inspection cover?
+      verdict: pass
+      subject: element.question
+      context:
+        scope: Inspection of bridges of every type, material and size, from timber footbridges to concrete
+          rail viaducts.
+      note: The word bridge names the whole scope of this universe, and the question assumes no bridge
+        type, material or trade.
+    - text: Decide whether the release is ready to publish.
+      verdict: pass
+      subject: artifact.action
+      context:
+        scope: Releases of any library, in any language, from one maintainer's patch release to a multi-team
+          major release.
+      note: The action fits a solo maintainer and a large team alike and names no tool, language or kind
+        of library.
+    - text: Each job starts from a written list of the work, whether a one-room repaint or a whole-house
+        rebuild.
+      verdict: pass
+      subject: guidance.claim
+      context:
+        scope: Renovation jobs of every size, from a one-room repaint to a whole-house rebuild, by an
+          owner working alone or a contractor team.
+      note: The claim applies to every job in the scope and its two examples sit at the small and large
+        ends of the range.
+  one-term-per-concept:
+    rule: Each concept keeps one term, and each term names one concept.
+    why: A synonym for an established term makes readers think a second concept exists, and a reused term
+      makes two concepts look like one.
+    applies_to:
+    - element.question
+    - frame.own_question
+    - frame.question
+    - factor.own_question
+    - factor.question
+    - artifact.action
+    - artifact.actor
+    - artifact.timing
+    - guidance.claim
+    - universe.overview
+    - universe.term
+    scope: item
+    judgment:
+      pass: 'PASS if no reader of the text would think a second concept exists where there is one, or
+        think two concepts are one: every defined term of the universe that the text uses keeps its defined
+        meaning, and the text sets up no second name for a concept that already has a term, in the universe
+        or earlier in the text. Words in their plain everyday sense, descriptive phrases, figures of speech
+        whose meaning is plain, shortened forms that plainly point back to a term, a second name the text
+        itself says is the same thing, names for a kind or part of a concept, and different names for
+        things the text keeps apart on purpose all pass, because none of them makes a reader think a second
+        concept exists.'
+      fail: FAIL if the text gives a concept that already has a term, in the universe or in the text,
+        a second name that a reader could take for a separate concept, or if it uses one term for two
+        different concepts, including using a defined term of the universe to mean something other than
+        its defined meaning.
+    examples:
+    - text: Which bars show the weakest performance from each section?
+      verdict: fail
+      subject: element.question
+      context:
+        terms:
+          rehearsal: a scheduled meeting where the whole choir practises together
+          performance: a public event where the choir sings for an audience
+          section: a group of singers who share one voice part
+      note: The question uses performance for how well singers sing, but the universe sets performance
+        to mean a public event.
+    - text: Which section has the most absences from practice sessions this season?
+      verdict: fail
+      subject: element.question
+      context:
+        terms:
+          rehearsal: a scheduled meeting where the whole choir practises together
+          performance: a public event where the choir sings for an audience
+          section: a group of singers who share one voice part
+      note: The question says practice sessions where the universe term is rehearsal.
+    - text: Decide how many loaves the oven bakes in each order.
+      verdict: fail
+      subject: artifact.action
+      context:
+        terms:
+          order: a request from a buyer for named items on a set date
+          batch: one oven load of a single item baked together
+          production sheet: the daily list of what the bakers make
+      note: The text uses order, a term for a buyer's request, to name an oven load, which the universe
+        calls a batch.
+    - text: The planner measures the ceremony space and the reception space at each venue before the couple
+        signs.
+      verdict: pass
+      subject: guidance.claim
+      context:
+        terms:
+          venue: the site booked for the whole wedding
+          ceremony space: the area at the venue where the vows are spoken
+          reception space: the area at the venue where guests eat and dance
+          couple: the two people who are marrying
+      note: Venue, ceremony space and reception space are three defined concepts that each keep their
+        own term, so no synonym appears.
+    - text: The shift lead who assigns each batch to one baker.
+      verdict: pass
+      subject: artifact.actor
+      context:
+        terms:
+          baker: a person who mixes, shapes and bakes items
+          shift lead: the baker who directs the other bakers for one shift
+          batch: one oven load of a single item baked together
+      note: Shift lead and baker are separate defined roles, and batch keeps its set meaning, so every
+        term matches the universe.
+    - text: How many singers in each section attend the rehearsal before a performance?
+      verdict: pass
+      subject: element.question
+      context:
+        terms:
+          rehearsal: a scheduled meeting where the whole choir practises together
+          performance: a public event where the choir sings for an audience
+          section: a group of singers who share one voice part
+      note: Rehearsal, performance and section each appear under their established term with their set
+        meaning.
+  present-state:
+    rule: Each definition states what its subject is now, with no history of changes.
+    why: Wording about earlier forms, renames or origins makes the reader reconstruct a past they do not
+      need and hides the current fact.
+    applies_to:
+    - guidance.claim
+    - universe.overview
+    scope: item
+    deterministic:
+      complete: false
+      checks:
+      - terms:
+        - no longer
+        - previously
+        - formerly
+        - originally
+        - used to
+        - renamed
+        - split out of
+        - moved from
+        then: flag
+    judgment:
+      pass: PASS if the text describes its subject as it currently is, including what it contains, what
+        it is for, how it relates to other things, what kind or variant of another thing it is, the name
+        it is known by even when that name carries a person or another work, when it goes out of date
+        or what to do when something changes.
+      fail: FAIL if the text tells something that happened to the subject in the past, such as a change
+        from an earlier form, a rename, a split, an amendment, who founded it, what inspired it, or a
+        contrast with how it was or was once thought to be.
+    examples:
+    - text: This universe covers building permits, including the demolition permits that were split out
+        of the general permit last year.
+      verdict: fail
+      subject: universe.overview
+      note: The text narrates a change, the split of demolition permits, in place of stating what the
+        universe covers today.
+    - text: A donation log records every pallet received, a task that volunteers formerly did on paper.
+      verdict: fail
+      subject: guidance.claim
+      note: The clause about volunteers formerly working on paper describes an earlier form of the log
+        instead of what the log is now.
+    - text: This universe covers field trips organized by a school, a program that the district parent
+        council founded.
+      verdict: fail
+      subject: universe.overview
+      note: The closing clause says where the program came from, which is an origin and not part of what
+        the universe covers.
+    - text: A field trip plan lists the destination, the departure time and the supervising teachers.
+      verdict: pass
+      subject: guidance.claim
+      note: The claim states what a field trip plan contains today and mentions no earlier form, origin
+        or change.
+    - text: This universe covers receiving donations, sorting food and giving food to households at a
+        community food bank.
+      verdict: pass
+      subject: universe.overview
+      note: The text lists what the universe covers as it stands and carries no history.
+    - text: A permit file holds the application, each inspection result and the date the permit was issued.
+      verdict: pass
+      subject: guidance.claim
+      note: The file contains past events such as inspections and an issue date, but the claim describes
+        the file as it is now and narrates no change to the file.
+  siblings-differ:
+    rule: Sibling definitions each say something the other does not.
+    why: Near-duplicate siblings leave the reader unable to choose between them, and two frames or factors
+      that ask the same thing index one dimension twice.
+    applies_to:
+    - frame.own_question
+    - factor.own_question
+    - guidance.claim
+    scope: pair
+    judgment:
+      pass: PASS if each text tells the reader something its sibling does not, even when their topics
+        touch or one case could be discussed under both; and where the wording is parallel, the changed
+        words mark a real difference.
+      fail: FAIL if the two texts are near-synonyms or one adds nothing the other lacks, or if parallel
+        wording presents a difference that is not real. A case that fits both texts is never on its own
+        a fail.
+    examples:
+    - text: Which bridge part carries the weight of the deck?
+      verdict: fail
+      subject: frame.own_question
+      context:
+        sibling: Which bridge part supports the deck?
+      note: Both questions ask for the same bridge part, so a reader cannot choose between them.
+    - text: By what date must the contractor finish the leak repair?
+      verdict: fail
+      subject: frame.own_question
+      context:
+        sibling: How soon must the contractor finish the leak repair?
+      note: The wording differs, but both frames ask for the deadline of the same repair, so they are
+        the same ask.
+    - text: A homeowner approves each change to the agreed price in writing before the changed work starts.
+      verdict: pass
+      subject: guidance.claim
+      context:
+        sibling: A contractor records each material delivery with its date and quantity on the day the
+          delivery arrives.
+      note: The claims name different actors, different actions and different moments, so neither repeats
+        the other.
+    - text: Which nurse leads the ward during each night shift?
+      verdict: pass
+      subject: frame.own_question
+      context:
+        sibling: Which doctor reviews each new patient on the ward?
+      note: The questions ask for different roles doing different work, so each tells the reader something
+        the other does not.
+  action-names-an-action:
+    rule: An artifact's action names a decision or action a person takes with the artifact.
+    why: When the action names no decision or action, the reader has no basis for deciding which contents
+      the artifact needs.
+    applies_to:
+    - artifact.action
+    scope: item
+    decision:
+      ask: Does this text name a decision or an action that a person takes?
+      type: yes-no
+      criteria:
+        'yes': The text names a decision to make or an action to take.
+        'no': The text describes the artifact, its contents, its audience or a process.
+      fail_when: 'no'
+    judgment:
+      pass: PASS if the text names a decision or action that a person takes once the artifact exists.
+      fail: FAIL if the text describes the artifact, its contents, its audience or a process in place
+        of a decision or action.
+    examples:
+    - text: The rehearsal schedule listing dates, rooms and start times.
+      verdict: fail
+      subject: artifact.action
+      note: The text lists the contents of the schedule and names no decision or action.
+    - text: A weekly sheet listing every cake order with its pickup day and flavour.
+      verdict: fail
+      subject: artifact.action
+      note: The text lists what the sheet contains and names no decision or action a person takes.
+    - text: The record of the version number the maintainers chose for the release.
+      verdict: fail
+      subject: artifact.action
+      note: The text mentions a choice, but that choice is already made and the text only describes what
+        the record holds.
+    - text: Decide whether to publish the next library version.
+      verdict: pass
+      subject: artifact.action
+      note: The text names a decision a person makes with the artifact.
+    - text: Choose which songs the choir sings at the winter concert.
+      verdict: pass
+      subject: artifact.action
+      note: The text names a decision a person makes once the artifact exists.
+    - text: Sign up for a Tuesday rehearsal slot.
+      verdict: pass
+      subject: artifact.action
+      note: The text names an action a person takes, and the slot it mentions is the target of that action.
+  questions-distinct:
+    rule: Each element question, read alongside the others, shows at a glance what knowledge it asks for,
+      and no two ask for the same knowledge.
+    why: An element is known by its question, and knowledge is filed under the question it answers; when
+      a reader must stop to work a question out, or two questions ask for the same knowledge, answers
+      are filed in the wrong place or twice.
+    applies_to:
+    - element.question
+    scope: set
+    judgment:
+      pass: PASS if a reader scanning the whole set sees at once what knowledge this question asks for,
+        and an answer to it would not also answer another question in the set. Questions on related topics
+        pass when an answer to one is not an answer to the other.
+      fail: FAIL if a reader has to stop and work out what knowledge this question asks for, or if an
+        answer to it would also answer another question in the set; the critique names that question.
+    examples:
+    - text: What paperwork must be handed in before the counter accepts a sign permit application?
+      verdict: fail
+      subject: element.question
+      context:
+        set:
+        - How many days does the counter take to decide a sign permit?
+        - Which documents must an applicant bring for a sign permit?
+        - How much does a sign permit cost?
+        - Which streets ban projecting signs?
+        - What paperwork must be handed in before the counter accepts a sign permit application?
+        - Who may appeal a refused sign permit?
+      note: Despite the different wording, the list of paperwork answers "Which documents must an applicant
+        bring for a sign permit?" as well, so two questions ask for the same knowledge.
+    - text: What is the smallest crew the pump may answer a call with?
+      verdict: fail
+      subject: element.question
+      context:
+        set:
+        - Which siren tone calls members to the station?
+        - How many firefighters must ride on the pump before it leaves the station?
+        - Who checks the breathing sets each week?
+        - What is the smallest crew the pump may answer a call with?
+        - Where is the spare hose stored?
+        - Which training night covers ladder drills?
+      note: The smallest crew is the number of firefighters who must ride before the pump leaves, so one
+        answer settles this question and "How many firefighters must ride on the pump before it leaves
+        the station?" alike.
+    - text: Do pensioners travel at a reduced fare?
+      verdict: fail
+      subject: element.question
+      context:
+        set:
+        - What time does the last ferry leave for the island?
+        - Which travellers pay a reduced fare?
+        - How early must a car join the queue before sailing?
+        - Do pensioners travel at a reduced fare?
+        - Where are bicycles stowed on board?
+        - How long is a return ticket valid?
+      note: The answer to "Which travellers pay a reduced fare?" already says whether pensioners do, so
+        the narrower question asks for knowledge another question in the set covers and its answer would
+        be filed twice.
+    - text: Which plots share each standpipe?
+      verdict: pass
+      subject: element.question
+      context:
+        set:
+        - In which month is the mains water turned on for the season?
+        - Which plots share each standpipe?
+        - Is a hosepipe allowed on the plots?
+        - How much is the yearly plot rent?
+        - Who keeps the key to the tool shed?
+        - What happens to a plot left uncultivated for a whole year?
+      note: Its neighbours also concern watering, but a list of plots by standpipe tells nothing about
+        the month the water comes on or whether hosepipes are allowed, so related topics still ask for
+        different knowledge.
+    - text: At what hour does the shop open on weekdays?
+      verdict: pass
+      subject: element.question
+      context:
+        set:
+        - When does the first sourdough go into the oven?
+        - At what hour does the shop open on weekdays?
+        - Which baker opens the shop on Sundays?
+        - How many days can a loaf stay on the shelf before it goes to the food bank?
+        - Which supplier delivers the rye flour?
+        - What price does a whole seeded loaf sell for?
+      note: The weekday opening hour sits beside the oven start time and the Sunday opener, yet it answers
+        neither, and a reader sees at once that it asks for a clock time.
+    - text: How long may a member keep a borrowed tool?
+      verdict: pass
+      subject: element.question
+      context:
+        set:
+        - Which tools may members take home?
+        - How long may a member keep a borrowed tool?
+        - What is the fee for returning a tool late?
+        - On which evenings is the workshop open?
+        - Who teaches the wheel-truing class?
+        - Where are donated bikes left?
+      note: Three questions cover tool loans, but a loan period names no tools and sets no fee, so each
+        answer has one place to go.
+  enablements-distinct:
+    rule: Each artifact's enablement, read alongside the others, shows at a glance what action it supports,
+      for whom and when, and no two artifacts support the same action for the same actor.
+    why: An artifact is chosen by what it lets someone do, and its identity is its action and actor, with
+      timing breaking a tie; when two enablements overlap, a reader cannot tell which artifact serves
+      the need in front of them.
+    applies_to:
+    - artifact.enablement
+    scope: set
+    judgment:
+      pass: PASS if a reader scanning the whole set sees at once what action this artifact supports, for
+        whom and when, and could tell from that alone when to reach for it rather than for another artifact
+        in the set. Artifacts serving neighbouring actions pass when their actions, actors or timings
+        plainly differ.
+      fail: FAIL if a reader has to stop and work out what action this artifact supports, or if another
+        artifact in the set supports the same action for the same actor and the timing does not plainly
+        separate them; the critique names that artifact.
+    examples:
+    - text: 'action: place a newcomer in soprano, alto, tenor or bass; actor: section leader; timing:
+        when the newcomer joins'
+      verdict: fail
+      subject: artifact.enablement
+      context:
+        set:
+        - 'action: assign each new singer to a voice part; actor: section leader; timing: at the singer''s
+          first rehearsal'
+        - 'action: choose the pieces for the winter concert; actor: music director; timing: before autumn
+          rehearsals begin'
+        - 'action: place a newcomer in soprano, alto, tenor or bass; actor: section leader; timing: when
+          the newcomer joins'
+        - 'action: book the church hall for extra rehearsals; actor: choir secretary; timing: a month
+          before each concert'
+        - 'action: hand out folders of sheet music; actor: music librarian; timing: at the start of each
+          term'
+      note: Placing a newcomer in one of the four parts is the same action as assigning each new singer
+        to a voice part, for the same section leader at the same moment of joining, so a reader cannot
+        tell which of the two to reach for.
+    - text: 'action: confirm every required document is attached to a permit application; actor: front-desk
+        clerk; timing: at the moment of submission'
+      verdict: fail
+      subject: artifact.enablement
+      context:
+        set:
+        - 'action: check a building permit application for missing documents; actor: counter clerk; timing:
+          when the applicant hands it in'
+        - 'action: take payment of the permit fee; actor: cashier; timing: after the application is accepted'
+        - 'action: route a complete application to the plan examiner; actor: counter clerk; timing: once
+          the documents are checked'
+        - 'action: confirm every required document is attached to a permit application; actor: front-desk
+          clerk; timing: at the moment of submission'
+        - 'action: answer questions about zoning rules by phone; actor: duty planner; timing: during office
+          hours'
+      note: The front-desk clerk at a permit counter is the counter clerk under another name, and confirming
+        every document is attached on submission is checking for missing documents at hand-in, so two
+        enablements support the same action for the same actor at the same time.
+    - text: 'action: check the air cylinders and face masks; actor: duty crew member; timing: on drill
+        nights'
+      verdict: fail
+      subject: artifact.enablement
+      context:
+        set:
+        - 'action: inspect the breathing apparatus sets; actor: duty crew member; timing: at the start
+          of each Tuesday drill night'
+        - 'action: call out the crew to an incident; actor: officer in charge; timing: when the pager
+          alert comes in'
+        - 'action: check the air cylinders and face masks; actor: duty crew member; timing: on drill nights'
+        - 'action: refill the pump''s water tank; actor: appliance driver; timing: after each callout'
+        - 'action: teach new recruits to run out hose; actor: training officer; timing: during their first
+          three months'
+      note: Air cylinders and face masks make up the breathing apparatus sets, so this is the same inspection
+        for the same duty crew member, and drill nights do not plainly differ from Tuesday drill nights,
+        leaving a reader unable to choose between the two.
+    - text: 'action: chase overdue books; actor: library assistant; timing: at the end of each half term'
+      verdict: pass
+      subject: artifact.enablement
+      context:
+        set:
+        - 'action: issue books to pupils; actor: library assistant; timing: during lunch break'
+        - 'action: chase overdue books; actor: library assistant; timing: at the end of each half term'
+        - 'action: return a borrowed book; actor: pupil; timing: by the due date stamped inside'
+        - 'action: choose new books to buy; actor: school librarian; timing: each spring term'
+        - 'action: run the reading club; actor: English teacher; timing: Thursdays after school'
+      note: Issuing, returning and chasing books are neighbouring actions, but chasing overdue books is
+        a different action from issuing them for the same assistant and a different actor from the pupil
+        who returns them, so a reader sees at once when to reach for this one.
+    - text: 'action: walk the plots to check each one is being cultivated; actor: site secretary; timing:
+        in the first week of September, after harvest'
+      verdict: pass
+      subject: artifact.enablement
+      context:
+        set:
+        - 'action: walk the plots to check each one is being cultivated; actor: site secretary; timing:
+          in the first week of May, before the growing season'
+        - 'action: allocate a vacant plot to the next person on the waiting list; actor: site secretary;
+          timing: when a tenant gives up a plot'
+        - 'action: walk the plots to check each one is being cultivated; actor: site secretary; timing:
+          in the first week of September, after harvest'
+        - 'action: collect the yearly plot rent; actor: treasurer; timing: throughout October'
+        - 'action: turn off the standpipes; actor: water warden; timing: before the first frost'
+      note: The May walk has the same action and actor, but May before the growing season and September
+        after harvest are plainly different times, so timing breaks the tie and a reader knows which walk
+        to reach for.
+    - text: 'action: book a vehicle place on a sailing; actor: ticket clerk; timing: by phone up to the
+        day before'
+      verdict: pass
+      subject: artifact.enablement
+      context:
+        set:
+        - 'action: sell a single or return foot-passenger ticket; actor: ticket clerk; timing: up to ten
+          minutes before sailing'
+        - 'action: book a vehicle place on a sailing; actor: ticket clerk; timing: by phone up to the
+          day before'
+        - 'action: refund a ticket for a cancelled sailing; actor: duty supervisor; timing: on the day
+          of the cancellation'
+        - 'action: check tickets at the gangway; actor: deckhand; timing: as passengers board'
+        - 'action: post the weather cancellation notice; actor: duty supervisor; timing: as soon as the
+          master cancels a sailing'
+      note: Booking a vehicle place sits beside selling foot-passenger tickets for the same clerk, but
+        the two actions plainly differ, so a reader sees at once what this enablement supports, for whom
+        and when.
+  strength-follows-the-action:
+    rule: In each artifact, the core elements are those its action cannot be taken without, the situational
+      elements are those it can go without in some situations, and a reader sees which is which at a glance.
+    why: Strength is derived from the enabled action, not chosen; when a core element is not needed every
+      time, or a situational one always is, the artifact asks for the wrong knowledge and neither readers
+      nor agents can tell what is required.
+    applies_to:
+    - artifact.composition
+    scope: set
+    judgment:
+      pass: PASS if, reading the artifact's enablement and its listed elements, a reader sees at once
+        what this element contributes to the action and that the action needs it every time when it is
+        core, or can go ahead without it in some situations when it is situational. A core element with
+        a stated condition is judged as core only when that condition holds.
+      fail: FAIL if this element is core but the action can plainly be taken without it in some situations,
+        if it is situational but the action plainly cannot be taken without it, or if a reader cannot
+        tell from its question what it contributes to the action; the critique says which.
+    examples:
+    - text: Which reduced fare does the traveller qualify for?
+      verdict: fail
+      subject: artifact.composition
+      context:
+        enablement: 'action: sell a same-day crossing ticket; actor: ferry ticket clerk; timing: before
+          the departure gate closes'
+        strength: core
+        set:
+        - 'core: Which crossing and departure time does the traveller want?'
+        - 'core: How many passengers and vehicles travel on the ticket?'
+        - 'core: Which reduced fare does the traveller qualify for?'
+        - 'situational: Which cabin is still free on the overnight crossing?'
+        - 'situational: Does the vehicle exceed the standard height for the car deck?'
+      note: The question is marked core, but most travellers qualify for no reduced fare and still get
+        a full-fare ticket, so the sale plainly goes ahead without it in some situations and it belongs
+        among the situational elements.
+    - text: Where is the fire, as the caller described it?
+      verdict: fail
+      subject: artifact.composition
+      context:
+        enablement: 'action: send a crew to a reported fire; actor: volunteer brigade duty officer; timing:
+          as soon as the alarm call ends'
+        strength: situational
+        set:
+        - 'core: Which members can turn out from the station right now?'
+        - 'core: Which appliance is fuelled and ready to leave?'
+        - 'situational: Where is the fire, as the caller described it?'
+        - 'situational: Is a hydrant within reach of the fire?'
+        - 'situational: Has the caller reported anyone trapped inside?'
+      note: The question is marked situational, yet no crew can be sent anywhere without knowing where
+        the fire is, so the action can never go without it and its strength does not follow the action.
+    - text: Which subjects does the donated local-history collection cover?
+      verdict: fail
+      subject: artifact.composition
+      context:
+        enablement: 'action: lend a book to a pupil; actor: school library assistant; timing: at the issue
+          desk during opening hours'
+        strength: situational
+        set:
+        - 'core: Which pupil is borrowing the book?'
+        - 'core: How many books does the pupil already have on loan?'
+        - 'situational: Does the pupil owe a charge for a late return?'
+        - 'situational: Which subjects does the donated local-history collection cover?'
+        - 'situational: Has another pupil reserved the book?'
+      note: The question is plain on its own, but a reader cannot tell what the scope of a donated collection
+        contributes to lending a book at the desk, so nobody can see why it is asked or whether the loan
+        needs it.
+    - text: On which date and between which hours will the street be closed?
+      verdict: pass
+      subject: artifact.composition
+      context:
+        enablement: 'action: issue a street-party road-closure permit; actor: city permit counter officer;
+          timing: when the organiser hands in the application'
+        strength: core
+        set:
+        - 'core: Which street, and which stretch of it, will be closed?'
+        - 'core: On which date and between which hours will the street be closed?'
+        - 'core: Who is the named organiser answerable for the closure?'
+        - 'situational: Does a bus route run along the closed stretch?'
+        - 'situational: Will a stage or amplified music be set up?'
+        - 'situational: Which residents need vehicle access during the closure?'
+      note: No closure permit can be issued without stating when the street is closed, so the action needs
+        this every time, and it reads apart from the neighbouring question about which stretch is closed.
+    - text: Which singers asked to move to a different voice part this season?
+      verdict: pass
+      subject: artifact.composition
+      context:
+        enablement: 'action: assign singers to voice parts for a new concert season; actor: community
+          choir director; timing: at the first rehearsal of the season'
+        strength: situational
+        set:
+        - 'core: What vocal range does each singer have?'
+        - 'core: How many singers does each voice part need for this season''s pieces?'
+        - 'situational: Which singers asked to move to a different voice part this season?'
+        - 'situational: Which singers will miss one or more concert dates?'
+      note: The director can assign parts from range alone when nobody has asked to move, so the request
+        is plainly situational, and it reads apart from the neighbouring range question because a wish
+        to move is not a range.
+    - text: Which spare parts must come from the parts bin?
+      verdict: pass
+      subject: artifact.composition
+      context:
+        enablement: 'action: repair a member''s bike; actor: bike-repair co-op workshop volunteer; timing:
+          during the weekly open session'
+        strength: situational
+        set:
+        - 'core: Which member owns the bike?'
+        - 'core: What fault does the member report with the bike?'
+        - 'situational: Which spare parts must come from the parts bin?'
+        - 'situational: Does the member want to learn the repair alongside the volunteer?'
+      note: Many repairs, such as adjusting brakes or truing a wheel, need no new part, so the volunteer
+        can go ahead without this in some situations, and a reader sees that the parts serve the reported
+        fault rather than restate it.
+  sorts-reliably:
+    rule: Knowledge that answers one element's question is filed under that element, out of the artifact's
+      composition, by careful readers, a decision model and a light language model alike.
+    why: Skills file each piece of knowledge under the question it answers, and where no decision model
+      is available a light language model does that work; if any of them files an answer elsewhere, the
+      artifact's questions are not clear enough for the workflow to run reliably.
+    applies_to:
+    - artifact.composition
+    scope: set
+    sort:
+      ask: Which of these questions does this passage answer?
+      write: Write two short passages, each as it might appear in a working document from a different
+        kind of work within the universe's scope, that answer this question. Use none of the question's
+        own words.
+    examples:
+    - text: Which ingredients go into the loaf?
+      verdict: fail
+      subject: artifact.composition
+      context:
+        enablement: 'action: label each loaf on the shelf for shoppers with food allergies; actor: counter
+          staff; timing: before the shop opens each morning'
+        strength: core
+        set:
+        - 'core: Which allergens does the loaf contain?'
+        - 'core: Which ingredients go into the loaf?'
+        - 'situational: Was the loaf baked on site or bought in from the wholesale kitchen?'
+        - 'situational: Does a shared slicer touch the loaf after baking?'
+        probes:
+        - 'Seeded rye: rye and wheat flour, sesame, sunflower seeds, water, salt and sourdough starter.'
+        - 'Thursday brioche dough: white flour, butter, eggs, whole milk, sugar and yeast.'
+      note: An ingredient list names the sesame, wheat, eggs and milk that answer the allergen question,
+        so careful readers and light models alike file these passages under allergens rather than under
+        the question they answer.
+    - text: Where on the street will the tables, stalls and stage stand?
+      verdict: fail
+      subject: artifact.composition
+      context:
+        enablement: 'action: decide whether a street-party application needs a road-closure permit; actor:
+          permit clerk; timing: when the application arrives at the counter'
+        strength: core
+        set:
+        - 'core: Which street does the application name?'
+        - 'core: Will the event stop cars using any part of the street?'
+        - 'core: Where on the street will the tables, stalls and stage stand?'
+        - 'situational: Does the event run past ten at night?'
+        probes:
+        - Organisers plan trestles across both lanes from number 4 to number 20, with the sound rig at
+          the junction.
+        - For the harvest gathering everything stays on the wide pavement outside the church, and the
+          carriageway stays open.
+      note: Saying where the stalls go also says whether cars can still pass, so a natural answer to this
+        question is filed under the traffic question and the clerk's knowledge is split across two places.
+    - text: Which crew members passed the breathing-apparatus refresher this year?
+      verdict: fail
+      subject: artifact.composition
+      context:
+        enablement: 'action: choose who rides the pump on a callout; actor: duty officer; timing: when
+          the pager goes off'
+        strength: core
+        set:
+        - 'core: Which crew members have answered the page?'
+        - 'core: Which crew members hold a current breathing-apparatus ticket?'
+        - 'core: Which crew members passed the breathing-apparatus refresher this year?'
+        - 'situational: Which crew members are trained in water rescue?'
+        probes:
+        - 'March drill night: Okafor, Lind and Bryce completed the smoke-tunnel wearer assessment; Hale
+          was off sick and did not sit it.'
+        - 'Requalification sheet: Duarte signed off in June, while Kerr''s last sign-off dates from two
+          winters ago.'
+      note: Who sat and cleared the wearer assessment is exactly what makes a ticket current, so readers
+        and light models file these passages under the ticket question and the officer cannot rely on
+        either element.
+    - text: Does the pupil have any overdue books?
+      verdict: pass
+      subject: artifact.composition
+      context:
+        enablement: 'action: decide whether a pupil may borrow another book; actor: library monitor; timing:
+          at the issue desk at lunchtime'
+        strength: core
+        set:
+        - 'core: How many books does the pupil have on loan right now?'
+        - 'core: Does the pupil have any overdue books?'
+        - 'situational: Is the requested book on the reserved shelf for a class project?'
+        - 'situational: Has a parent asked the library to limit the pupil''s borrowing?'
+        probes:
+        - 'Reminder slip sent home: Amira brought everything back on time except the bird guide, now nine
+          days late.'
+        - 'Lunchtime desk: nothing on Sam''s card is past its return date.'
+      note: The loan-count question sits on a neighbouring topic, but a passage about lateness never gives
+        a count, so every reader and model files these passages under the overdue question alone.
+    - text: How far does the applicant live from the allotment site?
+      verdict: pass
+      subject: artifact.composition
+      context:
+        enablement: 'action: allocate a vacant plot to the next person on the waiting list; actor: allotment
+          secretary; timing: when a plot falls vacant in autumn'
+        strength: core
+        set:
+        - 'core: How long has the applicant waited on the list?'
+        - 'core: How far does the applicant live from the allotment site?'
+        - 'situational: Will the applicant work a full plot or a half plot?'
+        - 'situational: Does the applicant need a plot with step-free access?'
+        probes:
+        - 'Contact card: home on Orchard Close, a seven-minute walk from the gates.'
+        - Mr Benn's new flat is across town, about four miles from the gates.
+      note: Distance from home to the gates is knowledge only this question asks for, so every reader
+        and model files these passages under it and the secretary finds them in one place.
+    - text: How long is the vehicle from bumper to bumper?
+      verdict: pass
+      subject: artifact.composition
+      context:
+        enablement: 'action: sell a vehicle ticket for a crossing; actor: ticket clerk; timing: at the
+          booth before boarding closes'
+        strength: core
+        set:
+        - 'core: Which crossing does the driver want?'
+        - 'core: How long is the vehicle from bumper to bumper?'
+        - 'core: How tall is the vehicle, including anything on its roof?'
+        - 'situational: How many passengers travel in the vehicle?'
+        probes:
+        - 'Booth note: camper van with a bike rack on the back, 6.8 m nose to tail.'
+        - 'Lane 3: hatchback plus trailer comes to just over nine metres end to end.'
+      note: Length and height are neighbouring measurements, but a nose-to-tail figure says nothing about
+        clearance, so readers and light models file these passages under the length question without hesitation.
+  values-recognised:
+    rule: Every kind of reader files each everyday situation under its frame value.
+    why: A frame exists so that a person, a light language model or a decision model can say which value
+      fits their own work. If any of them puts an everyday situation under the wrong value, gates and
+      selections fire on the wrong value and the explorer points readers to the wrong knowledge.
+    applies_to:
+    - frame.value
+    - factor.value
+    scope: set
+    recognise:
+      ask: Which of these fits the situation best?
+      value_share: 0.75
+      frame_share: 0.9
+    examples:
+    - text: 'Chosen: Did the pupil decide to go?'
+      verdict: fail
+      subject: frame.value
+      context:
+        frame question: How does a pupil end up on the school trip?
+        set:
+        - 'Signed up: Did the family return the form?'
+        - 'Picked: Did a teacher choose the pupil?'
+        - 'Chosen: Did the pupil decide to go?'
+        probes:
+        - Leo begged to see the castle, so his dad filled in the slip and sent it back on Monday.
+        - Priya wanted to visit the aquarium and handed her permission slip in the next morning.
+      note: Wanting to go and returning the slip happen together, so readers file these under Signed
+        up, and the two values do not separate cases.
+    - text: Approve
+      verdict: fail
+      subject: frame.value
+      context:
+        frame question: Who must agree or be told before the museum puts an object on show?
+        ladder: true
+        set: [None, Discretionary, Notify, Approve, Statutory]
+        probes:
+        - The new display needs a vase from a private collector, who may lend it or refuse just as they
+          like.
+        - We hope to show a family's wartime letters; the family can agree or turn us down as they please,
+          and nothing binds them either way.
+      note: Each owner gives or withholds a yes as they please, which is what Discretionary seems to name,
+        so readers split these between Approve and Discretionary.
+    - text: 'Delivered: Does our driver bring it to the door?'
+      verdict: pass
+      subject: frame.value
+      context:
+        frame question: How does the cake reach the customer?
+        set:
+        - 'Collected: Does the customer pick it up from the counter?'
+        - 'Delivered: Does our driver bring it to the door?'
+        - 'Posted: Does it travel by mail?'
+        probes:
+        - The van drops the wedding tiers at the hall by noon.
+        - Mrs Ito's birthday sponge goes out in the car at four, to her flat.
+      note: Each value names a different way the cake travels, so every reader files these under Delivered.
+    - text: 'Council permit: Must the council say yes first?'
+      verdict: pass
+      subject: frame.value
+      context:
+        frame question: Who has to agree before the street party goes ahead?
+        ladder: true
+        set:
+        - 'Nobody: Can the organisers just hold it?'
+        - 'Neighbours told: Must the street hear about it first, with no vote?'
+        - 'Council permit: Must the council say yes first?'
+        probes:
+        - The party shuts the road from noon to six, and road closures need a signed licence from the
+          town hall.
+        - Stalls on the pavement need written consent from the borough before anyone sets up.
+      note: Each step names who must agree and whether a yes is needed, so the highest step that applies
+        is plain to every reader.
+    - text: Online
+      verdict: pass
+      subject: frame.value
+      context:
+        frame question: Where does the rehearsal happen?
+        set: [Indoors, Outdoors, Online]
+        probes:
+        - Everyone joins from home on a video call and sings with microphones muted.
+        - The tenors practise their part over the internet on Tuesday night.
+      note: Bare labels pass when they are everyday words that every reader can apply to their own case.

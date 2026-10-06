@@ -32,7 +32,7 @@ test('an ordered relation reads forward from its declared subject', () => {
   assert.equal(edge.label, ordered.phrasing!.forward);
 });
 
-const SCHEMA_VOCABULARY = ['gating', 'applicability', 'ordering', 'scope', 'role', 'option', 'rule', 'empty_composition'];
+const SCHEMA_VOCABULARY = ['gating', 'applicability', 'ordering', 'scope', 'role', 'option', 'rule', 'empty_composition', 'no_artifact'];
 
 const WORDS_A_UNIVERSE_AUTHORS = ['label', 'description', 'forward', 'reverse'];
 

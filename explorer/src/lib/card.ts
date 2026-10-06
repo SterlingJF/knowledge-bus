@@ -39,7 +39,7 @@ export function wrap(text: string, width: number, size: number, measure: TextMea
 }
 
 function subtitleFor(card: PlacedCard, entity: Entity | null, model: ExplorerModel): string {
-  if (card.kind === 'rule') return 'No artifact contents are required in this context.';
+  if (card.kind === 'rule') return 'These frames match, so nothing needs writing down.';
   if (!entity) return '';
   if (entity.kind === 'element') return cardinalityCopy(entity.raw.cardinality);
   if (entity.kind === 'frame' || entity.kind === 'factor') return entity.description || setByCopy(entity.raw.set_by);
