@@ -114,6 +114,17 @@ def prepare(version, root=ROOT):
     changelog = (root / "CHANGELOG.md").read_text()
     if re.search(r"^## " + re.escape(version) + r"\s*$", changelog, re.MULTILINE):
         raise ValueError(f"Release {version} already has a changelog entry.")
+    unreleased = list(
+        re.finditer(
+            r"^## " + re.escape(version) + r"[ \t]*[—–-][ \t]*unreleased[ \t]*$",
+            changelog,
+            re.MULTILINE | re.IGNORECASE,
+        )
+    )
+    if len(unreleased) > 1:
+        raise ValueError(
+            f"CHANGELOG.md has {len(unreleased)} unreleased {version} entries; keep one."
+        )
     paths = [
         root / p
         for p in (
@@ -151,10 +162,19 @@ def prepare(version, root=ROOT):
             document = json.loads(path.read_text())
             document["version"] = version
             path.write_text(json.dumps(document, indent=2) + "\n")
-        entry = f"## {version}\n\nBundled protocol: `{protocol}`.\n\n### Changes\n\n- TODO: Describe the user-facing changes.\n\n"
-        first = re.search(r"^## ", changelog, re.MULTILINE)
-        offset = first.start() if first else len(changelog)
-        paths[3].write_text(changelog[:offset] + entry + changelog[offset:])
+        if unreleased:
+            heading = unreleased[0]
+            changelog = (
+                changelog[: heading.start()]
+                + f"## {version}"
+                + changelog[heading.end() :]
+            )
+        else:
+            entry = f"## {version}\n\nBundled protocol: `{protocol}`.\n\n### Changes\n\n- TODO: Describe the user-facing changes.\n\n"
+            first = re.search(r"^## ", changelog, re.MULTILINE)
+            offset = first.start() if first else len(changelog)
+            changelog = changelog[:offset] + entry + changelog[offset:]
+        paths[3].write_text(changelog)
         run("uv", "lock", root=root)
         run("pnpm", "install", "--lockfile-only", "--ignore-scripts", root=root)
         run("uv", "run", "--locked", "python", "tools/plugin/skills.py", root=root)
@@ -172,9 +192,14 @@ def prepare(version, root=ROOT):
         for path, contents in originals.items():
             path.write_bytes(contents)
         raise
-    print(
-        f"Prepared {version}, unstaged. Finish CHANGELOG.md, then run just release-check."
-    )
+    if unreleased:
+        print(
+            f"Prepared {version}, unstaged. Promoted the existing unreleased CHANGELOG.md entry; run just release-check."
+        )
+    else:
+        print(
+            f"Prepared {version}, unstaged. Finish CHANGELOG.md, then run just release-check."
+        )
 
 
 def build_check(version, root=ROOT, output=None):

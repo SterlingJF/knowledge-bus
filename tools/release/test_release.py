@@ -303,3 +303,72 @@ def test_prepare_restores_generated_resources_after_generation_failure(
     assert old.read_bytes() == b"original"
     assert not created.exists()
     assert release.metadata(project)[0] == "0.5.0"
+
+
+UNRELEASED = (
+    "# Changelog\n\n"
+    "## 0.6.0 {dash} {word}\n\n"
+    "Bundled protocol: `kbp/0.5`.\n\n"
+    "### Checker\n\n"
+    "- Add automatic discovery.\n\n"
+    "## 0.5.0\n\n"
+    "- Kept.\n\n"
+    "## 0.4.0 — unreleased\n\n"
+    "- Never published.\n"
+)
+
+
+@pytest.mark.parametrize(
+    "dash, word", [("—", "unreleased"), ("–", "Unreleased"), ("-", "UNRELEASED")]
+)
+def test_prepare_promotes_existing_unreleased_entry(project, capsys, dash, word):
+    path = project / "CHANGELOG.md"
+    before = UNRELEASED.format(dash=dash, word=word)
+    path.write_text(before)
+    release.prepare("0.6.0", project)
+    after = path.read_text()
+    assert after == before.replace(f"## 0.6.0 {dash} {word}\n", "## 0.6.0\n", 1)
+    assert "TODO" not in after
+    assert after.count("\n## 0.6.0\n") == 1
+    assert "## 0.4.0 — unreleased\n" in after
+    assert "Promoted the existing" in capsys.readouterr().out
+    assert release.check_metadata(project)[0] == "0.6.0"
+
+
+def test_prepare_refuses_duplicate_unreleased_entries(project):
+    path = project / "CHANGELOG.md"
+    path.write_text(
+        UNRELEASED.format(dash="—", word="unreleased")
+        + "\n## 0.6.0 - unreleased\n\n- Duplicate.\n"
+    )
+    before = {p: p.read_bytes() for p in project.rglob("*") if p.is_file()}
+    with pytest.raises(ValueError, match="unreleased"):
+        release.prepare("0.6.0", project)
+    assert {p: p.read_bytes() for p in project.rglob("*") if p.is_file()} == before
+
+
+def test_prepare_rolls_back_promoted_entry_after_failure(project, monkeypatch):
+    (project / "CHANGELOG.md").write_text(
+        UNRELEASED.format(dash="—", word="unreleased")
+    )
+    before = {p: p.read_bytes() for p in project.rglob("*") if p.is_file()}
+
+    def fail(*args, **kwargs):
+        raise subprocess.CalledProcessError(1, args)
+
+    monkeypatch.setattr(release, "run", fail)
+    with pytest.raises(subprocess.CalledProcessError):
+        release.prepare("0.6.0", project)
+    assert {p: p.read_bytes() for p in project.rglob("*") if p.is_file()} == before
+
+
+def test_prepare_inserts_todo_entry_without_unreleased_entry(project, capsys):
+    path = project / "CHANGELOG.md"
+    path.write_text("# Changelog\n\n## 0.4.0 — unreleased\n\n- Never published.\n")
+    release.prepare("0.6.0", project)
+    after = path.read_text()
+    assert after.startswith(
+        "# Changelog\n\n## 0.6.0\n\nBundled protocol: `kbp/0.5`.\n\n### Changes\n\n"
+        "- TODO: Describe the user-facing changes.\n\n## 0.4.0 — unreleased\n"
+    )
+    assert "Finish CHANGELOG.md" in capsys.readouterr().out
