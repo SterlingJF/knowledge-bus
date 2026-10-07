@@ -852,6 +852,18 @@ def test_costs_and_models_come_from_each_runs_adapters_and_notes(tmp_path):
     )
 
 
+def test_the_cost_section_says_dollar_costs_are_api_prices(tmp_path):
+    basis = (
+        "Dollar costs are API prices, as each CLI reports them. On a Claude or ChatGPT "
+        "subscription, runs use the plan's limits instead."
+    )
+    anthropic = summary(grade_folder(tmp_path / "g", ANTHROPIC_ROWS))
+    section = build(anthropic).split("## Cost and models")[1].split("\n## ")[0]
+    assert section.index(basis) < section.index("| Run | Side | Models | Cost |")
+    empty = build().split("## Cost and models")[1].split("\n## ")[0]
+    assert basis not in empty
+
+
 def test_the_retired_frame_fails_are_listed_once_with_the_owner_decision():
     retired = {
         "decision": "Owner, then: frames go by recognition.",

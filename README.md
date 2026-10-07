@@ -5,13 +5,13 @@
 
 # Knowledge Bus
 
-A protocol for structuring knowledge so humans and AI agents can work from the same understanding.
+Tell people and AI agents what your documents should answer.
 
 [![Release](https://img.shields.io/github/v/release/SterlingJF/knowledge-bus?label=release)](https://github.com/SterlingJF/knowledge-bus/releases/latest)
 [![CI](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/SterlingJF/knowledge-bus)](LICENSE)
 
-[What is Knowledge Bus?](#what-is-knowledge-bus) • [Where It Helps](#where-it-helps) • [Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [How It Works](#how-it-works) • [Limits](#limits) • [Docs](#docs)
+[What is Knowledge Bus?](#what-is-knowledge-bus) • [Where It Helps](#where-it-helps) • [Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [How It Works](#how-it-works) • [Limits](#limits) • [Docs](#docs) • [Contributing](#contributing)
 
 </div>
 <!-- markdownlint-enable MD033 MD041 -->
@@ -22,7 +22,7 @@ Define the questions your notes and documents need to answer, how their contents
 
 ## What is Knowledge Bus?
 
-Knowledge Bus is a protocol for describing what knowledge means and how it fits together. It gives people and AI agents a common reference for writing, reading, and using notes and documents.
+Knowledge Bus lets people and AI agents describe what knowledge means and how it fits together. It gives them a common reference for writing, reading, and using notes and documents.
 
 For a project, subject, or area of responsibility, you can define:
 
@@ -52,7 +52,7 @@ Knowledge Bus can guide a personal notebook, a shared project folder, or documen
 - **AI collaboration:** give agents explicit definitions and guidance to follow when asking questions, drafting, or reviewing.
 - **Knowledge exchange:** describe how information can move between people and tools while retaining its meaning and context.
 
-You can adopt an existing set of definitions or develop one for your own work. The included product-development example provides a starting point; the protocol supports other subjects and uses.
+You can adopt an existing set of definitions or develop one for your own work. The included product-development example provides a starting point; the Knowledge Bus Protocol supports other subjects and uses.
 
 ## Features
 
@@ -326,13 +326,18 @@ knowledge-bus/
 ├── tools/
 │   ├── explorer/                   model adapter, build, render, and explorer checks
 │   ├── ce-pattern/                 vendored CE Pattern tooling and project config
+│   ├── docs/                       doc section sync and its tests
 │   ├── evals/                      eval reader, tier engine, grader, scenario player, report builder, and runner generators
 │   ├── plugin/                     package assembly, inspection, and tests
 │   ├── quality/                    check runner and git-hook snapshots
 │   └── release/                    release commands and their tests
-├── docs/                           usage guides and explanations
-├── CONTRIBUTING.md                 development setup and checks
-├── .github/workflows/
+├── docs/                           usage guides, explanations, and contribution guides
+├── CONTRIBUTING.md                 contribution paths, development setup, and checks
+├── PHILOSOPHY.md                   the project's aim and priorities
+├── METHODOLOGY.md                  eval method, limits, and method versions
+├── AI_POLICY.md                    rules for AI use in contributions
+├── AGENTS.md                       instructions for agents helping contributors
+├── .github/                        workflows, issue forms, and pull request template
 ├── package.json                    pnpm orchestration only
 ├── pnpm-workspace.yaml             agent package workspace
 ├── pnpm-lock.yaml                  shared JS dependency lock
@@ -359,10 +364,16 @@ See [Contributing](CONTRIBUTING.md) for development setup, source layout, and ch
 - [Validation](docs/validation.md) — what the checker verifies and rejects.
 - [Evals](evals/README.md) — the rules and behaviours that define good definitions and agent work, and how they are graded.
 - [Evaluation Report](evals/report.md) — figures from recorded runs.
+- [Methodology](METHODOLOGY.md) — how evals are built, run, and reported.
 - [Versioning](docs/versioning.md) — version meanings, compatibility, and installation versions.
 - [Agent Packages and Skills](docs/agent-plugins.md) — updates, requirements, and troubleshooting.
 - [Design Notes](docs/design-notes.md) — the reasoning behind question identity, separate guidance, and stable codes.
+- [Philosophy](PHILOSOPHY.md) — the project's aim and priorities.
+
+## Contributing
+
+See [Contributing](CONTRIBUTING.md) and the [AI Policy](AI_POLICY.md).
 
 ## License
 
-MIT. Issues welcome; PRs by discussion first.
+MIT.

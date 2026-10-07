@@ -1,0 +1,66 @@
+name: Eval or model change
+description: Change an eval rule or example, or add or remove a model.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Wait for a maintainer to accept this issue before you open a pull request. See [Evals Contributions](https://github.com/SterlingJF/knowledge-bus/blob/main/docs/contributing/evals.md).
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Rule or rule example
+        - Skill behaviour or scenario
+        - Situations
+        - Model or provider
+    validations:
+      required: true
+  - type: textarea
+    id: case
+    attributes:
+      label: Case
+      description: The real case in plain words, with no names. For a model change, say why to add or remove the model.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Today and proposed
+      description: What the eval does today, and what it should do.
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Where the case comes from
+      options:
+        - "People talking, with or without an AI silently taking notes: rule examples and skill behaviours"
+        - "A person working with an AI agent: skill behaviours only"
+        - "A public page: situations only"
+        - "No case: model change"
+    validations:
+      required: true
+  - type: input
+    id: present
+    attributes:
+      label: People present
+      description: Roles only. Write n/a for a public page or a model.
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent and privacy
+      options:
+        - label: Everyone in a private source agreed to this use, including a maintainer seeing it on a screen share.
+          required: true
+        - label: I will keep the source for 12 months and show it on a screen share if a maintainer asks.
+          required: true
+        - label: This issue holds no transcript text, names or other identifying details.
+          required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      description: For a model change, the provider and model id.

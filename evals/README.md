@@ -3,18 +3,20 @@
 These files define what good looks like for Knowledge Bus: rules for definitions, behaviours for
 agents, and examples from real cases showing each one passing and failing.
 
+See [Methodology](../METHODOLOGY.md) for the method and its limits.
+
 ## Layout
 
 | Path                | Holds                                                                                                                           |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `universe.yaml`     | The universe slice: rules for the text of definitions                                                                           |
-| `skills.yaml`       | The skills slice: behaviours of an agent doing knowledge work with the owner                                                    |
+| `skills.yaml`       | The skills slice: behaviours of an agent doing knowledge work with a person                                                     |
 | `fixtures/`         | Small folders, set in unrelated fields, that the skills scenarios run against                                                   |
 | `situations/`       | Real cases shared by every universe, and each universe's answers over them                                                      |
 | `runs.yaml`         | The run folders behind the report                                                                                               |
 | `results/`          | One small summary per run, written by `tools/evals/report.py`                                                                   |
 | `report.md`         | The report built from the summaries; never edited by hand                                                                       |
-| `retired/`          | Per universe (`<universe-id>.yaml`), the frame fails the owner retired                                                          |
+| `retired/`          | Per universe (`<universe-id>.yaml`), the frame fails maintainers retired                                                        |
 | `generated/claude/` | `claude plugin eval` cases written from `universe.yaml`; never edited by hand                                                   |
 | `../tools/evals/`   | The reader, tier engine, adapters, grader, generator, scenario player, report builder, situation intake and desktop-app packets |
 
@@ -33,11 +35,11 @@ and which models produced each figure. Vendor code lives only in `tools/evals/ad
   universe's declared terms, for reference. For runners that test the plugin, each rule's first
   failing example becomes one outcome case: a skill improves the text, and the rule grades the
   reply.
-- **Skills** grades what an agent does while it works with the owner: the questions it asks, the
+- **Skills** grades what an agent does while it works with a person: the questions it asks, the
   reports it gives, how it uses evidence, what it writes and where. When a skill proposes a
   definition, the skills slice grades that definition with the universe rules.
 
-Each skills scenario is modelled on a session: the owner's opening request, the owner's replies in
+Each skills scenario is modelled on a session: the person's opening request, their replies in
 order, and the behaviours the run must show. Its `fixture` is `none`, a folder in this
 repository, or `needs:`, which states what the folder must hold until someone builds it.
 
@@ -125,7 +127,7 @@ It tests whether readers place an everyday situation under the right frame value
 ## Three tiers
 
 Each rule or behaviour uses the tiers that add something, in this order. The first tier that
-returns pass or fail settles the case; a case no tier settles goes to the owner.
+returns pass or fail settles the case; a case no tier settles goes to a person.
 
 | Tier            | Decides with                                                                                                                                                                                                                                                   | Suits                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
@@ -137,7 +139,7 @@ A deterministic check either fails a case (`then: fail`) or flags it for the nex
 (`then: flag`). The decision model reads literally and cannot count, so counts stay in code.
 A decision question suits a rule only when one literal question about the text settles it; where
 literal reading misfires, the rule has no decision tier. When the two judgment models split, the
-case is undecided and goes to the owner.
+case is undecided and goes to a person.
 
 ## Commands
 
@@ -145,7 +147,7 @@ case is undecided and goes to the owner.
 | ----------------------- | ------------------------------------------------------------------------ |
 | `just evals-check`      | Checks structure and generated files. Free; runs with the test suite     |
 | `just evals-grade`      | Grades the product-development universe: all tiers, sort and recognition |
-| `just evals-calibrate`  | Scores each tier alone on the owner's labelled examples                  |
+| `just evals-calibrate`  | Scores each tier alone on the maintainers' labelled examples             |
 | `just evals-write`      | Regenerates `generated/claude/`                                          |
 | `just evals-run-claude` | Runs the generated cases against the assembled plugin                    |
 | `just evals-play`       | Plays the skills scenarios with a scripted owner, then grades them       |
@@ -170,12 +172,10 @@ as each CLI reports them (dollars, tokens, or n/a).
 
 ## How examples are made
 
-Standards come from the owner's corrections and standing rules, restated in plain words. Texts the
-owner only accepted do not count as passes: acceptance can mean the owner gave up. Nothing is
-invented: each example starts from a specific real case, restated in an unrelated field such as a
-choir, a bakery or a permit office, shares no run of 7 words with its source, and identifies no
-person, project or session; its provenance stays privately outside the repository. With no real
-case there is no example. Before an example joins a rule, a blind reader and a decision model each
+Each example starts from a specific real case, restated in an unrelated field such as a choir, a
+bakery or a permit office. It shares no run of 7 words with its source and identifies no person,
+project or session, and its provenance stays privately outside the repository. With no real case
+there is no example. Before an example joins a rule, a blind reader and a decision model each
 judge it against the rule's statement alone; it stays only when the reader agrees with its verdict
 and the decision model does not confidently disagree.
 
@@ -196,7 +196,7 @@ it holds the source pages and the provenance, which never enter the repository. 
 1. Extract. For each value of each frame, facet or factor, find real public cases from the
    universe's own field: help pages, decision records, service pages, published case studies.
    Save each source page as text under `<folder>/sources/`, and keep its provenance (address,
-   type, date, why it fits) in the folder too. Leave out the owner's private sessions.
+   type, date, why it fits) in the folder too. Leave out private sessions.
 2. Rewrite blind. A writer who sees only the value meanings, never the universe's wording,
    restates each case in new words in `<folder>/draft.yaml`, with no names, organisations,
    products, places, dates or identifiers:
@@ -223,7 +223,7 @@ it holds the source pages and the provenance, which never enter the repository. 
    need the universe's own field. The pool's `tags` are shared by every universe, and
    `cases.yaml` gives each tag value a one-line meaning to tag by: every case carries every tag,
    so a draft uses the tags `cases.yaml` already declares (today the two above). Changing them
-   is an owner decision, since it means retagging every case. Only a draft that starts a new
+   is a maintainer decision, since it means retagging every case. Only a draft that starts a new
    pool, where no `cases.yaml` exists yet, writes each tag value with its meaning
    (`{ kind: { creation: <meaning>, ... }, ... }`); those become the pool's `tags`.
 3. Gate. `intake.py gate <universe-id> --folder <folder>` fails any situation that shares a run
@@ -235,11 +235,11 @@ it holds the source pages and the provenance, which never enter the repository. 
    re-read and supports it, and nothing was bent to remove identifying detail. Stop at the
    minimums. A tag value the field cannot offer is declared absent in `<universe-id>.yaml`, as
    `absent: {<tag>: {<value>: {reason, source}}}` with a public source that supports it. A frame
-   or factor value that runs short is reported to the owner, and its set cannot be saved until
+   or factor value that runs short is reported to maintainers, and its set cannot be saved until
    real cases are found; it is never padded.
 6. Label blind, the other side. `intake.py packet <universe-id> --folder <folder>` writes
-   `packet.md`: the meanings, and the texts under opaque ids in a fixed shuffled order. The
-   owner gives it to the other side's model and saves the reply as `<folder>/labels.json`.
+   `packet.md`: the meanings, and the texts under opaque ids in a fixed shuffled order. You
+   give it to the other side's model and save the reply as `<folder>/labels.json`.
    The packet tells labellers that on a ladder a case belongs to the highest step that
    applies; recognition readers are not told, and the report counts one-step-off misses
    apart.

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to contribute
+    url: https://github.com/SterlingJF/knowledge-bus/blob/main/CONTRIBUTING.md
+    about: Find the guide for your change, the setup steps, and what each pull request needs.

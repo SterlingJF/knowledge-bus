@@ -652,6 +652,8 @@ The 26 fails below were found in `universe-20261005T045435502585Z`, the last ful
 
 ## Cost and models
 
+Dollar costs are API prices, as each CLI reports them. On a Claude or ChatGPT subscription, runs use the plan's limits instead.
+
 | Run | Side | Models | Cost |
 | --- | --- | --- | --- |
 | `examples-universe-20261006T060659282403Z` (anthropic-side) | Anthropic side | decision: jev jev-1.13.0; judgment: judges: claude-opus-5-5, claude-fable-5-1; recognise: filers: claude-opus-5-5, claude-fable-5-1, jev jev-1.13.0, claude-haiku-4-5-20251001; sort: filers: claude-opus-5-5, claude-fable-5-1, jev jev-1.13.0, claude-haiku-4-5-20251001 | decision tokens: 8337; judgment cost: $3.38; sort and recognise cost: $0.85; sort and recognise decision tokens: 9434 |

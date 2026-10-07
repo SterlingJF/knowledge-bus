@@ -1,0 +1,43 @@
+name: Proposal
+description: Change the Knowledge Bus Protocol, the checker, the explorer or a skill.
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Knowledge Bus Protocol
+        - Checker
+        - Explorer
+        - Skills
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Start with a real example, in plain words. Leave out names.
+    validations:
+      required: true
+  - type: textarea
+    id: wording
+    attributes:
+      label: Current and proposed wording
+      description: For a wording change, add one row per changed line.
+      value: |
+        | Current | Proposed |
+        | ------- | -------- |
+        |         |          |
+  - type: textarea
+    id: unchanged
+    attributes:
+      label: What stays the same
+      description: Behaviour, files or results this change does not touch.
+  - type: dropdown
+    id: builder
+    attributes:
+      label: Who builds the change
+      options:
+        - I will
+        - Someone else

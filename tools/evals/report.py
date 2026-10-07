@@ -62,6 +62,10 @@ UNPLAYED = re.compile(
     r"^(\S+): not run, its fixture is still to be built$"
 )  # play.py's note
 CODES = {"pass": "p", "fail": "f"}
+COST_BASIS = (
+    "Dollar costs are API prices, as each CLI reports them. On a Claude or ChatGPT "
+    "subscription, runs use the plan's limits instead."
+)
 EXAMPLES = "development examples (interim)"
 SITUATIONS = "development situations (interim)"
 MEASURES = {
@@ -1328,7 +1332,7 @@ def cost_section(summaries):
         )
     if not rows:
         return ["No run is listed.", ""]
-    return [*table(["Run", "Side", "Models", "Cost"], rows), ""]
+    return [COST_BASIS, "", *table(["Run", "Side", "Models", "Cost"], rows), ""]
 
 
 def date_of(summaries):

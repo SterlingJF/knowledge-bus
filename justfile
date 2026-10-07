@@ -53,6 +53,12 @@ skills-build:
 skills-check:
     uv run --locked python tools/plugin/skills.py --check
 
+# Fill generated doc sections from their source files.
+docs-build: (_pnpm_run 'build:docs')
+
+# Refuse stale generated doc sections.
+docs-check: (_pnpm_run 'check:docs')
+
 # Exercise the real skills CLI in disposable projects, with telemetry disabled.
 skills-install-check:
     uv run --locked python tools/plugin/check_skills_install.py

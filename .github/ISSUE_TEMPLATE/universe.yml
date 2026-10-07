@@ -1,0 +1,46 @@
+name: Universe change
+description: Add or change definitions or guidance that ship with Knowledge Bus.
+body:
+  - type: input
+    id: universe
+    attributes:
+      label: Universe
+      description: The folder name under `universes/`.
+      placeholder: product-development
+    validations:
+      required: true
+  - type: textarea
+    id: case
+    attributes:
+      label: Case
+      description: Start with a real example where the wording misleads or leaves something out. Leave out names.
+    validations:
+      required: true
+  - type: textarea
+    id: wording
+    attributes:
+      label: Current and proposed wording
+      description: Add one row per changed line.
+      value: |
+        | Current | Proposed |
+        | ------- | -------- |
+        |         |          |
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: A published source for any advice that follows an outside standard.
+  - type: input
+    id: codes
+    attributes:
+      label: Codes affected
+      description: The five-character codes of the definitions you would change, if known.
+  - type: dropdown
+    id: builder
+    attributes:
+      label: Who builds the change
+      options:
+        - I will
+        - Someone else

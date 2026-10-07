@@ -1,0 +1,47 @@
+name: Bug
+description: A command, skill or the explorer map fails or gives a wrong result.
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected, and what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Command and output
+      description: The command you ran and its full output. Replace personal paths with placeholders.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Paste the output of `kbp --version`.
+  - type: dropdown
+    id: runs-in
+    attributes:
+      label: Where it runs
+      options:
+        - Claude Code
+        - Codex
+        - Pi
+        - OpenCode
+        - skills CLI
+        - The `kbp` checker command
+        - Other
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched open and closed issues for this problem.
+          required: true
+        - label: This report holds no secrets, personal data or personal paths.
+          required: true
+# Adapted from Archify's bug report form:
+# https://github.com/tt-a1i/archify/blob/60080fbbe53198732cf18d1602bbb9804d32a23d/.github/ISSUE_TEMPLATE/bug-report.yml
