@@ -1,0 +1,429 @@
+{
+  "alias": {
+    "form": "options paper / decision document (DACI, SPADE)",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "authority",
+      "question": "Who has to be asked or told before the work goes ahead?",
+      "values": [
+        {
+          "question": "Does someone's yes have to come first?",
+          "value": "approve"
+        },
+        {
+          "question": "Does a law or regulator require a yes first?",
+          "value": "statutory"
+        }
+      ]
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "choose one of several options by a set date",
+    "actor": "the person accountable for the choice",
+    "timing": "before anyone commits to an option"
+  },
+  "guidance": [
+    {
+      "claim": "Exactly one named decider. Without one, a brief produces discussion rather than a decision.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "Beside the decider, list who contributes and who is only informed: contributors give input, those informed do not. Neither decides.",
+      "kind": "convention",
+      "when": {
+        "authority": [
+          "approve",
+          "statutory"
+        ]
+      }
+    },
+    {
+      "claim": "The framing carries a date and the reason for that date. Without a deadline, the brief is only a discussion document.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "Quality is judged before the outcome is known, on the frame, the alternatives, the information, the criteria and trade-offs, the reasoning, and the commitment to act — and is no better than the weakest of them.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "Finish with a commitment step: until the choice is voiced it is not taken.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "Agreement obtained privately and never voiced does not bind, and the decision reopens the first time it meets friction.",
+      "kind": "convention",
+      "when": {
+        "authority": [
+          "approve",
+          "statutory"
+        ]
+      }
+    },
+    {
+      "claim": "Distinct from the Decision Record, which it feeds. Ask whether the choice is still to be made: while it is, the criteria and options belong in this brief; once it is made, the Decision Record keeps the options that were rejected and why.",
+      "kind": "boundary",
+      "when": null
+    },
+    {
+      "claim": "Distinct from the Opportunity Assessment, which asks whether to pursue one thing at all, and from the Design Doc, which offers one approach to react to. This one picks among several.",
+      "kind": "boundary",
+      "when": null
+    },
+    {
+      "claim": "It goes stale the moment the decision is taken. Stop editing it then: changing it afterwards reopens a settled choice against criteria that have since moved.",
+      "kind": "refresh",
+      "when": null
+    }
+  ],
+  "kind": "decision-brief",
+  "name": "Decision brief",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "alternatives-considered",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Describe and compare the options here, including the chosen option. Decision records the commitment and why it was chosen.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Standard in RFCs, decision documents and decision records. Describe the options considered, including the chosen option.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Naming the rejected options is grammatically obligatory in the Y-statement form — 'and neglected …' — not an optional courtesy to the reader.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Check that the options are feasible, diverse and comprehensive: each could really be done, none is a small variant of another, and together they cover the realistic ways to solve the problem.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Flanking a preferred course with two deliberately unattractive alternatives simulates choice rather than offering it.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Two honest alternatives beat five straw men. Absence invites re-litigation.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Alternatives considered",
+      "question": "Which options do we consider?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "decision-criteria",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Give each criterion its weight or rank, so a reader can see how conflicting criteria were balanced. State it before the options are scored, not inside the decision's reasoning.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Criteria are a first-class object, not prose inside the rationale: options are assessed against them, and the assessment carries a sign. That is what lets a later reader see that two decisions were judged against the same criterion, or against conflicting ones.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Where an outside body may review the decision, name every factor that was balanced and say how each entered the decision. A US Record of Decision had to do exactly this.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Goals & Non-Goals and from Constraints: a criterion is a dimension options are compared along, a goal is an outcome aimed for, and a constraint is a fixed limit that admits no trade-off.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Honestly empty means the choice was made on one dominant consideration already stated in the decision — not that the criteria were never articulated.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Decision criteria",
+      "question": "By what criteria do we judge the options?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "decision-authority-and-approvals",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For each approval, name who gives it and who gave them the right to give it. If nobody holds that right, close the gap before relying on the approval.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Consent & Authority: an approval is a decision someone takes over whether the work goes ahead; a licence, permit, consent or legal basis is the permission the work holds. A regulator can appear in both: as an approval here, as its clearance there.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "If the work needs no one's approval, say so and say how you know, for example that the spend is within your own authority. A blank list with no such note reads as not yet checked.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Decision authority and approvals",
+      "question": "Whose approval does the work need?",
+      "strength": "core",
+      "when": {
+        "authority": [
+          "approve",
+          "statutory"
+        ]
+      }
+    },
+    {
+      "element": "problem-statement",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Name the problem and whose problem it is, with no solution built in.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Solution-shaped problems pre-commit the answer.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "One quantified pain beats five asserted ones.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "lean-canvas",
+          "name": "Lean canvas"
+        },
+        {
+          "kind": "opportunity-assessment",
+          "name": "Opportunity assessment"
+        }
+      ],
+      "mode": "links",
+      "name": "Problem statement",
+      "question": "What problem should the work solve?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "constraints",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Imposed, not chosen: regulation, budget, deadline, platform, physics.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Cross-Cutting Concerns: a constraint is an imposed limit on the work that no design choice moves — budget, deadline, platform, what the law allows; a cross-cutting concern is an obligation every part of the solution must be designed to meet — security, privacy, accessibility. One law can supply both: a limit here, a property demanded throughout there.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Trade-offs. Mislabelling a choice as a constraint hides a decision.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Constraints",
+      "question": "What imposed limits apply to the work?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "risks-and-assumptions",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For an assumption, state what is being relied on and how it will be checked. For a risk, state what could happen, its significance, and the response.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Opportunities & Threats: there an outside condition is judged for planning; here anything inside or outside that could harm the work gets a response and someone to handle it.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Before committing, imagine the work has already failed and have each person write down why. This brings out risks people hesitate to raise.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "The RFC tradition records drawbacks — known, accepted costs — separately from risks, which are uncertainties.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Where an approver or regulator will review the work, date each entry and name its owner and response, so the record can be audited.",
+          "kind": "heuristic",
+          "when": {
+            "authority": [
+              "approve",
+              "statutory"
+            ]
+          }
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "opportunity-assessment",
+          "name": "Opportunity assessment"
+        },
+        {
+          "kind": "risk-assessment",
+          "name": "Risk assessment"
+        }
+      ],
+      "mode": "links",
+      "name": "Risks and assumptions",
+      "question": "What could harm the work if it happened or proved wrong?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "prior-art",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Say what each precedent teaches the work: what to copy and what to avoid. A list of look-alikes with no lesson is not prior art.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A standard RFC section: precedent survey across other systems, organisations or communities.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Competitor Profile: that grades how well each alternative serves the people the offering is for; this draws lessons from how others solved similar problems, whether or not they compete. Absence invites reinvention.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Prior art",
+      "question": "How have others solved problems like ours?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "open-questions",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Each wants an owner and a resolution path. An unowned question is a risk mislabelled.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Risks & Assumptions: an open question is something to answer before a point can be settled; an assumption is a belief the work proceeds on and checks along the way. Proceeding without the answer turns the question into an assumption.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Compare the list across drafts: it should get shorter. A list that keeps growing means the work is not yet ready to settle.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Write 'none open' only when every question raised has been answered or recorded as an assumption, so a reader can tell it apart from a list nobody has drawn up.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Open questions",
+      "question": "Which questions about the work remain open?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "scope-in-out",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Three lists, not two: included, deferred with a revisit trigger, and excluded with the reason.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Trade-offs: scope excludes parts of the solution for this work; Trade-offs refuses directions for the offering as a whole.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "The excluded list is the valuable one — it prevents silent re-expansion.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "The deferred list is where natural extensions land — the RFC tradition's future possibilities.",
+          "kind": "convention",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Scope in out",
+      "question": "What do we include in the solution now, defer, or exclude?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

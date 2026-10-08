@@ -173,6 +173,13 @@ uv run kbp --inspect path/to/.knowledge-bus/
 uv run kbp --explore --output path/to/.knowledge-bus/explorer/<universe-id> path/to/.knowledge-bus/
 ```
 
+Print the card for one document type, or list every document type:
+
+```sh
+uv run kbp --card <kind> path/to/.knowledge-bus/
+uv run kbp --kinds path/to/.knowledge-bus/
+```
+
 ## Quick Start
 
 ### Start With Expectations

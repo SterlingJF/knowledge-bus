@@ -512,8 +512,14 @@ def _identity(role, document):
     return result
 
 
-def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=None):
-    """Validate and project one universe without writing source or output files."""
+def load_selection(protocol_path, paths, *, universe_id=None, marks=True):
+    """Load and check the chosen universe and its guidance, and marks if asked.
+
+    With marks=False, marks files are skipped entirely, so a broken one never
+    blocks a caller that does not draw.
+    """
+    if not marks:
+        paths = [path for path in paths if not str(path).endswith(".explorer.yaml")]
     try:
         protocol = yaml.safe_load(Path(protocol_path).read_text(encoding="utf-8"))
     except (OSError, yaml.YAMLError) as error:
@@ -562,7 +568,7 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
     guidance_by_universe = {}
     marks_by_universe = {}
     for name, kind, document in loaded:
-        if kind not in ("guidance", "marks"):
+        if kind not in ("guidance", "marks") or (kind == "marks" and not marks):
             continue
         header = document[kind]
         key = "guides" if kind == "guidance" else "marks_for"
@@ -593,7 +599,7 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
         if guidance_by_universe.get(universe_id)
         else None
     )
-    marks = (
+    chosen_marks = (
         marks_by_universe.get(universe_id, [(None, None)])[0][1]
         if marks_by_universe.get(universe_id)
         else None
@@ -623,6 +629,14 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
             "Selected definitions do not conform to the bundled protocol",
             diagnostics=findings,
         )
+    return protocol, source, guidance, chosen_marks
+
+
+def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=None):
+    """Validate and project one universe without writing source or output files."""
+    protocol, source, guidance, marks = load_selection(
+        protocol_path, paths, universe_id=universe_id
+    )
     try:
         model = prepare_model(source, protocol, guidance, marks)
     except (ValueError, TypeError, KeyError) as error:

@@ -1,0 +1,69 @@
+{
+  "alias": {
+    "kind": "none"
+  },
+  "conditions": [
+    {
+      "id": "audience",
+      "question": null,
+      "values": []
+    },
+    {
+      "id": "risk",
+      "question": "How costly is a mistake on this visit?",
+      "values": [
+        {
+          "question": "Can a mistake be fixed the same day?",
+          "value": "low"
+        }
+      ]
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "share what the visit found",
+    "actor": "everyone who could not attend",
+    "timing": null
+  },
+  "guidance": [],
+  "kind": "visit-report",
+  "name": "Visit report",
+  "no_artifact": {
+    "audience": [
+      "team"
+    ],
+    "risk": [
+      "low"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "findings",
+      "gate": null,
+      "guidance": [],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Findings",
+      "question": "What did we observe?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "costs",
+      "gate": null,
+      "guidance": [],
+      "kept_in": [],
+      "mode": "links",
+      "name": "Costs",
+      "question": "What did the visit cost?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "card-fixture",
+    "label": "Card fixture",
+    "version": "0.1"
+  }
+}

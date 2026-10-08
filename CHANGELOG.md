@@ -2,6 +2,15 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.10.0 — unreleased
+
+Bundled protocol: `kbp/0.8`.
+
+### Checker
+
+- Add `kbp --card <kind>`: prints the card for one document type, as JSON or with `--format markdown`. See [Document Type Card](docs/document-type-card.md).
+- Add `kbp --kinds`: lists every document type with its other names and purpose.
+
 ## 0.9.0
 
 Bundled protocol: `kbp/0.8`.

@@ -1,0 +1,202 @@
+{
+  "alias": {
+    "form": "key path scenario",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "authority",
+      "question": "Who has to be asked or told before the work goes ahead?",
+      "values": [
+        {
+          "question": "Does someone's yes have to come first?",
+          "value": "approve"
+        },
+        {
+          "question": "Does a law or regulator require a yes first?",
+          "value": "statutory"
+        }
+      ]
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "check, step by step, that one person can reach one goal through the solution",
+    "actor": "reviewer",
+    "timing": "before the work starts"
+  },
+  "guidance": [
+    {
+      "claim": "Follow one person pursuing one goal, step by step. Use it early to settle what the solution should do, and leave detailed interface design out.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "Three unrelated practices share the name: a live usability test with users, an architecture review of quality attributes (ATAM), and a document or code inspection meeting. The walkthrough meant here is a written step-by-step trace of one person reaching one goal; if yours is a meeting or a test session, it is one of the others.",
+      "kind": "pitfall",
+      "when": null
+    }
+  ],
+  "kind": "scenario-walkthrough",
+  "name": "Scenario walkthrough",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "stepwise-trace",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from User / Job Stories: a story says what the solution should let a person do, one capability at a time; a trace follows one person through the solution in one circumstance, step by step, joins included.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "The joins are the content. No single story contains a seam, and a set of stories does not sum to one trace.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Solution Overview: a trace follows one person in one concrete circumstance in full detail; the overview outlines all the behaviour at once. Ask whether the text follows one path or covers them all. In a design document, refer to the trace where the RFC template puts its guide-level explanation.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Stepwise trace",
+      "question": "What happens at each step of one path through the solution?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "user-job-stories",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "A user story (as-a / I-want / so-that) presumes a persona; a job story (when / I-want / so-I-can) presumes a circumstance. Pick one per document; do not mix.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Acceptance criteria turn a story from a conversation-starter into testable scope.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Jobs to Be Done: ask whether the line names what the solution must let a person do. A story does, and acceptance criteria test it; the job behind it stays true whatever is built.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "User job stories",
+      "question": "What should the solution let a person do?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "data-flows-and-integrations",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Flows name the contract — API, event, file — and the contract's owner.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "In regulated and privacy contexts flows are compliance surface. Annotate data classification — personally identifiable information, protected health information — where it applies.",
+          "kind": "heuristic",
+          "when": {
+            "authority": [
+              "approve",
+              "statutory"
+            ]
+          }
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "architecture-overview",
+          "name": "Architecture overview"
+        },
+        {
+          "kind": "system-context-diagram",
+          "name": "System context diagram"
+        }
+      ],
+      "mode": "links",
+      "name": "Data flows and integrations",
+      "question": "What data moves where?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "constraints",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Imposed, not chosen: regulation, budget, deadline, platform, physics.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Cross-Cutting Concerns: a constraint is an imposed limit on the work that no design choice moves — budget, deadline, platform, what the law allows; a cross-cutting concern is an obligation every part of the solution must be designed to meet — security, privacy, accessibility. One law can supply both: a limit here, a property demanded throughout there.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Trade-offs. Mislabelling a choice as a constraint hides a decision.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "design-doc",
+          "name": "Design doc"
+        },
+        {
+          "kind": "brand-identity-guide",
+          "name": "Brand identity guide"
+        },
+        {
+          "kind": "decision-brief",
+          "name": "Decision brief"
+        },
+        {
+          "kind": "decision-record",
+          "name": "Decision record"
+        }
+      ],
+      "mode": "links",
+      "name": "Constraints",
+      "question": "What imposed limits apply to the work?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

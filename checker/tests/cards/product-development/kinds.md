@@ -1,0 +1,59 @@
+# Document types
+
+In the Product development universe spec (product-development 0.9).
+
+- Product strategy canvas (product-strategy-canvas)
+  - Helps you: choose what an offering will aim for next and what it will refuse
+- Business model canvas (business-model-canvas)
+  - Its shape is set by an outside authority: Business Model Canvas (Osterwalder)
+  - Helps you: check whether a business can deliver an offering its customers value and earn more than providing it costs
+- Lean canvas (lean-canvas)
+  - Its shape is set by an outside authority: Lean Canvas (Maurya)
+  - Helps you: choose which assumption in a new venture's business model to test next
+- Startup canvas (startup-canvas)
+  - Helps you: decide what a new venture will aim for and how it will make money
+- Swot analysis (swot-analysis)
+  - Its shape is set by an outside authority: SWOT
+  - Helps you: compare our strengths and weaknesses with the opportunities and threats outside us
+- Pestle analysis (pestle-analysis)
+  - Its shape is set by an outside authority: PESTLE
+  - Helps you: check which political, economic, social, technological, legal and environmental conditions affect the work
+- Competitor analysis (competitor-analysis)
+  - Also called: competitor analysis
+  - Helps you: find where the offering can differ from the other options people have, including doing nothing
+- Persona profile (persona-profile)
+  - Also called: persona profile
+  - Helps you: decide which kind of person, in which circumstance, to design the solution for
+- Opportunity assessment (opportunity-assessment)
+  - Also called: product brief / one-pager
+  - Helps you: decide whether to pursue a problem at all
+- Risk assessment (risk-assessment)
+  - Also called: risk register
+  - Helps you: decide which risks to reduce, accept or watch, and who handles each
+- Design doc (design-doc)
+  - Also called: RFC / RFD
+  - Helps you: agree to or object to one proposed approach
+- Brand identity guide (brand-identity-guide)
+  - Also called: brand guidelines / style guide / DESIGN.md
+  - Helps you: apply the brand's look and wording correctly on your own
+- Scenario walkthrough (scenario-walkthrough)
+  - Also called: key path scenario
+  - Helps you: check, step by step, that one person can reach one goal through the solution
+- Success metrics (success-metrics)
+  - Also called: North Star framework
+  - Helps you: decide which numbers to improve next and which to keep where they are
+- Architecture overview (architecture-overview)
+  - Also called: C4 levels 1–2
+  - Helps you: find which parts of the system a change will affect
+- System context diagram (system-context-diagram)
+  - Its shape is set by an outside authority: C4 level 1
+  - Helps you: find what the system is responsible for and which outside people and systems it works with
+- Decision brief (decision-brief)
+  - Also called: options paper / decision document (DACI, SPADE)
+  - Helps you: choose one of several options by a set date
+- Decision record (decision-record)
+  - Also called: ADR (Nygard) / MADR / record of decision
+  - Helps you: check whether a past decision still applies, and record a replacement when it no longer does
+- Experiment plan (experiment-plan)
+  - Also called: experiment plan / pre-registration / study protocol
+  - Helps you: commit to a test's prediction and its measures in advance

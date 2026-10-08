@@ -4,10 +4,14 @@
     kbp --self-check [<protocol.yaml>]
     kbp --version
     kbp --mint element|artifact|frame|factor [count] [<document-or-directory>...]
+    kbp --card <kind> [<scope or files>] [--universe <id>] [--format json|markdown]
+    kbp --kinds [<scope or files>] [--universe <id>] [--format json|markdown]
 
 `--validate` checks documents against the protocol and is what a bare `kbp`
 does. `--self-check` checks the protocol against itself and stops there.
 `--mint` returns codes that collide with nothing the documents declare.
+`--card` prints the card for one document type. `--kinds` lists every document type.
+Both take the same targets as `--inspect` and skip marks files.
 
 Without targets, use the nearest ancestor's .knowledge-bus/ directory.
 Explicit targets take precedence. The implementation checkout retains its bundled
@@ -140,7 +144,16 @@ def resolve(args, *, documents_required=True):
     return protocol, documents, None
 
 
-MODES = ("--validate", "--self-check", "--mint", "--inspect", "--explore")
+MODES = (
+    "--validate",
+    "--self-check",
+    "--mint",
+    "--inspect",
+    "--explore",
+    "--card",
+    "--kinds",
+)
+FORMATS = ("json", "markdown")
 
 
 def _option(arguments, name, *, required=False):
@@ -218,6 +231,74 @@ def _explorer_mode(mode, argv):
     return 1
 
 
+def _card_mode(mode, argv):
+    from . import card, explorer
+
+    try:
+        try:
+            universe_id = _option(argv, "--universe")
+            output_format = _option(argv, "--format") or "json"
+        except ValueError as error:
+            raise explorer.InspectionError("selection", str(error)) from error
+        if output_format not in FORMATS:
+            raise explorer.InspectionError(
+                "selection", f"--format is one of {', '.join(FORMATS)}"
+            )
+        unknown = next((value for value in argv if value.startswith("--")), None)
+        if unknown:
+            raise explorer.InspectionError("selection", f"unknown option {unknown}")
+        kind = None
+        if mode == "--card":
+            if not argv:
+                raise explorer.InspectionError(
+                    "selection", "--card requires a document type id"
+                )
+            kind = argv.pop(0)
+        paths, file_selection = explorer.resolve_inspection_targets(argv)
+        if not paths:
+            raise explorer.InspectionError(
+                "selection", "No Knowledge Bus definitions in the selected scope"
+            )
+        if universe_id and file_selection and universe_id != file_selection:
+            raise explorer.InspectionError(
+                "selection",
+                "The explicit universe spec id conflicts with the selected file",
+            )
+        protocol = default_protocol()
+        if protocol is None:
+            raise explorer.InspectionError("protocol", "No bundled protocol found")
+        _, universe, guidance, _ = explorer.load_selection(
+            protocol, paths, universe_id=universe_id or file_selection, marks=False
+        )
+        if mode == "--kinds":
+            result = card.build_kinds(universe)
+            render = card.render_kinds
+        else:
+            kinds = card.kind_ids(universe)
+            if kind not in kinds:
+                raise explorer.InspectionError(
+                    "selection",
+                    f"No document type {kind!r} in universe spec {universe['universe']['id']!r}",
+                    candidates=kinds,
+                )
+            result = card.build_card(universe, guidance, kind)
+            render = card.render_card
+        if output_format == "markdown":
+            sys.stdout.write(render(result))
+        else:
+            print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+        return 0
+    except OSError as error:
+        failure = explorer.InspectionError("selection", str(error))
+    except explorer.InspectionError as error:
+        failure = error
+    print(
+        json.dumps(failure.as_dict(), ensure_ascii=False, sort_keys=True),
+        file=sys.stderr,
+    )
+    return 1
+
+
 def main(argv=()):
     argv = list(argv)
     if argv == ["--version"]:
@@ -234,6 +315,8 @@ def main(argv=()):
 
     if mode in ("--inspect", "--explore"):
         return _explorer_mode(mode, argv)
+    if mode in ("--card", "--kinds"):
+        return _card_mode(mode, argv)
 
     unknown = next((a for a in argv if a.startswith("--")), None)
     if unknown:

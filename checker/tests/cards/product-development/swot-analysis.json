@@ -1,0 +1,139 @@
+{
+  "alias": {
+    "form": "SWOT",
+    "kind": "normative"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "compare our strengths and weaknesses with the opportunities and threats outside us",
+    "actor": "whoever sets the plan",
+    "timing": "before setting the plan"
+  },
+  "guidance": [],
+  "kind": "swot-analysis",
+  "name": "Swot analysis",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "internal-strengths-weaknesses",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from Capabilities: this audits the strengths and weaknesses we have now, judged against the work; Capabilities names the abilities a strategy requires, including those still to gain.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Sanitised weaknesses are the most common SWOT failure.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Strengths only count against a stated goal or competitor. Context-free strengths are trivia.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Internal strengths weaknesses",
+      "question": "Which of our own strengths and weaknesses matter to the work?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "external-opportunities-threats",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from Macro-Environment Factors, which lists outside conditions lens by lens; this judges which of them, and which competitor moves, help or threaten the work. The same law may appear in both: once as a fact, once as a threat with an owner.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Draw each opportunity and threat from the PESTLE scan or the competitor profiles, and say which one it came from.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A threat with no owner and no trigger gets noticed only once it lands. Carry each threat that needs a response into Risks & Assumptions, where it gets an owner.",
+          "kind": "pitfall",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "External opportunities threats",
+      "question": "Which outside opportunities and threats matter to the work?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "macro-environment-factors",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Six lenses: political, economic, social, technological, legal, environmental.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Weight by industry — legal and political dominate banking and healthtech, environmental dominates construction and energy, social and technological dominate consumer.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Review it after an election, a new law or regulation, or a change in the platforms or technology the work depends on.",
+          "kind": "refresh",
+          "when": null
+        },
+        {
+          "claim": "Where a condition fixes a limit the work must meet, record it in Constraints too.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "For a lens that was checked and holds nothing that affects the work, write 'nothing found', so a reader can tell it apart from a lens nobody checked.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "pestle-analysis",
+          "name": "Pestle analysis"
+        }
+      ],
+      "mode": "links",
+      "name": "Macro environment factors",
+      "question": "Which political, economic, social, technological, legal or environmental conditions affect the work?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

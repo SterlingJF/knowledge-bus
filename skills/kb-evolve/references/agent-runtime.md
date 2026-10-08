@@ -19,6 +19,8 @@ Requires [uv](https://docs.astral.sh/uv/) and Python matching `requires_python` 
 python3 /absolute/runtime/kbp.py --validate /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --mint element 1 /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --inspect /absolute/target/.knowledge-bus/
+python3 /absolute/runtime/kbp.py --card <kind> /absolute/target/.knowledge-bus/
+python3 /absolute/runtime/kbp.py --kinds /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --explore --output /absolute/output /absolute/target/.knowledge-bus/
 ```
 
@@ -27,6 +29,8 @@ The bundled wheel supplies the checker, protocol, and required Python code. The 
 Supply an absolute universe file, knowledge-base folder, or its `.knowledge-bus/` folder when the shell is elsewhere. Checking never initializes a folder. `.knowledge-bus/` is the reserved Knowledge Bus configuration directory, not the knowledge base itself. `KNOWLEDGE_BUS_CACHE_DIR` optionally selects another cache location.
 
 `--inspect` prints an Explorer model and writes nothing. When the scope contains several universes, select one with `--universe`. `--explore` requires an output directory and refuses existing output unless `--replace` is supplied. It builds an offline Explorer from the bundled viewer.
+
+`--card <kind>` prints the card for one document type as JSON: what it helps you do, who uses it and when, its sections, guidance on writing it, and when no document is needed. `--format markdown` prints the card as Markdown. `--kinds` lists every document type with its other names and purpose.
 
 ## References
 

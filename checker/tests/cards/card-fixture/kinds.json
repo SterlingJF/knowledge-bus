@@ -1,0 +1,36 @@
+{
+  "kinds": [
+    {
+      "action": "prepare a safe site visit",
+      "alias": {
+        "form": "site visit plan / risk briefing",
+        "kind": "descriptive"
+      },
+      "kind": "visit-plan",
+      "name": "Visit plan"
+    },
+    {
+      "action": "enter the site with the owner's permission",
+      "alias": {
+        "form": "County site access permit",
+        "kind": "normative"
+      },
+      "kind": "site-permit",
+      "name": "Site permit"
+    },
+    {
+      "action": "share what the visit found",
+      "alias": {
+        "kind": "none"
+      },
+      "kind": "visit-report",
+      "name": "Visit report"
+    }
+  ],
+  "schema": "knowledge-bus/kinds/1",
+  "universe_spec": {
+    "id": "card-fixture",
+    "label": "Card fixture",
+    "version": "0.1"
+  }
+}

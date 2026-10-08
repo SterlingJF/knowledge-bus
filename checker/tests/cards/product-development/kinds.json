@@ -1,0 +1,179 @@
+{
+  "kinds": [
+    {
+      "action": "choose what an offering will aim for next and what it will refuse",
+      "alias": {
+        "kind": "none"
+      },
+      "kind": "product-strategy-canvas",
+      "name": "Product strategy canvas"
+    },
+    {
+      "action": "check whether a business can deliver an offering its customers value and earn more than providing it costs",
+      "alias": {
+        "form": "Business Model Canvas (Osterwalder)",
+        "kind": "normative"
+      },
+      "kind": "business-model-canvas",
+      "name": "Business model canvas"
+    },
+    {
+      "action": "choose which assumption in a new venture's business model to test next",
+      "alias": {
+        "form": "Lean Canvas (Maurya)",
+        "kind": "normative"
+      },
+      "kind": "lean-canvas",
+      "name": "Lean canvas"
+    },
+    {
+      "action": "decide what a new venture will aim for and how it will make money",
+      "alias": {
+        "kind": "none"
+      },
+      "kind": "startup-canvas",
+      "name": "Startup canvas"
+    },
+    {
+      "action": "compare our strengths and weaknesses with the opportunities and threats outside us",
+      "alias": {
+        "form": "SWOT",
+        "kind": "normative"
+      },
+      "kind": "swot-analysis",
+      "name": "Swot analysis"
+    },
+    {
+      "action": "check which political, economic, social, technological, legal and environmental conditions affect the work",
+      "alias": {
+        "form": "PESTLE",
+        "kind": "normative"
+      },
+      "kind": "pestle-analysis",
+      "name": "Pestle analysis"
+    },
+    {
+      "action": "find where the offering can differ from the other options people have, including doing nothing",
+      "alias": {
+        "form": "competitor analysis",
+        "kind": "descriptive"
+      },
+      "kind": "competitor-analysis",
+      "name": "Competitor analysis"
+    },
+    {
+      "action": "decide which kind of person, in which circumstance, to design the solution for",
+      "alias": {
+        "form": "persona profile",
+        "kind": "descriptive"
+      },
+      "kind": "persona-profile",
+      "name": "Persona profile"
+    },
+    {
+      "action": "decide whether to pursue a problem at all",
+      "alias": {
+        "form": "product brief / one-pager",
+        "kind": "descriptive"
+      },
+      "kind": "opportunity-assessment",
+      "name": "Opportunity assessment"
+    },
+    {
+      "action": "decide which risks to reduce, accept or watch, and who handles each",
+      "alias": {
+        "form": "risk register",
+        "kind": "descriptive"
+      },
+      "kind": "risk-assessment",
+      "name": "Risk assessment"
+    },
+    {
+      "action": "agree to or object to one proposed approach",
+      "alias": {
+        "form": "RFC / RFD",
+        "kind": "descriptive"
+      },
+      "kind": "design-doc",
+      "name": "Design doc"
+    },
+    {
+      "action": "apply the brand's look and wording correctly on your own",
+      "alias": {
+        "form": "brand guidelines / style guide / DESIGN.md",
+        "kind": "descriptive"
+      },
+      "kind": "brand-identity-guide",
+      "name": "Brand identity guide"
+    },
+    {
+      "action": "check, step by step, that one person can reach one goal through the solution",
+      "alias": {
+        "form": "key path scenario",
+        "kind": "descriptive"
+      },
+      "kind": "scenario-walkthrough",
+      "name": "Scenario walkthrough"
+    },
+    {
+      "action": "decide which numbers to improve next and which to keep where they are",
+      "alias": {
+        "form": "North Star framework",
+        "kind": "descriptive"
+      },
+      "kind": "success-metrics",
+      "name": "Success metrics"
+    },
+    {
+      "action": "find which parts of the system a change will affect",
+      "alias": {
+        "form": "C4 levels 1–2",
+        "kind": "descriptive"
+      },
+      "kind": "architecture-overview",
+      "name": "Architecture overview"
+    },
+    {
+      "action": "find what the system is responsible for and which outside people and systems it works with",
+      "alias": {
+        "form": "C4 level 1",
+        "kind": "normative"
+      },
+      "kind": "system-context-diagram",
+      "name": "System context diagram"
+    },
+    {
+      "action": "choose one of several options by a set date",
+      "alias": {
+        "form": "options paper / decision document (DACI, SPADE)",
+        "kind": "descriptive"
+      },
+      "kind": "decision-brief",
+      "name": "Decision brief"
+    },
+    {
+      "action": "check whether a past decision still applies, and record a replacement when it no longer does",
+      "alias": {
+        "form": "ADR (Nygard) / MADR / record of decision",
+        "kind": "descriptive"
+      },
+      "kind": "decision-record",
+      "name": "Decision record"
+    },
+    {
+      "action": "commit to a test's prediction and its measures in advance",
+      "alias": {
+        "form": "experiment plan / pre-registration / study protocol",
+        "kind": "descriptive"
+      },
+      "kind": "experiment-plan",
+      "name": "Experiment plan"
+    }
+  ],
+  "schema": "knowledge-bus/kinds/1",
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

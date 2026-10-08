@@ -2,6 +2,6 @@
   "version": "0.9.0",
   "wheel": "knowledge_bus-0.9.0-py3-none-any.whl",
   "requires_python": ">=3.14",
-  "sha256": "d4cc1aeb32952e9bde6315b31840f451e50a165f3fc20b5b4b1ee9161ab1b2ca",
+  "sha256": "0de7874f0c1005cc79fc39aee39fd3fced2f6725af9e2b3b994041b98fe792bf",
   "dependencies": []
 }

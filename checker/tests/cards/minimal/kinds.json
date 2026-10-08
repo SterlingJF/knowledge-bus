@@ -1,0 +1,18 @@
+{
+  "kinds": [
+    {
+      "action": "Lets someone state a question and be held to it.",
+      "alias": {
+        "kind": "none"
+      },
+      "kind": "the-record",
+      "name": "The record"
+    }
+  ],
+  "schema": "knowledge-bus/kinds/1",
+  "universe_spec": {
+    "id": "minimal",
+    "label": "Minimal",
+    "version": "0.1"
+  }
+}

@@ -52,6 +52,15 @@ uv run kbp --inspect path/to/.knowledge-bus/
 
 When the scope contains several universes, select one with `--universe <id>` or target its file. Duplicate ids and ambiguous guidance or marks fail.
 
+Print the card for one document type, or list every document type:
+
+```bash
+uv run kbp --card <kind> path/to/.knowledge-bus/
+uv run kbp --kinds path/to/.knowledge-bus/
+```
+
+`--card` and `--kinds` skip marks files. See [Document Type Card](document-type-card.md).
+
 ## Understanding Results
 
 The checker first reports whether the protocol is `SOUND`. It then reports whether each document conforms, with `FAIL` messages describing the problems it found.

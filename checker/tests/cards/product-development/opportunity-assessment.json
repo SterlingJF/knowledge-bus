@@ -1,0 +1,466 @@
+{
+  "alias": {
+    "form": "product brief / one-pager",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "uptake",
+      "question": "How do people come to take up the offering?",
+      "values": [
+        {
+          "question": "Do they take it up only by deciding to, with nothing to pay?",
+          "value": "chosen"
+        },
+        {
+          "question": "Is paying how they take it up?",
+          "value": "bought"
+        }
+      ]
+    },
+    {
+      "id": "authority",
+      "question": "Who has to be asked or told before the work goes ahead?",
+      "values": [
+        {
+          "question": "Is asking someone first a courtesy you may skip?",
+          "value": "discretionary"
+        },
+        {
+          "question": "Must someone be told first, with no yes needed?",
+          "value": "notify"
+        },
+        {
+          "question": "Does someone's yes have to come first?",
+          "value": "approve"
+        },
+        {
+          "question": "Does a law or regulator require a yes first?",
+          "value": "statutory"
+        }
+      ]
+    },
+    {
+      "id": "maturity",
+      "question": "How settled is the bet this work rests on?",
+      "values": []
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "decide whether to pursue a problem at all",
+    "actor": "whoever would fund or approve the work",
+    "timing": "before committing people or money to the work"
+  },
+  "guidance": [
+    {
+      "claim": "Keep it to one or two pages about the problem, written before any product requirements document.",
+      "kind": "convention",
+      "when": null
+    }
+  ],
+  "kind": "opportunity-assessment",
+  "name": "Opportunity assessment",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "problem-statement",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Name the problem and whose problem it is, with no solution built in.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Solution-shaped problems pre-commit the answer.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "One quantified pain beats five asserted ones.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Problem statement",
+      "question": "What problem should the work solve?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "case-for-change",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Say why now: what changed that makes the work worth doing at this point.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Value Proposition: the value proposition says why a segment would choose the offering over its alternatives; the case for change says why the work is worth doing now. Ask whose reason it is: the people the offering is for, or whoever commits time and money to the work.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Case for change",
+      "question": "Why is the work worth doing now?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "risks-and-assumptions",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For an assumption, state what is being relied on and how it will be checked. For a risk, state what could happen, its significance, and the response.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Opportunities & Threats: there an outside condition is judged for planning; here anything inside or outside that could harm the work gets a response and someone to handle it.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Before committing, imagine the work has already failed and have each person write down why. This brings out risks people hesitate to raise.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "The RFC tradition records drawbacks — known, accepted costs — separately from risks, which are uncertainties.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Where an approver or regulator will review the work, date each entry and name its owner and response, so the record can be audited.",
+          "kind": "heuristic",
+          "when": {
+            "authority": [
+              "approve",
+              "statutory"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Risks and assumptions",
+      "question": "What could harm the work if it happened or proved wrong?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "consent-and-authority",
+      "gate": {
+        "authority": [
+          "discretionary",
+          "notify",
+          "approve",
+          "statutory"
+        ]
+      },
+      "guidance": [],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Consent and authority",
+      "question": "What licence, permit, consent or legal basis allows the work?",
+      "strength": "core",
+      "when": {
+        "authority": [
+          "approve",
+          "statutory"
+        ]
+      }
+    },
+    {
+      "element": "customer-segments",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Segment by shared job or behaviour, not demographics alone — demographic-only segments are the classic false-precision trap.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "In B2B the buyer, the user and the payer differ; healthtech's patient/provider/payer triangle makes single-segment framing misleading.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "One beachhead segment. A long segment list this early signals unvalidated focus.",
+          "kind": "pitfall",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        },
+        {
+          "claim": "Distinct from Canonical Model: a segment here is a group of people the offering is for; a category there is one the system uses to sort its own data, such as account types. Ask whether it is about whom we serve or how the system files things.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Customer segments",
+      "question": "Exactly which groups is the offering for?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "market-sizing",
+      "gate": {
+        "uptake": [
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Run top-down and bottom-up. They should disagree, and reconciling them is the insight.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "As much an investor convention as a planning one. Include it only when the bet's size justifies it.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Pre-category, point estimates are fiction. Use scenario ranges.",
+          "kind": "pitfall",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        },
+        {
+          "claim": "Size the share the offering could realistically win as well as the whole market. The whole market on its own overstates the opportunity.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Market sizing",
+      "question": "How large is the market the offering could serve?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "value-proposition",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Always relative to the segment's current alternative, including doing nothing.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "One per segment. A single all-segment value proposition usually means the segments were never really split.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Quantify in time, cost or risk. Where there is no market, qualitative is fine — but still name the alternative.",
+          "kind": "heuristic",
+          "when": {
+            "uptake": [
+              "bought"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Value proposition",
+      "question": "Why would a segment choose the offering over its alternatives?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "competitor-profile",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Per alternative: what it offers, segment overlap, how well it serves those people, pricing where knowable.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Include indirect alternatives and doing nothing. The spreadsheet-and-email incumbent beats most challengers.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Sales battlecards are the externalised descendant. Keep evidence separate from spin.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Competitor profile",
+      "question": "How well does each alternative serve the people the offering is for?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "success-criteria",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "'Improve X' invites post-hoc rationalisation. Set a threshold and a measurement date.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Per-initiative acceptance, set before the work, expiring with the effort — unlike metrics that run continuously.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A product requirements document's launch 'success metrics' and an OKR's key results belong here: each is a threshold with a date, usually on an input metric.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Point to the shared measures the work must not break instead of copying them, and state in full each threshold this work commits to.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Success criteria",
+      "question": "What observable result counts as success for the work?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "affected-and-interested-parties",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "List everyone who bears a cost, hazard or loss from the work, including people who never use what it produces, such as the neighbours of a building site.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "If the work's effects fall only on those accountable for it, say so and leave the list empty for that reason. A blank list with no such note cannot show that anyone checked who else carries the work's risks.",
+          "kind": "empty",
+          "when": null
+        },
+        {
+          "claim": "For each party, record what claim it has to be heard, such as a legal right, a contract or direct harm. That claim decides whether a risk it carries can be accepted without asking it.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Decision Authority & Approvals: a party here is heard and weighed; an approver there decides whether the work goes ahead. If the work needs their yes, list them there.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Affected and interested parties",
+      "question": "Who does the work affect beyond those accountable for it?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "decision-authority-and-approvals",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For each approval, name who gives it and who gave them the right to give it. If nobody holds that right, close the gap before relying on the approval.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Consent & Authority: an approval is a decision someone takes over whether the work goes ahead; a licence, permit, consent or legal basis is the permission the work holds. A regulator can appear in both: as an approval here, as its clearance there.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "If the work needs no one's approval, say so and say how you know, for example that the spend is within your own authority. A blank list with no such note reads as not yet checked.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Decision authority and approvals",
+      "question": "Whose approval does the work need?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "funding-source",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from Revenue Streams: funding pays for the work; revenue is what the offering earns from the people who take it up. Where the offering's own earnings pay for the work, name them here as the source and describe them there.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Record each funder's conditions. Where a condition limits the work, also list it under Constraints, pointing back here instead of restating it.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Count time and in-kind support as funding where no money changes hands. In personal work the funder is usually yourself, in time or savings; write that down, because it is an answer.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Funding source",
+      "question": "Who funds the work?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

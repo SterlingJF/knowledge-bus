@@ -1,0 +1,354 @@
+{
+  "alias": {
+    "form": "Business Model Canvas (Osterwalder)",
+    "kind": "normative"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "uptake",
+      "question": "How do people come to take up the offering?",
+      "values": [
+        {
+          "question": "Does it arrive whether or not they'd choose it?",
+          "value": "given"
+        },
+        {
+          "question": "Do they take it up only by deciding to, with nothing to pay?",
+          "value": "chosen"
+        },
+        {
+          "question": "Is paying how they take it up?",
+          "value": "bought"
+        }
+      ]
+    },
+    {
+      "id": "maturity",
+      "question": "How settled is the bet this work rests on?",
+      "values": []
+    }
+  ],
+  "disabled_when": {
+    "uptake": [
+      "given",
+      "chosen"
+    ]
+  },
+  "enablement": {
+    "action": "check whether a business can deliver an offering its customers value and earn more than providing it costs",
+    "actor": "whoever starts, runs or funds the business",
+    "timing": "before committing money or time to the business, and again whenever its customers, delivery or income change"
+  },
+  "guidance": [
+    {
+      "claim": "Fill in all nine blocks: customer segments, value propositions, channels, customer relationships, revenue streams, key resources, key activities, key partnerships and cost structure.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "When a block does not apply, keep it and write in it why it does not apply.",
+      "kind": "heuristic",
+      "when": null
+    },
+    {
+      "claim": "For a new business every block is still a guess, and this canvas checks that the guesses fit together. The Lean Canvas picks which guess to test first; the Startup Canvas commits the venture's aims.",
+      "kind": "boundary",
+      "when": {
+        "maturity": [
+          "unproven"
+        ]
+      }
+    }
+  ],
+  "kind": "business-model-canvas",
+  "name": "Business model canvas",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "customer-segments",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Segment by shared job or behaviour, not demographics alone — demographic-only segments are the classic false-precision trap.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "In B2B the buyer, the user and the payer differ; healthtech's patient/provider/payer triangle makes single-segment framing misleading.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "One beachhead segment. A long segment list this early signals unvalidated focus.",
+          "kind": "pitfall",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        },
+        {
+          "claim": "Distinct from Canonical Model: a segment here is a group of people the offering is for; a category there is one the system uses to sort its own data, such as account types. Ask whether it is about whom we serve or how the system files things.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Customer segments",
+      "question": "Exactly which groups is the offering for?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "value-proposition",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Always relative to the segment's current alternative, including doing nothing.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "One per segment. A single all-segment value proposition usually means the segments were never really split.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Quantify in time, cost or risk. Where there is no market, qualitative is fine — but still name the alternative.",
+          "kind": "heuristic",
+          "when": {
+            "uptake": [
+              "bought"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Value proposition",
+      "question": "Why would a segment choose the offering over its alternatives?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "channels",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Cover every stage at which the offering meets the segment: how they hear of it, weigh it up, buy it, receive it and get support afterwards.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Product-led versus sales-led growth is at bottom a channels choice. Regulated and enterprise markets often have imposed channels — brokers, distributors, procurement — that dominate the design.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "For physical goods, delivery and service channels drive cost structure. Link the two.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Channels",
+      "question": "How does the offering reach each segment?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "customer-relationships",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For each segment, name the kind of relationship: personal assistance, dedicated personal assistance, self-service, automated service, community or co-creation.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Skipping this hides how you keep people once they arrive. For each segment, say what keeps them coming back or staying.",
+          "kind": "pitfall",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Customer relationships",
+      "question": "What kind of relationship do we keep with each segment?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "revenue-streams",
+      "gate": {
+        "uptake": [
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Core to the Business Model Canvas and the Lean Canvas. Strategy canvases often omit it, treating monetisation as downstream of positioning.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "In regulated industries this is often fixed by regulation or reimbursement codes. Record it as a constraint, not a choice.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A hypothesis to test, not a plan. Deep tech and hardware commonly defer it until technical maturity.",
+          "kind": "heuristic",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Revenue streams",
+      "question": "How does the offering earn money?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "key-resources",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Check all four kinds of key resource: physical, intellectual (brand, patents, data), human and financial.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Deep tech, EV and robotics are dominated by intellectual property and specialised equipment. Licences and certifications carry lead times — flag them early.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Software businesses often run thin here. Thin is an answer, not a gap.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Key resources",
+      "question": "What assets must we own or control?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "key-activities",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "List only what you must do yourselves; any activity someone else does for you belongs in Key Partnerships.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Capabilities: activities are what you do, capabilities are what you must be able to do. Strategy canvases use the latter.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Key activities",
+      "question": "Which activities must we perform ourselves?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "key-partnerships",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For each partner, say what you rely on them for, such as supply, integration, resale or a platform you run on.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "For platform-dependent products the platform is a partnership with unilateral terms. Track it as a risk too.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "In construction and hardware, partner schedules land directly on the critical path.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Key partnerships",
+      "question": "What do we deliberately rely on others for?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "cost-structure",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "The dominant driver is the insight, not the line items — services and construction run on per-project labour, software on headcount, hardware on cost of goods sold and capex.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinguish fixed from variable and note what scales with growth. The growth mechanism can invert the shape.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Still applies at personal and household scale, where time is the usual dominant cost.",
+          "kind": "heuristic",
+          "when": {
+            "uptake": [
+              "given"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Cost structure",
+      "question": "What mainly determines the cost of providing the offering?",
+      "strength": "core",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

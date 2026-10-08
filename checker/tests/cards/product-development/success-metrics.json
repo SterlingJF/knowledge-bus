@@ -1,0 +1,187 @@
+{
+  "alias": {
+    "form": "North Star framework",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "decide which numbers to improve next and which to keep where they are",
+    "actor": "whoever runs the offering day to day",
+    "timing": "at each regular review of the offering"
+  },
+  "guidance": [
+    {
+      "claim": "The North Star Metric and the input metrics that drive it.",
+      "kind": "convention",
+      "when": null
+    }
+  ],
+  "kind": "success-metrics",
+  "name": "Success metrics",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "north-star-metric",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Proxies customer value, not company results. Revenue is an outcome, not a North Star.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "One per space, at any abstraction, tested by real users, needs and strategy — never by the org chart. Distinct metrics only for genuinely distinct divisions and customer bases.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A single effort does not get its own North Star. It sets its success criteria on a change in what people do that the effort can influence and that drives the North Star, which Torres calls a product outcome.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A North Star tracks customer value within its framework. The One Metric That Matters identifies the current metric to focus on and may change with the business stage or bottleneck; the names are not interchangeable.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Represents vision and strategy without being either — a strong metric statement lets a reader recover both at a high level.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A North Star without input metrics is not actionable.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Success Metrics owns the definition. A strategy canvas records the choice and links back rather than restating it, because copies drift.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "North star metric",
+      "question": "What one measure best shows the value people get from the offering?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "input-metrics",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Leading and team-influenceable, or it is an output someone mislabelled.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Few and causal beats many and correlated.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Where a team already reports KPIs, sort them before reusing any here. Parmenter separates result indicators, which sum up the input of more than one team, from performance indicators, which can be tied to one team; only the second kind can serve as input metrics.",
+          "kind": "convention",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Input metrics",
+      "question": "Which measures within our control predict the value people get from the offering?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "guardrail-health-metrics",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "The counterweight to any target — latency, churn, quality, trust; burnout at personal scale.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Guardrails that protect the organisation, such as page-load time or revenue, are largely shared across experiments. Define them once, for the whole organisation, and reuse them in every effort.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Experimentation-heavy organisations formalise these as launch blockers; everywhere else they stay implicit until an incident. Write them down first.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Input Metrics. Ask whether the number should move or hold: an input metric is pushed to move, a guardrail is held within its range. Neither the Business Model Canvas nor the Lean Canvas has a block for guardrails, so keep them in Success Metrics.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Guardrail health metrics",
+      "question": "Which measures must stay within set ranges while we pursue other targets?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "success-criteria",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "'Improve X' invites post-hoc rationalisation. Set a threshold and a measurement date.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Per-initiative acceptance, set before the work, expiring with the effort — unlike metrics that run continuously.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A product requirements document's launch 'success metrics' and an OKR's key results belong here: each is a threshold with a date, usually on an input metric.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Point to the shared measures the work must not break instead of copying them, and state in full each threshold this work commits to.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Success criteria",
+      "question": "What observable result counts as success for the work?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

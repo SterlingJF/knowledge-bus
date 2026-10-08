@@ -1,0 +1,468 @@
+{
+  "alias": {
+    "kind": "none"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "uptake",
+      "question": "How do people come to take up the offering?",
+      "values": [
+        {
+          "question": "Does it arrive whether or not they'd choose it?",
+          "value": "given"
+        },
+        {
+          "question": "Do they take it up only by deciding to, with nothing to pay?",
+          "value": "chosen"
+        },
+        {
+          "question": "Is paying how they take it up?",
+          "value": "bought"
+        }
+      ]
+    },
+    {
+      "id": "maturity",
+      "question": "How settled is the bet this work rests on?",
+      "values": []
+    }
+  ],
+  "disabled_when": {
+    "uptake": [
+      "given",
+      "chosen"
+    ]
+  },
+  "enablement": {
+    "action": "decide what a new venture will aim for and how it will make money",
+    "actor": "whoever is founding the venture, with any backers",
+    "timing": "while forming the venture"
+  },
+  "guidance": [
+    {
+      "claim": "The Lean Canvas picks which assumption to test before customers have paid; this canvas commits a forming venture's aims and how it will make money.",
+      "kind": "boundary",
+      "when": null
+    }
+  ],
+  "kind": "startup-canvas",
+  "name": "Startup canvas",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "product-vision",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Describe the change the work should make in the world, and leave the offering itself out of it.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A vision written on its own, with no strategy beside it, says where to go but not how. Write it as the opening of a strategy, alongside the segments, value proposition and trade-offs.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Per-product visions nest under the company vision; left unnested they compete with it.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Product vision",
+      "question": "What lasting change should the work make?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "customer-segments",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Segment by shared job or behaviour, not demographics alone — demographic-only segments are the classic false-precision trap.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "In B2B the buyer, the user and the payer differ; healthtech's patient/provider/payer triangle makes single-segment framing misleading.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "One beachhead segment. A long segment list this early signals unvalidated focus.",
+          "kind": "pitfall",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        },
+        {
+          "claim": "Distinct from Canonical Model: a segment here is a group of people the offering is for; a category there is one the system uses to sort its own data, such as account types. Ask whether it is about whom we serve or how the system files things.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Customer segments",
+      "question": "Exactly which groups is the offering for?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "value-proposition",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Always relative to the segment's current alternative, including doing nothing.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "One per segment. A single all-segment value proposition usually means the segments were never really split.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Quantify in time, cost or risk. Where there is no market, qualitative is fine — but still name the alternative.",
+          "kind": "heuristic",
+          "when": {
+            "uptake": [
+              "bought"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Value proposition",
+      "question": "Why would a segment choose the offering over its alternatives?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "cost-structure",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "The dominant driver is the insight, not the line items — services and construction run on per-project labour, software on headcount, hardware on cost of goods sold and capex.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinguish fixed from variable and note what scales with growth. The growth mechanism can invert the shape.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Still applies at personal and household scale, where time is the usual dominant cost.",
+          "kind": "heuristic",
+          "when": {
+            "uptake": [
+              "given"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Cost structure",
+      "question": "What mainly determines the cost of providing the offering?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "trade-offs",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Record each promising direction the offering refuses. Porter holds that choosing what not to do is the essence of strategy, so a strategy with nothing refused has not yet chosen.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Absent from the Business Model Canvas and Lean Canvas by design; core to strategy canvases.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Date each refusal and note what it assumed. Revisit it when that changes, for example when a new segment, competitor or capability appears.",
+          "kind": "refresh",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Trade offs",
+      "question": "Which promising directions do we refuse?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "capabilities",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "The gap is the point: capability named minus capability possessed is the hiring, partnering and timeline reality.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Note the lead time for any ability that is slow to gain, such as a clearance, a certification or a rare skill. It sets the earliest date the strategy can deliver.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Capabilities",
+      "question": "Which abilities must we have or gain?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "revenue-streams",
+      "gate": {
+        "uptake": [
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Core to the Business Model Canvas and the Lean Canvas. Strategy canvases often omit it, treating monetisation as downstream of positioning.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "In regulated industries this is often fixed by regulation or reimbursement codes. Record it as a constraint, not a choice.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A hypothesis to test, not a plan. Deep tech and hardware commonly defer it until technical maturity.",
+          "kind": "heuristic",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Revenue streams",
+      "question": "How does the offering earn money?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "positioning-statement",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "For [segment] who [need], X is a [category] that [benefit], unlike [alternative].",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Brand-led organisations treat this as marketing's asset and product-led ones as product's. Settle ownership before it gets written twice.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Pre-competition work often cannot fill the 'unlike' clause honestly. Leave it empty rather than fake it.",
+          "kind": "empty",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Positioning statement",
+      "question": "Which kind of offering should each segment see ours as?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "input-metrics",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Leading and team-influenceable, or it is an output someone mislabelled.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Few and causal beats many and correlated.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Where a team already reports KPIs, sort them before reusing any here. Parmenter separates result indicators, which sum up the input of more than one team, from performance indicators, which can be tied to one team; only the second kind can serve as input metrics.",
+          "kind": "convention",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Input metrics",
+      "question": "Which measures within our control predict the value people get from the offering?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "north-star-metric",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Proxies customer value, not company results. Revenue is an outcome, not a North Star.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "One per space, at any abstraction, tested by real users, needs and strategy — never by the org chart. Distinct metrics only for genuinely distinct divisions and customer bases.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A single effort does not get its own North Star. It sets its success criteria on a change in what people do that the effort can influence and that drives the North Star, which Torres calls a product outcome.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A North Star tracks customer value within its framework. The One Metric That Matters identifies the current metric to focus on and may change with the business stage or bottleneck; the names are not interchangeable.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Represents vision and strategy without being either — a strong metric statement lets a reader recover both at a high level.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "A North Star without input metrics is not actionable.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Success Metrics owns the definition. A strategy canvas records the choice and links back rather than restating it, because copies drift.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "success-metrics",
+          "name": "Success metrics"
+        }
+      ],
+      "mode": "links",
+      "name": "North star metric",
+      "question": "What one measure best shows the value people get from the offering?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "growth-mechanism",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Name the loop — viral, usage, content, referral, sales-led, paid — rather than writing a generic marketing plan. Loops compound; funnels do not.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Consumer runs on virality and habit, B2B on expansion revenue and referenceability; regulated growth is often gated by accreditation cycles.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Growth mechanism",
+      "question": "How does the offering's growth produce more growth?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "unfair-advantage",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Test each candidate against the question: could a rival copy it or buy it? Forms that often pass are network effects, proprietary data, switching costs, regulatory protection, patents and brand.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "The Lean Canvas's hardest block — 'first mover' and 'passion' do not qualify.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Early on there is usually none yet. Write 'none yet' when you looked and found nothing, so a reader can tell it apart from one nobody has considered.",
+          "kind": "empty",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Unfair advantage",
+      "question": "What advantage of ours is hard for others to copy or buy?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}
