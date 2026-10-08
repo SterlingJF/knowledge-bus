@@ -180,6 +180,8 @@ uv run kbp --card <kind> path/to/.knowledge-bus/
 uv run kbp --kinds path/to/.knowledge-bus/
 ```
 
+Find which universe specs cover a file with `uv run kbp --cover path/to/file.md`.
+
 ## Quick Start
 
 ### Start With Expectations

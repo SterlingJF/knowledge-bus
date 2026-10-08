@@ -42,7 +42,7 @@ uv run kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 
 Paths in this example are placeholders for your files. A target folder with `.knowledge-bus/` selects the definition and guidance files in that directory. Explicit file arguments select exactly those files. Generic directory arguments scan `*.kbp.yaml` files while excluding nested folders that contain their own `.knowledge-bus/`.
 
-Without explicit targets, the checker uses the nearest `.knowledge-bus/` from the working directory upward. It never combines definitions from different Knowledge Bus directories or creates a missing `.knowledge-bus/`. In the implementation checkout, it checks bundled `universes/` when no `.knowledge-bus/` directory is found. The package supplies the protocol independently of the working directory. See [Knowledge Bus Directory](knowledge-bus-directory.md).
+Without explicit targets, the checker uses the nearest `.knowledge-bus/` from the working directory upward. It never combines definitions from different Knowledge Bus directories or creates a missing `.knowledge-bus/`. The exception: `--card`, `--kinds` and `--cover` also see the universe specs a nested folder's `coverage.yaml` names from its parent. A bare check also validates `coverage.yaml`. In the implementation checkout, it checks bundled `universes/` when no `.knowledge-bus/` directory is found. The package supplies the protocol independently of the working directory. See [Knowledge Bus Directory](knowledge-bus-directory.md).
 
 Inspect one universe without writing:
 
@@ -60,6 +60,8 @@ uv run kbp --kinds path/to/.knowledge-bus/
 ```
 
 `--card` and `--kinds` skip marks files. See [Document Type Card](document-type-card.md).
+
+Find which universe specs cover a file with `uv run kbp --cover path/to/file.md`. See [Universe Spec Coverage](universe-spec-coverage.md).
 
 ## Understanding Results
 

@@ -12,8 +12,9 @@ kbp --kinds path/to/.knowledge-bus/
 
 - `--card <kind>` prints the card for the document type with that id, as JSON. `--format markdown` prints the readable card.
 - `--kinds` prints the id, name, other names and purpose of every document type. Use it to find the document type that fits a document, or to see that no document type fits.
-- Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used.
+- Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used, or the preset when there is none.
 - When the scope holds several universe specs, choose one with `--universe <id>` or target its file.
+- `kbp --cover <file>` finds which universe spec to use for a file. See [Universe Spec Coverage](universe-spec-coverage.md).
 
 Both commands check the chosen universe spec and its guidance file. They skip marks files (`*.explorer.yaml`) and run no Explorer drawing checks, so a broken marks file never blocks a card. They write nothing.
 

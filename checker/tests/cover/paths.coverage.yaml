@@ -1,0 +1,4 @@
+version: 1
+paths:
+  hall-bookings: [bookings/, notes/hirer-faq.md]
+  hall-upkeep: [notes/checklists/, upkeep/]

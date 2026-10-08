@@ -10,6 +10,9 @@ Bundled protocol: `kbp/0.8`.
 
 - Add `kbp --card <kind>`: prints the card for one document type, as JSON or with `--format markdown`. See [Document Type Card](docs/document-type-card.md).
 - Add `kbp --kinds`: lists every document type with its other names and purpose.
+- Add `kbp --cover <file>`: says which universe specs cover one file, by folder, path, document type and hat. See [Universe Spec Coverage](docs/universe-spec-coverage.md).
+- Add optional `.knowledge-bus/coverage.yaml`: `from_parent` names universe specs from the parent folder, and `paths` lists the folders and files each universe spec covers. A bare `kbp` check validates `coverage.yaml`.
+- `--cover`, `--card` and `--kinds` use the product-development preset when no `.knowledge-bus/` is found. The package carries the preset.
 
 ## 0.9.0
 

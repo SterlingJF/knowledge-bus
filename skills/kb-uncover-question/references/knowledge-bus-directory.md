@@ -11,6 +11,7 @@ my-folder/
     ├── universe.kbp.yaml
     ├── type-guidance.kbp.yaml   # optional
     ├── marks.explorer.yaml      # optional presentation declarations
+    ├── coverage.yaml           # optional: which universe specs cover which files
     ├── answers.yaml            # when recording answers
     ├── ingest-log.md           # when ingesting existing material
     └── explorer/               # optional generated read-only projection
@@ -32,7 +33,7 @@ kbp --validate path/to/my-folder/.knowledge-bus/
 kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 ```
 
-Without an explicit target, the checker searches the current folder and then its parents for `.knowledge-bus/`. It uses the first one found and does not combine definitions from different directories. Calls from inside `.knowledge-bus/` use that directory. An empty or incomplete nearer directory does not fall back to a parent's `.knowledge-bus/`.
+Without an explicit target, the checker searches the current folder and then its parents for `.knowledge-bus/`. It uses the first one found and does not combine definitions from different directories, except the universe specs a nested folder's `coverage.yaml` names from its parent. Calls from inside `.knowledge-bus/` use that directory. An empty or incomplete nearer directory does not fall back to a parent's `.knowledge-bus/`.
 
 The checker reads the `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, so it can check guidance against its universe. Duplicate universe ids fail. Answers, logs, presentation marks, and Explorer outputs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
 
@@ -53,11 +54,27 @@ Several universes may be direct siblings in one `.knowledge-bus/`. Prefix filena
     └── team-operations/{index.html,model.json,receipt.json}
 ```
 
-`universe.id` identifies a universe. `guidance.guides` and `marks.marks_for` associate its companion files. When the directory contains several universes, inspection requires an id or universe file. Duplicate ids and ambiguous companion files fail. Generated Explorers stay under their universe ids. Nested `.knowledge-bus/` directories remain separate.
+`universe.id` identifies a universe. `guidance.guides` and `marks.marks_for` associate its companion files. When the directory contains several universes, inspection requires an id or universe file. Duplicate ids and ambiguous companion files fail. Generated Explorers stay under their universe ids. Nested `.knowledge-bus/` directories remain separate, except for the universe specs a nested folder's `coverage.yaml` names from its parent.
 
 A generic directory target without its own `.knowledge-bus/` still scans for `*.kbp.yaml` files, for example a reference collection or test corpus. It skips metadata directories and nested folders that contain their own `.knowledge-bus/`. Directory scans do not follow nested directory symlinks.
 
-Missing definitions are an error when checking. Checking never creates a `.knowledge-bus/` directory.
+Missing definitions are an error when checking. Checking never creates a `.knowledge-bus/` directory. With no `.knowledge-bus/`, `--cover`, `--card` and `--kinds` use the preset, product-development.
+
+## Coverage
+
+`coverage.yaml` is optional plain YAML outside the protocol:
+
+```yaml
+version: 1
+from_parent: [hall-upkeep]
+paths:
+  hall-upkeep: [cleaning/]
+```
+
+- `from_parent` names universe specs from the parent, the next `.knowledge-bus/` up. Only the parent's own universe specs can be named.
+- `paths` lists the folders (ending in `/`) and exact files each universe spec covers, relative to the folder holding `.knowledge-bus/`. A universe spec not listed covers every file.
+
+An agent keeps `paths` up to date as files are created, deleted or moved. `kbp --cover <file>` says which universe specs cover one file. A bare check validates `coverage.yaml`.
 
 ## Creating and Updating Definitions
 
