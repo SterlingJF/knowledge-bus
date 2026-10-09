@@ -1,0 +1,30 @@
+# kbp/0.9: a universe spec with no element declares no ordering frame.
+universe:
+  id: factors-only-without-ordering-frame
+  label: Factors only without an ordering frame
+  version: 0.1
+  conforms_to: kbp/0.9
+
+statuses: []
+
+frames: []
+
+factors:
+  - id: team-shape
+    code: k4t33
+    question: "Who is doing the work?"
+    set_by: instance
+    values:
+      - { id: solo,  question: "Is one person accountable for all the work?" }
+      - { id: group, question: "Is accountability shared across people?" }
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []

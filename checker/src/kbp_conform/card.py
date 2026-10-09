@@ -117,8 +117,47 @@ def _conditions(universe, names):
     return conditions
 
 
-def build_card(universe, guidance, kind):
-    """Return the card for one document type; `guidance` is None when there is no file."""
+def _factor_values(factor):
+    return [
+        {"value": value.get("id"), "question": value.get("question")}
+        if isinstance(value, dict)
+        else {"value": value, "question": None}
+        for value in factor.get("values") or []
+    ]
+
+
+def _presentation(universe, guidance, from_parent):
+    """One universe spec's factors, each with its values and the guidance keyed to the factor."""
+    on_factors = (guidance or {}).get("factors") or {}
+    factors, names = [], {}
+    for factor in universe.get("factors") or []:
+        notes = None if guidance is None else _notes(on_factors.get(factor["id"]) or [])
+        for note in notes or []:
+            _named(note["when"], names)
+        factors.append(
+            {
+                "factor": factor["id"],
+                "name": display_name(factor),
+                "question": factor.get("question"),
+                "values": _factor_values(factor),
+                "guidance": notes,
+            }
+        )
+    return {
+        "universe_spec": _universe_spec(universe),
+        "from_parent": from_parent,
+        "factors": factors,
+        "conditions": _conditions(universe, names),
+    }
+
+
+def build_card(universe, guidance, kind, others=(), from_parent=False):
+    """Return the card for one document type; `guidance` is None when there is no file.
+
+    `others` lists (universe, guidance, from_parent) for every other universe spec
+    in scope. Each universe spec that declares a factor gives one presentation
+    block, the card's own universe spec first.
+    """
     artifact = next(item for item in universe["artifacts"] if item["id"] == kind)
     elements = {item["id"]: item for item in universe.get("elements") or []}
     on_kinds = (guidance or {}).get("artifacts") or {}
@@ -170,13 +209,36 @@ def build_card(universe, guidance, kind):
         for note in section["guidance"] or []:
             _named(note["when"], names)
     card["conditions"] = _conditions(universe, names)
+    card["presentation"] = [
+        _presentation(*block)
+        for block in [(universe, guidance, from_parent), *others]
+        if block[0].get("factors")
+    ]
     return card
 
 
-def build_kinds(universe):
+def _factor_counts(universe, guidance):
+    """Each factor with its question and its number of guidance entries; None without a guidance file."""
+    on_factors = (guidance or {}).get("factors") or {}
+    return [
+        {
+            "factor": factor["id"],
+            "name": display_name(factor),
+            "question": factor.get("question"),
+            "guidance": None
+            if guidance is None
+            else len(on_factors.get(factor["id"]) or []),
+        }
+        for factor in universe.get("factors") or []
+    ]
+
+
+def build_kinds(universe, guidance=None):
     """Id, name, other names, purpose, users and timing of every document type, in declared order.
 
     `universe_spec` also gives `covers` and `for` from the universe spec overview.
+    `factors` lists each factor with its guidance count; `guidance` is None when
+    the universe spec has no guidance file.
     """
     kinds = []
     for artifact in universe.get("artifacts") or []:
@@ -195,6 +257,7 @@ def build_kinds(universe):
         "schema": KINDS_SCHEMA,
         "universe_spec": _kinds_universe_spec(universe),
         "kinds": kinds,
+        "factors": _factor_counts(universe, guidance),
     }
 
 
@@ -324,6 +387,7 @@ def render_card(card):
         if section["guidance"]:
             lines.append("")
             lines += [_note(card, note) for note in section["guidance"]]
+    lines += _presentation_lines(card)
     meanings = [
         f"- {item['id']} is {value['value']}: {value['question']}"
         for item in card["conditions"]
@@ -333,6 +397,39 @@ def render_card(card):
         lines += ["", "## What the conditions mean", ""]
         lines += meanings
     return "\n".join(lines) + "\n"
+
+
+def _presentation_lines(card):
+    if not card["presentation"]:
+        return []
+    lines = [
+        "",
+        "## How to present it",
+        "",
+        "Factors change presentation and focus only. The sections stay the same.",
+    ]
+    for block in card["presentation"]:
+        origin = f", {FROM_PARENT}" if block["from_parent"] else ""
+        lines += ["", f"### {_spec_name(block['universe_spec'])}{origin}"]
+        for factor in block["factors"]:
+            lines += [
+                "",
+                f"#### {factor['name']}",
+                "",
+                f"Asks: {factor['question'] or NOT_STATED}",
+            ]
+            if factor["values"]:
+                lines += ["", "Values:", ""]
+                lines += [
+                    f"- {value['value']}: {value['question']}"
+                    if value["question"]
+                    else f"- {value['value']}"
+                    for value in factor["values"]
+                ]
+            if factor["guidance"]:
+                lines += ["", "Advice:", ""]
+                lines += [_note(block, note) for note in factor["guidance"]]
+    return lines
 
 
 def render_kinds(listing):
@@ -346,6 +443,10 @@ def render_kinds(listing):
     ]
     lines += _overview_lines(spec)
     lines += _kind_lines(listing)
+    if listing.get("factors"):
+        while lines[-1] == "":
+            lines.pop()
+        lines += _factor_lines(listing)
     return "\n".join(lines) + "\n"
 
 
@@ -358,6 +459,7 @@ def render_kinds_set(listing_set):
         lines += ["", f"## {_spec_name(spec)}{origin}", ""]
         lines += _overview_lines(spec)
         lines += _kind_lines(listing) or ["No document types."]
+        lines += _factor_lines(listing)
     return "\n".join(lines) + "\n"
 
 
@@ -385,4 +487,23 @@ def _kind_lines(listing):
             lines.append(f"  - Who uses it: {item['actor']}")
         if item.get("timing"):
             lines.append(f"  - When it is used: {item['timing']}")
+    return lines
+
+
+def _count(number):
+    if number == 0:
+        return "No guidance notes"
+    return f"{number} guidance note{'' if number == 1 else 's'}"
+
+
+def _factor_lines(listing):
+    factors = listing.get("factors") or []
+    if not factors:
+        return []
+    lines = ["", "Factors:", ""]
+    for item in factors:
+        lines.append(f"- {item['name']} ({item['factor']})")
+        lines.append(f"  - Asks: {item['question'] or NOT_STATED}")
+        if item["guidance"] is not None:
+            lines.append(f"  - {_count(item['guidance'])}")
     return lines

@@ -47,6 +47,56 @@
       "low"
     ]
   },
+  "presentation": [
+    {
+      "conditions": [
+        {
+          "id": "familiarity",
+          "question": "How well does the reader know the site?",
+          "values": [
+            {
+              "question": "Is the reader visiting the site for the first time?",
+              "value": "new"
+            }
+          ]
+        }
+      ],
+      "factors": [
+        {
+          "factor": "familiarity",
+          "guidance": [
+            {
+              "claim": "Explain each local place name the first time it appears.",
+              "kind": "heuristic",
+              "when": {
+                "familiarity": [
+                  "new"
+                ]
+              }
+            }
+          ],
+          "name": "Familiarity",
+          "question": "How well does the reader know the site?",
+          "values": [
+            {
+              "question": "Is the reader visiting the site for the first time?",
+              "value": "new"
+            },
+            {
+              "question": "Has the reader visited the site before?",
+              "value": "regular"
+            }
+          ]
+        }
+      ],
+      "from_parent": false,
+      "universe_spec": {
+        "id": "card-fixture",
+        "label": "Card fixture",
+        "version": "0.1"
+      }
+    }
+  ],
   "schema": "knowledge-bus/card/1",
   "sections": [
     {

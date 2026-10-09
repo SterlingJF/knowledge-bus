@@ -122,7 +122,7 @@ def test_a_0_7_document_without_terms_still_conforms(protocol, universe):
 
 
 def test_accepted_versions_name_the_current_version_first(protocol):
-    assert checker.accepted_versions(protocol) == ["kbp/0.8", "kbp/0.7"]
+    assert checker.accepted_versions(protocol) == ["kbp/0.9", "kbp/0.8", "kbp/0.7"]
 
 
 def run(*paths):
@@ -136,11 +136,11 @@ def run(*paths):
     )
 
 
-@pytest.mark.parametrize("declared", ["kbp/0.7", "kbp/0.8"])
+@pytest.mark.parametrize("declared", ["kbp/0.7", "kbp/0.8", "kbp/0.9"])
 def test_the_cli_checks_each_accepted_version_as_itself(tmp_path, declared):
     document = yaml.safe_load(MINIMAL.read_text())
     document["universe"]["conforms_to"] = declared
-    if declared == "kbp/0.8":
+    if declared != "kbp/0.7":
         document["no_artifact"] = document.pop("empty_composition")
     path = tmp_path / "universe.kbp.yaml"
     path.write_text(yaml.safe_dump(document))
@@ -149,7 +149,7 @@ def test_the_cli_checks_each_accepted_version_as_itself(tmp_path, declared):
     assert f"against {declared} ===" in result.stdout
 
 
-@pytest.mark.parametrize("declared", ["kbp/0.6", "kbp/0.9", "other/0.8"])
+@pytest.mark.parametrize("declared", ["kbp/0.6", "kbp/1.0", "other/0.8"])
 def test_the_cli_refuses_versions_the_protocol_does_not_accept(tmp_path, declared):
     document = yaml.safe_load(MINIMAL.read_text())
     document["universe"]["conforms_to"] = declared
@@ -157,7 +157,7 @@ def test_the_cli_refuses_versions_the_protocol_does_not_accept(tmp_path, declare
     path.write_text(yaml.safe_dump(document))
     result = run(path)
     assert result.returncode != 0
-    assert f"conforms_to '{declared}' does not match 'kbp/0.8'" in result.stdout
+    assert f"conforms_to '{declared}' does not match 'kbp/0.9'" in result.stdout
 
 
 def test_header_since_must_name_a_declared_header_key(protocol):

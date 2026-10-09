@@ -347,9 +347,9 @@ def _card_mode(mode, argv):
             result = card.build_kinds_set(
                 [
                     card.build_kinds(
-                        explorer.load_selection(
+                        *explorer.load_selection(
                             protocol, paths, universe_id=each, marks=False, named=named
-                        )[1]
+                        )[1:3]
                     )
                     for each in listed
                 ],
@@ -361,7 +361,7 @@ def _card_mode(mode, argv):
                 protocol, paths, universe_id=chosen, marks=False, named=named
             )
             if mode == "--kinds":
-                result = card.build_kinds(universe)
+                result = card.build_kinds(universe, guidance)
                 render = card.render_kinds
             else:
                 kinds = card.kind_ids(universe)
@@ -371,7 +371,21 @@ def _card_mode(mode, argv):
                         f"No document type {kind!r} in universe spec {universe['universe']['id']!r}",
                         candidates=kinds,
                     )
-                result = card.build_card(universe, guidance, kind)
+                parents = named.ids if named else ()
+                own_id = universe["universe"]["id"]
+                others = [
+                    (
+                        *explorer.load_selection(
+                            protocol, paths, universe_id=each, marks=False, named=named
+                        )[1:3],
+                        each in parents,
+                    )
+                    for each in _universe_ids(paths, named)
+                    if each != own_id
+                ]
+                result = card.build_card(
+                    universe, guidance, kind, others, from_parent=own_id in parents
+                )
                 render = card.render_card
         if output_format == "markdown":
             sys.stdout.write(render(result))

@@ -12,6 +12,7 @@ The checker uses the protocol's conformance rules to check supported conditions,
 - protocol-version compatibility, including fields an older declared version does not allow and keys renamed between versions (a `kbp/0.8` universe writes `no_artifact`; a `kbp/0.7` universe writes `empty_composition`);
 - universe `terms`: unique, with a nonblank term and meaning;
 - permitted uses of frames and factors;
+- the ordering frame: from `kbp/0.9`, a universe spec with elements declares exactly one ordering frame, and a universe spec with no element declares no ordering frame;
 - relation edge gates: from `kbp/0.8`, each key is a declared frame or `latency`, each value is one that frame declares, `latency` is a nonblank string, and no frame is named `latency`;
 - guidance references, kinds, and source declarations;
 - fields that the format does not allow.
@@ -77,7 +78,7 @@ Run that check alone with:
 uv run kbp --self-check
 ```
 
-The test corpus includes valid documents and 31 deliberately invalid cases, among them a duplicate code, a missing required field, an unknown element in a composition, a mismatched protocol version, and a document using a key from the wrong protocol version. Each invalid case must fail with the expected reason. These cases do not cover every possible violation.
+The test corpus includes valid documents and 34 deliberately invalid cases, among them a duplicate code, a missing required field, an unknown element in a composition, a mismatched protocol version, and a document using a key from the wrong protocol version. Each invalid case must fail with the expected reason. These cases do not cover every possible violation.
 
 Run the tests with:
 

@@ -13,6 +13,7 @@
   "kind": "the-record",
   "name": "The record",
   "no_artifact": {},
+  "presentation": [],
   "schema": "knowledge-bus/card/1",
   "sections": [
     {

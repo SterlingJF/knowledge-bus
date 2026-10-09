@@ -1,0 +1,42 @@
+# A factor-only universe spec for the card and --kinds tests. Its factors
+# describe the people who read a village hall's documents, and its guidance
+# advises on presenting a document to those readers. It declares no element,
+# so it declares no ordering frame.
+universe:
+  id: hall-readers
+  label: Hall readers
+  version: "0.1"
+  conforms_to: kbp/0.9
+  overview:
+    covers: The people who read the village hall's documents.
+    for: Anyone writing a document for hirers or the committee.
+
+statuses: []
+
+frames: []
+
+factors:
+  - id: hirer-experience
+    code: k53zz
+    set_by: instance
+    question: Has the reader hired the hall before?
+    values:
+      - { id: first-time, question: "Is this the reader's first booking?" }
+      - { id: returning, question: "Has the reader booked the hall before?" }
+
+  - id: reading-format
+    code: krqdr
+    set_by: instance
+    question: How will the reader see the document?
+    values: [printed, screen]
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []

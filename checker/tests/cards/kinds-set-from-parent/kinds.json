@@ -6,6 +6,7 @@
   "schema": "knowledge-bus/kinds-set/1",
   "universe_specs": [
     {
+      "factors": [],
       "kinds": [
         {
           "action": "record what the committee agreed",
@@ -28,6 +29,7 @@
       }
     },
     {
+      "factors": [],
       "kinds": [
         {
           "action": "leave the hall ready for the next hirer",
@@ -50,6 +52,14 @@
       }
     },
     {
+      "factors": [
+        {
+          "factor": "team-shape",
+          "guidance": null,
+          "name": "Team shape",
+          "question": "Who is doing the work?"
+        }
+      ],
       "kinds": [],
       "schema": "knowledge-bus/kinds/1",
       "universe_spec": {

@@ -2,6 +2,18 @@
 
 Conformance-contract history. Software releases are tracked in the [release changelog](../CHANGELOG.md).
 
+## 0.9 — draft
+
+- A universe spec with no element declares no ordering frame. `ordering_frame` moves from `header_required` to `header_required_before`, with version 0.9.
+- A universe spec with elements still declares exactly one ordering frame, and that frame attaches to elements.
+- An ordering frame in a universe spec with no element attaches to nothing. The checker refuses such an ordering frame in a `kbp/0.9` universe spec.
+- Guidance keyed to a factor is advice on presenting a document: wording, emphasis and focus. A consumer may apply the advice to the documents of another universe spec.
+- A factor still selects nothing, in its own universe spec or in another universe spec.
+
+Declarations may name `kbp/0.9`, or `kbp/0.8` and `kbp/0.7` through `protocol.accepts`. The checker checks a `kbp/0.8` or `kbp/0.7` universe spec against its declared version, so such a universe spec still declares an ordering frame even with no element. `header_required_before` maps a header key to a version, and every document declaring an earlier version must carry that header key.
+
+Breaking for `kbp/0.9` documents only: a universe spec with no element drops its placeholder ordering frame.
+
 ## 0.8 — draft
 
 - The universe header may declare `terms`: a list of `{ term, means }`, the universe's own words with one fixed meaning in its definitions.

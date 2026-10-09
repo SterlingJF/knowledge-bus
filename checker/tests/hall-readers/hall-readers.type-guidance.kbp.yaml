@@ -1,0 +1,19 @@
+guidance:
+  id: hall-readers-guidance
+  label: Hall readers guidance
+  version: "0.1"
+  conforms_to: kbp/0.9
+  guides: hall-readers
+
+guidance_kinds:
+  - { id: heuristic, sourced: false }
+
+factors:
+  hirer-experience:
+    - { kind: heuristic, source: asserted, when: { hirer-experience: [first-time] },
+        claim: "Put the steps for collecting the keys first." }
+    - { kind: heuristic, source: asserted,
+        claim: "Call each room by the name on its door sign." }
+  reading-format:
+    - { kind: heuristic, source: asserted, when: { reading-format: [printed] },
+        claim: "Fit the document on one side of A4." }

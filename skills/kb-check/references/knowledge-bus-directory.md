@@ -135,7 +135,7 @@ Hall bookings stays out of `hall/committee/`.
 - A listed id must be declared in the parent folder's own universe spec files. Ids from the parent folder's own `workspace.yaml` are refused, so a nested folder can list only universe specs declared in the direct parent folder.
 - A universe spec in the nested folder can reuse the id of a universe spec in the parent folder when the id is absent from `from_parent`.
 - In a folder holding only `workspace.yaml`, the listed universe specs are the folder's universe specs.
-- A factor-only universe spec can be listed like any other universe spec. `--kinds` prints its group with "No document types."
+- A factor-only universe spec can be listed like any other universe spec. `--kinds` prints its group with "No document types." and its factors.
 
 ### Reading
 
@@ -146,6 +146,7 @@ Hall bookings stays out of `hall/committee/`.
 - For each listed id, commands read the parent folder's universe spec file and the parent folder's guidance for that universe spec. `--inspect` and `--explore` also read the parent folder's marks for that universe spec.
 - The skills follow the same reading rules as `kbp`.
 - Each universe spec keeps its own id, label, document types, guidance and marks. No command merges universe specs. Check prints one block per file and adds `from the parent folder` to the heading of each file read from the parent folder. With several universe specs, `--inspect`, `--explore` and `--card` refuse without `--universe`, list the candidates, and add `from_parent` to the refusal. With several universe specs, `--kinds` prints one group per universe spec.
+- `--card` gives advice on presenting the document under "How to present it": one block for each universe spec in scope that declares a factor, the card's own universe spec first. Blocks for universe specs listed in `workspace.yaml` have headings ending with `, from the parent folder`.
 - Check in the parent folder never reads nested folders.
 
 ### Refusals

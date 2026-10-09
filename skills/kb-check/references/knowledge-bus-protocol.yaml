@@ -1,8 +1,8 @@
 protocol:
   id: kbp
   name: Knowledge Bus Protocol
-  version: 0.8
-  accepts: [0.7]
+  version: 0.9
+  accepts: [0.8, 0.7]
   status: draft
   purpose: >
     The structured exchange of contextual knowledge rather than data. Defines what a
@@ -50,6 +50,14 @@ concepts:
       - >
         A guidance entry MAY condition on a factor the guided universe declares.
         Selecting advice is not structure.
+      - >
+        Guidance keyed to a factor is advice on presenting a document: its wording,
+        emphasis and focus. A consumer MAY apply the advice to a document of any
+        universe the consumer reads, including another universe's documents.
+      - >
+        A factor still selects nothing. Guidance keyed to a factor adds, removes and
+        gates no element, artifact or composition entry, in its own universe or in
+        another universe.
 
   relation:
     definition: A typed edge over element and artifact identities.
@@ -61,8 +69,9 @@ concepts:
 
   guidance:
     definition: >
-      Advisory content attached to an element, an artifact type or a factor — how to
-      answer its question well, and on whose authority.
+      Advisory content attached to an element, an artifact type or a factor: advice
+      on answering the question well, or for a factor on presenting a document, and
+      the authority behind the advice.
     advisory: true
     standalone: false
     attaches_to: [element, artifact, factor]
@@ -135,7 +144,8 @@ declarations:
       relations: ["<edge>"]
       instances: ["<instance-record>"]
     required: [universe, statuses, frames, no_artifact, relation_kinds, elements, artifacts, relations]
-    header_required: [id, version, conforms_to, ordering_frame]
+    header_required: [id, version, conforms_to]
+    header_required_before: { ordering_frame: 0.9 }
     header_since: { terms: 0.8 }
     renamed: { no_artifact: { was: empty_composition, since: 0.8 } }
 
@@ -384,9 +394,11 @@ composition:
     declared_by: universe
     attaches_to: element
     rule: >
-      A universe declares exactly one ordering frame, whose values are assigned to
-      elements. An artifact's position in the order, where required, is derived from
-      the elements it composes.
+      A universe that declares an element declares exactly one ordering frame, whose
+      values are assigned to elements. An artifact that needs a position in the
+      order takes the position from the elements it composes. A universe that
+      declares no element declares no ordering frame, because an ordering frame
+      there attaches to nothing.
 
 relations:
 
@@ -520,9 +532,12 @@ conformance:
     as that version: a header field whose header_since is later than the declared
     version is unsanctioned there, and a document key listed in renamed carries
     its earlier name (was) when the declared version is earlier than since. A
-    field listed in reshaped likewise keeps its earlier shape (was). So a kbp/0.7
+    field listed in reshaped likewise keeps its earlier shape (was).
+    header_required_before maps a header key to a version, and every document
+    declaring an earlier version must carry that header key. So a kbp/0.7
     universe writes empty_composition where kbp/0.8 writes no_artifact, with the
-    same shape, and its edge gates are not checked, nor is latency reserved.
+    same shape, and its edge gates are not checked, nor is latency reserved. A
+    kbp/0.8 universe declares an ordering frame even with no element.
 
   guidance_valid_if:
     - >
@@ -560,7 +575,12 @@ conformance:
     - >
       Every term declares a nonblank term and a nonblank meaning, and no two terms
       share a term, compared case-insensitively.
-    - Exactly one ordering frame is declared, and it attaches to elements.
+    - >
+      A universe that declares an element declares exactly one ordering frame, and
+      that frame attaches to elements.
+    - >
+      An ordering frame in a universe that declares no element attaches to nothing,
+      so such a universe declares no ordering frame.
     - Some context exists in which no artifact is needed.
     - >
       Every field a universe declares appears in the corresponding declarations shape.

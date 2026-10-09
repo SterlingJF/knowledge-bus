@@ -8846,7 +8846,7 @@
     "version": "0.1"
   },
   "orderingFrameId": "frame:phase",
-  "protocolVersion": "0.8",
+  "protocolVersion": "0.9",
   "rules": [
     {
       "id": "rule:no-artifact",

@@ -27,6 +27,25 @@ Required.
 
 - Heuristic: Give a phone number that works on site.
 
+## How to present it
+
+Factors change presentation and focus only. The sections stay the same.
+
+### Card fixture universe spec (card-fixture 0.1)
+
+#### Familiarity
+
+Asks: How well does the reader know the site?
+
+Values:
+
+- new: Is the reader visiting the site for the first time?
+- regular: Has the reader visited the site before?
+
+Advice:
+
+- Heuristic, when familiarity is new: Explain each local place name the first time it appears. Depends on: How well does the reader know the site? (familiarity)
+
 ## What the conditions mean
 
 - risk is low: Can a mistake be fixed the same day?

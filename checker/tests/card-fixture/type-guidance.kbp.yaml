@@ -28,3 +28,8 @@ elements:
         claim: "Mark each hazard on a map." }
   contacts:
     - { kind: heuristic, source: asserted, claim: "Give a phone number that works on site." }
+
+factors:
+  familiarity:
+    - { kind: heuristic, source: asserted, when: { familiarity: [new] },
+        claim: "Explain each local place name the first time it appears." }

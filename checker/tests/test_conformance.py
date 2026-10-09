@@ -53,6 +53,9 @@ EXPECTED = {
     "edge-gate-not-a-mapping": "relation the-question->the-record.gate: not a mapping of { <frame-id>: <value> }",
     "edge-gate-latency-not-a-string": "relation the-question->the-record.gate.latency: must be a nonblank string",
     "frame-named-latency": "frame 'latency': reserved for an edge gate's duration",
+    "elements-without-ordering-frame": "header: missing required 'ordering_frame' (a universe spec with elements declares an ordering frame)",
+    "no-ordering-frame-in-0-8": "header: missing required 'ordering_frame' (kbp/0.8 requires an ordering frame in every universe spec; from kbp/0.9, a universe spec with no element declares no ordering frame)",
+    "ordering-frame-without-elements": "ordering frame 'stage' attaches to nothing: the universe spec declares no element",
 }
 
 

@@ -23,6 +23,11 @@ A document is checked as the protocol version it declares, when the protocol
 accepts it: a header key whose `header_since` is later is unsanctioned there,
 and a document key listed in `renamed` keeps its earlier name before `since`.
 A field listed in `reshaped` keeps its earlier shape, unchecked, before `since`.
+A header key listed in `header_required_before` is required in documents
+declaring an earlier version: kbp/0.8 and kbp/0.7 require `ordering_frame` in
+every universe. From kbp/0.9 a universe with elements declares an ordering
+frame, and a universe with no element declares no ordering frame, since an
+ordering frame there attaches to nothing.
 kbp/0.8 names `no_artifact` what kbp/0.7 names `empty_composition`; `check`
 reads the declared name and then works on the current one. A kbp/0.8 edge
 gate is keyed by declared frames plus `latency`, a nonblank string that no
@@ -61,6 +66,7 @@ META = {
     "one_of",
     "header_required",
     "header_since",
+    "header_required_before",
     "renamed",
     "reshaped",
     "document",
@@ -82,6 +88,7 @@ NEEDS = [
     ("declarations", "universe", "required"),
     ("declarations", "universe", "header_required"),
     ("declarations", "universe", "header_since"),
+    ("declarations", "universe", "header_required_before"),
     ("declarations", "universe", "renamed"),
     ("declarations", "guidance", "document"),
     ("declarations", "guidance", "required"),
@@ -143,6 +150,30 @@ def introduced_after(p, shape, version):
     """Header keys a later protocol version introduced, unsanctioned at `version`."""
     since = p["declarations"][shape].get("header_since") or {}
     return {k for k, v in since.items() if _version_key(v) > _version_key(version)}
+
+
+def required_before(p, shape, version):
+    """Map each header key still required at `version` to the version that makes
+    the key optional.
+    """
+    before = p["declarations"][shape].get("header_required_before") or {}
+    return {
+        key: since
+        for key, since in before.items()
+        if _version_key(version) < _version_key(since)
+    }
+
+
+def required_hint(p, key, version, since):
+    """Plain words saying why a document at `version` needs a header key."""
+    pid = p["protocol"]["id"]
+    if key == "ordering_frame":
+        return (
+            f"{pid}/{version} requires an ordering frame in every universe spec; "
+            f"from {pid}/{since}, a universe spec with no element declares no "
+            f"ordering frame"
+        )
+    return f"{pid}/{version} requires '{key}'; {pid}/{since} makes the key conditional"
 
 
 def earlier_names(p, shape, version):
@@ -335,6 +366,41 @@ def _renamed_soundness(p, shape, where):
     return fail
 
 
+def _required_before_soundness(p, shape, where, header):
+    """Refuse a header_required_before key that is no header key or that header_required lists."""
+    before = shape["header_required_before"]
+    if not isinstance(before, dict):
+        return [
+            f"{where}.header_required_before: not a mapping of {{ <key>: <version> }}"
+        ]
+    fail = []
+    if isinstance(header, dict):
+        bad = [k for k in before if k not in header]
+        if bad:
+            fail.append(
+                f"{where}.header_required_before names {bad}, which "
+                f"`document.{where.rsplit('.', 1)[-1]}` does not declare"
+            )
+    required = shape.get("header_required")
+    both = [k for k in before if isinstance(required, list) and k in required]
+    if both:
+        fail.append(
+            f"{where}.header_required_before names {both}, "
+            f"which header_required also lists"
+        )
+    current = (p.get("protocol") or {}).get("version")
+    for key, since in before.items():
+        at = f"{where}.header_required_before.{key}"
+        try:
+            later = _version_key(since) > _version_key(current)
+        except TypeError, ValueError:
+            fail.append(f"{at}: {since!r} is not a version")
+            continue
+        if later:
+            fail.append(f"{at}: {since} is later than protocol.version")
+    return fail
+
+
 def _reshaped_soundness(p, shape, where):
     """A reshape names a field of its shape, the earlier shape and a real version."""
     reshaped = shape["reshaped"]
@@ -454,6 +520,10 @@ def self_check(p, source=None):
                         f"{where}.header_since names {bad}, which "
                         f"`document.{own}` does not declare"
                     )
+        if "header_required_before" in shape:
+            own = path[-1] if path else ""
+            header = (shape.get("document") or {}).get(own)
+            fail.extend(_required_before_soundness(p, shape, where, header))
         if "renamed" in shape:
             fail.extend(_renamed_soundness(p, shape, where))
         if "reshaped" in shape:
@@ -516,6 +586,11 @@ def missing_preconditions(p, doc, shape, name):
             for k in d[shape]["header_required"]
             if k not in doc[shape]
         ]
+        fail += [
+            f"header: missing required '{k}' ({required_hint(p, k, version, since)})"
+            for k, since in required_before(p, shape, version).items()
+            if k not in doc[shape]
+        ]
     if fail:
         print()
         for f_ in fail:
@@ -537,7 +612,18 @@ def check(p, u, name):
     written = set(u)
     # From here on the document is read by current key names.
     u = {current.get(k, k): v for k, v in u.items() if k not in earlier}
-    ordering = u["universe"]["ordering_frame"]
+    ordering = u["universe"].get("ordering_frame")
+    # Before kbp/0.9 missing_preconditions requires the key in every universe.
+    conditional = "ordering_frame" not in required_before(p, "universe", version)
+    if conditional and u["elements"] and ordering is None:
+        print()
+        print(
+            "  FAIL  header: missing required 'ordering_frame' "
+            "(a universe spec with elements declares an ordering frame)"
+        )
+        print()
+        print(f"{name}: NON-CONFORMING")
+        return False
     entry = p["composition"]["entry"]
     factors = u.get("factors") or []
 
@@ -605,7 +691,18 @@ def check(p, u, name):
                 f"frame {f['id']}: set_by '{f.get('set_by')}' not in {sorted(set_bys)}"
             )
     ord_frames = [f["id"] for f in u["frames"] if f.get("role") == "ordering"]
-    if ord_frames != [ordering]:
+    if conditional and not u["elements"]:
+        named = (
+            ord_frames + [ordering]
+            if ordering not in (None, *ord_frames)
+            else ord_frames
+        )
+        for frame in named:
+            fail.append(
+                f"ordering frame '{frame}' attaches to nothing: "
+                f"the universe spec declares no element"
+            )
+    elif ord_frames != [ordering]:
         fail.append(
             f"frames with role ordering {ord_frames} != header ordering_frame ['{ordering}']"
         )

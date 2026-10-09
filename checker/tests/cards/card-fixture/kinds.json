@@ -1,4 +1,12 @@
 {
+  "factors": [
+    {
+      "factor": "familiarity",
+      "guidance": 1,
+      "name": "Familiarity",
+      "question": "How well does the reader know the site?"
+    }
+  ],
   "kinds": [
     {
       "action": "prepare a safe site visit",

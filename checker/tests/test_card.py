@@ -166,7 +166,14 @@ def test_kinds_set_code_takes_loaded_data(monkeypatch):
         "## Factors only universe spec (factors-only 0.1), from the parent folder"
         in (text.splitlines())
     )
-    assert text.endswith("No document types.\n")
+    assert text.endswith(
+        "No document types.\n"
+        "\n"
+        "Factors:\n"
+        "\n"
+        "- Team shape (team-shape)\n"
+        "  - Asks: Who is doing the work?\n"
+    )
 
 
 def test_every_product_development_kind_has_expected_cards():
@@ -648,7 +655,7 @@ def test_kinds_markdown_gives_covers_for_and_who_and_when(capsys):
         "  - Who uses it: whoever leads the visit",
         "  - When it is used: before the visit",
     ]
-    report = fixture.split("- Visit report (visit-report)\n")[1]
+    report = fixture.split("- Visit report (visit-report)\n")[1].split("\n\n")[0]
     assert report.splitlines() == [
         "  - Helps you: share what the visit found",
         "  - Who uses it: everyone who could not attend",
@@ -695,7 +702,15 @@ def test_kinds_set_groups_give_covers_and_for(capsys, kinds_sets):
     factors = lines.index(
         "## Factors only universe spec (factors-only 0.1), from the parent folder"
     )
-    assert lines[factors + 1 :] == ["", "No document types."]
+    assert lines[factors + 1 :] == [
+        "",
+        "No document types.",
+        "",
+        "Factors:",
+        "",
+        "- Team shape (team-shape)",
+        "  - Asks: Who is doing the work?",
+    ]
 
 
 def test_card_code_takes_loaded_data_and_uses_the_standard_library_only(monkeypatch):

@@ -3,6 +3,14 @@
   "schema": "knowledge-bus/kinds-set/1",
   "universe_specs": [
     {
+      "factors": [
+        {
+          "factor": "team-shape",
+          "guidance": null,
+          "name": "Team shape",
+          "question": "Who is doing the work?"
+        }
+      ],
       "kinds": [],
       "schema": "knowledge-bus/kinds/1",
       "universe_spec": {
@@ -14,6 +22,7 @@
       }
     },
     {
+      "factors": [],
       "kinds": [
         {
           "action": "hold the hall for an event",
@@ -36,6 +45,7 @@
       }
     },
     {
+      "factors": [],
       "kinds": [
         {
           "action": "leave the hall ready for the next hirer",

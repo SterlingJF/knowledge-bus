@@ -4,6 +4,11 @@
 
 No document types.
 
+Factors:
+
+- Team shape (team-shape)
+  - Asks: Who is doing the work?
+
 ## Hall bookings universe spec (hall-bookings 0.1)
 
 Covers: The details a village hall records for each booking, from the first enquiry to the return of the keys.

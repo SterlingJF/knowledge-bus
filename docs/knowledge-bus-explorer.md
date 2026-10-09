@@ -12,6 +12,8 @@ Three views sit behind the tabs at the top:
 - **Artifacts** — document types alone, arranged so connected ones sit near each other, with element-level relations rolled up onto them.
 - **Artifacts & Elements** — both, with elements grouped by the ordering frame.
 
+The map needs an ordering frame. `kbp --inspect` and `kbp --explore` refuse a universe spec without an ordering frame, such as a factor-only universe spec, as not renderable.
+
 Selecting the universe's name opens its overview: what it covers, who it is for, what it leaves out, its terms, and a reminder that the map shows declarations without evaluating your situation.
 
 ## Reading Connections

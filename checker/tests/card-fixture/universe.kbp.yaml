@@ -1,8 +1,8 @@
 # A small universe spec for the document type card tests. It covers what
 # the product-development universe spec does not: guidance conditioned on a
-# factor, a frame with no question, values with no question, a linked
-# section no document type keeps, and a document type with no guidance
-# entries.
+# factor, guidance keyed to a factor, a frame with no question, values with
+# no question, a linked section no document type keeps, and a document type
+# with no guidance entries.
 universe:
   id: card-fixture
   label: Card fixture

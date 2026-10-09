@@ -25,3 +25,8 @@ For: The hall caretaker, the management committee and the people who hire the ha
 ## Factors only universe spec (factors-only 0.1), from the parent folder
 
 No document types.
+
+Factors:
+
+- Team shape (team-shape)
+  - Asks: Who is doing the work?

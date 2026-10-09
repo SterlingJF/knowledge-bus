@@ -15,3 +15,9 @@ In the Card fixture universe spec (card-fixture 0.1).
 - Visit report (visit-report)
   - Helps you: share what the visit found
   - Who uses it: everyone who could not attend
+
+Factors:
+
+- Familiarity (familiarity)
+  - Asks: How well does the reader know the site?
+  - 1 guidance note
