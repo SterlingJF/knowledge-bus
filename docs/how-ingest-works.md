@@ -26,7 +26,7 @@ Age alone does not establish that information is wrong. The skill groups questio
 
 ### 3. Confirm the Definitions
 
-The skill proposes whether to adopt the product-development starter, adapt it, or develop definitions for the material. It considers the work's purpose, audience, scale, and requirements.
+The skill proposes whether to adopt or adapt a bundled universe, or develop definitions for the material. It considers the work's purpose, audience, scale, and requirements.
 
 It may use `/kb-uncover-question` to clarify missing questions or `/kb-evolve` to change document types. You review the initial findings and proposed approach before answers are filed.
 

@@ -31,7 +31,7 @@ description: Map existing notes or documents into Knowledge Bus definitions and 
   on genuine uncertainty, not on what the corpus already settles. Each states the answer you think likely and why,
   then asks the user to confirm or correct it.
 
-- **3. Choose the definitions.** Use supplied definitions when they fit. Treat the bundled starter as an optional reference, not a universal lens. If no set fits, propose an adaptation for review. Structural changes require the user's approval. Use `kb-evolve` when available; otherwise explain the proposed change and stop.
+- **3. Choose the definitions.** Use supplied definitions when they fit. Treat the bundled universes as optional references, not universal lenses. If no set fits, propose an adaptation for review. Structural changes require the user's approval. Use `kb-evolve` when available; otherwise explain the proposed change and stop.
 
 - **4. Extract answers.** Map each document section to a declared question; one answer per question per party and time.
   A collision — two docs answering the same question — is never resolved by recency. The older doc may be the

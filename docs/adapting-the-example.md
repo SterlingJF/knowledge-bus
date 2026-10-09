@@ -1,6 +1,6 @@
 # Adapting the Example
 
-Start with the included product-development definitions, keep what fits your work, and change what does not. You can do this before writing any documents.
+Start with one of the universes included in `universes/`, keep what fits your work, and change what does not. You can do this before writing any documents.
 
 ## What the Starter Contains
 

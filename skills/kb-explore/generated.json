@@ -3,7 +3,7 @@
   "version": "0.9.0",
   "files": {
     "LICENSE": "499f70a7f18a24c238d6455f8eef6a6d9b9f2eb5c0b8b35dafbe5e345e8d6554",
-    "references/agent-runtime.md": "3355acad1772a0e07ed3f05f029f2bfaa4434421fea06d6763d354feb3dc4c2b",
+    "references/agent-runtime.md": "24f7de1d54a24cb81ee1386f6c90d074576d0f85b822021243317f21f184469b",
     "references/knowledge-bus-directory.md": "1f577289f88fe11ca3b7fb6d969abc3798798dfcdbc2216497030f613afda412",
     "references/knowledge-bus-protocol.yaml": "9daa57b9d4329d0b1b6a905ee42ce1f639875618979f16dafaddafcb70b404ee",
     "runtime/explorer-viewer.js": "e199a4200715cb2df72e93c5f8a7c0ee27d86a62f323647193fa5a794ef26f89",

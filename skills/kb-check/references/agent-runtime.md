@@ -34,7 +34,7 @@ Supply an absolute universe file, knowledge-base folder, or its `.knowledge-bus/
 
 ## References
 
-The references directory containing this guide includes `knowledge-bus-protocol.yaml`. Read it when authoring or interpreting definitions. The ingestion skill also provides `product-development/` for adopting or adapting the starter. These are reference files, not the user's definitions; do not copy them automatically.
+The references directory containing this guide includes `knowledge-bus-protocol.yaml`. Read it when authoring or interpreting definitions. The ingestion skill also provides each bundled universe as a starter for adopting or adapting. These are reference files, not the user's definitions; do not copy them automatically.
 
 ## Interpreting Results
 
