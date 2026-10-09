@@ -30,7 +30,7 @@ Supply an absolute universe file, knowledge-base folder, or its `.knowledge-bus/
 
 `--inspect` prints an Explorer model and writes nothing. When the scope contains several universes, select one with `--universe`. `--explore` requires an output directory and refuses existing output unless `--replace` is supplied. It builds an offline Explorer from the bundled viewer.
 
-`--card <kind>` prints the card for one document type as JSON: what it helps you do, who uses it and when, its sections, guidance on writing it, and when no document is needed. `--format markdown` prints the card as Markdown. `--kinds` lists every document type with its other names and purpose.
+`--card <kind>` prints the card for one document type as JSON: the document type's purpose, who uses it and when, its sections, guidance on writing it, and when no document is needed. `--format markdown` prints the card as Markdown. `--kinds` lists every document type with its other names and purpose.
 
 ## References
 

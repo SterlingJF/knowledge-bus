@@ -52,7 +52,7 @@ CASES = [(name, kind) for name, path in SETS.items() for kind in kind_ids(path)]
 
 @pytest.fixture(scope="module")
 def targets(tmp_path_factory):
-    """The minimal universe spec sits beside other test files, so copy it alone."""
+    """Copy the minimal universe spec alone into a new scope; its folder holds other test files."""
     scope = tmp_path_factory.mktemp("minimal") / ".knowledge-bus"
     scope.mkdir()
     shutil.copy(MINIMAL, scope / MINIMAL.name)
@@ -127,7 +127,7 @@ def test_every_product_development_kind_has_expected_cards():
 
 
 def test_no_stale_expected_cards():
-    """Every expected card belongs to a document type the universe spec still declares."""
+    """Every expected card belongs to a document type still declared in the universe spec."""
     for name, path in SETS.items():
         wanted = {
             f"{stem}{suffix}"
@@ -166,7 +166,7 @@ def keys_anywhere(value):
 
 @pytest.mark.parametrize(("name", "kind"), CASES)
 def test_every_condition_reads_depends_on(capsys, targets, name, kind):
-    """The card states conditions with their questions and never decides them."""
+    """The card states conditions with their questions and never decides whether a condition holds."""
     card = json.loads(card_output(capsys, targets[name], kind, "json"))
     readable = card_output(capsys, targets[name], kind, "markdown")
     condition_lines = [

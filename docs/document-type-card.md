@@ -1,6 +1,6 @@
 # Document Type Card
 
-A document type card describes one document type from one universe spec: what it helps you do, who uses it and when, its sections, the guidance on writing it, and when no document is needed. The card uses only the universe spec and its guidance file. The card lists conditions and never checks whether a condition holds.
+A document type card describes one document type from one universe spec: the document type's purpose, who uses it and when, its sections, the guidance on writing it, and when no document is needed. The card uses only the universe spec and its guidance file. The card lists conditions and never checks whether a condition holds.
 
 ## Commands
 
@@ -11,7 +11,7 @@ kbp --kinds path/to/.knowledge-bus/
 ```
 
 - `--card <kind>` prints the card for the document type with that id, as JSON. `--format markdown` prints the readable card.
-- `--kinds` prints the id, name, other names and purpose of every document type. Use it to see the document types a universe spec declares.
+- `--kinds` prints the id, name, other names and purpose of every document type. Use it to see the document types in a universe spec.
 - Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used.
 - When the scope holds several universe specs, choose one with `--universe <id>` or target its file.
 
@@ -48,11 +48,11 @@ The JSON card has schema `knowledge-bus/card/1`. Every field is present in every
 | `guidance` | The guidance file's `artifacts.<kind>` entries in file order, each as `kind`, `claim` and `when` (null when absent). Null with no guidance file; `[]` with no entries | One item per entry under `## How to write it well` |
 | `sections` | `composition.core`, then `composition.situational`, in declared order | One `### <name>` per section under `## Sections` |
 | `sections[].element`, `name`, `question` | The element's `id` and `question`; the name is made from the id as for `name` | `### <name>`, then `Answers: <question>` |
-| `sections[].strength`, `when` | The list the entry sits in (`core` or `situational`) and the entry's `when` (null when absent) | See [Section Status](#section-status) |
+| `sections[].strength`, `when` | The entry's composition list (`core` or `situational`) and the entry's `when` (null when absent) | See [Section Status](#section-status) |
 | `sections[].gate` | The element's `gate`; null when absent | `Applies only when <condition>. Depends on: …` |
-| `sections[].mode`, `kept_in` | The entry's `mode`, `owns` when absent. For `links`, `kept_in` lists the document types that keep the section: every document type whose entry for that element is `owns`, in declared order, each as `kind` and `name`. Null for `owns` | `Kept in another document (<names joined by "or">): link to that document.` When no document type keeps the section: `Kept in another document: link to that document.` |
-| `sections[].guidance` | The guidance file's `elements.<element>` entries, as for `guidance` | One item per entry after a blank line. A section kept in another document adds `The notes below are for writing the section in that document.` to its `Kept in another document` line when it has guidance |
-| `conditions` | Each frame, then each factor, that any condition on the card names, in declared order: `id`, `question` (null when absent) and `values`. `values` lists each named value that has a question, as `value` and `question` | The `Depends on:` text. Values go under `## What the conditions mean` as `- <id> is <value>: <question>` |
+| `sections[].mode`, `kept_in` | The entry's `mode`, `owns` when absent. For `links`, `kept_in` lists every document type with an `owns` entry for the element, in declared order, each as `kind` and `name`. Null for `owns` | `Kept in another document (<names joined by "or">): link to that document.` When no document type keeps the section: `Kept in another document: link to that document.` |
+| `sections[].guidance` | The guidance file's `elements.<element>` entries, as for `guidance` | One item per entry after a blank line. When a section kept in another document has guidance, the section's `Kept in another document` line ends with `The notes below are for writing the section in that document.` |
+| `conditions` | Each frame, then each factor, named in any condition on the card, in declared order: `id`, `question` (null when absent) and `values`. `values` lists each named value that has a question, as `value` and `question` | The `Depends on:` text. Values go under `## What the conditions mean` as `- <id> is <value>: <question>` |
 
 ## Readable Wording
 
@@ -111,7 +111,7 @@ The readable list starts with `# Document types` and `In the <label> universe sp
 - Whether a condition holds.
 - Guidance sources, citations and links.
 - Codes on document types, sections, frames and factors.
-- How many answers a section takes, and whether its set of answers can ever be complete.
+- The number of answers per section, and whether a section's answers can ever be complete.
 - Guidance on factors.
 
 ## Expected Cards

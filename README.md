@@ -208,14 +208,14 @@ Open the definitions as a map with `kb-explore`. When a question or document typ
 
 ## Commands
 
-| Command                | What it does                                                                                                                       |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing one.                                                        |
-| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and conditions for reconsidering it.                                   |
-| `/kb-evolve`           | Adds or re-examines a document type or the definitions around it, including purpose, contents, relationships, guidance, and terms. |
-| `/kb-explore`          | Explains your definitions and opens them as an offline map with SVG export.                                                        |
-| `/kb-ingest`           | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps.                                      |
-| `/kb-check`            | Checks definition and guidance files and explains any conformance failures.                                                        |
+| Command                | What it does                                                                                                                                                                                              |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing question.                                                                                                                          |
+| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and the conditions for reconsidering the decision.                                                                                            |
+| `/kb-evolve`           | Adds or re-examines a document type or the definitions around it, including purpose, contents, relationships, factors, guidance, and terms. Shows every change as a table for your answer before writing. |
+| `/kb-explore`          | Explains your definitions and opens them as an offline map with SVG export.                                                                                                                               |
+| `/kb-ingest`           | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps.                                                                                                             |
+| `/kb-check`            | Checks definition and guidance files and explains any conformance failures.                                                                                                                               |
 
 ## How It Works
 
@@ -272,7 +272,7 @@ See [Evals](evals/README.md).
 ## Limits
 
 - Agent output still requires review.
-- The checker validates definition and guidance files. It does not yet validate the `answers.yaml` and `ingest-log.md` files that ingestion writes.
+- The checker validates definition and guidance files. It does not yet validate the `answers.yaml` and `ingest-log.md` files that `kb-ingest` writes, or the `evolve-log.md` file that `kb-evolve` writes.
 - Structural checking and Explorer rendering do not establish that an answer is true or that a definition captures the right question.
 - Evals grade definition wording against the project's written rules. The model tiers call paid models and can disagree; a case no tier settles goes to you. A pass does not show that a definition fits your work.
 - `just evals-play` plays agent-behaviour scenarios with a scripted owner, one run each by default.

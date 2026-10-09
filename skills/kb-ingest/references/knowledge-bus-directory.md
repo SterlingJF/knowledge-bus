@@ -13,6 +13,7 @@ my-folder/
     ├── marks.explorer.yaml      # optional presentation declarations
     ├── answers.yaml            # when recording answers
     ├── ingest-log.md           # when ingesting existing material
+    ├── evolve-log.md           # when evolving a universe spec
     └── explorer/               # optional generated read-only projection
         └── <universe-id>/
             ├── index.html
@@ -34,7 +35,7 @@ kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 
 Without an explicit target, the checker searches the current folder and then its parents for `.knowledge-bus/`. It uses the first one found and does not combine definitions from different directories. Calls from inside `.knowledge-bus/` use that directory. An empty or incomplete nearer directory does not fall back to a parent's `.knowledge-bus/`.
 
-The checker reads the `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, so it can check guidance against its universe. Duplicate universe ids fail. Answers, logs, presentation marks, and Explorer outputs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
+The checker reads the `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, to check guidance against its universe. Duplicate universe ids fail. Answers, the ingest and evolve logs, presentation marks, and Explorer outputs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
 
 ## Several Universes in One Scope
 

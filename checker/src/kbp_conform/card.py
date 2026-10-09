@@ -1,6 +1,6 @@
 """The card for one document type, built from a loaded universe spec and its guidance.
 
-The card states conditions and never decides them. It takes documents that are
+The card states conditions and never decides whether a condition holds. It takes documents that are
 already loaded and checked, and it opens no files. docs/document-type-card.md describes
 every field, where it comes from, and the readable wording.
 """
@@ -181,7 +181,7 @@ def _values(values):
 
 
 def say(predicate):
-    """Read a condition aloud, without deciding it."""
+    """Read a condition aloud without deciding whether the condition holds."""
     parts = []
     for key, value in predicate.items():
         if isinstance(value, dict):

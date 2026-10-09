@@ -37,6 +37,8 @@ The skill helps establish:
 
 It researches the proposed type, checks the resulting files, and records the changes and their reasons, including proposed additions it rejected.
 
+Before writing, the skill shows one table per universe spec: each change with its location, current text, proposed text, evidence and reason. You answer by row number. After writing, the skill shows each change before and after.
+
 Use `/kb-uncover-question` when you need help clarifying a question or distinguishing it from existing ones.
 
 Guided creation of an entire new set of definitions remains planned work. You can author one directly using [Spec Anatomy](spec-anatomy.md) and check it with the current tools.

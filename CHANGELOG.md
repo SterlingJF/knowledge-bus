@@ -6,6 +6,10 @@ Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conforman
 
 Bundled protocol: `kbp/0.8`.
 
+- Have `kb-evolve` show proposed changes as one table per universe spec, with current text, proposed text, evidence and reason, and take answers by row number.
+- Have `kb-evolve` show each change before and after once written, and record each run in `.knowledge-bus/evolve-log.md`.
+- Add `kb-evolve` guidance on declaring factors.
+
 ### Checker
 
 - Add `kbp --card <kind>`: prints the card for one document type, as JSON or with `--format markdown`. See [Document Type Card](docs/document-type-card.md).
