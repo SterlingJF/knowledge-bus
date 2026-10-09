@@ -1,0 +1,365 @@
+{
+ "seed": 20261009,
+ "samples": {
+  "confirm": {
+   "rule": "10 repositories per pool",
+   "picks": [
+    {
+     "group": "commit-message",
+     "repo": "excalidraw/excalidraw"
+    },
+    {
+     "group": "commit-message",
+     "repo": "renovatebot/renovate"
+    },
+    {
+     "group": "commit-message",
+     "repo": "casey/just"
+    },
+    {
+     "group": "commit-message",
+     "repo": "makeplane/plane"
+    },
+    {
+     "group": "commit-message",
+     "repo": "aidenybai/react-scan"
+    },
+    {
+     "group": "commit-message",
+     "repo": "dolthub/dolt"
+    },
+    {
+     "group": "commit-message",
+     "repo": "twpayne/chezmoi"
+    },
+    {
+     "group": "commit-message",
+     "repo": "giscus/giscus"
+    },
+    {
+     "group": "commit-message",
+     "repo": "amoffat/sh"
+    },
+    {
+     "group": "commit-message",
+     "repo": "jamiepine/voicebox"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "gastownhall/gastown"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "tt-a1i/archify"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "TanStack/router"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "drumih/turbo-fieldfare"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "PostHog/posthog"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "apache/devlake"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "outline/outline"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "opencost/opencost"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "langfuse/langfuse"
+    },
+    {
+     "group": "agent-instructions",
+     "repo": "javascript-obfuscator/javascript-obfuscator"
+    },
+    {
+     "group": "change-description",
+     "repo": "frappe/books"
+    },
+    {
+     "group": "change-description",
+     "repo": "speaches-ai/speaches"
+    },
+    {
+     "group": "change-description",
+     "repo": "cjpais/Handy"
+    },
+    {
+     "group": "change-description",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner"
+    },
+    {
+     "group": "change-description",
+     "repo": "aidenybai/react-scan"
+    },
+    {
+     "group": "change-description",
+     "repo": "f/textream"
+    },
+    {
+     "group": "change-description",
+     "repo": "zsh-users/zsh-syntax-highlighting"
+    },
+    {
+     "group": "change-description",
+     "repo": "harbor-framework/harbor"
+    },
+    {
+     "group": "change-description",
+     "repo": "amoffat/sh"
+    },
+    {
+     "group": "change-description",
+     "repo": "jqlang/jq"
+    }
+   ]
+  },
+  "folders": {
+   "rule": "3 seeded files per unread folder repository",
+   "picks": [
+    {
+     "group": "proposal",
+     "repo": "backstage/backstage",
+     "path": "beps/0011-event-auditor/README.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "backstage/backstage",
+     "path": "beps/0013-backstage-ai/README.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "backstage/backstage",
+     "path": "beps/0004-scaffolder-task-idempotency/README.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "geps/gep-2645/index.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "geps/gep-851/index.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "geps/gep-1867/index.md"
+    },
+    {
+     "group": "adr",
+     "repo": "PostHog/posthog",
+     "path": "products/review_hog/adr/0001-resolution-is-a-separate-workflow.md"
+    },
+    {
+     "group": "adr",
+     "repo": "PostHog/posthog",
+     "path": "products/review_hog/adr/0002-adopt-existing-skills-by-copy.md"
+    },
+    {
+     "group": "adr",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/engine/docs/adr/ADR-20260902-steps-declare-waits.md"
+    },
+    {
+     "group": "adr",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/engine/docs/adr/ADR-20260925-delete-binary-files-with-the-execution-that-wrote-them.md"
+    },
+    {
+     "group": "adr",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/engine/docs/adr/ADR-20260828-obtain-trigger-output-before-creating-the-execution.md"
+    },
+    {
+     "group": "adr",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": "contributing/Architecture Decisions/About Architecture Decisions.md"
+    },
+    {
+     "group": "adr",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": "contributing/Architecture Decisions/ADR-001 - Nomenclature for Reusable Instruction Blocks Feature.md"
+    },
+    {
+     "group": "adr",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": "contributing/Architecture Decisions/ADR-002 - Security Response to JavaScript Execution in Queries.md"
+    }
+   ]
+  },
+  "subfolder-readmes": {
+   "rule": "20 seeded repositories, one README.md each",
+   "picks": [
+    {
+     "group": "package_readme",
+     "repo": "trycua/cua",
+     "path": "libs/cuabot/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "cjpais/Handy",
+     "path": "src/content/release-notes/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "packer-template/keys/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "antvis/G6",
+     "path": "packages/g6-ssr/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "jamiepine/voicebox",
+     "path": "backend/mcp_server/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": "locales/hi/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "caronc/apprise",
+     "path": "packaging/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "strapi/strapi",
+     "path": "scripts/front/verify-translations/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "oxc-project/oxc",
+     "path": "packages/codegen/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "docmost/docmost",
+     "path": "packages/editor-ext/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "TryGhost/Ghost",
+     "path": "packages/adapters/route-settings-base/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "tt-a1i/archify",
+     "path": "benchmarks/repair-rounds/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "exo-explore/exo",
+     "path": "rust/exo_rs/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "jerrykuku/luci-theme-argon",
+     "path": "htdocs/luci-static/argon/background/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "grafana/alloy",
+     "path": "internal/component/beyla/ebpf/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "images/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/utils/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "starship/starship",
+     "path": "install/macos_packages/readme.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "Hammerspoon/hammerspoon",
+     "path": "Pods/Sentry/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "outline/outline",
+     "path": "shared/editor/commands/README.md"
+    }
+   ]
+  },
+  "architecture": {
+   "rule": "10 seeded repositories, the shallowest architecture file each",
+   "picks": [
+    {
+     "group": "architecture",
+     "repo": "amoffat/sh",
+     "path": "docs/source/sections/architecture.rst"
+    },
+    {
+     "group": "architecture",
+     "repo": "mermaid-js/mermaid",
+     "path": "docs/syntax/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "TanStack/router",
+     "path": "packages/router-plugin/ARCHITECTURE-CODE-SPLITTING.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "cline/cline",
+     "path": "sdk/ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "EnterpriseDB/barman",
+     "path": "docs/user_guide/architectures.rst"
+    },
+    {
+     "group": "architecture",
+     "repo": "unclecode/crawl4ai",
+     "path": "deploy/docker/ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "trycua/cua",
+     "path": "libs/cua-spacesd/docs/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "twentyhq/twenty",
+     "path": "packages/twenty-docs/developers/contribute/capabilities/backend-development/folder-architecture-server.mdx"
+    },
+    {
+     "group": "architecture",
+     "repo": "backstage/backstage",
+     "path": "docs/overview/architecture-overview.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "antvis/G6",
+     "path": "packages/site/common/api/elements/combos/rect-combo-architecture.md"
+    }
+   ]
+  }
+ }
+}

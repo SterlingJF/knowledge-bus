@@ -61,12 +61,8 @@ def payloads(root=ROOT):
                 for source, target in plugin.EXPLORER_ASSETS.items():
                     files[target] = (root / source).read_bytes()
             if name == "kb-ingest":
-                for path in sorted(
-                    (root / "universes/product-development").glob("*.kbp.yaml")
-                ):
-                    files["references/product-development/" + path.name] = (
-                        path.read_bytes()
-                    )
+                for source, target in plugin.preset_files(root).items():
+                    files[target] = (root / source).read_bytes()
             manifest = {
                 "generated_by": "just skills-build",
                 "version": version,

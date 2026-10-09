@@ -27,9 +27,15 @@ runs:
   - side: openai
     folder: .evidence/2026-10-06/evals/universe-20261006T132135451825Z
     universe: product-development
+  - side: anthropic
+    folder: .evidence/2026-10-09/evals/universe-20261009T151853022707Z
+    universe: code-repository
 # Who wrote and labelled each universe's situations, one line per side, shown with its recognition.
 # Kept here, not in evals/situations/, since those files name no vendor.
 labelled_by:
   product-development:
     - "Anthropic side: extracted and written, and labelled blind, by Claude Fable 5.1 and Claude Opus 5.5"
     - "OpenAI side: labelled blind by GPT-6-Astra at xhigh, in the Codex app for rounds 1 and 2 and through the Codex CLI for round 3"
+  code-repository:
+    - "Anthropic side: extracted from the frozen corpus and written blind by Claude Opus 5.5, and labelled blind by Claude Fable 5.1 and, in place of the OpenAI side, Claude Sonnet 4.5"
+    - "OpenAI side: skipped for this run"

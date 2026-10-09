@@ -90,6 +90,32 @@ def test_release_checks_run_full_suite_before_building(tmp_path, monkeypatch):
     assert ("plugins",) in calls
 
 
+def test_release_build_checks_a_copy_of_every_preset(tmp_path, monkeypatch):
+    root = tmp_path / "root"
+    for name in ("first-preset", "second-preset"):
+        folder = root / "universes" / name
+        folder.mkdir(parents=True)
+        (folder / "universe.kbp.yaml").write_text(f"universe: {name}\n")
+        (folder / "type-guidance.kbp.yaml").write_text(f"guidance: {name}\n")
+    (root / "universes/README.md").write_text("# Universes\n")
+    calls = []
+    monkeypatch.setattr(
+        release, "run", lambda *args, **kwargs: calls.append(kwargs["root"])
+    )
+    base = tmp_path / "base"
+    release.check_presets(Path("python"), base, root)
+    assert calls == [
+        base / "first-preset/notes",
+        base / "second-preset/notes",
+    ]
+    for name in ("first-preset", "second-preset"):
+        copied = base / name / "notes/.knowledge-bus"
+        assert sorted(path.name for path in copied.iterdir()) == [
+            "type-guidance.kbp.yaml",
+            "universe.kbp.yaml",
+        ]
+
+
 def test_prepare_synchronizes_without_changing_protocol(project):
     protocol = (project / "protocol/knowledge-bus-protocol.yaml").read_bytes()
     release.prepare("0.6.0", project)

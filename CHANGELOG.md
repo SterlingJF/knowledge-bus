@@ -16,6 +16,15 @@ Bundled protocol: `kbp/0.8`.
 - Add `kbp --kinds`: lists every document type with its other names, purpose, users and timing, and prints `overview.covers` and `overview.for` for each universe spec; with several universe specs, prints one group per universe spec.
 - Add `.knowledge-bus/workspace.yaml`, the settings file for a Knowledge Bus folder. Its `from_parent` key lists universe specs of the parent folder; every `kbp` command and skill applies the listed universe specs beside the folder's own universe specs. See [Nested Folders](docs/knowledge-bus-directory.md#nested-folders).
 
+### Codebase-recordkeeping universe 0.1 and guidance 0.1
+
+- Add the codebase-recordkeeping universe spec for the written documents of a codebase, from a survey of public repositories and graded sources. See [Code Repository Universe Research](docs/research-code-repository-universe-2026-10-08.md).
+- Declare 20 document types, from the README and licence file to change descriptions, release notes and agent instructions, with element questions, compositions, relations and six terms.
+- Order elements by the `step` frame, from choosing a project to publishing a release; add frames for issue kind, documentation task, contributor assertion and repository state, and factors for release notes, commit messages and version numbers.
+- Add type guidance with sourced advice, placements, practices, disputes and distinctions for each document type.
+- Add recognition situations for the codebase-recordkeeping frame and factor values.
+- Bundle each universe spec in `universes/`, with its guidance, into `kb-ingest` and the agent packages; run the release and package checks on each universe spec.
+
 ## 0.9.0
 
 Bundled protocol: `kbp/0.8`.

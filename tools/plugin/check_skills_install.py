@@ -64,41 +64,42 @@ def exercise_runtime(installed, project, env, *, explore=False):
             timeout=60,
         )
         if explore:
-            scope = project / "notes/.knowledge-bus"
-            shutil.copytree(plugin.ROOT / "universes/product-development", scope)
-            inspected = subprocess.run(
-                [sys.executable, str(launcher), "--inspect", str(scope)],
-                cwd=project,
-                env=runtime_env,
-                check=True,
-                capture_output=True,
-                text=True,
-                timeout=60,
-            )
-            if "knowledge-bus/explorer-model/1" not in inspected.stdout:
-                raise ValueError("Standalone inspection did not return a model.")
-            output = project / "portable"
-            subprocess.run(
-                [
-                    sys.executable,
-                    str(launcher),
-                    "--explore",
-                    "--output",
-                    str(output),
-                    str(scope),
-                ],
-                cwd=project,
-                env=runtime_env,
-                check=True,
-                capture_output=True,
-                timeout=60,
-            )
-            if {path.name for path in output.iterdir()} != {
-                "index.html",
-                "model.json",
-                "receipt.json",
-            }:
-                raise ValueError("Standalone Explorer output is incomplete.")
+            for name in plugin.presets():
+                scope = project / name / "notes/.knowledge-bus"
+                shutil.copytree(plugin.ROOT / "universes" / name, scope)
+                inspected = subprocess.run(
+                    [sys.executable, str(launcher), "--inspect", str(scope)],
+                    cwd=project,
+                    env=runtime_env,
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
+                )
+                if "knowledge-bus/explorer-model/1" not in inspected.stdout:
+                    raise ValueError("Standalone inspection did not return a model.")
+                output = project / "portable" / name
+                subprocess.run(
+                    [
+                        sys.executable,
+                        str(launcher),
+                        "--explore",
+                        "--output",
+                        str(output),
+                        str(scope),
+                    ],
+                    cwd=project,
+                    env=runtime_env,
+                    check=True,
+                    capture_output=True,
+                    timeout=60,
+                )
+                if {path.name for path in output.iterdir()} != {
+                    "index.html",
+                    "model.json",
+                    "receipt.json",
+                }:
+                    raise ValueError("Standalone Explorer output is incomplete.")
     finally:
         for path, mode in modes.items():
             path.chmod(mode)

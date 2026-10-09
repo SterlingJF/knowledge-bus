@@ -8,8 +8,15 @@ does not depend on them, and conformance to KBP does not mean conformance to any
 directory. Declaring your own is the expected case, not the exception — `docs/` describes the
 procedure this project follows, and you are under no obligation to follow it.
 
-`product-development/` is the universe this project maintains and the one the checker is tested
-against. It carries its own version, independent of the protocol's.
+This project maintains two universes. Each universe carries its own version, separate from the
+protocol version.
+
+- `product-development/` covers the reasoning around deliberate work: what makes it worth doing,
+  what it should be, and whether it held up. The checker tests run against this universe.
+- `codebase-recordkeeping/` covers the written documents of a codebase: files in the
+  repository, commit messages, change descriptions, issue reports and release notes.
+  [Code Repository Universe Research](../docs/research-code-repository-universe-2026-10-08.md)
+  gives the corpus, counts and sources behind each definition.
 
 A universe declares two documents: the universe itself, and the type guidance that says how to
 answer its elements well. Both are checked, guidance against the universe it names.

@@ -4,7 +4,7 @@ Built by `tools/evals/report.py` from the runs in `evals/runs.yaml`; it calls no
 
 Labels: calibrated on development examples (interim); recognition on development situations (interim); each scenario's figure says how many times it ran (n).
 
-Latest run: 2026-10-06.
+Latest run: 2026-10-09.
 
 | Run | Side | Universe | Measures | Input | Digest |
 | --- | --- | --- | --- | --- | --- |
@@ -45,6 +45,13 @@ Latest run: 2026-10-06.
 | `universe-20261006T132135451825Z` | OpenAI side | product-development | grade, sorting, recognition | `probes.json` | sha256:306161298bf56f8a |
 | `universe-20261006T132135451825Z` | OpenAI side | product-development | grade, sorting, recognition | `universes/product-development/type-guidance.kbp.yaml` | sha256:effad3b412e4c553 |
 | `universe-20261006T132135451825Z` | OpenAI side | product-development | grade, sorting, recognition | `universes/product-development/universe.kbp.yaml` | sha256:4b70294612aa9d56 |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `evals/situations/cases.yaml (cases used)` | sha256:07ebb2c6bae4fd4b |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `evals/situations/code-repository.yaml` | sha256:5cced8c60a73c432 |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `evals/skills.yaml` | sha256:e3ec1d4224e88d87 |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `evals/universe.yaml` | sha256:c60e8732e8686698 |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `probes.json` | sha256:ae7a68a58fe98296 |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `universes/code-repository/type-guidance.kbp.yaml` | sha256:6a4b36d7eb112424 |
+| `universe-20261009T151853022707Z` | Anthropic side | code-repository | grade, sorting, recognition | `universes/code-repository/universe.kbp.yaml` | sha256:4a783780fafd145f |
 
 ## Headline
 
@@ -310,6 +317,129 @@ Not run.
 ### Case by case
 
 Agent scenarios: not run on both sides.
+
+## Universe `code-repository`
+
+### Headline of `code-repository`
+
+| Measure | What it shows | Anthropic side | OpenAI side | Both agree |
+| --- | --- | --- | --- | --- |
+| Universe grade | How many of the universe's definitions meet each rule. | 4278 cases: 4037 pass, 71 fail, 170 undecided | not run | not run |
+| Recognition by frame (development situations, interim) | Whether readers place everyday situations under the right value of a frame or factor. | 5 frames and 4 factors: 6 pass, 3 fail, 0 undecided, 0 not run; 10 of 36 values fail (all readers); 0 of 36 (careful readers only) | not run | not run |
+| Sorting | Whether a passage that answers a question is filed under that question. | 105 members: 74 pass, 27 fail, 4 undecided | not run | not run |
+| Judge pairs across the sides | Whether verdicts stand when one judge from each company must agree. | judges: claude-opus-5-5, claude-fable-5-1 | not run | not run |
+
+### Universe grade of `code-repository`, Anthropic side
+
+Run `universe-20261009T151853022707Z` (anthropic-side).
+
+Tiers: deterministic, decision, judgment, sort, recognise.
+
+| Rule | Pass | Fail | Undecided | Settled by deterministic / decision / judgment / sort / recognise |
+| --- | --- | --- | --- | --- |
+| `action-names-an-action` | 20 | 0 | 0 | 0 / 20 / 0 / 0 / 0 |
+| `direct-statement` | 428 | 4 | 14 | 0 / 0 / 432 / 0 / 0 |
+| `enablements-distinct` | 20 | 0 | 0 | 0 / 0 / 20 / 0 / 0 |
+| `holds-across-scope` | 423 | 8 | 15 | 0 / 0 / 431 / 0 / 0 |
+| `named-referents` | 426 | 4 | 16 | 0 / 0 / 430 / 0 / 0 |
+| `one-point-terse` | 395 | 21 | 30 | 0 / 0 / 416 / 0 / 0 |
+| `one-question` | 82 | 1 | 0 | 0 / 81 / 2 / 0 / 0 |
+| `one-term-per-concept` | 480 | 2 | 9 | 0 / 0 / 482 / 0 / 0 |
+| `plain-words` | 354 | 20 | 72 | 0 / 0 / 374 / 0 / 0 |
+| `point-first` | 295 | 0 | 2 | 0 / 0 / 295 / 0 / 0 |
+| `present-state` | 297 | 0 | 0 | 0 / 0 / 297 / 0 / 0 |
+| `questions-distinct` | 76 | 3 | 4 | 0 / 0 / 79 / 0 / 0 |
+| `siblings-differ` | 651 | 0 | 1 | 0 / 0 / 651 / 0 / 0 |
+| `sorts-reliably` | 74 | 27 | 4 | 0 / 0 / 0 / 101 / 0 |
+| `strength-follows-the-action` | 90 | 8 | 7 | 0 / 0 / 98 / 0 / 0 |
+| `values-recognised` | 26 | 10 | 0 | 0 / 0 / 0 / 0 / 36 |
+
+### Universe grade of `code-repository`, OpenAI side
+
+Not run.
+
+### Recognition by frame of `code-repository`, Anthropic side
+
+Run `universe-20261009T151853022707Z` (anthropic-side).
+
+10 of 36 values fail (all readers); 0 of 36 (careful readers only). The careful readers are this side's judgment models: claude-opus-5-5, claude-fable-5-1.
+
+Each reader's right / situations in the set; unsure and none count as misses, and on a ladder a miss one step away is counted as off by one.
+
+| Set | Values | Situations | claude-fable-5-1 | claude-haiku-4-5-20251001 | claude-opus-5-5 | jev | Lowest value | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| commit-convention | 3 | 18 | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | conventional 6/6 (claude-opus-5-5) | pass |
+| contributor-assertion | 3 | 18 | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | sign-off 6/6 (claude-opus-5-5) | pass |
+| docs-task | 7 | 39 | 39/39 (0 unsure, 0 none) | 37/39 (0 unsure, 0 none) | 39/39 (0 unsure, 0 none) | 32/39 (6 unsure, 0 none) | install 3/5 (jev) | fail |
+| issue-kind | 5 | 27 | 26/27 (0 unsure, 1 none) | 26/27 (0 unsure, 1 none) | 27/27 (0 unsure, 0 none) | 27/27 (0 unsure, 0 none) | maintainer-task 4/5 (claude-fable-5-1) | pass |
+| notes-place | 3 | 18 | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | 18/18 (0 unsure, 0 none) | release-page 6/6 (claude-opus-5-5) | pass |
+| notes-writing | 4 | 26 | 25/26 (0 unsure, 1 none) | 25/26 (0 unsure, 0 none) | 26/26 (0 unsure, 0 none) | 24/26 (2 unsure, 0 none) | generated 5/6 (jev) | pass |
+| repository-state | 2 | 13 | 13/13 (0 unsure, 0 none) | 13/13 (0 unsure, 0 none) | 13/13 (0 unsure, 0 none) | 13/13 (0 unsure, 0 none) | active 9/9 (claude-opus-5-5) | pass |
+| step | 6 | 34 | 33/34 (0 unsure, 0 none) | 33/34 (0 unsure, 0 none) | 33/34 (0 unsure, 0 none) | 30/34 (3 unsure, 0 none) | build 4/6 (jev) | fail |
+| version-pattern | 3 | 16 | 16/16 (0 unsure, 0 none) | 15/16 (0 unsure, 1 none) | 16/16 (0 unsure, 0 none) | 13/16 (2 unsure, 0 none) | major-minor-patch 6/8 (jev) | fail |
+
+Where misses went, expected → placed, with each reader's count:
+
+- docs-task: Install: Does the page help the user install the software? → unsure (jev 2)
+- docs-task: Install: Does the page help the user install the software? → Get started: Does the page lead a new user to a first working result? (claude-haiku-4-5-20251001 1)
+- docs-task: Get started: Does the page lead a new user to a first working result? → unsure (jev 1)
+- docs-task: Use: Does the page show how to use one feature? → Get started: Does the page lead a new user to a first working result? (claude-haiku-4-5-20251001 1, jev 1)
+- docs-task: Look up: Does the page describe each command or function the software offers? → unsure (jev 2)
+- docs-task: Fix an error: Does the page help the user fix an error or a known problem? → unsure (jev 1)
+- issue-kind: Maintainer task: Does a maintainer use the issue to plan or track work, such as preparing a release? → none (claude-fable-5-1 1, claude-haiku-4-5-20251001 1)
+- notes-writing: By hand: Does a maintainer write every line of the notes for each release? → From change notes: Does a tool collect the note each contributor writes with a change? (claude-haiku-4-5-20251001 1)
+- notes-writing: Generated: Does a tool build the notes from change titles or commit messages? → unsure (jev 1)
+- notes-writing: Generated then edited: Does a maintainer edit notes that a tool built? → none (claude-fable-5-1 1)
+- notes-writing: Generated then edited: Does a maintainer edit notes that a tool built? → unsure (jev 1)
+- step: Propose: Is the reader taking part in discussions or proposing a change? → Use: Is the reader installing or running the software, or notifying the maintainers of a vulnerability? (claude-haiku-4-5-20251001 1, jev 1)
+- step: Build: Is the reader writing or testing code in a local copy? → unsure (jev 2)
+- step: Review: Is the reader deciding whether to accept or keep a change, or whose approval the change needs? → Propose: Is the reader taking part in discussions or proposing a change? (claude-fable-5-1 1, claude-opus-5-5 1)
+- step: Review: Is the reader deciding whether to accept or keep a change, or whose approval the change needs? → unsure (jev 1)
+- version-pattern: Major minor patch: Does each version have three numbers, such as 2.1.0? → unsure (jev 1)
+- version-pattern: Major minor patch: Does each version have three numbers, such as 2.1.0? → Other: Does each version follow another pattern, such as two numbers or a named build? (jev 1)
+- version-pattern: Calendar: Does each version start with a year, such as 2026.9.0? → unsure (jev 1)
+- version-pattern: Other: Does each version follow another pattern, such as two numbers or a named build? → none (claude-haiku-4-5-20251001 1)
+
+### Recognition by frame of `code-repository`, OpenAI side
+
+Not run.
+
+### Recognition by frame of `code-repository`, who labelled the situations
+
+Who wrote and labelled the situations: Anthropic side: extracted from the frozen corpus and written blind by Claude Opus 5.5, and labelled blind by Claude Fable 5.1 and, in place of the OpenAI side, Claude Sonnet 4.5; OpenAI side: skipped for this run.
+
+### Sorting of `code-repository`, Anthropic side
+
+Run `universe-20261009T151853022707Z` (anthropic-side).
+
+Members: 74 pass, 27 fail, 4 undecided.
+
+| Reader | Probes | Filed right | Unsure | Filed elsewhere |
+| --- | --- | --- | --- | --- |
+| claude-fable-5-1 | 209 | 201 | 0 | 8 |
+| claude-haiku-4-5-20251001 | 209 | 188 | 0 | 21 |
+| claude-opus-5-5 | 209 | 194 | 0 | 15 |
+| jev | 209 | 182 | 20 | 7 |
+
+### Sorting of `code-repository`, OpenAI side
+
+Not run.
+
+### Where the sides disagree on `code-repository`
+
+#### Case by case on `code-repository`
+
+Universe grade: not run on both sides.
+
+Sorting: not run on both sides.
+
+#### Frames and factors of `code-repository`
+
+Recognition: not run on both sides.
+
+#### Judge pairs across the sides on `code-repository`
+
+Pairs not run: they need a grade run on each side with each judge's vote kept.
 
 ## Universe `product-development`
 
@@ -663,6 +793,7 @@ Dollar costs are API prices, as each CLI reports them. On a Claude or ChatGPT su
 | `examples-universe-20261006T132135450769Z` (openai-side) | OpenAI side | decision: jev jev-1.13.0; judgment: judges: codex:gpt-6-astra, codex:gpt-6.1-sol; recognise: filers: codex:gpt-6-astra, codex:gpt-6.1-sol, jev jev-1.13.0, codex:gpt-6-luna; sort: filers: codex:gpt-6-astra, codex:gpt-6.1-sol, jev jev-1.13.0, codex:gpt-6-luna | decision tokens: 8337, spent by examples-universe-20261006T060659282403Z and reused here; judgment cost: n/a (answered in the Codex app, which reports no cost); sort and recognise cost: n/a (answered in the Codex app, which reports no cost); sort and recognise decision tokens: 9434, spent by examples-universe-20261006T060659282403Z and reused here |
 | `examples-skills-20261006T132135451472Z` (openai-side) | OpenAI side | decision: jev jev-1.13.0; judgment: judges: codex:gpt-6-astra, codex:gpt-6.1-sol | decision tokens: 14010, spent by examples-skills-20261006T050332458585Z and reused here; judgment cost: n/a (answered in the Codex app, which reports no cost) |
 | `universe-20261006T132135451825Z` (openai-side) | OpenAI side | decision: jev jev-1.13.0; judgment: judges: codex:gpt-6-astra, codex:gpt-6.1-sol; recognise: filers: codex:gpt-6-astra, codex:gpt-6.1-sol, jev jev-1.13.0, codex:gpt-6-luna; sort: filers: codex:gpt-6-astra, codex:gpt-6.1-sol, jev jev-1.13.0, codex:gpt-6-luna | decision tokens: 31028, spent by universe-20261006T050614485618Z and reused here; judgment cost: n/a (answered in the Codex app, which reports no cost); sort and recognise cost: n/a (answered in the Codex app, which reports no cost); sort and recognise decision tokens: 363972, spent by universe-20261006T050614485618Z and reused here |
+| `universe-20261009T151853022707Z` (anthropic-side) | Anthropic side | decision: jev jev-1.13.0; judgment: judges: claude-opus-5-5, claude-fable-5-1; recognise: filers: claude-opus-5-5, claude-fable-5-1, jev jev-1.13.0, claude-haiku-4-5-20251001; sort: filers: claude-opus-5-5, claude-fable-5-1, jev jev-1.13.0, claude-haiku-4-5-20251001 | decision tokens: 40628; judgment cost: $47.13; sort and recognise cost: $14.40; sort and recognise decision tokens: 269321 |
 
 ## Not measured here
 

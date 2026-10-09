@@ -1,0 +1,45 @@
+{
+ "seed": 20261008,
+ "python_random": "random.Random(seed).shuffle per stratum, strata visited in sorted order, round robin",
+ "rule": "stratum = (language in TypeScript/Go/Python/Rust/JavaScript/Swift else other, star tier 40k+/10-40k/3-10k)",
+ "input_repos": 146,
+ "input_sha256": "fa8ebbc46a373ce56a75df7e840e516f2f4e632c9799a74d2ee263cf0025d35f",
+ "slices": [
+  [
+   "kubernetes/ingress-nginx",
+   "swagger-api/swagger-editor",
+   "virattt/ai-hedge-fund",
+   "altic-dev/FluidVoice",
+   "latitude-dev/latitude-llm",
+   "pi-hole/pi-hole",
+   "remarkjs/react-markdown"
+  ],
+  [
+   "prometheus-operator/prometheus-operator",
+   "tt-a1i/archify",
+   "casey/just",
+   "lysyi3m/macos-terminal-themes",
+   "strapi/strapi",
+   "siderolabs/talos",
+   "json-schema-faker/json-schema-faker"
+  ],
+  [
+   "spf13/cobra",
+   "deepseek-ai/DeepSeek-OCR",
+   "deuxfleurs-org/garage",
+   "apple/container",
+   "apache/apisix",
+   "kgateway-dev/kgateway",
+   "openai/evals"
+  ],
+  [
+   "lint-staged/lint-staged",
+   "dograh-hq/dograh",
+   "starship/starship",
+   "langfuse/langfuse",
+   "jerrykuku/luci-theme-argon",
+   "junegunn/fzf",
+   "amoffat/sh"
+  ]
+ ]
+}

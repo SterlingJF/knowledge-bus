@@ -1,0 +1,1223 @@
+guidance:
+  id: codebase-recordkeeping-guidance
+  label: Codebase recordkeeping type guidance
+  version: 0.1
+  conforms_to: kbp/0.8
+  guides: codebase-recordkeeping
+
+guidance_kinds:
+  - { id: advice, sourced: true }        # a rule or recommendation from an A or B source
+  - { id: placement, sourced: true }     # a forge or tool feature that reads, shows or supports the document
+  - { id: practice, sourced: true }      # a habit of surveyed projects, practitioners or a studied sample
+  - { id: dispute, sourced: true }       # a point where sources or practitioners disagree
+  - { id: distinction, sourced: true }   # the difference between two document types or elements
+
+sources:
+
+  standard-readme:
+    cite: "standard-readme project, standard-readme specification"
+    url: "https://github.com/RichardLitt/standard-readme/blob/main/spec.md"
+    checked: 2026-10-09
+  github-readmes:
+    cite: "GitHub Docs, About READMEs"
+    url: "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+    checked: 2026-10-09
+  github-community-profile:
+    cite: "GitHub Docs, About community profiles for public repositories"
+    url: "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories"
+    checked: 2026-10-09
+  github-default-health-files:
+    cite: "GitHub Docs, Creating a default community health file"
+    url: "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file"
+    checked: 2026-10-09
+  github-status-badge:
+    cite: "GitHub Docs, Adding a workflow status badge"
+    url: "https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge"
+    checked: 2026-10-09
+  osg-starting:
+    cite: "Open Source Guides, Starting an Open Source Project"
+    url: "https://opensource.guide/starting-a-project/"
+    checked: 2026-10-09
+  wtd-docs-as-code:
+    cite: "Write the Docs, Docs as Code"
+    url: "https://www.writethedocs.org/guide/docs-as-code/"
+    checked: 2026-10-03
+  wtd-beginners-guide:
+    cite: "Write the Docs, A beginner's guide to writing documentation"
+    url: "https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"
+    checked: 2026-10-03
+  google-docguide:
+    cite: "Google style guides, Documentation Best Practices and READMEs"
+    url: "https://google.github.io/styleguide/docguide/READMEs.html"
+    checked: 2026-10-09
+  bestpractices-criteria:
+    cite: "OpenSSF, Best Practices badge criteria, passing level"
+    url: "https://www.bestpractices.dev/en/criteria/0"
+    checked: 2026-10-09
+  badge-study:
+    cite: "Trockman, Zhou, Kästner and Vasilescu, Adding Sparkle to Social Coding: An Empirical Study of Repository Badges in the npm Ecosystem, ICSE 2018"
+    url: "https://doi.org/10.1145/3180155.3180209"
+    checked: 2026-10-03
+  readme-content-study:
+    cite: "Prana, Treude, Thung, Atapattu and Lo, Categorizing the Content of GitHub README Files, Empirical Software Engineering 24 (2019)"
+    url: "https://doi.org/10.1007/s10664-018-9660-3"
+    checked: 2026-10-03
+  diataxis:
+    cite: "Diátaxis project, Diátaxis documentation framework"
+    url: "https://diataxis.fr/"
+    checked: 2026-10-09
+  github-contributing:
+    cite: "GitHub Docs, Setting guidelines for repository contributors"
+    url: "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors"
+    checked: 2026-10-09
+  osg-conduct-governance:
+    cite: "Open Source Guides, Your Code of Conduct; Leadership and Governance"
+    url: "https://opensource.guide/code-of-conduct/"
+    checked: 2026-10-03
+  github-issue-templates:
+    cite: "GitHub Docs, About issue and pull request templates; Syntax for issue forms"
+    url: "https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates"
+    checked: 2026-10-09
+  github-code-owners:
+    cite: "GitHub Docs, About code owners"
+    url: "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners"
+    checked: 2026-10-09
+  github-support:
+    cite: "GitHub Docs, Adding support resources to your project"
+    url: "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-support-resources-to-your-project"
+    checked: 2026-10-09
+  contributor-covenant:
+    cite: "Organization for Ethical Source, Contributor Covenant 3.0 and 2.1"
+    url: "https://www.contributor-covenant.org/version/2/1/code_of_conduct/"
+    checked: 2026-10-08
+  cncf-project-template:
+    cite: "CNCF, project template: GOVERNANCE.md, MAINTAINERS.md, ADOPTERS.md, RELEASES.md, REVIEWING.md, DESIGN-PROPOSALS.md"
+    url: "https://github.com/cncf/project-template"
+    checked: 2026-10-09
+  agents-md:
+    cite: "Agentic AI Foundation (Linux Foundation), AGENTS.md"
+    url: "https://agents.md/"
+    checked: 2026-10-09
+  claude-code-memory:
+    cite: "Anthropic, Claude Code documentation, Manage Claude's memory"
+    url: "https://code.claude.com/docs/en/memory"
+    checked: 2026-10-09
+  copilot-instructions:
+    cite: "GitHub Docs, Adding repository custom instructions for GitHub Copilot"
+    url: "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions"
+    checked: 2026-10-09
+  agent-readmes-study:
+    cite: "Agent READMEs: An Empirical Study of Context Files for Agentic Coding, arXiv 2511.12884 v2 (preprint)"
+    url: "https://arxiv.org/abs/2511.12884"
+    checked: 2026-10-09
+  agentsmd-eval-study:
+    cite: "Evaluating AGENTS.md: context files and coding agent performance, arXiv 2602.11988 v3 (preprint)"
+    url: "https://arxiv.org/abs/2602.11988"
+    checked: 2026-10-09
+  conventional-commits:
+    cite: "Conventional Commits 1.0.0"
+    url: "https://www.conventionalcommits.org/en/v1.0.0/"
+    checked: 2026-10-08
+  semver:
+    cite: "Semantic Versioning 2.0.0"
+    url: "https://semver.org/spec/v2.0.0.html"
+    checked: 2026-10-09
+  keep-a-changelog:
+    cite: "Keep a Changelog 2.0.0, with 1.1.0 as the earlier line"
+    url: "https://keepachangelog.com/en/2.0.0/"
+    checked: 2026-10-08
+  git-submitting-patches:
+    cite: "Git project, SubmittingPatches"
+    url: "https://git-scm.com/docs/SubmittingPatches"
+    checked: 2026-10-09
+  kernel-submitting-patches:
+    cite: "Linux kernel documentation, Submitting patches: the essential guide to getting your code into the kernel"
+    url: "https://www.kernel.org/doc/html/latest/process/submitting-patches.html"
+    checked: 2026-10-09
+  google-cl-descriptions:
+    cite: "Google Engineering Practices, Writing good CL descriptions"
+    url: "https://google.github.io/eng-practices/review/developer/cl-descriptions.html"
+    checked: 2026-10-09
+  github-generated-notes:
+    cite: "GitHub Docs, Automatically generated release notes"
+    url: "https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes"
+    checked: 2026-10-09
+  aws-adr-process:
+    cite: "AWS Prescriptive Guidance, ADR process"
+    url: "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html"
+    checked: 2026-10-03
+  pep-1:
+    cite: "Python, PEP 1: PEP Purpose and Guidelines"
+    url: "https://peps.python.org/pep-0001/"
+    checked: 2026-10-03
+  rust-rfc-template:
+    cite: "Rust project, RFC template"
+    url: "https://github.com/rust-lang/rfcs/blob/master/0000-template.md"
+    checked: 2026-10-09
+  madr-4:
+    cite: "ADR GitHub organisation, MADR 4.0.0"
+    url: "https://adr.github.io/madr/"
+    checked: 2026-10-09
+  nygard-adr:
+    cite: "Cognitect blog, Documenting Architecture Decisions (2011)"
+    url: "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+    checked: 2026-10-03
+  commit-message-blog:
+    cite: "How to Write a Git Commit Message (practitioner blog)"
+    url: "https://cbea.ms/git-commit/"
+    checked: 2026-10-03
+  spdx-expressions:
+    cite: "SPDX (ISO/IEC 5962:2021), SPDX license expressions 2.3.1"
+    url: "https://spdx.github.io/spdx-spec/v2.3.1/SPDX-license-expressions/"
+    checked: 2026-10-09
+  reuse-spec:
+    cite: "FSFE, REUSE Specification 3.3"
+    url: "https://reuse.software/spec-3.3/"
+    checked: 2026-10-09
+  citation-file-format:
+    cite: "Citation File Format 1.2.0 schema"
+    url: "https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/schema.json"
+    checked: 2026-10-09
+  slsa-build:
+    cite: "OpenSSF, SLSA v1.2 build requirements"
+    url: "https://slsa.dev/spec/v1.2/build-requirements"
+    checked: 2026-10-09
+  github-security-policy:
+    cite: "GitHub Docs, Adding a security policy to your repository"
+    url: "https://raw.githubusercontent.com/github/docs/main/content/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/add-security-policy.md"
+    checked: 2026-10-09
+  github-private-reporting:
+    cite: "GitHub Docs, Privately reporting a security vulnerability"
+    url: "https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability"
+    checked: 2026-10-03
+  github-licensing:
+    cite: "GitHub Docs, Licensing a repository"
+    url: "https://raw.githubusercontent.com/github/docs/main/content/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository.md"
+    checked: 2026-10-09
+  github-citation:
+    cite: "GitHub Docs, About CITATION files"
+    url: "https://raw.githubusercontent.com/github/docs/main/content/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files.md"
+    checked: 2026-10-09
+  github-funding:
+    cite: "GitHub Docs, Displaying a sponsor button in your repository"
+    url: "https://raw.githubusercontent.com/github/docs/main/content/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository.md"
+    checked: 2026-10-09
+  github-sbom-export:
+    cite: "GitHub Docs, Exporting a software bill of materials for your repository"
+    url: "https://raw.githubusercontent.com/github/docs/main/content/code-security/how-tos/secure-your-supply-chain/establish-provenance-and-integrity/export-dependencies-as-sbom.md"
+    checked: 2026-10-09
+  openssf-disclosure-guide:
+    cite: "OpenSSF, Guide to coordinated vulnerability disclosure for open source projects: maintainer guide and policy templates"
+    url: "https://github.com/ossf/oss-vulnerability-guide/blob/main/maintainer-guide.md"
+    checked: 2026-10-09
+  scorecard-checks:
+    cite: "OpenSSF, Scorecard check documentation"
+    url: "https://github.com/ossf/scorecard/blob/main/docs/checks.md"
+    checked: 2026-10-09
+  openssf-baseline:
+    cite: "OpenSSF, Open Source Project Security Baseline v2026.08.28, with its lexicon"
+    url: "https://baseline.openssf.org/versions/2026-08-28.html"
+    checked: 2026-10-09
+  cisa-sbom-2026:
+    cite: "CISA and partner agencies, 2026 Minimum Elements for a Software Bill of Materials, version 2.1"
+    url: "https://www.cisa.gov/resources-tools/resources/2026-minimum-elements-software-bill-materials-sbom"
+    checked: 2026-10-08
+  choosealicense:
+    cite: "GitHub, choosealicense.com"
+    url: "https://choosealicense.com/about/"
+    checked: 2026-10-03
+  chaoss-metrics:
+    cite: "CHAOSS (Linux Foundation), metrics list and the Licenses Declared metric"
+    url: "https://chaoss.community/kbtopic/all-metrics/"
+    checked: 2026-10-03
+  security-md-study:
+    cite: "Security by documentation? Characterizing GitHub SECURITY.md policies and their adoption in Python libraries, Empirical Software Engineering 31(3), 2026"
+    url: "https://link.springer.com/article/10.1007/s10664-025-10794-z"
+    checked: 2026-10-08
+  scorecard-outcomes-study:
+    cite: "Do Software Security Practices Yield Fewer Vulnerabilities?, arXiv 2210.14884 v2 (preprint)"
+    url: "https://arxiv.org/html/2210.14884v2"
+    checked: 2026-10-03
+  npm-security-study:
+    cite: "Security practices across the npm ecosystem, arXiv 2504.14026 (preprint)"
+    url: "https://arxiv.org/html/2504.14026"
+    checked: 2026-10-03
+  sbom-survey-2021:
+    cite: "Linux Foundation Research, The State of Software Bill of Materials and Cybersecurity Readiness (2021)"
+    url: "https://www.linuxfoundation.org/press/press-release/the-linux-foundation-releases-the-state-of-software-bill-of-materials-sbom-and-cybersecurity-readiness-research"
+    checked: 2026-10-03
+  gitlab-projects:
+    cite: "GitLab Docs, Working with projects"
+    url: "https://docs.gitlab.com/user/project/working_with_projects/"
+    checked: 2026-10-09
+  gitlab-repository-files:
+    cite: "GitLab Docs, Repository files"
+    url: "https://docs.gitlab.com/user/project/repository/files/"
+    checked: 2026-10-08
+  gitlab-description-templates:
+    cite: "GitLab Docs, Description templates"
+    url: "https://docs.gitlab.com/user/project/description_templates/"
+    checked: 2026-10-08
+  gitlab-code-owners:
+    cite: "GitLab Docs, Code owners"
+    url: "https://docs.gitlab.com/user/project/codeowners/"
+    checked: 2026-10-09
+  gitlab-changelogs:
+    cite: "GitLab Docs, Changelogs"
+    url: "https://docs.gitlab.com/user/project/changelogs/"
+    checked: 2026-10-09
+  gitlab-web-editor:
+    cite: "GitLab Docs, Web Editor"
+    url: "https://docs.gitlab.com/user/project/repository/web_editor/"
+    checked: 2026-10-08
+  gitlab-agents-md:
+    cite: "GitLab Docs, AGENTS.md and GitLab Duo customization files"
+    url: "https://docs.gitlab.com/user/duo_agent_platform/customize/agents_md/"
+    checked: 2026-10-08
+  gitea-templates:
+    cite: "Gitea Docs, Issue and pull request templates"
+    url: "https://docs.gitea.com/usage/issue-pull-request-templates"
+    checked: 2026-10-08
+  gitea-code-owners:
+    cite: "Gitea Docs, Code owners"
+    url: "https://docs.gitea.com/usage/code-owners"
+    checked: 2026-10-08
+  gitea-profile-templates:
+    cite: "Gitea Docs, Profile README and template repositories"
+    url: "https://docs.gitea.com/usage/profile-readme"
+    checked: 2026-10-08
+  forgejo-templates:
+    cite: "Forgejo Docs, Issue and pull request templates"
+    url: "https://forgejo.org/docs/latest/user/issue-pull-request-templates/"
+    checked: 2026-10-08
+  forgejo-repository:
+    cite: "Forgejo Docs, First repository; Profile; Pull requests and Git flow"
+    url: "https://forgejo.org/docs/latest/user/pull-requests-and-git-flow/"
+    checked: 2026-10-09
+  codeberg-licensing:
+    cite: "Codeberg Docs, Your first repository; Licensing"
+    url: "https://docs.codeberg.org/getting-started/licensing/"
+    checked: 2026-10-08
+  bitbucket-readme:
+    cite: "Bitbucket Cloud (Atlassian), README content"
+    url: "https://support.atlassian.com/bitbucket-cloud/docs/readme-content/"
+    checked: 2026-10-09
+  bitbucket-code-owners:
+    cite: "Bitbucket Cloud (Atlassian), Set up and use code owners"
+    url: "https://support.atlassian.com/bitbucket-cloud/docs/set-up-and-use-code-owners/"
+    checked: 2026-10-09
+  bitbucket-pr-templates:
+    cite: "Bitbucket Cloud (Atlassian), Pull request templates in Bitbucket Cloud"
+    url: "https://support.atlassian.com/bitbucket-cloud/kb/pull-request-templates-in-bitbucket-cloud/"
+    checked: 2026-10-09
+  sourcehut-manuals:
+    cite: "SourceHut, git.sr.ht and hg.sr.ht manuals"
+    url: "https://man.sr.ht/git.sr.ht/"
+    checked: 2026-10-09
+  azure-pr-templates:
+    cite: "Azure Repos (Microsoft Learn), Improve pull request descriptions using templates"
+    url: "https://learn.microsoft.com/en-us/azure/devops/repos/git/pull-request-templates?view=azure-devops"
+    checked: 2026-10-09
+  azure-readme:
+    cite: "Azure Repos (Microsoft Learn), Create a README for your repo"
+    url: "https://learn.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops"
+    checked: 2026-10-09
+  gitee-templates:
+    cite: "Gitee Help, Issue and pull request templates"
+    url: "https://help.gitee.com/issue/templates"
+    checked: 2026-10-09
+  gitee-code-owners:
+    cite: "Gitee Help, CodeOwners"
+    url: "https://help.gitee.com/repository/extend/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CodeOwners%E5%8A%9F%E8%83%BD/"
+    checked: 2026-10-09
+  repository-contents-study:
+    cite: "What's Inside a GitHub Repository?, arXiv 2605.16701 v2 (preprint; the authors state acceptance at ICSME 2026)"
+    url: "https://arxiv.org/abs/2605.16701"
+    checked: 2026-10-09
+  apache-2:
+    cite: "Apache Software Foundation, Apache License 2.0"
+    url: "https://www.apache.org/licenses/LICENSE-2.0"
+    checked: 2026-10-09
+  dco:
+    cite: "Linux Foundation, Developer Certificate of Origin 1.1"
+    url: "https://developercertificate.org/"
+    checked: 2026-10-09
+  lf-generative-ai:
+    cite: "Linux Foundation, Guidance regarding use of generative AI tools for open source software development"
+    url: "https://www.linuxfoundation.org/legal/generative-ai"
+    checked: 2026-10-09
+  github-archiving:
+    cite: "GitHub Docs, Archiving repositories"
+    url: "https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories"
+    checked: 2026-10-09
+
+  hn-readme-contents:
+    cite: "Hacker News discussion on README contents (item 36773022)"
+    url: "https://news.ycombinator.com/item?id=36773022"
+    checked: 2026-10-08
+  hn-readme-status:
+    cite: "Hacker News discussion on project status in READMEs (item 38265884)"
+    url: "https://news.ycombinator.com/item?id=38265884"
+    checked: 2026-10-08
+  hn-commit-messages:
+    cite: "Hacker News discussions on commit messages (items 32194538, 43468637 and 36820938)"
+    url: "https://news.ycombinator.com/item?id=32194538"
+    checked: 2026-10-08
+  hn-conventional-commits:
+    cite: "Hacker News discussion on Conventional Commits (item 48414027)"
+    url: "https://news.ycombinator.com/item?id=48414027"
+    checked: 2026-10-08
+  hn-pr-descriptions:
+    cite: "Hacker News discussion on pull request descriptions (item 31173708)"
+    url: "https://news.ycombinator.com/item?id=31173708"
+    checked: 2026-10-08
+  redhat-security-policies:
+    cite: "Red Hat Developer, Security policies for open source software (2024)"
+    url: "https://developers.redhat.com/articles/2024/02/06/security-policies-open-source-software"
+    checked: 2026-10-08
+  hn-issue-templates:
+    cite: "Hacker News discussion on issue templates and stale bots (item 25100810)"
+    url: "https://news.ycombinator.com/item?id=25100810"
+    checked: 2026-10-08
+  hn-ai-disclosure:
+    cite: "Hacker News discussion on AI disclosure policies (item 46730504)"
+    url: "https://news.ycombinator.com/item?id=46730504"
+    checked: 2026-10-08
+  hn-agent-files:
+    cite: "Hacker News discussions on agent instruction files (items 47034087 and 44957443)"
+    url: "https://news.ycombinator.com/item?id=47034087"
+    checked: 2026-10-08
+  hn-release-notes:
+    cite: "Hacker News discussions on changelogs and release notes (items 17631326 and 46590623)"
+    url: "https://news.ycombinator.com/item?id=46590623"
+    checked: 2026-10-08
+  hn-release-checklists:
+    cite: "Hacker News discussion on release checklists (item 21244352)"
+    url: "https://news.ycombinator.com/item?id=21244352"
+    checked: 2026-10-08
+  hn-semver:
+    cite: "Hacker News discussion on semantic versioning (item 13378637)"
+    url: "https://news.ycombinator.com/item?id=13378637"
+    checked: 2026-10-08
+  hn-design-docs:
+    cite: "Hacker News discussion on design documents and RFCs (item 46221016)"
+    url: "https://news.ycombinator.com/item?id=46221016"
+    checked: 2026-10-08
+  hn-docs-drift:
+    cite: "Hacker News discussions on documentation upkeep and Diátaxis (items 40317113 and 42340740)"
+    url: "https://news.ycombinator.com/item?id=40317113"
+    checked: 2026-10-08
+  hn-codes-of-conduct:
+    cite: "Hacker News discussion on codes of conduct (item 45423014)"
+    url: "https://news.ycombinator.com/item?id=45423014"
+    checked: 2026-10-08
+
+  survey:
+    cite: "Code Repository Universe Research (docs/research-code-repository-universe-2026-10-08.md): 146 public repositories with 3,000 or more stars, frozen 2026-10-08, with file counts and sample reads"
+    checked: 2026-10-09
+
+artifacts:
+
+  readme:
+    - { kind: advice, source: github-readmes,
+        claim: "Give the project's purpose, the reason to use the project, the first steps, the places to get help and the people who maintain the project." }
+    - { kind: advice, source: azure-readme,
+        claim: "Write the README for users, contributors and developers who build on the software, and give each group the parts it needs." }
+    - { kind: dispute, source: standard-readme,
+        claim: "Sources disagree on a contents list: standard-readme asks for a list in a README past 100 lines, and GitHub builds an outline for every Markdown file." }
+    - { kind: practice, source: hn-readme-contents,
+        claim: "Commenters agree that every README needs at least the project's purpose, how to use the project and ways to help." }
+    - { kind: dispute, source: hn-readme-contents,
+        claim: "Commenters disagree on images without text, on READMEs that read well only when rendered, and on a contributors section." }
+    - { kind: placement, source: github-readmes,
+        claim: "GitHub shows the first README found in the .github folder, the repository root or the docs folder." }
+    - { kind: placement, source: gitlab-repository-files,
+        claim: "GitLab renders a README or index file on the repository page." }
+    - { kind: placement, source: gitlab-projects,
+        claim: "The GitLab project overview links the README, the licence, the changelog and the contributing guidelines." }
+    - { kind: placement, source: bitbucket-readme,
+        claim: "Bitbucket Cloud shows the README on the repository's Source page." }
+    - { kind: distinction, source: survey,
+        claim: "A first-time visitor reads the README to decide whether to try the project; a user reads the documentation set to complete a task with the software." }
+
+  license-file:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Keep the licence in a LICENSE or COPYING file or a LICENSES folder, in every repository of the project." }
+    - { kind: advice, source: choosealicense,
+        claim: "Compare common licences with a decision aid such as choosealicense before picking the project's licence." }
+    - { kind: practice, source: chaoss-metrics,
+        claim: "Compliance reviewers list each declared licence to find conflicts between licences, as in the CHAOSS Licenses Declared metric." }
+    - { kind: placement, source: github-licensing,
+        claim: "GitHub detects a LICENSE file at the root and shows the licence on the repository page." }
+    - { kind: placement, source: gitlab-web-editor,
+        claim: "The GitLab web editor offers templates for a LICENSE file." }
+    - { kind: placement, source: sourcehut-manuals,
+        claim: "SourceHut recognises README and licence files, including a LICENSES folder in the REUSE layout." }
+    - { kind: placement, source: codeberg-licensing,
+        claim: "Codeberg accepts the licence text in a root file or a LICENSES folder." }
+    - { kind: placement, source: codeberg-licensing,
+        claim: "Codeberg recommends a licence header in each file." }
+    - { kind: distinction, source: apache-2,
+        claim: "The licence file states the terms for using the code; the notice file holds the attribution notices that every redistributor must include." }
+
+  release-notes:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Give each release a readable log of functional and security differences, with detail beyond commit messages, such as the security impact." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "Put the changelog under a heading such as '## Changelog' so tools can find the section." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Leave raw commit lists out of the release notes: a commit log holds merge commits, unclear messages and internal edits." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Order the release-note sections by urgency, so readers find security fixes and removals before new features." }
+    - { kind: practice, source: hn-release-notes,
+        claim: "Readers of release notes check whether each fix applies to their setup." }
+    - { kind: practice, source: hn-release-notes,
+        claim: "Readers of release notes want a separate list of the changes that break existing uses." }
+
+  security-policy:
+    - { kind: advice, source: github-security-policy,
+        claim: "In the security policy, give the vulnerability reporting method and the versions that get security fixes." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "Keep a policy in SECURITY.md at the root that tells reporters how to report a vulnerability privately and how soon to expect a response." }
+    - { kind: placement, source: github-default-health-files,
+        claim: "GitHub reads SECURITY.md from the .github folder, the root or the docs folder." }
+    - { kind: placement, source: github-default-health-files,
+        claim: "On GitHub, an organisation can supply a default SECURITY.md for its repositories." }
+    - { kind: practice, source: scorecard-checks,
+        claim: "One OpenSSF Scorecard automated check looks for a security policy file." }
+    - { kind: practice, source: security-md-study,
+        claim: "A study of Python libraries finds stronger security practices in libraries with a SECURITY.md; the study measures an association and leaves the cause open." }
+    - { kind: practice, source: npm-security-study,
+        claim: "A study of 145,817 npm packages finds a security policy in fewer than one in ten packages." }
+    - { kind: practice, source: redhat-security-policies,
+        claim: "An article for maintainers finds that most projects use the security policy only to point to the reporting procedure." }
+    - { kind: dispute, source: scorecard-outcomes-study,
+        claim: "A preprint finds that Scorecard scores explain little of the variation in reported vulnerabilities." }
+
+  contributing-guide:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Explain the steps for sending a change and reaching the maintainers, or state that the project accepts changes only from its maintainers." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "Make the contributing guide the one reference for contributors and for the maintainers who approve changes." }
+    - { kind: advice, source: osg-starting,
+        claim: "In the contributing guide, explain how to report a bug, suggest a feature, set up the environment and run the tests." }
+    - { kind: advice, source: dco, when: { contributor-assertion: [sign-off] },
+        claim: "State that every commit needs a Signed-off-by line, and link the Developer Certificate of Origin." }
+    - { kind: advice, source: openssf-baseline, when: { contributor-assertion: [agreement] },
+        claim: "A signed contributor licence agreement meets the OpenSSF Baseline rule on contributor authorisation." }
+    - { kind: placement, source: github-contributing,
+        claim: "GitHub reads CONTRIBUTING from the .github folder, the root or the docs folder." }
+    - { kind: placement, source: github-contributing,
+        claim: "GitHub links the CONTRIBUTING file when someone opens an issue or pull request." }
+    - { kind: placement, source: github-community-profile,
+        claim: "GitHub checks for a contributing guide on the community profile, beside a README, a code of conduct, a licence, a security policy and issue templates." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed projects keep CONTRIBUTING at the root, and some keep a short file that points to a documentation page." }
+    - { kind: practice, source: repository-contents-study,
+        claim: "A study of 10,000 repositories with 100 or more stars finds a CONTRIBUTING file in about a third of the repositories." }
+
+  commit-message:
+    - { kind: practice, source: hn-commit-messages,
+        claim: "Commenters find that commit messages stay with a project through a move to other tools more often than pull request threads or issue tracker entries." }
+    - { kind: dispute, source: hn-commit-messages,
+        claim: "Commenters dispute whether anyone reads the commit log, and whether commit formatting rules waste effort." }
+    - { kind: distinction, source: survey,
+        claim: "A later reader reads the commit message to decide whether to keep or undo a change; a reviewer reads the change description before the merge." }
+
+  code-of-conduct:
+    - { kind: advice, source: osg-conduct-governance,
+        claim: "Adopt a code of conduct early." }
+    - { kind: advice, source: osg-conduct-governance,
+        claim: "Explain the enforcement steps of the code of conduct before any incident." }
+    - { kind: advice, source: osg-conduct-governance,
+        claim: "Give a private way to report a breach of the code of conduct." }
+    - { kind: placement, source: github-default-health-files,
+        claim: "GitHub reads CODE_OF_CONDUCT from the .github folder, the root or the docs folder." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed codes of conduct copy the Contributor Covenant, from version 1.2 to version 2.1." }
+    - { kind: dispute, source: hn-codes-of-conduct,
+        claim: "Critics call a code of conduct unenforceable and open to misuse; supporters say the file states expectations and grounds for removal." }
+
+  agent-instructions:
+    - { kind: advice, source: agents-md,
+        claim: "Write the agent file in plain Markdown with any headings." }
+    - { kind: advice, source: agents-md,
+        claim: "A coding agent reads the agent file nearest to the code it edits." }
+    - { kind: advice, source: claude-code-memory,
+        claim: "Keep each agent file under about 200 lines." }
+    - { kind: advice, source: claude-code-memory,
+        claim: "Treat the agent file as context for the agent, and enforce rules with scripts or checks that run automatically." }
+    - { kind: placement, source: copilot-instructions,
+        claim: "GitHub Copilot reads AGENTS.md, CLAUDE.md or GEMINI.md as repository instructions." }
+    - { kind: placement, source: gitlab-agents-md,
+        claim: "GitLab Duo combines the AGENTS.md files in the developer's home configuration folder, the repository root and each sub-folder that holds files for the current task." }
+    - { kind: practice, source: survey,
+        claim: "In most surveyed repositories with both AGENTS.md and CLAUDE.md, CLAUDE.md points to AGENTS.md or repeats AGENTS.md word for word." }
+    - { kind: practice, source: agent-readmes-study,
+        claim: "In a study of 2,303 agent files, about three quarters of the files give test procedures and about two thirds give architecture notes." }
+    - { kind: practice, source: hn-agent-files,
+        claim: "Practitioners record in the agent file the facts missing from the code, such as commands, conventions and past failures." }
+    - { kind: practice, source: hn-agent-files,
+        claim: "Practitioners update the agent file after agent failures." }
+    - { kind: dispute, source: hn-agent-files,
+        claim: "Commenters object to agent files that repeat the README and CONTRIBUTING." }
+    - { kind: dispute, source: hn-agent-files,
+        claim: "Commenters find that file paths and component names in agent files go out of date first." }
+    - { kind: dispute, source: agentsmd-eval-study,
+        claim: "A preprint finds that agent files leave task success unchanged in general and raise the cost of each agent run by over 20%." }
+    - { kind: distinction, source: survey,
+        claim: "A coding agent reads the agent file for build, test and style rules; people read the architecture overview to learn the parts of the code." }
+
+  change-description:
+    - { kind: advice, source: google-cl-descriptions,
+        claim: "Write the change description for the reviewer and for later readers who search the project history." }
+    - { kind: placement, source: github-issue-templates,
+        claim: "GitHub reads a pull request template from the root, the docs folder or the .github folder." }
+    - { kind: placement, source: gitlab-description-templates,
+        claim: "GitLab reads merge request templates from the .gitlab/merge_request_templates folder." }
+    - { kind: placement, source: bitbucket-pr-templates,
+        claim: "Bitbucket Cloud reads one pull request template, at .bitbucket/pull_request_template.md." }
+    - { kind: placement, source: azure-pr-templates,
+        claim: "Azure Repos offers default, branch-specific and additional pull request templates." }
+    - { kind: placement, source: azure-pr-templates,
+        claim: "Azure Repos treats each pull request template as a suggestion." }
+    - { kind: practice, source: survey,
+        claim: "About a quarter of the surveyed squash-merging projects copy the pull request description into the commit message." }
+    - { kind: practice, source: hn-pr-descriptions,
+        claim: "Squash-merging teams treat the pull request description as the record of a change and the squashed commit as a copy." }
+    - { kind: dispute, source: hn-pr-descriptions,
+        claim: "Commenters dispute whether the repository history or the pull request page holds the record of a change." }
+
+  design-proposal:
+    - { kind: advice, source: pep-1,
+        claim: "Name the people who decide on the design proposal." }
+    - { kind: practice, source: hn-design-docs,
+        claim: "Teams write design proposals for work that involves several teams, is hard to undo or has unclear requirements." }
+    - { kind: dispute, source: hn-design-docs,
+        claim: "Commenters complain that agreement on a design proposal takes months, that authors write proposals as a formality and that proposals are out of date once finished." }
+    - { kind: distinction, source: survey,
+        claim: "The maintainers decide on a design proposal before anyone builds the design, and on a change description before merging the change." }
+
+  release-procedure:
+    - { kind: advice, source: cncf-project-template,
+        claim: "In the release procedure, explain how to create a release, who does each release task, how often releases come out, how versions are numbered and which versions get support." }
+
+  architecture-overview:
+    - { kind: advice, source: openssf-baseline,
+        claim: "In the architecture overview, document each action and actor in the system." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "Update the architecture overview for each new feature or breaking change." }
+    - { kind: distinction, source: survey,
+        claim: "Contributors and security reviewers read the architecture overview to learn the layout of the code; users read the documentation set to complete tasks." }
+
+  notice-file:
+    - { kind: advice, source: apache-2,
+        claim: "A redistributor of an Apache-2.0 work keeps the NOTICE contents and may add their own notices beside the originals." }
+    - { kind: practice, source: survey,
+        claim: "Projects that bundle third-party code often keep the notices in a THIRD_PARTY_NOTICES or THIRD_PARTY_LICENSES file." }
+
+  folder-readme:
+    - { kind: advice, source: google-docguide,
+        claim: "Write the minimum documentation a reader needs." }
+    - { kind: advice, source: google-docguide,
+        claim: "Delete the documentation for removed code." }
+    - { kind: distinction, source: survey,
+        claim: "The architecture overview describes the whole system or one large part of the system; a folder README describes one folder." }
+
+  issue-report:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Explain how to report a defect." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "Tell reporters how the maintainers handle new defect reports and what response to expect." }
+    - { kind: placement, source: github-issue-templates,
+        claim: "GitHub reads issue templates and forms from .github/ISSUE_TEMPLATE." }
+    - { kind: placement, source: github-issue-templates,
+        claim: "A GitHub issue form can mark fields as required." }
+    - { kind: placement, source: gitlab-description-templates,
+        claim: "GitLab reads issue templates from the .gitlab/issue_templates folder." }
+    - { kind: placement, source: gitea-templates,
+        claim: "Gitea reads issue and pull request templates from the root, the .gitea folder or the .github folder." }
+    - { kind: placement, source: forgejo-templates,
+        claim: "Forgejo reads issue and pull request templates from the .forgejo, .gitea, .github or docs folder." }
+    - { kind: placement, source: gitee-templates,
+        claim: "Gitee reads issue templates from .gitee/ISSUE_TEMPLATE, then from .github, then from a repository shared by every project in the account." }
+    - { kind: practice, source: hn-issue-templates,
+        claim: "Commenters want bug reports to give the steps, the expected and actual results, the version and the logs." }
+    - { kind: dispute, source: hn-issue-templates,
+        claim: "Some maintainers let bots close issues filed without the template, while other maintainers label such issues and keep them open." }
+
+  code-owners:
+    - { kind: advice, source: github-code-owners,
+        claim: "Rely on branch protection to make code-owner approval required; with a CODEOWNERS file alone, GitHub only requests reviews from the code owners." }
+    - { kind: placement, source: github-code-owners,
+        claim: "GitHub reads CODEOWNERS from the .github folder, the root or the docs folder." }
+    - { kind: placement, source: gitlab-code-owners,
+        claim: "GitLab reads CODEOWNERS from the root, the docs folder or the .gitlab folder." }
+    - { kind: placement, source: gitlab-code-owners,
+        claim: "GitLab can require approval from code owners on protected branches." }
+    - { kind: placement, source: gitea-code-owners,
+        claim: "Gitea reads CODEOWNERS from the root, the docs folder or the .gitea folder." }
+    - { kind: placement, source: forgejo-repository,
+        claim: "Forgejo reads CODEOWNERS from the root, the docs folder or the .forgejo folder." }
+    - { kind: placement, source: bitbucket-code-owners,
+        claim: "Bitbucket Cloud reads .bitbucket/CODEOWNERS." }
+    - { kind: placement, source: bitbucket-code-owners,
+        claim: "Bitbucket Cloud offers several ways to pick reviewers from the code owners." }
+    - { kind: placement, source: gitee-code-owners,
+        claim: "Gitee reads CODEOWNERS from the root, the .gitee folder or the docs folder." }
+
+  documentation-set:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Explain how to install the software and how to configure and use every basic feature." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "Add clear warnings to actions that can cause harm or destroy data." }
+    - { kind: advice, source: wtd-docs-as-code,
+        claim: "Manage the documentation like code: keep it in version control, review its changes and test it automatically." }
+    - { kind: advice, source: google-docguide,
+        claim: "Update the docs in the same change as the code." }
+    - { kind: advice, source: openssf-baseline, when: { docs-task: [look-up] },
+        claim: "Describe every external interface: the ways users interact with the software and the data the software expects or produces." }
+    - { kind: advice, source: openssf-baseline, when: { docs-task: [look-up] },
+        claim: "Update the interface descriptions for each new feature or breaking change." }
+    - { kind: advice, source: keep-a-changelog, when: { docs-task: [upgrade] },
+        claim: "Put substantial upgrade steps in a migration guide, and link the guide from the changelog entry." }
+    - { kind: practice, source: diataxis,
+        claim: "Diátaxis sorts documentation pages into tutorials, how-to guides, reference and explanation." }
+    - { kind: practice, source: diataxis, when: { docs-task: [get-started] },
+        claim: "Diátaxis treats a getting-started page as a tutorial: a lesson that leads a learner to a working result." }
+    - { kind: practice, source: diataxis, when: { docs-task: [use] },
+        claim: "Diátaxis calls a page for one task a how-to guide: steps a competent user follows to reach one goal." }
+    - { kind: practice, source: hn-docs-drift,
+        claim: "Commenters find that documentation kept outside the repository goes out of date, while documentation generated from code or checked by tests stays accurate." }
+    - { kind: dispute, source: hn-docs-drift,
+        claim: "Commenters note that READMEs, home pages and index pages fit outside the four Diátaxis kinds." }
+
+  funding-file:
+    - { kind: placement, source: github-funding,
+        claim: "GitHub reads .github/FUNDING.yml and shows a sponsor button with one entry per funding platform." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed funding files list accounts on GitHub Sponsors." }
+
+  roadmap:
+    - { kind: practice, source: survey,
+        claim: "Two groups read the surveyed roadmaps: users choosing which planned work to wait for, and contributors choosing which work to help build." }
+
+  development-guide:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Publish the build steps in the contributor documentation or as build scripts." }
+    - { kind: practice, source: survey,
+        claim: "When both files exist, most surveyed CONTRIBUTING files link to the development guide." }
+    - { kind: distinction, source: survey,
+        claim: "Contributors follow the contributing guide to meet the rules for a change, and the development guide to build and test a local copy." }
+
+elements:
+
+  project-purpose:
+    - { kind: advice, source: bestpractices-criteria,
+        claim: "Describe the software and the problem it solves." }
+    - { kind: advice, source: osg-starting,
+        claim: "Next to the project description, list the benefits a user gets from the project." }
+    - { kind: practice, source: readme-content-study,
+        claim: "In a study of 393 READMEs, almost every file describes the project." }
+    - { kind: practice, source: readme-content-study,
+        claim: "In a study of 393 READMEs, about a quarter of the files explain the reason to use the project." }
+
+  install-steps:
+    - { kind: advice, source: bestpractices-criteria,
+        claim: "Tell a new user how to get the project's files, such as the package to install or the file to download." }
+    - { kind: practice, source: survey,
+        claim: "Install steps appear in the READMEs of every kind of surveyed repository, including collections, themes and machine learning model projects." }
+
+  first-result:
+    - { kind: advice, source: wtd-beginners-guide,
+        claim: "For software, show a basic usage example that a new user can copy and run." }
+    - { kind: practice, source: hn-readme-contents,
+        claim: "Commenters keep usage examples in the README." }
+    - { kind: practice, source: hn-readme-contents,
+        claim: "Commenters add a demo to the README of a project with a user interface." }
+
+  excluded-uses:
+    - { kind: practice, source: survey,
+        claim: "A few surveyed READMEs state limits under headings such as non-goals, out of scope, limitations or who the project is for." }
+
+  project-status:
+    - { kind: advice, source: google-docguide,
+        claim: "In a repository with several packages, give each package's status, such as no longer maintained, in its README." }
+    - { kind: advice, source: github-archiving,
+        claim: "Update the README and close open issues before archiving the repository." }
+    - { kind: advice, source: badge-study,
+        claim: "Show status with badges that an outside service updates, such as a badge for passing builds." }
+    - { kind: advice, source: badge-study,
+        claim: "A study of npm badges finds that only badges backed by an automatic check are linked to better code quality." }
+    - { kind: placement, source: github-status-badge,
+        claim: "A workflow status badge shows whether the most recent automatic build and test run on the main branch passed." }
+    - { kind: practice, source: survey,
+        claim: "Most archived repositories in the survey open the README with a notice that work has stopped." }
+    - { kind: dispute, source: hn-readme-status,
+        claim: "Users want a status line, such as active, finished or fixes only." }
+    - { kind: dispute, source: hn-readme-status,
+        claim: "Maintainers dislike questions about a project nobody maintains any more." }
+
+  help-channel:
+    - { kind: advice, source: github-readmes,
+        claim: "Name the places where users and contributors ask for help, such as a forum, a chat room or the issue tracker." }
+    - { kind: placement, source: github-support,
+        claim: "GitHub reads a SUPPORT file, which lists ways to get help, from the root, the docs folder or the .github folder." }
+    - { kind: placement, source: github-support,
+        claim: "GitHub links the SUPPORT file when someone opens an issue." }
+    - { kind: practice, source: survey,
+        claim: "About half of surveyed READMEs name a place to ask for help." }
+    - { kind: practice, source: survey,
+        claim: "Few surveyed projects keep a SUPPORT file that lists ways to get help." }
+
+  docs-location:
+    - { kind: advice, source: google-docguide,
+        claim: "In a repository with several packages, link the full documentation from every package README." }
+    - { kind: practice, source: survey,
+        claim: "About a third of surveyed READMEs link to a documentation site or folder." }
+
+  maintainers:
+    - { kind: advice, source: github-readmes,
+        claim: "Name the people who maintain and contribute to the project." }
+    - { kind: advice, source: google-docguide,
+        claim: "In a repository with several packages, name each package's contacts in its README." }
+
+  license-id:
+    - { kind: advice, source: spdx-expressions,
+        claim: "Name the licence by its SPDX identifier or expression, such as MIT or Apache-2.0 OR MIT." }
+    - { kind: practice, source: survey,
+        claim: "Half of surveyed READMEs include a licence section." }
+
+  copyright-holder:
+    - { kind: advice, source: reuse-spec,
+        claim: "Open each copyright notice with SPDX-FileCopyrightText, Copyright or ©, then give the year and the copyright holder." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed licence files include a copyright line with a year." }
+
+  part-licences:
+    - { kind: advice, source: reuse-spec,
+        claim: "Under the REUSE specification for licence notices, every file includes a licence and copyright notice." }
+    - { kind: advice, source: reuse-spec,
+        claim: "Under the REUSE specification for licence notices, a LICENSES folder holds the text of each licence." }
+    - { kind: practice, source: survey,
+        claim: "Surveyed projects with parts under different licences list which files or folders fall under each licence, as in a LICENSING file." }
+
+  attribution-notices:
+    - { kind: advice, source: apache-2,
+        claim: "In an Apache-2.0 project, every redistributed copy includes the readable attribution notices from the NOTICE file." }
+
+  bundled-licences:
+    - { kind: practice, source: survey,
+        claim: "Surveyed third-party notice files list each bundled component with the component's licence text." }
+
+  release-version:
+    - { kind: advice, source: semver, when: { version-pattern: [major-minor-patch] },
+        claim: "Under Semantic Versioning, raise the major number for an incompatible change, the minor number for a new feature and the patch number for a fix." }
+
+  release-date:
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Give each version's release date in YYYY-MM-DD form." }
+
+  breaking-change:
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Mark each changelog entry for a change that breaks existing uses with a short 'Breaking:' label, and keep the entry under its usual section, such as Changed or Removed." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Name the interface that breaks, such as a command line, a library API, a file format or a configuration format." }
+    - { kind: advice, source: conventional-commits, when: { commit-convention: [conventional] },
+        claim: "Under Conventional Commits, mark a breaking change with ! after the type word, as in feat!, or with a BREAKING CHANGE line at the end of the message." }
+    - { kind: practice, source: survey,
+        claim: "Surveyed projects describe breaking changes in release notes far more often than in commit footers or markers." }
+
+  deprecations:
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Mark a feature Deprecated in one release and Removed in a later release, and name the version that removes the feature." }
+    - { kind: advice, source: semver, when: { version-pattern: [major-minor-patch] },
+        claim: "Under Semantic Versioning, announce a deprecation in a minor release before the major release that removes the feature." }
+
+  upgrade-steps:
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Put a short upgrade step in the changelog entry, and link substantial steps to a migration guide." }
+
+  security-fixes:
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Start each security entry with the vulnerability's CVE identifier, when one exists." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Link each security entry to the full security advisory." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "For each known vulnerability, publish the affected versions, a way to check exposure and the fix or workaround." }
+
+  report-channel:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Give a private way to report a vulnerability, such as a security email address, a web form or the code host's private reporting tool." }
+    - { kind: placement, source: github-private-reporting,
+        claim: "GitHub offers a private reporting form on the repository once the maintainers enable private reporting." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed security policies name a way to report a vulnerability." }
+    - { kind: practice, source: survey,
+        claim: "A few surveyed security policies only point to another page." }
+
+  report-contents:
+    - { kind: practice, source: survey,
+        claim: "About two in five surveyed security policies list the required contents of a vulnerability report." }
+
+  supported-versions:
+    - { kind: advice, source: github-security-policy,
+        claim: "List the versions that get security fixes, for example in a table of version ranges." }
+    - { kind: advice, source: openssf-baseline,
+        claim: "If releases get security updates for a set time, give the end date for each release." }
+
+  first-reply-days:
+    - { kind: advice, source: openssf-disclosure-guide,
+        claim: "Promise a first reply within a set number of days; the OpenSSF policy template uses three working days." }
+
+  disclosure-timing:
+    - { kind: advice, source: openssf-disclosure-guide,
+        claim: "State the disclosure deadline; the OpenSSF policy template uses a 90-day timeline." }
+    - { kind: advice, source: openssf-disclosure-guide,
+        claim: "Treat a disclosure deadline as the start of a negotiation with the reporter." }
+
+  vulnerability-scope:
+    - { kind: practice, source: redhat-security-policies,
+        claim: "Useful security policies separate vulnerabilities from general security improvements and state which threats the project defends against, according to an article for maintainers." }
+    - { kind: practice, source: survey,
+        claim: "About a fifth of surveyed security policies define the findings that count as vulnerabilities." }
+
+  contribution-route:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Name the first step for a new change, such as opening an issue or a discussion." }
+    - { kind: practice, source: survey,
+        claim: "About two in five surveyed CONTRIBUTING files ask for an issue or discussion before a change." }
+
+  change-refusal:
+    - { kind: practice, source: survey,
+        claim: "About a quarter of surveyed CONTRIBUTING files list kinds of changes the maintainers refuse." }
+
+  required-evidence:
+    - { kind: advice, source: openssf-baseline,
+        claim: "List the tests the maintainers require before accepting a change." }
+
+  code-style:
+    - { kind: advice, source: openssf-baseline,
+        claim: "State the coding standards for each change." }
+
+  commit-format:
+    - { kind: advice, source: conventional-commits, when: { commit-convention: [conventional] },
+        claim: "Write each commit subject as a type, an optional scope and a description, such as 'fix(parser): handle empty input'." }
+    - { kind: advice, source: git-submitting-patches, when: { commit-convention: [area-prefix] },
+        claim: "Open each commit subject with the area of the repository and a colon, such as 'parser: '." }
+
+  ai-use-rules:
+    - { kind: advice, source: lf-generative-ai,
+        claim: "Publish the project's own rules for changes made with AI tools." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed AI policy files state the permitted uses of AI tools." }
+
+  ai-duties:
+    - { kind: advice, source: lf-generative-ai,
+        claim: "Contributors check the AI tool's terms, check the output for third-party material and give notice of AI use." }
+
+  change-summary:
+    - { kind: advice, source: git-submitting-patches,
+        claim: "Write the commit subject as a command, such as 'Fix crash on empty input', in about 50 characters." }
+    - { kind: advice, source: google-cl-descriptions,
+        claim: "Make the first line of a commit message or change description a short summary that stands alone, since logs and search results often show only the first line." }
+    - { kind: advice, source: kernel-submitting-patches, when: { commit-convention: [area-prefix] },
+        claim: "Open the commit subject with the area of the repository, a colon and a short summary phrase." }
+    - { kind: dispute, source: commit-message-blog,
+        claim: "Guides differ on commit subject case: a widely read blog capitalises the subject, while the Git project keeps lowercase after the area prefix." }
+
+  change-reason:
+    - { kind: advice, source: git-submitting-patches,
+        claim: "In the commit body, state the problem, then explain why the change solves that problem." }
+    - { kind: advice, source: kernel-submitting-patches,
+        claim: "Describe the problem and any effect users notice, and give measurements for a change that affects speed." }
+    - { kind: practice, source: hn-commit-messages,
+        claim: "Commenters put the reason for a change in the commit body, since the code shows only the edit and readers reach the message through Git's history tools." }
+    - { kind: dispute, source: hn-commit-messages,
+        claim: "Commenters dispute whether the reason for a change belongs in the commit message or the pull request description." }
+
+  change-kind:
+    - { kind: advice, source: conventional-commits, when: { commit-convention: [conventional] },
+        claim: "Use fix for a bug fix and feat for a new feature; release tools then raise the last version number for a fix and the middle number for a feature." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Sort changelog entries under six headings: Added, Changed, Deprecated (marked for later removal), Removed, Fixed and Security." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "Use Fixed when the old behaviour was a bug, and Changed when the old behaviour worked as intended." }
+
+  related-changes:
+    - { kind: advice, source: kernel-submitting-patches,
+        claim: "In a 'Fixes:' line at the end of the commit message, give the hash and subject of the commit that introduced the bug." }
+    - { kind: advice, source: google-cl-descriptions,
+        claim: "Link the records behind the change, such as the bug report, benchmark results or design documents." }
+    - { kind: practice, source: survey,
+        claim: "Most surveyed pull request templates ask for the related issue." }
+
+  sign-off:
+    - { kind: advice, source: dco, when: { contributor-assertion: [sign-off] },
+        claim: "With a Signed-off-by line, the contributor certifies the Developer Certificate of Origin: the contributor has the right to submit the work under the project's licence." }
+    - { kind: advice, source: git-submitting-patches, when: { contributor-assertion: [sign-off] },
+        claim: "Add the Signed-off-by line at the end of the commit message, with the author's real name and email address." }
+    - { kind: advice, source: openssf-baseline, when: { contributor-assertion: [sign-off] },
+        claim: "Use an automatic check on each change to confirm that every commit includes the sign-off line." }
+
+  unacceptable-behaviour:
+    - { kind: advice, source: contributor-covenant,
+        claim: "List examples of unacceptable behaviour, such as harassment, trolling, insults and publishing private information without permission." }
+
+  conduct-report:
+    - { kind: advice, source: contributor-covenant,
+        claim: "Replace the Covenant's contact placeholder with a real reporting address." }
+    - { kind: advice, source: osg-conduct-governance,
+        claim: "Give a second reporting route for a report about a person who receives reports." }
+
+  conduct-consequences:
+    - { kind: advice, source: contributor-covenant,
+        claim: "Covenant 2.1 sets four enforcement levels: correction, warning, temporary ban and permanent ban." }
+    - { kind: advice, source: contributor-covenant,
+        claim: "Contributor Covenant 3.0 lists the consequences as steps of rising severity, aimed at repairing harm." }
+
+  conduct-scope:
+    - { kind: advice, source: contributor-covenant,
+        claim: "Apply the code of conduct in every community space and whenever a person officially represents the community in public." }
+
+  conduct-enforcers:
+    - { kind: advice, source: contributor-covenant,
+        claim: "Name the community leaders who review reports and enforce the code of conduct." }
+
+  generated-files:
+    - { kind: practice, source: survey,
+        claim: "Some surveyed agent files list the files a tool generates." }
+
+  commit-checks:
+    - { kind: advice, source: agents-md,
+        claim: "List the checks to run before each commit, such as the linter and the tests." }
+
+  approval-needed:
+    - { kind: practice, source: survey,
+        claim: "A few surveyed agent files tell the agent to ask a person before certain actions." }
+
+  verification:
+    - { kind: practice, source: survey,
+        claim: "Most surveyed pull request templates ask how the contributor tested the change." }
+    - { kind: distinction, source: survey,
+        claim: "The contributing guide lists the checks required for every change, and the change description lists the checks run on one change." }
+
+  unchanged-behaviour:
+    - { kind: practice, source: survey,
+        claim: "A few surveyed pull request descriptions state the behaviour that stays the same after the change." }
+
+  release-note-line:
+    - { kind: advice, source: github-generated-notes, when: { notes-writing: [generated, generated-then-edited] },
+        claim: "When a tool builds the release notes from merged pull request titles, write each title as a line a user understands." }
+    - { kind: placement, source: gitlab-changelogs, when: { notes-writing: [from-change-notes] },
+        claim: "GitLab builds changelog entries from a 'Changelog:' line at the end of each commit message." }
+    - { kind: practice, source: survey,
+        claim: "In most surveyed repositories with release notes, the release lines repeat the pull request titles." }
+    - { kind: distinction, source: keep-a-changelog,
+        claim: "The change summary describes the change for a reviewer; the release line describes the change for a user of the release." }
+
+  ai-use-record:
+    - { kind: advice, source: lf-generative-ai,
+        claim: "Name the AI tools used for the change." }
+    - { kind: advice, source: lf-generative-ai,
+        claim: "Attribute any third-party material found in AI output." }
+    - { kind: dispute, source: hn-ai-disclosure,
+        claim: "Commenters split on disclosure rules: supporters say disclosure changes the review, and critics say only the contributor's understanding matters." }
+
+  known-shortcomings:
+    - { kind: advice, source: google-cl-descriptions,
+        claim: "State the known shortcomings of the chosen approach." }
+
+  proposal-motivation:
+    - { kind: advice, source: rust-rfc-template,
+        claim: "Explain the motivation: the problem, the supported use cases and the expected outcome." }
+
+  proposed-design:
+    - { kind: advice, source: rust-rfc-template,
+        claim: "Explain the proposed design twice: once for the people who will use the changed software, with examples, and once in enough detail to carry out the design." }
+
+  design-goals:
+    - { kind: advice, source: cncf-project-template,
+        claim: "State the design goals in a separate section." }
+
+  design-non-goals:
+    - { kind: advice, source: cncf-project-template,
+        claim: "List the non-goals: results the authors leave out of the design on purpose." }
+
+  design-alternatives:
+    - { kind: advice, source: rust-rfc-template,
+        claim: "Compare the proposed design with the alternatives the authors considered." }
+    - { kind: advice, source: rust-rfc-template,
+        claim: "State the cost of leaving the problem unsolved." }
+
+  undecided-parts:
+    - { kind: advice, source: rust-rfc-template,
+        claim: "Group open questions by when the authors settle each question: before acceptance, while carrying out the design or in later work." }
+
+  proposal-status:
+    - { kind: advice, source: pep-1,
+        claim: "Give the design proposal a status, such as draft, accepted, rejected, withdrawn or final." }
+
+  release-steps:
+    - { kind: advice, source: cncf-project-template,
+        claim: "List the steps for creating a release in order." }
+    - { kind: practice, source: hn-release-checklists,
+        claim: "Practitioners keep written release checklists, since releases fail on forgotten steps and tag typos." }
+    - { kind: practice, source: hn-release-checklists,
+        claim: "Maintainers automate the release steps one at a time, starting from a script that prints each step and waits for a person to finish the step." }
+
+  release-owner:
+    - { kind: advice, source: cncf-project-template,
+        claim: "Name the role or person who publishes each release." }
+
+  release-schedule:
+    - { kind: advice, source: cncf-project-template,
+        claim: "State how often releases come out." }
+    - { kind: practice, source: survey,
+        claim: "About half of surveyed release procedures give a schedule." }
+
+  components:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Count as an actor any part of the system, or any outside party, that can affect another part of the system." }
+    - { kind: distinction, source: survey,
+        claim: "Components are parts of the running system, each with a job; folders are places in the file tree, each holding files." }
+
+  part-interactions:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Show the interactions between components, such as the path of one request through the system." }
+
+  folder-purpose:
+    - { kind: advice, source: google-docguide,
+        claim: "State the purpose of the files in the folder." }
+    - { kind: advice, source: google-docguide,
+        claim: "Link to further documentation from the folder README." }
+
+  observed-behaviour:
+    - { kind: practice, source: survey, when: { issue-kind: [bug-report] },
+        claim: "Most surveyed bug forms require the observed behaviour." }
+
+  expected-behaviour:
+    - { kind: practice, source: survey, when: { issue-kind: [bug-report] },
+        claim: "Fewer than half of surveyed bug forms require the expected behaviour." }
+
+  repro-steps:
+    - { kind: practice, source: survey, when: { issue-kind: [bug-report] },
+        claim: "Two in three surveyed bug forms require the reproduction steps." }
+
+  reporter-environment:
+    - { kind: practice, source: survey, when: { issue-kind: [bug-report] },
+        claim: "Most surveyed bug forms require the software version or the platform." }
+
+  duplicate-search:
+    - { kind: practice, source: survey,
+        claim: "Some surveyed templates ask reporters to confirm that they searched existing issues." }
+    - { kind: practice, source: survey,
+        claim: "Few surveyed bug report forms require reporters to confirm the search." }
+
+  feature-need:
+    - { kind: practice, source: survey, when: { issue-kind: [feature-request] },
+        claim: "About half of surveyed feature forms require the problem behind the request." }
+
+  requested-behaviour:
+    - { kind: practice, source: survey, when: { issue-kind: [feature-request] },
+        claim: "Just over half of surveyed feature forms require the requested behaviour." }
+
+  path-approvers:
+    - { kind: advice, source: github-code-owners,
+        claim: "Put specific CODEOWNERS patterns below broad patterns: the last matching pattern names the owners of a path." }
+    - { kind: practice, source: survey,
+        claim: "About half of surveyed code-owners files include a line that names a default owner for every file." }
+
+  settings-reference:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Explain each setting of the basic features." }
+
+  error-fixes:
+    - { kind: practice, source: survey,
+        claim: "Every surveyed project with a troubleshooting page keeps the page in the docs folder." }
+
+  docs-version:
+    - { kind: practice, source: survey,
+        claim: "A few surveyed projects keep one documentation folder for each release." }
+
+  funding-links:
+    - { kind: advice, source: github-funding,
+        claim: "List up to four custom funding links under the custom key." }
+
+  sponsored-accounts:
+    - { kind: advice, source: github-funding,
+        claim: "List up to four sponsored accounts under the github key." }
+
+  planned-work:
+    - { kind: practice, source: survey,
+        claim: "Every surveyed roadmap lists the work the maintainers plan next." }
+
+  help-wanted:
+    - { kind: practice, source: survey,
+        claim: "A third of surveyed roadmaps mark the planned work contributors can help build." }
+
+  declined-ideas:
+    - { kind: practice, source: survey,
+        claim: "A few surveyed roadmaps list ideas the maintainers declined." }
+
+  roadmap-date:
+    - { kind: practice, source: survey,
+        claim: "About two in five surveyed roadmaps give the date of the last update." }
+
+  dev-setup:
+    - { kind: advice, source: openssf-baseline,
+        claim: "List the required libraries, frameworks, SDKs and dependencies." }
+    - { kind: distinction, source: openssf-baseline,
+        claim: "A user follows the install steps to run the software; a contributor follows the development set-up to change the code." }
+
+  build-command:
+    - { kind: advice, source: openssf-baseline,
+        claim: "Give the exact commands that build the software." }
+    - { kind: advice, source: agents-md,
+        claim: "Repeat the build and test commands in the agent file, where the agent reads the commands at the start of each task." }
+
+  test-command:
+    - { kind: advice, source: agents-md,
+        claim: "Give the command that runs the whole test suite and the command that runs one test." }
+
+factors:
+
+  notes-writing:
+    - { kind: advice, source: keep-a-changelog, when: { notes-writing: [generated, generated-then-edited] },
+        claim: "Treat generated release notes as a draft: a maintainer picks the notable entries and rewrites the entries for users." }
+    - { kind: advice, source: github-generated-notes, when: { notes-writing: [generated, generated-then-edited] },
+        claim: "Set label categories in .github/release.yml so generated notes group merged pull requests by type." }
+    - { kind: advice, source: keep-a-changelog, when: { notes-writing: [from-change-notes] },
+        claim: "Keep each unreleased note in a file of its own in a folder such as changelog.d, and combine the files at release time." }
+    - { kind: dispute, source: hn-release-notes,
+        claim: "Practitioners split between notes generated from commits or pull requests and notes written by hand for users." }
+
+  notes-place:
+    - { kind: advice, source: keep-a-changelog, when: { notes-place: [changelog-file, both] },
+        claim: "In CHANGELOG.md, list the latest version first, below an Unreleased section at the top." }
+    - { kind: advice, source: keep-a-changelog, when: { notes-place: [both] },
+        claim: "Keep the changelog file as the record, and copy each version's section into the release page." }
+    - { kind: advice, source: keep-a-changelog, when: { notes-place: [release-page] },
+        claim: "A project that moves to another host loses the notes on its release pages, because the host stores those notes in a database." }
+
+  commit-convention:
+    - { kind: advice, source: conventional-commits, when: { commit-convention: [conventional] },
+        claim: "Under Conventional Commits, the type word and the breaking-change mark let tools pick the next version number and draft the changelog." }
+    - { kind: advice, source: keep-a-changelog, when: { commit-convention: [conventional] },
+        claim: "A commit and a changelog entry have different readers, so a person edits any changelog drafted from commits." }
+    - { kind: practice, source: hn-conventional-commits,
+        claim: "Commenters name three alternatives to Conventional Commits: issue numbers in the subject, key-value lines at the end of the message and the Linux kernel's area prefix." }
+    - { kind: dispute, source: hn-conventional-commits,
+        claim: "Commenters split on Conventional Commits: supporters praise tools that read the format, and critics object to fixed categories and to the type word, which takes room from the subject line." }
+
+  version-pattern:
+    - { kind: advice, source: semver, when: { version-pattern: [major-minor-patch] },
+        claim: "Under Semantic Versioning, declare the public interface, such as the commands or functions users rely on; the version number then shows how that interface changed." }
+    - { kind: advice, source: semver, when: { version-pattern: [major-minor-patch] },
+        claim: "Under Semantic Versioning, versions below 1.0.0 mark initial development, and the public interface may change at any release." }
+    - { kind: advice, source: keep-a-changelog,
+        claim: "State the versioning scheme, such as calendar versions, so readers can interpret the version numbers." }
+    - { kind: dispute, source: hn-semver,
+        claim: "Practitioners dispute whether semantic versions predict breakage." }
+    - { kind: practice, source: hn-semver,
+        claim: "Practitioners agree that release notes stay necessary under any versioning scheme." }

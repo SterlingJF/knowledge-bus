@@ -52,7 +52,7 @@ Knowledge Bus can guide a personal notebook, a shared project folder, or documen
 - **AI collaboration:** give agents explicit definitions and guidance to follow when asking questions, drafting, or reviewing.
 - **Knowledge exchange:** describe how information can move between people and tools while retaining its meaning and context.
 
-You can adopt an existing set of definitions or develop one for your own work. The included product-development example provides a starting point; the Knowledge Bus Protocol supports other subjects and uses.
+You can adopt an existing set of definitions or develop one for your own work. The included product-development and codebase-recordkeeping definitions provide starting points; the Knowledge Bus Protocol supports other subjects and uses.
 
 ## Features
 
@@ -62,6 +62,7 @@ You can adopt an existing set of definitions or develop one for your own work. T
 - **Attribution and history** — record who stated something, who is bound by it, its status, and when it was established. Preserve earlier versions when new assertions replace them.
 - **Knowledge exchange rules** — define how to share knowledge between different structures while preserving its meaning, source, and status. Keep disagreements visible for the receiver to resolve.
 - **Product-development starter** — adopt or adapt reference definitions for product development, including briefs, plans, and decision records.
+- **Codebase-recordkeeping starter** — adopt or adapt reference definitions for the written documents of a codebase, including READMEs, contributing guides, and release notes.
 - **Agent skills** — clarify questions and check for overlap, recover a decision's reasoning and the conditions for reconsidering it, and add or re-examine document types.
 - **Folder ingestion** — map existing notes to sourced answers, surface conflicts for your review, and report gaps without changing the originals.
 - **Conformance checker** — check definition and guidance files for missing declarations, unresolved references, and other structural errors.
@@ -86,6 +87,12 @@ The companion guidance attaches advice to those definitions and cites registered
 <a href="docs/assets/product-development-map.svg"><img src="docs/assets/product-development-map-crop.svg" alt="Part of the Knowledge Bus Explorer map of the product-development definitions" width="960" /></a>
 
 The image shows part of the map; select it to open the full map.
+
+### Codebase Recordkeeping
+
+The included codebase-recordkeeping definitions cover the written documents of a codebase: files in the repository, commit messages, change descriptions, issue reports, and release notes. Their document types include READMEs, contributing guides, security policies, agent instructions, and design proposals, with declared relationships between those types and their contents.
+
+The companion guidance attaches advice to those definitions and cites registered sources, including Keep a Changelog, Semantic Versioning, Conventional Commits, Diátaxis, and the OpenSSF Open Source Project Security Baseline. [Code Repository Universe Research](docs/research-code-repository-universe-2026-10-08.md) gives the corpus, counts, and sources behind each definition.
 
 ## Installation
 
@@ -297,7 +304,6 @@ See [Evals](evals/README.md).
 
 - Knowledge exchange between different sets of definitions
 - Forms and surveys designed around the decisions their answers support
-- A second reference universe, such as scientific research
 
 ### Open Questions
 
@@ -321,6 +327,7 @@ knowledge-bus/
 │   ├── src/kbp_conform/             validation library and kbp command
 │   └── tests/                       conformance and discovery tests
 ├── universes/                      maintained reference definitions
+│   ├── codebase-recordkeeping/
 │   └── product-development/
 ├── explorer/                       @knowledge-bus/explorer: universe viewer and SVG export
 │   ├── src/                         CE Pattern layers: elements, patterns, lib
@@ -369,7 +376,7 @@ See [Contributing](CONTRIBUTING.md) for development setup, source layout, and ch
 - [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
 - [Spec Anatomy](docs/spec-anatomy.md) — the structure of a definition file.
 - [Validation](docs/validation.md) — what the checker verifies and rejects.
-- [Document Type Card](docs/document-type-card.md) — printable artifact spec thats human-readable and agent-friendly.
+- [Document Type Card](docs/document-type-card.md) — printable artifact spec that's human-readable and agent-friendly.
 - [Evals](evals/README.md) — the rules and behaviours that define good definitions and agent work, and how they are graded.
 - [Evaluation Report](evals/report.md) — figures from recorded runs.
 - [Methodology](METHODOLOGY.md) — how evals are built, run, and reported.

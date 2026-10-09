@@ -1,0 +1,321 @@
+# The codebase-recordkeeping universe's answers for the recognition check: for each set, the value
+# each shared case in cases.yaml belongs to, labelled against the meanings below. Labelled blind
+# on both sides; a case is kept only where both agree. Written by tools/evals/intake.py apply.
+# Changing a meaning, or the universe's values, makes a set's answers stale until relabelled. The
+# last apply kept 18 of 18. Answers per set: step 34; issue-kind 27; docs-task 39; contributor-
+# assertion 18; repository-state 13; notes-writing 26; notes-place 18; commit-convention 18;
+# version-pattern 16. Status: development situations, interim.
+schema: evals-answers/1
+universe: codebase-recordkeeping
+field: code-repository
+frames:
+  step:
+    fingerprint: sha256:f2f6b29f9e177bcd
+    means:
+      choose: The person weighs the project from outside, such as whether to try the software, whether
+        the licence allows a planned use, whom to pay, or which work the maintainers plan next.
+      use: The person installs or runs the software and needs help with the software, such as installing,
+        changing settings, fixing an error, or reporting a security hole privately.
+      propose: The person takes part before a change exists, such as reporting a bug, asking for a feature,
+        discussing a design, learning the rules for contributions, or reporting bad conduct in the project's
+        spaces.
+      build: The person writes or tests code in a local copy, such as setting up the tools, running the
+        build and the tests, finding the right part of the code, or giving a coding agent its working
+        rules.
+      review: The person judges a proposed or past change, such as finding who must approve the change,
+        deciding whether to merge the change, or reading why someone made an earlier change.
+      release: The person publishes or passes on a version of the software, such as following the steps
+        to publish a release, reading what a new release changes before upgrading, or adding required
+        notices to a redistributed copy.
+    answers:
+      s-f9d51fd: choose
+      s-be9029e: choose
+      s-8046e13: choose
+      s-ab83d06: choose
+      s-92591cc: choose
+      s-6d32a22: choose
+      s-078ddb4: use
+      s-b2a4bcd: use
+      s-3ae2a77: use
+      s-753f51e: use
+      s-805e5fb: propose
+      s-e8e2a8d: propose
+      s-adff1f5: propose
+      s-d4006ac: propose
+      s-e35a301: propose
+      s-26b9f49: propose
+      s-edd8071: build
+      s-527bdec: build
+      s-826956a: build
+      s-22e9abc: build
+      s-2d84d07: build
+      s-6c414af: build
+      s-a2d8232: review
+      s-8889e29: review
+      s-169e611: review
+      s-9497bc1: review
+      s-da91d1e: review
+      s-73af717: review
+      s-fda43ad: release
+      s-dd5f57c: release
+      s-014e641: release
+      s-1e49e26: release
+      s-ceaf874: release
+      s-c2900a7: release
+  issue-kind:
+    fingerprint: sha256:b7ddb196c56d7e04
+    means:
+      bug-report: The person reports that the software misbehaves, such as a crash, a wrong result, an
+        error message or a failed build.
+      feature-request: The person asks the maintainers for a new capability, or for a change to how an
+        existing capability behaves.
+      docs-report: The person reports a gap or a mistake in the documentation, or suggests better wording
+        for a page.
+      question: The person asks for help using or setting up the software.
+      maintainer-task: A maintainer records the project's own planned work, such as a release checklist,
+        a sprint plan or a maintenance chore.
+    answers:
+      s-15829c2: bug-report
+      s-df33246: bug-report
+      s-c665339: bug-report
+      s-35ea917: bug-report
+      s-ba78765: bug-report
+      s-497a040: feature-request
+      s-1925628: feature-request
+      s-e37f84e: feature-request
+      s-6c4e96c: feature-request
+      s-140bfb7: feature-request
+      s-9629516: docs-report
+      s-042db2a: docs-report
+      s-e423c93: docs-report
+      s-0dae801: docs-report
+      s-ea3a468: docs-report
+      s-a0fb459: docs-report
+      s-34b59e3: question
+      s-5af7e99: question
+      s-efac654: question
+      s-d262751: question
+      s-47adc70: question
+      s-1ad3db4: question
+      s-9a4b0b3: maintainer-task
+      s-c9ac8e4: maintainer-task
+      s-1743681: maintainer-task
+      s-85e0434: maintainer-task
+      s-8ca5957: maintainer-task
+  docs-task:
+    fingerprint: sha256:789dbe5410318467
+    means:
+      install: The page tells a user how to put the software on a machine, such as packages, downloads
+        or building from source.
+      get-started: The page takes a new user step by step from nothing to a first working result.
+      configure: The page lists the settings a user can change, with the meaning and the default of each
+        setting.
+      use: The page explains how to do one job or use one capability with the software.
+      look-up: The page describes each command, function, class or option of an interface, for looking
+        up details.
+      fix-an-error: The page helps a user solve an error or a known problem.
+      upgrade: The page tells a user how to move from an older release to a newer release, with the steps
+        and the breaking changes.
+    answers:
+      s-cfc8194: install
+      s-28d98d3: install
+      s-1af4cb0: install
+      s-82fdb45: install
+      s-112a1ff: install
+      s-665e02b: get-started
+      s-fbe7c25: get-started
+      s-5536313: get-started
+      s-37c9141: get-started
+      s-3b4acc0: get-started
+      s-dcf7373: get-started
+      s-02ccd2c: configure
+      s-b184821: configure
+      s-9bf4575: configure
+      s-8e36789: configure
+      s-5ba42ea: use
+      s-29bebba: use
+      s-261f1f2: use
+      s-5cdc5c7: use
+      s-58e0bb8: use
+      s-2b99b93: use
+      s-06be0a7: look-up
+      s-ecc1e3e: look-up
+      s-b3f3727: look-up
+      s-d3eb939: look-up
+      s-fa0264a: look-up
+      s-bd33dd1: look-up
+      s-e2b49a9: fix-an-error
+      s-d0fbf47: fix-an-error
+      s-683eea5: fix-an-error
+      s-1f81106: fix-an-error
+      s-60b8ab2: fix-an-error
+      s-6cff364: fix-an-error
+      s-97edbb1: upgrade
+      s-1c8f509: upgrade
+      s-5a2fa9e: upgrade
+      s-b8b394e: upgrade
+      s-ef5245e: upgrade
+      s-47a1784: upgrade
+  contributor-assertion:
+    fingerprint: sha256:bc7e2195103f11dd
+    means:
+      sign-off: Every commit carries a sign-off line in which the author certifies the right to submit
+        the work, as the Developer Certificate of Origin sets out.
+      agreement: Each contributor signs a contributor licence agreement once, before the maintainers accept
+        a first change.
+      none: The project accepts changes without a sign-off line or a signed agreement.
+    answers:
+      s-2d39484: sign-off
+      s-d2c46ee: sign-off
+      s-d2d899f: sign-off
+      s-bf5545f: sign-off
+      s-4d70a85: sign-off
+      s-da31784: sign-off
+      s-d10695f: agreement
+      s-b1d4b27: agreement
+      s-b286b48: agreement
+      s-d79ec9e: agreement
+      s-030b3b4: agreement
+      s-32aa5f6: agreement
+      s-e8b22cd: none
+      s-59f2e9a: none
+      s-8763873: none
+      s-396a96a: none
+      s-0df6afe: none
+      s-289c56b: none
+  repository-state:
+    fingerprint: sha256:24b876129b6fac00
+    means:
+      active: The project accepts new issues and changes, and the maintainers keep publishing releases.
+      archived: The owners have made the repository read-only, with no new issues, changes or releases.
+    answers:
+      s-4de88f9: archived
+      s-183ae58: archived
+      s-9ce5635: archived
+      s-a281e1a: archived
+      s-80433e5: active
+      s-f7d9c2e: active
+      s-f048f55: active
+      s-fbea791: active
+      s-b2d9ab4: active
+      s-3031673: active
+      s-3602065: active
+      s-c2c25b7: active
+      s-89b46e9: active
+factors:
+  notes-writing:
+    fingerprint: sha256:f4f647897cbdea21
+    means:
+      by-hand: A person writes the whole text of each release's notes.
+      generated: A tool builds the release notes from merged change titles or commit messages, and nobody
+        edits the tool's list.
+      generated-then-edited: A tool builds a list of changes, and a person adds to or rewrites the list,
+        such as a hand-written summary above the generated list.
+      from-change-notes: Each contributor adds a short note file with a change, and a tool gathers the
+        note files into the release notes.
+    answers:
+      s-cab1fcd: by-hand
+      s-03c3116: by-hand
+      s-78aab09: by-hand
+      s-12e4975: by-hand
+      s-ff99119: by-hand
+      s-b51d39f: by-hand
+      s-016cc89: generated
+      s-f35c942: generated
+      s-df105a2: generated
+      s-e8cb37b: by-hand
+      s-9042d10: by-hand
+      s-78543d3: generated
+      s-079d3ac: generated
+      s-eeb06ed: generated-then-edited
+      s-a9ceb18: generated
+      s-b1e2d18: generated-then-edited
+      s-51346f0: generated-then-edited
+      s-d9bab57: generated-then-edited
+      s-13f1c10: generated-then-edited
+      s-a58a7f5: generated-then-edited
+      s-a9176df: from-change-notes
+      s-531bb8b: by-hand
+      s-d5527e5: from-change-notes
+      s-b1324c4: from-change-notes
+      s-043c4b7: from-change-notes
+      s-97c847b: from-change-notes
+  notes-place:
+    fingerprint: sha256:581fbf0e2469c074
+    means:
+      release-page: The release notes appear only on each release's page on the hosting site, and the
+        repository holds no changelog file.
+      changelog-file: The release notes appear only in a changelog file in the repository, and the release
+        pages carry no notes.
+      both: The release notes appear on the release pages and in a changelog file in the repository.
+    answers:
+      s-d18b3e5: release-page
+      s-2a70899: release-page
+      s-7047898: release-page
+      s-ed1006c: release-page
+      s-5e9fe44: release-page
+      s-21d8c4e: release-page
+      s-934e1c4: changelog-file
+      s-35ae010: changelog-file
+      s-3aff6fa: changelog-file
+      s-8b6d804: changelog-file
+      s-db27340: changelog-file
+      s-7603d38: changelog-file
+      s-03fd2e7: both
+      s-60361a9: both
+      s-3d31904: both
+      s-35d7275: both
+      s-9385681: both
+      s-ccb697f: both
+  commit-convention:
+    fingerprint: sha256:ed259f0af00cdd86
+    means:
+      conventional: Commit subject lines open with a change type and a colon, such as fix or feat, as
+        Conventional Commits sets out.
+      area-prefix: Commit subject lines open with the name of the edited part of the code, such as a folder,
+        module or subsystem, and a colon.
+      free-form: Commit subject lines have no fixed opening, and each author words the subject freely.
+    answers:
+      s-280299b: conventional
+      s-918e8ea: conventional
+      s-78dd08b: conventional
+      s-7238d9e: conventional
+      s-6cf1f45: conventional
+      s-0ca0fd8: conventional
+      s-6f3e7ea: area-prefix
+      s-ffc29dd: area-prefix
+      s-2b8d6d6: area-prefix
+      s-777b236: area-prefix
+      s-4382ced: area-prefix
+      s-47e95e1: area-prefix
+      s-8e57849: free-form
+      s-d1595df: free-form
+      s-fa410a4: free-form
+      s-baecaed: free-form
+      s-c0bfd90: free-form
+      s-a7ff00c: free-form
+  version-pattern:
+    fingerprint: sha256:7bf2727891bbab46
+    means:
+      major-minor-patch: Each version has three numbers, major, minor and patch, as Semantic Versioning
+        sets out, sometimes after a prefix such as v or a package name.
+      calendar: Each version starts with the year of the release, as calendar versioning sets out.
+      other: Each version follows another scheme, such as two numbers with a letter, a date and time after
+        a word, a platform name with a build number, or one moving tag.
+    answers:
+      s-e5c8aed: major-minor-patch
+      s-cd6e62c: major-minor-patch
+      s-223a231: major-minor-patch
+      s-0222f5f: major-minor-patch
+      s-f8cd05c: major-minor-patch
+      s-64cf336: major-minor-patch
+      s-53807a8: major-minor-patch
+      s-be82505: major-minor-patch
+      s-46cf149: calendar
+      s-968b9ee: calendar
+      s-19290c6: calendar
+      s-cfdc537: calendar
+      s-76594d5: other
+      s-70a681f: other
+      s-ed8e1a7: other
+      s-d701920: other
