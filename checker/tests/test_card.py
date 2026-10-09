@@ -27,6 +27,9 @@ CARDS = Path(__file__).resolve().parent / "cards"
 FIXTURE = Path(__file__).resolve().parent / "card-fixture"
 REFERENCE = ROOT / "universes/product-development"
 MINIMAL = ROOT / "protocol/conformance/pass/minimal.kbp.yaml"
+FACTORS_ONLY = ROOT / "protocol/conformance/pass/factors-only.kbp.yaml"
+VILLAGE_HALL = ROOT / "evals/fixtures/village-hall/.knowledge-bus"
+WORKSPACE_CASES = Path(__file__).resolve().parent / "workspace"
 CARD_SOURCE = ROOT / "checker/src/kbp_conform/card.py"
 WRITE = os.environ.get("KBP_WRITE_CARDS") == "1"
 
@@ -116,6 +119,54 @@ def test_card_matches_its_expected_card(capsys, targets, name, kind, fmt):
 def test_kinds_matches_its_expected_list(capsys, targets, name, fmt):
     out = kinds_output(capsys, targets[name], fmt)
     compare_or_write(CARDS / name / f"kinds{SUFFIX[fmt]}", out, fmt)
+
+
+@pytest.fixture(scope="module")
+def kinds_sets(tmp_path_factory):
+    """Folders holding several universe specs, one of them factor-only."""
+    flat = tmp_path_factory.mktemp("kinds-set") / ".knowledge-bus"
+    shutil.copytree(VILLAGE_HALL, flat)
+    shutil.copy(FACTORS_ONLY, flat / FACTORS_ONLY.name)
+    hall = tmp_path_factory.mktemp("kinds-set-from-parent") / "hall"
+    shutil.copytree(WORKSPACE_CASES / "upkeep" / "hall", hall)
+    shutil.copy(FACTORS_ONLY, hall / ".knowledge-bus" / FACTORS_ONLY.name)
+    (hall / "committee" / ".knowledge-bus" / "workspace.yaml").write_text(
+        "from_parent: [hall-upkeep, factors-only]\n"
+    )
+    return {"kinds-set": flat, "kinds-set-from-parent": hall / "committee"}
+
+
+@pytest.mark.parametrize("fmt", ["json", "markdown"])
+@pytest.mark.parametrize("name", ["kinds-set", "kinds-set-from-parent"])
+def test_kinds_set_matches_its_expected_list(capsys, kinds_sets, name, fmt):
+    """Several universe specs and no --universe: one kinds/1 group per universe spec."""
+    out = kinds_output(capsys, kinds_sets[name], fmt)
+    compare_or_write(CARDS / name / f"kinds{SUFFIX[fmt]}", out, fmt)
+
+
+def test_kinds_set_code_takes_loaded_data(monkeypatch):
+    from kbp_conform import card
+
+    universe = yaml.safe_load((FIXTURE / "universe.kbp.yaml").read_text())
+    factors = yaml.safe_load(FACTORS_ONLY.read_text())
+
+    def refuse(*args, **kwargs):
+        raise AssertionError("card code opened a file")
+
+    monkeypatch.setattr(builtins, "open", refuse)
+    monkeypatch.setattr(Path, "read_text", refuse)
+    listings = [card.build_kinds(universe), card.build_kinds(factors)]
+    listing = card.build_kinds_set(listings, ["factors-only"])
+    assert listing["schema"] == "knowledge-bus/kinds-set/1"
+    assert listing["universe_specs"] == listings
+    assert listing["from_parent"] == ["factors-only"]
+    text = card.render_kinds_set(listing)
+    assert text.startswith("# Document types\n")
+    assert (
+        "## Factors only universe spec (factors-only 0.1), from the parent folder"
+        in (text.splitlines())
+    )
+    assert text.endswith("No document types.\n")
 
 
 def test_every_product_development_kind_has_expected_cards():
@@ -538,6 +589,113 @@ def test_kinds_lists_name_other_names_and_purpose(capsys):
         "form": "brand guidelines / style guide / DESIGN.md",
     }
     assert brand["action"] == "apply the brand's look and wording correctly on your own"
+
+
+def folded(text):
+    return " ".join(text.split())
+
+
+def test_kinds_entries_give_who_uses_each_document_type_and_when(capsys):
+    """Each entry's actor and timing equal the card's enablement actor and timing."""
+    target = SETS["card-fixture"]
+    listing = json.loads(kinds_output(capsys, target, "json"))
+    entries = {item["kind"]: item for item in listing["kinds"]}
+    assert entries["visit-plan"]["actor"] == "whoever leads the visit"
+    assert entries["visit-plan"]["timing"] == "before the visit"
+    assert entries["visit-report"]["actor"] == "everyone who could not attend"
+    assert entries["visit-report"]["timing"] is None
+    for kind, item in entries.items():
+        enablement = json.loads(card_output(capsys, target, kind, "json"))["enablement"]
+        assert (item["actor"], item["timing"]) == (
+            enablement["actor"],
+            enablement["timing"],
+        ), kind
+
+
+def test_kinds_universe_spec_gives_covers_and_for(capsys):
+    """universe_spec carries overview.covers and overview.for; the card's universe_spec keeps only id, label and version."""
+    path = SETS["product-development"]
+    overview = yaml.safe_load(path.read_text(encoding="utf-8"))["universe"]["overview"]
+    listing = json.loads(kinds_output(capsys, path, "json"))
+    spec = listing["universe_spec"]
+    assert spec["covers"] == folded(overview["covers"])
+    assert spec["for"] == folded(overview["for"])
+    assert "\n" not in spec["covers"] + spec["for"]
+    assert "excludes" not in spec
+    card = json.loads(card_output(capsys, path, "decision-record", "json"))
+    assert set(card["universe_spec"]) == {"id", "label", "version"}
+
+
+def test_kinds_markdown_gives_covers_for_and_who_and_when(capsys):
+    path = SETS["product-development"]
+    overview = yaml.safe_load(path.read_text(encoding="utf-8"))["universe"]["overview"]
+    listing = kinds_output(capsys, path, "markdown").splitlines()
+    assert listing[:8] == [
+        "# Document types",
+        "",
+        "In the Product development universe spec (product-development 0.9).",
+        "",
+        f"Covers: {folded(overview['covers'])}",
+        "",
+        f"For: {folded(overview['for'])}",
+        "",
+    ]
+    fixture = kinds_output(capsys, SETS["card-fixture"], "markdown")
+    plan = fixture.split("- Visit plan (visit-plan)\n")[1].split("\n- ")[0]
+    assert plan.splitlines() == [
+        "  - Also called: site visit plan / risk briefing",
+        "  - Helps you: prepare a safe site visit",
+        "  - Who uses it: whoever leads the visit",
+        "  - When it is used: before the visit",
+    ]
+    report = fixture.split("- Visit report (visit-report)\n")[1]
+    assert report.splitlines() == [
+        "  - Helps you: share what the visit found",
+        "  - Who uses it: everyone who could not attend",
+    ]
+
+
+def test_kinds_leaves_out_absent_covers_for_and_who_and_when(capsys, targets):
+    """A universe spec with no overview, and a plain-string enablement."""
+    listing = json.loads(kinds_output(capsys, targets["minimal"], "json"))
+    assert listing["universe_spec"]["covers"] is None
+    assert listing["universe_spec"]["for"] is None
+    assert listing["kinds"][0]["actor"] is None
+    assert listing["kinds"][0]["timing"] is None
+    readable = kinds_output(capsys, targets["minimal"], "markdown")
+    assert readable == (
+        "# Document types\n"
+        "\n"
+        "In the Minimal universe spec (minimal 0.1).\n"
+        "\n"
+        "- The record (the-record)\n"
+        "  - Helps you: Lets someone state a question and be held to it.\n"
+    )
+
+
+def test_kinds_set_groups_give_covers_and_for(capsys, kinds_sets):
+    readable = kinds_output(capsys, kinds_sets["kinds-set-from-parent"], "markdown")
+    lines = readable.splitlines()
+    committee = lines.index(
+        "## Committee minutes universe spec (committee-minutes 0.1)"
+    )
+    assert lines[committee + 1 : committee + 7] == [
+        "",
+        "Covers: What the management committee records at each meeting.",
+        "",
+        "For: The committee secretary and the trustees.",
+        "",
+        "- Minutes (minutes)",
+    ]
+    assert lines[committee + 7 : committee + 10] == [
+        "  - Helps you: record what the committee agreed",
+        "  - Who uses it: secretary",
+        "  - When it is used: during each meeting",
+    ]
+    factors = lines.index(
+        "## Factors only universe spec (factors-only 0.1), from the parent folder"
+    )
+    assert lines[factors + 1 :] == ["", "No document types."]
 
 
 def test_card_code_takes_loaded_data_and_uses_the_standard_library_only(monkeypatch):

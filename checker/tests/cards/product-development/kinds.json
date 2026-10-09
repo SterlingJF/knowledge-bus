@@ -2,176 +2,216 @@
   "kinds": [
     {
       "action": "choose what an offering will aim for next and what it will refuse",
+      "actor": "whoever leads the offering",
       "alias": {
         "kind": "none"
       },
       "kind": "product-strategy-canvas",
-      "name": "Product strategy canvas"
+      "name": "Product strategy canvas",
+      "timing": "before committing time and money to the next planning period"
     },
     {
       "action": "check whether a business can deliver an offering its customers value and earn more than providing it costs",
+      "actor": "whoever starts, runs or funds the business",
       "alias": {
         "form": "Business Model Canvas (Osterwalder)",
         "kind": "normative"
       },
       "kind": "business-model-canvas",
-      "name": "Business model canvas"
+      "name": "Business model canvas",
+      "timing": "before committing money or time to the business, and again whenever its customers, delivery or income change"
     },
     {
       "action": "choose which assumption in a new venture's business model to test next",
+      "actor": "whoever is starting the venture",
       "alias": {
         "form": "Lean Canvas (Maurya)",
         "kind": "normative"
       },
       "kind": "lean-canvas",
-      "name": "Lean canvas"
+      "name": "Lean canvas",
+      "timing": "before the venture has shown that customers will pay for it"
     },
     {
       "action": "decide what a new venture will aim for and how it will make money",
+      "actor": "whoever is founding the venture, with any backers",
       "alias": {
         "kind": "none"
       },
       "kind": "startup-canvas",
-      "name": "Startup canvas"
+      "name": "Startup canvas",
+      "timing": "while forming the venture"
     },
     {
       "action": "compare our strengths and weaknesses with the opportunities and threats outside us",
+      "actor": "whoever sets the plan",
       "alias": {
         "form": "SWOT",
         "kind": "normative"
       },
       "kind": "swot-analysis",
-      "name": "Swot analysis"
+      "name": "Swot analysis",
+      "timing": "before setting the plan"
     },
     {
       "action": "check which political, economic, social, technological, legal and environmental conditions affect the work",
+      "actor": "whoever sets the plan",
       "alias": {
         "form": "PESTLE",
         "kind": "normative"
       },
       "kind": "pestle-analysis",
-      "name": "Pestle analysis"
+      "name": "Pestle analysis",
+      "timing": "before setting the plan, and again when laws, markets or technology change"
     },
     {
       "action": "find where the offering can differ from the other options people have, including doing nothing",
+      "actor": "whoever decides what to offer or how to present it",
       "alias": {
         "form": "competitor analysis",
         "kind": "descriptive"
       },
       "kind": "competitor-analysis",
-      "name": "Competitor analysis"
+      "name": "Competitor analysis",
+      "timing": "whenever another option appears or changes"
     },
     {
       "action": "decide which kind of person, in which circumstance, to design the solution for",
+      "actor": "whoever designs the solution or studies the people it is for",
       "alias": {
         "form": "persona profile",
         "kind": "descriptive"
       },
       "kind": "persona-profile",
-      "name": "Persona profile"
+      "name": "Persona profile",
+      "timing": "before designing the solution"
     },
     {
       "action": "decide whether to pursue a problem at all",
+      "actor": "whoever would fund or approve the work",
       "alias": {
         "form": "product brief / one-pager",
         "kind": "descriptive"
       },
       "kind": "opportunity-assessment",
-      "name": "Opportunity assessment"
+      "name": "Opportunity assessment",
+      "timing": "before committing people or money to the work"
     },
     {
       "action": "decide which risks to reduce, accept or watch, and who handles each",
+      "actor": "the person accountable for the work",
       "alias": {
         "form": "risk register",
         "kind": "descriptive"
       },
       "kind": "risk-assessment",
-      "name": "Risk assessment"
+      "name": "Risk assessment",
+      "timing": "before the work starts, and while it runs"
     },
     {
       "action": "agree to or object to one proposed approach",
+      "actor": "reviewer",
       "alias": {
         "form": "RFC / RFD",
         "kind": "descriptive"
       },
       "kind": "design-doc",
-      "name": "Design doc"
+      "name": "Design doc",
+      "timing": "before the work starts"
     },
     {
       "action": "apply the brand's look and wording correctly on your own",
+      "actor": "anyone writing or designing for the brand",
       "alias": {
         "form": "brand guidelines / style guide / DESIGN.md",
         "kind": "descriptive"
       },
       "kind": "brand-identity-guide",
-      "name": "Brand identity guide"
+      "name": "Brand identity guide",
+      "timing": "whenever making new material for the brand"
     },
     {
       "action": "check, step by step, that one person can reach one goal through the solution",
+      "actor": "reviewer",
       "alias": {
         "form": "key path scenario",
         "kind": "descriptive"
       },
       "kind": "scenario-walkthrough",
-      "name": "Scenario walkthrough"
+      "name": "Scenario walkthrough",
+      "timing": "before the work starts"
     },
     {
       "action": "decide which numbers to improve next and which to keep where they are",
+      "actor": "whoever runs the offering day to day",
       "alias": {
         "form": "North Star framework",
         "kind": "descriptive"
       },
       "kind": "success-metrics",
-      "name": "Success metrics"
+      "name": "Success metrics",
+      "timing": "at each regular review of the offering"
     },
     {
       "action": "find which parts of the system a change will affect",
+      "actor": "whoever will change the system",
       "alias": {
         "form": "C4 levels 1–2",
         "kind": "descriptive"
       },
       "kind": "architecture-overview",
-      "name": "Architecture overview"
+      "name": "Architecture overview",
+      "timing": "before changing the system"
     },
     {
       "action": "find what the system is responsible for and which outside people and systems it works with",
+      "actor": "anyone new to the system",
       "alias": {
         "form": "C4 level 1",
         "kind": "normative"
       },
       "kind": "system-context-diagram",
-      "name": "System context diagram"
+      "name": "System context diagram",
+      "timing": "when first working with the system"
     },
     {
       "action": "choose one of several options by a set date",
+      "actor": "the person accountable for the choice",
       "alias": {
         "form": "options paper / decision document (DACI, SPADE)",
         "kind": "descriptive"
       },
       "kind": "decision-brief",
-      "name": "Decision brief"
+      "name": "Decision brief",
+      "timing": "before anyone commits to an option"
     },
     {
       "action": "check whether a past decision still applies, and record a replacement when it no longer does",
+      "actor": "future reader",
       "alias": {
         "form": "ADR (Nygard) / MADR / record of decision",
         "kind": "descriptive"
       },
       "kind": "decision-record",
-      "name": "Decision record"
+      "name": "Decision record",
+      "timing": "any time after the decision"
     },
     {
       "action": "commit to a test's prediction and its measures in advance",
+      "actor": "whoever runs the test",
       "alias": {
         "form": "experiment plan / pre-registration / study protocol",
         "kind": "descriptive"
       },
       "kind": "experiment-plan",
-      "name": "Experiment plan"
+      "name": "Experiment plan",
+      "timing": "before collecting any data for the test"
     }
   ],
   "schema": "knowledge-bus/kinds/1",
   "universe_spec": {
+    "covers": "The reasoning around deliberate work — what makes it worth doing, what it should be, and whether it held up. The work may produce something made or put in place, a service rendered, or something learned; for a recipient — including your own later self — who simply receives it, free to take it or leave it, or paying for it.",
+    "for": "Whoever is accountable for that judgement or has to account for it later — one person on one machine, a group, or an organisation.",
     "id": "product-development",
     "label": "Product development",
     "version": "0.9"

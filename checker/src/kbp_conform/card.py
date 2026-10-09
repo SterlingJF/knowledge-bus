@@ -7,6 +7,8 @@ every field, where it comes from, and the readable wording.
 
 CARD_SCHEMA = "knowledge-bus/card/1"
 KINDS_SCHEMA = "knowledge-bus/kinds/1"
+KINDS_SET_SCHEMA = "knowledge-bus/kinds-set/1"
+FROM_PARENT = "from the parent folder"
 NOT_STATED = "not stated in the universe spec"
 STRENGTHS = ("core", "situational")
 
@@ -29,6 +31,20 @@ def _universe_spec(universe):
         "id": header["id"],
         "label": header.get("label") or display_name(header),
         "version": _text(header.get("version")),
+    }
+
+
+def _folded(value):
+    return None if value is None else " ".join(str(value).split())
+
+
+def _kinds_universe_spec(universe):
+    overview = universe["universe"].get("overview")
+    overview = overview if isinstance(overview, dict) else {}
+    return {
+        **_universe_spec(universe),
+        "covers": _folded(overview.get("covers")),
+        "for": _folded(overview.get("for")),
     }
 
 
@@ -158,19 +174,39 @@ def build_card(universe, guidance, kind):
 
 
 def build_kinds(universe):
-    """Id, name, other names and purpose of every document type, in declared order."""
-    return {
-        "schema": KINDS_SCHEMA,
-        "universe_spec": _universe_spec(universe),
-        "kinds": [
+    """Id, name, other names, purpose, users and timing of every document type, in declared order.
+
+    `universe_spec` also gives `covers` and `for` from the universe spec overview.
+    """
+    kinds = []
+    for artifact in universe.get("artifacts") or []:
+        enablement = _enablement(artifact)
+        kinds.append(
             {
                 "kind": artifact["id"],
                 "name": display_name(artifact),
                 "alias": _alias(artifact),
-                "action": _enablement(artifact)["action"],
+                "action": enablement["action"],
+                "actor": enablement["actor"],
+                "timing": enablement["timing"],
             }
-            for artifact in universe.get("artifacts") or []
-        ],
+        )
+    return {
+        "schema": KINDS_SCHEMA,
+        "universe_spec": _kinds_universe_spec(universe),
+        "kinds": kinds,
+    }
+
+
+def build_kinds_set(listings, from_parent):
+    """One kinds/1 group per universe spec, never merged, in the given order.
+
+    `from_parent` lists the ids from the nested folder's workspace.yaml.
+    """
+    return {
+        "schema": KINDS_SET_SCHEMA,
+        "from_parent": list(from_parent),
+        "universe_specs": list(listings),
     }
 
 
@@ -308,6 +344,33 @@ def render_kinds(listing):
         f"In the {_spec_name(spec)}.",
         "",
     ]
+    lines += _overview_lines(spec)
+    lines += _kind_lines(listing)
+    return "\n".join(lines) + "\n"
+
+
+def render_kinds_set(listing_set):
+    """Every document type as Markdown, one section per universe spec."""
+    lines = ["# Document types"]
+    for listing in listing_set["universe_specs"]:
+        spec = listing["universe_spec"]
+        origin = f", {FROM_PARENT}" if spec["id"] in listing_set["from_parent"] else ""
+        lines += ["", f"## {_spec_name(spec)}{origin}", ""]
+        lines += _overview_lines(spec)
+        lines += _kind_lines(listing) or ["No document types."]
+    return "\n".join(lines) + "\n"
+
+
+def _overview_lines(spec):
+    lines = []
+    for label, key in (("Covers", "covers"), ("For", "for")):
+        if spec.get(key):
+            lines += [f"{label}: {spec[key]}", ""]
+    return lines
+
+
+def _kind_lines(listing):
+    lines = []
     for item in listing["kinds"]:
         lines.append(f"- {item['name']} ({item['kind']})")
         alias = item["alias"] or {}
@@ -318,4 +381,8 @@ def render_kinds(listing):
                 f"  - Its shape is set by an outside authority: {alias.get('form') or NOT_STATED}"
             )
         lines.append(f"  - Helps you: {item['action'] or NOT_STATED}")
-    return "\n".join(lines) + "\n"
+        if item.get("actor"):
+            lines.append(f"  - Who uses it: {item['actor']}")
+        if item.get("timing"):
+            lines.append(f"  - When it is used: {item['timing']}")
+    return lines

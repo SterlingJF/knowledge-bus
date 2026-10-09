@@ -40,9 +40,9 @@ Check a particular definition file and its guidance:
 uv run kbp --validate path/to/universe.kbp.yaml path/to/type-guidance.kbp.yaml
 ```
 
-Paths in this example are placeholders for your files. A target folder with `.knowledge-bus/` selects the definition and guidance files in that directory. Explicit file arguments select exactly those files. Generic directory arguments scan `*.kbp.yaml` files while excluding nested folders that contain their own `.knowledge-bus/`.
+Paths in this example are placeholders for your files. A target folder with `.knowledge-bus/` selects the definition and guidance files in that directory. Explicit file arguments select exactly those files. The checker applies the rules in [Nested Folders](knowledge-bus-directory.md#nested-folders) to an explicit `.knowledge-bus/workspace.yaml` argument. For generic directory arguments, the checker scans `*.kbp.yaml` files and skips nested folders that contain their own `.knowledge-bus/`.
 
-Without explicit targets, the checker uses the nearest `.knowledge-bus/` from the working directory upward. It never combines definitions from different Knowledge Bus directories or creates a missing `.knowledge-bus/`. In the implementation checkout, it checks bundled `universes/` when no `.knowledge-bus/` directory is found. The package supplies the protocol independently of the working directory. See [Knowledge Bus Directory](knowledge-bus-directory.md).
+Without explicit targets, the checker uses the nearest `.knowledge-bus/` from the working directory upward. It never combines definitions from different Knowledge Bus directories or creates a missing `.knowledge-bus/`. When the selected `.knowledge-bus/workspace.yaml` lists universe specs of the parent folder under `from_parent`, the checker also checks `workspace.yaml` and those universe specs, one block per file; see [Nested Folders](knowledge-bus-directory.md#nested-folders). In the implementation checkout, it checks bundled `universes/` when no `.knowledge-bus/` directory is found. The package supplies the protocol independently of the working directory. See [Knowledge Bus Directory](knowledge-bus-directory.md).
 
 Inspect one universe without writing:
 
@@ -59,7 +59,7 @@ uv run kbp --card <kind> path/to/.knowledge-bus/
 uv run kbp --kinds path/to/.knowledge-bus/
 ```
 
-`--card` and `--kinds` skip marks files. See [Document Type Card](document-type-card.md).
+`--card` and `--kinds` skip marks files. When the scope holds several universe specs, `--kinds` without `--universe` prints one group per universe spec. See [Document Type Card](document-type-card.md).
 
 ## Understanding Results
 

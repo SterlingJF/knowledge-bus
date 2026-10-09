@@ -74,7 +74,7 @@ Use the reference material as a starting point for your own work. You can adopt 
 
 See [Adapting the Example](docs/adapting-the-example.md).
 
-Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. See [Knowledge Bus Directory](docs/knowledge-bus-directory.md) for discovery and write rules.
+Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. To use universe specs of the parent folder in a nested folder, list their ids in the nested folder's `.knowledge-bus/workspace.yaml`. See [Knowledge Bus Directory](docs/knowledge-bus-directory.md) for discovery and write rules.
 
 ### Product Development
 

@@ -1,0 +1,64 @@
+{
+  "from_parent": [
+    "hall-upkeep",
+    "factors-only"
+  ],
+  "schema": "knowledge-bus/kinds-set/1",
+  "universe_specs": [
+    {
+      "kinds": [
+        {
+          "action": "record what the committee agreed",
+          "actor": "secretary",
+          "alias": {
+            "kind": "none"
+          },
+          "kind": "minutes",
+          "name": "Minutes",
+          "timing": "during each meeting"
+        }
+      ],
+      "schema": "knowledge-bus/kinds/1",
+      "universe_spec": {
+        "covers": "What the management committee records at each meeting.",
+        "for": "The committee secretary and the trustees.",
+        "id": "committee-minutes",
+        "label": "Committee minutes",
+        "version": "0.1"
+      }
+    },
+    {
+      "kinds": [
+        {
+          "action": "leave the hall ready for the next hirer",
+          "actor": "hirer",
+          "alias": {
+            "kind": "none"
+          },
+          "kind": "hirer-checklist",
+          "name": "Hirer checklist",
+          "timing": "at the end of each event"
+        }
+      ],
+      "schema": "knowledge-bus/kinds/1",
+      "universe_spec": {
+        "covers": "The cleaning, checks and repairs that keep a village hall fit for each hirer.",
+        "for": "The hall caretaker, the management committee and the people who hire the hall.",
+        "id": "hall-upkeep",
+        "label": "Hall upkeep",
+        "version": "0.1"
+      }
+    },
+    {
+      "kinds": [],
+      "schema": "knowledge-bus/kinds/1",
+      "universe_spec": {
+        "covers": null,
+        "for": null,
+        "id": "factors-only",
+        "label": "Factors only",
+        "version": "0.1"
+      }
+    }
+  ]
+}

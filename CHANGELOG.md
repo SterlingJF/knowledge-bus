@@ -13,7 +13,8 @@ Bundled protocol: `kbp/0.8`.
 ### Checker
 
 - Add `kbp --card <kind>`: prints the card for one document type, as JSON or with `--format markdown`. See [Document Type Card](docs/document-type-card.md).
-- Add `kbp --kinds`: lists every document type with its other names and purpose.
+- Add `kbp --kinds`: lists every document type with its other names, purpose, users and timing, and prints `overview.covers` and `overview.for` for each universe spec; with several universe specs, prints one group per universe spec.
+- Add `.knowledge-bus/workspace.yaml`, the settings file for a Knowledge Bus folder. Its `from_parent` key lists universe specs of the parent folder; every `kbp` command and skill applies the listed universe specs beside the folder's own universe specs. See [Nested Folders](docs/knowledge-bus-directory.md#nested-folders).
 
 ## 0.9.0
 

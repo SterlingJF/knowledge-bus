@@ -11,9 +11,10 @@ kbp --kinds path/to/.knowledge-bus/
 ```
 
 - `--card <kind>` prints the card for the document type with that id, as JSON. `--format markdown` prints the readable card.
-- `--kinds` prints the id, name, other names and purpose of every document type. Use it to see the document types in a universe spec.
+- `--kinds` prints the id, name, other names, purpose, users and timing of every document type, and `overview.covers` and `overview.for` for each universe spec. Use `--kinds` to see the document types in a universe spec.
 - Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used.
-- When the scope holds several universe specs, choose one with `--universe <id>` or target its file.
+- When the scope holds several universe specs, choose one for `--card` with `--universe <id>` or target its file. Without `--universe`, `--kinds` prints one group per universe spec.
+- In a nested folder, the scope includes the universe specs listed under `from_parent` in `.knowledge-bus/workspace.yaml`. See [Nested Folders](knowledge-bus-directory.md#nested-folders).
 
 Both commands check the chosen universe spec and its guidance file. They skip marks files (`*.explorer.yaml`) and run no Explorer drawing checks, so a broken marks file never blocks a card. They write nothing.
 
@@ -27,7 +28,7 @@ An error is one JSON object on stderr with schema `knowledge-bus/inspection-erro
 | `conformance` | A file cannot be parsed; two universe specs share an id; the chosen universe spec has two guidance files; the chosen universe spec or its guidance file does not conform; a guidance file names a universe spec outside the scope |
 | `protocol` | The bundled protocol cannot be loaded or is unsound |
 
-For an unknown document type, `candidates` lists every document type id. For several universe specs with none chosen, `candidates` lists their ids.
+For an unknown document type, `candidates` lists every document type id. For several universe specs with none chosen, `candidates` lists their ids. In a nested folder with ids under `from_parent`, the error also has `from_parent`, the list of those ids.
 
 ## Card Fields
 
@@ -101,9 +102,13 @@ Blocks are separated by one blank line. The file ends with one newline. Text fro
 
 ## Document Type List
 
-The JSON list has schema `knowledge-bus/kinds/1`: `universe_spec` as on the card, and `kinds`, one entry per document type in declared order with `kind`, `name`, `alias` and `action`.
+The JSON list has schema `knowledge-bus/kinds/1`: `universe_spec` as on the card plus `covers` and `for`, and `kinds`, one entry per document type in declared order with `kind`, `name`, `alias`, `action`, `actor` and `timing`. `covers` and `for` copy `universe.overview.covers` and `universe.overview.for` with leading and trailing whitespace removed and each inner run of spaces and line breaks reduced to one space. `actor` and `timing` match the card's `enablement.actor` and `enablement.timing`. `covers`, `for`, `actor` and `timing` are null when the universe spec gives no value.
 
-The readable list starts with `# Document types` and `In the <label> universe spec (<id> <version>).`, then gives each document type as `- <name> (<id>)` with indented `Also called` or `Its shape is set by an outside authority`, and `Helps you`.
+With several universe specs and no `--universe`, the JSON list has schema `knowledge-bus/kinds-set/1`: `universe_specs`, one `knowledge-bus/kinds/1` object per universe spec, and `from_parent`, the ids listed in `workspace.yaml` (`[]` without the file). The folder's own universe specs come first, sorted by id, then the listed universe specs in `from_parent` order.
+
+The readable list starts with `# Document types`, `In the <label> universe spec (<id> <version>).`, `Covers: <covers>` and `For: <for>`, then gives each document type as `- <name> (<id>)` with indented `Also called` or `Its shape is set by an outside authority`, `Helps you`, `Who uses it` and `When it is used`. The list leaves out the line for a null `covers`, `for`, `actor` or `timing`.
+
+With several universe specs, the readable list starts with `# Document types`, then gives each universe spec as `## <label> universe spec (<id> <version>)` followed by its `Covers` and `For` lines and its document types. A heading for a universe spec listed in `workspace.yaml` ends with `, from the parent folder`. For a universe spec without document types, the group holds the line `No document types.` Example: [a nested folder's list](../checker/tests/cards/kinds-set-from-parent/kinds.md).
 
 ## Left Off the Card
 
@@ -123,6 +128,8 @@ Expected cards are in `checker/tests/cards/`. Tests compare the output of `kbp -
 | `product-development` | `universes/product-development/` | Every document type |
 | `card-fixture` | `checker/tests/card-fixture/` | Guidance conditioned on a factor, gates, sections kept in another document with and without a document type that keeps the section, a frame with no question, values with no question, a document type with no guidance |
 | `minimal` | `protocol/conformance/pass/minimal.kbp.yaml` | No guidance file, enablement as one string, an empty no-document condition |
+| `kinds-set` | `evals/fixtures/village-hall/` and `protocol/conformance/pass/factors-only.kbp.yaml` | `--kinds` with several universe specs, one of them without document types |
+| `kinds-set-from-parent` | `checker/tests/workspace/upkeep/` and `protocol/conformance/pass/factors-only.kbp.yaml` | `--kinds` in a nested folder with two universe specs of the parent folder under `from_parent` |
 
 After a change to the card or to one of these universe specs, rewrite the expected cards and review the diff:
 

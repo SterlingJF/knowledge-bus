@@ -17,11 +17,18 @@ Without targets, use the nearest ancestor's .knowledge-bus/ directory.
 Explicit targets take precedence. The implementation checkout retains its bundled
 universes/ default when no .knowledge-bus/ directory exists. Protocol discovery is independent
 of the working directory; installed packages carry their own protocol.
+
+A folder's .knowledge-bus/workspace.yaml can name universe specs of the parent
+folder under `from_parent`. Commands that read a whole .knowledge-bus/ add the
+named universe specs beside the folder's own universe specs. For an explicit
+workspace.yaml target, check and `--mint` apply the rules for a folder target;
+the other commands skip the file.
 """
 
 import json
 import os
 import sys
+from dataclasses import replace
 from importlib.metadata import version
 from pathlib import Path
 
@@ -67,13 +74,16 @@ def default_protocol():
 
 def expand(paths):
     """Expand explicit targets without absorbing nested folders with their own .knowledge-bus/."""
+    from . import workspace
+
     out = []
     for raw in paths:
         path = Path(raw).resolve()
         if not path.exists():
             raise ValueError(f"target does not exist: {path}")
         if path.is_file():
-            out.append(str(path))
+            if not workspace.is_target(path):
+                out.append(str(path))
             continue
         knowledge_bus_dir = (
             path if path.name == KNOWLEDGE_BUS_DIR else path / KNOWLEDGE_BUS_DIR
@@ -102,10 +112,31 @@ def expand(paths):
 
 
 def resolve(args, *, documents_required=True):
-    """Return the protocol, selected documents, and an actionable discovery error."""
+    """Return the protocol, selected documents, and an actionable discovery error.
+
+    The documents include the parent folder's files listed in each workspace.yaml.
+    """
+    protocol, documents, error, workspaces = _resolve(
+        args, documents_required=documents_required
+    )
+    refusal = next(
+        (str(found) for _, found in workspaces if isinstance(found, Exception)), None
+    )
+    return protocol, documents, error or refusal
+
+
+def _resolve(args, *, documents_required=True):
+    """As resolve, plus (scope, workspace.Named or the refusal) per workspace.yaml read."""
+    from . import workspace
+
     args = list(args)
     protocol = None
-    if args and args[0].endswith((".yaml", ".yml")) and os.path.isfile(args[0]):
+    if (
+        args
+        and args[0].endswith((".yaml", ".yml"))
+        and os.path.isfile(args[0])
+        and not workspace.is_target(args[0])
+    ):
         with open(args[0], encoding="utf-8") as stream:
             head = yaml.safe_load(stream) or {}
         if isinstance(head, dict) and "protocol" in head:
@@ -113,9 +144,14 @@ def resolve(args, *, documents_required=True):
 
     protocol = protocol or default_protocol()
     if protocol is None:
-        return None, [], "no bundled protocol found; pass the protocol file explicitly"
+        return (
+            None,
+            [],
+            "no bundled protocol found; pass the protocol file explicitly",
+            [],
+        )
     if not documents_required:
-        return protocol, [], None
+        return protocol, [], None, []
 
     if not args:
         knowledge_bus_dir = find_knowledge_bus_dir()
@@ -136,12 +172,49 @@ def resolve(args, *, documents_required=True):
                     "choose a folder with Knowledge Bus definitions or pass explicit files. "
                     "Checking does not initialize a folder."
                 ),
+                [],
             )
     try:
         documents = expand(args)
     except ValueError as error:
-        return protocol, [], str(error)
-    return protocol, documents, None
+        return protocol, [], str(error), []
+    workspaces = _workspaces(args)
+    for _, found in workspaces:
+        if not isinstance(found, Exception):
+            documents += [
+                str(path) for path in found.files if str(path) not in documents
+            ]
+    return protocol, documents, None, workspaces
+
+
+def _workspaces(args):
+    """Read workspace.yaml for each folder target and each .knowledge-bus/ target.
+
+    Read each explicit workspace.yaml target after the folder targets, and add no
+    files from the parent folder for that target.
+    """
+    from . import explorer, workspace
+
+    found = []
+    for raw in sorted(args, key=workspace.is_target):
+        path = Path(raw).resolve()
+        explicit = workspace.is_target(path)
+        if explicit:
+            scope = path.parent
+        elif path.is_dir():
+            scope = path if path.name == KNOWLEDGE_BUS_DIR else path / KNOWLEDGE_BUS_DIR
+        else:
+            continue
+        if not scope.is_dir() or scope in (seen for seen, _ in found):
+            continue
+        try:
+            named = workspace.read(scope)
+        except explorer.InspectionError as error:
+            found.append((scope, error))
+            continue
+        if named is not None:
+            found.append((scope, replace(named, files=()) if explicit else named))
+    return found
 
 
 MODES = (
@@ -185,7 +258,7 @@ def _explorer_mode(mode, argv):
         unknown = next((value for value in argv if value.startswith("--")), None)
         if unknown:
             raise ValueError(f"unknown option {unknown}")
-        paths, file_selection = explorer.resolve_inspection_targets(argv)
+        paths, file_selection, named = explorer.resolve_selection(argv)
         if not paths:
             raise explorer.InspectionError(
                 "selection", "No Knowledge Bus definitions in the selected scope"
@@ -202,6 +275,7 @@ def _explorer_mode(mode, argv):
             paths,
             universe_id=universe_id or file_selection,
             release_version=version("knowledge-bus"),
+            named=named,
         )
         if mode == "--inspect":
             print(json.dumps(model, ensure_ascii=False, sort_keys=True))
@@ -254,7 +328,7 @@ def _card_mode(mode, argv):
                     "selection", "--card requires a document type id"
                 )
             kind = argv.pop(0)
-        paths, file_selection = explorer.resolve_inspection_targets(argv)
+        paths, file_selection, named = explorer.resolve_selection(argv, marks=False)
         if not paths:
             raise explorer.InspectionError(
                 "selection", "No Knowledge Bus definitions in the selected scope"
@@ -267,22 +341,38 @@ def _card_mode(mode, argv):
         protocol = default_protocol()
         if protocol is None:
             raise explorer.InspectionError("protocol", "No bundled protocol found")
-        _, universe, guidance, _ = explorer.load_selection(
-            protocol, paths, universe_id=universe_id or file_selection, marks=False
-        )
-        if mode == "--kinds":
-            result = card.build_kinds(universe)
-            render = card.render_kinds
+        chosen = universe_id or file_selection
+        listed = _universe_ids(paths, named) if mode == "--kinds" and not chosen else []
+        if len(listed) > 1:
+            result = card.build_kinds_set(
+                [
+                    card.build_kinds(
+                        explorer.load_selection(
+                            protocol, paths, universe_id=each, marks=False, named=named
+                        )[1]
+                    )
+                    for each in listed
+                ],
+                named.ids if named else (),
+            )
+            render = card.render_kinds_set
         else:
-            kinds = card.kind_ids(universe)
-            if kind not in kinds:
-                raise explorer.InspectionError(
-                    "selection",
-                    f"No document type {kind!r} in universe spec {universe['universe']['id']!r}",
-                    candidates=kinds,
-                )
-            result = card.build_card(universe, guidance, kind)
-            render = card.render_card
+            _, universe, guidance, _ = explorer.load_selection(
+                protocol, paths, universe_id=chosen, marks=False, named=named
+            )
+            if mode == "--kinds":
+                result = card.build_kinds(universe)
+                render = card.render_kinds
+            else:
+                kinds = card.kind_ids(universe)
+                if kind not in kinds:
+                    raise explorer.InspectionError(
+                        "selection",
+                        f"No document type {kind!r} in universe spec {universe['universe']['id']!r}",
+                        candidates=kinds,
+                    )
+                result = card.build_card(universe, guidance, kind)
+                render = card.render_card
         if output_format == "markdown":
             sys.stdout.write(render(result))
         else:
@@ -297,6 +387,26 @@ def _card_mode(mode, argv):
         file=sys.stderr,
     )
     return 1
+
+
+def _universe_ids(paths, named):
+    """Universe spec ids in the selection: the folder's own ids, sorted, then the ids from `from_parent`."""
+    from . import explorer, workspace
+
+    parent_files = set(named.files) if named else set()
+    files = [
+        path
+        for path in paths
+        if not str(path).endswith(".explorer.yaml") and not workspace.is_target(path)
+    ]
+    own = []
+    for path, (_, kind, document) in zip(files, explorer._loaded_documents(files)):
+        header = document[kind]
+        if kind == "universe" and Path(path) not in parent_files:
+            own.append(header.get("id") if isinstance(header, dict) else None)
+    if not all(isinstance(identity, str) for identity in own):
+        return []
+    return [*sorted(own), *(named.ids if named else ())]
 
 
 def main(argv=()):
@@ -344,7 +454,9 @@ def main(argv=()):
 
     self_only = mode == "--self-check"
 
-    protocol_path, doc_paths, err = resolve(argv, documents_required=not self_only)
+    protocol_path, doc_paths, err, workspaces = _resolve(
+        argv, documents_required=not self_only
+    )
     if err:
         print(err)
         return 1
@@ -368,11 +480,28 @@ def main(argv=()):
     refusal = f"does not match '{expected}'" + (
         f" or an accepted earlier version {accepted[1:]}" if accepted[1:] else ""
     )
+    from . import workspace
+
     types = protocol["declarations"]["document_types"]["kinds"]
-    if not doc_paths:
+    refused = any(isinstance(found, Exception) for _, found in workspaces)
+    if not doc_paths and not refused and not any(map(workspace.is_target, argv)):
         print("no documents to check")
         return 1
 
+    ok = True
+    for _, found in workspaces:
+        ok = _check_workspace(found) and ok
+    named_by_scope = {
+        scope: found.ids
+        for scope, found in workspaces
+        if not isinstance(found, Exception)
+    }
+    from_parent = {
+        str(path)
+        for _, found in workspaces
+        if not isinstance(found, Exception)
+        for path in found.files
+    }
     docs = []
     for path in doc_paths:
         with open(path, encoding="utf-8") as stream:
@@ -382,16 +511,20 @@ def main(argv=()):
             if isinstance(doc, dict)
             else None
         )
-        docs.append((os.path.basename(path), header, doc))
+        docs.append((path, os.path.basename(path), header, doc))
 
-    ok, universes, universe_names = True, {}, {}
-    for name, header, doc in docs:
+    def heading(path, name, declared):
+        against = declared if declared in accepted else expected
+        if path in from_parent:
+            return f"=== {name} from the parent folder, against {against} ==="
+        return f"=== {name} against {against} ==="
+
+    universes, universe_names = {}, {}
+    for path, name, header, doc in docs:
         if header != "universe":
             continue
         declared = doc["universe"].get("conforms_to", "")
-        print(
-            f"=== {name} against {declared if declared in accepted else expected} ==="
-        )
+        print(heading(path, name, declared))
         if declared not in accepted:
             print(f"  FAIL  conforms_to '{declared}' {refusal}\n")
             ok = False
@@ -409,13 +542,11 @@ def main(argv=()):
         ok = check(protocol, doc, name) and ok
         print()
 
-    for name, header, doc in docs:
+    for path, name, header, doc in docs:
         if header == "universe":
             continue
         declared = doc[header].get("conforms_to", "") if header else ""
-        print(
-            f"=== {name} against {declared if declared in accepted else expected} ==="
-        )
+        print(heading(path, name, declared))
         if header is None:
             print(
                 f"  FAIL  no top-level header key from {types}; document type unknown\n"
@@ -426,10 +557,37 @@ def main(argv=()):
             print(f"  FAIL  conforms_to '{declared}' {refusal}\n")
             ok = False
             continue
+        misplaced = (
+            None
+            if path in from_parent
+            else workspace.misplaced(
+                header, doc, named_by_scope.get(Path(path).parent, ())
+            )
+        )
+        if misplaced:
+            print(f"\n{name}: NON-CONFORMING\n  FAIL  {misplaced}\n")
+            ok = False
+            continue
         ok = check_guidance(protocol, doc, universes, name) and ok
         print()
 
     return 0 if ok else 1
+
+
+def _check_workspace(found):
+    """Print the check block for one workspace.yaml, in the same format as the block for a definition file."""
+    from . import workspace
+
+    print(f"=== {workspace.FILE} ===")
+    if isinstance(found, Exception):
+        print(f"\n{workspace.FILE}: NON-CONFORMING\n  FAIL  {found}\n")
+        return False
+    if found.ids:
+        print(f"  names {', '.join(found.ids)} from {found.where}")
+    else:
+        print("  names no universe spec from the parent folder")
+    print(f"\n{workspace.FILE}: CONFORMS\n")
+    return True
 
 
 def run():

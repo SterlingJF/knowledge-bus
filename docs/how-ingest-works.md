@@ -6,7 +6,7 @@ What `/kb-ingest` does with your folder, when it needs your input, and how to re
 
 Markdown and plain text work best. Other formats are listed and flagged so you know which material needs attention. Your folder can contain mixed dates, overlapping topics, and unfinished notes.
 
-Existing source files remain unchanged. Outputs go into `<folder>/.knowledge-bus/`. The skill excludes that directory from its inputs and skips and reports nested folders that contain their own `.knowledge-bus/`. Those folders are ingested separately only when explicitly targeted.
+Existing source files remain unchanged. Outputs go into `<folder>/.knowledge-bus/`. The skill excludes that directory from its inputs and skips and reports nested folders that contain their own `.knowledge-bus/`. Those folders are ingested separately only when explicitly targeted. When `<folder>/.knowledge-bus/workspace.yaml` lists universe specs of the parent folder under `from_parent`, the skill files answers for those universe specs in `<folder>/.knowledge-bus/`, and writes changes to those universe specs in the parent folder only after you confirm each change.
 
 ## The Eight Steps
 

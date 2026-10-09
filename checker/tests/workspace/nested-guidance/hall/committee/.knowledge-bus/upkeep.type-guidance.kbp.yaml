@@ -1,0 +1,15 @@
+guidance:
+  id: hall-upkeep-committee-guidance
+  label: Committee note on hall upkeep
+  version: 0.1
+  conforms_to: kbp/0.8
+  guides: hall-upkeep
+
+guidance_kinds:
+  - { id: heuristic, sourced: false }
+
+artifacts:
+  hirer-checklist:
+    - kind: heuristic
+      claim: Name the caretaker on the rota.
+      source: asserted
