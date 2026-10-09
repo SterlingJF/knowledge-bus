@@ -140,105 +140,6 @@ def resolve_inspection_targets(targets):
     return sorted(paths), selected
 
 
-COVERAGE_FILE = "coverage.yaml"
-
-
-def _definitions(scope):
-    """The universe specs and guidance directly inside one .knowledge-bus/, as (path, kind, document)."""
-    paths = [path for path in scope_documents(scope) if path.name.endswith(".kbp.yaml")]
-    return [
-        (path, kind, document)
-        for path, (_, kind, document) in zip(paths, _loaded_documents(paths))
-    ]
-
-
-def parent_scope(scope):
-    """The next .knowledge-bus/ above the folder holding `scope`, if any."""
-    above = scope.parent.parent
-    return None if above == scope.parent else _nearest_scope(above)
-
-
-def read_coverage(scope):
-    try:
-        return yaml.safe_load((scope / COVERAGE_FILE).read_text(encoding="utf-8"))
-    except (OSError, yaml.YAMLError) as error:
-        raise InspectionError(
-            "conformance", f"Cannot parse {COVERAGE_FILE}: {error}"
-        ) from error
-
-
-def _names(document, kind):
-    """The id a universe spec declares, or the universe spec a guidance file guides."""
-    header = document.get(kind)
-    key = {"universe": "id", "guidance": "guides"}.get(kind)
-    value = header.get(key) if key and isinstance(header, dict) else None
-    return value if isinstance(value, str) else None
-
-
-def named_from_parent(scope):
-    """Check `scope`'s coverage.yaml, if any, and return the parent files it names.
-
-    These are the parent's universe specs that `from_parent` lists, with their guidance.
-    """
-    from .cover import coverage_problem
-
-    scope = Path(scope)
-    if not (scope / COVERAGE_FILE).is_file():
-        return []
-    coverage = read_coverage(scope)
-    own = [
-        _names(document, kind)
-        for _, kind, document in _definitions(scope)
-        if kind == "universe"
-    ]
-    parent = parent_scope(scope)
-    wanted = coverage.get("from_parent") if isinstance(coverage, dict) else None
-    # The parent is read only when from_parent names universe specs.
-    reads_parent = parent is not None and isinstance(wanted, list) and bool(wanted)
-    parent_files = _definitions(parent) if reads_parent else []
-    parent_ids = (
-        [
-            _names(document, kind)
-            for _, kind, document in parent_files
-            if kind == "universe" and _names(document, kind)
-        ]
-        if parent
-        else None
-    )
-    problem = coverage_problem(coverage, own, parent_ids)
-    if problem:
-        raise InspectionError("conformance", problem[0], candidates=problem[1])
-    named = set(coverage.get("from_parent", []))
-    return [
-        path for path, kind, document in parent_files if _names(document, kind) in named
-    ]
-
-
-def resolve_card_targets(targets, preset=()):
-    """Resolve targets as for inspection, adding what coverage.yaml names.
-
-    With no target and no .knowledge-bus/ found, the preset files are the target.
-    """
-    targets = list(targets)
-    if not targets and _nearest_scope() is None:
-        return sorted(Path(path) for path in preset), None
-    paths, selected = resolve_inspection_targets(targets)
-    scope = None
-    if not targets:
-        scope = _nearest_scope()
-    elif len(targets) == 1:
-        target = Path(targets[0]).resolve()
-        if target.is_dir():
-            scope = (
-                target if target.name == ".knowledge-bus" else target / ".knowledge-bus"
-            )
-        elif selected is not None:
-            scope = target.parent
-    if scope is not None and scope.name == ".knowledge-bus" and scope.is_dir():
-        paths = sorted({*paths, *named_from_parent(scope)})
-    return paths, selected
-
-
 def display_label(item):
     return item.get("label") or item["id"].replace("-", " ").capitalize()
 
@@ -612,7 +513,7 @@ def _identity(role, document):
 
 
 def load_selection(protocol_path, paths, *, universe_id=None, marks=True):
-    """Load and check the chosen universe and its guidance, and marks if asked.
+    """Load and check the chosen universe spec and its guidance, and marks if asked.
 
     With marks=False, marks files are skipped entirely, so a broken one never
     blocks a caller that does not draw.

@@ -21,7 +21,6 @@ python3 /absolute/runtime/kbp.py --mint element 1 /absolute/target/.knowledge-bu
 python3 /absolute/runtime/kbp.py --inspect /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --card <kind> /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --kinds /absolute/target/.knowledge-bus/
-python3 /absolute/runtime/kbp.py --cover /absolute/target/notes/new.md
 python3 /absolute/runtime/kbp.py --explore --output /absolute/output /absolute/target/.knowledge-bus/
 ```
 
@@ -32,8 +31,6 @@ Supply an absolute universe file, knowledge-base folder, or its `.knowledge-bus/
 `--inspect` prints an Explorer model and writes nothing. When the scope contains several universes, select one with `--universe`. `--explore` requires an output directory and refuses existing output unless `--replace` is supplied. It builds an offline Explorer from the bundled viewer.
 
 `--card <kind>` prints the card for one document type as JSON: what it helps you do, who uses it and when, its sections, guidance on writing it, and when no document is needed. `--format markdown` prints the card as Markdown. `--kinds` lists every document type with its other names and purpose.
-
-`--cover <file>` says which universe specs cover a file. Run it before writing the file. Pass the answer's `knowledge_bus_dir`, joined to the file's folder, as the target of `--card` and `--kinds`.
 
 ## References
 

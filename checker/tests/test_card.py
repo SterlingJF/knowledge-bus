@@ -446,7 +446,7 @@ def test_a_broken_marks_file_never_blocks_a_card(capsys, tmp_path, marks):
 
 
 def test_explorer_drawing_problems_never_block_a_card(capsys, tmp_path):
-    """Relation wording matters to the explorer only."""
+    """Relation wording matters to the Explorer only."""
     scope = tmp_path / ".knowledge-bus"
     scope.mkdir()
     universe = yaml.safe_load((REFERENCE / "universe.kbp.yaml").read_text())
@@ -500,6 +500,29 @@ def test_card_finds_the_nearest_scope(capsys, tmp_path, monkeypatch):
     assert json.loads(out)["universe_spec"]["id"] == "one"
 
 
+def test_a_bare_check_with_no_knowledge_bus_dir_is_refused(
+    capsys, tmp_path, monkeypatch
+):
+    monkeypatch.chdir(tmp_path)
+    assert cli.main([]) == 1
+    assert "no .knowledge-bus/ found" in capsys.readouterr().out
+
+
+def test_card_and_kinds_with_no_knowledge_bus_dir_are_refused(
+    capsys, tmp_path, monkeypatch
+):
+    folders = [tmp_path, *tmp_path.parents]
+    assert not any((folder / ".knowledge-bus").exists() for folder in folders)
+    monkeypatch.chdir(tmp_path)
+    for args in (["--card", "visit-plan"], ["--kinds"]):
+        code, out, err = run(capsys, *args)
+        assert code == 1
+        assert out == ""
+        assert error_of(err)["message"] == (
+            "No Knowledge Bus definitions in the selected scope"
+        )
+
+
 def test_kinds_lists_name_other_names_and_purpose(capsys):
     listing = json.loads(kinds_output(capsys, SETS["product-development"], "json"))
     assert listing["schema"] == "knowledge-bus/kinds/1"
@@ -518,6 +541,10 @@ def test_kinds_lists_name_other_names_and_purpose(capsys):
 
 
 def test_card_code_takes_loaded_data_and_uses_the_standard_library_only(monkeypatch):
+    """card.py opens no file and imports only the standard library.
+
+    The card is built only from files cli.py read.
+    """
     from kbp_conform import card
 
     tree = ast.parse(CARD_SOURCE.read_text(encoding="utf-8"))

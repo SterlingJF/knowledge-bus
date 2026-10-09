@@ -180,8 +180,6 @@ uv run kbp --card <kind> path/to/.knowledge-bus/
 uv run kbp --kinds path/to/.knowledge-bus/
 ```
 
-Find which universe specs cover a file with `uv run kbp --cover path/to/file.md`.
-
 ## Quick Start
 
 ### Start With Expectations
@@ -371,6 +369,7 @@ See [Contributing](CONTRIBUTING.md) for development setup, source layout, and ch
 - [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
 - [Spec Anatomy](docs/spec-anatomy.md) — the structure of a definition file.
 - [Validation](docs/validation.md) — what the checker verifies and rejects.
+- [Document Type Card](docs/document-type-card.md) — printable artifact spec thats human-readable and agent-friendly.
 - [Evals](evals/README.md) — the rules and behaviours that define good definitions and agent work, and how they are graded.
 - [Evaluation Report](evals/report.md) — figures from recorded runs.
 - [Methodology](METHODOLOGY.md) — how evals are built, run, and reported.

@@ -9,8 +9,7 @@ directory. Declaring your own is the expected case, not the exception — `docs/
 procedure this project follows, and you are under no obligation to follow it.
 
 `product-development/` is the universe this project maintains and the one the checker is tested
-against. It carries its own version, independent of the protocol's. It is also the preset `kbp`
-uses for a folder with no `.knowledge-bus/`.
+against. It carries its own version, independent of the protocol's.
 
 A universe declares two documents: the universe itself, and the type guidance that says how to
 answer its elements well. Both are checked, guidance against the universe it names.

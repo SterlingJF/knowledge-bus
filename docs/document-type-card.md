@@ -1,6 +1,6 @@
 # Document Type Card
 
-A document type card describes one document type from one universe spec: what it helps you do, who uses it and when, its sections, the guidance on writing it, and when no document is needed. It uses nothing but the universe spec and its guidance file. It lists conditions. It does not check whether they hold.
+A document type card describes one document type from one universe spec: what it helps you do, who uses it and when, its sections, the guidance on writing it, and when no document is needed. The card uses only the universe spec and its guidance file. The card lists conditions and never checks whether a condition holds.
 
 ## Commands
 
@@ -11,10 +11,9 @@ kbp --kinds path/to/.knowledge-bus/
 ```
 
 - `--card <kind>` prints the card for the document type with that id, as JSON. `--format markdown` prints the readable card.
-- `--kinds` prints the id, name, other names and purpose of every document type. Use it to find the document type that fits a document, or to see that no document type fits.
-- Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used, or the preset when there is none.
+- `--kinds` prints the id, name, other names and purpose of every document type. Use it to see the document types a universe spec declares.
+- Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used.
 - When the scope holds several universe specs, choose one with `--universe <id>` or target its file.
-- `kbp --cover <file>` finds which universe spec to use for a file. See [Universe Spec Coverage](universe-spec-coverage.md).
 
 Both commands check the chosen universe spec and its guidance file. They skip marks files (`*.explorer.yaml`) and run no Explorer drawing checks, so a broken marks file never blocks a card. They write nothing.
 
@@ -109,19 +108,15 @@ The readable list starts with `# Document types` and `In the <label> universe sp
 ## Left Off the Card
 
 - The rest of the universe spec: overview, terms, statuses, relations and other document types.
-- Whether a condition holds, and which document type a file is.
+- Whether a condition holds.
 - Guidance sources, citations and links.
 - Codes on document types, sections, frames and factors.
 - How many answers a section takes, and whether its set of answers can ever be complete.
 - Guidance on factors.
-- Anything about a particular file, such as which sections are filled in or who the document is for.
 
-## Building the Card in Other Code
+## Expected Cards
 
-Agents can run `kbp --card` directly. Other code can build the card itself. That code is correct when, for every expected card in [`checker/tests/cards/`](../checker/tests/cards/), it produces:
-
-- JSON equal by value to `<kind>.json` and `kinds.json`;
-- a readable card byte for byte equal to `<kind>.md` and `kinds.md`.
+Expected cards are in `checker/tests/cards/`. Tests compare the output of `kbp --card` and `kbp --kinds` with the expected cards: JSON by value, Markdown byte for byte.
 
 | Folder | Universe spec | Covers |
 | --- | --- | --- |

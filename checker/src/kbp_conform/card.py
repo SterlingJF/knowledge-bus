@@ -300,7 +300,7 @@ def render_card(card):
 
 
 def render_kinds(listing):
-    """Every document type as a Markdown list, for telling whether any document type fits."""
+    """Every document type as a Markdown list."""
     spec = listing["universe_spec"]
     lines = [
         "# Document types",
