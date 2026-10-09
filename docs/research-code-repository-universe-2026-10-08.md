@@ -58,7 +58,7 @@ Rerun limits:
 - The star list holds 207 repositories, and this repository keeps only the 146 corpus repositories.
 - A one-off script outside this repository computed the stage 4 counts from the raw data folder: tag patterns, required issue-form fields, sign-off shares, documentation page names and commit subject classes per repository. The three scripts leave out the stage 4 counts.
 - Figures from the 2026-10-03 first pass are history: the earlier grades marked "was", the 117 elements, the drafted actions and the 2026-10-03 counts. The first-pass material stays outside the repository, so a fork can rerun only the stage 1 figures.
-- Raw data stays out of git, in `.evidence/2026-10-08/research/code-repository/` (git-ignored): about 26 MB of files copied from 146 projects under their own licences, literature copies and reading samples.
+- The maintainers keep the raw data, captured on 2026-10-08 and 2026-10-09, outside the repository: about 26 MB of files copied from 146 projects under their own licences, literature copies and reading samples.
 
 ## Method and Limits
 
@@ -1132,7 +1132,7 @@ Stage 6 adds recognition situations for the code-repository universe spec, grade
 
 ### Stage 6 Rules
 
-- A writer model restated one public file of a corpus repository in each situation, following the intake steps in [Evals](../evals/README.md#adding-situations-for-a-universe). The sources and their provenance stay in `.evidence/2026-10-09/situations/code-repository/`.
+- A writer model restated one public file of a corpus repository in each situation, following the intake steps in [Evals](../evals/README.md#adding-situations-for-a-universe). The maintainers keep the sources and their provenance, captured on 2026-10-09.
 - Claude models fill every model role except the decision model: the two judges, the light model and the writer of the sort passages. The decision model answers the decision tier and files sort passages and situations beside the Claude models. The maintainer skipped the OpenAI models for this run.
 - Dollar figures are API prices, without a Claude or ChatGPT subscription.
 - Stage 6 rewords each failing text and keeps its facts and its source. A guidance claim with two points becomes two entries with the same kind, source and condition.
@@ -1380,7 +1380,7 @@ The same pass reworded 52 situation texts in `cases.yaml`. A pronoun or number a
 - After U5 to U7, both judges find that `part-licences` and `bundled-licences` overlap. Both judges also find that `declined-ideas` overlaps `change-refusal`.
 - 27 sort members fail in both runs. The light model and the decision model misfile most of the passages, and the two judges file the design-proposal passages under none of the questions.
 - In run 2, the readers file sort passages written for the old wording of the 11 changed element questions, as the run notes say.
-- No OpenAI model has graded the universe spec or labelled the situations. The intake packets stay in the archive for a blind relabel by an OpenAI model.
+- No OpenAI model has graded the universe spec or labelled the situations. The maintainers keep the intake packets, written on 2026-10-09, for a blind relabel by an OpenAI model.
 
 ## Stage 7: Status and Links
 

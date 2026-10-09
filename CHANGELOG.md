@@ -6,7 +6,7 @@ Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conforman
 
 Bundled protocol: `kbp/0.9`.
 
-### Skills
+### Skill `kb-evolve`
 
 - Have `kb-evolve` show proposed changes as one table per universe spec, with current text, proposed text, evidence and reason, and take answers by row number.
 - Have `kb-evolve` show each change before and after once written, and record each run in `.knowledge-bus/evolve-log.md`.
@@ -37,6 +37,11 @@ Bundled protocol: `kbp/0.9`.
 - Add type guidance with sourced advice, placements, practices, disputes and distinctions for each document type.
 - Add recognition situations for the codebase-recordkeeping frame and factor values.
 - Bundle each universe spec in `universes/`, with its guidance, into `kb-ingest` and the agent packages; run the release and package checks on each universe spec.
+
+### Eval report
+
+- Name each run in `evals/runs.yaml` by its run id.
+- Add `just evals-report --run-folders <folder>`: summarises each listed run from the folder named for its run id at any depth under `<folder>`. Without the option, `just evals-report` builds from the committed summaries.
 
 ## 0.9.0
 

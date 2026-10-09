@@ -13,7 +13,7 @@ See [Methodology](../METHODOLOGY.md) for the method and its limits.
 | `skills.yaml`       | The skills slice: behaviours of an agent doing knowledge work with a person                                                     |
 | `fixtures/`         | Small folders, set in unrelated fields, that the skills scenarios run against                                                   |
 | `situations/`       | Real cases shared by every universe, and each universe's answers over them                                                      |
-| `runs.yaml`         | The run folders behind the report                                                                                               |
+| `runs.yaml`         | The runs behind the report, by run id                                                                                           |
 | `results/`          | One small summary per run, written by `tools/evals/report.py`                                                                   |
 | `report.md`         | The report built from the summaries; never edited by hand                                                                       |
 | `retired/`          | Per universe (`<universe-id>.yaml`), the frame fails maintainers retired                                                        |
@@ -158,6 +158,14 @@ case is undecided and goes to a person.
 uses the CLI of each model it names. Without either, that tier is skipped and the report says so.
 To grade in code only, run
 `just evals-grade universes/product-development/universe.kbp.yaml deterministic`.
+
+Without options, `just evals-report` reads only committed files: the runs listed in `runs.yaml`
+and their summaries in `results/`. To add a run, add its side and run id to `runs.yaml`, as the
+comment at the top of that file shows, and run `just evals-report --run-folders <folder>`, where
+`<folder>` is the run folder or a folder that holds the run folder at any depth. `report.py`
+summarises each listed run from the folder named for its run id; a listed run with no such folder
+keeps its committed summary. Rename a run folder written with `--out` to its run id, from the `Run`
+line of its `report.md`, before listing the run.
 
 ### Model selection
 
@@ -310,12 +318,13 @@ Steps 2 and 3 grade product-development by default; for another universe, add
 
 Bring back the run folders themselves, one per command (`calibration.json` or `verdicts.jsonl`,
 `run.json`, `report.md` and, for step 2, `probes.json`), and the models you chose. They hold no
-credentials. Copy them under `.evidence/<date>/evals/` in the consolidating checkout, add each to
-`evals/runs.yaml` with `side: openai` (and `universe: <id>` for a universe grade, if `run.json`
-does not name it), and run `just evals-report`. A run listed on the OpenAI side is refused if any
-judge, light, filer or agent model is not `codex:<model>`, and the reverse on the Anthropic side;
-Jev serves both. A step that was not run reads "not run" in the
-report. The report keeps one section per universe and never compares runs of different universes.
+credentials. In the consolidating checkout, add each run id to `evals/runs.yaml` with
+`side: openai` (and `universe: <id>` for a universe grade, if `run.json` does not name it), and
+run `just evals-report --run-folders <folder>` with a folder that holds the run folders. A run
+listed on the OpenAI side is refused if any judge, light, filer or agent model
+is not `codex:<model>`, and the reverse on the Anthropic side; Jev serves both. A step that was
+not run reads "not run" in the report. The report keeps one section per universe and never
+compares runs of different universes.
 
 ### In a desktop app, one session per model
 
@@ -349,7 +358,7 @@ Only the judges and the model filers come from the replies. The deterministic ti
 tier (Jev), Jev's filings and a universe's sort passages (`probes.json`) are the same on both
 sides, so they are reused from the Anthropic run, and each run's notes say so and how the packets
 were answered. A calibration written before `grade.py` kept each example's placements has no Jev
-filings to reuse: Jev then does not file in it, and its notes say so. Add the run folders to
+filings to reuse: Jev then does not file in it, and its notes say so. Add the run ids to
 `evals/runs.yaml` as above. Step 4, the scenarios, still needs the CLI.
 
 ## Runners

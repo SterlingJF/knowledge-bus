@@ -29,7 +29,7 @@ Run commands from the repository root.
 | `explorer/src/` or `explorer/styles/` | `just explorer-build`, `just skills-build`, then `just explorer-gallery` |
 | `explorer/styles/visual-tokens.json` | `just explorer-tokens` first, then the row above |
 | `evals/universe.yaml` | `just evals-write` |
-| `evals/runs.yaml` | `just evals-report` |
+| `evals/runs.yaml` | `just evals-report`; for an added run, `just evals-report --run-folders <folder>` |
 | The In Short section of `PHILOSOPHY.md` | `just docs-build` |
 
 Fixture command:

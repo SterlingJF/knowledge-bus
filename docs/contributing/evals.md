@@ -82,7 +82,7 @@ The report compares models from two providers: Anthropic and OpenAI. A new provi
 A `model:` pull request changes one model or provider and brings:
 
 - [ ] Calibration on `universe` and `skills` with the model, as in [Running on another vendor](../../evals/README.md#running-on-another-vendor).
-- [ ] Runs added to `evals/runs.yaml` with `side:` set to `anthropic` or `openai`. Report rebuilt with `just evals-report`.
+- [ ] Runs added to `evals/runs.yaml` by run id, with `side:` set to `anthropic` or `openai`. Report rebuilt with `just evals-report --run-folders <folder>`, where `<folder>` holds the run folders.
 - [ ] A config row instead of Source kind and People present: provider, model id, date, effort setting, tools, grading step.
 
 Its origin statement is "I ran the commands above myself."

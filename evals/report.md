@@ -815,8 +815,8 @@ uv run --locked python tools/evals/grade.py universe --universe <universe file> 
   --tiers recognise --rules values-recognised
 # 4. Agent scenarios
 just evals-play --runs 3
-# Summaries and this report
-just evals-report
+# Summaries and this report, from the folder that holds the run folders
+just evals-report --run-folders <folder>
 ```
 
-List each run folder in `evals/runs.yaml` before `just evals-report`. The runbook for the OpenAI side is in `evals/README.md`, under "Running on another vendor".
+List each run by its id in `evals/runs.yaml` before `just evals-report --run-folders <folder>`. The runbook for the OpenAI side is in `evals/README.md`, under "Running on another vendor".

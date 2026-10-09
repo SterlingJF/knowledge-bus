@@ -7,7 +7,7 @@ sampled files a reader confirmed, from a seeded sample drawn by
 `corpus_sample.py --sample precision`.
 
 Optional label files written by readers, read from `--labels` (default: the
-raw data folder). `fixtures/` holds the 2026-10-08 labels:
+raw data folder):
 
 - `of6_labels.tsv`: one repository kind per repository: D developer tool,
   library or framework; O operations software; E end-user application;
@@ -15,6 +15,9 @@ raw data folder). `fixtures/` holds the 2026-10-08 labels:
   script reads the `kind` field of the repository list.
 - `of2-security-channel.json`: a reporting-channel class per SECURITY file.
 - `of7-labels.json`: a sense label for each sampled context of the six studied words.
+
+`fixtures/` holds `of2-security-channel.json` and `of7-labels.json` for the
+2026-10-08 corpus.
 
 With `--repo-list FILE`, the script also writes the repository list table of
 the research document.
