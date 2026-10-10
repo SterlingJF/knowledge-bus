@@ -18,7 +18,7 @@ jobs:
           node-version: 24
       - uses: pnpm/action-setup@v6
       - run: pnpm install --frozen-lockfile --ignore-scripts
-      - uses: astral-sh/setup-uv@v10.1.0
+      - uses: astral-sh/setup-uv@v10.2.0
       - run: uv python install
       - run: uv sync --locked
       - uses: extractions/setup-just@v4
@@ -51,7 +51,7 @@ jobs:
       - uses: pnpm/action-setup@v6
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm exec playwright install --with-deps chromium
-      - uses: astral-sh/setup-uv@v10.1.0
+      - uses: astral-sh/setup-uv@v10.2.0
       - run: uv python install
       - run: uv sync --locked
       - run: pnpm run test:explorer:adapter
@@ -75,7 +75,7 @@ jobs:
       - uses: pnpm/action-setup@v6
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm exec playwright install --with-deps chromium
-      - uses: astral-sh/setup-uv@v10.1.0
+      - uses: astral-sh/setup-uv@v10.2.0
       - run: uv python install
       - run: uv sync --locked
       - run: pnpm run build:explorer
@@ -112,7 +112,7 @@ jobs:
         with:
           node-version: 24
       - uses: pnpm/action-setup@v6
-      - uses: astral-sh/setup-uv@v10.1.0
+      - uses: astral-sh/setup-uv@v10.2.0
       - run: uv python install
       - run: uv sync --locked
       - run: pnpm install --frozen-lockfile --ignore-scripts
