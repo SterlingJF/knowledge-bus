@@ -1,0 +1,39 @@
+# kbp/0.9: an ordering frame orders elements, so in a universe spec with no
+# element the ordering frame attaches to nothing.
+universe:
+  id: ordering-frame-without-elements
+  label: Ordering frame without elements
+  version: 0.1
+  conforms_to: kbp/0.9
+  ordering_frame: stage
+
+statuses: []
+
+frames:
+  - id: stage
+    code: fnp7n
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values:
+      - { id: only, question: "Where in the sequence does this sit?" }
+
+factors:
+  - id: team-shape
+    code: k4t33
+    question: "Who is doing the work?"
+    set_by: instance
+    values:
+      - { id: solo,  question: "Is one person accountable for all the work?" }
+      - { id: group, question: "Is accountability shared across people?" }
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []

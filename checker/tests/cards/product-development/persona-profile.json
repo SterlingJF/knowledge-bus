@@ -1,0 +1,198 @@
+{
+  "alias": {
+    "form": "persona profile",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "maturity",
+      "question": "How settled is the bet this work rests on?",
+      "values": []
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "decide which kind of person, in which circumstance, to design the solution for",
+    "actor": "whoever designs the solution or studies the people it is for",
+    "timing": "before designing the solution"
+  },
+  "guidance": [],
+  "kind": "persona-profile",
+  "name": "Persona profile",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "presentation": [],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "jobs-to-be-done",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from User / Job Stories: a job holds whatever solution is chosen; a story says what the solution lets a person do. A when / want / so-that line written before any solution exists states a job.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Jobs are circumstance-anchored and stable. Solutions churn; jobs do not.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "The when / want / so-that job-story form captures circumstance better than persona-attached stories.",
+          "kind": "convention",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Jobs to be done",
+      "question": "What is a person trying to achieve?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "pains-and-gains",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Osterwalder's value-proposition-canvas pairing — pains before, gains after.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Problem Statement: this records what each segment finds frustrating and hopes for, many entries drawn from evidence; Problem Statement names the one problem the work chooses to solve.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Jobs to Be Done: the job is the progress itself; pains are what gets in the way of making it today, and gains are what would make it better.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Source from evidence — interviews, support logs — not empathy-map guessing. Rank by severity times frequency or the list flattens.",
+          "kind": "pitfall",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Pains and gains",
+      "question": "What frustrations and hoped-for gains does each segment have?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "customer-segments",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Segment by shared job or behaviour, not demographics alone — demographic-only segments are the classic false-precision trap.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "In B2B the buyer, the user and the payer differ; healthtech's patient/provider/payer triangle makes single-segment framing misleading.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "One beachhead segment. A long segment list this early signals unvalidated focus.",
+          "kind": "pitfall",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        },
+        {
+          "claim": "Distinct from Canonical Model: a segment here is a group of people the offering is for; a category there is one the system uses to sort its own data, such as account types. Ask whether it is about whom we serve or how the system files things.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Customer segments",
+      "question": "Exactly which groups is the offering for?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "user-job-stories",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "A user story (as-a / I-want / so-that) presumes a persona; a job story (when / I-want / so-I-can) presumes a circumstance. Pick one per document; do not mix.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Acceptance criteria turn a story from a conversation-starter into testable scope.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Jobs to Be Done: ask whether the line names what the solution must let a person do. A story does, and acceptance criteria test it; the job behind it stays true whatever is built.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "User job stories",
+      "question": "What should the solution let a person do?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "channels",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Cover every stage at which the offering meets the segment: how they hear of it, weigh it up, buy it, receive it and get support afterwards.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Product-led versus sales-led growth is at bottom a channels choice. Regulated and enterprise markets often have imposed channels — brokers, distributors, procurement — that dominate the design.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "For physical goods, delivery and service channels drive cost structure. Link the two.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Channels",
+      "question": "How does the offering reach each segment?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

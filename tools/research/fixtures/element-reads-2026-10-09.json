@@ -1,0 +1,385 @@
+{
+ "rule": "Files read on 2026-10-08 and 2026-10-09 for the element counts, grouped by the reader: design proposals, decision records and architecture documents. Fetch with corpus_fetch.py --stage reads.",
+ "samples": {
+  "proposal": {
+   "rule": "design-proposal files read for elements",
+   "picks": [
+    {
+     "group": "proposal",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "proposals/2019-03-15-Alternative-Schema.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "proposals/2019-07-17-Webhooks.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "proposals/2019-10-31-Clarify-Nullable.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/design/bd-serve-v0.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/design/dolt-concurrency.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/design/external-capability-dependencies.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/agent-api-inventory.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/architecture.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/convoy/convoy-lifecycle.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "grafana/alloy",
+     "path": "docs/design/1161-standardize-stdlib.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "grafana/alloy",
+     "path": "docs/design/1443-dynamic-pipelines.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "grafana/alloy",
+     "path": "docs/design/4719-otel-engine-dependency-management.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "harbor-framework/harbor",
+     "path": "rfcs/0001-trajectory-format.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "harbor-framework/harbor",
+     "path": "rfcs/0002-simulated-users-patch.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "harbor-framework/harbor",
+     "path": "rfcs/0002-simulated-users.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kgateway-dev/kgateway",
+     "path": "design/10381-adopt-kubernetes-approach-for-changelog-management.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kgateway-dev/kgateway",
+     "path": "design/10411-gateway-api-inference-extension-support.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kgateway-dev/kgateway",
+     "path": "design/10494-add-support-for-ai-gateway-apis.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/001-leader-election.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/002-internal-ipv6-handling-rollback.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/003-dnsendpoint-graduation-to-beta.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/enhancements/20190724-only-dynamic-ssl.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/enhancements/20190815-zone-aware-routing.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/enhancements/20231001-split-containers.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "Documentation/proposals/accepted/202310-shard-autoscaling.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "Documentation/proposals/accepted/202405-agent-daemonset.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "Documentation/proposals/accepted/202405-scrapeconfig-graduation.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "trycua/cua",
+     "path": "rfcs/2447-cua-driver-native-core-and-mcp-adapter.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "trycua/cua",
+     "path": "rfcs/2512-cua-driver-environment-convergence.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "trycua/cua",
+     "path": "rfcs/2512-mcp-envelope-carrier.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "backstage/backstage",
+     "path": "beps/0004-scaffolder-task-idempotency/README.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "backstage/backstage",
+     "path": "beps/0011-event-auditor/README.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "backstage/backstage",
+     "path": "beps/0013-backstage-ai/README.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "geps/gep-851/index.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "geps/gep-1867/index.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "geps/gep-2645/index.md"
+    }
+   ]
+  },
+  "adr": {
+   "rule": "decision records read for elements",
+   "picks": [
+    {
+     "group": "adr",
+     "repo": "backstage/backstage",
+     "path": "docs/architecture-decisions/adr001-add-adr-log.md"
+    },
+    {
+     "group": "adr",
+     "repo": "backstage/backstage",
+     "path": "docs/architecture-decisions/adr002-default-catalog-file-format.md"
+    },
+    {
+     "group": "adr",
+     "repo": "backstage/backstage",
+     "path": "docs/architecture-decisions/adr003-avoid-default-exports.md"
+    },
+    {
+     "group": "adr",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0001-static-by-default-single-pinned-controller.md"
+    },
+    {
+     "group": "adr",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0002-semantic-patterns-do-not-expand-the-taxonomy.md"
+    },
+    {
+     "group": "adr",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0003-reveal-is-the-only-sanctioned-autoplay.md"
+    },
+    {
+     "group": "adr",
+     "repo": "coollabsio/coolify",
+     "path": "docs/v5/architecture/adr/0001-control-plane-flux-coold-split.md"
+    },
+    {
+     "group": "adr",
+     "repo": "coollabsio/coolify",
+     "path": "docs/v5/architecture/adr/0002-coold-host-agent-boundary.md"
+    },
+    {
+     "group": "adr",
+     "repo": "coollabsio/coolify",
+     "path": "docs/v5/architecture/adr/0003-flux-connection-broker-boundary.md"
+    },
+    {
+     "group": "adr",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/adr/0001-multi-remote-approach.md"
+    },
+    {
+     "group": "adr",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/adr/0002-init-safety-invariants.md"
+    },
+    {
+     "group": "adr",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/adr/0003-provenance-event-log.md"
+    },
+    {
+     "group": "adr",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": "contributing/Architecture Decisions/ADR-001 - Nomenclature for Reusable Instruction Blocks Feature.md"
+    },
+    {
+     "group": "adr",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": "contributing/Architecture Decisions/ADR-002 - Security Response to JavaScript Execution in Queries.md"
+    },
+    {
+     "group": "adr",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/engine/docs/adr/ADR-20260902-steps-declare-waits.md"
+    },
+    {
+     "group": "adr",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/engine/docs/adr/ADR-20260828-obtain-trigger-output-before-creating-the-execution.md"
+    },
+    {
+     "group": "adr",
+     "repo": "PostHog/posthog",
+     "path": "products/review_hog/adr/0001-resolution-is-a-separate-workflow.md"
+    },
+    {
+     "group": "adr",
+     "repo": "PostHog/posthog",
+     "path": "products/review_hog/adr/0002-adopt-existing-skills-by-copy.md"
+    },
+    {
+     "group": "adr",
+     "repo": "n8n-io/n8n",
+     "path": "packages/@n8n/engine/docs/adr/ADR-20260925-delete-binary-files-with-the-execution-that-wrote-them.md"
+    }
+   ]
+  },
+  "architecture": {
+   "rule": "architecture documents read for elements",
+   "picks": [
+    {
+     "group": "architecture",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "path": "docs/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "kyverno/kyverno",
+     "path": "ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "outline/outline",
+     "path": "docs/ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "oxc-project/oxc",
+     "path": "ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "swagger-api/swagger-editor",
+     "path": "docs/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "gastownhall/beads",
+     "path": "docs/architecture/index.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "strapi/strapi",
+     "path": "architecture/README.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": "contribute/technical-architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "prometheus/prometheus",
+     "path": "documentation/internal_architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "twpayne/chezmoi",
+     "path": "assets/chezmoi.io/docs/developer-guide/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "NousResearch/hermes-agent",
+     "path": "website/docs/developer-guide/architecture.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "cline/cline",
+     "path": "sdk/ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "backstage/backstage",
+     "path": "docs/overview/architecture-overview.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "TanStack/router",
+     "path": "packages/router-plugin/ARCHITECTURE-CODE-SPLITTING.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "unclecode/crawl4ai",
+     "path": "deploy/docker/ARCHITECTURE.md"
+    },
+    {
+     "group": "architecture",
+     "repo": "trycua/cua",
+     "path": "libs/cua-spacesd/docs/architecture.md"
+    }
+   ]
+  }
+ }
+}

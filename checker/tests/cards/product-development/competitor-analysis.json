@@ -1,0 +1,177 @@
+{
+  "alias": {
+    "form": "competitor analysis",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "uptake",
+      "question": "How do people come to take up the offering?",
+      "values": [
+        {
+          "question": "Does it arrive whether or not they'd choose it?",
+          "value": "given"
+        },
+        {
+          "question": "Do they take it up only by deciding to, with nothing to pay?",
+          "value": "chosen"
+        },
+        {
+          "question": "Is paying how they take it up?",
+          "value": "bought"
+        }
+      ]
+    },
+    {
+      "id": "maturity",
+      "question": "How settled is the bet this work rests on?",
+      "values": []
+    }
+  ],
+  "disabled_when": {
+    "uptake": [
+      "given"
+    ]
+  },
+  "enablement": {
+    "action": "find where the offering can differ from the other options people have, including doing nothing",
+    "actor": "whoever decides what to offer or how to present it",
+    "timing": "whenever another option appears or changes"
+  },
+  "guidance": [
+    {
+      "claim": "Distinct from a sales battlecard, which is written from this analysis to win deals. Ask whether an entry reports how well an alternative serves people or argues for the offering; arguments belong on the battlecard.",
+      "kind": "boundary",
+      "when": null
+    }
+  ],
+  "kind": "competitor-analysis",
+  "name": "Competitor analysis",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "presentation": [],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "competitor-profile",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Per alternative: what it offers, segment overlap, how well it serves those people, pricing where knowable.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Include indirect alternatives and doing nothing. The spreadsheet-and-email incumbent beats most challengers.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Sales battlecards are the externalised descendant. Keep evidence separate from spin.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Competitor profile",
+      "question": "How well does each alternative serve the people the offering is for?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "positioning-statement",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "For [segment] who [need], X is a [category] that [benefit], unlike [alternative].",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Brand-led organisations treat this as marketing's asset and product-led ones as product's. Settle ownership before it gets written twice.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Pre-competition work often cannot fill the 'unlike' clause honestly. Leave it empty rather than fake it.",
+          "kind": "empty",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Positioning statement",
+      "question": "Which kind of offering should each segment see ours as?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "external-opportunities-threats",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from Macro-Environment Factors, which lists outside conditions lens by lens; this judges which of them, and which competitor moves, help or threaten the work. The same law may appear in both: once as a fact, once as a threat with an owner.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Draw each opportunity and threat from the PESTLE scan or the competitor profiles, and say which one it came from.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "A threat with no owner and no trigger gets noticed only once it lands. Carry each threat that needs a response into Risks & Assumptions, where it gets an owner.",
+          "kind": "pitfall",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "swot-analysis",
+          "name": "Swot analysis"
+        }
+      ],
+      "mode": "links",
+      "name": "External opportunities threats",
+      "question": "Which outside opportunities and threats matter to the work?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

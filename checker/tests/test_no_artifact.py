@@ -121,8 +121,8 @@ def test_the_rename_keeps_the_protocol_sound(protocol):
             "renamed.no_artifact.was: 'frames' is still a document key",
         ),
         (
-            lambda r: r["no_artifact"].update({"since": 0.9}),
-            "renamed.no_artifact.since: 0.9 is later than protocol.version",
+            lambda r: r["no_artifact"].update({"since": 9.9}),
+            "renamed.no_artifact.since: 9.9 is later than protocol.version",
         ),
         (
             lambda r: r["no_artifact"].pop("was"),

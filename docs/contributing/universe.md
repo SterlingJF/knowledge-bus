@@ -22,7 +22,7 @@ Fix a typo or broken link in a pull request.
 
 ## What You Can Change
 
-You can change the definitions, guidance and explorer map icons in `universes/product-development/`.
+You can change the definitions and guidance in `universes/codebase-recordkeeping/` and `universes/product-development/`, and the explorer map icons in `universes/product-development/`.
 
 Never reuse a definition's code, and never give a code to a different definition.
 
@@ -35,7 +35,8 @@ One change in meaning per pull request.
 - [ ] New definitions: codes from `just mint <kind> <count>`.
 - [ ] Advice from a published standard: add the standard under `sources:` at the top of the guidance file, and cite it in the advice.
 - [ ] `uv run kbp` passes.
-- [ ] Rebuilt and included: `just skills-build`, `just explorer-gallery`, the explorer data command below.
+- [ ] Rebuilt and included: `just skills-build`.
+- [ ] For `universes/product-development/`, also rebuilt and included: `just explorer-gallery` and the explorer data command below.
 - [ ] [Checks every pull request needs](../../CONTRIBUTING.md#every-pull-request).
 
 ```sh
@@ -52,4 +53,5 @@ Under "Who builds the change" in the issue, say whether you will build the chang
 
 - [Adapting the Example](../adapting-the-example.md) — minting codes and citing sources.
 - [Product Development Universe Evolution](../research-product-development-universe-evolution-2026-09-15.md) — a past change in meaning.
+- [Code Repository Universe Research](../research-code-repository-universe-2026-10-08.md) — the corpus, counts and sources behind the codebase-recordkeeping definitions.
 - [Evals](../../evals/README.md) — how wording is graded.

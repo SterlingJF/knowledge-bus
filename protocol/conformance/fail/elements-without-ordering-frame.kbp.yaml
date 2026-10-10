@@ -1,0 +1,32 @@
+# kbp/0.9: a universe spec with an element declares an ordering frame.
+universe:
+  id: elements-without-ordering-frame
+  label: Elements without an ordering frame
+  version: 0.1
+  conforms_to: kbp/0.9
+
+statuses: [conjecture, measured]
+
+frames: []
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements:
+  - id: the-question
+    code: eeh1c
+    question: "What is being asked?"
+    cardinality: singleton
+
+artifacts:
+  - id: the-record
+    code: ap2qg
+    enablement: "Lets someone state a question and be held to it."
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core:
+        - the-question
+
+relations: []

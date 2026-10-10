@@ -1,0 +1,101 @@
+# Document types
+
+In the Product development universe spec (product-development 0.9).
+
+Covers: The reasoning around deliberate work — what makes it worth doing, what it should be, and whether it held up. The work may produce something made or put in place, a service rendered, or something learned; for a recipient — including your own later self — who simply receives it, free to take it or leave it, or paying for it.
+
+For: Whoever is accountable for that judgement or has to account for it later — one person on one machine, a group, or an organisation.
+
+- Product strategy canvas (product-strategy-canvas)
+  - Helps you: choose what an offering will aim for next and what it will refuse
+  - Who uses it: whoever leads the offering
+  - When it is used: before committing time and money to the next planning period
+- Business model canvas (business-model-canvas)
+  - Its shape is set by an outside authority: Business Model Canvas (Osterwalder)
+  - Helps you: check whether a business can deliver an offering its customers value and earn more than providing it costs
+  - Who uses it: whoever starts, runs or funds the business
+  - When it is used: before committing money or time to the business, and again whenever its customers, delivery or income change
+- Lean canvas (lean-canvas)
+  - Its shape is set by an outside authority: Lean Canvas (Maurya)
+  - Helps you: choose which assumption in a new venture's business model to test next
+  - Who uses it: whoever is starting the venture
+  - When it is used: before the venture has shown that customers will pay for it
+- Startup canvas (startup-canvas)
+  - Helps you: decide what a new venture will aim for and how it will make money
+  - Who uses it: whoever is founding the venture, with any backers
+  - When it is used: while forming the venture
+- Swot analysis (swot-analysis)
+  - Its shape is set by an outside authority: SWOT
+  - Helps you: compare our strengths and weaknesses with the opportunities and threats outside us
+  - Who uses it: whoever sets the plan
+  - When it is used: before setting the plan
+- Pestle analysis (pestle-analysis)
+  - Its shape is set by an outside authority: PESTLE
+  - Helps you: check which political, economic, social, technological, legal and environmental conditions affect the work
+  - Who uses it: whoever sets the plan
+  - When it is used: before setting the plan, and again when laws, markets or technology change
+- Competitor analysis (competitor-analysis)
+  - Also called: competitor analysis
+  - Helps you: find where the offering can differ from the other options people have, including doing nothing
+  - Who uses it: whoever decides what to offer or how to present it
+  - When it is used: whenever another option appears or changes
+- Persona profile (persona-profile)
+  - Also called: persona profile
+  - Helps you: decide which kind of person, in which circumstance, to design the solution for
+  - Who uses it: whoever designs the solution or studies the people it is for
+  - When it is used: before designing the solution
+- Opportunity assessment (opportunity-assessment)
+  - Also called: product brief / one-pager
+  - Helps you: decide whether to pursue a problem at all
+  - Who uses it: whoever would fund or approve the work
+  - When it is used: before committing people or money to the work
+- Risk assessment (risk-assessment)
+  - Also called: risk register
+  - Helps you: decide which risks to reduce, accept or watch, and who handles each
+  - Who uses it: the person accountable for the work
+  - When it is used: before the work starts, and while it runs
+- Design doc (design-doc)
+  - Also called: RFC / RFD
+  - Helps you: agree to or object to one proposed approach
+  - Who uses it: reviewer
+  - When it is used: before the work starts
+- Brand identity guide (brand-identity-guide)
+  - Also called: brand guidelines / style guide / DESIGN.md
+  - Helps you: apply the brand's look and wording correctly on your own
+  - Who uses it: anyone writing or designing for the brand
+  - When it is used: whenever making new material for the brand
+- Scenario walkthrough (scenario-walkthrough)
+  - Also called: key path scenario
+  - Helps you: check, step by step, that one person can reach one goal through the solution
+  - Who uses it: reviewer
+  - When it is used: before the work starts
+- Success metrics (success-metrics)
+  - Also called: North Star framework
+  - Helps you: decide which numbers to improve next and which to keep where they are
+  - Who uses it: whoever runs the offering day to day
+  - When it is used: at each regular review of the offering
+- Architecture overview (architecture-overview)
+  - Also called: C4 levels 1–2
+  - Helps you: find which parts of the system a change will affect
+  - Who uses it: whoever will change the system
+  - When it is used: before changing the system
+- System context diagram (system-context-diagram)
+  - Its shape is set by an outside authority: C4 level 1
+  - Helps you: find what the system is responsible for and which outside people and systems it works with
+  - Who uses it: anyone new to the system
+  - When it is used: when first working with the system
+- Decision brief (decision-brief)
+  - Also called: options paper / decision document (DACI, SPADE)
+  - Helps you: choose one of several options by a set date
+  - Who uses it: the person accountable for the choice
+  - When it is used: before anyone commits to an option
+- Decision record (decision-record)
+  - Also called: ADR (Nygard) / MADR / record of decision
+  - Helps you: check whether a past decision still applies, and record a replacement when it no longer does
+  - Who uses it: future reader
+  - When it is used: any time after the decision
+- Experiment plan (experiment-plan)
+  - Also called: experiment plan / pre-registration / study protocol
+  - Helps you: commit to a test's prediction and its measures in advance
+  - Who uses it: whoever runs the test
+  - When it is used: before collecting any data for the test

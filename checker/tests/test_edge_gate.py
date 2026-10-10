@@ -159,8 +159,8 @@ def test_the_edge_gate_reshape_keeps_the_protocol_sound(protocol):
             "reshaped names ['not-a-field'], which the shape does not declare",
         ),
         (
-            lambda r: r["gate"].update({"since": 0.9}),
-            "reshaped.gate.since: 0.9 is later than protocol.version",
+            lambda r: r["gate"].update({"since": 9.9}),
+            "reshaped.gate.since: 9.9 is later than protocol.version",
         ),
         (
             lambda r: r["gate"].pop("was"),

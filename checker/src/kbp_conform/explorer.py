@@ -36,11 +36,14 @@ A_MONOGRAM_FITS_THE_ICON_BOX = re.compile(r"[^\W_]{1,2}\Z", re.UNICODE)
 class InspectionError(ValueError):
     """A structured inspection refusal that never carries a partial model."""
 
-    def __init__(self, category, message, *, diagnostics=None, candidates=None):
+    def __init__(
+        self, category, message, *, diagnostics=None, candidates=None, from_parent=None
+    ):
         super().__init__(message)
         self.category = category
         self.diagnostics = list(diagnostics or [])
         self.candidates = sorted(candidates or [])
+        self.from_parent = list(from_parent or [])
 
     def as_dict(self):
         result = {
@@ -53,6 +56,8 @@ class InspectionError(ValueError):
             result["diagnostics"] = self.diagnostics
         if self.candidates:
             result["candidates"] = self.candidates
+        if self.from_parent:
+            result["from_parent"] = self.from_parent
         return result
 
 
@@ -104,18 +109,30 @@ def _nearest_scope(start=None):
     return None
 
 
-def resolve_inspection_targets(targets):
-    """Resolve an explicit scope or the nearest scope, with optional file selection."""
+def resolve_inspection_targets(targets, *, marks=True):
+    """Resolve an explicit scope or the nearest scope, with optional file selection.
+
+    For a whole .knowledge-bus/, the paths include the parent folder's files listed in
+    workspace.yaml.
+    """
+    paths, selected, _ = resolve_selection(targets, marks=marks)
+    return paths, selected
+
+
+def resolve_selection(targets, *, marks=True):
+    """As resolve_inspection_targets, plus the workspace.Named of the scope, or None."""
     targets = list(targets)
     if not targets:
         scope = _nearest_scope()
-        return (scope_documents(scope), None) if scope else ([], None)
+        return _with_workspace(scope, None, marks) if scope else ([], None, None)
     paths = [Path(value).resolve() for value in targets]
     missing = next((path for path in paths if not path.exists()), None)
     if missing:
         raise InspectionError("selection", f"Target does not exist: {missing.name}")
+    from . import workspace
+
     selected = None
-    if len(paths) == 1 and paths[0].is_file():
+    if len(paths) == 1 and paths[0].is_file() and not workspace.is_target(paths[0]):
         try:
             document = yaml.safe_load(paths[0].read_text(encoding="utf-8")) or {}
         except (OSError, yaml.YAMLError) as error:
@@ -124,7 +141,7 @@ def resolve_inspection_targets(targets):
             ) from error
         if isinstance(document, dict) and isinstance(document.get("universe"), dict):
             selected = document["universe"].get("id")
-            return scope_documents(paths[0].parent), selected
+            return _with_workspace(paths[0].parent, selected, marks)
     if len(paths) == 1 and paths[0].is_dir():
         scope = (
             paths[0]
@@ -132,12 +149,25 @@ def resolve_inspection_targets(targets):
             else paths[0] / ".knowledge-bus"
         )
         if scope.is_dir():
-            return scope_documents(scope), None
+            return _with_workspace(scope, None, marks)
     if any(path.is_dir() for path in paths):
         raise InspectionError(
             "selection", "Pass one scoped directory or explicit definition files"
         )
-    return sorted(paths), selected
+    return sorted(paths), selected, None
+
+
+def _with_workspace(scope, selected, marks):
+    """The scope's documents, then the parent folder's files listed in workspace.yaml."""
+    from . import workspace
+
+    paths = scope_documents(scope)
+    named = (
+        workspace.read(scope, marks=marks) if scope.name == ".knowledge-bus" else None
+    )
+    if named is None:
+        return paths, selected, None
+    return [*paths, *named.files], selected, named
 
 
 def display_label(item):
@@ -329,6 +359,11 @@ def prepare_model(source, protocol, guidance=None, marks=None):
         valid = check(protocol, source, "explorer input")
     if not valid:
         raise ValueError("Universe conformance failed:\n" + diagnostics.getvalue())
+    if source["universe"].get("ordering_frame") is None:
+        raise ValueError(
+            "The universe spec declares no ordering frame; "
+            "the Explorer map groups elements by the ordering frame"
+        )
     # kbp/0.8 writes `no_artifact`; kbp/0.7 wrote `empty_composition`. The model
     # has one shape either way, and sourcePath names the key the file uses.
     no_artifact_key = document_key(
@@ -512,8 +547,18 @@ def _identity(role, document):
     return result
 
 
-def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=None):
-    """Validate and project one universe without writing source or output files."""
+def load_selection(protocol_path, paths, *, universe_id=None, marks=True, named=None):
+    """Load and check the chosen universe spec and its guidance, and marks if asked.
+
+    With marks=False, marks files are skipped entirely, so a broken one never
+    blocks a caller that does not draw. An explicit workspace.yaml target is
+    skipped too. `named` is the workspace.Named of the scope, or None.
+    """
+    from . import workspace
+
+    paths = [path for path in paths if not workspace.is_target(path)]
+    if not marks:
+        paths = [path for path in paths if not str(path).endswith(".explorer.yaml")]
     try:
         protocol = yaml.safe_load(Path(protocol_path).read_text(encoding="utf-8"))
     except (OSError, yaml.YAMLError) as error:
@@ -531,6 +576,17 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
         )
 
     loaded = _loaded_documents(paths)
+    from_parent = list(named.ids) if named else []
+    if named:
+        parent_files = set(named.files)
+        for path, (name, kind, document) in zip(paths, loaded):
+            refusal = (
+                None
+                if Path(path) in parent_files
+                else workspace.misplaced(kind, document, named.ids)
+            )
+            if refusal:
+                raise InspectionError("conformance", f"{name}: {refusal}")
     universes = [(name, doc) for name, kind, doc in loaded if kind == "universe"]
     ids = [doc["universe"].get("id") for _, doc in universes]
     counts = collections.Counter(identity for identity in ids if identity)
@@ -550,6 +606,7 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
                 "selection",
                 "Multiple universes require an explicit universe id or file",
                 candidates=available,
+                from_parent=from_parent,
             )
         universe_id = available[0]
     if universe_id not in available:
@@ -557,12 +614,13 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
             "selection",
             f"Universe {universe_id!r} is not in the selected scope",
             candidates=available,
+            from_parent=from_parent,
         )
 
     guidance_by_universe = {}
     marks_by_universe = {}
     for name, kind, document in loaded:
-        if kind not in ("guidance", "marks"):
+        if kind not in ("guidance", "marks") or (kind == "marks" and not marks):
             continue
         header = document[kind]
         key = "guides" if kind == "guidance" else "marks_for"
@@ -593,7 +651,7 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
         if guidance_by_universe.get(universe_id)
         else None
     )
-    marks = (
+    chosen_marks = (
         marks_by_universe.get(universe_id, [(None, None)])[0][1]
         if marks_by_universe.get(universe_id)
         else None
@@ -623,6 +681,16 @@ def inspect_paths(protocol_path, paths, *, universe_id=None, release_version=Non
             "Selected definitions do not conform to the bundled protocol",
             diagnostics=findings,
         )
+    return protocol, source, guidance, chosen_marks
+
+
+def inspect_paths(
+    protocol_path, paths, *, universe_id=None, release_version=None, named=None
+):
+    """Validate and project one universe without writing source or output files."""
+    protocol, source, guidance, marks = load_selection(
+        protocol_path, paths, universe_id=universe_id, named=named
+    )
     try:
         model = prepare_model(source, protocol, guidance, marks)
     except (ValueError, TypeError, KeyError) as error:
@@ -690,7 +758,7 @@ def build_wiring(source, connections, endpoints, frame_ids, no_artifact_key):
                 }
             )
 
-    ordering = source["universe"]["ordering_frame"]
+    ordering = source["universe"].get("ordering_frame")
     for index, element in enumerate(source.get("elements") or []):
         reference(
             element.get("gate"),

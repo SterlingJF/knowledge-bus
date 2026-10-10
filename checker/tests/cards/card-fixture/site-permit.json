@@ -1,0 +1,136 @@
+{
+  "alias": {
+    "form": "County site access permit",
+    "kind": "normative"
+  },
+  "conditions": [
+    {
+      "id": "audience",
+      "question": null,
+      "values": []
+    },
+    {
+      "id": "risk",
+      "question": "How costly is a mistake on this visit?",
+      "values": [
+        {
+          "question": "Can a mistake be fixed the same day?",
+          "value": "low"
+        }
+      ]
+    }
+  ],
+  "disabled_when": {
+    "audience": [
+      "team"
+    ]
+  },
+  "enablement": {
+    "action": "enter the site with the owner's permission",
+    "actor": "whoever leads the visit",
+    "timing": "before the visit"
+  },
+  "guidance": [
+    {
+      "claim": "Use the county's form as issued.",
+      "kind": "convention",
+      "when": null
+    }
+  ],
+  "kind": "site-permit",
+  "name": "Site permit",
+  "no_artifact": {
+    "audience": [
+      "team"
+    ],
+    "risk": [
+      "low"
+    ]
+  },
+  "presentation": [
+    {
+      "conditions": [
+        {
+          "id": "familiarity",
+          "question": "How well does the reader know the site?",
+          "values": [
+            {
+              "question": "Is the reader visiting the site for the first time?",
+              "value": "new"
+            }
+          ]
+        }
+      ],
+      "factors": [
+        {
+          "factor": "familiarity",
+          "guidance": [
+            {
+              "claim": "Explain each local place name the first time it appears.",
+              "kind": "heuristic",
+              "when": {
+                "familiarity": [
+                  "new"
+                ]
+              }
+            }
+          ],
+          "name": "Familiarity",
+          "question": "How well does the reader know the site?",
+          "values": [
+            {
+              "question": "Is the reader visiting the site for the first time?",
+              "value": "new"
+            },
+            {
+              "question": "Has the reader visited the site before?",
+              "value": "regular"
+            }
+          ]
+        }
+      ],
+      "from_parent": false,
+      "universe_spec": {
+        "id": "card-fixture",
+        "label": "Card fixture",
+        "version": "0.1"
+      }
+    }
+  ],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "access-terms",
+      "gate": null,
+      "guidance": [],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Access terms",
+      "question": "On what terms may we enter the site?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "contacts",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Give a phone number that works on site.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Contacts",
+      "question": "Whom do we call on the day?",
+      "strength": "core",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "card-fixture",
+    "label": "Card fixture",
+    "version": "0.1"
+  }
+}

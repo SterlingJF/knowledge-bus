@@ -1325,3 +1325,1187 @@ cases:
     web, the warnings refreshed every quarter of an hour and readings taken about as often.
   field: product-development
   tags: {kind: finding, who: organisation}
+- id: s-f9d51fd
+  text: A shell user compares prompt themes and reads that one stays minimal and quick, shows the branch
+    and unsent commits, and turns its symbol red after a failed command. They are weighing if it is worth
+    a try.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-be9029e
+  text: A person who depends on a free scripting tool for automating desktop chores wants to send money
+    to its creator. They find two pages where the lead developer receives sponsorship and tips.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-8046e13
+  text: A curious person looks at an experimental trading program driven by artificial intelligence and
+    reads its warnings before trying the program. It exists only for learning, places no real trades and
+    offers no investment advice.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-ab83d06
+  text: A company plans to offer a storage service built on an open object store. It reads the store's
+    copyleft licence, written for networked server programs, to check if its intended use is allowed.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-92591cc
+  text: A platform team is considering a database operator for their clusters. They check its public plan
+    to see which major features the core contributors intend to tackle next and how those items get ranked.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-6d32a22
+  text: A company that relies on large language models weighs adopting an open evaluation framework. It
+    notes that it could create private checks from its own data, but using them costs money through a
+    paid key.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-078ddb4
+  text: A company that operates database servers is setting up a backup and recovery manager. It figures
+    out which of the four packages go on which machines and checks the operating system and module requirements
+    first.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-b2a4bcd
+  text: A person who uses a proxy that gets past a website protection service finds a security flaw. Seeing
+    that only the newest version is supported, they want to alert the developers privately through the
+    advisory button.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-3ae2a77
+  text: A household hosting its own control server for a private mesh network needs to know where the
+    server looks for its settings file. They also want to point it at another location and check the file
+    is valid.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-753f51e
+  text: A company tries a monitoring system for the first time. It downloads the latest version, unpacks
+    it and creates a basic settings file so the server collects metrics about its own health.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-805e5fb
+  text: A first-time contributor to a fast terminal emulator wants to suggest an improvement. They learn
+    they must first post a request, in their own words, asking to be vouched for before any pull request
+    is allowed.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-e8e2a8d
+  text: A team offering a text messaging interface drafts a proposal for an interface description standard.
+    They argue the standard should be able to describe incoming event notifications arranged outside the
+    interface, which the current version cannot describe.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-adff1f5
+  text: A team behind an agent evaluation framework drafts a design proposal in which a second agent plays
+    the user. The design would let agents be judged in back-and-forth conversations instead of with one
+    upfront instruction.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-d4006ac
+  text: A person whose push notifications fail on one service opens a bug report for a notification library.
+    They fill in what happened, how to reproduce it, their versions and system, and logs with secrets
+    removed.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-e35a301
+  text: An organisation whose staff join the channels of a cloud gateway for web services reads the foundation's
+    conduct rules. It wants to learn what behaviour is expected on the mailing lists, issue trackers and
+    chats.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-26b9f49
+  text: A company wants a new feature in an open observability tool for agents. It learns it should first
+    open an issue to discuss any significant idea, because proposals nobody talked over may be turned
+    down.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-edd8071
+  text: A developer clones a generator that makes client libraries from interface specs and compiles it
+    from source. They set up the needed language runtime and dependency manager, or do everything inside
+    a container instead.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-527bdec
+  text: A group of contributors to a set of fast compiler tools for web scripts studies the architecture
+    overview. They want to find the layer for their edits, such as the parser or the shared memory arena.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-826956a
+  text: The organisation behind a cluster policy engine prepares a guidance file for automated programming
+    agents. It describes the engine and shows which folders hold the controllers, the command-line tool
+    and the core logic.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-22e9abc
+  text: The company maintaining a messaging broker gives automated programming agents written instructions.
+    They explain how to compile the server and run its suites, use static analysis checks and find which
+    component directory holds each plugin.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-2d84d07
+  text: A developer on a containerised network tunnel client sets rules for an automated programming agent.
+    It must make small, targeted edits, ask before breaking anything users depend on, update checks when
+    behaviour shifts and use descriptive variable names.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-6c414af
+  text: A team adding a field to a cluster monitoring operator wants fast feedback. They learn which check
+    suites exist and extend a small isolated unit check instead of setting up a whole cluster.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-a2d8232
+  text: A product analytics company maintains an ownership file that maps each area of its repository
+    to the team that must approve edits. Every edit to the ownership rules therefore has an assigned reviewer.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-8889e29
+  text: The people who run a customisable shell prompt judge incoming pull requests with a template. It
+    asks which systems each submission was tried on, if artificial intelligence helped, and if the author
+    understands what they contributed.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-169e611
+  text: The team behind an evaluation and tracing platform for language model apps assesses pull requests
+    through a form. It asks for the kind of edit, a linked issue and proof that the author checked their
+    own submission first.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-9497bc1
+  text: The organisation behind a service mesh holds a list showing which expert group must sign off on
+    edits in each directory. From the list, contributors learn who must approve their networking or security
+    edits.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-da91d1e
+  text: A contributor to a command-line fuzzy finder opens a pull request and checks the ownership file.
+    They find that a single person is responsible for approving every file in the repository.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-73af717
+  text: The people who look after an authenticating reverse proxy judge pull requests before merging.
+    They check that each pull request adds a changelog entry, has signed-off commits, comes from a feature
+    branch and includes automated checks.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-fda43ad
+  text: A person who looks after a database migration tool ships a new version. They merge a version bump,
+    then create a tagged entry with notes on the hosting site so automation compiles the binaries and
+    pushes out the packages.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-dd5f57c
+  text: A company shipping its own version of a cloud gateway for web services must include the foundation's
+    notice. The notice gives the copyright line and says the product contains material developed by that
+    foundation.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-014e641
+  text: An operations team that monitors its clusters reads the history of updates before upgrading. They
+    see that a recent version raises dashboard memory limits and adds an optional metrics server and an
+    alternative dashboard tool.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-1e49e26
+  text: A household that uses a network ad blocker reads the notes for a new patch version before upgrading.
+    They learn it fixes a serious flaw that let a service account on the same machine gain full administrator
+    rights.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-ceaf874
+  text: The foundation behind a monitoring system posts a schedule of upcoming early preview versions,
+    which come out every six weeks. It also names the volunteer who will shepherd each version series.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-c2900a7
+  text: A writer who checks documentation with a prose linter reads what a new version brings before upgrading.
+    They find it adds a built-in runner for checking rules, so each style rule can carry its own sample
+    cases.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-15829c2
+  text: A writer using an offline grammar checker inside a note-taking app sees an error after a few clicks.
+    She lists the steps that trigger it and what she expected instead, and attaches screenshots.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-df33246
+  text: A man runs a self-hosted messaging server in a container behind a reverse proxy. The web interface
+    misbehaves on the newest version, so he writes down what he did, what he expected and what showed
+    up instead.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-c665339
+  text: An operations team finds their monitoring server and alert manager doing something other than
+    they expected. They write down steps to reproduce the problem, their version output, their settings
+    with secrets removed, and the relevant logs.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-35ea917
+  text: A developer notices that his customizable shell prompt behaves wrongly in his terminal. He writes
+    down how it acts now and how it should act, plus his shell and system versions and his prompt settings.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-ba78765
+  text: A small team hosts its own passkey sign-in service in containers and finds it acting wrongly.
+    They walk through the steps that trigger the problem and note the version, the database and the log
+    output.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-497a040
+  text: After checking the guides and existing tickets, a company using a policy-as-code tool asks the
+    project's developers to support a new capability. It describes its problem, the solution it wants
+    and the alternatives it considered.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-1925628
+  text: A home user who runs a virtual private network client in a small container asks its developers
+    to add a new capability. He describes what he wants and lists references and things he has already
+    tried.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-e37f84e
+  text: A writer checks her prose with a markup-aware linter. After searching the backlog for duplicates,
+    she asks the project's developers to improve an existing function and describes exactly what she wants
+    it to do.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-6c4e96c
+  text: A group of hobbyists runs its own control server for a private network. They propose a new capability,
+    explain their use case and what should change, and offer to write the design and help implement the
+    capability.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-140bfb7
+  text: A company monitors its cluster and cloud spending with a cost-monitoring tool. It suggests an
+    idea to the project's developers, explaining the frustration behind the idea, the solution it wants
+    and the alternatives it has weighed.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-9629516
+  text: A company relying on a cloud-native gateway notices that one page of the guides leaves out how
+    a certain programming interface behaves. The company describes the current text of the page and the
+    wording the page ought to have.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-042db2a
+  text: A team using a dev data platform proposes an update to the project's main readme. They explain
+    which part of the written guides is affected and what should change, adding screenshots to show the
+    problem.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-e423c93
+  text: A database team running a cluster operator for a popular database finds its manual frustrating.
+    They propose adding new sections and changing certain pages, and they link to the existing pages they
+    mean.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-0dae801
+  text: A developer finds a page on a testing framework's website confusing. She explains what she thought
+    it meant and how it turned out to mean something else, then suggests clearer wording for that page.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-ea3a468
+  text: An organisation using a set of routing and load-balancing interfaces suggests improving the project's
+    written guides. It explains what it would like added and why the change is needed.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-a0fb459
+  text: A note-taker uses a query tool for plain-text notes. She links to a section of the manual she
+    finds unclear, describes what confuses her, and proposes complete sentences of better wording.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-34b59e3
+  text: A hobbyist using a push notification library asks the project's developers for help setting it
+    up. He lists the library version, his operating system and how he installed the library.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-5af7e99
+  text: A team wants help setting up a ready-made monitoring bundle for their container cluster. The project
+    sends them to its discussion forum and chat channel to get support.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-efac654
+  text: A company checks the website's guides first, then asks for help configuring a monitoring operator
+    on its container cluster. It shares its operator version, its cluster type and how it installed the
+    operator.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-d262751
+  text: A person setting up a passkey sign-in provider asks how to do one particular thing with the provider.
+    He gives as much detail as he can after confirming nobody has asked the same thing before.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-47adc70
+  text: A person using a free accounting program creates a general help ticket asking how to use part
+    of the program. She keeps the ticket apart from bug tickets and ideas for new capabilities.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-1ad3db4
+  text: A team using a dev data platform asks the project's developers for help using one module. They
+    attach screenshots and extra context to explain what they are trying to do.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-9a4b0b3
+  text: A product analytics company keeps an internal template for each sprint, listing past incidents
+    and unscheduled follow-ups. Every team then fills in its support hero, its absent members, quarter
+    goal status, a retrospective, and high and low priority items.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-c9ac8e4
+  text: The core team of a developer portal framework records a maintenance chore that needs special care,
+    such as a tricky version update or migration. They describe what must be done and explain its priority
+    and impact.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-1743681
+  text: The core team of a telemetry collector distribution creates a ticket for its next version. It
+    records the version number, a target date for the candidate version, a date for the stable launch
+    and, optionally, a link to a related change.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-85e0434
+  text: The core team of a tool that configures outside name servers from cluster resources starts a checklist
+    for their next version. They will tag the version, promote the image, update manifests, then announce
+    the version in chat.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-8ca5957
+  text: Developers of a to-do management plugin for a notes app record an internal refactoring change.
+    They explain why the refactoring is needed, which files must change and how they intend to test the
+    refactoring.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-cfc8194
+  text: A company that backs up database servers reads which of four packages to put on its machines,
+    which package is mandatory, and what operating system and helper tools each backup server needs beforehand.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-28d98d3
+  text: A small team wants to run their own control server for a private network, so they download the
+    recommended package, add it with the system package tool, then edit the server's configuration file
+    and restart the server.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-1af4cb0
+  text: 'A design team wants a text-to-diagram tool on their computers and weighs the options: a script
+    that detects their system and can preview its steps, a package manager, a container, or building from
+    source.'
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-82fdb45
+  text: A company picks how to put a gateway for web interfaces on its servers, choosing between containers,
+    a cluster chart, system packages, or a source build, and locks down the admin ports in the example
+    setup before launching.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-112a1ff
+  text: A team wants a workspace manager for many coding agents on their machines. They check which tools
+    and versions are required, then pick between a package manager, a container, or building it from source.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-665e02b
+  text: 'A household with spare computers follows a beginner walkthrough for a self-hosted file storage
+    service: they download one program, write a simple initial configuration file, launch a single test
+    server, and begin interacting with the server.'
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-fbe7c25
+  text: Someone who has just opened a voice studio app follows numbered steps to make a new voice profile
+    from a short recording, then types a sentence and plays back the speech the app generates.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-5536313
+  text: 'A team wanting to try a database operator follows a practice walkthrough: they set up a small
+    cluster on a laptop, deploy the operator, and launch a test database, knowing it is not for production.'
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-37c9141
+  text: A small business new to a voice agent platform explains the booking assistant it wants, lets the
+    platform build an initial conversation flow, and talks to the assistant through the browser without
+    any phone line.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-3b4acc0
+  text: 'A company curious about a workflow engine follows a quick trial: with a test cluster ready, it
+    applies a minimal setup, submits a sample hello-world job, and watches it run to completion.'
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-dcf7373
+  text: 'An organisation new to a monitoring system follows a hello-world tutorial: it downloads the server,
+    writes a basic file telling the server to watch itself, runs the server, and tries some early queries
+    and graphs.'
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-02ccd2c
+  text: A company running containers on its laptops reviews which system privileges and hidden folders
+    containers get out of the box, and how to add or remove them when launching or creating a container.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-b184821
+  text: A developer using a memory tool for a coding assistant checks where its configuration files live,
+    which source wins when values conflict, and the effect and default of each option.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-9bf4575
+  text: A company self-hosting an agent monitoring service goes through every environment variable, noting
+    which are required, which have safe defaults, and that it must create its own unique secrets and pick
+    an email provider.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-8e36789
+  text: A team placing a login gateway in front of their web apps reads how its options can be given by
+    flags, environment variables or a file, the order in which those sources override each other, and
+    what each option means.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-5ba42ea
+  text: A programmer wants a script to watch a growing log file and react the moment a line contains a
+    failure, so they read how to stream a running program's output line by line or through a callback.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-29bebba
+  text: A web developer wants their app to answer a request right away and send a notification email afterwards,
+    so they read how to attach a background job that runs after the response is returned.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-261f1f2
+  text: An operations team wants their cluster monitoring to also watch two more of their app namespaces,
+    so they follow a guide to add those namespaces and define service monitors for those namespaces.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-5cdc5c7
+  text: 'A research company building benchmarks for computer-using agents reads how to write one challenge:
+    declaring its variants, preparing the sandbox, adding an optional solver, and a scoring step that
+    checks the outcome.'
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-58e0bb8
+  text: A company wants visitors to sign in through an outside identity provider before reaching a backend
+    app, so it follows a guide that registers a client, deploys a sample service, and applies a login
+    policy at the gateway.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-2b99b93
+  text: A team running databases on a container cluster reads how to take physical backups, choosing between
+    a plugin for cloud storage or volume snapshots, and learning about log archiving and base copies.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-06be0a7
+  text: A company's engineers check the reference entry for a container tool's run instruction, reading
+    each flag one by one, such as memory size, environment values, process identity and name servers.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-ecc1e3e
+  text: A team using an assistant agent from the terminal checks a reference of its shell instructions
+    and global flags, each with a short description, like resuming a session, picking a profile, or skipping
+    approval prompts.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-b3f3727
+  text: A web developer opens the reference entry for the router class of a web framework to check its
+    parameters, attributes and methods, such as those for each request type and for including other routers.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-d3eb939
+  text: A note-taker writing small scripts inside a notes app checks a reference explaining each available
+    method and what it takes and returns, such as fetching notes by tag or folder and drawing headers.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-fa0264a
+  text: A developer scans an index of every operation an issue-tracking terminal tool provides, each with
+    a one-line summary, to find the right one for assigning, labelling or closing an issue.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-bd33dd1
+  text: A company checks the reference entry for one operation of a policy tool, reading its usage line,
+    sample invocations, and every flag with its default, such as batch size and worker count.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-e2b49a9
+  text: A team whose database cluster is misbehaving reads what facts to gather about their setup, which
+    helper utilities to have ready, and initial steps for getting a status overview and report before
+    attempting repairs.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-d0fbf47
+  text: A person whose voice app claims to be damaged on launch, or whose background server won't run
+    because a port is taken, finds the fix for each issue and learns one warning is harmless.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-683eea5
+  text: A developer whose shell says the issue-tracking tool cannot be found, or reports an older version
+    than expected, follows fixes such as adjusting the search path and removing a stale copy.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-1f81106
+  text: A company whose backup checks return failures or warnings uses status and server overview tools
+    to dig into what is wrong with a database server's backup setup.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-60b8ab2
+  text: A group running a self-hosted storage cluster sees uploads of very large files stall and eat processor
+    time, and finds this recorded as a design limitation with a workaround of using bigger blocks.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-6cff364
+  text: A team's monitoring dashboard reports node agent targets failing as unauthorized, and they learn
+    which token authentication and authorization flags to switch on so the metrics can be collected.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-97edbb1
+  text: A group running a shared storage cluster learns to tell a minor version bump from a major one,
+    then updates nodes one at a time after a health check, or plans downtime for bigger jumps.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-1c8f509
+  text: A company moving its workflow engine to a later version reads per-version notes on altered behavior,
+    like failing containers no longer stopping their siblings and single sign-on accounts being logged
+    out once.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-5a2fa9e
+  text: A company moving its gateway for web interfaces from an older major line to the new one learns
+    that one family of container images is dropped, new deployment modes exist, and its main configuration
+    file must be updated.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-b8b394e
+  text: A developer moving a memory tool for their coding assistant to a later build syncs and backs up
+    data with the old copy beforehand, then puts the new one in place, refreshes hooks and runs data migrations.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-ef5245e
+  text: A team moving off an old version of a cluster monitoring bundle reads the breaking updates, such
+    as a removed global configuration object, renamed files, and labels that force deleting some resources
+    before reapplying.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-47a1784
+  text: A person running a managed cluster on a cloud host prepares to move from one major line to the
+    next, backing up state, reviewing renamed inputs, and checking the plan destroys nothing unexpectedly.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-2d39484
+  text: A developer getting ready to contribute to an open framework for building developer portals reads
+    the guide's section on the developer certificate of origin. She attaches a personal certification
+    to every saved revision, affirming she may legally offer the work.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-d2c46ee
+  text: An organisation maintaining an open gateway for cloud services and ai traffic runs a required
+    check. It fails any pull request where a recorded revision lacks a certificate-of-origin trailer,
+    and the organisation points people to the matching flag in their version control tool.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-d2d899f
+  text: A developer working on a linux distribution built for container clusters uses a flag to add a
+    developer certificate of origin statement to every saved revision. She then runs the conformance tests
+    that must pass before her contribution is accepted.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-bf5545f
+  text: A small team planning a fix for an open monitoring system claims the issue first and runs the
+    tests and linters. They attach a developer certificate of origin statement to each revision they push.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-4d70a85
+  text: An organisation running a workflow engine for container clusters uses a message hook that rejects
+    any recorded revision lacking a developer certificate of origin statement. It also enforces conventional
+    titles and requires tests.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-da31784
+  text: A pair of volunteers working on an authenticating reverse proxy go through the pull request checklist.
+    They tick boxes saying they updated the changelog, wrote tests, used a feature branch and certified
+    every revision under the developer certificate of origin.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-d10695f
+  text: A developer opens her first pull request to a real-time analytics database. A bot asks her to
+    review and accept the project's individual legal contract for outside code before her work can go
+    any further.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-b1d4b27
+  text: The organisation behind a deep learning library runs an automated check on each new pull request.
+    The check fails, with instructions, until the author has put their name to the organisation's legal
+    contract for outside code.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-b286b48
+  text: A team of developers offering a bug fix to a publishing and newsletter platform learns that contributing
+    means accepting a legal contract. The contract gives the platform's foundation broad, irrevocable
+    permission to use their work, and their employer must allow the bug fix.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-d79ec9e
+  text: A developer who wants to improve a markup-aware prose linter reads the contribution guide. She
+    finds a section on a legal contract covering contributions, which she must accept before her pull
+    request can be taken.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-030b3b4
+  text: A company whose staff want to offer code to an open messaging broker first makes sure it has put
+    its name to the project's legal contract for outside code. It then presents the idea to the core team
+    before forking.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-32aa5f6
+  text: A company building open observability tools for ai agents has a bot ask each newcomer to accept
+    its legal contract on their first pull request. The contract lets the company use their work, and
+    this one-time step must come before merging.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-e8b22cd
+  text: A developer offering a fix to a terminal tool that searches folders recursively finds only one
+    contribution rule, which is to follow its ai policy. The project accepts the fix with no certifying
+    statement or legal contract.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-59f2e9a
+  text: A group of volunteers wants to add a feature to a real-time message server. The guide asks them
+    to follow the code of conduct and discuss the idea first, and the project accepts the feature with
+    no certifying statement or legal contract.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-8763873
+  text: A team contributing to a framework for evaluating agents must show they understand their code
+    and write their own descriptions. The project accepts their revisions with no certifying statement
+    or legal contract.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-396a96a
+  text: A developer proposing a new feature to a self-hosted network control server must write a design
+    document, add tests and help maintain the feature. The project accepts the feature with no certifying
+    statement or legal contract.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-0df6afe
+  text: A developer improving a tool that scans web interfaces for performance problems runs the checks
+    and end-to-end tests, adds a changeset and opens a pull request. The project accepts the pull request
+    with no certifying statement or legal contract.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-289c56b
+  text: A company that maintains an open project management platform asks helpers for clear issue titles
+    and minimal reproductions. The company accepts revisions from helpers with no certifying statement
+    or legal contract.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-4de88f9
+  text: A company behind an editor add-on that offers a whole crew of artificial intelligence coding helpers
+    has locked its code store for good. No one can file problems or submit edits there, and no new versions
+    will come.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-183ae58
+  text: A software organisation declares the old desktop edition of its free bookkeeping program finished
+    and freezes its code store so nothing can be altered. It points users to a newer replacement and takes
+    no reports, edits or new versions there.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-9ce5635
+  text: A team that looked after a traffic-routing controller for container clusters has retired it and
+    locked the code store. Existing setups keep working, but no new versions, bug fixes or security patches
+    will ever come.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-a281e1a
+  text: A company has stopped looking after its freely licensed file storage server and frozen the code
+    store. It now points users to a free standalone edition or a paid one, and it takes nothing new and
+    ships no further versions.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-80433e5
+  text: A writer uses a command-line checker that turns her team's writing guidelines into automatic checks
+    on her drafts. She can file bug reports and propose fixes, and its owners keep shipping new versions.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-f7d9c2e
+  text: A household blocks ads for every device on its home network using a small computer it owns. They
+    keep installing the new versions the ad blocker's makers put out, and they can report problems or
+    offer fixes.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-f048f55
+  text: A person uses a terminal tool that runs several sessions in one screen and keeps them going in
+    the background. Its makers keep putting out new versions, and he can report problems or submit fixes.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-fbea791
+  text: A company runs a public platform for tracing and testing large language model apps. It welcomes
+    bug reports and feature ideas from users, and it keeps shipping new versions.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-b2d9ab4
+  text: A group runs its own control server for a private mesh network so it doesn't depend on a hosted
+    service. They pick each new tagged version as it comes out, and they can raise problems or offer fixes.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-3031673
+  text: A person uses a small, fast shell prompt that shows the state of her code branch. She can report
+    bugs and suggest improvements, and its makers keep putting out new versions.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-3602065
+  text: A team tracks the health of its servers with a free monitoring system that keeps time-based data.
+    The project takes their reports and proposed fixes, and new versions keep arriving.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-c2c25b7
+  text: An organisation offers a freely licensed whiteboard for shared, encrypted sketches that look hand-drawn.
+    It warmly invites outside contributions and keeps putting out new versions.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-89b46e9
+  text: An organisation offers a free tool that shows teams what their container clusters and cloud services
+    cost. It accepts bug reports and proposed fixes, and it keeps putting out new versions.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-cab1fcd
+  text: The developer behind a prose-checking linter composes the announcement for a new version in their
+    own words. They explain that faulty rules used to pass silently, describe how a new rule-testing command
+    fixes that, and include a sample rule.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-03c3116
+  text: The author of a minimal shell prompt composes each version's changelog personally. Every entry
+    is a short plain fix, such as for the prompt symbol, the terminal heading or the background fetch,
+    followed by a reference code.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-78aab09
+  text: A company making an operating system for container clusters composes its own announcement for
+    each new version. It welcomes readers, explains why read-only users lose access to a time-checking
+    feature, and lists updated component versions.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-12e4975
+  text: A developer who runs a large language model on laptops personally composes a short announcement
+    for a new version. It explains that compiling failed without an interface plugin, describes the fixes,
+    and names the toolchain versions they checked.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-ff99119
+  text: The company behind a queue server composes a maintenance update announcement itself. It urges
+    readers to study an earlier version's summary, warns that nodes won't start on older runtimes, and
+    explains each bug fix in full sentences.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-b51d39f
+  text: A team making a laptop cleaning app personally composes its changelog in two languages. Friendly
+    sentences describe six improvements, such as faster cleanup and a calmer terminal, and they thank
+    the people who reported issues.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-016cc89
+  text: A team behind a network ad blocker publishes a version summary that is automatically assembled
+    from merged pull request names. Each entry credits its author with a link, newcomers are listed after,
+    and nobody alters the summary.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-f35c942
+  text: A company with an open platform for tracing language model apps posts a version summary that is
+    just an automatically produced list of merged request names. Entries sit under a features heading
+    with authors credited, and nobody alters the list.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-df105a2
+  text: A developer looking after a small database migration utility publishes a new version. The announcement
+    is just the automatically compiled list of merged pull request headings, many of them dependency bumps
+    from a bot, and nobody rewrites or adds to the announcement.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-e8cb37b
+  text: The team behind a small real-time push server composes a brief update summary in its own words.
+    It mentions a stricter security check for creating users, a new settings page, a crash fix and updated
+    dependencies.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-9042d10
+  text: The developer behind a terminal-based data processor composes each version's changelog personally.
+    They describe every new operator and fix in plain words and thank the helper behind each item by name.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-78543d3
+  text: An organisation making free accounting software publishes a version whose summary comes straight
+    from merged request names. Automation lists each entry with its author and link and mentions a newcomer,
+    and nobody rewrites anything.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-079d3ac
+  text: A team making a publishing and newsletter platform posts a version summary that is automatically
+    assembled from its recorded code updates. Each entry has an emoji, a short label and the author's
+    name, and nobody revises the list.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-eeb06ed
+  text: The developer behind a notification library lets automation list the merged work for a small update.
+    Above that list, they add a personal paragraph explaining that serious problems after the big version
+    prompted this quick follow-up.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-a9ceb18
+  text: An organisation behind a cloud cost monitoring project publishes a version whose summary is only
+    an automatically produced list of merged request names and authors, plus a newcomer mention. The list
+    stays exactly as produced.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-b1e2d18
+  text: A team making software that turns code into knowledge graphs personally composes long highlight
+    sections. These describe a new design-file analysis mode and a renamed data folder, and sit above
+    an automatically produced list of merged work.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-51346f0
+  text: A company with software for running containers in lightweight virtual machines personally composes
+    a highlights section, using symbols to mark breaking updates. The automatically produced list of merged
+    requests goes below the highlights section.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-d9bab57
+  text: A company making an open wiki composes a short highlights list, an enterprise features section
+    and a security warning urging upgrades. Underneath, it adds the automatically produced list of merged
+    requests.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-13f1c10
+  text: An organisation that maintains traffic routing standards for container clusters composes prose
+    themes for a pre-final version. They cover features moving to the stable channel and new experimental
+    ones, placed atop an automatic list of merged work.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-a58a7f5
+  text: The developer behind a one-command cluster setup for a cloud host personally composes the upgrade
+    warnings, new features and fixes at the top. The automatically produced list of merged requests stays
+    below a divider.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-a9176df
+  text: A team making a text-to-diagram library publishes a version summary gathered from small files
+    each helper added alongside their pull request. Entries are grouped into minor and patch sections,
+    and each thanks its author and links the work.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-531bb8b
+  text: A developer of a utility that finds slow spots in web interfaces composes a single plain sentence
+    for a new version. It says a memory leak that appeared after many interactions with the page is now
+    fixed.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-d5527e5
+  text: A team behind a web routing framework publishes a package version whose summary is compiled automatically
+    from small files added with each pull request. This time the summary lists only patch updates to internal
+    packages that the framework uses.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-b1324c4
+  text: The developer behind a utility that checks staged files publishes a summary assembled from small
+    description files, which each submitter adds with their pull request. Automation sorts these into
+    minor and patch sections with detailed explanations and examples.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-043c4b7
+  text: An organisation behind a web framework publishes a summary for its project starter, assembled
+    automatically from a small file added with each pull request. This time, one patch explains that an
+    install-script workaround has been dropped.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-97c847b
+  text: A team behind a package manager publishes a version summary assembled automatically from small
+    files added with each fix. Entries are sorted into bug fixes and documentation, and each points to
+    its issue.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-d18b3e5
+  text: A team maintaining a network-wide ad blocker keeps no running history document among its source
+    code. Instead, each new version's entry on the code hosting site lists its security fix and the merged
+    changes.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-2a70899
+  text: A company building an open platform for tracing and evaluating language-model apps describes new
+    features and fixes only in each version's entry on the code hosting site. It stores no history document
+    alongside its source code.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-7047898
+  text: A developer of a portable command-line tool for processing data formats writes short lists of
+    fixes, thanking each contributor, in every version's entry on the code hosting site. No history document
+    sits among the source code.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-ed1006c
+  text: An organisation offering cost monitoring for container clusters and cloud bills describes each
+    version's changes only in that version's entry on the code hosting site. Its source code holds no
+    record of that history.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-5e9fe44
+  text: A developer behind a lightweight database migration tool lists merged changes and dependency bumps
+    in each version's entry on the code hosting site. The project's source code holds no running history
+    document.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-21d8c4e
+  text: A company making an open project management platform posts brief change summaries, sometimes just
+    a comparison link, in each version's entry on its code hosting site. It keeps no history document
+    among its source code.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-934e1c4
+  text: A developer of a tool that transparently encrypts data in version control keeps a running news
+    document, dated by version, alongside the source code. The developer describes changes in that document
+    and leaves the hosting site's version entries without write-ups.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-35ae010
+  text: A team running a comment widget built on a hosting site's discussion feature logs notable updates
+    by date in a history document stored with its source code. Version tags are rare and carry no write-ups.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-3aff6fa
+  text: A developer of a front matter parser records breaking changes and additions for each version in
+    a history document kept with the source code. The hosting site's version entries carry no write-ups.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-8b6d804
+  text: A developer of a service that turns email newsletters into feeds leaves every version's entry
+    on the code hosting site blank. Each version's changes go instead into a history document kept with
+    the source code.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-db27340
+  text: A team building vector similarity search for a database records each version's fixes and improvements
+    in a history document kept with the source code. The hosting site's version entries hold no write-ups.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-7603d38
+  text: A company making a real-time analytics database leaves its version entries on the code hosting
+    site empty. A history document kept with its source code holds the detailed account of every version.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-03fd2e7
+  text: A developer of a command-line search tool writes detailed summaries of bug fixes and features
+    in each version's entry on the code hosting site. The same history is also kept in a document with
+    the source code.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-60361a9
+  text: A team packaging monitoring setups for container clusters describes changes and new contributors
+    in each version's entry on the code hosting site. It also keeps a running history document alongside
+    the source code.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-3d31904
+  text: An organisation behind a monitoring system and time series database lists security fixes, features
+    and bug fixes in each version's entry on the code hosting site. It also keeps a history document with
+    its source code, including a section for unpublished work.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-35d7275
+  text: A team building an authenticating reverse proxy posts highlights, key warnings and security advisories
+    in each version's entry on the code hosting site. It also keeps a running history document alongside
+    its source code.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-9385681
+  text: A team making a customizable shell prompt publishes features and bug fixes in every version's
+    entry on the code hosting site. The same history also lives in a document stored with the source code.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-ccb697f
+  text: A team building a self-hosted control server for a private networking tool lists changes and the
+    oldest supported client version in each version's entry on the hosting site. It also keeps a history
+    document with its source code.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-280299b
+  text: A company behind a platform for tracing and evaluating language-model apps labels each saved update's
+    summary with its kind, such as fix, feature or chore, then a colon, often adding the touched part
+    in brackets.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-918e8ea
+  text: A team running a small real-time notification server begins each saved-update note with a kind
+    label such as fix or chore and a colon, for instance a fix that stops a crash when a certificate request
+    fails.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-78dd08b
+  text: A company making an online whiteboard for hand-drawn diagrams begins every update summary by saying
+    whether it is a feature, a fix or a refactor, then a colon, like a feature letting alt-click cycle
+    through stacked shapes.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-7238d9e
+  text: One person maintaining a portable data-format processor for the terminal sees most update notes
+    begin with a kind tag such as build or fix and a colon, like a fix making a reducing step run for
+    each input it receives.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-6cf1f45
+  text: An organisation building a unified policy tool begins its update summaries with the sort of work,
+    such as test, ci or fix, plus a colon, like a fix that contains crashes during each policy's evaluation.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-0ca0fd8
+  text: One developer of a passkey-friendly sign-in provider begins update notes with labels such as fix,
+    docs or chore and a colon, for example a fix that limits the upload size for profile pictures.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-6f3e7ea
+  text: One person maintaining a tool that searches directories for patterns begins update notes with
+    the edited component and a colon, such as the ignore-file handling or the build pipeline, before describing
+    the edit.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-ffc29dd
+  text: A team building a fast terminal emulator begins update summaries with the part of the program
+    involved and a colon, like the translation files or the theme-listing command, before saying what
+    was fixed or improved.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-2b8d6d6
+  text: A team building a self-hosted control server for a private network tool puts the edited package
+    at the front of each update note, such as the policy logic, the mapper or the test suite, then a colon.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-777b236
+  text: An organisation maintaining a traffic-routing controller for container clusters begins update
+    summaries with the part being updated, like images, tests or continuous integration, and a colon,
+    before describing the update.
+  field: code-repository
+  tags: {kind: service, who: organisation}
+- id: s-4382ced
+  text: One person maintaining a tool for rewriting repository history begins update notes with the file
+    or script affected and a colon, like the main rewriting script or a question-and-answer page, before
+    describing the fix.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-47e95e1
+  text: A team making syntax highlighting for a shell, styled after another shell's look, begins each
+    update note with the edited component and a colon, such as the main highlighter, the driver, the docs
+    or the test suite.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-8e57849
+  text: A team behind a monitoring system and time-series database writes update titles however each contributor
+    likes, mixing merge notices, plain phrases like upgrading a client library, and loose notes about
+    fixing review findings.
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-d1595df
+  text: A company making cost monitoring for container workloads lets each contributor phrase update summaries
+    freely, from ticket-style labels to plain phrases about refreshing cloud pricing or cutting noisy
+    logs.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-fa410a4
+  text: A team running a network-wide ad blocker writes update notes with no set lead-in, from bare version
+    numbers and notes about editing a script to plain phrases about avoiding a log-rotation setting.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-baecaed
+  text: One person working on a terminal multiplexer sees update titles written as plain sentences, like
+    adding sort flags to a mode or showing a match count, with merge notices mixed in and no fixed lead-in.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-c0bfd90
+  text: A company building a version-controlled database has update titles phrased in many ways, some
+    merge notices, some bracketed bot tags, some loose descriptions, with no single rule every contributor
+    sticks to.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-a7ff00c
+  text: 'A team building an agent evaluation framework writes update titles in mixed styles: some begin
+    with a kind label, others are plain sentences like classifying an error or adding more error patterns,
+    with no shared rule.'
+  field: code-repository
+  tags: {kind: finding, who: group}
+- id: s-e5c8aed
+  text: A foundation behind a monitoring system and time series database tags each release with a v and
+    a dotted trio of figures for breaking, feature and fix changes. It adds release candidate tags before
+    bigger releases and keeps fixing older lines.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-cd6e62c
+  text: One person maintaining a prose linter tags each release with a v and a dotted trio of figures.
+    They usually raise the middle figure for new features and only occasionally bump the last figure for
+    a small fix.
+  field: code-repository
+  tags: {kind: finding, who: one}
+- id: s-223a231
+  text: A small team runs a real-time messaging server with a sleek web interface. Each release tag is
+    a v and then dotted parts for breaking changes, added features and bug fixes.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-0222f5f
+  text: A team maintaining a login-checking reverse proxy for many identity providers tags releases with
+    a v and a dotted trio of figures. They put out a string of fix releases that raise only the last figure
+    while the first figure stays at seven.
+  field: code-repository
+  tags: {kind: service, who: group}
+- id: s-f8cd05c
+  text: A company behind a hand-drawn style virtual whiteboard tags releases with a v, a leading zero,
+    then dotted feature and fix figures. The leading zero shows the company has not yet declared a first
+    stable release line.
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-64cf336
+  text: A group of volunteers making a fast, customizable shell prompt tags each release as a v then a
+    dotted trio of figures. They keep the first figure at one, raising the middle figure for features
+    and the last figure for small fixes.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-53807a8
+  text: A company offering cost monitoring for container clusters and cloud spending tags releases with
+    a v and a dotted trio of figures. The middle figure has climbed past one hundred, while the first
+    figure stays at one.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-be82505
+  text: A company running an open platform for tracing and evaluating language model apps tags each release
+    as a v plus a dotted trio of figures. It raises the middle figure every time, while the last figure
+    stays at zero.
+  field: code-repository
+  tags: {kind: finding, who: organisation}
+- id: s-46cf149
+  text: A developer keeps a website of handy online tools. Each release tag is the day it shipped, written
+    with the largest unit of the date first, plus a short commit code at the end.
+  field: code-repository
+  tags: {kind: service, who: one}
+- id: s-968b9ee
+  text: 'An organisation behind an open-source toolkit for developing and testing web interfaces tags
+    each release by when it ships: the annual period first, then the month, then a small fix counter.'
+  field: code-repository
+  tags: {kind: creation, who: organisation}
+- id: s-19290c6
+  text: A developer working on a desktop tool for sending web requests tags each release with its annual
+    period and month, then a fix count, and puts out several beta previews before each monthly release.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-cfdc537
+  text: A team behind a helper agent that grows with its user tags most releases with the exact date they
+    ship, from the annual period down to the day. One older-style dotted tag still sits among the date
+    tags.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-76594d5
+  text: One person maintaining the source code of a terminal multiplexer labels releases with just two
+    dotted figures. Later fix releases add a letter such as a, b or c to the end.
+  field: code-repository
+  tags: {kind: creation, who: one}
+- id: s-70a681f
+  text: A team making a fast cross-platform terminal emulator keeps only one moving release tag rather
+    than counting releases. The tag always points to the newest work from the head of development.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-ed8e1a7
+  text: A team making a feed reader for desktop and mobile puts the platform label first in each release
+    tag. Desktop tags carry beta letters, while mobile tags pair a release with a running counter.
+  field: code-repository
+  tags: {kind: creation, who: group}
+- id: s-d701920
+  text: A team keeping up a command-line tool for handling structured data tags each release with the
+    tool's title and a dash. Some tags then carry only two figures, others add a third figure, and trial
+    releases tack letters onto two figures.
+  field: code-repository
+  tags: {kind: creation, who: group}

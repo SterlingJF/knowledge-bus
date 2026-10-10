@@ -290,14 +290,14 @@ def test_each_universe_gets_its_own_report_section_and_retired_list(
         probes = ["--probes", str(anthropic / "probes.json")] if name == "field-study" else []  # fmt: skip
         openai, _, _ = graded(tmp_path, name, "openai", *OPENAI, *probes)
         entries += [
-            {"side": "anthropic", "folder": str(anthropic)},
-            {"side": "openai", "folder": str(openai)},
+            {"side": "anthropic", "id": anthropic.name},
+            {"side": "openai", "id": openai.name},
         ]
     runs = tmp_path / "runs.yaml"
     runs.write_text(yaml.safe_dump({"runs": entries}))
     results, out = tmp_path / "results", tmp_path / "report.md"
     retired = retired_for(tmp_path / "retired", "field-study")
-    report.write_all(runs, results, out, retired, root=tmp_path)
+    report.write_all(runs, results, out, retired, run_folders=tmp_path)
     assert report.drift(runs, results, out, retired) == []
     text = out.read_text()
     study = text.split("\n## Universe `field-study`")[1].split("\n## ")[0]

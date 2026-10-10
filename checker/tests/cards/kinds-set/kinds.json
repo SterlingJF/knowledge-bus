@@ -1,0 +1,71 @@
+{
+  "from_parent": [],
+  "schema": "knowledge-bus/kinds-set/1",
+  "universe_specs": [
+    {
+      "factors": [
+        {
+          "factor": "team-shape",
+          "guidance": null,
+          "name": "Team shape",
+          "question": "Who is doing the work?"
+        }
+      ],
+      "kinds": [],
+      "schema": "knowledge-bus/kinds/1",
+      "universe_spec": {
+        "covers": null,
+        "for": null,
+        "id": "factors-only",
+        "label": "Factors only",
+        "version": "0.1"
+      }
+    },
+    {
+      "factors": [],
+      "kinds": [
+        {
+          "action": "hold the hall for an event",
+          "actor": "hirer",
+          "alias": {
+            "kind": "none"
+          },
+          "kind": "booking-form",
+          "name": "Booking form",
+          "timing": "before the bookings secretary confirms the date"
+        }
+      ],
+      "schema": "knowledge-bus/kinds/1",
+      "universe_spec": {
+        "covers": "The details a village hall records for each booking, from the first enquiry to the return of the keys.",
+        "for": "The bookings secretary and the people who hire the hall.",
+        "id": "hall-bookings",
+        "label": "Hall bookings",
+        "version": "0.1"
+      }
+    },
+    {
+      "factors": [],
+      "kinds": [
+        {
+          "action": "leave the hall ready for the next hirer",
+          "actor": "hirer",
+          "alias": {
+            "kind": "none"
+          },
+          "kind": "hirer-checklist",
+          "name": "Hirer checklist",
+          "timing": "at the end of each event"
+        }
+      ],
+      "schema": "knowledge-bus/kinds/1",
+      "universe_spec": {
+        "covers": "The cleaning, checks and repairs that keep a village hall fit for each hirer.",
+        "for": "The hall caretaker, the management committee and the people who hire the hall.",
+        "id": "hall-upkeep",
+        "label": "Hall upkeep",
+        "version": "0.1"
+      }
+    }
+  ]
+}

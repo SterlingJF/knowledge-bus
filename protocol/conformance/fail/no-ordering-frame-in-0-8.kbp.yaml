@@ -1,0 +1,32 @@
+# kbp/0.8 requires an ordering frame in every universe spec, with or without
+# elements. From kbp/0.9, a universe spec with no element declares no ordering
+# frame.
+universe:
+  id: no-ordering-frame-in-0-8
+  label: No ordering frame in kbp/0.8
+  version: 0.1
+  conforms_to: kbp/0.8
+
+statuses: []
+
+frames: []
+
+factors:
+  - id: team-shape
+    code: k4t33
+    question: "Who is doing the work?"
+    set_by: instance
+    values:
+      - { id: solo,  question: "Is one person accountable for all the work?" }
+      - { id: group, question: "Is accountability shared across people?" }
+
+no_artifact:
+  when: {}
+
+relation_kinds: []
+
+elements: []
+
+artifacts: []
+
+relations: []

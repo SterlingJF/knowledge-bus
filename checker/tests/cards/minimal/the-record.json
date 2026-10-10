@@ -1,0 +1,36 @@
+{
+  "alias": {
+    "kind": "none"
+  },
+  "conditions": [],
+  "disabled_when": null,
+  "enablement": {
+    "action": "Lets someone state a question and be held to it.",
+    "actor": null,
+    "timing": null
+  },
+  "guidance": null,
+  "kind": "the-record",
+  "name": "The record",
+  "no_artifact": {},
+  "presentation": [],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "the-question",
+      "gate": null,
+      "guidance": null,
+      "kept_in": null,
+      "mode": "owns",
+      "name": "The question",
+      "question": "What is being asked?",
+      "strength": "core",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "minimal",
+    "label": "Minimal",
+    "version": "0.1"
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "alias": {
+    "form": "brand guidelines / style guide / DESIGN.md",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "uptake",
+      "question": "How do people come to take up the offering?",
+      "values": [
+        {
+          "question": "Do they take it up only by deciding to, with nothing to pay?",
+          "value": "chosen"
+        },
+        {
+          "question": "Is paying how they take it up?",
+          "value": "bought"
+        }
+      ]
+    },
+    {
+      "id": "maturity",
+      "question": "How settled is the bet this work rests on?",
+      "values": []
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "apply the brand's look and wording correctly on your own",
+    "actor": "anyone writing or designing for the brand",
+    "timing": "whenever making new material for the brand"
+  },
+  "guidance": [
+    {
+      "claim": "Brand values and purpose belong in the Product Vision and the Positioning Statement. Ask whether a passage says what the brand stands for (put it there) or how the brand should feel and be expressed in look and wording (keep it here).",
+      "kind": "boundary",
+      "when": null
+    },
+    {
+      "claim": "Brand guidelines, a brand book and a style guide all count as this guide when they set the brand's intended feeling and its rules for look and wording, whatever the document is called.",
+      "kind": "heuristic",
+      "when": null
+    },
+    {
+      "claim": "DESIGN.md represents visual design-system rules. It can supply the visual portion of a brand guide; it does not represent its verbal rules.",
+      "kind": "convention",
+      "when": null
+    },
+    {
+      "claim": "Instructions for revising the document are not part of the document. That is a process, and it belongs wherever the process is owned.",
+      "kind": "pitfall",
+      "when": null
+    },
+    {
+      "claim": "Stale when an adopted colour, typeface, logo or other brand asset changes. A guide that shows a look nobody uses any more misleads more confidently than having no guide.",
+      "kind": "refresh",
+      "when": null
+    }
+  ],
+  "kind": "brand-identity-guide",
+  "name": "Brand identity guide",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "presentation": [],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "brand-character",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "The opening Overview of a DESIGN.md carries this: personality, audience and the response the brand should evoke. It is what to fall back on when no rule covers a case.",
+          "kind": "convention",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Brand character",
+      "question": "What feeling should the brand's look and wording create?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "visual-identity-rules",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Distinct from Verbal Identity Rules: marks, colour, type and imagery, and how the name is drawn as a logotype, are look; words, voice, naming, standing copy, and how the name is spelled, cased and punctuated in text, are wording. A trademark policy usually splits across both.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "A rule set with nothing forbidden is usually not settled yet.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Mood boards help a team agree on a feeling before any rule exists, and get copied into the rules by mistake. Record only what was adopted: the final colours, type and marks.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "The machine-readable form fixes the order the sections come in, and requires none of them except a primary colour palette.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Token formats carry colour, size, type and timing. Icons, accessibility and writing rules fit in none of them, and are no less settled for that.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Name a specific reference rather than a list of adjectives. 'Modern, clean, premium' fits almost anything.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Cross-Cutting Concerns: here go the brand's standing rules for its look; a record that one design meets an obligation such as accessibility goes there. Ask whether the line sets a rule for all material or checks one piece of work.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Most of these are only partly answered. A settled palette and nothing else is a real answer, not a stub.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Visual identity rules",
+      "question": "What are the rules for the brand's look?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "verbal-identity-rules",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Writing sits among the foundations as a peer of colour and typography, not beneath them.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Where the guide is split into a visual branch and a content or messaging branch, as GitLab's Pajamas is, put these rules in the content branch.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "The words a brand refuses do as much work as the ones it adopts.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Positioning Statement and Value Proposition: here goes the approved wording itself, such as boilerplate, taglines and pitches of set lengths. Ask whether you are fixing words or deciding what to claim; deciding what to claim belongs there, and the wording here draws on it without restating it.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Where wording is decided case by case and no rules exist, note that here, so a reader can tell it apart from rules that exist but have not been collected.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Verbal identity rules",
+      "question": "What are the rules for the brand's wording?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "positioning-statement",
+      "gate": {
+        "uptake": [
+          "chosen",
+          "bought"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "For [segment] who [need], X is a [category] that [benefit], unlike [alternative].",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Brand-led organisations treat this as marketing's asset and product-led ones as product's. Settle ownership before it gets written twice.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Pre-competition work often cannot fill the 'unlike' clause honestly. Leave it empty rather than fake it.",
+          "kind": "empty",
+          "when": {
+            "maturity": [
+              "unproven"
+            ]
+          }
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "product-strategy-canvas",
+          "name": "Product strategy canvas"
+        },
+        {
+          "kind": "startup-canvas",
+          "name": "Startup canvas"
+        },
+        {
+          "kind": "competitor-analysis",
+          "name": "Competitor analysis"
+        }
+      ],
+      "mode": "links",
+      "name": "Positioning statement",
+      "question": "Which kind of offering should each segment see ours as?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "constraints",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Imposed, not chosen: regulation, budget, deadline, platform, physics.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Cross-Cutting Concerns: a constraint is an imposed limit on the work that no design choice moves — budget, deadline, platform, what the law allows; a cross-cutting concern is an obligation every part of the solution must be designed to meet — security, privacy, accessibility. One law can supply both: a limit here, a property demanded throughout there.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Trade-offs. Mislabelling a choice as a constraint hides a decision.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Constraints",
+      "question": "What imposed limits apply to the work?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "open-questions",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Each wants an owner and a resolution path. An unowned question is a risk mislabelled.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Risks & Assumptions: an open question is something to answer before a point can be settled; an assumption is a belief the work proceeds on and checks along the way. Proceeding without the answer turns the question into an assumption.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Compare the list across drafts: it should get shorter. A list that keeps growing means the work is not yet ready to settle.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Write 'none open' only when every question raised has been answered or recorded as an assumption, so a reader can tell it apart from a list nobody has drawn up.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Open questions",
+      "question": "Which questions about the work remain open?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

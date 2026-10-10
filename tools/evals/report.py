@@ -1,15 +1,19 @@
-"""Build evals/report.md from the run folders listed in evals/runs.yaml. Calls no model.
+"""Build evals/report.md from the runs listed in evals/runs.yaml. Calls no model.
 
-    report.py          summarise each listed run folder into evals/results/<run-id>.json, then write
-                       evals/report.md from those summaries
-    report.py --check  say what differs between the committed report and summaries and what
-                       report.py builds from the committed summaries (no run folder is read)
+    report.py                       write evals/report.md from the committed summaries in
+                                    evals/results/, one per listed run
+    report.py --run-folders FOLDER  first summarise each listed run into
+                                    evals/results/<run-id>.json from the folder named for its run
+                                    id, FOLDER itself or at any depth under FOLDER; a run with no
+                                    such folder keeps its committed summary
+    report.py --check               say what differs between the committed report and summaries
+                                    and what report.py builds from the committed summaries
 
-evals/runs.yaml lists one run per entry: `side` (anthropic or openai), `folder`, a run folder
-written by grade.py (or by the scenario runner), relative to the repository or absolute, and, for
-a run that graded a universe, `universe` (the id; run.json names it when the run recorded one). A
-folder that is not on this machine falls back to its committed summary, so the report can be
-rebuilt from a clean checkout. A run counts for every measure it holds: calibration (one per
+evals/runs.yaml lists one run per entry: `side` (anthropic or openai), `id` (the run id, also the
+default name of the run folder from grade.py, play.py or packet.py) and, for a run that graded a
+universe, `universe` (the id; run.json names it when the run recorded one).
+Without --run-folders, report.py reads only committed files, so the report builds from a clean
+checkout. A run counts for every measure it holds: calibration (one per
 slice), the universe grade (by the tiers it ran), sorting and recognition (when it filed
 something), and scenarios. A side
 may list one run per measure, and per universe for the three universe measures. Calibration and
@@ -133,8 +137,8 @@ uv run --locked python tools/evals/grade.py universe --universe <universe file> 
   --tiers recognise --rules values-recognised
 # 4. Agent scenarios
 just evals-play
-# Summaries and this report
-just evals-report"""
+# Summaries and this report, from the folder that holds the run folders
+just evals-report --run-folders <folder>"""
 
 
 class ReportError(ValueError):
@@ -501,8 +505,10 @@ def entries(runs_file):
             raise ReportError(
                 f"side must be one of {', '.join(SIDES)}, not {entry.get('side')!r}"
             )
-        if not entry.get("folder"):
-            raise ReportError(f"a {entry['side']} run has no folder")
+        if not entry.get("id"):
+            raise ReportError(f"a run on the {SIDES[entry['side']]} has no id")
+        if Path(str(entry["id"])).name != str(entry["id"]):
+            raise ReportError(f"{entry['id']} is a path; list the run by its run id")
     return runs
 
 
@@ -528,20 +534,59 @@ def _labeller(line):
     )
 
 
-def collect(runs_file=RUNS, results=RESULTS, root=ROOT):
-    """One summary per listed run: from its folder when it is here, else its committed summary."""
-    found, held = [], {}
-    for entry in entries(runs_file):
-        folder = Path(root) / entry["folder"]
-        saved = Path(results) / f"{folder.name}.json"
-        if folder.is_dir():
-            found_summary = summarise(folder, entry["side"], entry.get("universe"))
+def run_folders_under(root, ids):
+    """{run id: `root` itself when named for a run id, else every folder at any depth under
+    `root` named for that run id}."""
+    wanted, found, root = set(ids), {}, Path(root)
+    if root.name in wanted:
+        return {root.name: [root]}
+    for here, names, _ in root.walk():
+        names.sort()
+        for name in [n for n in names if n in wanted]:
+            found.setdefault(name, []).append(here / name)
+            names.remove(name)  # a run folder holds no other run folder
+    return found
+
+
+def collect(runs_file=RUNS, results=RESULTS, run_folders=None):
+    """One summary per listed run: its committed summary or, with `run_folders`, a new summary of
+    the folder named for its run id, `run_folders` itself or at any depth under `run_folders`; a
+    run with no such folder keeps its committed summary."""
+    listed = entries(runs_file)
+    if run_folders is not None and not Path(run_folders).is_dir():
+        raise ReportError(f"{run_folders} is not a folder")
+    located = (
+        run_folders_under(run_folders, [e["id"] for e in listed])
+        if run_folders is not None
+        else {}
+    )
+    found, held, kept = [], {}, []
+    for entry in listed:
+        run_id = entry["id"]
+        saved = Path(results) / f"{run_id}.json"
+        folders = located.get(run_id, [])
+        if len(folders) > 1:
+            raise ReportError(
+                f"{run_id}: {len(folders)} folders under {run_folders} carry the run id: "
+                + ", ".join(map(str, folders))
+            )
+        if folders:
+            found_summary = summarise(folders[0], entry["side"], entry.get("universe"))
         elif saved.exists():
+            if run_folders is not None:
+                kept.append(
+                    f"{run_id}: no run folder under {run_folders}; kept its committed summary"
+                )
             found_summary = json.loads(saved.read_text())
             on_side(found_summary)
+        elif run_folders is not None:
+            raise ReportError(
+                f"{run_id}: no run folder under {run_folders} and {saved} is not committed"
+            )
         else:
             raise ReportError(
-                f"{entry['folder']} is not on this machine and {saved} is not committed"
+                f"{saved} is not committed; to summarise {run_id}, pass --run-folders "
+                "with the folder that holds its run folder"
             )
         for measure in found_summary["measures"]:
             key = (entry["side"], measure, found_summary["universe"])
@@ -553,6 +598,8 @@ def collect(runs_file=RUNS, results=RESULTS, root=ROOT):
                 )
             held[key] = found_summary["id"]
         found.append(found_summary)
+    for line in kept:  # printed once every run is accepted, so a refusal prints alone
+        print(line, file=sys.stderr)
     return found
 
 
@@ -564,9 +611,11 @@ def load_retired(folder=RETIRED):
     }
 
 
-def write_all(runs_file, results, out, retired, root=ROOT):
+def write_all(runs_file, results, out, retired, run_folders=None):
     # build from the summaries exactly as they are written, so --check builds the same report
-    summaries = [json.loads(summary_text(s)) for s in collect(runs_file, results, root)]
+    summaries = [
+        json.loads(summary_text(s)) for s in collect(runs_file, results, run_folders)
+    ]
     results = Path(results)
     for kept in summaries:
         results.mkdir(parents=True, exist_ok=True)
@@ -583,7 +632,7 @@ def drift(runs_file=RUNS, results=RESULTS, out=REPORT, retired=None):
     results = Path(results)
     problems, summaries = [], []
     for entry in entries(runs_file):
-        saved = results / f"{Path(entry['folder']).name}.json"
+        saved = results / f"{entry['id']}.json"
         if not saved.exists():
             problems.append(f"{saved} is missing")
             continue
@@ -1438,7 +1487,8 @@ def build(summaries, retired, labelled=None):
         "```",
         "",
         (
-            "List each run folder in `evals/runs.yaml` before `just evals-report`. "
+            "List each run by its id in `evals/runs.yaml` before "
+            "`just evals-report --run-folders <folder>`. "
             'The runbook for the OpenAI side is in `evals/README.md`, under "Running on another vendor".'
         ),
         "",
@@ -1448,14 +1498,22 @@ def build(summaries, retired, labelled=None):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--check", action="store_true")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument(
+        "--run-folders",
+        type=Path,
+        metavar="FOLDER",
+        help="first summarise each listed run from the folder named for its run id, FOLDER "
+        "itself or at any depth under FOLDER",
+    )
     args = parser.parse_args(argv)
     try:
         if args.check:
             problems = drift()
             print("\n".join(problems))
             return 1 if problems else 0
-        write_all(RUNS, RESULTS, REPORT, load_retired())
+        write_all(RUNS, RESULTS, REPORT, load_retired(), args.run_folders)
     except ReportError as error:
         print(error, file=sys.stderr)
         return 1

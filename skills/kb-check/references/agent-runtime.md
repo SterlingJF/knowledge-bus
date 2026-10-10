@@ -19,6 +19,8 @@ Requires [uv](https://docs.astral.sh/uv/) and Python matching `requires_python` 
 python3 /absolute/runtime/kbp.py --validate /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --mint element 1 /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --inspect /absolute/target/.knowledge-bus/
+python3 /absolute/runtime/kbp.py --card <kind> /absolute/target/.knowledge-bus/
+python3 /absolute/runtime/kbp.py --kinds /absolute/target/.knowledge-bus/
 python3 /absolute/runtime/kbp.py --explore --output /absolute/output /absolute/target/.knowledge-bus/
 ```
 
@@ -26,11 +28,13 @@ The bundled wheel supplies the checker, protocol, and required Python code. The 
 
 Supply an absolute universe file, knowledge-base folder, or its `.knowledge-bus/` folder when the shell is elsewhere. Checking never initializes a folder. `.knowledge-bus/` is the reserved Knowledge Bus configuration directory, not the knowledge base itself. `KNOWLEDGE_BUS_CACHE_DIR` optionally selects another cache location.
 
-`--inspect` prints an Explorer model and writes nothing. When the scope contains several universes, select one with `--universe`. `--explore` requires an output directory and refuses existing output unless `--replace` is supplied. It builds an offline Explorer from the bundled viewer.
+`--inspect` prints an Explorer model and writes nothing. When the scope contains several universes, select one with `--universe`. The candidates include universe specs listed under `from_parent` in `.knowledge-bus/workspace.yaml`; without `--universe`, `--inspect` refuses and lists the candidates and the `from_parent` ids. `--explore` requires an output directory and refuses existing output unless `--replace` is supplied. It builds an offline Explorer from the bundled viewer.
+
+`--card <kind>` prints the card for one document type as JSON: the document type's purpose, who uses it and when, its sections, guidance on writing it, and when no document is needed. The card also gives advice on presenting the document from each universe spec in scope that declares a factor. `--format markdown` prints the card as Markdown. `--kinds` lists every document type with its other names, purpose, users and timing, and prints `overview.covers` and `overview.for` for each universe spec. `--kinds` also lists each factor with its question and number of guidance notes. When the scope holds several universe specs, `--kinds` prints one group per universe spec.
 
 ## References
 
-The references directory containing this guide includes `knowledge-bus-protocol.yaml`. Read it when authoring or interpreting definitions. The ingestion skill also provides `product-development/` for adopting or adapting the starter. These are reference files, not the user's definitions; do not copy them automatically.
+The references directory containing this guide includes `knowledge-bus-protocol.yaml`. Read it when authoring or interpreting definitions. The ingestion skill also provides each bundled universe as a starter for adopting or adapting. These are reference files, not the user's definitions; do not copy them automatically.
 
 ## Interpreting Results
 

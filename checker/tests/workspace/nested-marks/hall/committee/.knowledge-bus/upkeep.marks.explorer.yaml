@@ -1,0 +1,7 @@
+marks:
+  id: hall-upkeep-committee-marks
+  version: 0.1
+  marks_for: hall-upkeep
+
+frames:
+  upkeep-cycle: { monogram: UC }

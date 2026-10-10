@@ -1,0 +1,5067 @@
+{
+ "seed": 20261008,
+ "samples": {
+  "slices": {
+   "seed": 20261008,
+   "python_random": "random.Random(seed).shuffle per stratum, strata visited in sorted order, round robin",
+   "rule": "stratum = (language in TypeScript/Go/Python/Rust/JavaScript/Swift else other, star tier 40k+/10-40k/3-10k)",
+   "input_repos": 146,
+   "input_sha256": "fa8ebbc46a373ce56a75df7e840e516f2f4e632c9799a74d2ee263cf0025d35f",
+   "slices": [
+    [
+     "kubernetes/ingress-nginx",
+     "swagger-api/swagger-editor",
+     "virattt/ai-hedge-fund",
+     "altic-dev/FluidVoice",
+     "latitude-dev/latitude-llm",
+     "pi-hole/pi-hole",
+     "remarkjs/react-markdown"
+    ],
+    [
+     "prometheus-operator/prometheus-operator",
+     "tt-a1i/archify",
+     "casey/just",
+     "lysyi3m/macos-terminal-themes",
+     "strapi/strapi",
+     "siderolabs/talos",
+     "json-schema-faker/json-schema-faker"
+    ],
+    [
+     "spf13/cobra",
+     "deepseek-ai/DeepSeek-OCR",
+     "deuxfleurs-org/garage",
+     "apple/container",
+     "apache/apisix",
+     "kgateway-dev/kgateway",
+     "openai/evals"
+    ],
+    [
+     "lint-staged/lint-staged",
+     "dograh-hq/dograh",
+     "starship/starship",
+     "langfuse/langfuse",
+     "jerrykuku/luci-theme-argon",
+     "junegunn/fzf",
+     "amoffat/sh"
+    ]
+   ]
+  },
+  "new-names": {
+   "rule": "A: names in 2+ repos, up to 2 repos each; B: 30 seeded names seen once; C: docs/ folders",
+   "picks": [
+    {
+     "group": "A",
+     "repo": "backstage/backstage",
+     "path": "ADOPTERS.md"
+    },
+    {
+     "group": "A",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": "ADOPTERS.md"
+    },
+    {
+     "group": "A",
+     "repo": "BurntSushi/ripgrep",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "A",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "A",
+     "repo": "exo-explore/exo",
+     "path": "docs/api.md"
+    },
+    {
+     "group": "A",
+     "repo": "shikijs/shiki",
+     "path": "docs/api.md"
+    },
+    {
+     "group": "A",
+     "repo": "gastownhall/beads",
+     "path": "BENCHMARKS.md"
+    },
+    {
+     "group": "A",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "docs/BENCHMARKS.md"
+    },
+    {
+     "group": "A",
+     "repo": "cjpais/Handy",
+     "path": "BUILD.md"
+    },
+    {
+     "group": "A",
+     "repo": "junegunn/fzf",
+     "path": "BUILD.md"
+    },
+    {
+     "group": "A",
+     "repo": "apple/container",
+     "path": "BUILDING.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/building.md"
+    },
+    {
+     "group": "A",
+     "repo": "twentyhq/twenty",
+     "path": ".github/CLA.md"
+    },
+    {
+     "group": "A",
+     "repo": "vale-cli/vale",
+     "path": ".github/CLA.md"
+    },
+    {
+     "group": "A",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "CMakeLists.txt"
+    },
+    {
+     "group": "A",
+     "repo": "ghostty-org/ghostty",
+     "path": "CMakeLists.txt"
+    },
+    {
+     "group": "A",
+     "repo": "spf13/cobra",
+     "path": "CONDUCT.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/conduct.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/configuration.md"
+    },
+    {
+     "group": "A",
+     "repo": "speaches-ai/speaches",
+     "path": "docs/configuration.md"
+    },
+    {
+     "group": "A",
+     "repo": "backstage/backstage",
+     "path": "DCO"
+    },
+    {
+     "group": "A",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "DCO"
+    },
+    {
+     "group": "A",
+     "repo": "TanStack/router",
+     "path": "DEBUGGING.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/debugging.md"
+    },
+    {
+     "group": "A",
+     "repo": "coollabsio/coolify",
+     "path": "DEVELOPMENT.md"
+    },
+    {
+     "group": "A",
+     "repo": "kyverno/kyverno",
+     "path": "DEVELOPMENT.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/faq.md"
+    },
+    {
+     "group": "A",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/faq.md"
+    },
+    {
+     "group": "A",
+     "repo": "kyverno/kyverno",
+     "path": "GEMINI.md"
+    },
+    {
+     "group": "A",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "GEMINI.md"
+    },
+    {
+     "group": "A",
+     "repo": "golang-migrate/migrate",
+     "path": "GETTING_STARTED.md"
+    },
+    {
+     "group": "A",
+     "repo": "prometheus/prometheus",
+     "path": "docs/getting_started.md"
+    },
+    {
+     "group": "A",
+     "repo": "ghostty-org/ghostty",
+     "path": "HACKING.md"
+    },
+    {
+     "group": "A",
+     "repo": "zsh-users/zsh-syntax-highlighting",
+     "path": "HACKING.md"
+    },
+    {
+     "group": "A",
+     "repo": "mikefarah/yq",
+     "path": "how-it-works.md"
+    },
+    {
+     "group": "A",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/how-it-works.md"
+    },
+    {
+     "group": "A",
+     "repo": "apple/container",
+     "path": "docs/how-to.md"
+    },
+    {
+     "group": "A",
+     "repo": "typicode/husky",
+     "path": "docs/how-to.md"
+    },
+    {
+     "group": "A",
+     "repo": "AGWA/git-crypt",
+     "path": "INSTALL.md"
+    },
+    {
+     "group": "A",
+     "repo": "EnterpriseDB/barman",
+     "path": "INSTALL.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/installation.md"
+    },
+    {
+     "group": "A",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/installation.md"
+    },
+    {
+     "group": "A",
+     "repo": "grafana/alloy",
+     "path": "LICENSING.md"
+    },
+    {
+     "group": "A",
+     "repo": "trycua/cua",
+     "path": "LICENSING.md"
+    },
+    {
+     "group": "A",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "docs/llms.md"
+    },
+    {
+     "group": "A",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "path": "docs/llms.txt"
+    },
+    {
+     "group": "A",
+     "repo": "oxc-project/oxc",
+     "path": "MAINTENANCE.md"
+    },
+    {
+     "group": "A",
+     "repo": "passteque/gluetun",
+     "path": "maintenance.md"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/migration-guide.adoc"
+    },
+    {
+     "group": "A",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": "docs/migration-guide.md"
+    },
+    {
+     "group": "A",
+     "repo": "apache/apisix",
+     "path": "NOTICE"
+    },
+    {
+     "group": "A",
+     "repo": "apache/devlake",
+     "path": "NOTICE"
+    },
+    {
+     "group": "A",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "OWNERS_ALIASES"
+    },
+    {
+     "group": "A",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "OWNERS_ALIASES"
+    },
+    {
+     "group": "A",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/plugins.md"
+    },
+    {
+     "group": "A",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/plugins.md"
+    },
+    {
+     "group": "A",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": "PRIVACY.md"
+    },
+    {
+     "group": "A",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "PRIVACY.md"
+    },
+    {
+     "group": "A",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": "progress.txt"
+    },
+    {
+     "group": "A",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/progress.md"
+    },
+    {
+     "group": "A",
+     "repo": "coollabsio/coolify",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "A",
+     "repo": "jerrykuku/luci-theme-argon",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "A",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/releases.md"
+    },
+    {
+     "group": "A",
+     "repo": "vitest-dev/vitest",
+     "path": "docs/releases.md"
+    },
+    {
+     "group": "A",
+     "repo": "amacneil/dbmate",
+     "path": "RELEASING.md"
+    },
+    {
+     "group": "A",
+     "repo": "gastownhall/beads",
+     "path": "RELEASING.md"
+    },
+    {
+     "group": "A",
+     "repo": "kyverno/kyverno",
+     "path": "REVIEW.md"
+    },
+    {
+     "group": "A",
+     "repo": "langfuse/langfuse",
+     "path": "REVIEW.md"
+    },
+    {
+     "group": "A",
+     "repo": "backstage/backstage",
+     "path": "REVIEWING.md"
+    },
+    {
+     "group": "A",
+     "repo": "tt-a1i/archify",
+     "path": "REVIEWING.md"
+    },
+    {
+     "group": "A",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "SECURITY_CONTACTS"
+    },
+    {
+     "group": "A",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "SECURITY_CONTACTS"
+    },
+    {
+     "group": "A",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "TESTING.md"
+    },
+    {
+     "group": "A",
+     "repo": "timescale/pgvectorscale",
+     "path": "TESTING.md"
+    },
+    {
+     "group": "A",
+     "repo": "gastownhall/beads",
+     "path": "THIRD_PARTY_LICENSES"
+    },
+    {
+     "group": "A",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "THIRD_PARTY_LICENSES.md"
+    },
+    {
+     "group": "A",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "THIRD_PARTY_NOTICES.md"
+    },
+    {
+     "group": "A",
+     "repo": "tt-a1i/archify",
+     "path": "THIRD_PARTY_NOTICES.md"
+    },
+    {
+     "group": "A",
+     "repo": "exo-explore/exo",
+     "path": "TODO.md"
+    },
+    {
+     "group": "A",
+     "repo": "leafac/kill-the-newsletter",
+     "path": "TODO.md"
+    },
+    {
+     "group": "A",
+     "repo": "twentyhq/twenty",
+     "path": ".github/TRADEMARK.md"
+    },
+    {
+     "group": "A",
+     "repo": "tw93/Mole",
+     "path": "TRADEMARK.md"
+    },
+    {
+     "group": "A",
+     "repo": "InvoicePlane/InvoicePlane",
+     "path": ".github/TRANSLATIONS.md"
+    },
+    {
+     "group": "A",
+     "repo": "hoppscotch/hoppscotch",
+     "path": "TRANSLATIONS.md"
+    },
+    {
+     "group": "A",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/troubleshooting.md"
+    },
+    {
+     "group": "A",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "docs/troubleshooting.md"
+    },
+    {
+     "group": "A",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/windows.md"
+    },
+    {
+     "group": "A",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": "docs/windows.md"
+    },
+    {
+     "group": "B",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "docs/ssh.md"
+    },
+    {
+     "group": "B",
+     "repo": "pnpm/pnpm",
+     "path": ".github/release-sponsors.md"
+    },
+    {
+     "group": "B",
+     "repo": "apple/container",
+     "path": "docs/ulimits.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/go-sdk-guide.md"
+    },
+    {
+     "group": "B",
+     "repo": "jamiepine/voicebox",
+     "path": "docs/PROJECT_STATUS.md"
+    },
+    {
+     "group": "B",
+     "repo": "casey/just",
+     "path": "GRAMMAR.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/ide-setup.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/inline-templates.md"
+    },
+    {
+     "group": "B",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "TOB.md"
+    },
+    {
+     "group": "B",
+     "repo": "openai/evals",
+     "path": "docs/completion-fns.md"
+    },
+    {
+     "group": "B",
+     "repo": "kyverno/kyverno",
+     "path": ".github/pr_documentation.md"
+    },
+    {
+     "group": "B",
+     "repo": "unclecode/crawl4ai",
+     "path": "SECURITY-CREDITS.md"
+    },
+    {
+     "group": "B",
+     "repo": "gastownhall/beads",
+     "path": "PROPOSAL-cas-conditional-update.md"
+    },
+    {
+     "group": "B",
+     "repo": "prometheus/prometheus",
+     "path": "docs/storage.md"
+    },
+    {
+     "group": "B",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "path": "docs/jsondata.md"
+    },
+    {
+     "group": "B",
+     "repo": "minio/minio",
+     "path": "docs/minio-limits.md"
+    },
+    {
+     "group": "B",
+     "repo": "PostHog/posthog",
+     "path": ".github/dockerignore-drop-allowlist.txt"
+    },
+    {
+     "group": "B",
+     "repo": "backstage/backstage",
+     "path": "README-fr_FR.md"
+    },
+    {
+     "group": "B",
+     "repo": "odysseus-dev/odysseus",
+     "path": "docs/search-quality-audit-20260917.md"
+    },
+    {
+     "group": "B",
+     "repo": "gastownhall/beads",
+     "path": "PROPOSAL-pluggable-storage-backends.md"
+    },
+    {
+     "group": "B",
+     "repo": "zsviczian/obsidian-excalidraw-plugin",
+     "path": "docs/OBSIDIAN_RUNTIME_TESTING.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/tolerating-pod-deletion.md"
+    },
+    {
+     "group": "B",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "docs/v3-topology-recommendations.md"
+    },
+    {
+     "group": "B",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "docs/selinux.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/workflow-controller-configmap.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/crd-installer.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/workflow-archive.md"
+    },
+    {
+     "group": "B",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/access-token.md"
+    },
+    {
+     "group": "B",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "docs/OPTIMIZATION_JOURNEY.md"
+    },
+    {
+     "group": "B",
+     "repo": "keras-team/keras",
+     "path": "requirements-torch-cuda.txt"
+    },
+    {
+     "group": "C",
+     "repo": "Egonex-AI/Understand-Anything",
+     "folder": "docs/superpowers/plans/"
+    },
+    {
+     "group": "C",
+     "repo": "EnterpriseDB/barman",
+     "path": "docs/releases/index.rst"
+    },
+    {
+     "group": "C",
+     "repo": "PostHog/posthog",
+     "folder": "docs/superpowers/specs/"
+    },
+    {
+     "group": "C",
+     "repo": "PostHog/posthog",
+     "path": "docs/plans/2026-07-16-auto-approve-small-event-deletions.md"
+    },
+    {
+     "group": "C",
+     "repo": "PostHog/posthog",
+     "path": "docs/internal/activity-logging.md"
+    },
+    {
+     "group": "C",
+     "repo": "TryGhost/Ghost",
+     "path": "docs/codebase/authentication.md"
+    },
+    {
+     "group": "C",
+     "repo": "TryGhost/Ghost",
+     "path": "docs/contributing/development-setup.md"
+    },
+    {
+     "group": "C",
+     "repo": "backstage/backstage",
+     "path": "docs/releases/v1.0.0.md"
+    },
+    {
+     "group": "C",
+     "repo": "cathrynlavery/diagram-design",
+     "folder": "docs/superpowers/plans/"
+    },
+    {
+     "group": "C",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0001-static-by-default-single-pinned-controller.md"
+    },
+    {
+     "group": "C",
+     "repo": "coollabsio/coolify",
+     "folder": "docs/superpowers/specs/"
+    },
+    {
+     "group": "C",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/agent-api-inventory.md"
+    },
+    {
+     "group": "C",
+     "repo": "grafana/alloy",
+     "path": "docs/design/1161-standardize-stdlib.md"
+    },
+    {
+     "group": "C",
+     "repo": "jamiepine/voicebox",
+     "path": "docs/plans/CLOUD_ROADMAP.md"
+    },
+    {
+     "group": "C",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/001-leader-election.md"
+    },
+    {
+     "group": "C",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/contributing/bug-report.md"
+    },
+    {
+     "group": "C",
+     "repo": "kyverno/kyverno",
+     "path": "docs/designs/README.md"
+    },
+    {
+     "group": "C",
+     "repo": "n8n-io/n8n",
+     "path": "docs/adr/README.md"
+    },
+    {
+     "group": "C",
+     "repo": "shikijs/shiki",
+     "path": "docs/blog/v2.md"
+    },
+    {
+     "group": "C",
+     "repo": "tt-a1i/archify",
+     "path": "docs/specs/readability-layered-reading.md"
+    },
+    {
+     "group": "C",
+     "repo": "unclecode/crawl4ai",
+     "path": "docs/codebase/browser.md"
+    },
+    {
+     "group": "C",
+     "repo": "unclecode/crawl4ai",
+     "path": "docs/blog/release-v0.7.0.md"
+    },
+    {
+     "group": "C",
+     "repo": "vitest-dev/vitest",
+     "path": "docs/blog/vitest-3-2.md"
+    }
+   ]
+  },
+  "small-groups": {
+   "rule": "first 3 files per folder by path order; every matching file; 6 seeded sub-folder READMEs",
+   "picks": [
+    {
+     "group": "proposal",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "proposals/2019-03-15-Alternative-Schema.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "proposals/2019-07-17-Webhooks.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "proposals/2019-10-31-Clarify-Nullable.md"
+    },
+    {
+     "group": "adr",
+     "repo": "backstage/backstage",
+     "path": "docs/architecture-decisions/adr001-add-adr-log.md"
+    },
+    {
+     "group": "adr",
+     "repo": "backstage/backstage",
+     "path": "docs/architecture-decisions/adr002-default-catalog-file-format.md"
+    },
+    {
+     "group": "adr",
+     "repo": "backstage/backstage",
+     "path": "docs/architecture-decisions/adr003-avoid-default-exports.md"
+    },
+    {
+     "group": "adr",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0001-static-by-default-single-pinned-controller.md"
+    },
+    {
+     "group": "adr",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0002-semantic-patterns-do-not-expand-the-taxonomy.md"
+    },
+    {
+     "group": "adr",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "docs/adr/0003-reveal-is-the-only-sanctioned-autoplay.md"
+    },
+    {
+     "group": "adr",
+     "repo": "coollabsio/coolify",
+     "path": "docs/v5/architecture/adr/0001-control-plane-flux-coold-split.md"
+    },
+    {
+     "group": "adr",
+     "repo": "coollabsio/coolify",
+     "path": "docs/v5/architecture/adr/0002-coold-host-agent-boundary.md"
+    },
+    {
+     "group": "adr",
+     "repo": "coollabsio/coolify",
+     "path": "docs/v5/architecture/adr/0003-flux-connection-broker-boundary.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/design/bd-serve-v0.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/design/dolt-concurrency.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/design/external-capability-dependencies.md"
+    },
+    {
+     "group": "adr",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/adr/0001-multi-remote-approach.md"
+    },
+    {
+     "group": "adr",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/adr/0002-init-safety-invariants.md"
+    },
+    {
+     "group": "adr",
+     "repo": "gastownhall/beads",
+     "path": "engdocs/adr/0003-provenance-event-log.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/agent-api-inventory.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/architecture.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "gastownhall/gastown",
+     "path": "docs/design/convoy/convoy-lifecycle.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "grafana/alloy",
+     "path": "docs/design/1161-standardize-stdlib.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "grafana/alloy",
+     "path": "docs/design/1443-dynamic-pipelines.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "grafana/alloy",
+     "path": "docs/design/4719-otel-engine-dependency-management.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "harbor-framework/harbor",
+     "path": "rfcs/0001-trajectory-format.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "harbor-framework/harbor",
+     "path": "rfcs/0002-simulated-users-patch.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "harbor-framework/harbor",
+     "path": "rfcs/0002-simulated-users.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kgateway-dev/kgateway",
+     "path": "design/10381-adopt-kubernetes-approach-for-changelog-management.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kgateway-dev/kgateway",
+     "path": "design/10411-gateway-api-inference-extension-support.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kgateway-dev/kgateway",
+     "path": "design/10494-add-support-for-ai-gateway-apis.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/001-leader-election.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/002-internal-ipv6-handling-rollback.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/proposal/003-dnsendpoint-graduation-to-beta.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/enhancements/20190724-only-dynamic-ssl.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/enhancements/20190815-zone-aware-routing.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "docs/enhancements/20231001-split-containers.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "Documentation/proposals/accepted/202310-shard-autoscaling.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "Documentation/proposals/accepted/202405-agent-daemonset.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "Documentation/proposals/accepted/202405-scrapeconfig-graduation.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "trycua/cua",
+     "path": "rfcs/2447-cua-driver-native-core-and-mcp-adapter.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "trycua/cua",
+     "path": "rfcs/2512-cua-driver-environment-convergence.md"
+    },
+    {
+     "group": "proposal",
+     "repo": "trycua/cua",
+     "path": "rfcs/2512-mcp-envelope-carrier.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "Automattic/harper",
+     "path": "AGENT_POLICY.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "BurntSushi/ripgrep",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "EnterpriseDB/barman",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "PostHog/posthog",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "release",
+     "repo": "amacneil/dbmate",
+     "path": "RELEASING.md"
+    },
+    {
+     "group": "release",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/releasing.md"
+    },
+    {
+     "group": "review",
+     "repo": "backstage/backstage",
+     "path": "REVIEWING.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "bookorbit/bookorbit",
+     "path": "docs/AI_POLICY.md"
+    },
+    {
+     "group": "release",
+     "repo": "coollabsio/coolify",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "path": ".github/release.yml"
+    },
+    {
+     "group": "release",
+     "repo": "dograh-hq/dograh",
+     "path": ".github/release.yml"
+    },
+    {
+     "group": "release",
+     "repo": "gastownhall/beads",
+     "path": "RELEASING.md"
+    },
+    {
+     "group": "release",
+     "repo": "gastownhall/gastown",
+     "path": "RELEASING.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "ghostty-org/ghostty",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "release",
+     "repo": "jerrykuku/luci-theme-argon",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "juanfont/headscale",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "release",
+     "repo": "junegunn/fzf",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "kgateway-dev/kgateway",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "docs/release.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "AI-POLICY.md"
+    },
+    {
+     "group": "release",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "review",
+     "repo": "kyverno/kyverno",
+     "path": "REVIEW.md"
+    },
+    {
+     "group": "review",
+     "repo": "langfuse/langfuse",
+     "path": "REVIEW.md"
+    },
+    {
+     "group": "release",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": ".github/release.yaml"
+    },
+    {
+     "group": "release",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": ".github/release.yml"
+    },
+    {
+     "group": "release",
+     "repo": "oauth2-proxy/oauth2-proxy",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": "release.sh"
+    },
+    {
+     "group": "release",
+     "repo": "pi-hole/pi-hole",
+     "path": ".github/release.yml"
+    },
+    {
+     "group": "release",
+     "repo": "pnpm/pnpm",
+     "path": "RELEASING.md"
+    },
+    {
+     "group": "release",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "prometheus/prometheus",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "pypa/pipx",
+     "path": ".github/release.yml"
+    },
+    {
+     "group": "release",
+     "repo": "qdrant/fastembed",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "release",
+     "repo": "siderolabs/talos",
+     "path": "RELEASE.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "starship/starship",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "review",
+     "repo": "tt-a1i/archify",
+     "path": "REVIEWING.md"
+    },
+    {
+     "group": "aipolicy",
+     "repo": "vitest-dev/vitest",
+     "path": "AI_POLICY.md"
+    },
+    {
+     "group": "release",
+     "repo": "zsh-users/zsh-syntax-highlighting",
+     "path": "release.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "virattt/ai-hedge-fund",
+     "path": "hedge_fund/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "frappe/books",
+     "path": "reports/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "release-notes/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": "contribute/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "Ranchero-Software/NetNewsWire",
+     "path": "AppleScript/README.md"
+    },
+    {
+     "group": "package_readme",
+     "repo": "stoplightio/prism",
+     "path": "test-harness/README.md"
+    }
+   ]
+  },
+  "terms": {
+   "rule": "30 contexts per word, round robin over document kinds; context text left out",
+   "contexts": {
+    "change": [
+     {
+      "kind": "agent_file",
+      "repo": "kgateway-dev/kgateway"
+     },
+     {
+      "kind": "contributing",
+      "repo": "zsviczian/obsidian-excalidraw-plugin"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "apple/container"
+     },
+     {
+      "kind": "readme",
+      "repo": "lint-staged/lint-staged"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "siderolabs/talos"
+     },
+     {
+      "kind": "security",
+      "repo": "PostHog/posthog"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "PostHog/posthog"
+     },
+     {
+      "kind": "contributing",
+      "repo": "NousResearch/hermes-agent"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "qdrant/fastembed"
+     },
+     {
+      "kind": "readme",
+      "repo": "dolthub/dolt"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "siderolabs/talos"
+     },
+     {
+      "kind": "security",
+      "repo": "hoppscotch/hoppscotch"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "pnpm/pnpm"
+     },
+     {
+      "kind": "contributing",
+      "repo": "OAI/OpenAPI-Specification"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "obsidian-tasks-group/obsidian-tasks"
+     },
+     {
+      "kind": "readme",
+      "repo": "casey/just"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "makeplane/plane"
+     },
+     {
+      "kind": "security",
+      "repo": "PostHog/posthog"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "gastownhall/gastown"
+     },
+     {
+      "kind": "contributing",
+      "repo": "tt-a1i/archify"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "trycua/cua"
+     },
+     {
+      "kind": "readme",
+      "repo": "lint-staged/lint-staged"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "altic-dev/FluidVoice"
+     },
+     {
+      "kind": "security",
+      "repo": "opencost/opencost"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "backstage/backstage"
+     },
+     {
+      "kind": "contributing",
+      "repo": "apache/apisix"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "cathrynlavery/diagram-design"
+     },
+     {
+      "kind": "readme",
+      "repo": "dolthub/dolt"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "excalidraw/excalidraw"
+     },
+     {
+      "kind": "security",
+      "repo": "ClickHouse/ClickHouse"
+     }
+    ],
+    "release": [
+     {
+      "kind": "agent_file",
+      "repo": "grafana/alloy"
+     },
+     {
+      "kind": "contributing",
+      "repo": "tt-a1i/archify"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "ClickHouse/ClickHouse"
+     },
+     {
+      "kind": "readme",
+      "repo": "OpenAPITools/openapi-generator"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "NousResearch/hermes-agent"
+     },
+     {
+      "kind": "security",
+      "repo": "tw93/Mole"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "zsviczian/obsidian-excalidraw-plugin"
+     },
+     {
+      "kind": "contributing",
+      "repo": "kubernetes-sigs/gateway-api"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "TanStack/router"
+     },
+     {
+      "kind": "readme",
+      "repo": "mysticaltech/terraform-hcloud-kube-hetzner"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "NousResearch/hermes-agent"
+     },
+     {
+      "kind": "security",
+      "repo": "trycua/cua"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "rabbitmq/rabbitmq-server"
+     },
+     {
+      "kind": "contributing",
+      "repo": "OAI/OpenAPI-Specification"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "tt-a1i/archify"
+     },
+     {
+      "kind": "readme",
+      "repo": "casey/just"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "kubernetes-sigs/gateway-api"
+     },
+     {
+      "kind": "security",
+      "repo": "trycua/cua"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "rabbitmq/rabbitmq-server"
+     },
+     {
+      "kind": "contributing",
+      "repo": "vitest-dev/vitest"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "pnpm/pnpm"
+     },
+     {
+      "kind": "readme",
+      "repo": "grafana/alloy"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "dolthub/dolt"
+     },
+     {
+      "kind": "security",
+      "repo": "spf13/cobra"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "stoplightio/prism"
+     },
+     {
+      "kind": "contributing",
+      "repo": "coollabsio/coolify"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "tt-a1i/archify"
+     },
+     {
+      "kind": "readme",
+      "repo": "deepseek-ai/DeepSeek-OCR"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "kubernetes-sigs/gateway-api"
+     },
+     {
+      "kind": "security",
+      "repo": "gastownhall/beads"
+     }
+    ],
+    "version": [
+     {
+      "kind": "agent_file",
+      "repo": "coollabsio/coolify"
+     },
+     {
+      "kind": "contributing",
+      "repo": "pypa/pipx"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "altic-dev/FluidVoice"
+     },
+     {
+      "kind": "readme",
+      "repo": "awesome-selfhosted/awesome-selfhosted"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "OpenAPITools/openapi-generator"
+     },
+     {
+      "kind": "security",
+      "repo": "caronc/apprise"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "zsviczian/obsidian-excalidraw-plugin"
+     },
+     {
+      "kind": "contributing",
+      "repo": "qdrant/fastembed"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "altic-dev/FluidVoice"
+     },
+     {
+      "kind": "readme",
+      "repo": "lint-staged/lint-staged"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "pnpm/pnpm"
+     },
+     {
+      "kind": "security",
+      "repo": "golang-migrate/migrate"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "pnpm/pnpm"
+     },
+     {
+      "kind": "contributing",
+      "repo": "strapi/strapi"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "rabbitmq/rabbitmq-server"
+     },
+     {
+      "kind": "readme",
+      "repo": "OpenAPITools/openapi-generator"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "pnpm/pnpm"
+     },
+     {
+      "kind": "security",
+      "repo": "pypa/pipx"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "rabbitmq/rabbitmq-server"
+     },
+     {
+      "kind": "contributing",
+      "repo": "bookorbit/bookorbit"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "altic-dev/FluidVoice"
+     },
+     {
+      "kind": "readme",
+      "repo": "awesome-selfhosted/awesome-selfhosted"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "starship/starship"
+     },
+     {
+      "kind": "security",
+      "repo": "cathrynlavery/diagram-design"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "tw93/Mole"
+     },
+     {
+      "kind": "contributing",
+      "repo": "bookorbit/bookorbit"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "prometheus-community/helm-charts"
+     },
+     {
+      "kind": "readme",
+      "repo": "exo-explore/exo"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "twentyhq/twenty"
+     },
+     {
+      "kind": "security",
+      "repo": "InvoicePlane/InvoicePlane"
+     }
+    ],
+    "user": [
+     {
+      "kind": "agent_file",
+      "repo": "zsviczian/obsidian-excalidraw-plugin"
+     },
+     {
+      "kind": "contributing",
+      "repo": "zsviczian/obsidian-excalidraw-plugin"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "ClickHouse/ClickHouse"
+     },
+     {
+      "kind": "readme",
+      "repo": "tt-a1i/archify"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "twentyhq/twenty"
+     },
+     {
+      "kind": "security",
+      "repo": "strapi/strapi"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "tw93/Mole"
+     },
+     {
+      "kind": "contributing",
+      "repo": "giscus/giscus"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "trycua/cua"
+     },
+     {
+      "kind": "readme",
+      "repo": "InvoicePlane/InvoicePlane"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "hoppscotch/hoppscotch"
+     },
+     {
+      "kind": "security",
+      "repo": "hoppscotch/hoppscotch"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "coollabsio/coolify"
+     },
+     {
+      "kind": "contributing",
+      "repo": "NousResearch/hermes-agent"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "kubernetes-sigs/gateway-api"
+     },
+     {
+      "kind": "readme",
+      "repo": "awesome-selfhosted/awesome-selfhosted"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "twentyhq/twenty"
+     },
+     {
+      "kind": "security",
+      "repo": "argoproj/argo-workflows"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "harbor-framework/harbor"
+     },
+     {
+      "kind": "contributing",
+      "repo": "backstage/backstage"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "prometheus/prometheus"
+     },
+     {
+      "kind": "readme",
+      "repo": "NousResearch/hermes-agent"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "gastownhall/gastown"
+     },
+     {
+      "kind": "security",
+      "repo": "hoppscotch/hoppscotch"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "PostHog/posthog"
+     },
+     {
+      "kind": "contributing",
+      "repo": "deuxfleurs-org/garage"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "obsidian-tasks-group/obsidian-tasks"
+     },
+     {
+      "kind": "readme",
+      "repo": "newren/git-filter-repo"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "jamiepine/voicebox"
+     },
+     {
+      "kind": "security",
+      "repo": "drumih/turbo-fieldfare"
+     }
+    ],
+    "maintainer": [
+     {
+      "kind": "agent_file",
+      "repo": "gastownhall/beads"
+     },
+     {
+      "kind": "contributing",
+      "repo": "gastownhall/beads"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "odysseus-dev/odysseus"
+     },
+     {
+      "kind": "readme",
+      "repo": "datamodel-code-generator/datamodel-code-generator"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "antvis/G6"
+     },
+     {
+      "kind": "security",
+      "repo": "prometheus-operator/prometheus-operator"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "zsviczian/obsidian-excalidraw-plugin"
+     },
+     {
+      "kind": "contributing",
+      "repo": "gastownhall/beads"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "bookorbit/bookorbit"
+     },
+     {
+      "kind": "readme",
+      "repo": "datamodel-code-generator/datamodel-code-generator"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "opencost/opencost"
+     },
+     {
+      "kind": "security",
+      "repo": "spf13/cobra"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "InvoicePlane/InvoicePlane"
+     },
+     {
+      "kind": "contributing",
+      "repo": "cline/cline"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "altic-dev/FluidVoice"
+     },
+     {
+      "kind": "readme",
+      "repo": "dograh-hq/dograh"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "jqlang/jq"
+     },
+     {
+      "kind": "security",
+      "repo": "pdm-project/pdm"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "grafana/alloy"
+     },
+     {
+      "kind": "contributing",
+      "repo": "unclecode/crawl4ai"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "keras-team/keras"
+     },
+     {
+      "kind": "readme",
+      "repo": "juanfont/headscale"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "jqlang/jq"
+     },
+     {
+      "kind": "security",
+      "repo": "prometheus-operator/prometheus-operator"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "trycua/cua"
+     },
+     {
+      "kind": "contributing",
+      "repo": "coollabsio/coolify"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "prometheus-operator/kube-prometheus"
+     },
+     {
+      "kind": "readme",
+      "repo": "amoffat/sh"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "jqlang/jq"
+     },
+     {
+      "kind": "security",
+      "repo": "trycua/cua"
+     }
+    ],
+    "contributor": [
+     {
+      "kind": "agent_file",
+      "repo": "gastownhall/beads"
+     },
+     {
+      "kind": "contributing",
+      "repo": "argoproj/argo-workflows"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "coollabsio/coolify"
+     },
+     {
+      "kind": "readme",
+      "repo": "OpenAPITools/openapi-generator"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "tw93/Mole"
+     },
+     {
+      "kind": "security",
+      "repo": "spf13/cobra"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "gastownhall/beads"
+     },
+     {
+      "kind": "contributing",
+      "repo": "kubernetes/ingress-nginx"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "bookorbit/bookorbit"
+     },
+     {
+      "kind": "readme",
+      "repo": "OpenAPITools/openapi-generator"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "altic-dev/FluidVoice"
+     },
+     {
+      "kind": "security",
+      "repo": "strapi/strapi"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "Automattic/harper"
+     },
+     {
+      "kind": "contributing",
+      "repo": "ghostty-org/ghostty"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "bookorbit/bookorbit"
+     },
+     {
+      "kind": "readme",
+      "repo": "casey/just"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "pi-hole/pi-hole"
+     },
+     {
+      "kind": "security",
+      "repo": "mysticaltech/terraform-hcloud-kube-hetzner"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "Automattic/harper"
+     },
+     {
+      "kind": "contributing",
+      "repo": "prometheus/prometheus"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "trycua/cua"
+     },
+     {
+      "kind": "readme",
+      "repo": "grafana/alloy"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "kgateway-dev/kgateway"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "tw93/Mole"
+     },
+     {
+      "kind": "contributing",
+      "repo": "opencost/opencost"
+     },
+     {
+      "kind": "pr_template",
+      "repo": "TryGhost/Ghost"
+     },
+     {
+      "kind": "readme",
+      "repo": "InvoicePlane/InvoicePlane"
+     },
+     {
+      "kind": "release_notes",
+      "repo": "caronc/apprise"
+     },
+     {
+      "kind": "agent_file",
+      "repo": "gastownhall/beads"
+     },
+     {
+      "kind": "contributing",
+      "repo": "vitest-dev/vitest"
+     }
+    ]
+   }
+  },
+  "precision": {
+   "rule": "10 positive files per flag; 7 release bodies per element",
+   "picks": [
+    {
+     "group": "contributing.route",
+     "repo": "TanStack/router",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "golang-migrate/migrate",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "tmux/tmux",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "stoplightio/prism",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "timescale/pgvectorscale",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "apache/apisix",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "kubernetes-sigs/gateway-api",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route",
+     "repo": "passteque/gluetun",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "TanStack/router",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "coollabsio/coolify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "jamiepine/voicebox",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "altic-dev/FluidVoice",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "gotify/server",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "gastownhall/beads",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "pocket-id/pocket-id",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.route_first",
+     "repo": "opencost/opencost",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "ghostty-org/ghostty",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "langfuse/langfuse",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "mountain-loop/yaak",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "oauth2-proxy/oauth2-proxy",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "cjpais/Handy",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "odysseus-dev/odysseus",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "cline/cline",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "frappe/books",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.refusal",
+     "repo": "pnpm/pnpm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "makeplane/plane",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "frappe/books",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "stoplightio/prism",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "PostHog/posthog",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "strapi/strapi",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "coollabsio/coolify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.evidence",
+     "repo": "mikefarah/yq",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "giscus/giscus",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "shikijs/shiki",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "makeplane/plane",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "tw93/Mole",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "TanStack/router",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "twentyhq/twenty",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "opencost/opencost",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.dev_setup",
+     "repo": "strapi/strapi",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "mikefarah/yq",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "NousResearch/hermes-agent",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "starship/starship",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "odysseus-dev/odysseus",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "n8n-io/n8n",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "bookorbit/bookorbit",
+     "path": "docs/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "aidenybai/react-scan",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.test_cmd",
+     "repo": "spf13/cobra",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "cline/cline",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "pocket-id/pocket-id",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "trycua/cua",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "prometheus/prometheus",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "coollabsio/coolify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "NousResearch/hermes-agent",
+     "path": "CONTRIBUTING.es.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.commit_fmt",
+     "repo": "langfuse/langfuse",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "n8n-io/n8n",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "timescale/pgvectorscale",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "backstage/backstage",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "spf13/cobra",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "strapi/strapi",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "tw93/Mole",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.cla_dco",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "n8n-io/n8n",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "juanfont/headscale",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "cjpais/Handy",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "langfuse/langfuse",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "pocket-id/pocket-id",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "pnpm/pnpm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "cline/cline",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "vale-cli/vale",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "dograh-hq/dograh",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.ai",
+     "repo": "ghostty-org/ghostty",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "hoppscotch/hoppscotch",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "pypa/pipx",
+     "path": "docs/contributing.rst"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "strapi/strapi",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "spf13/cobra",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.conduct",
+     "repo": "renovatebot/renovate",
+     "path": ".github/contributing.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "lysyi3m/macos-terminal-themes",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "backstage/backstage",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": "docs/contributing.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "mikefarah/yq",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "renovatebot/renovate",
+     "path": ".github/contributing.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "prometheus/prometheus",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "coollabsio/coolify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "pdm-project/pdm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.style",
+     "repo": "frappe/books",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "pnpm/pnpm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "coollabsio/coolify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "prometheus/prometheus",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "strapi/strapi",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "renovatebot/renovate",
+     "path": ".github/contributing.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "deuxfleurs-org/garage",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "NousResearch/hermes-agent",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "ghostty-org/ghostty",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.review",
+     "repo": "keras-team/keras",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "trycua/cua",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "unclecode/crawl4ai",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "vitest-dev/vitest",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "phuryn/pm-skills",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "withastro/astro",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "kyverno/kyverno",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "langfuse/langfuse",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "pypa/pipx",
+     "path": "docs/contributing.rst"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "tt-a1i/archify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.release",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "kubernetes/ingress-nginx",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "argoproj/argo-workflows",
+     "path": "docs/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "OAI/OpenAPI-Specification",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "coollabsio/coolify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "n8n-io/n8n",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.channel",
+     "repo": "exo-explore/exo",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "gastownhall/beads",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "trycua/cua",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "starship/starship",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "tt-a1i/archify",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "n8n-io/n8n",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "json-schema-faker/json-schema-faker",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "qdrant/qdrant",
+     "path": "docs/CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "langfuse/langfuse",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "contributing.contrib_license",
+     "repo": "apache/apisix",
+     "path": "CONTRIBUTING.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "virattt/ai-hedge-fund",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "apache/apisix",
+     "path": ".github/ISSUE_TEMPLATE/request_help.yml"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "qdrant/qdrant",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "starship/starship",
+     "path": ".github/ISSUE_TEMPLATE/Bug_report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": ".github/ISSUE_TEMPLATE/---bug-report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "deepseek-ai/DeepSeek-V3",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "kyverno/kyverno",
+     "path": ".github/ISSUE_TEMPLATE/feature.yaml"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "caronc/apprise",
+     "path": ".github/ISSUE_TEMPLATE/1_bug_report.md"
+    },
+    {
+     "group": "issue_template.observed",
+     "repo": "mikefarah/yq",
+     "path": ".github/ISSUE_TEMPLATE/bug_report_v4.md"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "jqlang/jq",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "vale-cli/vale",
+     "path": ".github/ISSUE_TEMPLATE/1_bug_report.yml"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": ".github/ISSUE_TEMPLATE/bug.yml"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "twpayne/chezmoi",
+     "path": ".github/ISSUE_TEMPLATE/03_bug_report.md"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "gastownhall/beads",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "starship/starship",
+     "path": ".github/ISSUE_TEMPLATE/Bug_report.md"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "router-for-me/CLIProxyAPI",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "NousResearch/hermes-agent",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.expected",
+     "repo": "tt-a1i/archify",
+     "path": ".github/ISSUE_TEMPLATE/bug-report.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "latitude-dev/latitude-llm",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "pocket-id/pocket-id",
+     "path": ".github/ISSUE_TEMPLATE/bug.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "qdrant/qdrant",
+     "path": ".github/ISSUE_TEMPLATE/model_testing_failure.md"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "trycua/cua",
+     "path": ".github/ISSUE_TEMPLATE/bug.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "apple/container",
+     "path": ".github/ISSUE_TEMPLATE/01-bug.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "cathrynlavery/diagram-design",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "antvis/G6",
+     "path": ".github/ISSUE_TEMPLATE/1.bug_report.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "oauth2-proxy/oauth2-proxy",
+     "path": ".github/ISSUE_TEMPLATE/bug-report.yml"
+    },
+    {
+     "group": "issue_template.repro",
+     "repo": "frappe/books",
+     "path": ".github/ISSUE_TEMPLATE/1-bug_template.yml"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "dograh-hq/dograh",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "apache/devlake",
+     "path": ".github/ISSUE_TEMPLATE/question.md"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "qdrant/qdrant",
+     "path": ".github/ISSUE_TEMPLATE/flaky_test.md"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "kyverno/kyverno",
+     "path": ".github/ISSUE_TEMPLATE/bug-webhook.yaml"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "caronc/apprise",
+     "path": ".github/ISSUE_TEMPLATE/1_bug_report.md"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "pdm-project/pdm",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "starship/starship",
+     "path": ".github/ISSUE_TEMPLATE/Bug_report.md"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "javascript-obfuscator/javascript-obfuscator",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "prometheus/prometheus",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.environment",
+     "repo": "vale-cli/vale",
+     "path": ".github/ISSUE_TEMPLATE/1_bug_report.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": ".github/ISSUE_TEMPLATE/bug.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "qdrant/qdrant",
+     "path": ".github/ISSUE_TEMPLATE/flaky_test.md"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "qdrant/fastembed",
+     "path": ".github/ISSUE_TEMPLATE/bug-report.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "tmux/tmux",
+     "path": ".github/ISSUE_TEMPLATE/use-this-issue-template.md"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "unclecode/crawl4ai",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "NousResearch/hermes-agent",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "trycua/cua",
+     "path": ".github/ISSUE_TEMPLATE/bug.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "latitude-dev/latitude-llm",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.logs",
+     "repo": "cjpais/Handy",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "bookorbit/bookorbit",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": ".github/ISSUE_TEMPLATE/release-notes.yml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "trycua/cua",
+     "path": ".github/ISSUE_TEMPLATE/feature.yml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "trycua/cua",
+     "path": ".github/ISSUE_TEMPLATE/rfc.yml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": ".github/ISSUE_TEMPLATE/bug.yaml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "hoppscotch/hoppscotch",
+     "path": ".github/ISSUE_TEMPLATE/--feature-request.yaml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "argoproj/argo-workflows",
+     "path": ".github/ISSUE_TEMPLATE/regression.yaml"
+    },
+    {
+     "group": "issue_template.duplicates",
+     "repo": "outline/outline",
+     "path": ".github/ISSUE_TEMPLATE/bug_report.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "tw93/Mole",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.md"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "altic-dev/FluidVoice",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "grafana/alloy",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yaml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "drumih/turbo-fieldfare",
+     "path": ".github/ISSUE_TEMPLATE/feature.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "vale-cli/vale",
+     "path": ".github/ISSUE_TEMPLATE/0_feature_request.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.md"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "latitude-dev/latitude-llm",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "frappe/books",
+     "path": ".github/ISSUE_TEMPLATE/2-feature_template.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "PostHog/posthog",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yml"
+    },
+    {
+     "group": "issue_template.feature",
+     "repo": "timescale/pgvectorscale",
+     "path": ".github/ISSUE_TEMPLATE/feature_request.yml"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "drumih/turbo-fieldfare",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "altic-dev/FluidVoice",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "strapi/strapi",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "PostHog/posthog",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "trycua/cua",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "n8n-io/n8n",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.description",
+     "repo": "shikijs/shiki",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "langfuse/langfuse",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "Egonex-AI/Understand-Anything",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "prometheus/prometheus",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "InvoicePlane/InvoicePlane",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "odysseus-dev/odysseus",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "argoproj/argo-workflows",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "coollabsio/coolify",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.related_issue",
+     "repo": "apache/apisix",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "minio/minio",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "apache/devlake",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "makeplane/plane",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "NousResearch/hermes-agent",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "n8n-io/n8n",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "starship/starship",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "cathrynlavery/diagram-design",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "openai/evals",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.verification",
+     "repo": "dograh-hq/dograh",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "dograh-hq/dograh",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "pnpm/pnpm",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "passteque/gluetun",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "shikijs/shiki",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "latitude-dev/latitude-llm",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "OpenAPITools/openapi-generator",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "siderolabs/talos",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.checklist",
+     "repo": "qdrant/fastembed",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "langfuse/langfuse",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "apple/container",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "opencost/opencost",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "odysseus-dev/odysseus",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "cline/cline",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "gastownhall/gastown",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.breaking",
+     "repo": "minio/minio",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "juanfont/headscale",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "prometheus/prometheus",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "oauth2-proxy/oauth2-proxy",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "prometheus-operator/prometheus-operator",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "ClickHouse/ClickHouse",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "kgateway-dev/kgateway",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "mermaid-js/mermaid",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.release_note",
+     "repo": "pnpm/pnpm",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "cathrynlavery/diagram-design",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "trycua/cua",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "starship/starship",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "tt-a1i/archify",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "makeplane/plane",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "cline/cline",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "odysseus-dev/odysseus",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "pocket-id/pocket-id",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "langfuse/langfuse",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.screenshots",
+     "repo": "altic-dev/FluidVoice",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "passteque/gluetun",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "langfuse/langfuse",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "cline/cline",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "odysseus-dev/odysseus",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "qdrant/fastembed",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "coollabsio/coolify",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "CorentinTh/it-tools",
+     "path": ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.change_type",
+     "repo": "kyverno/kyverno",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "kyverno/kyverno",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "apache/apisix",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "NousResearch/hermes-agent",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "makeplane/plane",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "caronc/apprise",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "obsidian-tasks-group/obsidian-tasks",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.docs",
+     "repo": "gastownhall/beads",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "argoproj/argo-workflows",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "kyverno/kyverno",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "renovatebot/renovate",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "odysseus-dev/odysseus",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "pocket-id/pocket-id",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "starship/starship",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "Automattic/harper",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "shikijs/shiki",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.ai",
+     "repo": "twpayne/chezmoi",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "latitude-dev/latitude-llm",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "prometheus/prometheus",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "renovatebot/renovate",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "backstage/backstage",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "oauth2-proxy/oauth2-proxy",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "apache/devlake",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.cla_dco",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "juanfont/headscale",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "cjpais/Handy",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "twpayne/chezmoi",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "strapi/strapi",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "openai/evals",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "qdrant/fastembed",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "renovatebot/renovate",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.contributing_link",
+     "repo": "pocket-id/pocket-id",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "pocket-id/pocket-id",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "kubernetes/ingress-nginx",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "unclecode/crawl4ai",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "strapi/strapi",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "grafana/alloy",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "prometheus-community/helm-charts",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "exo-explore/exo",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "siderolabs/talos",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "altic-dev/FluidVoice",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.alternatives",
+     "repo": "pnpm/pnpm",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "tw93/Mole",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "gastownhall/beads",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "renovatebot/renovate",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "juanfont/headscale",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "NousResearch/hermes-agent",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "tt-a1i/archify",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "trycua/cua",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "TanStack/router",
+     "path": ".github/pull_request_template.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "apache/apisix",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "pr_template.risk",
+     "repo": "opencost/opencost",
+     "path": ".github/PULL_REQUEST_TEMPLATE.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "strapi/strapi",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "pdm-project/pdm",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "javascript-obfuscator/javascript-obfuscator",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "argoproj/argo-workflows",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "PostHog/posthog",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "router-for-me/CLIProxyAPI",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "kyverno/kyverno",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "ClickHouse/ClickHouse",
+     "path": ".claude/CLAUDE.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "ghostty-org/ghostty",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.build_cmd",
+     "repo": "prometheus/prometheus",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "stoplightio/prism",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "langfuse/langfuse",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "dograh-hq/dograh",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "coollabsio/coolify",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "twentyhq/twenty",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "pdm-project/pdm",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "PostHog/posthog",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.test_cmd",
+     "repo": "vitest-dev/vitest",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "stoplightio/prism",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "pnpm/pnpm",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "javascript-obfuscator/javascript-obfuscator",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "apache/devlake",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "PostHog/posthog",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "n8n-io/n8n",
+     "path": ".github/CLAUDE.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "kyverno/kyverno",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "ClickHouse/ClickHouse",
+     "path": ".claude/CLAUDE.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "grafana/alloy",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.style",
+     "repo": "prometheus/prometheus",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "vitest-dev/vitest",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "cline/cline",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "renovatebot/renovate",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "langfuse/langfuse",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "oxc-project/oxc",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "argoproj/argo-workflows",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "javascript-obfuscator/javascript-obfuscator",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.generated",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "kyverno/kyverno",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "bookorbit/bookorbit",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "aidenybai/react-scan",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "PostHog/posthog",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "langfuse/langfuse",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "phuryn/pm-skills",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "opencost/opencost",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.pre_commit_checks",
+     "repo": "gastownhall/beads",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "prometheus-community/helm-charts",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "zsviczian/obsidian-excalidraw-plugin",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "tw93/Mole",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "prometheus-community/helm-charts",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "withastro/astro",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "juanfont/headscale",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "coollabsio/coolify",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "tw93/Mole",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.ask_first",
+     "repo": "cjpais/Handy",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "passteque/gluetun",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "harbor-framework/harbor",
+     "path": "docs/CLAUDE.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "backstage/backstage",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "n8n-io/n8n",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "tw93/Mole",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "NousResearch/hermes-agent",
+     "path": "skills/AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "argoproj/argo-workflows",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "PostHog/posthog",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.prohibitions",
+     "repo": "vitest-dev/vitest",
+     "path": "docs/AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "exo-explore/exo",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "PostHog/posthog",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "kgateway-dev/kgateway",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "vitest-dev/vitest",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "vitest-dev/vitest",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "tw93/Mole",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "bookorbit/bookorbit",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "TryGhost/Ghost",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.layout",
+     "repo": "phuryn/pm-skills",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "PostHog/posthog",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "argoproj/argo-workflows",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "n8n-io/n8n",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "n8n-io/n8n",
+     "path": ".github/CLAUDE.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "mikefarah/yq",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "TanStack/router",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "renovatebot/renovate",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "GEMINI.md"
+    },
+    {
+     "group": "agent.git_conv",
+     "repo": "renovatebot/renovate",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "juanfont/headscale",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "Egonex-AI/Understand-Anything",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "NousResearch/hermes-agent",
+     "path": "agent/AGENTS.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "InvoicePlane/InvoicePlane",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "twentyhq/twenty",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "PostHog/posthog",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.security",
+     "repo": "prometheus/prometheus",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "strapi/strapi",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "pnpm/pnpm",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "kubernetes-sigs/external-dns",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "router-for-me/CLIProxyAPI",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "tt-a1i/archify",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "trycua/cua",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "kyverno/kyverno",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "vitest-dev/vitest",
+     "path": ".github/copilot-instructions.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "n8n-io/n8n",
+     "path": "AGENTS.md"
+    },
+    {
+     "group": "agent.points_elsewhere",
+     "repo": "n8n-io/n8n",
+     "path": "CLAUDE.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "makeplane/plane",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "kgateway-dev/kgateway",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "drumih/turbo-fieldfare",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "NousResearch/hermes-agent",
+     "path": "SECURITY.es.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "spf13/cobra",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "dograh-hq/dograh",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "RooCodeInc/Roo-Code",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "starship/starship",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.channel",
+     "repo": "langfuse/langfuse",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "pdm-project/pdm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "microsoft/fara",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "gastownhall/beads",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "oxc-project/oxc",
+     "path": ".github/SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "starship/starship",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "spf13/cobra",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "gastownhall/gastown",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "twentyhq/twenty",
+     "path": ".github/SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "keras-team/keras",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.contents",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "f/textream",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "pnpm/pnpm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "pdm-project/pdm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "amoffat/sh",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "trycua/cua",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "tw93/Mole",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "siderolabs/talos",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.supported_versions",
+     "repo": "strapi/strapi",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "gastownhall/beads",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "spf13/cobra",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "pdm-project/pdm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "makeplane/plane",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "withastro/astro",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "jamiepine/voicebox",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "minio/minio",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.reply_time",
+     "repo": "siderolabs/talos",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "renovatebot/renovate",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "mikefarah/yq",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "golang-migrate/migrate",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": ".github/SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "unclecode/crawl4ai",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "strapi/strapi",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "gotify/server",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "Egonex-AI/Understand-Anything",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "makeplane/plane",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.disclosure",
+     "repo": "microsoft/fara",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "mikefarah/yq",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "vale-cli/vale",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "strapi/strapi",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "hoppscotch/hoppscotch",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "pnpm/pnpm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "unclecode/crawl4ai",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "gastownhall/gastown",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "NousResearch/hermes-agent",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "vitest-dev/vitest",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.scope",
+     "repo": "apache/apisix",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "backstage/backstage",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "strapi/strapi",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "pnpm/pnpm",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "twentyhq/twenty",
+     "path": ".github/SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "NousResearch/hermes-agent",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "dolthub/dolt",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "ClickHouse/ClickHouse",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "security.bounty",
+     "repo": "microsoft/fara",
+     "path": "SECURITY.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "juanfont/headscale",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "Ranchero-Software/NetNewsWire",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "cline/cline",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "shikijs/shiki",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": "code-of-conduct.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "twpayne/chezmoi",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "mermaid-js/mermaid",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.covenant",
+     "repo": "starship/starship",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "mermaid-js/mermaid",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "cline/cline",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "shikijs/shiki",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "aidenybai/react-scan",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "mikefarah/yq",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "unclecode/crawl4ai",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "d2lang/d2",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.unacceptable",
+     "repo": "qdrant/qdrant",
+     "path": "docs/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "bookorbit/bookorbit",
+     "path": "docs/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "Ranchero-Software/NetNewsWire",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "grafana/alloy",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "mermaid-js/mermaid",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "cline/cline",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "makeplane/plane",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "latitude-dev/latitude-llm",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.report",
+     "repo": "oxc-project/oxc",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "mermaid-js/mermaid",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "coollabsio/coolify",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "vale-cli/vale",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "renovatebot/renovate",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "qdrant/qdrant",
+     "path": "docs/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "strapi/strapi",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "Egonex-AI/Understand-Anything",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "starship/starship",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "unclecode/crawl4ai",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.consequences",
+     "repo": "d2lang/d2",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "juanfont/headscale",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": "code-of-conduct.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "cathrynlavery/diagram-design",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "pnpm/pnpm",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "TryGhost/Ghost",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "starship/starship",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "d2lang/d2",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "twentyhq/twenty",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.scope",
+     "repo": "siderolabs/talos",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "juanfont/headscale",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "prometheus-operator/kube-prometheus",
+     "path": "code-of-conduct.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "coollabsio/coolify",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "pnpm/pnpm",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "aidenybai/react-scan",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "starship/starship",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "twentyhq/twenty",
+     "path": ".github/CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "rabbitmq/rabbitmq-server",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "code_of_conduct.enforcers",
+     "repo": "siderolabs/talos",
+     "path": "CODE_OF_CONDUCT.md"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "tag": "0.76.0"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "OAI/OpenAPI-Specification",
+     "tag": "3.0.3"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "kubernetes-sigs/external-dns",
+     "tag": "external-dns-helm-chart-1.22.0"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "tag": "0.82.0"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "argoproj/argo-workflows",
+     "tag": "v3.7.18"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "tag": "0.77.0"
+    },
+    {
+     "group": "release.breaking_change",
+     "repo": "argoproj/argo-workflows",
+     "tag": "v4.1.4"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "speaches-ai/speaches",
+     "tag": "v0.9.0-rc.3"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "datamodel-code-generator/datamodel-code-generator",
+     "tag": "0.76.0"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "hoppscotch/hoppscotch",
+     "tag": "2026.7.0"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "spf13/cobra",
+     "tag": "v1.6.0"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "rabbitmq/rabbitmq-server",
+     "tag": "v4.3.0"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "siderolabs/talos",
+     "tag": "v1.14.0-rc.1"
+    },
+    {
+     "group": "release.deprecations",
+     "repo": "keras-team/keras",
+     "tag": "v3.12.2"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "cloudnative-pg/cloudnative-pg",
+     "tag": "v1.30.1"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "pnpm/pnpm",
+     "tag": "v12.9.0"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "minio/minio",
+     "tag": "RELEASE.2025-04-03T14-56-28Z"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "InvoicePlane/InvoicePlane",
+     "tag": "v1.7.2-rc-2"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "kgateway-dev/kgateway",
+     "tag": "v2.4.6"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "keras-team/keras",
+     "tag": "v3.15.1"
+    },
+    {
+     "group": "release.security_fixes",
+     "repo": "excalidraw/excalidraw",
+     "tag": "v0.18.1"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "juanfont/headscale",
+     "tag": "v0.29.1"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "kubernetes-sigs/external-dns",
+     "tag": "v0.22.0"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+     "tag": "v3.0.1"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "InvoicePlane/InvoicePlane",
+     "tag": "v1.7.2"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "juanfont/headscale",
+     "tag": "v0.29.4"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "backstage/backstage",
+     "tag": "v1.55.0"
+    },
+    {
+     "group": "release.upgrade_steps",
+     "repo": "qdrant/fastembed",
+     "tag": "v0.8.1"
+    }
+   ]
+  }
+ }
+}

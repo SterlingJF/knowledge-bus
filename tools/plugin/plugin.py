@@ -31,12 +31,32 @@ EXPLORER_ASSETS = {
     "explorer/prebuilt/viewer.js": "runtime/explorer-viewer.js",
     "explorer/prebuilt/viewer.json": "runtime/explorer-viewer.json",
 }
+
+
+def presets(root=ROOT):
+    """List the shipped presets: each folder under universes/ with a universe spec."""
+    return tuple(
+        sorted(
+            path.parent.name
+            for path in (root / "universes").glob("*/universe.kbp.yaml")
+        )
+    )
+
+
+def preset_files(root=ROOT):
+    """Map each preset's universe spec and guidance files to their bundled paths."""
+    return {
+        f"universes/{name}/{path.name}": f"references/{name}/{path.name}"
+        for name in presets(root)
+        for path in sorted((root / "universes" / name).glob("*.kbp.yaml"))
+    }
+
+
 REFERENCES = {
     "docs/agent-runtime.md": "references/agent-runtime.md",
     "docs/knowledge-bus-directory.md": "references/knowledge-bus-directory.md",
     "protocol/knowledge-bus-protocol.yaml": "references/knowledge-bus-protocol.yaml",
-    "universes/product-development/universe.kbp.yaml": "references/product-development/universe.kbp.yaml",
-    "universes/product-development/type-guidance.kbp.yaml": "references/product-development/type-guidance.kbp.yaml",
+    **preset_files(),
 }
 
 
@@ -335,55 +355,62 @@ def runtime_check(plugin, root=ROOT):
             ):
                 raise ValueError("Runtime reports wrong release version.")
             run(sys.executable, launcher, "--self-check", cwd=base, env=env)
-            target = base / "notes/.knowledge-bus"
-            shutil.copytree(root / "universes/product-development", target)
-            source = base / "notes/source.md"
-            source.write_text("User content is untouched.\n")
-            snapshot = {
-                p: p.read_bytes() for p in target.parent.rglob("*") if p.is_file()
-            }
-            nested = target.parent / "nested"
-            nested.mkdir()
-            run(sys.executable, launcher, cwd=nested, env=env)
-            run(
-                sys.executable,
-                launcher,
-                "--mint",
-                "element",
-                "2",
-                str(target),
-                cwd=base,
-                env=env,
-            )
-            inspected = json.loads(
+            snapshots = {}
+            for name in presets(root):
+                target = base / name / "notes/.knowledge-bus"
+                shutil.copytree(root / "universes" / name, target)
+                source = target.parent / "source.md"
+                source.write_text("User content is untouched.\n")
+                snapshot = {
+                    p: p.read_bytes() for p in target.parent.rglob("*") if p.is_file()
+                }
+                snapshots[target.parent] = snapshot
+                nested = target.parent / "nested"
+                nested.mkdir()
+                run(sys.executable, launcher, cwd=nested, env=env)
                 run(
                     sys.executable,
                     launcher,
-                    "--inspect",
+                    "--mint",
+                    "element",
+                    "2",
                     str(target),
                     cwd=base,
                     env=env,
                 )
-            )
-            if inspected.get("schema") != "knowledge-bus/explorer-model/1":
-                raise ValueError("Installed inspection returned an unsupported model.")
-            artifact = base / "portable/product-development"
-            receipt = json.loads(
-                run(
-                    sys.executable,
-                    launcher,
-                    "--explore",
-                    "--output",
-                    str(artifact),
-                    str(target),
-                    cwd=base,
-                    env=env,
+                inspected = json.loads(
+                    run(
+                        sys.executable,
+                        launcher,
+                        "--inspect",
+                        str(target),
+                        cwd=base,
+                        env=env,
+                    )
                 )
-            )
-            if receipt.get("schema") != "knowledge-bus/explorer-artifact/1" or {
-                path.name for path in artifact.iterdir()
-            } != {"index.html", "model.json", "receipt.json"}:
-                raise ValueError("Installed static Explorer artifact is incomplete.")
+                if inspected.get("schema") != "knowledge-bus/explorer-model/1":
+                    raise ValueError(
+                        "Installed inspection returned an unsupported model."
+                    )
+                artifact = base / "portable" / name
+                receipt = json.loads(
+                    run(
+                        sys.executable,
+                        launcher,
+                        "--explore",
+                        "--output",
+                        str(artifact),
+                        str(target),
+                        cwd=base,
+                        env=env,
+                    )
+                )
+                if receipt.get("schema") != "knowledge-bus/explorer-artifact/1" or {
+                    path.name for path in artifact.iterdir()
+                } != {"index.html", "model.json", "receipt.json"}:
+                    raise ValueError(
+                        "Installed static Explorer artifact is incomplete."
+                    )
             for fixture in sorted(
                 (root / "protocol/conformance/pass").glob("*.kbp.yaml")
             ):
@@ -420,10 +447,11 @@ def runtime_check(plugin, root=ROOT):
                 raise ValueError(
                     "Runtime silently accepted or initialized missing definitions."
                 )
-            if {
-                p: p.read_bytes() for p in target.parent.rglob("*") if p.is_file()
-            } != snapshot:
-                raise ValueError("Runtime changed user files.")
+            for folder, snapshot in snapshots.items():
+                if {
+                    p: p.read_bytes() for p in folder.rglob("*") if p.is_file()
+                } != snapshot:
+                    raise ValueError("Runtime changed user files.")
     finally:
         for p, mode in modes.items():
             p.chmod(mode)

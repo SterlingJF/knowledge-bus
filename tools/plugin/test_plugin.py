@@ -74,6 +74,51 @@ def test_all_adapters_share_skills_and_references(tmp_path, wheel):
             assert left == right
 
 
+def test_presets_list_each_universe_folder_and_its_kbp_files(tmp_path):
+    for name in ("second-preset", "first-preset"):
+        folder = tmp_path / "universes" / name
+        folder.mkdir(parents=True)
+        (folder / "universe.kbp.yaml").write_text("universe: {}\n")
+        (folder / "type-guidance.kbp.yaml").write_text("guidance: {}\n")
+    (tmp_path / "universes/first-preset/marks.explorer.yaml").write_text("{}\n")
+    (tmp_path / "universes/drafts").mkdir()
+    (tmp_path / "universes/drafts/notes.md").write_text("# Notes\n")
+    assert plugin.presets(tmp_path) == ("first-preset", "second-preset")
+    assert plugin.preset_files(tmp_path) == {
+        f"universes/{name}/{file}": f"references/{name}/{file}"
+        for name in ("first-preset", "second-preset")
+        for file in ("type-guidance.kbp.yaml", "universe.kbp.yaml")
+    }
+
+
+def test_repository_ships_both_presets():
+    assert plugin.presets() == ("codebase-recordkeeping", "product-development")
+
+
+def test_host_package_carries_every_preset(assembled):
+    for name in plugin.presets():
+        sources = sorted((ROOT / "universes" / name).glob("*.kbp.yaml"))
+        bundled = sorted((assembled / "references" / name).iterdir())
+        assert [path.name for path in bundled] == [path.name for path in sources]
+        for source, copy in zip(sources, bundled):
+            assert copy.read_bytes() == source.read_bytes()
+
+
+def test_ingest_skill_alone_carries_every_preset():
+    for skill in plugin.SKILLS:
+        for name in plugin.presets():
+            folder = ROOT / "skills" / skill / "references" / name
+            if skill != "kb-ingest":
+                assert not folder.exists()
+                continue
+            sources = sorted((ROOT / "universes" / name).glob("*.kbp.yaml"))
+            assert sorted(path.name for path in folder.iterdir()) == [
+                path.name for path in sources
+            ]
+            for source in sources:
+                assert (folder / source.name).read_bytes() == source.read_bytes()
+
+
 def test_host_package_carries_one_fresh_shared_viewer_bundle(assembled):
     """All six host skills share one verified prebuilt viewer payload."""
     viewers = list(assembled.rglob("explorer-viewer.js"))

@@ -9,7 +9,7 @@ knowledge-bus = { workspace = true }
 dev = ["knowledge-bus", "pytest>=8.0", "PyYAML==6.0.3", "ruff"]
 
 [tool.pytest.ini_options]
-testpaths = ["checker/tests", "tools/release", "tools/plugin", "tools/evals"]
+testpaths = ["checker/tests", "tools/release", "tools/plugin", "tools/evals", "tools/research"]
 
 [tool.ruff]
 target-version = "py314"

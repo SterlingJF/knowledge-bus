@@ -1,4 +1,4 @@
-"""The report builder: run folders in, small summaries and evals/report.md out, no model calls."""
+"""The report builder: listed runs in, small summaries and evals/report.md out, no model calls."""
 
 import json
 import re
@@ -948,8 +948,8 @@ def test_one_run_per_measure_per_side_holds_for_each_universe_separately(tmp_pat
         grade_folder(tmp_path / name, ANTHROPIC_ROWS, universe=universe)
     one = entries_file(
         tmp_path,
-        {"side": "anthropic", "folder": "a"},
-        {"side": "anthropic", "folder": "b"},
+        {"side": "anthropic", "id": "a"},
+        {"side": "anthropic", "id": "b"},
     )
     assert [s["universe"] for s in report.collect(one, tmp_path / "r", tmp_path)] == [
         "x",
@@ -957,8 +957,8 @@ def test_one_run_per_measure_per_side_holds_for_each_universe_separately(tmp_pat
     ]
     two = entries_file(
         tmp_path,
-        {"side": "anthropic", "folder": "a"},
-        {"side": "anthropic", "folder": "c"},
+        {"side": "anthropic", "id": "a"},
+        {"side": "anthropic", "id": "c"},
     )
     with pytest.raises(report.ReportError, match="grade of x.*anthropic"):
         report.collect(two, tmp_path / "r", tmp_path)
@@ -982,25 +982,141 @@ def test_the_same_inputs_give_the_same_bytes(tmp_path):
 def test_collect_summarises_folders_or_falls_back_to_committed_summaries(tmp_path):
     folder = grade_folder(tmp_path / "grade-1", ANTHROPIC_ROWS)
     results = tmp_path / "results"
-    runs = entries_file(tmp_path, {"side": "anthropic", "folder": "grade-1"})
-    (first,) = report.collect(runs, results, root=tmp_path)
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    (first,) = report.collect(runs, results, run_folders=tmp_path)
     assert first["id"] == "grade-1"
     report.write_all(
         runs,
         results,
         tmp_path / "report.md",
         RETIRED,
-        root=tmp_path,
+        run_folders=tmp_path,
     )
     assert json.loads((results / "grade-1.json").read_text()) == first
     for name in ("run.json", "verdicts.jsonl"):
         (folder / name).unlink()
     folder.rmdir()
-    (again,) = report.collect(runs, results, root=tmp_path)
+    (again,) = report.collect(runs, results, run_folders=tmp_path)
     assert again == first
     (results / "grade-1.json").unlink()
     with pytest.raises(report.ReportError, match="grade-1"):
-        report.collect(runs, results, root=tmp_path)
+        report.collect(runs, results, run_folders=tmp_path)
+
+
+def test_run_folders_are_found_by_run_id_at_any_depth_in_any_layout(tmp_path):
+    held = tmp_path / "held"
+    graded = grade_folder(held / "2026-10-06/evals/grade-1", ANTHROPIC_ROWS)
+    calibrated = calibration_folder(
+        held / "pr-12-capabilities/evals/cal-1", [chain("r1", 1, 1, 0, 0, 0, 0)]
+    )
+    runs = entries_file(
+        tmp_path,
+        {"side": "anthropic", "id": "grade-1"},
+        {"side": "anthropic", "id": "cal-1"},
+    )
+    assert report.collect(runs, tmp_path / "results", run_folders=held) == [
+        summary(graded),
+        summary(calibrated),
+    ]
+
+
+def test_a_run_folder_given_as_the_run_folders_root_is_found(tmp_path):
+    graded = grade_folder(tmp_path / "held" / "grade-1", ANTHROPIC_ROWS)
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    assert report.collect(runs, tmp_path / "results", run_folders=graded) == [
+        summary(graded)
+    ]
+
+
+def test_a_run_id_carried_by_two_folders_is_refused(tmp_path):
+    for layout in ("2026-10-06/evals", "pr-12-capabilities/evals"):
+        grade_folder(tmp_path / "held" / layout / "grade-1", ANTHROPIC_ROWS)
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    with pytest.raises(report.ReportError, match="grade-1: 2 folders"):
+        report.collect(runs, tmp_path / "results", run_folders=tmp_path / "held")
+
+
+def test_a_run_missing_from_the_run_folders_keeps_its_committed_summary(
+    tmp_path, capsys
+):
+    grade_folder(tmp_path / "old" / "grade-1", ANTHROPIC_ROWS)
+    results, out = tmp_path / "results", tmp_path / "report.md"
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    report.write_all(runs, results, out, RETIRED, run_folders=tmp_path / "old")
+    committed = (results / "grade-1.json").read_text()
+    (tmp_path / "new").mkdir()
+    report.write_all(runs, results, out, RETIRED, run_folders=tmp_path / "new")
+    assert (results / "grade-1.json").read_text() == committed
+    assert "grade-1: no run folder under" in capsys.readouterr().err
+    assert report.drift(runs, results, out, RETIRED) == []
+
+
+def test_a_refused_build_prints_only_the_refusal(tmp_path, capsys):
+    grade_folder(tmp_path / "old" / "grade-1", ANTHROPIC_ROWS)
+    results, out = tmp_path / "results", tmp_path / "report.md"
+    one = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    report.write_all(one, results, out, RETIRED, run_folders=tmp_path / "old")
+    for layout in ("2026-10-06/evals", "pr-12-capabilities/evals"):
+        calibration_folder(
+            tmp_path / "held" / layout / "cal-1", [chain("r1", 1, 1, 0, 0, 0, 0)]
+        )
+    both = entries_file(
+        tmp_path,
+        {"side": "anthropic", "id": "grade-1"},
+        {"side": "anthropic", "id": "cal-1"},
+    )
+    with pytest.raises(report.ReportError, match="cal-1: 2 folders"):
+        report.collect(both, results, run_folders=tmp_path / "held")
+    assert capsys.readouterr().err == ""
+
+
+def test_without_run_folders_only_the_committed_summaries_are_read(tmp_path):
+    folder = grade_folder(tmp_path / "grade-1", ANTHROPIC_ROWS)
+    results, out = tmp_path / "results", tmp_path / "report.md"
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    report.write_all(runs, results, out, RETIRED, run_folders=tmp_path)
+    committed = json.loads((results / "grade-1.json").read_text())
+    (folder / "verdicts.jsonl").write_text("")
+    assert report.collect(runs, results) == [committed]
+    report.write_all(runs, results, out, RETIRED)
+    assert report.drift(runs, results, out, RETIRED) == []
+    (results / "grade-1.json").unlink()
+    with pytest.raises(
+        report.ReportError, match="summarise grade-1, pass --run-folders"
+    ):
+        report.collect(runs, results)
+
+
+@pytest.mark.parametrize(
+    "entry, said",
+    [
+        ({"side": "anthropic", "folder": ".evidence/2026-10-06/evals/g"}, "has no id"),
+        ({"side": "anthropic", "id": ".evidence/2026-10-06/evals/g"}, "is a path"),
+    ],
+)
+def test_each_run_is_listed_by_its_run_id_alone(tmp_path, entry, said):
+    with pytest.raises(report.ReportError, match=said):
+        report.entries(entries_file(tmp_path, entry))
+
+
+def test_the_command_reads_run_folders_only_when_given_them(
+    tmp_path, monkeypatch, capsys
+):
+    held = tmp_path / "held"
+    grade_folder(held / "2026-10-09/evals/grade-1", ANTHROPIC_ROWS)
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    results, out = tmp_path / "results", tmp_path / "report.md"
+    for name, value in (("RUNS", runs), ("RESULTS", results), ("REPORT", out)):
+        monkeypatch.setattr(report, name, value)
+    assert report.main([]) == 1
+    assert "pass --run-folders" in capsys.readouterr().err
+    assert report.main(["--run-folders", str(tmp_path / "nowhere")]) == 1
+    assert "is not a folder" in capsys.readouterr().err
+    assert report.main(["--run-folders", str(held)]) == 0
+    assert report.main([]) == 0
+    assert report.drift(runs, results, out) == []
+    with pytest.raises(SystemExit):
+        report.main(["--check", "--run-folders", str(held)])
 
 
 def test_two_runs_of_one_measure_on_one_side_are_refused(tmp_path):
@@ -1008,17 +1124,17 @@ def test_two_runs_of_one_measure_on_one_side_are_refused(tmp_path):
     grade_folder(tmp_path / "two", ANTHROPIC_ROWS)
     runs = entries_file(
         tmp_path,
-        {"side": "anthropic", "folder": "one"},
-        {"side": "anthropic", "folder": "two"},
+        {"side": "anthropic", "id": "one"},
+        {"side": "anthropic", "id": "two"},
     )
     with pytest.raises(report.ReportError, match="grade.*anthropic"):
-        report.collect(runs, tmp_path / "results", root=tmp_path)
+        report.collect(runs, tmp_path / "results", run_folders=tmp_path)
 
 
 def test_an_unknown_side_is_refused(tmp_path):
-    runs = entries_file(tmp_path, {"side": "gemini", "folder": "one"})
+    runs = entries_file(tmp_path, {"side": "gemini", "id": "one"})
     with pytest.raises(report.ReportError, match="side"):
-        report.collect(runs, tmp_path / "results", root=tmp_path)
+        report.collect(runs, tmp_path / "results", run_folders=tmp_path)
 
 
 def test_writing_removes_summaries_of_runs_no_longer_listed(tmp_path):
@@ -1026,13 +1142,13 @@ def test_writing_removes_summaries_of_runs_no_longer_listed(tmp_path):
     results = tmp_path / "results"
     results.mkdir()
     (results / "old.json").write_text("{}")
-    runs = entries_file(tmp_path, {"side": "anthropic", "folder": "grade-1"})
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
     report.write_all(
         runs,
         results,
         tmp_path / "report.md",
         RETIRED,
-        root=tmp_path,
+        run_folders=tmp_path,
     )
     assert [p.name for p in results.iterdir()] == ["grade-1.json"]
 
@@ -1041,14 +1157,14 @@ def test_drift_reports_a_stale_report_or_summaries(tmp_path):
     grade_folder(tmp_path / "grade-1", ANTHROPIC_ROWS)
     results, out = tmp_path / "results", tmp_path / "report.md"
     retired = RETIRED
-    runs = entries_file(tmp_path, {"side": "anthropic", "folder": "grade-1"})
-    report.write_all(runs, results, out, retired, root=tmp_path)
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "grade-1"})
+    report.write_all(runs, results, out, retired, run_folders=tmp_path)
     assert report.drift(runs, results, out, retired) == []
     out.write_text("edited\n")
     assert report.drift(runs, results, out, retired) == [
         f"{out} is not what report.py builds"
     ]
-    report.write_all(runs, results, out, retired, root=tmp_path)
+    report.write_all(runs, results, out, retired, run_folders=tmp_path)
     (results / "stray.json").write_text("{}")
     assert report.drift(runs, results, out, retired) == [
         f"{results / 'stray.json'} belongs to no listed run"
@@ -1066,18 +1182,27 @@ def test_drift_reports_a_run_whose_summary_names_another_universe_than_runs_yaml
     grade_folder(tmp_path / "grade-1", ANTHROPIC_ROWS)
     results, out = tmp_path / "results", tmp_path / "report.md"
     runs = entries_file(
-        tmp_path, {"side": "anthropic", "folder": "grade-1", "universe": "x"}
+        tmp_path, {"side": "anthropic", "id": "grade-1", "universe": "x"}
     )
-    report.write_all(runs, results, out, RETIRED, root=tmp_path)
+    report.write_all(runs, results, out, RETIRED, run_folders=tmp_path)
     assert report.drift(runs, results, out, RETIRED) == []
     other = entries_file(
-        tmp_path, {"side": "anthropic", "folder": "grade-1", "universe": "y"}
+        tmp_path, {"side": "anthropic", "id": "grade-1", "universe": "y"}
     )
     assert any("universe" in p for p in report.drift(other, results, out, RETIRED))
 
 
 def test_the_committed_report_and_summaries_match_what_report_py_builds():
     assert report.drift() == []
+
+
+def test_the_committed_runs_file_names_each_run_by_its_timestamped_id():
+    for entry in report.entries(report.RUNS):
+        assert set(entry) <= {"side", "id", "universe"}, entry
+        assert re.search(r"-\d{8}T\d{6,12}Z$", entry["id"]), (
+            f"{entry['id']}: rename a run folder written with --out to its run id "
+            "before listing the run"
+        )
 
 
 def test_the_committed_report_with_no_runs_reads_not_run_everywhere():
@@ -1091,7 +1216,7 @@ def test_the_committed_report_with_no_runs_reads_not_run_everywhere():
 
 
 def test_the_just_recipe_and_runbook_exist():
-    assert "evals-report:" in (ROOT / "justfile").read_text()
+    assert "evals-report *ARGS:" in (ROOT / "justfile").read_text()
     readme = (ROOT / "evals/README.md").read_text()
     section = readme.split("## Running on another vendor")[1].split("\n## ")[0]
     for name in (
@@ -1103,6 +1228,7 @@ def test_the_just_recipe_and_runbook_exist():
         "--slice skills",
         "play.py",
         "--rules values-recognised",
+        "--run-folders",
     ):
         assert name in section, name
     assert "evals/runs.yaml" in section
@@ -1249,10 +1375,10 @@ def test_a_committed_summary_whose_models_belong_to_the_other_company_is_refused
     for name in ("run.json", "verdicts.jsonl"):
         (folder / name).unlink()
     folder.rmdir()
-    runs = entries_file(tmp_path, {"side": "anthropic", "folder": "g"})
+    runs = entries_file(tmp_path, {"side": "anthropic", "id": "g"})
     said = "judgment model codex:a belongs to the other company"
     with pytest.raises(report.ReportError, match=said):
-        report.collect(runs, results, root=tmp_path)
+        report.collect(runs, results)
     assert any(said in p for p in report.drift(runs, results, out, RETIRED))
 
 

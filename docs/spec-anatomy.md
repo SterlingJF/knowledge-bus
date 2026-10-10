@@ -31,6 +31,10 @@ The optional `terms` list names the universe's own words, each with the one mean
 
 For example, a frame could make a section required in one situation and unnecessary in another. A factor could select relevant writing advice without changing the required sections.
 
+A universe spec with elements names its ordering frame in the `universe` header. From `kbp/0.9`, a universe spec with no element, such as one declaring only factors, names no ordering frame.
+
+Guidance keyed to a factor is advice on presenting a document: wording, emphasis and focus. An agent can apply the advice to the documents of any universe spec in the folder. The factor still adds or removes no section.
+
 The guidance file has a header (`guidance`), declared advice kinds (`guidance_kinds`), a source registry (`sources`), and entries attached to `elements`, `artifacts`, or `factors`.
 
 ## Defining Elements and Artifacts

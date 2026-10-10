@@ -951,7 +951,10 @@ def apply(args):
     out = args.out or ROOT / ".evidence" / f"{datetime.now(UTC):%Y-%m-%d}" / "evals"
     for mirror, entry in done:
         print(_write(mirror, Path(out), args.label, entry, judges, light, effort, spec))
-    print("Add each to evals/runs.yaml with side: openai, then run just evals-report.")
+    print(
+        "Add each run id to evals/runs.yaml with side: openai, then run "
+        f"just evals-report --run-folders {out}"
+    )
     return 0
 
 

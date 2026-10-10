@@ -50,6 +50,18 @@ def test_contributing_does_not_claim_evidence_lives_in_evals():
     )
 
 
+def test_run_records_and_research_docs_give_no_evidence_path():
+    """Run records and research docs give run ids and capture dates, never an .evidence path."""
+    research = sorted((ROOT / "docs").glob("research-*.md"))
+    for relative in (
+        "evals/runs.yaml",
+        "evals/report.md",
+        "CHANGELOG.md",
+        *(p.relative_to(ROOT).as_posix() for p in research),
+    ):
+        assert ".evidence" not in read(relative), relative
+
+
 def test_validation_guide_counts_the_failing_conformance_cases():
     cases = list((ROOT / "protocol/conformance/fail").glob("*.kbp.yaml"))
     match = re.search(r"(\d+) deliberately invalid cases", read("docs/validation.md"))

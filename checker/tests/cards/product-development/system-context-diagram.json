@@ -1,0 +1,118 @@
+{
+  "alias": {
+    "form": "C4 level 1",
+    "kind": "normative"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "authority",
+      "question": "Who has to be asked or told before the work goes ahead?",
+      "values": [
+        {
+          "question": "Does someone's yes have to come first?",
+          "value": "approve"
+        },
+        {
+          "question": "Does a law or regulator require a yes first?",
+          "value": "statutory"
+        }
+      ]
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "find what the system is responsible for and which outside people and systems it works with",
+    "actor": "anyone new to the system",
+    "timing": "when first working with the system"
+  },
+  "guidance": [
+    {
+      "claim": "Record only the flows that cross the system's boundary; flows between the system's own parts belong in the Architecture Overview.",
+      "kind": "heuristic",
+      "when": null
+    },
+    {
+      "claim": "Show people and external systems at C4 level 1. Use the Architecture Overview for internal containers and their interactions at level 2. C4 component-level detail is a further level.",
+      "kind": "convention",
+      "when": null
+    }
+  ],
+  "kind": "system-context-diagram",
+  "name": "System context diagram",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "presentation": [],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "system-boundary-and-context",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "C4 level 1: the system, its users, and the external systems it exchanges with.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "The boundary is a security and ownership decision, not just a drawing choice.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "System boundary and context",
+      "question": "What is the system itself responsible for?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "data-flows-and-integrations",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Flows name the contract — API, event, file — and the contract's owner.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "In regulated and privacy contexts flows are compliance surface. Annotate data classification — personally identifiable information, protected health information — where it applies.",
+          "kind": "heuristic",
+          "when": {
+            "authority": [
+              "approve",
+              "statutory"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Data flows and integrations",
+      "question": "What data moves where?",
+      "strength": "core",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

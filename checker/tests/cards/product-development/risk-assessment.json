@@ -1,0 +1,207 @@
+{
+  "alias": {
+    "form": "risk register",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "time-separation",
+      "question": "Who has to reconstruct this reasoning without the author present?",
+      "values": []
+    },
+    {
+      "id": "reversibility",
+      "question": "Can this step be undone, and at what cost?",
+      "values": []
+    },
+    {
+      "id": "authority",
+      "question": "Who has to be asked or told before the work goes ahead?",
+      "values": [
+        {
+          "question": "Does someone's yes have to come first?",
+          "value": "approve"
+        },
+        {
+          "question": "Does a law or regulator require a yes first?",
+          "value": "statutory"
+        }
+      ]
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "decide which risks to reduce, accept or watch, and who handles each",
+    "actor": "the person accountable for the work",
+    "timing": "before the work starts, and while it runs"
+  },
+  "guidance": [
+    {
+      "claim": "The risk register is standard across PMBOK, PRINCE2 and ISO Guide 73 — a record of information about identified risks.",
+      "kind": "convention",
+      "when": null
+    }
+  ],
+  "kind": "risk-assessment",
+  "name": "Risk assessment",
+  "no_artifact": {
+    "reversibility": [
+      "reversible"
+    ],
+    "time-separation": [
+      "none"
+    ]
+  },
+  "presentation": [],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "risks-and-assumptions",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "For an assumption, state what is being relied on and how it will be checked. For a risk, state what could happen, its significance, and the response.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Opportunities & Threats: there an outside condition is judged for planning; here anything inside or outside that could harm the work gets a response and someone to handle it.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Before committing, imagine the work has already failed and have each person write down why. This brings out risks people hesitate to raise.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "The RFC tradition records drawbacks — known, accepted costs — separately from risks, which are uncertainties.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Where an approver or regulator will review the work, date each entry and name its owner and response, so the record can be audited.",
+          "kind": "heuristic",
+          "when": {
+            "authority": [
+              "approve",
+              "statutory"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Risks and assumptions",
+      "question": "What could harm the work if it happened or proved wrong?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "affected-and-interested-parties",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "List everyone who bears a cost, hazard or loss from the work, including people who never use what it produces, such as the neighbours of a building site.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "If the work's effects fall only on those accountable for it, say so and leave the list empty for that reason. A blank list with no such note cannot show that anyone checked who else carries the work's risks.",
+          "kind": "empty",
+          "when": null
+        },
+        {
+          "claim": "For each party, record what claim it has to be heard, such as a legal right, a contract or direct harm. That claim decides whether a risk it carries can be accepted without asking it.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Decision Authority & Approvals: a party here is heard and weighed; an approver there decides whether the work goes ahead. If the work needs their yes, list them there.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Affected and interested parties",
+      "question": "Who does the work affect beyond those accountable for it?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "guardrail-health-metrics",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "The counterweight to any target — latency, churn, quality, trust; burnout at personal scale.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Guardrails that protect the organisation, such as page-load time or revenue, are largely shared across experiments. Define them once, for the whole organisation, and reuse them in every effort.",
+          "kind": "convention",
+          "when": null
+        },
+        {
+          "claim": "Experimentation-heavy organisations formalise these as launch blockers; everywhere else they stay implicit until an incident. Write them down first.",
+          "kind": "pitfall",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Input Metrics. Ask whether the number should move or hold: an input metric is pushed to move, a guardrail is held within its range. Neither the Business Model Canvas nor the Lean Canvas has a block for guardrails, so keep them in Success Metrics.",
+          "kind": "boundary",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "success-metrics",
+          "name": "Success metrics"
+        }
+      ],
+      "mode": "links",
+      "name": "Guardrail health metrics",
+      "question": "Which measures must stay within set ranges while we pursue other targets?",
+      "strength": "situational",
+      "when": null
+    },
+    {
+      "element": "open-questions",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Each wants an owner and a resolution path. An unowned question is a risk mislabelled.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Distinct from Risks & Assumptions: an open question is something to answer before a point can be settled; an assumption is a belief the work proceeds on and checks along the way. Proceeding without the answer turns the question into an assumption.",
+          "kind": "boundary",
+          "when": null
+        },
+        {
+          "claim": "Compare the list across drafts: it should get shorter. A list that keeps growing means the work is not yet ready to settle.",
+          "kind": "heuristic",
+          "when": null
+        },
+        {
+          "claim": "Write 'none open' only when every question raised has been answered or recorded as an assumption, so a reader can tell it apart from a list nobody has drawn up.",
+          "kind": "empty",
+          "when": null
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Open questions",
+      "question": "Which questions about the work remain open?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "product-development",
+    "label": "Product development",
+    "version": "0.9"
+  }
+}

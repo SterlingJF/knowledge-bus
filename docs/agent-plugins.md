@@ -77,7 +77,7 @@ Each native package includes the Knowledge Bus skills, shared references, bundle
 
 Pi discovers the bundled skills through its package manifest. OpenCode adds the bundled skill directory to its in-memory configuration without copying files, changing user config on disk, or injecting all skill bodies into every conversation.
 
-Individual skills carry the resources they need. Ingestion includes the product-development starter, `kb-explore` includes the Explorer viewer, and the decision-interview skill does not include the checker.
+Individual skills carry the resources they need. Ingestion includes every bundled universe, `kb-explore` includes the Explorer viewer, and the decision-interview skill does not include the checker.
 
 Tests, contributor docs, build tools, browser automation, and release tools stay out of packages. Installed packages have no npm lifecycle scripts or npm runtime dependencies. The bundled checker and Explorer work without network access, and their cache stays outside the installation.
 

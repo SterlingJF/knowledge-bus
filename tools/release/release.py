@@ -202,6 +202,14 @@ def prepare(version, root=ROOT):
         )
 
 
+def check_presets(python, base, root=ROOT):
+    """Run the installed checker on a copy of each preset folder."""
+    for name in plugins.presets(root):
+        target = base / name / "notes" / ".knowledge-bus"
+        shutil.copytree(root / "universes" / name, target)
+        run(str(python), "-I", "-m", "kbp_conform.cli", root=target.parent)
+
+
 def build_check(version, root=ROOT, output=None):
     with tempfile.TemporaryDirectory(prefix="knowledge-bus-release-") as temporary:
         base = Path(temporary)
@@ -239,9 +247,7 @@ def build_check(version, root=ROOT, output=None):
         ):
             raise ValueError(f"Built wheel reports unexpected versions: {displayed}")
         run(str(python), "-I", "-m", "kbp_conform.cli", "--self-check", root=base)
-        target = base / "notes" / ".knowledge-bus"
-        shutil.copytree(root / "universes/product-development", target)
-        run(str(python), "-I", "-m", "kbp_conform.cli", root=target.parent)
+        check_presets(python, base, root)
         rebuilt = base / "rebuilt"
         run("uv", "build", str(sdist), "--wheel", "--out-dir", str(rebuilt), root=base)
         (rebuilt_wheel,) = rebuilt.glob("*.whl")

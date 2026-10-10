@@ -1,0 +1,223 @@
+{
+  "alias": {
+    "form": "site visit plan / risk briefing",
+    "kind": "descriptive"
+  },
+  "conditions": [
+    {
+      "id": "audience",
+      "question": null,
+      "values": []
+    },
+    {
+      "id": "risk",
+      "question": "How costly is a mistake on this visit?",
+      "values": [
+        {
+          "question": "Can a mistake be fixed the same day?",
+          "value": "low"
+        },
+        {
+          "question": "Could a mistake harm someone or the site?",
+          "value": "high"
+        }
+      ]
+    },
+    {
+      "id": "familiarity",
+      "question": "How well does the reader know the site?",
+      "values": [
+        {
+          "question": "Is the reader visiting the site for the first time?",
+          "value": "new"
+        }
+      ]
+    }
+  ],
+  "disabled_when": null,
+  "enablement": {
+    "action": "prepare a safe site visit",
+    "actor": "whoever leads the visit",
+    "timing": "before the visit"
+  },
+  "guidance": [
+    {
+      "claim": "Keep the plan to one page.",
+      "kind": "heuristic",
+      "when": null
+    },
+    {
+      "claim": "Add directions from the nearest public road.",
+      "kind": "heuristic",
+      "when": {
+        "familiarity": [
+          "new"
+        ]
+      }
+    }
+  ],
+  "kind": "visit-plan",
+  "name": "Visit plan",
+  "no_artifact": {
+    "audience": [
+      "team"
+    ],
+    "risk": [
+      "low"
+    ]
+  },
+  "presentation": [
+    {
+      "conditions": [
+        {
+          "id": "familiarity",
+          "question": "How well does the reader know the site?",
+          "values": [
+            {
+              "question": "Is the reader visiting the site for the first time?",
+              "value": "new"
+            }
+          ]
+        }
+      ],
+      "factors": [
+        {
+          "factor": "familiarity",
+          "guidance": [
+            {
+              "claim": "Explain each local place name the first time it appears.",
+              "kind": "heuristic",
+              "when": {
+                "familiarity": [
+                  "new"
+                ]
+              }
+            }
+          ],
+          "name": "Familiarity",
+          "question": "How well does the reader know the site?",
+          "values": [
+            {
+              "question": "Is the reader visiting the site for the first time?",
+              "value": "new"
+            },
+            {
+              "question": "Has the reader visited the site before?",
+              "value": "regular"
+            }
+          ]
+        }
+      ],
+      "from_parent": false,
+      "universe_spec": {
+        "id": "card-fixture",
+        "label": "Card fixture",
+        "version": "0.1"
+      }
+    }
+  ],
+  "schema": "knowledge-bus/card/1",
+  "sections": [
+    {
+      "element": "site-summary",
+      "gate": null,
+      "guidance": [],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Site summary",
+      "question": "What is the site and why are we visiting?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "hazards",
+      "gate": {
+        "risk": [
+          "high"
+        ]
+      },
+      "guidance": [
+        {
+          "claim": "Mark each hazard on a map.",
+          "kind": "heuristic",
+          "when": {
+            "familiarity": [
+              "new"
+            ],
+            "risk": [
+              "high"
+            ]
+          }
+        }
+      ],
+      "kept_in": null,
+      "mode": "owns",
+      "name": "Hazards",
+      "question": "What could harm someone on the site?",
+      "strength": "core",
+      "when": {
+        "risk": [
+          "high"
+        ]
+      }
+    },
+    {
+      "element": "access-terms",
+      "gate": null,
+      "guidance": [],
+      "kept_in": [
+        {
+          "kind": "site-permit",
+          "name": "Site permit"
+        }
+      ],
+      "mode": "links",
+      "name": "Access terms",
+      "question": "On what terms may we enter the site?",
+      "strength": "core",
+      "when": null
+    },
+    {
+      "element": "contacts",
+      "gate": null,
+      "guidance": [
+        {
+          "claim": "Give a phone number that works on site.",
+          "kind": "heuristic",
+          "when": null
+        }
+      ],
+      "kept_in": [
+        {
+          "kind": "site-permit",
+          "name": "Site permit"
+        }
+      ],
+      "mode": "links",
+      "name": "Contacts",
+      "question": "Whom do we call on the day?",
+      "strength": "situational",
+      "when": {
+        "audience": [
+          "public"
+        ]
+      }
+    },
+    {
+      "element": "costs",
+      "gate": null,
+      "guidance": [],
+      "kept_in": [],
+      "mode": "links",
+      "name": "Costs",
+      "question": "What did the visit cost?",
+      "strength": "situational",
+      "when": null
+    }
+  ],
+  "universe_spec": {
+    "id": "card-fixture",
+    "label": "Card fixture",
+    "version": "0.1"
+  }
+}

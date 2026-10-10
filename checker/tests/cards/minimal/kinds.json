@@ -1,0 +1,23 @@
+{
+  "factors": [],
+  "kinds": [
+    {
+      "action": "Lets someone state a question and be held to it.",
+      "actor": null,
+      "alias": {
+        "kind": "none"
+      },
+      "kind": "the-record",
+      "name": "The record",
+      "timing": null
+    }
+  ],
+  "schema": "knowledge-bus/kinds/1",
+  "universe_spec": {
+    "covers": null,
+    "for": null,
+    "id": "minimal",
+    "label": "Minimal",
+    "version": "0.1"
+  }
+}

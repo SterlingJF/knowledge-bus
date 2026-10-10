@@ -87,9 +87,9 @@ evals-grade universe="universes/product-development/universe.kbp.yaml" tiers="de
 evals-calibrate slice="universe" tiers="deterministic,decision,judgment,sort,recognise":
     uv run --locked python tools/evals/grade.py examples --slice {{quote(slice)}} --tiers {{quote(tiers)}}
 
-# Write evals/report.md and evals/results/ from the run folders listed in evals/runs.yaml. Calls no model.
-evals-report:
-    uv run --locked python tools/evals/report.py
+# Write evals/report.md from the committed run summaries. Calls no model; pass --run-folders FOLDER to first summarise each listed run from its folder under FOLDER.
+evals-report *ARGS:
+    uv run --locked python tools/evals/report.py {{ARGS}}
 
 # Assemble agent-only npm tarballs. Host: claude, codex, pi, opencode, or all.
 plugin-build host="all":

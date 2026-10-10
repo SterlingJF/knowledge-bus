@@ -1,6 +1,6 @@
 # Adapting the Example
 
-Start with the included product-development definitions, keep what fits your work, and change what does not. You can do this before writing any documents.
+Start with one of the universes included in `universes/`, keep what fits your work, and change what does not. You can do this before writing any documents.
 
 ## What the Starter Contains
 
@@ -36,6 +36,8 @@ The skill helps establish:
 - which relationships and guidance need to change.
 
 It researches the proposed type, checks the resulting files, and records the changes and their reasons, including proposed additions it rejected.
+
+Before writing, the skill shows one table per universe spec: each change with its location, current text, proposed text, evidence and reason. You answer by row number. After writing, the skill shows each change before and after.
 
 Use `/kb-uncover-question` when you need help clarifying a question or distinguishing it from existing ones.
 

@@ -1,0 +1,494 @@
+[
+ {
+  "group": "proposal",
+  "repo": "OAI/OpenAPI-Specification",
+  "path": "proposals/2019-03-15-Alternative-Schema.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "OAI/OpenAPI-Specification",
+  "path": "proposals/2019-07-17-Webhooks.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "OAI/OpenAPI-Specification",
+  "path": "proposals/2019-10-31-Clarify-Nullable.md"
+ },
+ {
+  "group": "adr",
+  "repo": "backstage/backstage",
+  "path": "docs/architecture-decisions/adr001-add-adr-log.md"
+ },
+ {
+  "group": "adr",
+  "repo": "backstage/backstage",
+  "path": "docs/architecture-decisions/adr002-default-catalog-file-format.md"
+ },
+ {
+  "group": "adr",
+  "repo": "backstage/backstage",
+  "path": "docs/architecture-decisions/adr003-avoid-default-exports.md"
+ },
+ {
+  "group": "adr",
+  "repo": "cathrynlavery/diagram-design",
+  "path": "docs/adr/0001-static-by-default-single-pinned-controller.md"
+ },
+ {
+  "group": "adr",
+  "repo": "cathrynlavery/diagram-design",
+  "path": "docs/adr/0002-semantic-patterns-do-not-expand-the-taxonomy.md"
+ },
+ {
+  "group": "adr",
+  "repo": "cathrynlavery/diagram-design",
+  "path": "docs/adr/0003-reveal-is-the-only-sanctioned-autoplay.md"
+ },
+ {
+  "group": "adr",
+  "repo": "coollabsio/coolify",
+  "path": "docs/v5/architecture/adr/0001-control-plane-flux-coold-split.md"
+ },
+ {
+  "group": "adr",
+  "repo": "coollabsio/coolify",
+  "path": "docs/v5/architecture/adr/0002-coold-host-agent-boundary.md"
+ },
+ {
+  "group": "adr",
+  "repo": "coollabsio/coolify",
+  "path": "docs/v5/architecture/adr/0003-flux-connection-broker-boundary.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "gastownhall/beads",
+  "path": "engdocs/design/bd-serve-v0.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "gastownhall/beads",
+  "path": "engdocs/design/dolt-concurrency.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "gastownhall/beads",
+  "path": "engdocs/design/external-capability-dependencies.md"
+ },
+ {
+  "group": "adr",
+  "repo": "gastownhall/beads",
+  "path": "engdocs/adr/0001-multi-remote-approach.md"
+ },
+ {
+  "group": "adr",
+  "repo": "gastownhall/beads",
+  "path": "engdocs/adr/0002-init-safety-invariants.md"
+ },
+ {
+  "group": "adr",
+  "repo": "gastownhall/beads",
+  "path": "engdocs/adr/0003-provenance-event-log.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "gastownhall/gastown",
+  "path": "docs/design/agent-api-inventory.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "gastownhall/gastown",
+  "path": "docs/design/architecture.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "gastownhall/gastown",
+  "path": "docs/design/convoy/convoy-lifecycle.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "grafana/alloy",
+  "path": "docs/design/1161-standardize-stdlib.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "grafana/alloy",
+  "path": "docs/design/1443-dynamic-pipelines.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "grafana/alloy",
+  "path": "docs/design/4719-otel-engine-dependency-management.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "harbor-framework/harbor",
+  "path": "rfcs/0001-trajectory-format.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "harbor-framework/harbor",
+  "path": "rfcs/0002-simulated-users-patch.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "harbor-framework/harbor",
+  "path": "rfcs/0002-simulated-users.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kgateway-dev/kgateway",
+  "path": "design/10381-adopt-kubernetes-approach-for-changelog-management.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kgateway-dev/kgateway",
+  "path": "design/10411-gateway-api-inference-extension-support.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kgateway-dev/kgateway",
+  "path": "design/10494-add-support-for-ai-gateway-apis.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kubernetes-sigs/external-dns",
+  "path": "docs/proposal/001-leader-election.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kubernetes-sigs/external-dns",
+  "path": "docs/proposal/002-internal-ipv6-handling-rollback.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kubernetes-sigs/external-dns",
+  "path": "docs/proposal/003-dnsendpoint-graduation-to-beta.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kubernetes/ingress-nginx",
+  "path": "docs/enhancements/20190724-only-dynamic-ssl.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kubernetes/ingress-nginx",
+  "path": "docs/enhancements/20190815-zone-aware-routing.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "kubernetes/ingress-nginx",
+  "path": "docs/enhancements/20231001-split-containers.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "prometheus-operator/prometheus-operator",
+  "path": "Documentation/proposals/accepted/202310-shard-autoscaling.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "prometheus-operator/prometheus-operator",
+  "path": "Documentation/proposals/accepted/202405-agent-daemonset.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "prometheus-operator/prometheus-operator",
+  "path": "Documentation/proposals/accepted/202405-scrapeconfig-graduation.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "trycua/cua",
+  "path": "rfcs/2447-cua-driver-native-core-and-mcp-adapter.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "trycua/cua",
+  "path": "rfcs/2512-cua-driver-environment-convergence.md"
+ },
+ {
+  "group": "proposal",
+  "repo": "trycua/cua",
+  "path": "rfcs/2512-mcp-envelope-carrier.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "Automattic/harper",
+  "path": "AGENT_POLICY.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "BurntSushi/ripgrep",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "ClickHouse/ClickHouse",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "EnterpriseDB/barman",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "PostHog/posthog",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "release",
+  "repo": "amacneil/dbmate",
+  "path": "RELEASING.md"
+ },
+ {
+  "group": "release",
+  "repo": "argoproj/argo-workflows",
+  "path": "docs/releasing.md"
+ },
+ {
+  "group": "review",
+  "repo": "backstage/backstage",
+  "path": "REVIEWING.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "bookorbit/bookorbit",
+  "path": "docs/AI_POLICY.md"
+ },
+ {
+  "group": "release",
+  "repo": "coollabsio/coolify",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "datamodel-code-generator/datamodel-code-generator",
+  "path": ".github/release.yml"
+ },
+ {
+  "group": "release",
+  "repo": "dograh-hq/dograh",
+  "path": ".github/release.yml"
+ },
+ {
+  "group": "release",
+  "repo": "gastownhall/beads",
+  "path": "RELEASING.md"
+ },
+ {
+  "group": "release",
+  "repo": "gastownhall/gastown",
+  "path": "RELEASING.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "ghostty-org/ghostty",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "release",
+  "repo": "jerrykuku/luci-theme-argon",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "juanfont/headscale",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "release",
+  "repo": "junegunn/fzf",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "kgateway-dev/kgateway",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "kubernetes-sigs/external-dns",
+  "path": "docs/release.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "kubernetes-sigs/gateway-api",
+  "path": "AI-POLICY.md"
+ },
+ {
+  "group": "release",
+  "repo": "kubernetes-sigs/gateway-api",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "review",
+  "repo": "kyverno/kyverno",
+  "path": "REVIEW.md"
+ },
+ {
+  "group": "review",
+  "repo": "langfuse/langfuse",
+  "path": "REVIEW.md"
+ },
+ {
+  "group": "release",
+  "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+  "path": ".github/release.yaml"
+ },
+ {
+  "group": "release",
+  "repo": "mysticaltech/terraform-hcloud-kube-hetzner",
+  "path": ".github/release.yml"
+ },
+ {
+  "group": "release",
+  "repo": "oauth2-proxy/oauth2-proxy",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "obsidian-tasks-group/obsidian-tasks",
+  "path": "release.sh"
+ },
+ {
+  "group": "release",
+  "repo": "pi-hole/pi-hole",
+  "path": ".github/release.yml"
+ },
+ {
+  "group": "release",
+  "repo": "pnpm/pnpm",
+  "path": "RELEASING.md"
+ },
+ {
+  "group": "release",
+  "repo": "prometheus-operator/kube-prometheus",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "prometheus-operator/prometheus-operator",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "prometheus/prometheus",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "pypa/pipx",
+  "path": ".github/release.yml"
+ },
+ {
+  "group": "release",
+  "repo": "qdrant/fastembed",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "release",
+  "repo": "siderolabs/talos",
+  "path": "RELEASE.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "starship/starship",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "review",
+  "repo": "tt-a1i/archify",
+  "path": "REVIEWING.md"
+ },
+ {
+  "group": "aipolicy",
+  "repo": "vitest-dev/vitest",
+  "path": "AI_POLICY.md"
+ },
+ {
+  "group": "release",
+  "repo": "zsh-users/zsh-syntax-highlighting",
+  "path": "release.md"
+ },
+ {
+  "group": "package_readme",
+  "repo": "virattt/ai-hedge-fund",
+  "path": "hedge_fund/README.md"
+ },
+ {
+  "group": "package_readme",
+  "repo": "frappe/books",
+  "path": "reports/README.md"
+ },
+ {
+  "group": "package_readme",
+  "repo": "rabbitmq/rabbitmq-server",
+  "path": "release-notes/README.md"
+ },
+ {
+  "group": "package_readme",
+  "repo": "cloudnative-pg/cloudnative-pg",
+  "path": "contribute/README.md"
+ },
+ {
+  "group": "package_readme",
+  "repo": "Ranchero-Software/NetNewsWire",
+  "path": "AppleScript/README.md"
+ },
+ {
+  "group": "package_readme",
+  "repo": "stoplightio/prism",
+  "path": "test-harness/README.md"
+ },
+ {
+  "group": "architecture",
+  "repo": "NousResearch/hermes-agent"
+ },
+ {
+  "group": "architecture",
+  "repo": "argoproj/argo-workflows"
+ },
+ {
+  "group": "architecture",
+  "repo": "cloudnative-pg/cloudnative-pg"
+ },
+ {
+  "group": "architecture",
+  "repo": "datamodel-code-generator/datamodel-code-generator"
+ },
+ {
+  "group": "architecture",
+  "repo": "gastownhall/beads"
+ },
+ {
+  "group": "architecture",
+  "repo": "gastownhall/gastown"
+ },
+ {
+  "group": "architecture",
+  "repo": "kyverno/kyverno"
+ },
+ {
+  "group": "architecture",
+  "repo": "outline/outline"
+ },
+ {
+  "group": "architecture",
+  "repo": "oxc-project/oxc"
+ },
+ {
+  "group": "architecture",
+  "repo": "prometheus/prometheus"
+ },
+ {
+  "group": "architecture",
+  "repo": "strapi/strapi"
+ },
+ {
+  "group": "architecture",
+  "repo": "swagger-api/swagger-editor"
+ },
+ {
+  "group": "architecture",
+  "repo": "twpayne/chezmoi"
+ }
+]

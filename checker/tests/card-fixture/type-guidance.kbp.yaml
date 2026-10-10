@@ -1,0 +1,35 @@
+guidance:
+  id: card-fixture-guidance
+  label: Card fixture guidance
+  version: "0.1"
+  conforms_to: kbp/0.8
+  guides: card-fixture
+
+guidance_kinds:
+  - { id: convention, sourced: true }
+  - { id: heuristic, sourced: false }
+
+sources:
+  handbook:
+    cite: "Example field handbook"
+    url: "https://example.org/handbook"
+
+artifacts:
+  visit-plan:
+    - { kind: heuristic, source: asserted, claim: "Keep the plan to one page." }
+    - { kind: heuristic, source: asserted, when: { familiarity: [new] },
+        claim: "Add directions from the nearest public road." }
+  site-permit:
+    - { kind: convention, source: handbook, claim: "Use the county's form as issued." }
+
+elements:
+  hazards:
+    - { kind: heuristic, source: asserted, when: { risk: [high], familiarity: [new] },
+        claim: "Mark each hazard on a map." }
+  contacts:
+    - { kind: heuristic, source: asserted, claim: "Give a phone number that works on site." }
+
+factors:
+  familiarity:
+    - { kind: heuristic, source: asserted, when: { familiarity: [new] },
+        claim: "Explain each local place name the first time it appears." }

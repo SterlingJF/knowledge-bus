@@ -52,7 +52,7 @@ Knowledge Bus can guide a personal notebook, a shared project folder, or documen
 - **AI collaboration:** give agents explicit definitions and guidance to follow when asking questions, drafting, or reviewing.
 - **Knowledge exchange:** describe how information can move between people and tools while retaining its meaning and context.
 
-You can adopt an existing set of definitions or develop one for your own work. The included product-development example provides a starting point; the Knowledge Bus Protocol supports other subjects and uses.
+You can adopt an existing set of definitions or develop one for your own work. The included product-development and codebase-recordkeeping definitions provide starting points; the Knowledge Bus Protocol supports other subjects and uses.
 
 ## Features
 
@@ -62,6 +62,7 @@ You can adopt an existing set of definitions or develop one for your own work. T
 - **Attribution and history** — record who stated something, who is bound by it, its status, and when it was established. Preserve earlier versions when new assertions replace them.
 - **Knowledge exchange rules** — define how to share knowledge between different structures while preserving its meaning, source, and status. Keep disagreements visible for the receiver to resolve.
 - **Product-development starter** — adopt or adapt reference definitions for product development, including briefs, plans, and decision records.
+- **Codebase-recordkeeping starter** — adopt or adapt reference definitions for the written documents of a codebase, including READMEs, contributing guides, and release notes.
 - **Agent skills** — clarify questions and check for overlap, recover a decision's reasoning and the conditions for reconsidering it, and add or re-examine document types.
 - **Folder ingestion** — map existing notes to sourced answers, surface conflicts for your review, and report gaps without changing the originals.
 - **Conformance checker** — check definition and guidance files for missing declarations, unresolved references, and other structural errors.
@@ -74,7 +75,7 @@ Use the reference material as a starting point for your own work. You can adopt 
 
 See [Adapting the Example](docs/adapting-the-example.md).
 
-Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. See [Knowledge Bus Directory](docs/knowledge-bus-directory.md) for discovery and write rules.
+Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. To use universe specs of the parent folder in a nested folder, list their ids in the nested folder's `.knowledge-bus/workspace.yaml`. See [Knowledge Bus Directory](docs/knowledge-bus-directory.md) for discovery and write rules.
 
 ### Product Development
 
@@ -86,6 +87,12 @@ The companion guidance attaches advice to those definitions and cites registered
 <a href="docs/assets/product-development-map.svg"><img src="docs/assets/product-development-map-crop.svg" alt="Part of the Knowledge Bus Explorer map of the product-development definitions" width="960" /></a>
 
 The image shows part of the map; select it to open the full map.
+
+### Codebase Recordkeeping
+
+The included codebase-recordkeeping definitions cover the written documents of a codebase: files in the repository, commit messages, change descriptions, issue reports, and release notes. Their document types include READMEs, contributing guides, security policies, agent instructions, and design proposals, with declared relationships between those types and their contents.
+
+The companion guidance attaches advice to those definitions and cites registered sources, including Keep a Changelog, Semantic Versioning, Conventional Commits, Diátaxis, and the OpenSSF Open Source Project Security Baseline. [Code Repository Universe Research](docs/research-code-repository-universe-2026-10-08.md) gives the corpus, counts, and sources behind each definition.
 
 ## Installation
 
@@ -173,6 +180,13 @@ uv run kbp --inspect path/to/.knowledge-bus/
 uv run kbp --explore --output path/to/.knowledge-bus/explorer/<universe-id> path/to/.knowledge-bus/
 ```
 
+Print the card for one document type, or list every document type:
+
+```sh
+uv run kbp --card <kind> path/to/.knowledge-bus/
+uv run kbp --kinds path/to/.knowledge-bus/
+```
+
 ## Quick Start
 
 ### Start With Expectations
@@ -201,14 +215,14 @@ Open the definitions as a map with `kb-explore`. When a question or document typ
 
 ## Commands
 
-| Command                | What it does                                                                                                                       |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing one.                                                        |
-| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and conditions for reconsidering it.                                   |
-| `/kb-evolve`           | Adds or re-examines a document type or the definitions around it, including purpose, contents, relationships, guidance, and terms. |
-| `/kb-explore`          | Explains your definitions and opens them as an offline map with SVG export.                                                        |
-| `/kb-ingest`           | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps.                                      |
-| `/kb-check`            | Checks definition and guidance files and explains any conformance failures.                                                        |
+| Command                | What it does                                                                                                                                                                                              |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/kb-uncover-question` | Clarifies a question and checks that it does not duplicate an existing question.                                                                                                                          |
+| `/kb-uncover-decision` | Recovers a decision's alternatives, constraints, authority, and the conditions for reconsidering the decision.                                                                                            |
+| `/kb-evolve`           | Adds or re-examines a document type or the definitions around it, including purpose, contents, relationships, factors, guidance, and terms. Shows every change as a table for your answer before writing. |
+| `/kb-explore`          | Explains your definitions and opens them as an offline map with SVG export.                                                                                                                               |
+| `/kb-ingest`           | Maps existing notes to sourced answers and reports conflicts, outdated information, and gaps.                                                                                                             |
+| `/kb-check`            | Checks definition and guidance files and explains any conformance failures.                                                                                                                               |
 
 ## How It Works
 
@@ -265,7 +279,7 @@ See [Evals](evals/README.md).
 ## Limits
 
 - Agent output still requires review.
-- The checker validates definition and guidance files. It does not yet validate the `answers.yaml` and `ingest-log.md` files that ingestion writes.
+- The checker validates definition and guidance files. It does not yet validate the `answers.yaml` and `ingest-log.md` files that `kb-ingest` writes, or the `evolve-log.md` file that `kb-evolve` writes.
 - Structural checking and Explorer rendering do not establish that an answer is true or that a definition captures the right question.
 - Evals grade definition wording against the project's written rules. The model tiers call paid models and can disagree; a case no tier settles goes to you. A pass does not show that a definition fits your work.
 - `just evals-play` plays agent-behaviour scenarios with a scripted owner, one run each by default.
@@ -290,7 +304,6 @@ See [Evals](evals/README.md).
 
 - Knowledge exchange between different sets of definitions
 - Forms and surveys designed around the decisions their answers support
-- A second reference universe, such as scientific research
 
 ### Open Questions
 
@@ -314,6 +327,7 @@ knowledge-bus/
 │   ├── src/kbp_conform/             validation library and kbp command
 │   └── tests/                       conformance and discovery tests
 ├── universes/                      maintained reference definitions
+│   ├── codebase-recordkeeping/
 │   └── product-development/
 ├── explorer/                       @knowledge-bus/explorer: universe viewer and SVG export
 │   ├── src/                         CE Pattern layers: elements, patterns, lib
@@ -362,6 +376,7 @@ See [Contributing](CONTRIBUTING.md) for development setup, source layout, and ch
 - [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
 - [Spec Anatomy](docs/spec-anatomy.md) — the structure of a definition file.
 - [Validation](docs/validation.md) — what the checker verifies and rejects.
+- [Document Type Card](docs/document-type-card.md) — printable artifact spec that's human-readable and agent-friendly.
 - [Evals](evals/README.md) — the rules and behaviours that define good definitions and agent work, and how they are graded.
 - [Evaluation Report](evals/report.md) — figures from recorded runs.
 - [Methodology](METHODOLOGY.md) — how evals are built, run, and reported.

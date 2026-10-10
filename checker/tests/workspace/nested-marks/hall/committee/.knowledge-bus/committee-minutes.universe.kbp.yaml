@@ -1,0 +1,53 @@
+universe:
+  id: committee-minutes
+  label: Committee minutes
+  version: 0.1
+  conforms_to: kbp/0.8
+  ordering_frame: meeting-stage
+  overview:
+    covers: What the management committee records at each meeting.
+    for: The committee secretary and the trustees.
+    excludes: Booking fees and repairs.
+
+statuses: [draft, agreed, retired]
+
+frames:
+  - id: meeting-stage
+    code: fm3c4
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    values: [before-meeting, at-meeting, after-meeting]
+
+  - id: meeting-kind
+    code: fq9w2
+    role: applicability
+    set_by: instance
+    question: Is the meeting a full committee meeting or an informal catch-up?
+    values: [full, informal]
+
+no_artifact:
+  when: { meeting-kind: [informal] }
+
+relation_kinds:
+  - id: feeds
+    ordered: true
+    phrasing:
+      forward: Feeds
+      reverse: Fed by
+
+elements:
+  - { id: decisions-taken, code: ed4k7, question: "Which decisions did the committee take?", meeting-stage: at-meeting, cardinality: per-meeting }
+  - { id: action-owners, code: ea7q2, question: "Who owns each action the committee agreed?", meeting-stage: after-meeting, cardinality: per-meeting }
+
+artifacts:
+  - id: minutes
+    code: a5m8p
+    enablement: { action: "record what the committee agreed", actor: secretary, timing: during each meeting }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [decisions-taken, action-owners]
+      situational: []
+
+relations:
+  - { from: decisions-taken, to: action-owners, kind: feeds }

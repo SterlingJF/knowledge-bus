@@ -2,6 +2,47 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.10.0 — unreleased
+
+Bundled protocol: `kbp/0.9`.
+
+### Skill `kb-evolve`
+
+- Have `kb-evolve` show proposed changes as one table per universe spec, with current text, proposed text, evidence and reason, and take answers by row number.
+- Have `kb-evolve` show each change before and after once written, and record each run in `.knowledge-bus/evolve-log.md`.
+- Add `kb-evolve` guidance on declaring factors.
+
+### Protocol kbp/0.9
+
+- A universe spec with no element declares no ordering frame. A universe spec with elements still declares exactly one ordering frame.
+- Guidance keyed to a factor is advice on presenting a document. A consumer may apply the advice to the documents of another universe spec. A factor still selects nothing.
+- Documents declaring `kbp/0.8` or `kbp/0.7` still pass. A factor-only universe spec drops its placeholder ordering frame only when moving to `kbp/0.9`.
+
+### Checker
+
+- Refuse an ordering frame in a `kbp/0.9` universe spec with no element: the ordering frame attaches to nothing.
+- Add `kbp --card <kind>`: prints the card for one document type, as JSON or with `--format markdown`. See [Document Type Card](docs/document-type-card.md).
+- Add `kbp --kinds`: lists every document type with its other names, purpose, users and timing, and prints `overview.covers` and `overview.for` for each universe spec; with several universe specs, prints one group per universe spec.
+- Have `kbp --kinds` list every factor with its question and number of guidance notes.
+- Add "How to present it" to the card: factor guidance as advice on presenting the document, in one labelled block for each universe spec in scope that declares a factor.
+- Refuse a universe spec without an ordering frame in `--inspect` and `--explore`, as not renderable.
+- Add a test that copies every universe spec in `universes/` into one folder and reports each id declared by two or more universe specs.
+- Add `.knowledge-bus/workspace.yaml`, the settings file for a Knowledge Bus folder. Its `from_parent` key lists universe specs of the parent folder; every `kbp` command and skill applies the listed universe specs beside the folder's own universe specs. See [Nested Folders](docs/knowledge-bus-directory.md#nested-folders).
+
+### Codebase-recordkeeping universe 0.1 and guidance 0.1
+
+- Add the codebase-recordkeeping universe spec for the written documents of a codebase, from a survey of public repositories and graded sources. See [Code Repository Universe Research](docs/research-code-repository-universe-2026-10-08.md).
+- Declare 20 document types, from the README and licence file to change descriptions, release notes and agent instructions, with element questions, compositions, relations and six terms.
+- Order elements by the `step` frame, from choosing a project to publishing a release; add frames for issue kind, documentation task, contributor assertion and repository state, and factors for release notes, commit messages and version numbers.
+- Add type guidance with sourced advice, placements, practices, disputes and distinctions for each document type.
+- Add recognition situations for the codebase-recordkeeping frame and factor values.
+- Bundle each universe spec in `universes/`, with its guidance, into `kb-ingest` and the agent packages; run the release and package checks on each universe spec.
+
+### Eval report
+
+- Name each run in `evals/runs.yaml` by its run id.
+- Add `just evals-report --run-folders <folder>`: summarises each listed run from the folder named for its run id at any depth under `<folder>`. Without the option, `just evals-report` builds from the committed summaries.
+
 ## 0.9.0
 
 Bundled protocol: `kbp/0.8`.

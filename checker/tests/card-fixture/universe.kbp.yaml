@@ -1,0 +1,98 @@
+# A small universe spec for the document type card tests. It covers what
+# the product-development universe spec does not: guidance conditioned on a
+# factor, guidance keyed to a factor, a frame with no question, values with
+# no question, a linked section no document type keeps, and a document type
+# with no guidance entries.
+universe:
+  id: card-fixture
+  label: Card fixture
+  version: "0.1"
+  conforms_to: kbp/0.8
+  ordering_frame: stage
+
+statuses: [conjecture, measured]
+
+frames:
+
+  - id: stage
+    code: f6x6r
+    role: ordering
+    set_by: universe
+    attaches_to: element
+    question: "Which stage of the visit is this part of?"
+    values:
+      - { id: before, question: "Is it settled before the visit?" }
+      - { id: after, question: "Is it settled after the visit?" }
+
+  - id: audience
+    code: fk7mq
+    role: selection
+    set_by: instance
+    values: [team, public]
+
+  - id: risk
+    code: f5dhv
+    role: gating
+    set_by: scope
+    question: "How costly is a mistake on this visit?"
+    values:
+      - { id: low, question: "Can a mistake be fixed the same day?" }
+      - { id: high, question: "Could a mistake harm someone or the site?" }
+
+factors:
+
+  - id: familiarity
+    code: kqvs0
+    set_by: instance
+    question: "How well does the reader know the site?"
+    values:
+      - { id: new, question: "Is the reader visiting the site for the first time?" }
+      - { id: regular, question: "Has the reader visited the site before?" }
+
+no_artifact:
+  when: { risk: [low], audience: [team] }
+
+relation_kinds:
+  - { id: informs, ordered: true }
+
+elements:
+  - { id: site-summary, code: ew374, question: "What is the site and why are we visiting?", stage: before, cardinality: singleton }
+  - { id: hazards, code: enxna, question: "What could harm someone on the site?", stage: before, cardinality: per-hazard, gate: { risk: [high] } }
+  - { id: access-terms, code: e8by0, question: "On what terms may we enter the site?", stage: before, cardinality: singleton }
+  - { id: contacts, code: en7he, question: "Whom do we call on the day?", stage: before, cardinality: per-contact }
+  - { id: findings, code: ejx2j, question: "What did we observe?", stage: after, cardinality: per-observation }
+  - { id: costs, code: eyvhd, question: "What did the visit cost?", stage: after, cardinality: singleton }
+
+artifacts:
+
+  - id: visit-plan
+    code: acrta
+    enablement: { action: "prepare a safe site visit", actor: "whoever leads the visit", timing: "before the visit" }
+    alias: { kind: descriptive, form: "site visit plan / risk briefing" }
+    composition:
+      core:
+        - site-summary
+        - { element: hazards, when: { risk: [high] } }
+        - { element: access-terms, mode: links }
+      situational:
+        - { element: contacts, mode: links, when: { audience: [public] } }
+        - { element: costs, mode: links }
+
+  - id: site-permit
+    code: a9ja8
+    enablement: { action: "enter the site with the owner's permission", actor: "whoever leads the visit", timing: "before the visit" }
+    alias: { kind: normative, form: "County site access permit" }
+    disabled_when: { audience: [team] }
+    composition:
+      core: [access-terms, contacts]
+      situational: []
+
+  - id: visit-report
+    code: ajdwe
+    enablement: { action: "share what the visit found", actor: "everyone who could not attend" }
+    alias: { kind: none, reason: no-aligned-form }
+    composition:
+      core: [findings]
+      situational: [{ element: costs, mode: links }]
+
+relations: []
