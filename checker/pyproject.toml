@@ -1,6 +1,6 @@
 [project]
 name = "knowledge-bus"
-version = "0.9.0"
+version = "0.10.0"
 description = "Define, inspect, and structurally check shared knowledge expectations"
 requires-python = ">=3.14"
 dependencies = []

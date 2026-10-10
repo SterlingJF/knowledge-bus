@@ -1,6 +1,6 @@
 {
   "generated_by": "just skills-build",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "files": {
     "LICENSE": "499f70a7f18a24c238d6455f8eef6a6d9b9f2eb5c0b8b35dafbe5e345e8d6554",
     "references/agent-runtime.md": "24f7de1d54a24cb81ee1386f6c90d074576d0f85b822021243317f21f184469b",
@@ -11,7 +11,7 @@
     "references/product-development/type-guidance.kbp.yaml": "effad3b412e4c553607c769d95f3c5c87bd64e4c52ba145e5bab5985c30385a3",
     "references/product-development/universe.kbp.yaml": "4b70294612aa9d5631ba0b2d823532cbb7144301a66d2998a12a2bb3e7aa4e82",
     "runtime/kbp.py": "3937ebe885eccb5668963f05e1876e72902dfdb925fa9aec2269e0ae06b34f90",
-    "runtime/knowledge_bus-0.9.0-py3-none-any.whl": "d84806018f25cd0645ca65816eaf44cdb05006ebf57f315def4c530136f4150c",
-    "runtime/requirements.json": "a6ca7e336a8b957e1ccdb27980c9e3accde5d40fc47042ad0cd56aed564fc20b"
+    "runtime/knowledge_bus-0.10.0-py3-none-any.whl": "657630a130f622b031241abde742f91341ad7832354f0b8ae78adb9be22584c7",
+    "runtime/requirements.json": "a5ca93965ddae573e483c296c7b011719ac9350e1d96b91b25ea4bf395830070"
   }
 }

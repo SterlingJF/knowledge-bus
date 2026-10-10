@@ -2,7 +2,7 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
-## 0.10.0 — unreleased
+## 0.10.0
 
 Bundled protocol: `kbp/0.9`.
 
