@@ -9,6 +9,16 @@ _pnpm_run SCRIPT *ARGS:
 # Run repository checks.
 check: (_pnpm_run 'check')
 
+# Unstage *WORKING_NOTES*.md files.
+unstage-working-notes:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    git diff --cached --name-only -z -- ':(glob)**/*WORKING_NOTES*.md' \
+        | while IFS= read -r -d '' path; do
+            git reset -q -- "${path}"
+            printf 'unstaged %s\n' "${path}" >&2
+        done
+
 # Check the staged snapshot without changing the index or working tree.
 check-staged:
     node tools/quality/snapshot.mjs staged

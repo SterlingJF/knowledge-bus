@@ -163,6 +163,7 @@ The In Short section is copied from [Philosophy](PHILOSOPHY.md). Edit it there, 
 
 | Entry point | Content checked | Checks |
 | --- | --- | --- |
+| `just unstage-working-notes` / pre-commit, first | Staged paths | Unstages every `*WORKING_NOTES*.md` file, so working notes stay local |
 | `just check` | Working tree | Full suite |
 | `just check-staged` / pre-commit | Staged snapshot | Formatting, lint, protocol, generated files, explorer checks, doc sections |
 | Pre-push | Each distinct outgoing branch tip | Full suite |

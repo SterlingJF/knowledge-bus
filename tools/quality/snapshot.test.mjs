@@ -182,7 +182,8 @@ function hookedRepository(t) {
     'check:explorer:artifacts': 'node verify.mjs',
     'check:explorer:gallery': 'node verify.mjs',
   } }));
-  write(cwd, 'justfile', 'check-staged:\n    node tools/quality/snapshot.mjs staged\ncheck-push:\n    node tools/quality/snapshot.mjs push\n');
+  const unstage = readFileSync(path.join(root, 'justfile'), 'utf8').match(/^unstage-working-notes:\n(?: {4}.*\n)+/m)[0];
+  write(cwd, 'justfile', `${unstage}check-staged:\n    node tools/quality/snapshot.mjs staged\ncheck-push:\n    node tools/quality/snapshot.mjs push\n`);
   write(cwd, 'verify.mjs', `import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import assert from 'node:assert/strict';
@@ -217,6 +218,20 @@ test('real Husky pre-commit checks staged content and imports snapshot Python', 
   const after = state(cwd);
   assert.equal(after.staged, before.staged);
   assert.equal(after.tracked, before.tracked);
+});
+
+test('real Husky pre-commit leaves working notes out of the commit', (t) => {
+  const cwd = hookedRepository(t);
+  write(cwd, 'other.txt', 'staged change');
+  write(cwd, 'WORKING_NOTES.md', 'local notes');
+  write(cwd, 'docs/track-WORKING_NOTES.md', 'nested notes');
+  git(cwd, 'add', 'other.txt', 'WORKING_NOTES.md', 'docs/track-WORKING_NOTES.md');
+  const committed = run(cwd, 'git', ['commit', '-qm', 'Change with notes staged']);
+  assert.equal(committed.status, 0, committed.stdout + committed.stderr);
+  assert.match(committed.stderr, /unstaged WORKING_NOTES\.md/);
+  assert.equal(git(cwd, 'show', '--name-only', '--format=', 'HEAD'), 'other.txt');
+  assert.equal(git(cwd, 'status', '--porcelain', '--untracked-files=all', '--', 'WORKING_NOTES.md', 'docs'), '?? WORKING_NOTES.md\n?? docs/track-WORKING_NOTES.md');
+  assert.equal(readFileSync(path.join(cwd, 'WORKING_NOTES.md'), 'utf8'), 'local notes');
 });
 
 test('split and alternate indexes export their own staged contents', async (t) => {
