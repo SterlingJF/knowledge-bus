@@ -33,9 +33,12 @@ def test_ci_skips_package_and_explorer_work_only_on_a_copy_only_change():
     lane = "\n".join(step.get("run", "") for step in jobs["changes"]["steps"])
     assert "tools/quality/lane.mjs" in lane
     assert jobs["changes"]["steps"][0]["with"]["fetch-depth"] == 0
-    for job in ("explorer-unit", "explorer-browser", "explorer-shots", "native-hosts"):
+    for job in ("explorer-unit", "explorer-browser", "explorer-shots"):
         assert jobs[job]["needs"] == "changes"
         assert jobs[job]["if"] == code
+    assert jobs["native-hosts"]["needs"] == "changes"
+    assert "if" not in jobs["native-hosts"]
+    assert all(step.get("if") == code for step in jobs["native-hosts"]["steps"])
     gated = {
         step["run"]: step.get("if")
         for step in jobs["checks-static"]["steps"]

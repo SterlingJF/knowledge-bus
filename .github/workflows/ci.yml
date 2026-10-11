@@ -9,7 +9,6 @@ env:
   UV_MANAGED_PYTHON: "true"
 
 jobs:
-  # Copy-only changes (Markdown outside skills/, plugins/ and the packaged docs) skip the package and explorer lanes.
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -134,7 +133,6 @@ jobs:
 
   native-hosts:
     needs: changes
-    if: ${{ needs.changes.outputs.lane == 'code' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -142,17 +140,26 @@ jobs:
         host: [claude, codex, pi, opencode]
     steps:
       - uses: actions/checkout@v7
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - uses: actions/setup-node@v7
+        if: ${{ needs.changes.outputs.lane == 'code' }}
         with:
           node-version: 24
       - uses: pnpm/action-setup@v6
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - uses: astral-sh/setup-uv@v10.1.0
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - run: uv python install
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - run: uv sync --locked
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - run: pnpm install --frozen-lockfile --ignore-scripts
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - name: Install pinned native CLIs in the disposable runner
+        if: ${{ needs.changes.outputs.lane == 'code' }}
         run: npm install --global @anthropic-ai/claude-code@2.1.226 @openai/codex@0.149.0 @earendil-works/pi-coding-agent@0.85.1 opencode-ai@1.18.20
       - name: Build host fixture and test native commands
+        if: ${{ needs.changes.outputs.lane == 'code' }}
         env:
           TEST_HOST: ${{ matrix.host }}
         run: |

@@ -2,8 +2,6 @@ import { spawnSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { changedFiles, copyOnly } from './snapshot.mjs';
 
-// Prints `lane=copy` when every file changed between BASE and HEAD is copy-only Markdown, else `lane=code`.
-// A missing, all-zero or unknown BASE gives `lane=code`, so CI runs every check.
 export function lane(root, base, head) {
   const usable = base && !/^0+$/.test(base) ? base : null;
   return copyOnly(changedFiles(root, usable, head) ?? []) ? 'copy' : 'code';
