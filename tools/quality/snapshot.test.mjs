@@ -5,7 +5,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { checkSnapshots, exportSnapshot, nodeVersionProblem, prepareTools, pushTips, runPushChecks } from './snapshot.mjs';
+import { lane } from './lane.mjs';
+import {
+  checkSnapshots, COPY_CHECKS, copyOnly, exportSnapshot, nodeVersionProblem, prepareTools, pushRanges, pushTips, runPushChecks,
+} from './snapshot.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const zero = '0'.repeat(40);
@@ -121,6 +124,62 @@ test('pre-push selects unique outgoing branch tips, not HEAD, tags or deletions'
   } }), 0);
   const scripts = ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts', 'check:explorer:gallery'];
   assert.deepEqual(seen, ['valid', 'second'].flatMap((value) => scripts.map((script) => [value, script])));
+});
+
+test('copy-only means Markdown outside skills, plugins and the packaged docs', () => {
+  assert.equal(copyOnly(['README.md', 'docs/versioning.md', 'evals/report.md']), true);
+  assert.equal(copyOnly(['README.md', 'checker/src/kbp_conform/cli.py']), false);
+  assert.equal(copyOnly(['skills/kb-check/SKILL.md']), false);
+  assert.equal(copyOnly(['plugins/claude/knowledge-bus/README.md']), false);
+  assert.equal(copyOnly(['docs/agent-runtime.md']), false);
+  assert.equal(copyOnly(['docs/knowledge-bus-directory.md']), false);
+  assert.equal(copyOnly([]), false);
+});
+
+test('pre-push runs only the copy checks for a copy-only commit, and the full suite otherwise', async (t) => {
+  const cwd = repository(t);
+  const first = git(cwd, 'rev-parse', 'HEAD');
+  write(cwd, 'README.md', '# Readme\n');
+  git(cwd, 'add', '.');
+  git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Readme');
+  const copy = git(cwd, 'rev-parse', 'HEAD');
+  write(cwd, 'docs/agent-runtime.md', '# Runtime\n');
+  git(cwd, 'add', '.');
+  git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Packaged doc');
+  const packaged = git(cwd, 'rev-parse', 'HEAD');
+  const full = ['test:explorer:unit', 'check:fast', 'check:plugins', 'test', 'test:explorer:adapter', 'build:explorer', 'render:explorer', 'test:explorer:browser', 'check:explorer:artifacts', 'check:explorer:gallery'];
+  const scriptsFor = async (input) => {
+    const seen = [];
+    assert.equal(await checkSnapshots({ root: cwd, mode: 'push', input, prepare: () => ({}), run: (_snapshot, script) => {
+      seen.push(script);
+      return 0;
+    } }), 0);
+    return seen;
+  };
+  assert.deepEqual(await scriptsFor(`HEAD ${copy} refs/heads/main ${first}\n`), COPY_CHECKS);
+  assert.deepEqual(await scriptsFor(`HEAD ${packaged} refs/heads/main ${copy}\n`), full);
+  assert.deepEqual(await scriptsFor(`HEAD ${copy} refs/heads/main ${'a'.repeat(40)}\n`), full);
+  assert.deepEqual([...pushRanges(`HEAD ${copy} refs/heads/new ${zero}\n`)], [[copy, null]]);
+  assert.equal(await checkSnapshots({ root: cwd, mode: 'push', input: `HEAD ${copy} refs/heads/main ${first}\n`, prepare: () => ({}),
+    run: (_snapshot, script) => (script === 'test' ? 1 : 0) }), 1);
+});
+
+test('CI lane is copy only when every changed file is copy-only Markdown', (t) => {
+  const cwd = repository(t);
+  const first = git(cwd, 'rev-parse', 'HEAD');
+  write(cwd, 'README.md', '# Readme\n');
+  git(cwd, 'add', '.');
+  git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Readme');
+  const copy = git(cwd, 'rev-parse', 'HEAD');
+  write(cwd, 'value.txt', 'changed');
+  git(cwd, 'add', '.');
+  git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Code');
+  const code = git(cwd, 'rev-parse', 'HEAD');
+  assert.equal(lane(cwd, first, copy), 'copy');
+  assert.equal(lane(cwd, first, code), 'code');
+  assert.equal(lane(cwd, zero, copy), 'code');
+  assert.equal(lane(cwd, undefined, copy), 'code');
+  assert.equal(lane(cwd, 'b'.repeat(40), copy), 'code');
 });
 
 test('pre-push overlaps unit tests, waits for bundle readers, and reports failures from both lanes', async () => {

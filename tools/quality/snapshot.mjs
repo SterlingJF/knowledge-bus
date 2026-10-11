@@ -23,16 +23,41 @@ export function nodeVersionProblem(range, version, execPath) {
     + "Git hooks don't load your shell profile: see CONTRIBUTING.md, Git Hooks.";
 }
 
-export function pushTips(input) {
-  const tips = new Set();
+// Markdown that ships inside the skills and agent packages; a change to these files needs the package checks.
+export const PACKAGED_MARKDOWN = new Set(['docs/agent-runtime.md', 'docs/knowledge-bus-directory.md']);
+
+// Tests read many Markdown files, so copy-only changes still run the fast checks and the test suite.
+export const COPY_CHECKS = ['check:fast', 'test'];
+
+export function copyOnly(paths) {
+  return paths.length > 0 && paths.every((file) => file.endsWith('.md')
+    && !file.startsWith('skills/') && !file.startsWith('plugins/') && !PACKAGED_MARKDOWN.has(file));
+}
+
+export function pushRanges(input) {
+  const ranges = new Map();
   for (const line of input.trim().split('\n').filter(Boolean)) {
     const fields = line.trim().split(/\s+/);
     if (fields.length !== 4 || !/^[a-f0-9]{40,64}$/.test(fields[1])) {
       throw new Error('Expected Git pre-push input: local-ref local-oid remote-ref remote-oid.');
     }
-    if (!/^0+$/.test(fields[1]) && fields[2].startsWith('refs/heads/')) tips.add(fields[1]);
+    if (!/^0+$/.test(fields[1]) && fields[2].startsWith('refs/heads/') && !ranges.has(fields[1])) {
+      ranges.set(fields[1], /^0+$/.test(fields[3]) ? null : fields[3]);
+    }
   }
-  return [...tips];
+  return ranges;
+}
+
+export function pushTips(input) {
+  return [...pushRanges(input).keys()];
+}
+
+// Lists the files HEAD changed since it split from BASE, or returns null when Git can't compare the two here.
+export function changedFiles(root, base, head) {
+  if (!base) return null;
+  const diff = spawnSync('git', ['-C', root, 'diff', '--name-only', '--no-renames', `${base}...${head}`], { encoding: 'utf8' });
+  if (diff.status !== 0) return null;
+  return diff.stdout.split('\n').filter(Boolean);
 }
 
 export function exportSnapshot(root, base, revision) {
@@ -194,16 +219,30 @@ export async function runPushChecks(snapshot, env, run = runCheck) {
   return failed ? 1 : 0;
 }
 
+export async function runCopyChecks(snapshot, env, run = runCheck) {
+  for (const script of COPY_CHECKS) {
+    const code = await run(snapshot, script, env);
+    if (code !== 0) {
+      console.error(`${script} failed.`);
+      return 1;
+    }
+  }
+  return 0;
+}
+
 export async function checkSnapshots({ root, mode, input = '', prepare = prepareTools, run = runCheck }) {
   if (!['staged', 'push'].includes(mode)) throw new Error('Choose staged or push snapshot checks.');
-  const revisions = mode === 'staged' ? [undefined] : pushTips(input);
-  for (const revision of revisions) {
+  const ranges = mode === 'staged' ? new Map([[undefined, null]]) : pushRanges(input);
+  for (const [revision, remote] of ranges) {
     const base = mkdtempSync(path.join(tmpdir(), 'knowledge-bus-snapshot-'));
     try {
       const snapshot = exportSnapshot(root, base, revision);
       console.log(`Checking ${revision ? `outgoing commit ${revision}` : 'staged content'} (isolated snapshot).`);
       const env = prepare(root, snapshot, base);
-      const result = mode === 'staged' ? await run(snapshot, 'check:fast', env) : await runPushChecks(snapshot, env, run);
+      const copy = mode === 'push' && copyOnly(changedFiles(root, remote, revision) ?? []);
+      if (copy) console.log(`Copy-only change: running ${COPY_CHECKS.join(' and ')}.`);
+      const result = mode === 'staged' ? await run(snapshot, 'check:fast', env)
+        : copy ? await runCopyChecks(snapshot, env, run) : await runPushChecks(snapshot, env, run);
       if (result !== 0) return 1;
     } finally {
       rmSync(base, { recursive: true, force: true });

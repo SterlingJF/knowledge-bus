@@ -9,7 +9,26 @@ env:
   UV_MANAGED_PYTHON: "true"
 
 jobs:
+  # Copy-only changes (Markdown outside skills/, plugins/ and the packaged docs) skip the package and explorer lanes.
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      lane: ${{ steps.lane.outputs.lane }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - id: lane
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: node tools/quality/lane.mjs "$BASE" "$HEAD" | tee -a "$GITHUB_OUTPUT"
+
   checks-static:
+    needs: changes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -24,13 +43,19 @@ jobs:
       - uses: extractions/setup-just@v4
       - run: pnpm run check:fast
       - run: pnpm run check:plugins
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - run: pnpm run test
       - run: pnpm run check:explorer:gallery
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - run: uv run --locked python tools/plugin/check_skills_install.py
+        if: ${{ needs.changes.outputs.lane == 'code' }}
       - run: uv run kbp --validate
       - run: uv run --locked python tools/plugin/check_native_install.py
+        if: ${{ needs.changes.outputs.lane == 'code' }}
 
   explorer-unit:
+    needs: changes
+    if: ${{ needs.changes.outputs.lane == 'code' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -42,6 +67,8 @@ jobs:
       - run: pnpm run test:explorer:unit
 
   explorer-browser:
+    needs: changes
+    if: ${{ needs.changes.outputs.lane == 'code' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -66,6 +93,8 @@ jobs:
           if-no-files-found: error
 
   explorer-shots:
+    needs: changes
+    if: ${{ needs.changes.outputs.lane == 'code' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -89,18 +118,23 @@ jobs:
           if-no-files-found: error
 
   checks:
-    needs: [checks-static, explorer-unit, explorer-browser, explorer-shots]
+    needs: [changes, checks-static, explorer-unit, explorer-browser, explorer-shots]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - name: Require every check lane to pass
+      - name: Require every check lane to pass, or to skip on a copy-only change
+        env:
+          LANE: ${{ needs.changes.outputs.lane }}
         run: |
+          test "${{ needs.changes.result }}" = success
           test "${{ needs.checks-static.result }}" = success
-          test "${{ needs.explorer-unit.result }}" = success
-          test "${{ needs.explorer-browser.result }}" = success
-          test "${{ needs.explorer-shots.result }}" = success
+          for result in "${{ needs.explorer-unit.result }}" "${{ needs.explorer-browser.result }}" "${{ needs.explorer-shots.result }}"; do
+            test "$result" = success || { test "$LANE" = copy && test "$result" = skipped; }
+          done
 
   native-hosts:
+    needs: changes
+    if: ${{ needs.changes.outputs.lane == 'code' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

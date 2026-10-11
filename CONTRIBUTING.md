@@ -166,8 +166,10 @@ The In Short section is copied from [Philosophy](PHILOSOPHY.md). Edit it there, 
 | `just unstage-working-notes` / pre-commit, first | Staged paths | Unstages every `*WORKING_NOTES*.md` file, so working notes stay local |
 | `just check` | Working tree | Full suite |
 | `just check-staged` / pre-commit | Staged snapshot | Formatting, lint, protocol, generated files, explorer checks, doc sections |
-| Pre-push | Each distinct outgoing branch tip | Full suite |
-| CI | Checked-out commit | Full suite |
+| Pre-push | Each distinct outgoing branch tip | Full suite; for a copy-only change, `check:fast` and the tests |
+| CI | Checked-out commit | Full suite; for a copy-only change, `check:fast`, the tests and `kbp --validate` |
+
+A copy-only change edits only Markdown files outside `skills/` and `plugins/`. The packaged docs, `docs/agent-runtime.md` and `docs/knowledge-bus-directory.md`, always get the full suite.
 
 Git hooks do not load your shell profile, so they can pick up an older Node, often when you commit from a desktop app. Husky reads `~/.config/husky/init.sh` before every hook. Load your version manager in that file. For nvm, add `export NVM_DIR="$HOME/.nvm"` and source `"$NVM_DIR/nvm.sh"`, with Node 22 or newer as the default: `nvm alias default 22`.
 
