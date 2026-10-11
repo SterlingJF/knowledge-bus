@@ -20,7 +20,7 @@ We hold to four values:
 ## Start Here
 
 1. Search open and closed issues and pull requests first.
-2. Open an issue with a real example before you change a rule, the meaning of a definition or what a skill does. The table below says when you can skip the issue.
+2. Open an issue with a real example before you change a rule, the meaning of a definition, or what a skill does. The table below says when you can skip the issue.
 3. Say in the issue whether you will build the change. If not, another contributor may build it once the issue is accepted.
 4. Keep one change per pull request. Open it as a draft while the scope is unsettled.
 5. Keep secrets and personal data out of fixtures, logs and screenshots.
