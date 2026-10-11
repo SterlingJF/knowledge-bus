@@ -23,10 +23,8 @@ export function nodeVersionProblem(range, version, execPath) {
     + "Git hooks don't load your shell profile: see CONTRIBUTING.md, Git Hooks.";
 }
 
-// Markdown that ships inside the skills and agent packages; a change to these files needs the package checks.
 export const PACKAGED_MARKDOWN = new Set(['docs/agent-runtime.md', 'docs/knowledge-bus-directory.md']);
 
-// Tests read many Markdown files, so copy-only changes still run the fast checks and the test suite.
 export const COPY_CHECKS = ['check:fast', 'test'];
 
 export function copyOnly(paths) {
@@ -52,7 +50,6 @@ export function pushTips(input) {
   return [...pushRanges(input).keys()];
 }
 
-// Lists the files HEAD changed since it split from BASE, or returns null when Git can't compare the two here.
 export function changedFiles(root, base, head) {
   if (!base) return null;
   const diff = spawnSync('git', ['-C', root, 'diff', '--name-only', '--no-renames', `${base}...${head}`], { encoding: 'utf8' });
