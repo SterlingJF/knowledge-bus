@@ -1,17 +1,22 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <div align="center">
 
-<img src="docs/assets/knowledge-bus-readme-hero.png" alt="Illustration of a shared project: a project note, a decision note, and a handover connected to one goal question" width="960" />
+<p>
+  <a href="docs/assets/knowledge-bus-mark-black.svg#gh-light-mode-only"><img src="docs/assets/knowledge-bus-mark-black.svg" alt="Knowledge Bus logo" width="120" /></a>
+  <a href="docs/assets/knowledge-bus-squircle-light.svg#gh-dark-mode-only"><img src="docs/assets/knowledge-bus-squircle-light.svg" alt="Knowledge Bus logo" width="120" /></a>
+</p>
 
 # Knowledge Bus
 
-Tell people and AI agents what your documents should answer.
+Tools for humans and AI agents to define, structure, and connect knowledge.
 
 [![Release](https://img.shields.io/github/v/release/SterlingJF/knowledge-bus?label=release)](https://github.com/SterlingJF/knowledge-bus/releases/latest)
 [![CI](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/SterlingJF/knowledge-bus/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/SterlingJF/knowledge-bus)](LICENSE)
 
 [What is Knowledge Bus?](#what-is-knowledge-bus) • [Where It Helps](#where-it-helps) • [Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [How It Works](#how-it-works) • [Limits](#limits) • [Docs](#docs) • [Contributing](#contributing)
+
+<img src="docs/assets/knowledge-bus-readme-hero.png" alt="Illustration of a shared project: a project note, a decision note, and a handover connected to one goal question" width="960" />
 
 </div>
 <!-- markdownlint-enable MD033 MD041 -->
@@ -22,7 +27,7 @@ Define the questions your notes and documents need to answer, how their contents
 
 ## What is Knowledge Bus?
 
-Knowledge Bus lets people and AI agents describe what knowledge means and how it fits together. It gives them a common reference for writing, reading, and using notes and documents.
+Knowledge Bus lets humans and AI agents describe what knowledge means and how it fits together. It gives them a common reference for writing, reading, and using notes and documents.
 
 For a project, subject, or area of responsibility, you can define:
 
@@ -40,7 +45,7 @@ A template gives a document its sections. Knowledge Bus also defines what those 
 
 ### "How is it any different from a knowledge map?"
 
-Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze *existing* material to explain its contents and connections. Knowledge Bus lets people and agents agree on the questions the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
+Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze *existing* material to explain its contents and connections. Knowledge Bus lets humans and agents agree on the questions the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
 
 ## Where It Helps
 
@@ -392,3 +397,5 @@ See [Contributing](CONTRIBUTING.md) and the [AI Policy](AI_POLICY.md).
 ## License
 
 MIT.
+
+The code is open source; the Knowledge Bus name and branding are not. Forks should use their own identity and not imply affiliation.
