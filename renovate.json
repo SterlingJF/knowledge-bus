@@ -4,12 +4,21 @@
   "osvVulnerabilityAlerts": true,
   "minimumReleaseAge": "14 days",
   "automerge": false,
+  "timezone": "America/New_York",
+  "schedule": ["* 12 * * *"],
+  "automergeSchedule": ["* 12 * * *"],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": false,
     "schedule": ["* 12 * * *"]
   },
-  "ignorePaths": ["**/node_modules/**", "**/.venv/**", "dist/**", "skills/*/references/**", "skills/*/runtime/**"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/.venv/**",
+    "dist/**",
+    "skills/*/references/**",
+    "skills/*/runtime/**"
+  ],
   "packageRules": [
     {
       "matchManagers": ["npm"],
@@ -37,8 +46,5 @@
   ],
   "vulnerabilityAlerts": {
     "automerge": false
-  },
-  "timezone": "America/New_York",
-  "schedule": ["* 12 * * *"],
-  "automergeSchedule": ["* 12 * * *"]
+  }
 }
