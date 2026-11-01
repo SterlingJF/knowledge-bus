@@ -336,6 +336,22 @@ class PrepareModelTests(unittest.TestCase):
             ],
         )
 
+    def test_factor_only_fixture_is_fresh_and_has_no_ordering_frame(self):
+        readers = ROOT / "checker/tests/hall-readers"
+        model = MODULE.prepare_model(
+            yaml.safe_load((readers / "hall-readers.universe.kbp.yaml").read_text()),
+            self.protocol,
+            yaml.safe_load(
+                (readers / "hall-readers.type-guidance.kbp.yaml").read_text()
+            ),
+        )
+        fixture = json.loads(
+            (ROOT / "explorer/test/fixtures/hall-readers.json").read_text()
+        )
+        self.assertEqual(model, fixture)
+        self.assertIsNone(model["orderingFrameId"])
+        self.assertNotIn("ordering_frame", model["universe"])
+
     def test_invalid_universe_does_not_create_output(self):
         source = copy.deepcopy(self.source)
         source["relations"][0]["to"] = "missing-entity"

@@ -1,0 +1,179 @@
+{
+  "connections": [],
+  "entities": [
+    {
+      "description": "Has the reader hired the hall before?",
+      "frameValues": {},
+      "id": "factor:hirer-experience",
+      "kind": "factor",
+      "label": "Hirer experience",
+      "raw": {
+        "code": "k53zz",
+        "id": "hirer-experience",
+        "question": "Has the reader hired the hall before?",
+        "set_by": "instance",
+        "values": [
+          {
+            "id": "first-time",
+            "question": "Is this the reader's first booking?"
+          },
+          {
+            "id": "returning",
+            "question": "Has the reader booked the hall before?"
+          }
+        ]
+      },
+      "sourceId": "hirer-experience",
+      "sourcePath": "factors[0]"
+    },
+    {
+      "description": "How will the reader see the document?",
+      "frameValues": {},
+      "id": "factor:reading-format",
+      "kind": "factor",
+      "label": "Reading format",
+      "raw": {
+        "code": "krqdr",
+        "id": "reading-format",
+        "question": "How will the reader see the document?",
+        "set_by": "instance",
+        "values": [
+          "printed",
+          "screen"
+        ]
+      },
+      "sourceId": "reading-format",
+      "sourcePath": "factors[1]"
+    }
+  ],
+  "evaluation": {
+    "context": null,
+    "status": "unresolved"
+  },
+  "guidance": {
+    "entries": [
+      {
+        "claim": "Put the steps for collecting the keys first.",
+        "id": "guidance:0",
+        "kind": "heuristic",
+        "source": "asserted",
+        "sourcePath": "factors.hirer-experience[0]",
+        "subject": "factor:hirer-experience",
+        "when": {
+          "hirer-experience": [
+            "first-time"
+          ]
+        }
+      },
+      {
+        "claim": "Call each room by the name on its door sign.",
+        "id": "guidance:1",
+        "kind": "heuristic",
+        "source": "asserted",
+        "sourcePath": "factors.hirer-experience[1]",
+        "subject": "factor:hirer-experience",
+        "when": null
+      },
+      {
+        "claim": "Fit the document on one side of A4.",
+        "id": "guidance:2",
+        "kind": "heuristic",
+        "source": "asserted",
+        "sourcePath": "factors.reading-format[0]",
+        "subject": "factor:reading-format",
+        "when": {
+          "reading-format": [
+            "printed"
+          ]
+        }
+      }
+    ],
+    "guides": "hall-readers",
+    "id": "hall-readers-guidance",
+    "kinds": [
+      {
+        "id": "heuristic",
+        "sourced": false
+      }
+    ],
+    "label": "Hall readers guidance",
+    "sources": {},
+    "version": "0.1"
+  },
+  "marks": null,
+  "orderingFrameId": null,
+  "protocolVersion": "0.9.1",
+  "rules": [
+    {
+      "id": "rule:no-artifact",
+      "kind": "no-artifact",
+      "raw": {
+        "when": {}
+      },
+      "sourcePath": "no_artifact"
+    }
+  ],
+  "schema": "knowledge-bus/explorer-model/1",
+  "source": {
+    "artifacts": [],
+    "elements": [],
+    "factors": [
+      {
+        "code": "k53zz",
+        "id": "hirer-experience",
+        "question": "Has the reader hired the hall before?",
+        "set_by": "instance",
+        "values": [
+          {
+            "id": "first-time",
+            "question": "Is this the reader's first booking?"
+          },
+          {
+            "id": "returning",
+            "question": "Has the reader booked the hall before?"
+          }
+        ]
+      },
+      {
+        "code": "krqdr",
+        "id": "reading-format",
+        "question": "How will the reader see the document?",
+        "set_by": "instance",
+        "values": [
+          "printed",
+          "screen"
+        ]
+      }
+    ],
+    "frames": [],
+    "no_artifact": {
+      "when": {}
+    },
+    "relation_kinds": [],
+    "relations": [],
+    "statuses": [],
+    "universe": {
+      "conforms_to": "kbp/0.9",
+      "id": "hall-readers",
+      "label": "Hall readers",
+      "overview": {
+        "covers": "The people who read the village hall's documents.",
+        "for": "Anyone writing a document for hirers or the committee."
+      },
+      "version": "0.1"
+    }
+  },
+  "sourceDigest": "sha256:0116ef777527eaf909b9f2bd31de7dfad4115a2eb64467898f89954d85b458c5",
+  "universe": {
+    "conforms_to": "kbp/0.9",
+    "id": "hall-readers",
+    "label": "Hall readers",
+    "overview": {
+      "covers": "The people who read the village hall's documents.",
+      "for": "Anyone writing a document for hirers or the committee."
+    },
+    "terms": [],
+    "version": "0.1"
+  },
+  "wiring": []
+}

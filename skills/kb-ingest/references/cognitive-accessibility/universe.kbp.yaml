@@ -1,0 +1,72 @@
+universe:
+  id: cognitive-accessibility
+  label: Cognitive accessibility
+  version: "0.1"
+  conforms_to: kbp/0.9
+  overview:
+    covers: >
+      Conditions that shape how documents or context are presented for knowledge work.
+    for: >
+      Humans and agents who present documents or context for knowledge work, and the
+      humans who take in that documentation or context.
+    excludes: >
+      Selecting document sections, asking readers for answers, assessing or labelling
+      cognition, and clinical or compliance claims. Factor values named by diagnosis,
+      level, cognitive style, imagery or measured ability. Perceptual and language
+      adaptations, including larger print, braille, sign language, translation and
+      reduced motion for vestibular discomfort.
+  terms:
+    - term: reader
+      means: A human taking in a document or context by eye or by ear.
+    - term: reading start
+      means: The amount the reader takes in first, while every section stays available.
+
+statuses: []
+frames: []
+factors:
+
+  - id: subject-familiarity
+    code: knh3z
+    set_by: scope
+    question: "How familiar is the reader with the subject of the document or context?"
+    values:
+      - { id: new-to-the-subject, question: "Is the reader new to the subject of the document or context?" }
+      - { id: knows-the-subject, question: "Is the reader already familiar with the subject of the document or context?" }
+
+  - id: reading-start
+    code: kqzwe
+    set_by: instance
+    question: "How much does the reader want to take in first?"
+    values:
+      - { id: key-points-first, question: "Does the reader want the key points before the full detail?" }
+      - { id: full-detail-first, question: "Does the reader want the full detail from the start?" }
+
+  - id: number-reading
+    code: kws90
+    set_by: instance
+    question: "Which form of numbers does the reader want to use for this document or context?"
+    values:
+      - { id: words-with-figures, question: "Does the reader want quantities explained in words beside the figures?" }
+      - { id: figures-or-tables, question: "Does the reader want quantities as figures or tables in place of explanations in words?" }
+
+  - id: reading-channel
+    code: kn6ft
+    set_by: instance
+    question: "How is the reader taking in this document or context?"
+    values:
+      - { id: by-eye, question: "Is the reader taking in the document or context by eye alone?" }
+      - { id: by-ear, question: "Is the reader taking in the document or context by ear alone?" }
+      - { id: by-eye-and-ear, question: "Is the reader taking in the document or context by both eye and ear?" }
+
+  - id: motion-setting
+    code: k6a9s
+    set_by: universe
+    question: "Which motion setting does the reader use to keep attention on the document or context?"
+    values:
+      - { id: reduced-motion, question: "Has the reader chosen less motion because movement draws attention away from the document or context?" }
+      - { id: no-preference, question: "Does the reader have no motion preference for keeping attention on the document or context?" }
+no_artifact: { when: {} }
+relation_kinds: []
+elements: []
+artifacts: []
+relations: []

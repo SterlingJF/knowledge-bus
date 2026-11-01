@@ -2,7 +2,11 @@
 
 Conformance-contract history. Software releases are tracked in the [release changelog](../CHANGELOG.md).
 
-## 0.9 — draft
+## 0.9.1 — draft
+
+- Guidance keyed to a factor is advice on presenting any aspect of a document; the rule no longer lists aspects.
+
+## 0.9
 
 - A universe spec with no element declares no ordering frame. `ordering_frame` moves from `header_required` to `header_required_before`, with version 0.9.
 - A universe spec with elements still declares exactly one ordering frame, and that frame attaches to elements.

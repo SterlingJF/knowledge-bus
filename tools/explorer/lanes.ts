@@ -40,6 +40,7 @@ export const testsObservedToPassWhileWorkersContend: readonly string[] = [
   'tokens reach live consumers including an open overlay',
   'narrow viewports stack the overlay and keep every control reachable',
   'reduced motion makes camera changes immediate',
+  'library: a universe spec with only factors opens on its factors and shows values, how each is set and advice',
   'library: two viewers stay independent, destroy cleans up, and bad input refuses',
   'P19 two model concepts draw two marks, in a universe whose vocabulary the curated glyphs have never seen',
   'a selected connection keeps every card count on the map',

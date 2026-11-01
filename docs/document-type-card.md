@@ -108,7 +108,7 @@ Blocks are separated by one blank line. The file ends with one newline. Text fro
 
 ### Presentation Blocks
 
-Guidance keyed to a factor is advice on presenting the document: wording, emphasis and focus. A factor selects nothing, so the sections stay the same with or without a presentation block. The card lists every factor of each universe spec in scope that declares a factor, with the factor's values and guidance, and never says which value applies. Example: [the visit plan card](../checker/tests/cards/card-fixture/visit-plan.md).
+Guidance keyed to a factor is advice on presenting the document. A factor selects nothing, so the sections stay the same with or without a presentation block. The card lists every factor of each universe spec in scope that declares a factor, with the factor's values and guidance, and never says which value applies. Example: [the visit plan card](../checker/tests/cards/card-fixture/visit-plan.md).
 
 ## Document Type List
 

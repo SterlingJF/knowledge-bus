@@ -806,6 +806,39 @@ test('reduced motion makes camera changes immediate', async ({ page }) => {
   expect((await state(page)).camera).toEqual(immediate);
 });
 
+test('library: a universe spec with only factors opens on its factors and shows values, how each is set and advice', async ({ page }) => {
+  const { errors } = await open(page);
+  const bundle = await build({
+    tsconfig: path.join(root, 'explorer/tsconfig.test.json'),
+    entryPoints: [path.join(root, 'explorer/src/index.ts')],
+    bundle: true,
+    format: 'iife',
+    globalName: 'ExplorerLib',
+    loader: { '.css': 'text' },
+    write: false,
+    logLevel: 'silent',
+  });
+  await page.addScriptTag({ content: bundle.outputFiles[0].text });
+  const readers = JSON.parse(readFileSync(path.join(root, 'explorer/test/fixtures/hall-readers.json'), 'utf8'));
+  const result = await page.evaluate((model) => {
+    type Handle = { getState(): State; select(id: string | null): void };
+    const lib = (globalThis as unknown as { ExplorerLib: { mountUniverseViewer(host: HTMLElement, model: unknown): Handle } }).ExplorerLib;
+    const host = document.createElement('div');
+    host.style.cssText = 'width:900px;height:700px';
+    document.body.append(host);
+    const viewer = lib.mountUniverseViewer(host, model);
+    const view = viewer.getState().options.view;
+    viewer.select('factor:reading-format');
+    const detail = host.shadowRoot!.querySelector('.detail')?.textContent ?? '';
+    return { view, detail };
+  }, readers);
+  expect(result.view).toBe('frames');
+  expect(result.detail).toContain('Values');
+  expect(result.detail).toContain('How it is set');
+  expect(result.detail).toContain('How to present it');
+  expect(errors).toEqual([]);
+});
+
 test('library: two viewers stay independent, destroy cleans up, and bad input refuses', async ({ page }) => {
   await open(page);
   const bundle = await build({

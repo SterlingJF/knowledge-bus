@@ -1,4 +1,4 @@
-import { type ExplorerModel, type Entity, human, referencedFrames } from './model';
+import { type ExplorerModel, type Entity, human, orderingKey, referencedFrames } from './model';
 import { type PlacedCard } from './layout';
 import { cardinalityCopy, setByCopy } from './phrasing';
 import { marksOf, type Mark } from './icons';
@@ -64,11 +64,11 @@ export function cardAnatomy(card: PlacedCard, model: ExplorerModel, measure: Tex
         : card.kind === 'rule'
           ? '--kb-border'
           : '--kb-frame';
-  const ordering = model.orderingFrameId.split(':').slice(1).join(':');
+  const ordering = orderingKey(model);
   const marks = marksOf(model);
   const icon =
     card.kind === 'element'
-      ? marks.value(model.orderingFrameId, String(entity?.frameValues[ordering] ?? entity?.raw[ordering] ?? ''), 'element')
+      ? marks.value(model.orderingFrameId ?? '', String(entity?.frameValues[ordering] ?? entity?.raw[ordering] ?? ''), 'element')
       : card.kind === 'option'
         ? marks.value(entity?.frameId ?? '', entity?.sourceId ?? '', 'frame')
         : card.kind === 'frame' || card.kind === 'factor'

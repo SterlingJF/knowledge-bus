@@ -1,0 +1,54 @@
+list	pair_id	index_source	publisher	coded_need	feature_codes	unit_covered	set_by_level	wording_level	length	order	summary_first	images_beside_text	chunking	audio	other	confirmation	read_date
+A1-easy-read	A1-01	gov.scot-publications-easy-read	Scottish Government	none stated	-	one document	instance	yes	yes	no	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A1-easy-read	A1-02	gov.scot-publications-easy-read	Scottish Government	none stated	-	one document	instance	yes	yes	no	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A1-easy-read	A1-03	gov.scot-publications-easy-read	Scottish Government	N3 short-version; N11 choose-a-version	N1 everyday-wording	one document	instance	yes	yes	no	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A1-easy-read	A1-04	gov.scot-publications-easy-read	Scottish Government	none stated	-	one document	instance	yes	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-05	gov.scot-publications-easy-read	Scottish Government	none stated	-	one document	instance	yes	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-06	gov.uk-search-easy-read	Department for Work and Pensions	audience named, no need stated; N11 choose-a-version	-	one document	instance	yes	yes	no	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A1-easy-read	A1-07	gov.uk-search-easy-read	Government Equalities Office	N16 find-the-part	N1 everyday-wording	one document	instance	yes	no	unclear	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-08	gov.uk-search-easy-read	Department of Health and Social Care	none stated	-	one document	instance	yes	yes	yes	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-09	gov.uk-search-easy-read	Department of Health and Social Care	C6 reads-with-a-helper	N1 everyday-wording; N5 pictures-with-words; N11 choose-a-version	one document	instance	yes	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-10	gov.uk-search-easy-read	Department for Work and Pensions	audience named, no need stated; N11 choose-a-version	-	one document	instance	yes	yes	no	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A1-easy-read	A1-11	gov.uk-search-easy-read	Department for Work and Pensions	audience named, no need stated; N11 choose-a-version	-	one document	instance	yes	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-12	gov.uk-search-easy-read	Department of Health and Social Care	none stated	-	one document	instance	yes	yes	unclear	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-13	gov.uk-search-easy-read	Department for Work and Pensions	audience named, no need stated; N11 choose-a-version	-	one document	instance	unclear	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-14	gov.uk-search-easy-read	Department for Work and Pensions	audience named, no need stated; N11 choose-a-version	-	one document	instance	yes	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-16	gov.uk-search-easy-read	Parole Board	N3 short-version; N2 key-points-first	N5 pictures-with-words	one document	instance	unclear	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-17	gov.uk-search-easy-read	Home Office	C1 second-language; N11 choose-a-version	-	one document	instance	yes	yes	no	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A1-easy-read	A1-18	gov.uk-search-easy-read	Department of Health and Social Care	audience named, no need stated; N16 find-the-part	N11 choose-a-version	one document	instance	yes	yes	no	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-19	gov.uk-search-easy-read	Department of Health and Social Care	C6 reads-with-a-helper	N11 choose-a-version	one document	instance	yes	yes	unclear	no	yes	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-20	gov.uk-search-easy-read	Home Office	C6 reads-with-a-helper	N3 short-version; N2 key-points-first	one document	instance	yes	yes	yes	no	yes	yes	no	content cut	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-E1	elife-digests-api	eLife	none stated	-	one document	instance	yes	yes	no	yes	yes	no	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-E2	elife-digests-api	eLife	none stated	-	one document	instance	yes	yes	no	yes	yes	no	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-E3	elife-digests-api	eLife	none stated	-	one document	instance	yes	yes	no	yes	yes	no	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-E4	elife-digests-api	eLife	none stated	-	one document	instance	yes	yes	no	yes	no	no	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-E5	elife-digests-api	eLife	none stated	-	one document	instance	yes	yes	no	yes	yes	no	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-M1	ema-medicines-json	European Medicines Agency	none stated	N11 choose-a-version	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-M2	ema-medicines-json	European Medicines Agency	none stated	-	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-M3	ema-medicines-json	European Medicines Agency	none stated	N11 choose-a-version	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-M4	ema-medicines-json	European Medicines Agency	none stated	N11 choose-a-version	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-M5	ema-medicines-json	European Medicines Agency	none stated	N11 choose-a-version	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-C1	cochrane-library-reviews-p1-4	Cochrane	none stated	-	one document	instance	yes	no	yes	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-C2	cochrane-library-reviews-p1-4	Cochrane	none stated	-	one document	instance	yes	no	yes	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-C3	cochrane-library-reviews-p1-4	Cochrane	none stated	-	one document	instance	yes	no	yes	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-C4	cochrane-library-reviews-p1-4	Cochrane	none stated	-	one document	instance	yes	no	yes	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A2-plain-language-summaries	A2-C5	cochrane-library-reviews-p1-4	Cochrane	none stated	-	one document	instance	yes	no	yes	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A3-bluf-summaries	A3-I1	ipcc-reports-index	Intergovernmental Panel on Climate Change	audience named, no need stated	N2 key-points-first	one document	instance	no	yes	unclear	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A3-bluf-summaries	A3-I2	ipcc-reports-index	Intergovernmental Panel on Climate Change	audience named, no need stated	N2 key-points-first	one document	instance	no	yes	unclear	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A3-bluf-summaries	A3-I3	ipcc-reports-index	Intergovernmental Panel on Climate Change	audience named, no need stated	N2 key-points-first	one document	instance	no	yes	unclear	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A3-bluf-summaries	A3-I4	ipcc-reports-index	Intergovernmental Panel on Climate Change	audience named, no need stated	N2 key-points-first	one document	instance	no	yes	unclear	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A3-bluf-summaries	A3-I5	ipcc-reports-index	Intergovernmental Panel on Climate Change	audience named, no need stated	N2 key-points-first; N16 find-the-part	one document	instance	no	yes	unclear	yes	yes	yes	no	-	confirmed by reading	2026-10-17
+A4-layered-notices	A4-C1	creative-commons-licence-list	Creative Commons	none stated	-	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A4-layered-notices	A4-C3	creative-commons-licence-list	Creative Commons	none stated	-	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A4-layered-notices	A4-C4	creative-commons-licence-list	Creative Commons	none stated	-	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A4-layered-notices	A4-C5	creative-commons-licence-list	Creative Commons	none stated	-	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A4-layered-notices	A4-C6	creative-commons-licence-list	Creative Commons	none stated	-	one document	instance	yes	yes	yes	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A4-layered-notices	A4-G1	gov.uk-search-privacy-notice	HM Revenue & Customs	none stated	N3 short-version; N11 choose-a-version	one document	instance	yes	yes	no	yes	no	yes	no	-	confirmed by reading	2026-10-17
+A1-easy-read	A1-U1	gov.uk-search-easy-read	NHS England		-											unreadable	2026-10-17
+A1-easy-read	A1-U2	gov.uk-search-easy-read	Criminal Procedure Rule Committee		-											unreadable	2026-10-17
+A1-easy-read	A1-U3	gov.uk-search-easy-read	NHS England		-											unreadable	2026-10-17
+A1-easy-read	A1-U4	gov.uk-search-easy-read	UK Health Security Agency		-											unreadable	2026-10-17
+A1-easy-read	A1-U5	gov.uk-search-easy-read	Ministry of Housing, Communities and Local Government		-											unreadable	2026-10-17
+A1-easy-read	A1-U6	gov.uk-search-easy-read	Criminal Procedure Rule Committee		-											unreadable	2026-10-17
+A1-easy-read	A1-U7	gov.uk-search-easy-read	Criminal Procedure Rule Committee		-											unreadable	2026-10-17
+A4-layered-notices	A4-U1	creative-commons-licence-list	Creative Commons		-											unreadable by this reader	2026-10-17

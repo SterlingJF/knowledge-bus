@@ -1,0 +1,11 @@
+policy_id	list	publisher	reach	set_by_level	coded_need
+P-A1-01	A1-easy-read	Department for Work and Pensions	scope	scope	audience named, no need stated; N11 choose-a-version
+P-A1-02	A1-easy-read	Scottish Government	scope	scope	none stated
+P-A1-03	A1-easy-read	GOV.UK (publishing platform)	scope	scope	N11 choose-a-version
+P-A1-04	A1-easy-read	UK Health Security Agency	scope	scope	audience named, no need stated; C6 reads-with-a-helper
+P-A2-01	A2-plain-language-summaries	Cochrane	universe	universe	C3 outside-the-field; N1 everyday-wording
+P-A2-02	A2-plain-language-summaries	European Medicines Agency	universe (by pattern only)	universe	none stated
+P-A2-03	A2-plain-language-summaries	eLife	scope	scope	N1 everyday-wording; N12 context-for-outsiders; C3 outside-the-field
+P-A3-01	A3-bluf-summaries	Intergovernmental Panel on Climate Change	universe (by pattern only)	universe	audience named, no need stated
+P-A3-02	A3-bluf-summaries	National Audit Office	scope (by pattern only)	scope	none stated
+P-A4-01	A4-layered-notices	Creative Commons	universe (by pattern)	universe	none stated

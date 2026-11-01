@@ -1,0 +1,107 @@
+id	draft_value	also	kind	who	grade	source_type	source_group	change_scale
+SC-001	C6 reads-with-a-helper	N13	service	one	B	user-research	S001	-
+SC-002	N11 choose-a-version	N5	service	one	B	user-research	S001	-
+SC-003	C9 under-stress	N5	service	one	B	user-research	S001	-
+SC-004	N7 small-chunks	C8	service	one	B	user-research	S001	-
+SC-005	C1 second-language	N1	service	one	B	user-research	S002	-
+SC-006	N4 full-detail	-	service	group	B	study	S003	-
+SC-007	N4 full-detail	-	finding	one	B	study	S004	-
+SC-008	N13 go-over-later	N6 C9	service	one	B	study	S005	between readings
+SC-009	N13 go-over-later	N6	finding	one	B	study	S006	-
+SC-010	N14 numbers-with-words	-	finding	one	B	study	S007	-
+SC-011	N1 everyday-wording	C3	finding	one	B	study	S008	-
+SC-012	N13 go-over-later	N1	service	one	B	study	S009	-
+SC-013	N6 listen	C2	service	one	C	lived-experience	S010	per document
+SC-014	C2 slow-channel	N16	service	one	B	user-research	S011	-
+SC-015	N7 small-chunks	N5	service	group	B	study	S012	-
+SC-016	N5 pictures-with-words	-	finding	one	B	study	S013	-
+SC-017	C9 under-stress	N7 N13	service	one	B	study	S014	within one reading
+SC-018	N13 go-over-later	-	service	one	B	study	S014	between readings
+SC-019	C5 reads-short-only	N3	service	one	B	study	S015	-
+SC-020	C7 worn-out	N13	service	one	B	study	S016	between readings
+SC-021	N16 find-the-part	N7	finding	one	B	study	S017	-
+SC-022	C8 loses-track	N1	service	one	C	lived-experience	S018	-
+SC-023	N7 small-chunks	-	service	one	C	lived-experience	S018	-
+SC-024	N1 everyday-wording	-	service	one	C	lived-experience	S018	-
+SC-025	N16 find-the-part	C8	service	one	B	guide	S018	-
+SC-026	C6 reads-with-a-helper	-	service	one	B	user-research	S019	-
+SC-027	C9 under-stress	-	service	one	B	user-research	S019	-
+SC-028	N13 go-over-later	C2	service	one	B	user-research	S019	between readings
+SC-029	N2 key-points-first	N16	finding	one	B	study	S020	-
+SC-030	N9 few-distractions	-	finding	one	B	study	S021	-
+SC-031	C4 limited-space	C5	service	one	B	user-research	S022	-
+SC-032	N14 numbers-with-words	-	service	one	C	lived-experience	S023	-
+SC-033	C6 reads-with-a-helper	-	service	one	C	lived-experience	S023	-
+SC-034	N14 numbers-with-words	-	finding	group	C	lived-experience	S024	-
+SC-035	N2 key-points-first	C2	service	one	B	user-research	S025	-
+SC-036	N11 choose-a-version	-	service	one	B	user-research	S025	-
+SC-037	N16 find-the-part	N3	service	one	B	user-research	S026	-
+SC-038	N8 meaning-stated	-	service	one	B	study	S027	-
+SC-039	N8 meaning-stated	-	finding	one	B	study	S028	-
+SC-040	C3 outside-the-field	N1	service	one	B	study	S029	-
+SC-041	C3 outside-the-field	N1	finding	one	C	study	S030	-
+SC-042	N13 go-over-later	C6	service	one	B	study	S031	-
+SC-043	C1 second-language	N13	service	one	B	study	S032	-
+SC-044	N5 pictures-with-words	N6 C2	finding	one	B	study	S033	-
+SC-045	C6 reads-with-a-helper	N1	finding	one	B	study	S033	-
+SC-046	N13 go-over-later	C3	finding	group	B	study	S034	-
+SC-047	C2 slow-channel	C7	service	one	B	study	S035	-
+SC-048	C7 worn-out	N6	service	one	B	study	S036	-
+SC-049	N7 small-chunks	C9	service	one	B	study	S036	-
+SC-050	C7 worn-out	C8	service	one	B	service-page	S037	within one reading
+SC-051	N6 listen	C2	creation	one	C	lived-experience	S038	per document
+SC-052	C10 attention-split	N6 C2	service	one	B	guide	S039	-
+SC-053	C10 attention-split	C5	finding	one	B	study	S040	between readings
+SC-054	C7 worn-out	C9	service	group	B	user-research	S041	-
+SC-055	N7 small-chunks	-	service	group	C	request	S042	-
+SC-056	N5 pictures-with-words	-	service	group	C	request	S042	-
+SC-057	N3 short-version	-	service	group	C	request	S042	-
+SC-058	N10 familiar-layout	-	service	one	B	guide	S043	-
+SC-059	C6 reads-with-a-helper	C9	service	one	C	request	S044	-
+SC-060	N11 choose-a-version	N6	service	one	C	request	S044	-
+SC-061	N12 context-for-outsiders	C3	finding	one	B	user-research	S045	-
+SC-062	N5 pictures-with-words	N8	finding	one	C	lived-experience	S046	-
+SC-063	N3 short-version	C7	finding	one	B	study	S047	-
+SC-064	N4 full-detail	-	finding	one	B	study	S047	-
+SC-065	N16 find-the-part	N11	service	organisation	B	user-research	S048	-
+SC-066	N3 short-version	N1	service	organisation	B	user-research	S049	-
+SC-067	C1 second-language	N1 N5	creation	one	B	study	S050	-
+SC-068	N4 full-detail	N13	service	group	B	study	S051	-
+SC-069	C9 under-stress	N13	service	one	B	study	S051	-
+SC-070	C9 under-stress	C5	service	group	B	study	S052	over weeks or months
+SC-071	N3 short-version	N1	finding	one	B	study	S053	-
+SC-072	N3 short-version	-	finding	one	B	study	S054	-
+SC-073	C2 slow-channel	C7	service	one	B	study	S055	within one reading
+SC-074	N15 numbers-over-text	-	finding	one	B	study	S056	-
+SC-075	N15 numbers-over-text	N14	finding	one	B	study	S057	-
+SC-076	N15 numbers-over-text	-	finding	one	B	study	S058	-
+SC-077	N15 numbers-over-text	-	finding	one	C	study	S059	-
+SC-078	C8 loses-track	N16	service	one	B	study	S060	-
+SC-079	N9 few-distractions	N17	service	one	C	user-research	S061	-
+SC-080	N10 familiar-layout	-	creation	one	B	study	S062	-
+SC-081	N1 everyday-wording	N3	finding	one	B	study	S063	-
+SC-082	N11 choose-a-version	-	service	one	B	study	S064	-
+SC-083	N8 meaning-stated	N4	service	one	B	study	S065	-
+SC-084	C1 second-language	N13 N6	service	one	B	study	S066	-
+SC-085	N6 listen	N5 C6	service	one	B	study	S067	-
+SC-086	N2 key-points-first	C3	finding	one	B	study	S068	-
+SC-087	N12 context-for-outsiders	C3	finding	one	B	study	S068	-
+SC-088	C5 reads-short-only	N2	service	one	B	study	S069	-
+SC-089	C3 outside-the-field	N1	finding	one	B	study	S070	-
+SC-090	N1 everyday-wording	C3	service	one	B	study	S071	-
+SC-091	N6 listen	C2	service	one	B	study	S072	-
+SC-092	C4 limited-space	C8	service	one	C	study	S073	-
+SC-093	C10 attention-split	C8	finding	one	B	study	S074	within one reading
+SC-094	N10 familiar-layout	-	service	group	B	study	S012	-
+SC-095	N17 less-motion	-	finding	one	C	study	S075	-
+SC-096	N2 key-points-first	N3	finding	group	B	study	S076	-
+SC-097	N2 key-points-first	N4 C9	finding	one	B	study	S077	-
+SC-098	C5 reads-short-only	N3 C9	finding	one	B	study	S078	-
+SC-099	C3 outside-the-field	N1	service	one	B	study	S079	-
+SC-100	C4 limited-space	-	service	one	B	study	S080	-
+SC-101	C4 limited-space	-	service	group	B	study	S081	-
+SC-102	C8 loses-track	N13	creation	one	B	study	S082	-
+SC-103	N14 numbers-with-words	-	finding	one	B	study	S083	over weeks or months
+SC-104	N12 context-for-outsiders	N13	finding	one	B	study	S084	-
+SC-105	N12 context-for-outsiders	-	finding	one	B	study	S085	-
+SC-106	C2 slow-channel	-	creation	one	C	lived-experience	S038	-

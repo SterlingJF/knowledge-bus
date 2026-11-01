@@ -16,6 +16,9 @@
   };
   var aViewGroupsItsElements = (view) => view === "elements";
   var theDisplayAViewOpensOn = (view) => view === "elements" ? "counts" : "lines";
+  var orderingKey = (model) => model.orderingFrameId ? model.orderingFrameId.split(":").slice(1).join(":") : "";
+  var declaresArtifacts = (model) => model.entities.some((entity) => entity.kind === "artifact");
+  var theViewAModelOpensOn = (model) => model.entities.some((entity) => entity.kind === "element" || entity.kind === "artifact") ? "elements" : "frames";
   var initialOptions = (view = "elements") => ({
     view,
     connections: "composition",
@@ -457,7 +460,7 @@
     const options = orderingOptions(model);
     if (ordering && options.length) {
       const orderScope = {
-        id: model.orderingFrameId,
+        id: ordering.id,
         title: ordering.label,
         caption: "",
         role: "scope",
@@ -475,7 +478,7 @@
           id: entity.id,
           entity,
           kind: "option",
-          scopeId: model.orderingFrameId,
+          scopeId: ordering.id,
           x: NESTED_X + OPTIONS_X + index * step,
           y: ORDER_SCOPE_Y + OPTIONS_Y,
           w: Math.min(OPTION_CARD_W, step - OPTIONS_GAP),
@@ -484,7 +487,7 @@
       );
     }
     const rule = model.rules[0];
-    if (rule) {
+    if (rule && declaresArtifacts(model)) {
       const ruleCard = {
         id: rule.id,
         entity: null,
@@ -627,7 +630,7 @@
       cards.push(...flatCards);
       return drawingOnlyWhatSomethingDeclares(cards, boundaries, []);
     }
-    const ordering = model.orderingFrameId.split(":").slice(1).join(":");
+    const ordering = orderingKey(model);
     const options_ = orderingOptions(model);
     const groups = options_.map((option) => ({
       option,
@@ -2245,9 +2248,9 @@
     selection: "Selects content for context"
   })[role ?? ""] ?? role ?? "";
   var setByCopy = (setBy) => ({
-    universe: "Fixed for this universe",
-    instance: "Set for each piece of work",
-    scope: "Set for the relevant scope"
+    universe: "Set once for this universe spec",
+    instance: "Set per document",
+    scope: "Set per folder"
   })[setBy ?? ""] ?? "";
   var legalityCopy = (legality) => ({ permitted: "Permitted", "permitted-if-logged": "Permitted only if recorded", forbidden: "Not permitted" })[legality ?? ""] ?? legality;
   var freezeCopy = (freeze) => ({ open: "Open", baselined: "Changes must be recorded as new events, not edits.", superseded: "Superseded" })[freeze ?? ""] ?? freeze;
@@ -2669,9 +2672,9 @@
   function cardAnatomy(card, model, measure = approximateText) {
     const entity = card.entity;
     const accent = card.kind === "artifact" ? "--kb-artifact" : card.kind === "element" ? "--kb-element" : card.kind === "rule" ? "--kb-border" : "--kb-frame";
-    const ordering = model.orderingFrameId.split(":").slice(1).join(":");
+    const ordering = orderingKey(model);
     const marks = marksOf(model);
-    const icon2 = card.kind === "element" ? marks.value(model.orderingFrameId, String(entity?.frameValues[ordering] ?? entity?.raw[ordering] ?? ""), "element") : card.kind === "option" ? marks.value(entity?.frameId ?? "", entity?.sourceId ?? "", "frame") : card.kind === "frame" || card.kind === "factor" ? marks.frame(entity?.sourceId ?? "", card.kind) : null;
+    const icon2 = card.kind === "element" ? marks.value(model.orderingFrameId ?? "", String(entity?.frameValues[ordering] ?? entity?.raw[ordering] ?? ""), "element") : card.kind === "option" ? marks.value(entity?.frameId ?? "", entity?.sourceId ?? "", "frame") : card.kind === "frame" || card.kind === "factor" ? marks.frame(entity?.sourceId ?? "", card.kind) : null;
     const title = card.kind === "rule" ? "No artifact needed" : entity?.label ?? human(card.id.split(":").pop() ?? "");
     const subtitle = subtitleFor(card, entity, model);
     const frameNames = entity && (entity.kind === "element" || entity.kind === "artifact") ? referencedFrames(model, entity.id).filter((frame) => frame !== ordering) : [];
@@ -3063,7 +3066,7 @@
   var MAX_DISPLAY_COUNT3 = 9;
   var DESCRIPTIONS_DRAWN_WITHIN_A_LINE_ALLOWANCE = ["frame", "factor", "option"];
   function optionStats(model, optionId) {
-    const ordering = model.orderingFrameId.split(":").slice(1).join(":");
+    const ordering = orderingKey(model);
     const value = optionId.split(":").pop();
     const elements = model.entities.filter((e) => e.kind === "element" && (e.frameValues[ordering] ?? e.raw[ordering]) === value);
     const ids = new Set(elements.map((e) => e.id));
@@ -3745,13 +3748,13 @@
     const gate = gatingBlock(context, group);
     return groupBox(heading, [...gate ? [gate] : [], disclosureList(group.rows.map((row) => compositionMemberRow(context, row)))]);
   }
-  function guidanceDisclosure(context, entries) {
+  function guidanceDisclosure(context, entries, title = GUIDANCE_HEADING) {
     if (!entries.length) return null;
     const details = document.createElement("details");
     details.className = "guidance";
     const summary = document.createElement("summary");
     const heading = document.createElement("span");
-    heading.textContent = GUIDANCE_HEADING;
+    heading.textContent = title;
     const count = document.createElement("span");
     count.className = "muted";
     count.textContent = ` · ${guidanceCountCopy(entries.length)}`;
@@ -3908,7 +3911,7 @@
     const body = surface.body;
     if (!entity) body.append(paragraph("Rule", "detail-kind"));
     if (entity?.description) body.append(paragraph(entity.description, "detail-question"));
-    const ordering = model.orderingFrameId.split(":").slice(1).join(":");
+    const ordering = orderingKey(model);
     const composition = model.connections.filter((c) => c.kind === "composition");
     if (entity?.kind === "element") {
       body.append(
@@ -3999,6 +4002,21 @@
       for (const [facet, values] of Object.entries(entity.raw.facets ?? {})) {
         const block = section(human(facet), [listedGroup(countOf(values.length, "value"), values.map(human))]);
         if (block) body.append(block);
+      }
+      if (entity.kind === "factor") {
+        body.append(facts([["How it is set", setByCopy(entity.raw.set_by)]]));
+        const values = entity.raw.values ?? [];
+        const block = section("Values", [
+          listedGroup(
+            countOf(values.length, "value"),
+            values.map(
+              (value) => typeof value === "string" ? human(value) : value.question ? `${human(value.id)}: ${value.question}` : human(value.id)
+            )
+          )
+        ]);
+        if (block && values.length) body.append(block);
+        const advice = guidanceDisclosure(context, guidanceFor(model, entity.id), "How to present it");
+        if (advice) body.append(advice);
       }
     } else if (rule) {
       const block = section("No artifact needed when", [conditions(context, rule.raw.when)]);
@@ -4921,7 +4939,7 @@
     shell.tabIndex = -1;
     shadow.append(style, shell);
     const measure = measurer();
-    let options = updateOptions(initialOptions(viewerOptions.initial?.view), viewerOptions.initial ?? {});
+    let options = updateOptions(initialOptions(viewerOptions.initial?.view ?? theViewAModelOpensOn(model)), viewerOptions.initial ?? {});
     let selection = emptySelection();
     let camera = { x: 0, y: 0, z: 1 };
     let insets = noInsets();
@@ -5025,7 +5043,7 @@
       if (!scene.layout.cards.length) {
         const empty = document.createElement("p");
         empty.className = "empty";
-        empty.textContent = "No cards match the current view options.";
+        empty.textContent = options.view !== "frames" && !declaresArtifacts(model) ? "This universe declares no artifacts." : "No cards match the current view options.";
         viewport.append(empty);
       }
       shell.dataset.theme = options.theme === "auto" ? "" : options.theme;

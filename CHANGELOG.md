@@ -2,6 +2,20 @@
 
 Software releases. See [Protocol Changelog](protocol/CHANGELOG.md) for conformance-contract history and [Versioning](docs/versioning.md) for the release process.
 
+## 0.11.0 — unreleased
+
+Bundled protocol: `kbp/0.9.1`.
+
+### Protocol kbp/0.9.1
+
+- Guidance keyed to a factor is advice on presenting any aspect of a document; the rule no longer lists aspects.
+
+### Explorer factor views
+
+- Render a universe spec with no ordering frame in `--inspect` and `--explore`. The Explorer opens such a universe spec, for example a factor-only one, on Dimensions.
+- Show each factor's values with their questions, how each value is set and the advice keyed to each value, under *How to present it*.
+- Describe how a value is set as once for the universe spec, per folder or per document.
+
 ## 0.10.0
 
 Bundled protocol: `kbp/0.9`.

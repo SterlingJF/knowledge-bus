@@ -42,7 +42,7 @@ import hashlib
 import json
 import random
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import corpus_counts
@@ -467,21 +467,185 @@ def load_prior(path):
     return data.get("picks", [])
 
 
+def adaptation_order(candidates: list[dict], seed: int = 20261017) -> list[dict]:
+    ordered = sorted(candidates, key=lambda c: c["url"])
+    random.Random(seed).shuffle(ordered)
+    return ordered
+
+
+def adaptation_draw(
+    candidates: list[dict],
+    labels: dict[str, dict],
+    target: int = 20,
+    cap: int = 5,
+    seed: int = 20261017,
+    pending_n: int = 3,
+) -> dict:
+    """Round-robin across index sources, one confirmed pair per source per turn.
+
+    Labels map a candidate URL to {"status": "eligible" | "skip" | "unreadable" |
+    "no original", "reason": ..., "publisher": ...}. A candidate whose publisher
+    already holds `cap` picks is skipped unread. A source with no label for its
+    next candidate stops the draw for that source and lists the candidate as
+    pending, so the draw never jumps past an unread candidate.
+    """
+    by_source: dict[str, list[dict]] = {}
+    for cand in candidates:
+        by_source.setdefault(cand["index_source"], []).append(cand)
+    queues = {src: adaptation_order(cands, seed) for src, cands in by_source.items()}
+    order_ids = sorted(queues)
+    positions = {src: 0 for src in order_ids}
+    picks: list[dict] = []
+    skips: list[dict] = []
+    pending: dict[str, list[dict]] = {}
+    per_pub: Counter = Counter()
+    active = list(order_ids)
+    exhausted: dict[str, str] = {}
+
+    def publisher_of(cand: dict) -> str:
+        label = labels.get(cand["url"]) or {}
+        return label.get("publisher") or cand["publisher"]
+
+    while len(picks) < target and active:
+        progressed = False
+        for src in list(active):
+            if len(picks) >= target:
+                break
+            queue = queues[src]
+            while positions[src] < len(queue):
+                remaining = queue[positions[src] :]
+                if all(per_pub[publisher_of(c)] >= cap for c in remaining):
+                    exhausted[src] = (
+                        f"publisher cap of {cap} reached for every remaining candidate "
+                        f"({len(remaining)} left unread)"
+                    )
+                    positions[src] = len(queue)
+                    break
+                cand = queue[positions[src]]
+                pub = publisher_of(cand)
+                if per_pub[pub] >= cap:
+                    skips.append(
+                        {
+                            "source": src,
+                            "url": cand["url"],
+                            "title": cand["title"],
+                            "status": "skip",
+                            "reason": f"publisher cap reached ({pub}); not read",
+                        }
+                    )
+                    positions[src] += 1
+                    continue
+                label = labels.get(cand["url"])
+                if label is None:
+                    pending[src] = [
+                        c for c in queue[positions[src] : positions[src] + pending_n]
+                    ]
+                    break
+                positions[src] += 1
+                if label["status"] == "eligible":
+                    per_pub[pub] += 1
+                    pick = {
+                        "source": src,
+                        "url": cand["url"],
+                        "title": cand["title"],
+                        "publisher": pub,
+                    }
+                    for key in ("original_url", "adaptation_url", "publication_url"):
+                        if label.get(key):
+                            pick[key] = label[key]
+                    picks.append(pick)
+                    progressed = True
+                    break
+                skips.append(
+                    {
+                        "source": src,
+                        "url": cand["url"],
+                        "title": cand["title"],
+                        "status": label["status"],
+                        "reason": label.get("reason", ""),
+                    }
+                )
+            if positions[src] >= len(queue) and src not in pending:
+                exhausted.setdefault(src, "candidates used up")
+                active.remove(src)
+            elif src in pending:
+                active.remove(src)
+        if not progressed:
+            break
+
+    pick_urls = sorted(p["url"] for p in picks)
+    subsample = random.Random(seed).sample(pick_urls, min(5, len(pick_urls)))
+    status_counts = Counter(s["status"] for s in skips)
+    return {
+        "seed": seed,
+        "target": target,
+        "publisher_cap": cap,
+        "size": len(picks),
+        "short": len(picks) < 10,
+        "complete": not pending and (len(picks) >= target or not active),
+        "picks": picks,
+        "skips": skips,
+        "skip_counts": dict(status_counts),
+        "pending": {src: [c["url"] for c in cands] for src, cands in pending.items()},
+        "sources_ended": exhausted,
+        "picks_per_source": dict(Counter(p["source"] for p in picks)),
+        "picks_per_publisher": dict(Counter(p["publisher"] for p in picks)),
+        "second_reader_subsample": subsample,
+    }
+
+
+def adaptation_draws(path, labels_path, seed=20261017):
+    lists = defaultdict(list)
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            row = json.loads(line)
+            lists[row["list"]].append(row)
+    labels = json.loads(labels_path.read_text(encoding="utf-8"))
+    return {
+        name: adaptation_draw(rows, {r["url"]: r for r in labels[name]}, seed=seed)
+        for name, rows in sorted(lists.items())
+    }
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument(
-        "--data", required=True, type=Path, help="raw data folder from corpus_fetch.py"
+        "--data", type=Path, help="raw data folder from corpus_fetch.py"
+    )
+    parser.add_argument(
+        "--adaptations",
+        type=Path,
+        help="frozen adaptation JSONL instead of repository data",
+    )
+    parser.add_argument(
+        "--labels", type=Path, help="eligibility labels JSON, keyed by list"
     )
     parser.add_argument("--min-stars", type=int, default=3000)
-    parser.add_argument("--seed", type=int, default=20261008)
+    parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--sample", nargs="+", choices=SAMPLES, default=list(SAMPLES))
     parser.add_argument(
         "--prior", type=Path, help="earlier picks or reads index, with a group per read"
     )
     parser.add_argument("--out", type=Path, help="picks file (default: print)")
     args = parser.parse_args(argv)
-    data = corpus_counts.load(args.data, args.min_stars)
-    result = draw(data, args.sample, args.seed, load_prior(args.prior))
+    if args.adaptations:
+        if not args.labels or args.data:
+            parser.error("--adaptations requires --labels and excludes --data")
+        result = adaptation_draws(
+            args.adaptations,
+            args.labels,
+            args.seed if args.seed is not None else 20261017,
+        )
+    else:
+        if not args.data:
+            parser.error("--data or --adaptations is required")
+        data = corpus_counts.load(args.data, args.min_stars)
+        result = draw(
+            data,
+            args.sample,
+            args.seed if args.seed is not None else 20261008,
+            load_prior(args.prior),
+        )
     text = json.dumps(result, indent=1, ensure_ascii=False) + "\n"
     if args.out:
         args.out.write_text(text)

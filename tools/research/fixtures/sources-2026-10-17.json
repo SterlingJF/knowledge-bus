@@ -1,0 +1,547 @@
+{
+  "sources.tsv": [
+    {
+      "grade": "A",
+      "readable": "partial"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "partial"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "C",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "partial"
+    },
+    {
+      "grade": "B",
+      "readable": "partial"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "A",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "partial"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "C",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "C",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "-",
+      "readable": "unreadable"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    },
+    {
+      "grade": "B",
+      "readable": "full"
+    }
+  ],
+  "sources-2.tsv": [
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "ungraded",
+      "scope": "description only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "ungraded",
+      "scope": "description only"
+    },
+    {
+      "grade": "ungraded",
+      "scope": "unreadable"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text (report version)"
+    },
+    {
+      "grade": "B",
+      "scope": "full text (report version)"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "ungraded",
+      "scope": "unreadable"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "abstract only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "ungraded",
+      "scope": "description only"
+    },
+    {
+      "grade": "B",
+      "scope": "full text"
+    },
+    {
+      "grade": "C",
+      "scope": "full text"
+    }
+  ],
+  "behaviour-sources.tsv": [
+    {
+      "grade": "B"
+    },
+    {
+      "grade": "B"
+    },
+    {
+      "grade": "C"
+    },
+    {
+      "grade": "B"
+    },
+    {
+      "grade": "C"
+    }
+  ]
+}

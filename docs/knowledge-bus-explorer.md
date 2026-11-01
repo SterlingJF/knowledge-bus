@@ -8,11 +8,11 @@ Every render produces a single HTML file. Open it directly: it needs no server a
 
 Three views sit behind the tabs at the top:
 
-- **Dimensions** — the frames the universe is indexed by, with the ordering frame and its values nested among them, a *When to skip the artifact* section holding the frame values under which no artifact is needed, and any declared factors.
+- **Dimensions** — the frames the universe is indexed by, with the ordering frame and its values nested among them when one is declared, a *When to skip the artifact* section holding the frame values under which no artifact is needed, and any declared factors.
 - **Artifacts** — document types alone, arranged so connected ones sit near each other, with element-level relations rolled up onto them.
 - **Artifacts & Elements** — both, with elements grouped by the ordering frame.
 
-The map needs an ordering frame. `kbp --inspect` and `kbp --explore` refuse a universe spec without an ordering frame, such as a factor-only universe spec, as not renderable.
+A universe spec with no elements declares no ordering frame. The Explorer opens such a universe spec, for example a factor-only one, on Dimensions. Selecting a factor shows its question, its values with their questions, how each value is set and the advice keyed to each value, under *How to present it*. Every factor panel shows the same details.
 
 Selecting the universe's name opens its overview: what it covers, who it is for, what it leaves out, its terms, and a reminder that the map shows declarations without evaluating your situation.
 

@@ -91,8 +91,12 @@ def test_presets_list_each_universe_folder_and_its_kbp_files(tmp_path):
     }
 
 
-def test_repository_ships_both_presets():
-    assert plugin.presets() == ("codebase-recordkeeping", "product-development")
+def test_repository_ships_every_preset():
+    assert plugin.presets() == (
+        "codebase-recordkeeping",
+        "cognitive-accessibility",
+        "product-development",
+    )
 
 
 def test_host_package_carries_every_preset(assembled):

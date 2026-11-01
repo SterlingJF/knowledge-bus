@@ -4997,7 +4997,7 @@
       "label": "Architecture overview",
       "raw": {
         "alias": {
-          "form": "C4 levels 1–2",
+          "form": "C4 levels 1\u20132",
           "kind": "descriptive"
         },
         "code": "a74pm",
@@ -6428,7 +6428,7 @@
         }
       },
       {
-        "claim": "Segment by shared job or behaviour, not demographics alone — demographic-only segments are the classic false-precision trap.",
+        "claim": "Segment by shared job or behaviour, not demographics alone \u2014 demographic-only segments are the classic false-precision trap.",
         "id": "guidance:6",
         "kind": "pitfall",
         "source": "asserted",
@@ -6486,7 +6486,7 @@
         "when": null
       },
       {
-        "claim": "Quantify in time, cost or risk. Where there is no market, qualitative is fine — but still name the alternative.",
+        "claim": "Quantify in time, cost or risk. Where there is no market, qualitative is fine \u2014 but still name the alternative.",
         "id": "guidance:12",
         "kind": "heuristic",
         "source": "asserted",
@@ -6553,7 +6553,7 @@
         "when": null
       },
       {
-        "claim": "A Lean Canvas keeps this deliberately thin — top features only; a design document gives it a full section.",
+        "claim": "A Lean Canvas keeps this deliberately thin \u2014 top features only; a design document gives it a full section.",
         "id": "guidance:19",
         "kind": "convention",
         "source": "lean-canvas",
@@ -6607,7 +6607,7 @@
         "when": null
       },
       {
-        "claim": "Product-led versus sales-led growth is at bottom a channels choice. Regulated and enterprise markets often have imposed channels — brokers, distributors, procurement — that dominate the design.",
+        "claim": "Product-led versus sales-led growth is at bottom a channels choice. Regulated and enterprise markets often have imposed channels \u2014 brokers, distributors, procurement \u2014 that dominate the design.",
         "id": "guidance:25",
         "kind": "heuristic",
         "source": "asserted",
@@ -6674,7 +6674,7 @@
         }
       },
       {
-        "claim": "The dominant driver is the insight, not the line items — services and construction run on per-project labour, software on headcount, hardware on cost of goods sold and capex.",
+        "claim": "The dominant driver is the insight, not the line items \u2014 services and construction run on per-project labour, software on headcount, hardware on cost of goods sold and capex.",
         "id": "guidance:32",
         "kind": "heuristic",
         "source": "asserted",
@@ -6714,7 +6714,7 @@
         "when": null
       },
       {
-        "claim": "Deep tech, EV and robotics are dominated by intellectual property and specialised equipment. Licences and certifications carry lead times — flag them early.",
+        "claim": "Deep tech, EV and robotics are dominated by intellectual property and specialised equipment. Licences and certifications carry lead times \u2014 flag them early.",
         "id": "guidance:36",
         "kind": "heuristic",
         "source": "asserted",
@@ -6786,7 +6786,7 @@
         "when": null
       },
       {
-        "claim": "The Lean Canvas's hardest block — 'first mover' and 'passion' do not qualify.",
+        "claim": "The Lean Canvas's hardest block \u2014 'first mover' and 'passion' do not qualify.",
         "id": "guidance:44",
         "kind": "pitfall",
         "source": "lean-canvas",
@@ -6835,7 +6835,7 @@
         "when": null
       },
       {
-        "claim": "Name the loop — viral, usage, content, referral, sales-led, paid — rather than writing a generic marketing plan. Loops compound; funnels do not.",
+        "claim": "Name the loop \u2014 viral, usage, content, referral, sales-led, paid \u2014 rather than writing a generic marketing plan. Loops compound; funnels do not.",
         "id": "guidance:49",
         "kind": "heuristic",
         "source": "asserted",
@@ -6880,7 +6880,7 @@
         "when": null
       },
       {
-        "claim": "One per space, at any abstraction, tested by real users, needs and strategy — never by the org chart. Distinct metrics only for genuinely distinct divisions and customer bases.",
+        "claim": "One per space, at any abstraction, tested by real users, needs and strategy \u2014 never by the org chart. Distinct metrics only for genuinely distinct divisions and customer bases.",
         "id": "guidance:54",
         "kind": "convention",
         "source": "ns-one",
@@ -6907,7 +6907,7 @@
         "when": null
       },
       {
-        "claim": "Represents vision and strategy without being either — a strong metric statement lets a reader recover both at a high level.",
+        "claim": "Represents vision and strategy without being either \u2014 a strong metric statement lets a reader recover both at a high level.",
         "id": "guidance:57",
         "kind": "convention",
         "source": "ns-checklist",
@@ -6961,7 +6961,7 @@
         "when": null
       },
       {
-        "claim": "The counterweight to any target — latency, churn, quality, trust; burnout at personal scale.",
+        "claim": "The counterweight to any target \u2014 latency, churn, quality, trust; burnout at personal scale.",
         "id": "guidance:63",
         "kind": "heuristic",
         "source": "asserted",
@@ -7006,7 +7006,7 @@
         "when": null
       },
       {
-        "claim": "Per-initiative acceptance, set before the work, expiring with the effort — unlike metrics that run continuously.",
+        "claim": "Per-initiative acceptance, set before the work, expiring with the effort \u2014 unlike metrics that run continuously.",
         "id": "guidance:68",
         "kind": "heuristic",
         "source": "asserted",
@@ -7136,7 +7136,7 @@
         "when": null
       },
       {
-        "claim": "Weight by industry — legal and political dominate banking and healthtech, environmental dominates construction and energy, social and technological dominate consumer.",
+        "claim": "Weight by industry \u2014 legal and political dominate banking and healthtech, environmental dominates construction and energy, social and technological dominate consumer.",
         "id": "guidance:82",
         "kind": "heuristic",
         "source": "asserted",
@@ -7226,7 +7226,7 @@
         "when": null
       },
       {
-        "claim": "Osterwalder's value-proposition-canvas pairing — pains before, gains after.",
+        "claim": "Osterwalder's value-proposition-canvas pairing \u2014 pains before, gains after.",
         "id": "guidance:92",
         "kind": "convention",
         "source": "vpc",
@@ -7253,7 +7253,7 @@
         "when": null
       },
       {
-        "claim": "Source from evidence — interviews, support logs — not empathy-map guessing. Rank by severity times frequency or the list flattens.",
+        "claim": "Source from evidence \u2014 interviews, support logs \u2014 not empathy-map guessing. Rank by severity times frequency or the list flattens.",
         "id": "guidance:95",
         "kind": "pitfall",
         "source": "asserted",
@@ -7343,7 +7343,7 @@
         "when": null
       },
       {
-        "claim": "The RFC tradition records drawbacks — known, accepted costs — separately from risks, which are uncertainties.",
+        "claim": "The RFC tradition records drawbacks \u2014 known, accepted costs \u2014 separately from risks, which are uncertainties.",
         "id": "guidance:105",
         "kind": "convention",
         "source": "rust-rfc",
@@ -7384,7 +7384,7 @@
         "when": null
       },
       {
-        "claim": "The excluded list is the valuable one — it prevents silent re-expansion.",
+        "claim": "The excluded list is the valuable one \u2014 it prevents silent re-expansion.",
         "id": "guidance:109",
         "kind": "heuristic",
         "source": "asserted",
@@ -7393,7 +7393,7 @@
         "when": null
       },
       {
-        "claim": "The deferred list is where natural extensions land — the RFC tradition's future possibilities.",
+        "claim": "The deferred list is where natural extensions land \u2014 the RFC tradition's future possibilities.",
         "id": "guidance:110",
         "kind": "convention",
         "source": "rust-rfc",
@@ -7411,7 +7411,7 @@
         "when": null
       },
       {
-        "claim": "Distinct from Cross-Cutting Concerns: a constraint is an imposed limit on the work that no design choice moves — budget, deadline, platform, what the law allows; a cross-cutting concern is an obligation every part of the solution must be designed to meet — security, privacy, accessibility. One law can supply both: a limit here, a property demanded throughout there.",
+        "claim": "Distinct from Cross-Cutting Concerns: a constraint is an imposed limit on the work that no design choice moves \u2014 budget, deadline, platform, what the law allows; a cross-cutting concern is an obligation every part of the solution must be designed to meet \u2014 security, privacy, accessibility. One law can supply both: a limit here, a property demanded throughout there.",
         "id": "guidance:112",
         "kind": "boundary",
         "source": "asserted",
@@ -7438,7 +7438,7 @@
         "when": null
       },
       {
-        "claim": "Regulated domains extend the list — compliance, audit, accessibility.",
+        "claim": "Regulated domains extend the list \u2014 compliance, audit, accessibility.",
         "id": "guidance:115",
         "kind": "heuristic",
         "source": "asserted",
@@ -7605,7 +7605,7 @@
         "when": null
       },
       {
-        "claim": "Naming the rejected options is grammatically obligatory in the Y-statement form — 'and neglected …' — not an optional courtesy to the reader.",
+        "claim": "Naming the rejected options is grammatically obligatory in the Y-statement form \u2014 'and neglected \u2026' \u2014 not an optional courtesy to the reader.",
         "id": "guidance:133",
         "kind": "convention",
         "source": "y-statement",
@@ -7677,7 +7677,7 @@
         "when": null
       },
       {
-        "claim": "Honestly empty means the choice was made on one dominant consideration already stated in the decision — not that the criteria were never articulated.",
+        "claim": "Honestly empty means the choice was made on one dominant consideration already stated in the decision \u2014 not that the criteria were never articulated.",
         "id": "guidance:141",
         "kind": "empty",
         "source": "asserted",
@@ -7704,7 +7704,7 @@
         "when": null
       },
       {
-        "claim": "Bad rationale has a recognisable shape — 'everybody does it', 'we have always done it like that', 'this will look good on my resume'. Reasoning that survives none of those is not reasoning.",
+        "claim": "Bad rationale has a recognisable shape \u2014 'everybody does it', 'we have always done it like that', 'this will look good on my resume'. Reasoning that survives none of those is not reasoning.",
         "id": "guidance:144",
         "kind": "convention",
         "source": "y-statement",
@@ -7731,7 +7731,7 @@
         "when": null
       },
       {
-        "claim": "All consequences belong here, not only the favourable ones — positive, negative and neutral alike. The consequences of one decision commonly become the context of the next.",
+        "claim": "All consequences belong here, not only the favourable ones \u2014 positive, negative and neutral alike. The consequences of one decision commonly become the context of the next.",
         "id": "guidance:147",
         "kind": "convention",
         "source": "adr",
@@ -7893,7 +7893,7 @@
         "when": null
       },
       {
-        "claim": "Honestly empty means every step is independently reversible in any order — in which case say so, because that is the licence to move fast.",
+        "claim": "Honestly empty means every step is independently reversible in any order \u2014 in which case say so, because that is the licence to move fast.",
         "id": "guidance:165",
         "kind": "empty",
         "source": "asserted",
@@ -7983,7 +7983,7 @@
         "when": null
       },
       {
-        "claim": "Flows name the contract — API, event, file — and the contract's owner.",
+        "claim": "Flows name the contract \u2014 API, event, file \u2014 and the contract's owner.",
         "id": "guidance:175",
         "kind": "heuristic",
         "source": "asserted",
@@ -7992,7 +7992,7 @@
         "when": null
       },
       {
-        "claim": "In regulated and privacy contexts flows are compliance surface. Annotate data classification — personally identifiable information, protected health information — where it applies.",
+        "claim": "In regulated and privacy contexts flows are compliance surface. Annotate data classification \u2014 personally identifiable information, protected health information \u2014 where it applies.",
         "id": "guidance:176",
         "kind": "heuristic",
         "source": "asserted",
@@ -8289,7 +8289,7 @@
         "when": null
       },
       {
-        "claim": "The risk register is standard across PMBOK, PRINCE2 and ISO Guide 73 — a record of information about identified risks.",
+        "claim": "The risk register is standard across PMBOK, PRINCE2 and ISO Guide 73 \u2014 a record of information about identified risks.",
         "id": "guidance:208",
         "kind": "convention",
         "source": "risk-register",
@@ -8406,7 +8406,7 @@
         "when": null
       },
       {
-        "claim": "C4 levels 1 and 2 — system context and containers.",
+        "claim": "C4 levels 1 and 2 \u2014 system context and containers.",
         "id": "guidance:221",
         "kind": "convention",
         "source": "c4",
@@ -8465,7 +8465,7 @@
         "when": null
       },
       {
-        "claim": "Quality is judged before the outcome is known, on the frame, the alternatives, the information, the criteria and trade-offs, the reasoning, and the commitment to act — and is no better than the weakest of them.",
+        "claim": "Quality is judged before the outcome is known, on the frame, the alternatives, the information, the criteria and trade-offs, the reasoning, and the commitment to act \u2014 and is no better than the weakest of them.",
         "id": "guidance:227",
         "kind": "convention",
         "source": "dq",
@@ -8524,7 +8524,7 @@
         "when": null
       },
       {
-        "claim": "One decision per record — context, decision, status, consequences — with status moving proposed to accepted to deprecated or superseded.",
+        "claim": "One decision per record \u2014 context, decision, status, consequences \u2014 with status moving proposed to accepted to deprecated or superseded.",
         "id": "guidance:233",
         "kind": "convention",
         "source": "adr",
@@ -8615,182 +8615,182 @@
         "sourced": false
       }
     ],
-    "label": "Product development — type guidance",
+    "label": "Product development \u2014 type guidance",
     "sources": {
       "adr": {
-        "cite": "Michael Nygard — Documenting Architecture Decisions (2011); templates at adr.github.io"
+        "cite": "Michael Nygard \u2014 Documenting Architecture Decisions (2011); templates at adr.github.io"
       },
       "adr-boundary": {
-        "cite": "Azure Well-Architected — Architecture decision record, on boundary discipline"
+        "cite": "Azure Well-Architected \u2014 Architecture decision record, on boundary discipline"
       },
       "azure-waf": {
         "checked": "2026-08-18",
-        "cite": "Microsoft Azure Well-Architected Framework — Maintain an architecture decision record"
+        "cite": "Microsoft Azure Well-Architected Framework \u2014 Maintain an architecture decision record"
       },
       "bezos-doors": {
         "checked": "2026-08-18",
-        "cite": "Jeff Bezos — 2015 Amazon letter to shareholders, on one-way and two-way doors and matching process weight to reversibility"
+        "cite": "Jeff Bezos \u2014 2015 Amazon letter to shareholders, on one-way and two-way doors and matching process weight to reversibility"
       },
       "bmc": {
-        "cite": "Strategyzer (Alexander Osterwalder) — The Business Model Canvas"
+        "cite": "Strategyzer (Alexander Osterwalder) \u2014 The Business Model Canvas"
       },
       "brand-guide": {
-        "cite": "GitLab Pajamas — a standing public brand guideline set"
+        "cite": "GitLab Pajamas \u2014 a standing public brand guideline set"
       },
       "c4": {
-        "cite": "Simon Brown — the C4 model"
+        "cite": "Simon Brown \u2014 the C4 model"
       },
       "canonical": {
-        "cite": "Enterprise Integration Patterns — Canonical Data Model; DDD's domain model and ubiquitous language"
+        "cite": "Enterprise Integration Patterns \u2014 Canonical Data Model; DDD's domain model and ubiquitous language"
       },
       "cascade": {
-        "cite": "John Doerr — Measure What Matters (2018), on rigid cascading's costs and aligned autonomy"
+        "cite": "John Doerr \u2014 Measure What Matters (2018), on rigid cascading's costs and aligned autonomy"
       },
       "daci": {
         "checked": "2026-08-18",
-        "cite": "Atlassian Team Playbook — DACI: A Decision-Making Framework"
+        "cite": "Atlassian Team Playbook \u2014 DACI: A Decision-Making Framework"
       },
       "design-md": {
         "checked": "2026-08-18",
-        "cite": "Google — DESIGN.md format specification, google-labs-code/design.md (docs/spec.md, PHILOSOPHY.md), version alpha and explicitly unstable. Read from the repository; the published docs site returns an empty body"
+        "cite": "Google \u2014 DESIGN.md format specification, google-labs-code/design.md (docs/spec.md, PHILOSOPHY.md), version alpha and explicitly unstable. Read from the repository; the published docs site returns an empty body"
       },
       "dq": {
         "checked": "2026-08-18",
-        "cite": "Strategic Decisions Group (Spetzler, Winter and Meyer) — the six requirements for decision quality and the weakest-link rule; Howard's Stanford lineage. Book chapter paywalled, cited to SDG"
+        "cite": "Strategic Decisions Group (Spetzler, Winter and Meyer) \u2014 the six requirements for decision quality and the weakest-link rule; Howard's Stanford lineage. Book chapter paywalled, cited to SDG"
       },
       "dtcg": {
         "checked": "2026-08-18",
-        "cite": "Design Tokens Community Group — Design Tokens Format Module 2025.10, published version"
+        "cite": "Design Tokens Community Group \u2014 Design Tokens Format Module 2025.10, published version"
       },
       "guardrail-org": {
-        "cite": "Kohavi, Tang and Xu — Trustworthy Online Controlled Experiments (CUP, 2020), ch. 6 and ch. 21"
+        "cite": "Kohavi, Tang and Xu \u2014 Trustworthy Online Controlled Experiments (CUP, 2020), ch. 6 and ch. 21"
       },
       "hashicorp": {
-        "cite": "HashiCorp — Writing Practices and Culture"
+        "cite": "HashiCorp \u2014 Writing Practices and Culture"
       },
       "hig": {
         "checked": "2026-08-18",
-        "cite": "Apple — Human Interface Guidelines, the Foundations topic list. Client-rendered; read through a headless browser"
+        "cite": "Apple \u2014 Human Interface Guidelines, the Foundations topic list. Client-rendered; read through a headless browser"
       },
       "iso-42010": {
         "checked": "2026-08-18",
         "cite": "ISO/IEC/IEEE 42010 on architecture decisions and rationale, via the editor-maintained standard site (secondary; documents the 2011 edition, not the 2022 second edition)"
       },
       "job-story": {
-        "cite": "Alan Klement — Replacing The User Story With The Job Story"
+        "cite": "Alan Klement \u2014 Replacing The User Story With The Job Story"
       },
       "jtbd-hbr": {
-        "cite": "Christensen, Hall, Dillon and Duncan — Know Your Customers' Jobs to Be Done (HBR, September 2016)"
+        "cite": "Christensen, Hall, Dillon and Duncan \u2014 Know Your Customers' Jobs to Be Done (HBR, September 2016)"
       },
       "kpi": {
-        "cite": "David Parmenter — Key Performance Indicators (Wiley, 4th ed. 2020)"
+        "cite": "David Parmenter \u2014 Key Performance Indicators (Wiley, 4th ed. 2020)"
       },
       "lean-canvas": {
         "checked": "2026-07-22",
-        "cite": "Ash Maurya — Lean Canvas (2010)"
+        "cite": "Ash Maurya \u2014 Lean Canvas (2010)"
       },
       "madr": {
         "checked": "2026-08-18",
-        "cite": "MADR — Markdown Architectural Decision Records, template 4.x (Decision Drivers, Confirmation, More Information)"
+        "cite": "MADR \u2014 Markdown Architectural Decision Records, template 4.x (Decision Drivers, Confirmation, More Information)"
       },
       "message-house": {
         "checked": "2026-08-12",
-        "cite": "Product Marketing Alliance — product messaging framework; April Dunford on positioning as its input"
+        "cite": "Product Marketing Alliance \u2014 product messaging framework; April Dunford on positioning as its input"
       },
       "moore": {
-        "cite": "Geoffrey Moore — Crossing the Chasm, the positioning template"
+        "cite": "Geoffrey Moore \u2014 Crossing the Chasm, the positioning template"
       },
       "nepa-rod": {
         "checked": "2026-08-18",
-        "cite": "NEPA Record of Decision, 40 CFR 1505.2 — last operative text (2024). The CEQ regulations at 40 CFR 1500-1508 were rescinded effective 2025-04-11 and finalised 91 FR 618 (2026-01-08); cited for the drafting convention, not as current law"
+        "cite": "NEPA Record of Decision, 40 CFR 1505.2 \u2014 last operative text (2024). The CEQ regulations at 40 CFR 1500-1508 were rescinded effective 2025-04-11 and finalised 91 FR 618 (2026-01-08); cited for the drafting convention, not as current law"
       },
       "nng-moodboard": {
         "checked": "2026-08-18",
-        "cite": "Lillian Yang — Mood Boards in UX: How and Why to Use Them (Nielsen Norman Group, 26 February 2023)"
+        "cite": "Lillian Yang \u2014 Mood Boards in UX: How and Why to Use Them (Nielsen Norman Group, 26 February 2023)"
       },
       "north-star": {
-        "cite": "Amplitude — The North Star Playbook"
+        "cite": "Amplitude \u2014 The North Star Playbook"
       },
       "ns-checklist": {
         "checked": "2026-08-12",
-        "cite": "Amplitude — The North Star Playbook, ch. 2 North Star checklist, check 2"
+        "cite": "Amplitude \u2014 The North Star Playbook, ch. 2 North Star checklist, check 2"
       },
       "ns-one": {
         "checked": "2026-08-12",
-        "cite": "Amplitude — The North Star Playbook, ch. 1 § One North Star Metric and ch. 4 trap 3"
+        "cite": "Amplitude \u2014 The North Star Playbook, ch. 1 \u00a7 One North Star Metric and ch. 4 trap 3"
       },
       "nygard-any": {
         "checked": "2026-08-18",
-        "cite": "MADR project history and the ADR organisation, on the form serving any decision — renamed to Markdown Any Decision Records in 3.0.0-beta and reverted in 4.0.0-beta with the same fields"
+        "cite": "MADR project history and the ADR organisation, on the form serving any decision \u2014 renamed to Markdown Any Decision Records in 3.0.0-beta and reverted in 4.0.0-beta with the same fields"
       },
       "omtm": {
-        "cite": "Alistair Croll and Benjamin Yoskovitz — Lean Analytics (O'Reilly, 2013)"
+        "cite": "Alistair Croll and Benjamin Yoskovitz \u2014 Lean Analytics (O'Reilly, 2013)"
       },
       "options-paper": {
         "checked": "2026-08-18",
-        "cite": "The options-paper convention — issue, background, interests, criteria, enumerated options, optional recommendation; and the straw-man pathology (descriptive secondary source; no fetchable government drafting guide)"
+        "cite": "The options-paper convention \u2014 issue, background, interests, criteria, enumerated options, optional recommendation; and the straw-man pathology (descriptive secondary source; no fetchable government drafting guide)"
       },
       "outcome": {
-        "cite": "Teresa Torres — Continuous Discovery Habits (2021), on shifting from outputs to outcomes"
+        "cite": "Teresa Torres \u2014 Continuous Discovery Habits (2021), on shifting from outputs to outcomes"
       },
       "oxide": {
-        "cite": "Oxide — RFD 1: Requests for Discussion"
+        "cite": "Oxide \u2014 RFD 1: Requests for Discussion"
       },
       "pestle": {
-        "cite": "PESTLE — standard macro-environment framework; specific origin not yet traced"
+        "cite": "PESTLE \u2014 standard macro-environment framework; specific origin not yet traced"
       },
       "pichler": {
-        "cite": "Roman Pichler — Product Vision Board"
+        "cite": "Roman Pichler \u2014 Product Vision Board"
       },
       "porter": {
-        "cite": "Michael E. Porter — What Is Strategy? (Harvard Business Review, Nov-Dec 1996)"
+        "cite": "Michael E. Porter \u2014 What Is Strategy? (Harvard Business Review, Nov-Dec 1996)"
       },
       "premortem": {
-        "cite": "Gary Klein — Performing a Project Premortem (Harvard Business Review, September 2007)"
+        "cite": "Gary Klein \u2014 Performing a Project Premortem (Harvard Business Review, September 2007)"
       },
       "product-brief": {
-        "cite": "Productboard — Product Brief"
+        "cite": "Productboard \u2014 Product Brief"
       },
       "qoc": {
         "checked": "2026-08-18",
-        "cite": "MacLean, Young, Bellotti and Moran — Questions, Options, and Criteria: Elements of Design Space Analysis, Human-Computer Interaction 6(3-4), 1991. Full text paywalled; primitives quoted from the publisher abstract"
+        "cite": "MacLean, Young, Bellotti and Moran \u2014 Questions, Options, and Criteria: Elements of Design Space Analysis, Human-Computer Interaction 6(3-4), 1991. Full text paywalled; primitives quoted from the publisher abstract"
       },
       "risk-register": {
-        "cite": "Risk register — standard across PMBOK, PRINCE2 and ISO Guide 73"
+        "cite": "Risk register \u2014 standard across PMBOK, PRINCE2 and ISO Guide 73"
       },
       "rust-rfc": {
-        "cite": "The Rust project — RFC template"
+        "cite": "The Rust project \u2014 RFC template"
       },
       "scenario-walkthrough": {
-        "cite": "Gardenia Durian — How to write a useful scenario walkthrough (Pivotal Labs, 2016)"
+        "cite": "Gardenia Durian \u2014 How to write a useful scenario walkthrough (Pivotal Labs, 2016)"
       },
       "sdd": {
-        "cite": "Pega Academy — Solution Design Document, an enterprise-implementation deliverable"
+        "cite": "Pega Academy \u2014 Solution Design Document, an enterprise-implementation deliverable"
       },
       "spade": {
         "checked": "2026-08-18",
-        "cite": "Gokul Rajaram — SPADE (Setting, People, Alternatives, Decide, Explain), via First Round Review"
+        "cite": "Gokul Rajaram \u2014 SPADE (Setting, People, Alternatives, Decide, Explain), via First Round Review"
       },
       "tyree-akerman": {
         "checked": "2026-08-18",
-        "cite": "Jeff Tyree and Art Akerman — Architecture Decisions: Demystifying Architecture, IEEE Software 22(2), 2005; the field table is derived from the REMAP and DRL rationale metamodels"
+        "cite": "Jeff Tyree and Art Akerman \u2014 Architecture Decisions: Demystifying Architecture, IEEE Software 22(2), 2005; the field table is derived from the REMAP and DRL rationale metamodels"
       },
       "ubl": {
-        "cite": "Malte Ubl — Design Docs at Google"
+        "cite": "Malte Ubl \u2014 Design Docs at Google"
       },
       "vpc": {
-        "cite": "Strategyzer — The Value Proposition Canvas"
+        "cite": "Strategyzer \u2014 The Value Proposition Canvas"
       },
       "wcag22": {
         "checked": "2026-08-18",
-        "cite": "W3C — Web Content Accessibility Guidelines 2.2 (Recommendation, 12 December 2024)"
+        "cite": "W3C \u2014 Web Content Accessibility Guidelines 2.2 (Recommendation, 12 December 2024)"
       },
       "working-backwards": {
-        "cite": "Colin Bryar and Bill Carr — Working Backwards, on Amazon's controllable input metrics"
+        "cite": "Colin Bryar and Bill Carr \u2014 Working Backwards, on Amazon's controllable input metrics"
       },
       "y-statement": {
         "checked": "2026-08-18",
-        "cite": "Olaf Zimmermann — Y-statement / (WH)Y-statement; Zdun, Capilla, Tran and Zimmermann, Sustainable Architectural Decisions, IEEE Software 30(6), 2013"
+        "cite": "Olaf Zimmermann \u2014 Y-statement / (WH)Y-statement; Zdun, Capilla, Tran and Zimmermann, Sustainable Architectural Decisions, IEEE Software 30(6), 2013"
       }
     },
     "version": "0.8"
@@ -8841,12 +8841,12 @@
       }
     },
     "id": "product-development-marks",
-    "label": "Product development — concept marks",
+    "label": "Product development \u2014 concept marks",
     "marksFor": "product-development",
     "version": "0.1"
   },
   "orderingFrameId": "frame:phase",
-  "protocolVersion": "0.9",
+  "protocolVersion": "0.9.1",
   "rules": [
     {
       "id": "rule:no-artifact",
@@ -9399,7 +9399,7 @@
       },
       {
         "alias": {
-          "form": "C4 levels 1–2",
+          "form": "C4 levels 1\u20132",
           "kind": "descriptive"
         },
         "code": "a74pm",
@@ -10674,9 +10674,9 @@
       "label": "Product development",
       "ordering_frame": "phase",
       "overview": {
-        "covers": "The reasoning around deliberate work — what makes it worth doing, what it should be, and whether it held up. The work may produce something made or put in place, a service rendered, or something learned; for a recipient — including your own later self — who simply receives it, free to take it or leave it, or paying for it.\n",
+        "covers": "The reasoning around deliberate work \u2014 what makes it worth doing, what it should be, and whether it held up. The work may produce something made or put in place, a service rendered, or something learned; for a recipient \u2014 including your own later self \u2014 who simply receives it, free to take it or leave it, or paying for it.\n",
         "excludes": "Doing or delivering the work itself.\n",
-        "for": "Whoever is accountable for that judgement or has to account for it later — one person on one machine, a group, or an organisation.\n"
+        "for": "Whoever is accountable for that judgement or has to account for it later \u2014 one person on one machine, a group, or an organisation.\n"
       },
       "terms": [
         {
@@ -10710,9 +10710,9 @@
     "label": "Product development",
     "ordering_frame": "phase",
     "overview": {
-      "covers": "The reasoning around deliberate work — what makes it worth doing, what it should be, and whether it held up. The work may produce something made or put in place, a service rendered, or something learned; for a recipient — including your own later self — who simply receives it, free to take it or leave it, or paying for it.\n",
+      "covers": "The reasoning around deliberate work \u2014 what makes it worth doing, what it should be, and whether it held up. The work may produce something made or put in place, a service rendered, or something learned; for a recipient \u2014 including your own later self \u2014 who simply receives it, free to take it or leave it, or paying for it.\n",
       "excludes": "Doing or delivering the work itself.\n",
-      "for": "Whoever is accountable for that judgement or has to account for it later — one person on one machine, a group, or an organisation.\n"
+      "for": "Whoever is accountable for that judgement or has to account for it later \u2014 one person on one machine, a group, or an organisation.\n"
     },
     "terms": [
       {
@@ -11599,7 +11599,7 @@
       "kind": "composition.when",
       "sourceFrameId": "maturity",
       "sourcePath": "artifacts[0].composition.core[7].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:product-strategy-canvas",
         "element:growth-mechanism"
@@ -11616,7 +11616,7 @@
       "kind": "composition.when",
       "sourceFrameId": "maturity",
       "sourcePath": "artifacts[0].composition.core[8].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:product-strategy-canvas",
         "element:unfair-advantage"
@@ -11633,7 +11633,7 @@
       "kind": "composition.when",
       "sourceFrameId": "authority",
       "sourcePath": "artifacts[8].composition.core[3].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:opportunity-assessment",
         "element:consent-and-authority"
@@ -11650,7 +11650,7 @@
       "kind": "composition.when",
       "sourceFrameId": "authority",
       "sourcePath": "artifacts[10].composition.core[5].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:design-doc",
         "element:constraints"
@@ -11667,7 +11667,7 @@
       "kind": "composition.when",
       "sourceFrameId": "authority",
       "sourcePath": "artifacts[10].composition.core[6].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:design-doc",
         "element:cross-cutting-concerns"
@@ -11684,7 +11684,7 @@
       "kind": "composition.when",
       "sourceFrameId": "authority",
       "sourcePath": "artifacts[10].composition.core[7].when",
-      "targetLabel": "core · links",
+      "targetLabel": "core \u00b7 links",
       "targetPair": [
         "artifact:design-doc",
         "element:risks-and-assumptions"
@@ -11701,7 +11701,7 @@
       "kind": "composition.when",
       "sourceFrameId": "reversibility",
       "sourcePath": "artifacts[10].composition.core[8].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:design-doc",
         "element:sequence-and-foreclosure"
@@ -11718,7 +11718,7 @@
       "kind": "composition.when",
       "sourceFrameId": "authority",
       "sourcePath": "artifacts[16].composition.core[2].when",
-      "targetLabel": "core · owns",
+      "targetLabel": "core \u00b7 owns",
       "targetPair": [
         "artifact:decision-brief",
         "element:decision-authority-and-approvals"
@@ -11735,7 +11735,7 @@
       "kind": "composition.when",
       "sourceFrameId": "authority",
       "sourcePath": "artifacts[17].composition.core[5].when",
-      "targetLabel": "core · links",
+      "targetLabel": "core \u00b7 links",
       "targetPair": [
         "artifact:decision-record",
         "element:decision-criteria"

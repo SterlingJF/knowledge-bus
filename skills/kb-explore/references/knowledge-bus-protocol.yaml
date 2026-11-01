@@ -1,8 +1,8 @@
 protocol:
   id: kbp
   name: Knowledge Bus Protocol
-  version: 0.9
-  accepts: [0.8, 0.7]
+  version: 0.9.1
+  accepts: [0.9, 0.8, 0.7]
   status: draft
   purpose: >
     The structured exchange of contextual knowledge rather than data. Defines what a
@@ -51,9 +51,9 @@ concepts:
         A guidance entry MAY condition on a factor the guided universe declares.
         Selecting advice is not structure.
       - >
-        Guidance keyed to a factor is advice on presenting a document: its wording,
-        emphasis and focus. A consumer MAY apply the advice to a document of any
-        universe the consumer reads, including another universe's documents.
+        Guidance keyed to a factor is advice on presenting a document. A consumer MAY
+        apply the advice to a document of any universe the consumer reads, including
+        another universe's documents.
       - >
         A factor still selects nothing. Guidance keyed to a factor adds, removes and
         gates no element, artifact or composition entry, in its own universe or in

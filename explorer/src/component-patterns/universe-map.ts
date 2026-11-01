@@ -7,7 +7,7 @@ import { type Mark, marksOf } from '../lib/icons';
 import { setCardState, type CardState } from '../component-elements/card-surface';
 import { holdingDrawn, labelLayer, nubLayer, type Scene } from '../lib/scene';
 import { emphasise, type CardEmphasis, type EdgeEmphasis } from '../lib/emphasis';
-import { type ExplorerModel, type Camera, type Selection, byId, human } from '../lib/model';
+import { type ExplorerModel, type Camera, type Selection, byId, human, orderingKey } from '../lib/model';
 import { type PlacedCard, roleOfTheBoundaryEachCardStandsIn } from '../lib/layout';
 import { boundaryScale, cardHeadingScale, grow, labelScale } from '../lib/camera';
 import { tokenNumber } from '../lib/tokens';
@@ -32,7 +32,7 @@ export interface MapActions {
 }
 
 function optionStats(model: ExplorerModel, optionId: string) {
-  const ordering = model.orderingFrameId.split(':').slice(1).join(':');
+  const ordering = orderingKey(model);
   const value = optionId.split(':').pop();
   const elements = model.entities.filter((e) => e.kind === 'element' && (e.frameValues[ordering] ?? e.raw[ordering]) === value);
   const ids = new Set(elements.map((e) => e.id));

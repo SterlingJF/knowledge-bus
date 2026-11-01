@@ -111,11 +111,11 @@ export interface ExplorerModel {
     label: string;
     version: string | number;
     conforms_to?: string;
-    ordering_frame: string;
+    ordering_frame?: string;
     overview?: Record<string, string>;
     terms?: Term[];
   };
-  orderingFrameId: string;
+  orderingFrameId: string | null;
   entities: Entity[];
   connections: Connection[];
   wiring: Wiring[];
@@ -200,6 +200,14 @@ export interface ViewerState {
 export const aViewGroupsItsElements = (view: View): boolean => view === 'elements';
 
 export const theDisplayAViewOpensOn = (view: View): Display => (view === 'elements' ? 'counts' : 'lines');
+
+export const orderingKey = (model: ExplorerModel): string =>
+  model.orderingFrameId ? model.orderingFrameId.split(':').slice(1).join(':') : '';
+
+export const declaresArtifacts = (model: ExplorerModel): boolean => model.entities.some((entity) => entity.kind === 'artifact');
+
+export const theViewAModelOpensOn = (model: ExplorerModel): View =>
+  model.entities.some((entity) => entity.kind === 'element' || entity.kind === 'artifact') ? 'elements' : 'frames';
 
 export const initialOptions = (view: View = 'elements'): ViewOptions => ({
   view,

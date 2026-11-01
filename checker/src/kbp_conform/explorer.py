@@ -359,11 +359,6 @@ def prepare_model(source, protocol, guidance=None, marks=None):
         valid = check(protocol, source, "explorer input")
     if not valid:
         raise ValueError("Universe conformance failed:\n" + diagnostics.getvalue())
-    if source["universe"].get("ordering_frame") is None:
-        raise ValueError(
-            "The universe spec declares no ordering frame; "
-            "the Explorer map groups elements by the ordering frame"
-        )
     # kbp/0.8 writes `no_artifact`; kbp/0.7 wrote `empty_composition`. The model
     # has one shape either way, and sourcePath names the key the file uses.
     no_artifact_key = document_key(
@@ -488,7 +483,9 @@ def prepare_model(source, protocol, guidance=None, marks=None):
             **source["universe"],
             "terms": source["universe"].get("terms", []),
         },
-        "orderingFrameId": "frame:" + source["universe"]["ordering_frame"],
+        "orderingFrameId": "frame:" + source["universe"]["ordering_frame"]
+        if source["universe"].get("ordering_frame") is not None
+        else None,
         "entities": entities,
         "connections": connections,
         "guidance": prepare_guidance(source, guidance, protocol)

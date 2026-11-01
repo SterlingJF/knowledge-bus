@@ -7,8 +7,10 @@ import {
   type View,
   type ViewOptions,
   type ViewerState,
+  declaresArtifacts,
   emptySelection,
   initialOptions,
+  theViewAModelOpensOn,
   updateOptions,
   validateModel,
 } from '../lib/model';
@@ -111,7 +113,7 @@ export function mountUniverseViewer(host: HTMLElement, input: unknown, viewerOpt
   shadow.append(style, shell);
 
   const measure = measurer();
-  let options = updateOptions(initialOptions(viewerOptions.initial?.view), viewerOptions.initial ?? {});
+  let options = updateOptions(initialOptions(viewerOptions.initial?.view ?? theViewAModelOpensOn(model)), viewerOptions.initial ?? {});
   let selection = emptySelection();
   let camera: Camera = { x: 0, y: 0, z: 1 };
   let insets: Insets = noInsets();
@@ -222,7 +224,10 @@ export function mountUniverseViewer(host: HTMLElement, input: unknown, viewerOpt
     if (!scene.layout.cards.length) {
       const empty = document.createElement('p');
       empty.className = 'empty';
-      empty.textContent = 'No cards match the current view options.';
+      empty.textContent =
+        options.view !== 'frames' && !declaresArtifacts(model)
+          ? 'This universe declares no artifacts.'
+          : 'No cards match the current view options.';
       viewport.append(empty);
     }
     shell.dataset.theme = options.theme === 'auto' ? '' : options.theme;

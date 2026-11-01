@@ -60,7 +60,7 @@ function walk(dir: string): string[] {
 for (const file of walk(path.join(explorerSrc, 'lib'))) {
   const source = sources.get(file)!;
   const relative = path.relative(root, file);
-  if (/\b(?:document|window)\b|createElement|HTMLElement|addEventListener/.test(source))
+  if (/\b(?:document|window)\s*\.|createElement|HTMLElement|addEventListener/.test(source))
     failures.push(`${relative}: lib must stay free of DOM work`);
   if (/from '\.\.\/component-(?:elements|patterns|core)/.test(source)) failures.push(`${relative}: lib must not import component layers`);
 }

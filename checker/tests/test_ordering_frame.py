@@ -210,13 +210,33 @@ def test_header_required_before_is_checked_for_soundness(protocol, change, messa
     assert any(message in line for line in found), found
 
 
-def test_the_explorer_refuses_a_universe_spec_without_an_ordering_frame(tmp_path):
+def test_the_explorer_renders_a_universe_spec_without_an_ordering_frame(tmp_path):
     from kbp_conform import explorer
 
     scope = tmp_path / ".knowledge-bus"
     scope.mkdir()
     shutil.copy(FACTORS_ONLY, scope / FACTORS_ONLY.name)
-    with pytest.raises(explorer.InspectionError) as refused:
-        explorer.inspect_paths(str(PROTOCOL), sorted(scope.glob("*.kbp.yaml")))
-    assert refused.value.category == "renderability"
-    assert "declares no ordering frame" in str(refused.value)
+    model = explorer.inspect_paths(str(PROTOCOL), sorted(scope.glob("*.kbp.yaml")))
+    assert model["schema"] == "knowledge-bus/explorer-model/1"
+    assert model["orderingFrameId"] is None
+    assert "ordering_frame" not in model["universe"]
+    assert any(entity["id"].startswith("factor:") for entity in model["entities"])
+
+
+def test_the_explorer_renders_factor_advice_and_a_static_artifact(tmp_path):
+    from kbp_conform import artifact, explorer
+
+    readers = ROOT / "checker/tests/hall-readers"
+    model = explorer.inspect_paths(str(PROTOCOL), sorted(readers.glob("*.kbp.yaml")))
+    factors = [e for e in model["entities"] if e["id"].startswith("factor:")]
+    assert factors and all(e["raw"]["set_by"] for e in factors)
+    assert all(e["raw"]["values"] for e in factors)
+    advice = model["guidance"]["entries"]
+    assert advice and all(entry["subject"].startswith("factor:") for entry in advice)
+    target = tmp_path / "hall-readers"
+    artifact.generate(model, target)
+    assert sorted(path.name for path in target.iterdir()) == [
+        "index.html",
+        "model.json",
+        "receipt.json",
+    ]

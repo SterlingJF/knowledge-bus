@@ -1,4 +1,13 @@
-import { type ExplorerModel, type ViewOptions, type Entity, compositionEntries, human, relationEdges } from './model';
+import {
+  type ExplorerModel,
+  type ViewOptions,
+  type Entity,
+  compositionEntries,
+  declaresArtifacts,
+  human,
+  orderingKey,
+  relationEdges,
+} from './model';
 import { artifactEdges } from './rollup';
 import { type Point, type Rect, union } from './geometry';
 import { connectedLayout } from './connected-layout';
@@ -241,7 +250,7 @@ function framesLayout(model: ExplorerModel): Layout {
   const options = orderingOptions(model);
   if (ordering && options.length) {
     const orderScope: Boundary = {
-      id: model.orderingFrameId,
+      id: ordering.id,
       title: ordering.label,
       caption: '',
       role: 'scope',
@@ -259,7 +268,7 @@ function framesLayout(model: ExplorerModel): Layout {
         id: entity.id,
         entity,
         kind: 'option',
-        scopeId: model.orderingFrameId,
+        scopeId: ordering.id,
         x: NESTED_X + OPTIONS_X + index * step,
         y: ORDER_SCOPE_Y + OPTIONS_Y,
         w: Math.min(OPTION_CARD_W, step - OPTIONS_GAP),
@@ -269,7 +278,7 @@ function framesLayout(model: ExplorerModel): Layout {
   }
 
   const rule = model.rules[0];
-  if (rule) {
+  if (rule && declaresArtifacts(model)) {
     const ruleCard: PlacedCard = {
       id: rule.id,
       entity: null,
@@ -424,7 +433,7 @@ function elementsLayout(model: ExplorerModel, options: ViewOptions): Layout {
     return drawingOnlyWhatSomethingDeclares(cards, boundaries, []);
   }
 
-  const ordering = model.orderingFrameId.split(':').slice(1).join(':');
+  const ordering = orderingKey(model);
   const options_ = orderingOptions(model);
   const groups = options_
     .map((option) => ({

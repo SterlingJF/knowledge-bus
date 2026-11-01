@@ -238,13 +238,13 @@ export function compositionGroupBlock(context: CopyContext, group: CompositionGr
   return groupBox(heading, [...(gate ? [gate] : []), disclosureList(group.rows.map((row) => compositionMemberRow(context, row)))]);
 }
 
-export function guidanceDisclosure(context: CopyContext, entries: GuidanceEntry[]): HTMLElement | null {
+export function guidanceDisclosure(context: CopyContext, entries: GuidanceEntry[], title: string = GUIDANCE_HEADING): HTMLElement | null {
   if (!entries.length) return null;
   const details = document.createElement('details');
   details.className = 'guidance';
   const summary = document.createElement('summary');
   const heading = document.createElement('span');
-  heading.textContent = GUIDANCE_HEADING;
+  heading.textContent = title;
   const count = document.createElement('span');
   count.className = 'muted';
   count.textContent = ` \u00b7 ${guidanceCountCopy(entries.length)}`;

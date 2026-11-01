@@ -1,0 +1,19 @@
+{
+  "note": "Recorded from raw captures held by maintainers; cannot be recomputed from these fixtures.",
+  "captures": {
+    "manifest_lines": 2736,
+    "distinct_urls": 2728,
+    "latest_readable": 2661,
+    "latest_unreadable": 67,
+    "latest_challenge": 32,
+    "lines_in_window": 2736,
+    "first": "2026-10-17T22:23:46Z",
+    "last": "2026-10-18T01:01:36Z",
+    "failures_without_a_body": 20
+  },
+  "coga_pattern_files": {
+    "included": 59,
+    "captured": 22,
+    "never_captured": 37
+  }
+}

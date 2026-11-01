@@ -1,7 +1,7 @@
 import { panel } from '../component-elements/panel';
 import { segmented } from '../component-elements/segmented';
-import { type ExplorerModel, type Connection, byId, human, relationKinds } from '../lib/model';
-import { cardinalityDetail, friendly, roleCopy } from '../lib/phrasing';
+import { type ExplorerModel, type Connection, byId, human, orderingKey, relationKinds } from '../lib/model';
+import { cardinalityDetail, friendly, roleCopy, setByCopy } from '../lib/phrasing';
 import { answerOwners, compositionGroups, type CompositionMember } from '../lib/composition-grouping';
 import {
   type CopyContext,
@@ -58,7 +58,7 @@ export function detailOverlay(model: ExplorerModel, subject: string, close: () =
   if (!entity) body.append(paragraph('Rule', 'detail-kind'));
   if (entity?.description) body.append(paragraph(entity.description, 'detail-question'));
 
-  const ordering = model.orderingFrameId.split(':').slice(1).join(':');
+  const ordering = orderingKey(model);
   const composition = model.connections.filter((c) => c.kind === 'composition');
 
   if (entity?.kind === 'element') {
@@ -157,6 +157,21 @@ export function detailOverlay(model: ExplorerModel, subject: string, close: () =
     for (const [facet, values] of Object.entries((entity.raw.facets ?? {}) as Record<string, string[]>)) {
       const block = section(human(facet), [listedGroup(countOf(values.length, 'value'), values.map(human))]);
       if (block) body.append(block);
+    }
+    if (entity.kind === 'factor') {
+      body.append(facts([['How it is set', setByCopy(entity.raw.set_by)]]));
+      const values = (entity.raw.values ?? []) as (string | { id: string; question?: string })[];
+      const block = section('Values', [
+        listedGroup(
+          countOf(values.length, 'value'),
+          values.map((value) =>
+            typeof value === 'string' ? human(value) : value.question ? `${human(value.id)}: ${value.question}` : human(value.id),
+          ),
+        ),
+      ]);
+      if (block && values.length) body.append(block);
+      const advice = guidanceDisclosure(context, guidanceFor(model, entity.id), 'How to present it');
+      if (advice) body.append(advice);
     }
   } else if (rule) {
     const block = section('No artifact needed when', [conditions(context, rule.raw.when)]);

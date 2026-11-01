@@ -411,6 +411,62 @@ def runtime_check(plugin, root=ROOT):
                     raise ValueError(
                         "Installed static Explorer artifact is incomplete."
                     )
+            together = base / "together/.knowledge-bus"
+            together.mkdir(parents=True)
+            for name in presets(root):
+                for path in (plugin / "references" / name).glob("*.kbp.yaml"):
+                    shutil.copyfile(path, together / f"{name}.{path.name}")
+            specs = [
+                yaml.safe_load(path.read_text())
+                for path in sorted(together.glob("*.universe.kbp.yaml"))
+            ]
+            snapshots[together] = {
+                p: p.read_bytes() for p in together.rglob("*") if p.is_file()
+            }
+            listing = json.loads(
+                run(
+                    sys.executable,
+                    launcher,
+                    "--kinds",
+                    str(together),
+                    cwd=base,
+                    env=env,
+                )
+            )
+            if [
+                group["universe_spec"]["id"] for group in listing["universe_specs"]
+            ] != sorted(spec["universe"]["id"] for spec in specs):
+                raise ValueError(
+                    "Installed kinds did not list one group per universe spec."
+                )
+            factor_ids = {
+                factor["id"] for spec in specs for factor in spec.get("factors") or []
+            }
+            for spec in specs:
+                if not spec.get("artifacts"):
+                    continue
+                card = json.loads(
+                    run(
+                        sys.executable,
+                        launcher,
+                        "--card",
+                        spec["artifacts"][0]["id"],
+                        "--universe",
+                        spec["universe"]["id"],
+                        str(together),
+                        cwd=base,
+                        env=env,
+                    )
+                )
+                presented = {
+                    factor["factor"]
+                    for block in card.get("presentation") or []
+                    for factor in block.get("factors") or []
+                }
+                if not factor_ids <= presented:
+                    raise ValueError(
+                        "Installed card omitted presentation factors from the scope."
+                    )
             for fixture in sorted(
                 (root / "protocol/conformance/pass").glob("*.kbp.yaml")
             ):

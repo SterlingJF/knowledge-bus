@@ -68,9 +68,9 @@ export const roleCopy = (role?: string) =>
 
 export const setByCopy = (setBy?: string) =>
   ({
-    universe: 'Fixed for this universe',
-    instance: 'Set for each piece of work',
-    scope: 'Set for the relevant scope',
+    universe: 'Set once for this universe spec',
+    instance: 'Set per document',
+    scope: 'Set per folder',
   })[setBy ?? ''] ?? '';
 
 export const legalityCopy = (legality?: string) =>

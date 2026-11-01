@@ -44,7 +44,7 @@ Rendering validates the universe through the existing checker first; a non-confo
 
 Three views share one world:
 
-- **Dimensions** shows the frames the universe is indexed by, the ordering frame and its values nested among them, the "When to skip the artifact" rule, and any declared factors.
+- **Dimensions** shows the frames the universe is indexed by, the ordering frame and its values nested among them when one is declared, the "When to skip the artifact" rule, and any declared factors. A universe spec with no elements opens here.
 - **Artifacts** places document types by how they connect, rolling element-level relations up onto the artifacts that contain them.
 - **Artifacts & Elements** shows both, with elements grouped by the ordering frame.
 
