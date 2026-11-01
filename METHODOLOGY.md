@@ -128,7 +128,7 @@ Each change to what the evals measure, or to their models, adds a dated line.
 [Evals](evals/README.md#commands) lists the commands, keys and CLIs. The report's "How to reproduce" gives the steps behind its figures. To grade a universe in code only, at no cost:
 
 ```sh
-just evals-grade universes/product-development/universe.kbp.yaml deterministic
+just evals-grade universe-samples/product-development/universe.kbp.yaml deterministic
 ```
 
 ## Glossary

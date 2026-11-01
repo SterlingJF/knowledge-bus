@@ -16,6 +16,10 @@ Bundled protocol: `kbp/0.9.1`.
 - Show each factor's values with their questions, how each value is set and the advice keyed to each value, under *How to present it*.
 - Describe how a value is set as once for the universe spec, per folder or per document.
 
+### Repository layout
+
+- Rename the example universe specs folder from `universes/` to `universe-samples/`.
+
 ## 0.10.0
 
 Bundled protocol: `kbp/0.9`.

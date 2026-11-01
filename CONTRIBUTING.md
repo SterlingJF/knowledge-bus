@@ -32,7 +32,7 @@ Each guide says what is in scope and what proof to bring.
 | Path | Covers | Suits | Start with |
 | --- | --- | --- | --- |
 | [Protocol](docs/contributing/protocol.md) | The Knowledge Bus Protocol: what a universe is and how knowledge moves between universes | Spec writers, Python developers | An issue, always |
-| [Universe](docs/contributing/universe.md) | The definitions and guidance in `universes/` | Domain specialists, researchers, writers | An issue for new or changed meaning; a pull request for typos |
+| [Universe](docs/contributing/universe.md) | The definitions and guidance in `universe-samples/` | Domain specialists, researchers, writers | An issue for new or changed meaning; a pull request for typos |
 | [Evals](docs/contributing/evals.md) | The rules, examples and models that grade wording and agent behaviour | Evaluators, anyone with a real case | An accepted issue, always |
 | [Checker](docs/contributing/checker.md) | The command that validates files and issues codes | Python developers, QA | A failing test; an issue if an existing file would start failing |
 | [Explorer](docs/contributing/explorer.md) | The offline map of a universe | Frontend, accessibility, design | A screenshot for a bug; an issue for a new view |
@@ -110,7 +110,7 @@ AI tools are welcome. You answer for everything you post. Agents never commit, p
 | -------------------------------- | ------------------------------------------------------------------------------------------- |
 | `protocol/`                      | Conformance rules and shared valid/invalid examples                                         |
 | `checker/`                       | Validation, code minting, and checker tests                                                 |
-| `universes/`                     | Reference definitions and guidance                                                          |
+| `universe-samples/`              | Reference definitions and guidance                                                          |
 | `skills/<name>/SKILL.md`         | Agent workflow instructions                                                                 |
 | `plugins/<agent>/knowledge-bus/` | Agent-specific adapters                                                                     |
 | `plugins/shared/runtime/`        | The shared checker launcher                                                                 |
@@ -128,7 +128,7 @@ Agent packages combine an adapter with the shared skills, references and runtime
 
 ## Generated Files
 
-The files under `skills/*/references/` and `skills/*/runtime/` are generated. Edit their source instead: `protocol/`, `universes/`, `docs/knowledge-bus-directory.md`, `docs/agent-runtime.md`, the checker or the shared launcher. Then rebuild:
+The files under `skills/*/references/` and `skills/*/runtime/` are generated. Edit their source instead: `protocol/`, `universe-samples/`, `docs/knowledge-bus-directory.md`, `docs/agent-runtime.md`, the checker or the shared launcher. Then rebuild:
 
 ```sh
 just skills-build

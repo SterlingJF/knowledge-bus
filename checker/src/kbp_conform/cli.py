@@ -15,7 +15,7 @@ Both take the same targets as `--inspect` and skip marks files.
 
 Without targets, use the nearest ancestor's .knowledge-bus/ directory.
 Explicit targets take precedence. The implementation checkout retains its bundled
-universes/ default when no .knowledge-bus/ directory exists. Protocol discovery is independent
+universe-samples/ default when no .knowledge-bus/ directory exists. Protocol discovery is independent
 of the working directory; installed packages carry their own protocol.
 
 A folder's .knowledge-bus/workspace.yaml can name universe specs of the parent
@@ -160,9 +160,9 @@ def _resolve(args, *, documents_required=True):
         elif (
             (CHECKOUT_ROOT / "protocol" / PROTOCOL_NAME).is_file()
             and Path.cwd().resolve().is_relative_to(CHECKOUT_ROOT)
-            and (CHECKOUT_ROOT / "universes").is_dir()
+            and (CHECKOUT_ROOT / "universe-samples").is_dir()
         ):
-            args = [str(CHECKOUT_ROOT / "universes")]
+            args = [str(CHECKOUT_ROOT / "universe-samples")]
         else:
             return (
                 protocol,

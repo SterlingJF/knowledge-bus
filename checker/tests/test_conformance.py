@@ -99,7 +99,7 @@ def test_refused(name):
 
 
 def test_shipped_documents_conform():
-    result = run(ROOT / "universes")
+    result = run(ROOT / "universe-samples")
     assert result.returncode == 0, result.stdout
     assert "NON-CONFORMING" not in result.stdout
 

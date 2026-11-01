@@ -20,7 +20,7 @@ def test_north_star_has_declared_strength_and_ownership(
 ):
     path = (
         Path(__file__).resolve().parents[2]
-        / "universes/product-development/universe.kbp.yaml"
+        / "universe-samples/product-development/universe.kbp.yaml"
     )
     universe = yaml.safe_load(path.read_text())
     artifact = next(a for a in universe["artifacts"] if a["id"] == artifact_id)
@@ -38,7 +38,7 @@ def test_north_star_has_declared_strength_and_ownership(
 def test_external_analysis_feeds_opportunities_and_threats(source):
     path = (
         Path(__file__).resolve().parents[2]
-        / "universes/product-development/universe.kbp.yaml"
+        / "universe-samples/product-development/universe.kbp.yaml"
     )
     universe = yaml.safe_load(path.read_text())
     edges = {(edge["from"], edge["to"], edge["kind"]) for edge in universe["relations"]}

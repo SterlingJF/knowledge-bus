@@ -134,7 +134,7 @@ Expected cards are in `checker/tests/cards/`. Tests compare the output of `kbp -
 
 | Folder | Universe spec | Covers |
 | --- | --- | --- |
-| `product-development` | `universes/product-development/` | Every document type |
+| `product-development` | `universe-samples/product-development/` | Every document type |
 | `card-fixture` | `checker/tests/card-fixture/` | Guidance conditioned on a factor, guidance keyed to a factor, gates, sections kept in another document with and without a document type that keeps the section, a frame with no question, values with no question, a document type with no guidance |
 | `minimal` | `protocol/conformance/pass/minimal.kbp.yaml` | No guidance file, enablement as one string, an empty no-document condition |
 | `kinds-set` | `evals/fixtures/village-hall/` and `protocol/conformance/pass/factors-only.kbp.yaml` | `--kinds` with several universe specs, one of them without document types and with a factor |

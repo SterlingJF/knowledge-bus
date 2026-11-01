@@ -206,7 +206,7 @@ def check_presets(python, base, root=ROOT):
     """Run the installed checker on a copy of each preset folder."""
     for name in plugins.presets(root):
         target = base / name / "notes" / ".knowledge-bus"
-        shutil.copytree(root / "universes" / name, target)
+        shutil.copytree(root / "universe-samples" / name, target)
         run(str(python), "-I", "-m", "kbp_conform.cli", root=target.parent)
 
 
@@ -292,7 +292,7 @@ def check(root=ROOT, output=None):
         "kbp",
         "--validate",
         str(root / "protocol/knowledge-bus-protocol.yaml"),
-        str(root / "universes"),
+        str(root / "universe-samples"),
         root=root,
     )
     build_check(version, root, output)

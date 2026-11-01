@@ -66,7 +66,7 @@ def exercise_runtime(installed, project, env, *, explore=False):
         if explore:
             for name in plugin.presets():
                 scope = project / name / "notes/.knowledge-bus"
-                shutil.copytree(plugin.ROOT / "universes" / name, scope)
+                shutil.copytree(plugin.ROOT / "universe-samples" / name, scope)
                 inspected = subprocess.run(
                     [sys.executable, str(launcher), "--inspect", str(scope)],
                     cwd=project,

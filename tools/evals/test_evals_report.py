@@ -14,8 +14,8 @@ RETIRED = {"x": NO_FAILS}
 INPUTS = {
     "evals/universe.yaml": "sha256:u1",
     "evals/skills.yaml": "sha256:s1",
-    "universes/x/universe.kbp.yaml": "sha256:x1",
-    "universes/x/type-guidance.kbp.yaml": "sha256:g1",
+    "universe-samples/x/universe.kbp.yaml": "sha256:x1",
+    "universe-samples/x/type-guidance.kbp.yaml": "sha256:g1",
     "evals/situations/x.yaml": "sha256:sit1",
 }
 
@@ -484,23 +484,23 @@ def test_comparable_sides_are_put_side_by_side_with_their_agreement(tmp_path):
 
 
 def test_sides_with_different_inputs_are_never_put_side_by_side(tmp_path):
-    other = {**INPUTS, "universes/x/universe.kbp.yaml": "sha256:changed"}
+    other = {**INPUTS, "universe-samples/x/universe.kbp.yaml": "sha256:changed"}
     anthropic, openai = two_sides(tmp_path, openai_inputs=other)
     text = build(anthropic, openai)
     cells = headline(text, "x")["Universe grade"]
     assert cells[1:] == [
-        "not comparable: universes/x/universe.kbp.yaml differs",
-        "not comparable: universes/x/universe.kbp.yaml differs",
+        "not comparable: universe-samples/x/universe.kbp.yaml differs",
+        "not comparable: universe-samples/x/universe.kbp.yaml differs",
         "not comparable",
     ]
     assert "4 cases: 2 pass" not in text
     disagree = text.split("### Where the sides disagree on `x`")[1].split("\n## ")[0]
     assert "`c2`" not in disagree
-    assert "not comparable: universes/x/universe.kbp.yaml differs" in disagree
+    assert "not comparable: universe-samples/x/universe.kbp.yaml differs" in disagree
 
 
 def test_an_inputs_kind_is_the_one_its_run_recorded(tmp_path):
-    notes = "universes/x/notes.kbp.yaml"
+    notes = "universe-samples/x/notes.kbp.yaml"
     folder = grade_folder(tmp_path / "g", ANTHROPIC_ROWS)
     stored = json.loads((folder / "run.json").read_text())
     stored["kinds"] = {notes: "guidance"}
@@ -515,7 +515,7 @@ def test_an_inputs_kind_is_the_one_its_run_recorded(tmp_path):
 
 
 def test_a_changed_guidance_does_not_stop_the_sorting_figures_being_compared(tmp_path):
-    changed = {**INPUTS, "universes/x/type-guidance.kbp.yaml": "sha256:other"}
+    changed = {**INPUTS, "universe-samples/x/type-guidance.kbp.yaml": "sha256:other"}
     anthropic, openai = two_sides(tmp_path, openai_inputs=changed)
     cells = headline(build(anthropic, openai), "x")
     assert cells["Universe grade"][3] == "not comparable"

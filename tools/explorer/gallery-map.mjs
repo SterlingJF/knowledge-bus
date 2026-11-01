@@ -10,9 +10,9 @@ import { root } from './generate-tokens.mjs';
 import { composeHtml, prepareModel, renderSvg } from './render.mjs';
 
 export const GALLERY_MAP = {
-  input: 'universes/product-development/universe.kbp.yaml',
-  guidance: 'universes/product-development/type-guidance.kbp.yaml',
-  marks: 'universes/product-development/marks.explorer.yaml',
+  input: 'universe-samples/product-development/universe.kbp.yaml',
+  guidance: 'universe-samples/product-development/type-guidance.kbp.yaml',
+  marks: 'universe-samples/product-development/marks.explorer.yaml',
   svg: 'docs/assets/product-development-map.svg',
   crop: 'docs/assets/product-development-map-crop.svg',
 };

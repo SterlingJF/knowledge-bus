@@ -157,7 +157,7 @@ case is undecided and goes to a person.
 `.evidence/<date>/evals/<run>/`. The decision tier reads `TYPESAFE_API_KEY`; the judgment tier
 uses the CLI of each model it names. Without either, that tier is skipped and the report says so.
 To grade in code only, run
-`just evals-grade universes/product-development/universe.kbp.yaml deterministic`.
+`just evals-grade universe-samples/product-development/universe.kbp.yaml deterministic`.
 
 Without options, `just evals-report` reads only committed files: the runs listed in `runs.yaml`
 and their summaries in `results/`. To add a run, add its side and run id to `runs.yaml`, as the

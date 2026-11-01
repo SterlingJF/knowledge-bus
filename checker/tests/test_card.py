@@ -25,7 +25,7 @@ from kbp_conform import cli
 ROOT = Path(__file__).resolve().parents[2]
 CARDS = Path(__file__).resolve().parent / "cards"
 FIXTURE = Path(__file__).resolve().parent / "card-fixture"
-REFERENCE = ROOT / "universes/product-development"
+REFERENCE = ROOT / "universe-samples/product-development"
 MINIMAL = ROOT / "protocol/conformance/pass/minimal.kbp.yaml"
 FACTORS_ONLY = ROOT / "protocol/conformance/pass/factors-only.kbp.yaml"
 VILLAGE_HALL = ROOT / "evals/fixtures/village-hall/.knowledge-bus"

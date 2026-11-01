@@ -10,7 +10,7 @@ from kbp_conform import cli, explorer
 
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "protocol/knowledge-bus-protocol.yaml"
-REFERENCE = ROOT / "universes/product-development"
+REFERENCE = ROOT / "universe-samples/product-development"
 
 
 def write_set(scope, universe_id="one", *, guidance=True, marks=True, prefix=""):

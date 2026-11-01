@@ -34,11 +34,11 @@ EXPLORER_ASSETS = {
 
 
 def presets(root=ROOT):
-    """List the shipped presets: each folder under universes/ with a universe spec."""
+    """List the shipped presets: each folder under universe-samples/ with a universe spec."""
     return tuple(
         sorted(
             path.parent.name
-            for path in (root / "universes").glob("*/universe.kbp.yaml")
+            for path in (root / "universe-samples").glob("*/universe.kbp.yaml")
         )
     )
 
@@ -46,9 +46,9 @@ def presets(root=ROOT):
 def preset_files(root=ROOT):
     """Map each preset's universe spec and guidance files to their bundled paths."""
     return {
-        f"universes/{name}/{path.name}": f"references/{name}/{path.name}"
+        f"universe-samples/{name}/{path.name}": f"references/{name}/{path.name}"
         for name in presets(root)
-        for path in sorted((root / "universes" / name).glob("*.kbp.yaml"))
+        for path in sorted((root / "universe-samples" / name).glob("*.kbp.yaml"))
     }
 
 
@@ -358,7 +358,7 @@ def runtime_check(plugin, root=ROOT):
             snapshots = {}
             for name in presets(root):
                 target = base / name / "notes/.knowledge-bus"
-                shutil.copytree(root / "universes" / name, target)
+                shutil.copytree(root / "universe-samples" / name, target)
                 source = target.parent / "source.md"
                 source.write_text("User content is untouched.\n")
                 snapshot = {

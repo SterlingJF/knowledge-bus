@@ -364,7 +364,9 @@ def test_the_product_development_ladders_are_the_four_the_owner_named():
 
 def test_no_universe_is_named_in_the_generic_code():
     """Only grade.py's default for --universe names one."""
-    default = 'UNIVERSE = ROOT / "universes/product-development/universe.kbp.yaml"'
+    default = (
+        'UNIVERSE = ROOT / "universe-samples/product-development/universe.kbp.yaml"'
+    )
     assert default in (Path(__file__).parent / "grade.py").read_text()
     for module in sorted(Path(__file__).parent.glob("*.py")):
         if module.name.startswith("test_"):

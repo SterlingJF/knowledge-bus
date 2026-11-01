@@ -18,7 +18,7 @@ from kbp_conform.checker import check
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "protocol/knowledge-bus-protocol.yaml"
 EDGE_GATE = ROOT / "protocol/conformance/pass/edge-gate.kbp.yaml"
-PRODUCT_DEVELOPMENT = ROOT / "universes/product-development/universe.kbp.yaml"
+PRODUCT_DEVELOPMENT = ROOT / "universe-samples/product-development/universe.kbp.yaml"
 WHERE = "relation the-question->the-record.gate"
 
 

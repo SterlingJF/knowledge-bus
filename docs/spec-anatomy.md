@@ -8,8 +8,8 @@ User definitions live in `.knowledge-bus/` inside the folder they describe. See 
 
 The included example has two files:
 
-- [universe.kbp.yaml](../universes/product-development/universe.kbp.yaml): questions, document purposes, composition rules, and relationships.
-- [type-guidance.kbp.yaml](../universes/product-development/type-guidance.kbp.yaml): advice and sources attached to those definitions.
+- [universe.kbp.yaml](../universe-samples/product-development/universe.kbp.yaml): questions, document purposes, composition rules, and relationships.
+- [type-guidance.kbp.yaml](../universe-samples/product-development/type-guidance.kbp.yaml): advice and sources attached to those definitions.
 
 Guidance is optional. The universe must remain valid without it. When guidance is supplied, the checker validates its structure and references, not whether its advice is correct.
 

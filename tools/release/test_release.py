@@ -93,11 +93,11 @@ def test_release_checks_run_full_suite_before_building(tmp_path, monkeypatch):
 def test_release_build_checks_a_copy_of_every_preset(tmp_path, monkeypatch):
     root = tmp_path / "root"
     for name in ("first-preset", "second-preset"):
-        folder = root / "universes" / name
+        folder = root / "universe-samples" / name
         folder.mkdir(parents=True)
         (folder / "universe.kbp.yaml").write_text(f"universe: {name}\n")
         (folder / "type-guidance.kbp.yaml").write_text(f"guidance: {name}\n")
-    (root / "universes/README.md").write_text("# Universes\n")
+    (root / "universe-samples/README.md").write_text("# Universes\n")
     calls = []
     monkeypatch.setattr(
         release, "run", lambda *args, **kwargs: calls.append(kwargs["root"])

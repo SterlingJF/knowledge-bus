@@ -1,6 +1,6 @@
 """Every shipped universe spec in one folder.
 
-Each folder under `universes/` ships one universe spec and its guidance. Copied
+Each folder under `universe-samples/` ships one universe spec and its guidance. Copied
 into one `.knowledge-bus/` folder, the universe specs must still conform, and
 `--kinds` must list one group for each universe spec. The universe spec id plus
 the declaration id identify a declaration, so two universe specs may declare
@@ -23,7 +23,7 @@ from kbp_conform import cli
 
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "protocol/knowledge-bus-protocol.yaml"
-UNIVERSES = ROOT / "universes"
+UNIVERSES = ROOT / "universe-samples"
 SECTIONS = ("elements", "artifacts", "frames", "factors", "relation_kinds")
 
 

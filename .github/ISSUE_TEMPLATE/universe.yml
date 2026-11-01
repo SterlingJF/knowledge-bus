@@ -5,7 +5,7 @@ body:
     id: universe
     attributes:
       label: Universe
-      description: The folder name under `universes/`.
+      description: The folder name under `universe-samples/`.
       placeholder: product-development
     validations:
       required: true

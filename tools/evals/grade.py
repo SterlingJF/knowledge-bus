@@ -38,7 +38,7 @@ import yaml
 from kbp_conform import explorer
 
 ROOT = spec_module.ROOT
-UNIVERSE = ROOT / "universes/product-development/universe.kbp.yaml"
+UNIVERSE = ROOT / "universe-samples/product-development/universe.kbp.yaml"
 ENABLEMENT = ("action", "actor", "timing")
 ALL_TIERS = (*tiers.TIERS, "sort", "recognise")
 FILED = ("sort", "recognise")

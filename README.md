@@ -331,7 +331,7 @@ knowledge-bus/
 │   ├── hatch_build.py               includes the protocol in distributions
 │   ├── src/kbp_conform/             validation library and kbp command
 │   └── tests/                       conformance and discovery tests
-├── universes/                      maintained reference definitions
+├── universe-samples/                      maintained reference definitions
 │   ├── codebase-recordkeeping/
 │   └── product-development/
 ├── explorer/                       @knowledge-bus/explorer: universe viewer and SVG export

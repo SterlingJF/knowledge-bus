@@ -25,16 +25,22 @@ class PrepareModelTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.source = yaml.safe_load(
-            (ROOT / "universes/product-development/universe.kbp.yaml").read_text()
+            (
+                ROOT / "universe-samples/product-development/universe.kbp.yaml"
+            ).read_text()
         )
         cls.protocol = yaml.safe_load(
             (ROOT / "protocol/knowledge-bus-protocol.yaml").read_text()
         )
         cls.guidance = yaml.safe_load(
-            (ROOT / "universes/product-development/type-guidance.kbp.yaml").read_text()
+            (
+                ROOT / "universe-samples/product-development/type-guidance.kbp.yaml"
+            ).read_text()
         )
         cls.marks = yaml.safe_load(
-            (ROOT / "universes/product-development/marks.explorer.yaml").read_text()
+            (
+                ROOT / "universe-samples/product-development/marks.explorer.yaml"
+            ).read_text()
         )
         cls.entities = MODULE.prepare_model(cls.source, cls.protocol)["entities"]
 
@@ -241,7 +247,7 @@ class PrepareModelTests(unittest.TestCase):
                         "--guidance",
                         str(
                             ROOT
-                            / "universes/product-development/type-guidance.kbp.yaml"
+                            / "universe-samples/product-development/type-guidance.kbp.yaml"
                         ),
                     ],
                     len(self.declared_entries()),
@@ -253,7 +259,8 @@ class PrepareModelTests(unittest.TestCase):
                         [
                             "--input",
                             str(
-                                ROOT / "universes/product-development/universe.kbp.yaml"
+                                ROOT
+                                / "universe-samples/product-development/universe.kbp.yaml"
                             ),
                             "--output",
                             str(output),
@@ -511,7 +518,10 @@ class PrepareModelTests(unittest.TestCase):
                 MODULE.main(
                     [
                         "--input",
-                        str(ROOT / "universes/product-development/universe.kbp.yaml"),
+                        str(
+                            ROOT
+                            / "universe-samples/product-development/universe.kbp.yaml"
+                        ),
                         "--output",
                         str(output),
                     ]

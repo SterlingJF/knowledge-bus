@@ -114,10 +114,12 @@ def test_predicate_declared_values(definition, value, expected):
 def test_guidance_uses_same_predicate_validation(capsys):
     p = yaml.safe_load((ROOT / "protocol/knowledge-bus-protocol.yaml").read_text())
     u = yaml.safe_load(
-        (ROOT / "universes/product-development/universe.kbp.yaml").read_text()
+        (ROOT / "universe-samples/product-development/universe.kbp.yaml").read_text()
     )
     g = yaml.safe_load(
-        (ROOT / "universes/product-development/type-guidance.kbp.yaml").read_text()
+        (
+            ROOT / "universe-samples/product-development/type-guidance.kbp.yaml"
+        ).read_text()
     )
     g = copy.deepcopy(g)
     next(iter(g["elements"].values()))[0]["when"] = {"authority": ["banana"]}

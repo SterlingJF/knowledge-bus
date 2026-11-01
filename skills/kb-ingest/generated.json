@@ -7,12 +7,12 @@
     "references/codebase-recordkeeping/type-guidance.kbp.yaml": "7b79648faf6b3c7be9dfe1c75f088a495ddafdac88b056883680f71912997d46",
     "references/codebase-recordkeeping/universe.kbp.yaml": "08fb4e912c87760eab853b12600efc8dd2d5e54cc0a1eee791db87e3b464bff0",
     "references/cognitive-accessibility/universe.kbp.yaml": "9684e38b225582a6dbe52bc8110b78e24dc9950f800abf72ab7781d724661219",
-    "references/knowledge-bus-directory.md": "1f577289f88fe11ca3b7fb6d969abc3798798dfcdbc2216497030f613afda412",
+    "references/knowledge-bus-directory.md": "c1fcace8faf556ffd9b8fccbcb6fe3ac087e3159b23b5d2dec1f2598db1431e6",
     "references/knowledge-bus-protocol.yaml": "a04acaba3c807bef641b102fe05e216107cd0042cabfd527746a4608b65cc8c6",
     "references/product-development/type-guidance.kbp.yaml": "effad3b412e4c553607c769d95f3c5c87bd64e4c52ba145e5bab5985c30385a3",
     "references/product-development/universe.kbp.yaml": "4b70294612aa9d5631ba0b2d823532cbb7144301a66d2998a12a2bb3e7aa4e82",
     "runtime/kbp.py": "3937ebe885eccb5668963f05e1876e72902dfdb925fa9aec2269e0ae06b34f90",
-    "runtime/knowledge_bus-0.10.0-py3-none-any.whl": "e876cc52b99ad7e948b2fb93dadd34a7bc502c2b1af009241cfe7df187799c39",
-    "runtime/requirements.json": "7578cc9245620e2157bef0ea2857617a898f521f9c6e5b1b690118f65877104a"
+    "runtime/knowledge_bus-0.10.0-py3-none-any.whl": "66a73a25477b84b983bbb460b8fd91921281c7c376014f1328ec47f4ffc4ba10",
+    "runtime/requirements.json": "8e20bb7cac57f48084dd9611a050cceffeaaf0d897b071b055d125e10ae31272"
   }
 }

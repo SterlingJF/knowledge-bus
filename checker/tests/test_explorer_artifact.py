@@ -10,7 +10,7 @@ import pytest
 from kbp_conform import artifact, explorer
 
 ROOT = Path(__file__).resolve().parents[2]
-REFERENCE = ROOT / "universes/product-development"
+REFERENCE = ROOT / "universe-samples/product-development"
 PROTOCOL = ROOT / "protocol/knowledge-bus-protocol.yaml"
 BUNDLE = ROOT / "explorer/prebuilt/viewer.js"
 BUNDLE_MANIFEST = ROOT / "explorer/prebuilt/viewer.json"

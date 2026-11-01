@@ -90,7 +90,7 @@ evals-play *ARGS:
     uv run --locked python tools/evals/play.py {{ARGS}}
 
 # Grade a universe; results go to .evidence/. The decision, judgment, sort and recognise tiers call paid models.
-evals-grade universe="universes/product-development/universe.kbp.yaml" tiers="deterministic,decision,judgment,sort,recognise":
+evals-grade universe="universe-samples/product-development/universe.kbp.yaml" tiers="deterministic,decision,judgment,sort,recognise":
     uv run --locked python tools/evals/grade.py universe --universe {{quote(universe)}} --tiers {{quote(tiers)}}
 
 # Score each tier alone, then the chain, on the owner's labelled examples.

@@ -391,7 +391,7 @@ def apply(args):
     folder = _outside(args.folder, "the working folder")
     draft = _draft(args)
     universe_path = args.universe or (
-        spec.ROOT / "universes" / args.universe_id / "universe.kbp.yaml"
+        spec.ROOT / "universe-samples" / args.universe_id / "universe.kbp.yaml"
     )
     if not Path(universe_path).exists():
         raise Refused(f"no universe file at {universe_path}; pass --universe")

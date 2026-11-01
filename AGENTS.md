@@ -25,7 +25,7 @@ Run commands from the repository root.
 | You edited | Run |
 | --- | --- |
 | `protocol/`, `checker/`, `plugins/shared/runtime/`, `docs/knowledge-bus-directory.md`, `docs/agent-runtime.md` | `just skills-build` |
-| `universes/product-development/` | `just skills-build`, the fixture command below, then `just explorer-gallery` |
+| `universe-samples/product-development/` | `just skills-build`, the fixture command below, then `just explorer-gallery` |
 | `explorer/src/` or `explorer/styles/` | `just explorer-build`, `just skills-build`, then `just explorer-gallery` |
 | `explorer/styles/visual-tokens.json` | `just explorer-tokens` first, then the row above |
 | `evals/universe.yaml` | `just evals-write` |
@@ -35,7 +35,7 @@ Run commands from the repository root.
 Fixture command:
 
 ```sh
-uv run --locked python tools/explorer/prepare_model.py --input universes/product-development/universe.kbp.yaml --guidance universes/product-development/type-guidance.kbp.yaml --marks universes/product-development/marks.explorer.yaml --output explorer/test/fixtures/product-development.json
+uv run --locked python tools/explorer/prepare_model.py --input universe-samples/product-development/universe.kbp.yaml --guidance universe-samples/product-development/type-guidance.kbp.yaml --marks universe-samples/product-development/marks.explorer.yaml --output explorer/test/fixtures/product-development.json
 ```
 
 Never edit the files these commands write. In a skill folder, edit only `SKILL.md`.

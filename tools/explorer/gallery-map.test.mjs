@@ -59,9 +59,9 @@ const scratch = (prefix = 'knowledge-bus-gallery-') => mkdtempSync(path.join(tmp
 
 test('the gallery map is rendered from the bundled universe, its guidance and its marks', () => {
   assert.deepEqual(GALLERY_MAP, {
-    input: 'universes/product-development/universe.kbp.yaml',
-    guidance: 'universes/product-development/type-guidance.kbp.yaml',
-    marks: 'universes/product-development/marks.explorer.yaml',
+    input: 'universe-samples/product-development/universe.kbp.yaml',
+    guidance: 'universe-samples/product-development/type-guidance.kbp.yaml',
+    marks: 'universe-samples/product-development/marks.explorer.yaml',
     svg: 'docs/assets/product-development-map.svg',
     crop: 'docs/assets/product-development-map-crop.svg',
   });

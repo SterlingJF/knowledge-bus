@@ -357,7 +357,7 @@ def _set(key, block, values, wording, pool, tags, field):
 
 
 def _repo_universe(universe_id):
-    path = spec.ROOT / "universes" / str(universe_id) / "universe.kbp.yaml"
+    path = spec.ROOT / "universe-samples" / str(universe_id) / "universe.kbp.yaml"
     return spec.read(path) if path.exists() else None
 
 

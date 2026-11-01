@@ -22,7 +22,7 @@ Fix a typo or broken link in a pull request.
 
 ## What You Can Change
 
-You can change the definitions and guidance in `universes/codebase-recordkeeping/` and `universes/product-development/`, and the explorer map icons in `universes/product-development/`.
+You can change the definitions and guidance in `universe-samples/codebase-recordkeeping/` and `universe-samples/product-development/`, and the explorer map icons in `universe-samples/product-development/`.
 
 Never reuse a definition's code, and never give a code to a different definition.
 
@@ -36,11 +36,11 @@ One change in meaning per pull request.
 - [ ] Advice from a published standard: add the standard under `sources:` at the top of the guidance file, and cite it in the advice.
 - [ ] `uv run kbp` passes.
 - [ ] Rebuilt and included: `just skills-build`.
-- [ ] For `universes/product-development/`, also rebuilt and included: `just explorer-gallery` and the explorer data command below.
+- [ ] For `universe-samples/product-development/`, also rebuilt and included: `just explorer-gallery` and the explorer data command below.
 - [ ] [Checks every pull request needs](../../CONTRIBUTING.md#every-pull-request).
 
 ```sh
-uv run --locked python tools/explorer/prepare_model.py --input universes/product-development/universe.kbp.yaml --guidance universes/product-development/type-guidance.kbp.yaml --marks universes/product-development/marks.explorer.yaml --output explorer/test/fixtures/product-development.json
+uv run --locked python tools/explorer/prepare_model.py --input universe-samples/product-development/universe.kbp.yaml --guidance universe-samples/product-development/type-guidance.kbp.yaml --marks universe-samples/product-development/marks.explorer.yaml --output explorer/test/fixtures/product-development.json
 ```
 
 Maintainers run the paid wording checks after a first review.

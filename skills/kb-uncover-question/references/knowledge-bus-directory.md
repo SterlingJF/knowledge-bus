@@ -188,7 +188,7 @@ During ingestion, exclude every `.knowledge-bus/` directory from source material
 
 The installed checker carries its protocol. Knowledge Bus directory discovery does not search for a `protocol/` directory. An explicit protocol file can still override the bundled protocol.
 
-In the implementation checkout, `protocol/` remains the protocol source and `universes/` remains the bundled example collection. A bare `uv run kbp` there validates the examples when no `.knowledge-bus/` directory is found. Those reference files do not move into `.knowledge-bus/`.
+In the implementation checkout, `protocol/` remains the protocol source and `universe-samples/` remains the bundled example collection. A bare `uv run kbp` there validates the examples when no `.knowledge-bus/` directory is found. Those reference files do not move into `.knowledge-bus/`.
 
 ## Previous Locations
 

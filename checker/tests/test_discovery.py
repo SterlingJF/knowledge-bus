@@ -16,7 +16,7 @@ def knowledge_bus_dir(folder, *, populated=True):
     if populated:
         for name in ("universe.kbp.yaml", "type-guidance.kbp.yaml"):
             shutil.copyfile(
-                ROOT / "universes/product-development" / name, metadata / name
+                ROOT / "universe-samples/product-development" / name, metadata / name
             )
     return metadata
 
@@ -140,7 +140,7 @@ def test_self_check_needs_no_user_knowledge_bus_dir(tmp_path, monkeypatch):
 def test_checkout_default_keeps_bundled_examples(monkeypatch, relative):
     monkeypatch.chdir(ROOT / relative)
     monkeypatch.setattr(cli, "find_knowledge_bus_dir", lambda: None)
-    assert cli.resolve([])[1] == cli.expand([str(ROOT / "universes")])
+    assert cli.resolve([])[1] == cli.expand([str(ROOT / "universe-samples")])
 
 
 def test_packaged_protocol_is_independent_of_current_directory(tmp_path, monkeypatch):
