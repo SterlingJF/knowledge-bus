@@ -106,23 +106,26 @@ AI tools are welcome. You answer for everything you post. Agents never commit, p
 
 ## Source Layout
 
-| Path                             | Edit here for                                                                               |
-| -------------------------------- | ------------------------------------------------------------------------------------------- |
-| `protocol/`                      | Conformance rules and shared valid/invalid examples                                         |
-| `checker/`                       | Validation, code minting, and checker tests                                                 |
-| `universe-samples/`              | Reference definitions and guidance                                                          |
-| `skills/<name>/SKILL.md`         | Agent workflow instructions                                                                 |
-| `plugins/<agent>/knowledge-bus/` | Agent-specific adapters                                                                     |
-| `plugins/shared/runtime/`        | The shared checker launcher                                                                 |
-| `tools/plugin/`                  | Package assembly, generated skill resources, and installation checks                        |
-| `evals/`                         | Eval rules, agent behaviours, fixtures, and situations                                      |
-| `tools/evals/`                   | Eval reader, tier engine, grader, scenario player, report builder, and runner generators    |
-| `explorer/`                      | Universe viewer package, its design tokens, and its tests                                   |
-| `tools/explorer/`                | Model adapter, build and render commands, and explorer checks                               |
-| `tools/ce-pattern/`              | Vendored CE Pattern tooling; update through its `UPSTREAM.md`                               |
-| `tools/docs/`                    | Doc section sync and its tests                                                              |
-| `docs/`                          | Usage guides, explanations, and contribution guides                                         |
-| `PHILOSOPHY.md`                  | The project's aim and priorities, and the source of In Short                                |
+| Path                             | Edit here for                                                                            |
+| -------------------------------- | ---------------------------------------------------------------------------------------- |
+| `protocol/`                      | Conformance rules and shared valid/invalid examples                                      |
+| `checker/`                       | Validation, code minting, and checker tests                                              |
+| `universe-samples/`              | Reference definitions and guidance                                                       |
+| `skills/<name>/SKILL.md`         | Agent workflow instructions                                                              |
+| `plugins/<agent>/knowledge-bus/` | Agent-specific adapters                                                                  |
+| `plugins/shared/runtime/`        | The shared checker launcher                                                              |
+| `plugins/shared/references/`     | Agent references bundled into the skills                                                 |
+| `tools/plugin/`                  | Package assembly, generated skill resources, and installation checks                     |
+| `evals/`                         | Eval rules, agent behaviours, fixtures, and situations                                   |
+| `tools/evals/`                   | Eval reader, tier engine, grader, scenario player, report builder, and runner generators |
+| `explorer/`                      | Universe viewer package, its design tokens, and its tests                                |
+| `tools/explorer/`                | Model adapter, build and render commands, and explorer checks                            |
+| `tools/ce-pattern/`              | Vendored CE Pattern tooling; update through its `UPSTREAM.md`                            |
+| `tools/docs/`                    | Doc section sync and its tests                                                           |
+| `docs/`                          | The Mintlify docs site; see its `AGENTS.md`                                              |
+| `contributing/`                  | Contribution guides for each path                                                        |
+| `research/`                      | Research reports behind the sample universe specs                                        |
+| `PHILOSOPHY.md`                  | The project's aim and priorities, and the source of In Short                             |
 
 Agent packages combine an adapter with the shared skills, references and runtime files. Build them with `just plugin-build <agent>`, or `just plugin-build all` for every configured agent.
 
@@ -157,7 +160,7 @@ The In Short section is copied from [Philosophy](PHILOSOPHY.md). Edit it there, 
 
 `pnpm run render:explorer:release-example` builds the release example. It uses a browser only to export the SVG map.
 
-`just explorer-gallery` redraws the README map and its cropped preview in `docs/images/`. Run it after you change the definitions or the explorer code; otherwise `just explorer-test` and CI fail.
+`just explorer-gallery` redraws the product-development map on the docs site and its cropped preview in `docs/images/`. Run it after you change the definitions or the explorer code; otherwise `just explorer-test` and CI fail.
 
 ### Git Hooks
 

@@ -32,7 +32,7 @@ def test_judge_docs_name_only_the_vendors_that_are_wired_in():
     defaults = list(inspect.signature(adapters.Judge).parameters["models"].default)
     assert defaults and all(model.startswith("claude-") for model in defaults)
     assert len(defaults) == 2
-    for relative in ("README.md", "evals/README.md"):
+    for relative in ("docs/how-it-works.mdx", "evals/README.md"):
         text = read(relative)
         assert "different families" not in text, relative
         assert "two Claude models" in text, relative

@@ -481,10 +481,12 @@ test('CI checks the gallery map in a job with node and uv but no browser', () =>
   assert.doesNotMatch(job, /playwright install/);
 });
 
-test('the README shows the crop at an explicit width, lets it set its height, and links it to the full map', () => {
-  const readme = readFileSync(path.join(root, 'README.md'), 'utf8');
-  assert.doesNotMatch(readme, /!\[[^\]]*\]\(docs\/assets\/product-development-map/);
-  assert.match(readme, new RegExp(`<a href="${GALLERY_MAP.svg}"><img src="${GALLERY_MAP.crop}" alt="[^"]+" width="\\d+" /></a>`));
-  assert.doesNotMatch(readme, new RegExp(`<img src="${GALLERY_MAP.crop}"[^>]*\\sheight=`));
-  assert.doesNotMatch(readme, new RegExp(`<img src="${GALLERY_MAP.svg}"`), 'the unreadable full-width embed is gone');
+test('the product-development docs page shows the crop at an explicit width, lets it set its height, and links it to the full map', () => {
+  const page = readFileSync(path.join(root, 'docs/samples/product-development.mdx'), 'utf8');
+  const svg = GALLERY_MAP.svg.replace(/^docs/, '');
+  const crop = GALLERY_MAP.crop.replace(/^docs/, '');
+  assert.doesNotMatch(page, /!\[[^\]]*\]\([^)]*product-development-map/);
+  assert.match(page, new RegExp(`<a href="${svg}"><img src="${crop}" alt="[^"]+" width="\\d+" /></a>`));
+  assert.doesNotMatch(page, new RegExp(`<img src="${crop}"[^>]*\\sheight=`));
+  assert.doesNotMatch(page, new RegExp(`<img src="${svg}"`), 'the unreadable full-width embed is gone');
 });
