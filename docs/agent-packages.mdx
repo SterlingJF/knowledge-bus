@@ -1,6 +1,9 @@
-# Agent Packages and Skills
+---
+title: "Agent packages and skills"
+description: "Use the installation commands for your agent."
+---
 
-Use the [installation commands](../README.md#installation) for your agent. Native packages come from npm; individual skills come directly from GitHub.
+Use the [installation commands](/quickstart) for your agent. Native packages come from npm; individual skills come directly from GitHub.
 
 ## Updates
 
@@ -53,7 +56,7 @@ opencode plugin @knowledge-bus/opencode@latest --force
 
 Include `--global` if that was your installation scope. Start a new session afterward.
 
-### Individual Skills
+### Individual skills
 
 Repeat your `npx skills add` command to install the current default-branch content. An explicit Git tag selects that version instead:
 
@@ -63,15 +66,15 @@ npx skills add https://github.com/SterlingJF/knowledge-bus/tree/v0.5.0/skills --
 
 The skills CLI collects optional installation telemetry. Set `DISABLE_TELEMETRY=1` to opt out. Knowledge Bus adds no separate telemetry.
 
-## Scope and Requirements
+## Scope and requirements
 
 Claude and Codex use their native default installation scope. Pi defaults to user scope; use `-l` for the current project. OpenCode and the skills CLI default to project scope; use `--global` for user-wide installation.
 
-Native packages require the relevant agent CLI and Node.js/npm. Checker-backed workflows also need uv and Python compatible with the [checker package requirement](../checker/pyproject.toml). The installed runtime reports its required Python version if the invoking interpreter is too old. First use may download the pinned checker dependency. Users do not need pnpm or a development checkout.
+Native packages require the relevant agent CLI and Node.js/npm. Checker-backed workflows also need uv and Python compatible with the [checker package requirement](https://github.com/SterlingJF/knowledge-bus/blob/main/checker/pyproject.toml). The installed runtime reports its required Python version if the invoking interpreter is too old. First use may download the pinned checker dependency. Users do not need pnpm or a development checkout.
 
 Do not install both a full package and standalone copies of the same skills in one agent.
 
-## Package Contents
+## Package contents
 
 Each native package includes the Knowledge Bus skills, shared references, bundled checker, and Explorer viewer. It installs only the selected agent's integration.
 
@@ -87,7 +90,7 @@ Native packages install the latest published stable release. Individual skills i
 
 Updates follow the agent's native refresh and cache behavior. Reinstalling may reuse a cached version, so use the host-specific update instructions above.
 
-See [Versioning](versioning.md) for version meanings and compatibility.
+See [Versioning](/versioning) for version meanings and compatibility.
 
 ## Troubleshooting
 

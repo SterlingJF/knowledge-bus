@@ -3,8 +3,8 @@
 Most folders under checker/tests/workspace/ hold `hall/.knowledge-bus/` and
 `hall/committee/.knowledge-bus/`. `no-parent` has no `hall/.knowledge-bus/`, and
 `grandparent` adds `hall/committee/finance/.knowledge-bus/`. REFUSALS lists the folder cases that must fail,
-each for exactly one refusal. docs/knowledge-bus-directory.md describes the rules
-for nested folders.
+each for exactly one refusal. The rules for nested folders are at
+https://knowledge-bus.pdflowlabs.io/docs/knowledge-bus-directory.
 """
 
 import json
@@ -813,7 +813,7 @@ def refusal_rows(path, heading):
 @pytest.mark.parametrize(
     ("path", "heading"),
     [
-        (ROOT / "docs" / "knowledge-bus-directory.md", "### Refusals"),
+        (ROOT / "docs" / "knowledge-bus-directory.mdx", "### Refusals"),
         (ROOT / "skills" / "kb-check" / "SKILL.md", "## Folder refusals"),
     ],
     ids=["directory-doc", "kb-check"],

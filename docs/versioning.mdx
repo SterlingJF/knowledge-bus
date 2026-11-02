@@ -1,4 +1,7 @@
-# Versioning
+---
+title: "Versioning"
+description: "Knowledge Bus releases, the protocol, universes, and guidance have independent versions."
+---
 
 Knowledge Bus releases, the protocol, universes, and guidance have independent versions.
 
@@ -27,12 +30,12 @@ The protocol version changes when its conformance rules change. Universe and gui
 
 The checker requires `conforms_to` to name the bundled protocol version or an earlier version the protocol lists in `accepts`. A document declaring an earlier version is checked as that version, so fields introduced later are refused there. The checker does not infer compatibility beyond that list.
 
-## Installation Versions
+## Installation versions
 
-Native agent packages use npm's `latest` tag to select the latest published stable release. Each agent controls how installed packages are refreshed; see [update instructions](agent-plugins.md#updates).
+Native agent packages use npm's `latest` tag to select the latest published stable release. Each agent controls how installed packages are refreshed; see [update instructions](/agent-packages#updates).
 
 The general `npx skills add SterlingJF/knowledge-bus` command installs from the default branch, which can include unreleased changes. An explicit GitHub tree/tag URL selects a particular version.
 
 ## History
 
-[Release history](../CHANGELOG.md) records shipped software changes. [Protocol history](../protocol/CHANGELOG.md) records conformance changes.
+[Release history](https://github.com/SterlingJF/knowledge-bus/blob/main/CHANGELOG.md) records shipped software changes. [Protocol history](https://github.com/SterlingJF/knowledge-bus/blob/main/protocol/CHANGELOG.md) records conformance changes.

@@ -1,0 +1,54 @@
+---
+title: "How it works"
+description: "Questions identify knowledge, purpose determines document contents, and the checker and evals verify the result."
+---
+
+## 1. Questions identify knowledge
+
+A knowledge element is defined by the question its content answers. Two sections answering the same question refer to the same element, even if their headings differ.
+
+The protocol calls a declared set of knowledge elements, document types, and their relationships a **universe**.
+
+A universe can also declare its own terms, each with one fixed meaning. Knowledge still matches across universes by question, not by term.
+
+## 2. Purpose determines document contents
+
+A document type is called an **artifact** in the protocol. It is defined by the decision or action it enables and the person who needs to take it.
+
+Its core contents are the information that person needs to make the decision or take the action. Other contents depend on the situation.
+
+## 3. Context changes what is needed
+
+Context rules can change which information is included or required, or disable a document type. Every universe must also say when no document is needed.
+
+Relationships declare dependencies, distinctions, and other connections between knowledge elements and document types.
+
+## 4. Guidance stays separate from requirements
+
+The universe file holds the definitions and structural rules. A companion guidance file explains how to answer well and identifies the sources or assertions behind that advice.
+
+Guidance is advisory. You can depart from the advice and still follow the protocol's requirements.
+
+## 5. Assertions retain their context
+
+An **instance** records an asserted answer and who stated it. Its status indicates how the assertion should be treated; its timestamp records when the value was established, not when it expires. The protocol separately records who is bound by the assertion. For example, one person may state a requirement that another person must follow.
+
+Multiple assertions can coexist. A new assertion can replace an earlier one, while the earlier version remains available for reference.
+
+## 6. Exchange preserves differences
+
+The protocol defines four steps: compose, transmit, decode, and reconcile.
+
+A sender composes knowledge for a purpose, using the definitions' selection frames where there are any. The receiver interprets it within their own definitions and context. The receiver matches information by the question it answers and records disagreements rather than silently overwriting them.
+
+## 7. The checker verifies structure
+
+The checker validates the protocol against itself, then checks definition and guidance files against supported conformance rules. It reports failures such as missing declarations, unresolved references, and invalid structural relationships.
+
+People still need to review the meaning: a definition can pass the checks and still ask the wrong question.
+
+## 8. Evals grade what structure cannot show
+
+Evals grade definition wording against written rules: each question asks one thing, no two questions ask for the same knowledge, each passage is filed under the question it answers, and real cases land on the right value of each dimension, such as audience. Code settles what it can. A fast classifier answers one literal question, and two Claude models judge the rest by default; a verdict stands only when both agree. A case no tier settles goes to you.
+
+See [Evals](/evals).

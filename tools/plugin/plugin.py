@@ -54,7 +54,7 @@ def preset_files(root=ROOT):
 
 REFERENCES = {
     "plugins/shared/references/agent-runtime.md": "references/agent-runtime.md",
-    "docs/knowledge-bus-directory.md": "references/knowledge-bus-directory.md",
+    "docs/knowledge-bus-directory.mdx": "references/knowledge-bus-directory.md",
     "protocol/knowledge-bus-protocol.yaml": "references/knowledge-bus-protocol.yaml",
     **preset_files(),
 }
@@ -133,6 +133,20 @@ def runtime_requirements(wheel, root=ROOT):
     }
 
 
+def reference_bytes(source):
+    """A bundled reference's bytes; a docs page's frontmatter title becomes its heading."""
+    data = source.read_bytes()
+    if source.suffix != ".mdx":
+        return data
+    _, front, body = data.decode().split("---\n", 2)
+    title = next(
+        line.removeprefix("title:").strip().strip('"')
+        for line in front.splitlines()
+        if line.startswith("title:")
+    )
+    return f"# {title}\n{body}".encode()
+
+
 def copy(source, destination, root):
     if source.is_symlink() or not source.resolve().is_relative_to(root.resolve()):
         raise ValueError(f"Source escapes the repository or is a symlink: {source}")
@@ -169,6 +183,7 @@ def assemble(host, destination, wheel, root=ROOT):
     copy(root / "LICENSE", destination / "LICENSE", root)
     for source, target in REFERENCES.items():
         copy(root / source, destination / target, root)
+        (destination / target).write_bytes(reference_bytes(root / source))
     for name in SKILLS:
         source = root / "skills" / name / "SKILL.md"
         target = destination / "skills" / name / "SKILL.md"

@@ -1,0 +1,97 @@
+---
+title: "Quickstart"
+description: "Install Knowledge Bus for your agent, then start from expectations, existing notes, or a sample."
+---
+
+## Installation
+
+Requires your agent's CLI and Node.js/npm. Checker-backed skills also require [uv](https://docs.astral.sh/uv/getting-started/installation/) and Python compatible with the [checker package requirement](https://github.com/SterlingJF/knowledge-bus/blob/main/checker/pyproject.toml).
+
+### Claude Code
+
+In Claude Code chat:
+
+```text
+/plugin marketplace add SterlingJF/knowledge-bus
+/plugin install knowledge-bus@knowledge-bus
+```
+
+Or in your terminal:
+
+```sh
+claude plugin marketplace add SterlingJF/knowledge-bus
+claude plugin install knowledge-bus@knowledge-bus
+```
+
+### Codex
+
+In your terminal:
+
+```sh
+codex plugin marketplace add SterlingJF/knowledge-bus
+codex plugin add knowledge-bus@knowledge-bus
+```
+
+Start a new session after installation.
+
+### Pi
+
+In your terminal:
+
+```sh
+pi install npm:@knowledge-bus/pi@latest
+```
+
+Run `/reload` in an existing Pi chat to load the skills.
+
+### OpenCode
+
+In your terminal:
+
+```sh
+opencode plugin @knowledge-bus/opencode@latest
+```
+
+Start a new session after installation. Add `--global` to use it across projects.
+
+### Other agents or individual skills
+
+Choose your agent and skills:
+
+```sh
+npx skills add SterlingJF/knowledge-bus
+```
+
+Or select a specific skill:
+
+```sh
+npx skills add SterlingJF/knowledge-bus --skill kb-check
+```
+
+These commands use the default branch, not the latest release. Add `--global` to use the skills across projects. Choose either the plugin or individual skills for each agent to avoid duplicate entries.
+
+[Updates and troubleshooting](/agent-packages)
+
+## Start with expectations
+
+> What does the knowledge need to answer, and what should it enable?
+
+You can adapt a reference, describe the area of knowledge, or link to your existing documents. Ask your agent to use `kb-uncover-question` to sharpen a question, or `kb-evolve` to add or re-examine a document type. See [Adapting the Example](/adapting-a-sample).
+
+## Working with existing notes
+
+Knowledge Bus can also help recover structure from existing files. The ingestion skill reads a folder, maps its contents to the questions they answer, and flags disagreements and missing information. It asks you to resolve uncertainty and writes its outputs in `.knowledge-bus/` inside that folder.
+
+1. Ask your agent to use `kb-ingest` with the path to a folder of notes or documents.
+2. Review its initial findings and proposed definitions. Answer any questions about conflicts or uncertain information.
+3. Review the outputs in `<folder>/.knowledge-bus/`: definitions, guidance, sourced answers, and a record of decisions made during ingestion.
+4. Review unresolved conflicts, potentially outdated content, material that did not fit, and unanswered questions.
+5. Use `kb-check` after editing definition or guidance files.
+
+Your existing source files remain unchanged.
+
+See the [Walkthrough](/walkthrough) for a complete example.
+
+## Keep it current
+
+Open the definitions as a map with `kb-explore`. When a question or document type stops fitting, revise it with `kb-uncover-question` or `kb-evolve`, then run `kb-check`.

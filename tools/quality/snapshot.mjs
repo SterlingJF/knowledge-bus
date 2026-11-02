@@ -23,12 +23,12 @@ export function nodeVersionProblem(range, version, execPath) {
     + "Git hooks don't load your shell profile: see CONTRIBUTING.md, Git Hooks.";
 }
 
-export const PACKAGED_MARKDOWN = new Set(['docs/knowledge-bus-directory.md']);
+export const PACKAGED_MARKDOWN = new Set(['docs/knowledge-bus-directory.mdx']);
 
 export const COPY_CHECKS = ['check:fast', 'test'];
 
 export function copyOnly(paths) {
-  return paths.length > 0 && paths.every((file) => file.endsWith('.md')
+  return paths.length > 0 && paths.every((file) => /\.mdx?$/.test(file)
     && !file.startsWith('skills/') && !file.startsWith('plugins/') && !PACKAGED_MARKDOWN.has(file));
 }
 

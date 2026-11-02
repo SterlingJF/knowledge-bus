@@ -135,7 +135,7 @@ explorer-build: (_pnpm_run 'build:explorer')
 # Render the bundled universe to a self-contained page and a dual-theme SVG.
 explorer-render: (_pnpm_run 'render:explorer')
 
-# Regenerate the README's gallery map and its readable crop (docs/assets/product-development-map*.svg) from the bundled universe.
+# Regenerate the README's gallery map and its readable crop (docs/images/product-development-map*.svg) from the bundled universe.
 explorer-gallery: (_pnpm_run 'render:explorer:gallery')
 
 # Regenerate the explorer token stylesheet from its authority.

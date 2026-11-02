@@ -128,7 +128,7 @@ Agent packages combine an adapter with the shared skills, references and runtime
 
 ## Generated Files
 
-The files under `skills/*/references/` and `skills/*/runtime/` are generated. Edit their source instead: `protocol/`, `universe-samples/`, `docs/knowledge-bus-directory.md`, `plugins/shared/references/agent-runtime.md`, the checker or the shared launcher. Then rebuild:
+The files under `skills/*/references/` and `skills/*/runtime/` are generated. Edit their source instead: `protocol/`, `universe-samples/`, `docs/knowledge-bus-directory.mdx`, `plugins/shared/references/agent-runtime.md`, the checker or the shared launcher. Then rebuild:
 
 ```sh
 just skills-build
@@ -157,7 +157,7 @@ The In Short section is copied from [Philosophy](PHILOSOPHY.md). Edit it there, 
 
 `pnpm run render:explorer:release-example` builds the release example. It uses a browser only to export the SVG map.
 
-`just explorer-gallery` redraws the README map and its cropped preview in `docs/assets/`. Run it after you change the definitions or the explorer code; otherwise `just explorer-test` and CI fail.
+`just explorer-gallery` redraws the README map and its cropped preview in `docs/images/`. Run it after you change the definitions or the explorer code; otherwise `just explorer-test` and CI fail.
 
 ### Git Hooks
 
@@ -169,7 +169,7 @@ The In Short section is copied from [Philosophy](PHILOSOPHY.md). Edit it there, 
 | Pre-push | Each distinct outgoing branch tip | Full suite; for a copy-only change, `check:fast` and the tests |
 | CI | Checked-out commit | Full suite; for a copy-only change, `check:fast`, the tests and `kbp --validate` |
 
-A copy-only change edits only Markdown files outside `skills/` and `plugins/`. The packaged docs, `plugins/shared/references/agent-runtime.md` and `docs/knowledge-bus-directory.md`, always get the full suite.
+A copy-only change edits only Markdown or MDX files outside `skills/` and `plugins/`. The packaged docs, `plugins/shared/references/agent-runtime.md` and `docs/knowledge-bus-directory.mdx`, always get the full suite.
 
 Git hooks do not load your shell profile, so they can pick up an older Node, often when you commit from a desktop app. Husky reads `~/.config/husky/init.sh` before every hook. Load your version manager in that file. For nvm, add `export NVM_DIR="$HOME/.nvm"` and source `"$NVM_DIR/nvm.sh"`, with Node 22 or newer as the default: `nvm alias default 22`.
 

@@ -40,7 +40,7 @@ Change one rule per pull request. Include its example files and its checker and 
 | Renamed key | A `renamed` entry with the old name and the version it changed in |
 | Key with a changed shape | A `reshaped` entry with the old shape and the version it changed in |
 
-If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](../docs/validation.md#testing-the-checker) to match, or `just test` fails.
+If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](https://knowledge-bus.pdflowlabs.io/docs/validation#testing-the-checker) to match, or `just test` fails.
 
 - [ ] `just skills-build` run, regenerated files included.
 

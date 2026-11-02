@@ -1,0 +1,92 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Knowledge Bus",
+  "colors": {
+    "primary": "#141414",
+    "light": "#E8E8E8",
+    "dark": "#141414"
+  },
+  "logo": {
+    "light": "/logo/knowledge-bus-mark-black.svg",
+    "dark": "/logo/knowledge-bus-squircle-light.svg"
+  },
+  "favicon": "/logo/knowledge-bus-squircle-light.svg",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get started",
+        "pages": ["index", "quickstart"]
+      },
+      {
+        "group": "Guides",
+        "pages": [
+          "walkthrough",
+          "how-ingest-works",
+          "adapting-a-sample",
+          "explorer",
+          "standalone-checker"
+        ]
+      },
+      {
+        "group": "Concepts",
+        "pages": ["how-it-works", "spec-anatomy", "design-notes"]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "commands",
+          "knowledge-bus-directory",
+          "validation",
+          "document-type-card",
+          "versioning",
+          "agent-packages",
+          "limits-and-roadmap"
+        ]
+      },
+      {
+        "group": "Samples",
+        "pages": [
+          "samples/overview",
+          "samples/product-development",
+          "samples/codebase-recordkeeping",
+          "samples/cognitive-accessibility"
+        ]
+      },
+      {
+        "group": "Evals",
+        "pages": ["evals"]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "GitHub",
+          "href": "https://github.com/SterlingJF/knowledge-bus",
+          "icon": "github"
+        }
+      ]
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "https://github.com/SterlingJF/knowledge-bus/issues"
+      }
+    ]
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/SterlingJF/knowledge-bus"
+    }
+  },
+  "seo": {
+    "metatags": {
+      "canonical": "https://knowledge-bus.pdflowlabs.io/docs"
+    }
+  }
+}

@@ -2,8 +2,8 @@
 
 `from_parent` names universe specs of the parent folder. Every command adds each
 named universe spec, with its guidance from the parent folder, beside the
-folder's own universe specs. docs/knowledge-bus-directory.md describes the rules
-for nested folders.
+folder's own universe specs. The rules for nested folders are at
+https://knowledge-bus.pdflowlabs.io/docs/knowledge-bus-directory.
 """
 
 import os

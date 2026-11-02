@@ -1,16 +1,19 @@
-# Adapting the Example
+---
+title: "Adapting a sample"
+description: "Start with one of the universes included in `universe-samples/`, keep what fits your work, and change what does not."
+---
 
 Start with one of the universes included in `universe-samples/`, keep what fits your work, and change what does not. You can do this before writing any documents.
 
-## What the Starter Contains
+## What the starter contains
 
 The starter defines questions, the document types that hold them, the relationships between them, and guidance that cites registered sources. It covers documents such as strategy canvases, decision records, design documents, and experiment plans. Run `uv run kbp` in a clone to see current counts.
 
 Its questions can be useful at different scales, from a personal project to a company. Review the definitions against your own purpose, audience, and requirements before adopting them.
 
-Keep your definitions in `.knowledge-bus/` inside the folder they describe. Guidance is optional; ingestion outputs are not required to start. See [Knowledge Bus Directory](knowledge-bus-directory.md).
+Keep your definitions in `.knowledge-bus/` inside the folder they describe. Guidance is optional; ingestion outputs are not required to start. See [Knowledge Bus Directory](/knowledge-bus-directory).
 
-## Choose a Starting Point
+## Choose a starting point
 
 | Approach         | When it fits                                                                        |
 | ---------------- | ----------------------------------------------------------------------------------- |
@@ -23,9 +26,9 @@ For example, a solo project may need a decision record without the full set of p
 
 When trimming, check references between definitions. Removing one may affect the document types, relationships, or guidance that use it.
 
-## Add or Review a Document Type
+## Add or review a document type
 
-Use [`/kb-evolve`](../skills/kb-evolve/SKILL.md) when a document type is missing or when you want to examine an existing type before relying on it.
+Use [`/kb-evolve`](https://github.com/SterlingJF/knowledge-bus/blob/main/skills/kb-evolve/SKILL.md) when a document type is missing or when you want to examine an existing type before relying on it.
 
 The skill helps establish:
 
@@ -41,17 +44,17 @@ Before writing, the skill shows one table per universe spec: each change with it
 
 Use `/kb-uncover-question` when you need help clarifying a question or distinguishing it from existing ones.
 
-Guided creation of an entire new set of definitions remains planned work. You can author one directly using [Spec Anatomy](spec-anatomy.md) and check it with the current tools.
+Guided creation of an entire new set of definitions remains planned work. You can author one directly using [Spec Anatomy](/spec-anatomy) and check it with the current tools.
 
-## Apply Definitions to Existing Notes
+## Apply definitions to existing notes
 
 If you already have notes, `/kb-ingest` reviews them and proposes whether to adopt, adapt, or develop definitions for that material. It asks you to confirm the proposed approach.
 
 Content that does not fit may indicate a missing definition or material outside the chosen scope. Review the reason before changing the structure.
 
-See [How Ingest Works](how-ingest-works.md).
+See [How Ingest Works](/how-ingest-works).
 
-## Assign Stable Codes
+## Assign stable codes
 
 Each new element, document type, frame, or factor needs a code. From the repository root, generate three element codes with:
 
@@ -63,10 +66,10 @@ Use `artifact`, `frame`, or `factor` for the other declaration kinds. Replace th
 
 Keep the code when renaming the same definition. Never reuse or reassign a retired code. Update any references that use the renamed id.
 
-## Add Guidance and Check the Result
+## Add guidance and check the result
 
 In the included guidance, a `convention` must cite a registered source. Other kinds can use `asserted` to identify advice supplied without an external citation. Preserve sourcing limitations, such as abstract-only access or a rescinded source, in the citation.
 
 Run the checker with both the definition and guidance files after editing. Passing means the files satisfy the structural checks currently implemented. You still need to review whether the definitions and advice fit your work.
 
-See [Validation](validation.md) for commands and coverage.
+See [Validation](/validation) for commands and coverage.

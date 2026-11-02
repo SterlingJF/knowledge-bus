@@ -51,7 +51,7 @@ Under "Who builds the change" in the issue, say whether you will build the chang
 
 ## Deeper Reading
 
-- [Adapting the Example](../docs/adapting-the-example.md) — minting codes and citing sources.
+- [Adapting a Sample](https://knowledge-bus.pdflowlabs.io/docs/adapting-a-sample) — minting codes and citing sources.
 - [Product Development Universe Evolution](../research/research-product-development-universe-evolution-2026-09-15.md) — a past change in meaning.
 - [Code Repository Universe Research](../research/research-code-repository-universe-2026-10-08.md) — the corpus, counts and sources behind the codebase-recordkeeping definitions.
 - [Evals](../evals/README.md) — how wording is graded.

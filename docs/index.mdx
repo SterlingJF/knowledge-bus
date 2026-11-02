@@ -1,0 +1,53 @@
+---
+title: "Knowledge Bus"
+description: "Tools for humans and AI agents to define, structure, and connect knowledge."
+---
+
+Define the questions your notes and documents need to answer, how their contents connect, and the decisions and actions they should support. Use those expectations to guide new work, review contributions, and exchange knowledge.
+
+Knowledge Bus lets humans and AI agents describe what knowledge means and how it fits together. It gives them a common reference for writing, reading, and using notes and documents.
+
+For a project, subject, or area of responsibility, you can define:
+
+- **Questions** — the questions the content needs to answer;
+- **Outcomes** — the decisions or actions each document supports;
+- **Requirements** — the information required for that purpose;
+- **Relationships** — how information connects across documents;
+- **Conditions** — which requirements change with the audience or situation;
+- **Quality** — guidance for answering well;
+- **Provenance** — who is expected to provide an answer and how to know if the answer is premature or stale.
+
+## "So it's a knowledge template?"
+
+A template gives a document its sections. Knowledge Bus also defines what those sections mean, why they belong, and how their contents relate to other documents. Different documents can refer to the same knowledge, reducing the need to repeat the thinking or maintain separate copies.
+
+## "How is it any different from a knowledge map?"
+
+Tools such as [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) analyze *existing* material to explain its contents and connections. Knowledge Bus lets humans and agents agree on the questions the content needs to answer, what belongs in each document, and how the pieces relate—even before the first document is written. Those same definitions can then guide new contributions and help interpret existing material.
+
+## Where it helps
+
+Knowledge Bus can guide a personal notebook, a shared project folder, or documentation across teams. Its definitions give contributors clear expectations and help later readers understand the thinking behind the content.
+
+- **Personal notes:** decide what you want to capture and keep enough context to understand it later.
+- **Everyday projects:** record decisions, unanswered questions, and the information someone needs to take over.
+- **Team documentation:** give contributors shared expectations across briefs, plans, decisions, and handovers.
+- **AI collaboration:** give agents explicit definitions and guidance to follow when asking questions, drafting, or reviewing.
+- **Knowledge exchange:** describe how information can move between people and tools while retaining its meaning and context.
+
+You can adopt an existing set of definitions or develop one for your own work. The included product-development and codebase-recordkeeping definitions provide starting points; the Knowledge Bus Protocol supports other subjects and uses.
+
+## Features
+
+- **Knowledge definitions** — identify each piece of knowledge by the question it answers, so different headings and filenames do not give it different meanings.
+- **Document composition rules** — define the decision or action a document supports, then specify the information someone needs to make that decision or take that action.
+- **Authoring guidance** — attach advice and its sources to relevant definitions, keeping recommendations separate from requirements.
+- **Attribution and history** — record who stated something, who is bound by it, its status, and when it was established. Preserve earlier versions when new assertions replace them.
+- **Knowledge exchange rules** — define how to share knowledge between different structures while preserving its meaning, source, and status. Keep disagreements visible for the receiver to resolve.
+- **Product-development starter** — adopt or adapt reference definitions for product development, including briefs, plans, and decision records.
+- **Codebase-recordkeeping starter** — adopt or adapt reference definitions for the written documents of a codebase, including READMEs, contributing guides, and release notes.
+- **Agent skills** — clarify questions and check for overlap, recover a decision's reasoning and the conditions for reconsidering it, and add or re-examine document types.
+- **Folder ingestion** — map existing notes to sourced answers, surface conflicts for your review, and report gaps without changing the originals.
+- **Conformance checker** — check definition and guidance files for missing declarations, unresolved references, and other structural errors.
+- **Evals** — rules for definition wording and agent behaviour, each with passing and failing examples, graded in code first and by models where code cannot settle a case.
+- **Explorer** — open your definitions as an interactive map that works offline, and export it as SVG.

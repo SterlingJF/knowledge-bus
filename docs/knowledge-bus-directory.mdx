@@ -1,8 +1,11 @@
-# Knowledge Bus Directory
+---
+title: "Knowledge Bus directory"
+description: "The `.knowledge-bus/` directory holds the definitions and supporting files for the folder that contains it."
+---
 
 The `.knowledge-bus/` directory holds the definitions and supporting files for the folder that contains it. That containing folder can be a notes vault, document collection, project, or any other folder. This convention specifies where Knowledge Bus files live, not how to organize the surrounding files.
 
-## Directory Contents
+## Directory contents
 
 ```text
 my-folder/
@@ -24,7 +27,7 @@ my-folder/
 
 Any folder can contain a `.knowledge-bus/` directory. Git is not required. Define the structure before creating documents, or derive it from existing material through ingestion. Answers and an ingest log are not prerequisites for authoring a universe.
 
-## Directory Selection
+## Directory selection
 
 Explicit targets take precedence. Pass the folder, its `.knowledge-bus/` directory, or individual definition files:
 
@@ -38,7 +41,7 @@ Without an explicit target, the checker searches the current folder and then its
 
 The checker reads the `*.kbp.yaml` files directly inside the selected `.knowledge-bus/` directory together, to check guidance against its universe. The checker also reads `workspace.yaml` in that directory and, for each id under `from_parent`, the universe spec file and guidance in the parent folder. Duplicate universe ids fail. Answers, the ingest and evolve logs, presentation marks, and Explorer outputs are not checker inputs. Explicit file targets select exactly those files; include the universe when checking guidance.
 
-## Several Universes in One Scope
+## Several universes in one scope
 
 Several universes may be direct siblings in one `.knowledge-bus/`. Prefix filenames for people, but rely on semantic headers for identity and association:
 
@@ -61,7 +64,7 @@ A generic directory target without its own `.knowledge-bus/` still scans for `*.
 
 Missing definitions are an error when checking. Checking never creates a `.knowledge-bus/` directory.
 
-## Nested Folders
+## Nested folders
 
 A nested folder with its own `.knowledge-bus/` stands alone by default. To apply universe specs of the parent folder inside a nested folder, list their ids under `from_parent` in the nested folder's `.knowledge-bus/workspace.yaml`. The parent folder is the nearest folder above with its own `.knowledge-bus/`.
 
@@ -128,7 +131,7 @@ hall-upkeep.universe.kbp.yaml: CONFORMS
 
 Hall bookings stays out of `hall/committee/`.
 
-### The File
+### The file
 
 - `workspace.yaml` holds settings for its folder. `from_parent` is the only key: a list of universe spec ids, each listed once. Other keys are refused.
 - Without `workspace.yaml`, or with `from_parent: []`, no command reads the parent folder.
@@ -169,14 +172,14 @@ For each refusal below, a folder case under `checker/tests/workspace/` must fail
 | `a universe spec from the parent folder` | Guidance or marks in the nested folder for a listed universe spec | `nested-guidance`, `nested-marks` |
 | `in the parent folder` | An unreadable file in the parent folder | `unreadable-parent` |
 
-### Writing Changes
+### Writing changes
 
 - Write a change to a universe spec or its guidance in the `.knowledge-bus/` holding the universe spec file. Skills name that `.knowledge-bus/` before writing.
 - Add the `evolve-log.md` entry beside the changed universe spec.
 - Keep answers, the ingest log and Explorer outputs in the selected `.knowledge-bus/`.
 - During ingestion, `kb-ingest` files answers for listed universe specs in the selected `.knowledge-bus/`, and writes a change to a listed universe spec in the parent folder only after the user confirms the change.
 
-## Creating and Updating Definitions
+## Creating and updating definitions
 
 Create `.knowledge-bus/` when the user asks to set up definitions for a folder. There is no separate `kbp init` command. Keep writes inside the selected metadata directory and leave existing source files untouched. For a universe spec listed in `workspace.yaml`, write changes in the parent folder; see [Nested Folders](#nested-folders).
 
@@ -184,12 +187,12 @@ Inspect existing definitions, guidance, answers, and logs before writing. Reuse 
 
 During ingestion, exclude every `.knowledge-bus/` directory from source material. Skip and report nested folders that contain their own `.knowledge-bus/`; ingest them separately only when explicitly targeted.
 
-## Protocol and Examples
+## Protocol and examples
 
 The installed checker carries its protocol. Knowledge Bus directory discovery does not search for a `protocol/` directory. An explicit protocol file can still override the bundled protocol.
 
 In the implementation checkout, `protocol/` remains the protocol source and `universe-samples/` remains the bundled example collection. A bare `uv run kbp` there validates the examples when no `.knowledge-bus/` directory is found. Those reference files do not move into `.knowledge-bus/`.
 
-## Previous Locations
+## Previous locations
 
 The sibling `<folder>-spec/` convention is no longer supported for discovery or output. There is no fallback or migration. Existing folders are not moved or deleted. An explicitly supplied file remains a valid checker target regardless of its location.

@@ -2,8 +2,8 @@
 <div align="center">
 
 <p>
-  <a href="docs/assets/knowledge-bus-mark-black.svg#gh-light-mode-only"><img src="docs/assets/knowledge-bus-mark-black.svg" alt="Knowledge Bus logo" width="120" /></a>
-  <a href="docs/assets/knowledge-bus-squircle-light.svg#gh-dark-mode-only"><img src="docs/assets/knowledge-bus-squircle-light.svg" alt="Knowledge Bus logo" width="120" /></a>
+  <a href="docs/logo/knowledge-bus-mark-black.svg#gh-light-mode-only"><img src="docs/logo/knowledge-bus-mark-black.svg" alt="Knowledge Bus logo" width="120" /></a>
+  <a href="docs/logo/knowledge-bus-squircle-light.svg#gh-dark-mode-only"><img src="docs/logo/knowledge-bus-squircle-light.svg" alt="Knowledge Bus logo" width="120" /></a>
 </p>
 
 # Knowledge Bus
@@ -16,7 +16,7 @@ Tools for humans and AI agents to define, structure, and connect knowledge.
 
 [What is Knowledge Bus?](#what-is-knowledge-bus) • [Where It Helps](#where-it-helps) • [Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [How It Works](#how-it-works) • [Limits](#limits) • [Docs](#docs) • [Contributing](#contributing)
 
-<img src="docs/assets/knowledge-bus-readme-hero.png" alt="Illustration of a shared project: a project note, a decision note, and a handover connected to one goal question" width="960" />
+<img src="docs/images/knowledge-bus-readme-hero.png" alt="Illustration of a shared project: a project note, a decision note, and a handover connected to one goal question" width="960" />
 
 </div>
 <!-- markdownlint-enable MD033 MD041 -->
@@ -78,9 +78,9 @@ You can adopt an existing set of definitions or develop one for your own work. T
 
 Use the reference material as a starting point for your own work. You can adopt it, trim it, extend it, or develop a different set of definitions.
 
-See [Adapting the Example](docs/adapting-the-example.md).
+See [Adapting the Example](https://knowledge-bus.pdflowlabs.io/docs/adapting-a-sample).
 
-Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. To use universe specs of the parent folder in a nested folder, list their ids in the nested folder's `.knowledge-bus/workspace.yaml`. See [Knowledge Bus Directory](docs/knowledge-bus-directory.md) for discovery and write rules.
+Definitions live in `.knowledge-bus/` inside the folder they describe. Checking from a nested directory uses the nearest `.knowledge-bus/` directory. To use universe specs of the parent folder in a nested folder, list their ids in the nested folder's `.knowledge-bus/workspace.yaml`. See [Knowledge Bus Directory](https://knowledge-bus.pdflowlabs.io/docs/knowledge-bus-directory) for discovery and write rules.
 
 ### Product Development
 
@@ -89,7 +89,7 @@ The included product-development definitions cover the reasoning around delibera
 The companion guidance attaches advice to those definitions and cites registered sources, including Pichler, Moore, Porter, Osterwalder, and Maurya. For current counts, run `uv run kbp` in a clone or open the Explorer, which shows them beside the universe name.
 
 <!-- markdownlint-disable-next-line MD033 -->
-<a href="docs/assets/product-development-map.svg"><img src="docs/assets/product-development-map-crop.svg" alt="Part of the Knowledge Bus Explorer map of the product-development definitions" width="960" /></a>
+<a href="docs/images/product-development-map.svg"><img src="docs/images/product-development-map-crop.svg" alt="Part of the Knowledge Bus Explorer map of the product-development definitions" width="960" /></a>
 
 The image shows part of the map; select it to open the full map.
 
@@ -166,7 +166,7 @@ npx skills add SterlingJF/knowledge-bus --skill kb-check
 
 These commands use the default branch, not the latest release. Add `--global` to use the skills across projects. Choose either the plugin or individual skills for each agent to avoid duplicate entries.
 
-[Updates and troubleshooting](docs/agent-plugins.md)
+[Updates and troubleshooting](https://knowledge-bus.pdflowlabs.io/docs/agent-packages)
 
 ### Standalone Checker
 
@@ -198,7 +198,7 @@ uv run kbp --kinds path/to/.knowledge-bus/
 
 > What does the knowledge need to answer, and what should it enable?
 
-You can adapt a reference, describe the area of knowledge, or link to your existing documents. Ask your agent to use `kb-uncover-question` to sharpen a question, or `kb-evolve` to add or re-examine a document type. See [Adapting the Example](docs/adapting-the-example.md).
+You can adapt a reference, describe the area of knowledge, or link to your existing documents. Ask your agent to use `kb-uncover-question` to sharpen a question, or `kb-evolve` to add or re-examine a document type. See [Adapting the Example](https://knowledge-bus.pdflowlabs.io/docs/adapting-a-sample).
 
 ### Working With Existing Notes
 
@@ -212,7 +212,7 @@ Knowledge Bus can also help recover structure from existing files. The ingestion
 
 Your existing source files remain unchanged.
 
-See the [Walkthrough](docs/walkthrough.md) for a complete example.
+See the [Walkthrough](https://knowledge-bus.pdflowlabs.io/docs/walkthrough) for a complete example.
 
 ### Keep It Current
 
@@ -294,7 +294,7 @@ See [Evals](evals/README.md).
 
 ### Milestones
 
-- [x] An offline, dependency-free map for exploring definitions ([Knowledge Bus Explorer](docs/knowledge-bus-explorer.md))
+- [x] An offline, dependency-free map for exploring definitions ([Knowledge Bus Explorer](https://knowledge-bus.pdflowlabs.io/docs/explorer))
 - [x] Skills for each step today: ingest a knowledge base, uncover questions and decisions, evolve definitions, and check and explore them
 - [ ] A model-agnostic guided workflow: one coordinating agent with bounded helper agents, using whatever models and decision models are available, works with one person or a team of domain experts through before-and-after proposals to create or extract a universe, align an existing personal, team, or enterprise knowledge base to it, and evolve it when something triggers a change
 - [x] Composition rules: what a document holds, given its purpose and audience
@@ -374,20 +374,20 @@ See [Contributing](CONTRIBUTING.md) for development setup, source layout, and ch
 
 ## Docs
 
-- [Walkthrough](docs/walkthrough.md) — one folder through ingestion, start to finish.
-- [How Ingest Works](docs/how-ingest-works.md) — the steps, decisions, and coverage report.
-- [Adapting the Example](docs/adapting-the-example.md) — adopt, trim, or extend the included definitions.
-- [Knowledge Bus Explorer](docs/knowledge-bus-explorer.md) — explore a universe as a map and export it.
-- [Knowledge Bus Directory](docs/knowledge-bus-directory.md) — where definitions live and how tools find them.
-- [Spec Anatomy](docs/spec-anatomy.md) — the structure of a definition file.
-- [Validation](docs/validation.md) — what the checker verifies and rejects.
-- [Document Type Card](docs/document-type-card.md) — printable artifact spec that's human-readable and agent-friendly.
+- [Walkthrough](https://knowledge-bus.pdflowlabs.io/docs/walkthrough) — one folder through ingestion, start to finish.
+- [How Ingest Works](https://knowledge-bus.pdflowlabs.io/docs/how-ingest-works) — the steps, decisions, and coverage report.
+- [Adapting the Example](https://knowledge-bus.pdflowlabs.io/docs/adapting-a-sample) — adopt, trim, or extend the included definitions.
+- [Knowledge Bus Explorer](https://knowledge-bus.pdflowlabs.io/docs/explorer) — explore a universe as a map and export it.
+- [Knowledge Bus Directory](https://knowledge-bus.pdflowlabs.io/docs/knowledge-bus-directory) — where definitions live and how tools find them.
+- [Spec Anatomy](https://knowledge-bus.pdflowlabs.io/docs/spec-anatomy) — the structure of a definition file.
+- [Validation](https://knowledge-bus.pdflowlabs.io/docs/validation) — what the checker verifies and rejects.
+- [Document Type Card](https://knowledge-bus.pdflowlabs.io/docs/document-type-card) — printable artifact spec that's human-readable and agent-friendly.
 - [Evals](evals/README.md) — the rules and behaviours that define good definitions and agent work, and how they are graded.
 - [Evaluation Report](evals/report.md) — figures from recorded runs.
 - [Methodology](METHODOLOGY.md) — how evals are built, run, and reported.
-- [Versioning](docs/versioning.md) — version meanings, compatibility, and installation versions.
-- [Agent Packages and Skills](docs/agent-plugins.md) — updates, requirements, and troubleshooting.
-- [Design Notes](docs/design-notes.md) — the reasoning behind question identity, separate guidance, and stable codes.
+- [Versioning](https://knowledge-bus.pdflowlabs.io/docs/versioning) — version meanings, compatibility, and installation versions.
+- [Agent Packages and Skills](https://knowledge-bus.pdflowlabs.io/docs/agent-packages) — updates, requirements, and troubleshooting.
+- [Design Notes](https://knowledge-bus.pdflowlabs.io/docs/design-notes) — the reasoning behind question identity, separate guidance, and stable codes.
 - [Philosophy](PHILOSOPHY.md) — the project's aim and priorities.
 
 ## Contributing

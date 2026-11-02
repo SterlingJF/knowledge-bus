@@ -1,6 +1,6 @@
 # Knowledge Bus Explorer
 
-> Also: [docs: Knowledge Bus Explorer](../docs/knowledge-bus-explorer.md)
+> Also: [docs: Knowledge Bus Explorer](https://knowledge-bus.pdflowlabs.io/docs/explorer)
 
 `@knowledge-bus/explorer` is a read-only viewer for a single Knowledge Bus universe: its artifacts, knowledge elements, frames and factors, and the connections declared between them.
 

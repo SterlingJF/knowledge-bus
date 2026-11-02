@@ -1,0 +1,41 @@
+---
+title: "Limits and roadmap"
+description: "What Knowledge Bus does not do yet, the milestones, and the questions that remain open."
+---
+
+## Limits
+
+- Agent output still requires review.
+- The checker validates definition and guidance files. It does not yet validate the `answers.yaml` and `ingest-log.md` files that `kb-ingest` writes, or the `evolve-log.md` file that `kb-evolve` writes.
+- Structural checking and Explorer rendering do not establish that an answer is true or that a definition captures the right question.
+- Evals grade definition wording against the project's written rules. The model tiers call paid models and can disagree; a case no tier settles goes to you. A pass does not show that a definition fits your work.
+- `just evals-play` plays agent-behaviour scenarios with a scripted owner, one run each by default.
+- The protocol defines composition and exchange rules. Knowledge Bus does not include tools that compose documents or interpret incoming knowledge.
+
+## Roadmap
+
+### Milestones
+
+- [x] An offline, dependency-free map for exploring definitions ([Knowledge Bus Explorer](/explorer))
+- [x] Skills for each step today: ingest a knowledge base, uncover questions and decisions, evolve definitions, and check and explore them
+- [ ] A model-agnostic guided workflow: one coordinating agent with bounded helper agents, using whatever models and decision models are available, works with one person or a team of domain experts through before-and-after proposals to create or extract a universe, align an existing personal, team, or enterprise knowledge base to it, and evolve it when something triggers a change
+- [x] Composition rules: what a document holds, given its purpose and audience
+- [ ] Tools that compose documents and interpret incoming knowledge
+- [ ] Markdown interchange format
+- [x] A standard `.knowledge-bus/` directory so tools can discover shared definitions
+- [x] Evals for definition wording ([Evals](/evals))
+- [x] Evals for agent behaviour ([Evaluation Report](https://github.com/SterlingJF/knowledge-bus/blob/main/evals/report.md))
+- [ ] Validation of the `answers.yaml` and `ingest-log.md` files that ingestion writes
+
+### Further exploration
+
+- Knowledge exchange between different sets of definitions
+- Forms and surveys designed around the decisions their answers support
+
+### Open questions
+
+The [evals](/evals) grade definition wording. These questions remain open:
+
+- How much reasoning is preserved when knowledge is extracted and turned back into a document?
+- How reliably do agents follow the definitions and guidance?
+- Do agents leave questions unanswered when they lack supporting information?

@@ -41,4 +41,4 @@ Under "Who builds the change" in the issue, say whether you will build the chang
 
 - [Evals](../evals/README.md) — how scenarios grade agent behaviour.
 - [Evaluation Report](../evals/report.md) — results of the last recorded runs.
-- [Agent Packages and Skills](../docs/agent-plugins.md) — installing and updating skills.
+- [Agent Packages and Skills](https://knowledge-bus.pdflowlabs.io/docs/agent-packages) — installing and updating skills.

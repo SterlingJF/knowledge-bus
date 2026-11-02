@@ -34,7 +34,7 @@ Fix one problem per pull request, with its test in the same commit.
 | Invalid file accepted | A file in `protocol/conformance/fail/` with only that defect, named after the defect. Add its expected message to `EXPECTED` in `checker/tests/test_conformance.py`. |
 | Crash or unclear message | A test in `checker/tests/` that fails before the fix |
 
-If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](../docs/validation.md#testing-the-checker) to match, or `just test` fails.
+If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](https://knowledge-bus.pdflowlabs.io/docs/validation#testing-the-checker) to match, or `just test` fails.
 
 - [ ] `just skills-build` run, regenerated files included.
 

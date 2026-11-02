@@ -127,12 +127,12 @@ test('pre-push selects unique outgoing branch tips, not HEAD, tags or deletions'
 });
 
 test('copy-only means Markdown outside skills, plugins and the packaged docs', () => {
-  assert.equal(copyOnly(['README.md', 'docs/versioning.md', 'evals/report.md']), true);
+  assert.equal(copyOnly(['README.md', 'docs/versioning.mdx', 'evals/report.md']), true);
   assert.equal(copyOnly(['README.md', 'checker/src/kbp_conform/cli.py']), false);
   assert.equal(copyOnly(['skills/kb-check/SKILL.md']), false);
   assert.equal(copyOnly(['plugins/claude/knowledge-bus/README.md']), false);
   assert.equal(copyOnly(['plugins/shared/references/agent-runtime.md']), false);
-  assert.equal(copyOnly(['docs/knowledge-bus-directory.md']), false);
+  assert.equal(copyOnly(['docs/knowledge-bus-directory.mdx']), false);
   assert.equal(copyOnly([]), false);
 });
 

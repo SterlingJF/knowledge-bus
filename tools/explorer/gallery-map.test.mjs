@@ -62,8 +62,8 @@ test('the gallery map is rendered from the bundled universe, its guidance and it
     input: 'universe-samples/product-development/universe.kbp.yaml',
     guidance: 'universe-samples/product-development/type-guidance.kbp.yaml',
     marks: 'universe-samples/product-development/marks.explorer.yaml',
-    svg: 'docs/assets/product-development-map.svg',
-    crop: 'docs/assets/product-development-map-crop.svg',
+    svg: 'docs/images/product-development-map.svg',
+    crop: 'docs/images/product-development-map-crop.svg',
   });
   assert.equal(cropPath(GALLERY_MAP.svg), GALLERY_MAP.crop, 'the crop sits beside the full map');
   for (const file of Object.values(GALLERY_MAP)) assert.ok(existsSync(path.join(root, file)), `${file} is missing`);

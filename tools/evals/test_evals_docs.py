@@ -64,8 +64,8 @@ def test_run_records_and_research_docs_give_no_evidence_path():
 
 def test_validation_guide_counts_the_failing_conformance_cases():
     cases = list((ROOT / "protocol/conformance/fail").glob("*.kbp.yaml"))
-    match = re.search(r"(\d+) deliberately invalid cases", read("docs/validation.md"))
-    assert match, "docs/validation.md states how many invalid cases the corpus holds"
+    match = re.search(r"(\d+) deliberately invalid cases", read("docs/validation.mdx"))
+    assert match, "docs/validation.mdx states how many invalid cases the corpus holds"
     assert int(match.group(1)) == len(cases)
 
 

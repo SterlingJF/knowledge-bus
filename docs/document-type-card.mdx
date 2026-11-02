@@ -1,4 +1,7 @@
-# Document Type Card
+---
+title: "Document type card"
+description: "A document type card describes one document type from one universe spec: the document type's purpose, who uses it and when, its sections, the guidance on writing it, and when no document is needed."
+---
 
 A document type card describes one document type from one universe spec: the document type's purpose, who uses it and when, its sections, the guidance on writing it, and when no document is needed. The card also gives advice on presenting the document from each universe spec in scope that declares a factor. The card uses only the universe specs in scope and their guidance files. The card lists conditions and never checks whether a condition holds.
 
@@ -14,7 +17,7 @@ kbp --kinds path/to/.knowledge-bus/
 - `--kinds` prints the id, name, other names, purpose, users and timing of every document type, and `overview.covers` and `overview.for` for each universe spec. `--kinds` also prints each factor with its question and number of guidance notes. Use `--kinds` to see the document types and factors in a universe spec.
 - Targets work as for `--inspect`: a `.knowledge-bus/` folder, one universe spec file, or explicit files. Without a target, the nearest `.knowledge-bus/` is used.
 - When the scope holds several universe specs, choose one for `--card` with `--universe <id>` or target its file. Without `--universe`, `--kinds` prints one group per universe spec.
-- In a nested folder, the scope includes the universe specs listed under `from_parent` in `.knowledge-bus/workspace.yaml`. See [Nested Folders](knowledge-bus-directory.md#nested-folders).
+- In a nested folder, the scope includes the universe specs listed under `from_parent` in `.knowledge-bus/workspace.yaml`. See [Nested Folders](/knowledge-bus-directory#nested-folders).
 
 Both commands check the chosen universe spec and its guidance file. `--card` also checks every other universe spec in scope and its guidance file. Both commands skip marks files (`*.explorer.yaml`) and run no Explorer drawing checks, so a broken marks file never blocks a card. They write nothing.
 
@@ -30,7 +33,7 @@ An error is one JSON object on stderr with schema `knowledge-bus/inspection-erro
 
 For an unknown document type, `candidates` lists every document type id. For several universe specs with none chosen, `candidates` lists their ids. In a nested folder with ids under `from_parent`, the error also has `from_parent`, the list of those ids.
 
-## Card Fields
+## Card fields
 
 The JSON card has schema `knowledge-bus/card/1`. Every field is present in every card.
 
@@ -60,7 +63,7 @@ The JSON card has schema `knowledge-bus/card/1`. Every field is present in every
 | `presentation[].factors[].guidance` | The entries under `factors.<factor>` in the block's guidance file, as for `guidance`. Null when the block's universe spec has no guidance file | `Advice:`, then one item per entry |
 | `presentation[].conditions` | As `conditions`, for the frames and factors named in the block's guidance | The `Depends on:` text of the block's guidance lines |
 
-## Readable Wording
+## Readable wording
 
 Conditions are printed in words:
 
@@ -71,7 +74,7 @@ Conditions are printed in words:
 
 Every condition is followed by `Depends on:` and, for each key, `<question> (<id>)`, joined by semicolons. A frame with no question reads `not stated in the universe spec (<id>)`. The card has no file to judge, so it never says whether a condition holds.
 
-### Section Status
+### Section status
 
 | Entry | Line |
 | --- | --- |
@@ -80,7 +83,7 @@ Every condition is followed by `Depends on:` and, for each key, `<question> (<id
 | Situational, no `when` | `When applicable.` |
 | Situational with `when` | `When applicable, available when <condition>. Depends on: …` |
 
-### Guidance Lines
+### Guidance lines
 
 - `- <Label>: <claim>`
 - `- <Label>, when <condition>: <claim> Depends on: …`
@@ -104,13 +107,13 @@ Every condition is followed by `Depends on:` and, for each key, `<question> (<id
 6. `## How to present it`, only when `presentation` holds a block: the line `Factors change presentation and focus only. The sections stay the same.`, then each block.
 7. `## What the conditions mean`, only when a named value has a question.
 
-Blocks are separated by one blank line. The file ends with one newline. Text from the universe spec and guidance file is copied as written. Example: [the decision record card](../checker/tests/cards/product-development/decision-record.md).
+Blocks are separated by one blank line. The file ends with one newline. Text from the universe spec and guidance file is copied as written. Example: [the decision record card](https://github.com/SterlingJF/knowledge-bus/blob/main/checker/tests/cards/product-development/decision-record.md).
 
-### Presentation Blocks
+### Presentation blocks
 
-Guidance keyed to a factor is advice on presenting the document. A factor selects nothing, so the sections stay the same with or without a presentation block. The card lists every factor of each universe spec in scope that declares a factor, with the factor's values and guidance, and never says which value applies. Example: [the visit plan card](../checker/tests/cards/card-fixture/visit-plan.md).
+Guidance keyed to a factor is advice on presenting the document. A factor selects nothing, so the sections stay the same with or without a presentation block. The card lists every factor of each universe spec in scope that declares a factor, with the factor's values and guidance, and never says which value applies. Example: [the visit plan card](https://github.com/SterlingJF/knowledge-bus/blob/main/checker/tests/cards/card-fixture/visit-plan.md).
 
-## Document Type List
+## Document type list
 
 The JSON list has schema `knowledge-bus/kinds/1`: `universe_spec` as on the card plus `covers` and `for`; `kinds`, one entry per document type in declared order with `kind`, `name`, `alias`, `action`, `actor` and `timing`; and `factors`, one entry per factor in declared order with `factor`, `name`, `question` and `guidance`. `guidance` counts the entries under `factors.<factor>` in the guidance file and is null when the universe spec has no guidance file. `covers` and `for` copy `universe.overview.covers` and `universe.overview.for` with leading and trailing whitespace removed and each inner run of spaces and line breaks reduced to one space. `actor` and `timing` match the card's `enablement.actor` and `enablement.timing`. `covers`, `for`, `actor` and `timing` are null when the universe spec gives no value.
 
@@ -118,9 +121,9 @@ With several universe specs and no `--universe`, the JSON list has schema `knowl
 
 The readable list starts with `# Document types`, `In the <label> universe spec (<id> <version>).`, `Covers: <covers>` and `For: <for>`, then gives each document type as `- <name> (<id>)` with indented `Also called` or `Its shape is set by an outside authority`, `Helps you`, `Who uses it` and `When it is used`. After the document types, `Factors:` gives each factor as `- <name> (<id>)` with indented `Asks: <question>` and the number of guidance notes, such as `2 guidance notes` or `No guidance notes`. The list leaves out the line for a null `covers`, `for`, `actor` or `timing`, the count line for a null `guidance`, and `Factors:` for a universe spec without factors.
 
-With several universe specs, the readable list starts with `# Document types`, then gives each universe spec as `## <label> universe spec (<id> <version>)` followed by its `Covers` and `For` lines and its document types. A heading for a universe spec listed in `workspace.yaml` ends with `, from the parent folder`. For a universe spec without document types, the group holds the line `No document types.` Example: [a nested folder's list](../checker/tests/cards/kinds-set-from-parent/kinds.md).
+With several universe specs, the readable list starts with `# Document types`, then gives each universe spec as `## <label> universe spec (<id> <version>)` followed by its `Covers` and `For` lines and its document types. A heading for a universe spec listed in `workspace.yaml` ends with `, from the parent folder`. For a universe spec without document types, the group holds the line `No document types.` Example: [a nested folder's list](https://github.com/SterlingJF/knowledge-bus/blob/main/checker/tests/cards/kinds-set-from-parent/kinds.md).
 
-## Left Off the Card
+## Left off the card
 
 - The rest of the universe spec: overview, terms, statuses, relations and other document types.
 - Whether a condition holds.
@@ -128,7 +131,7 @@ With several universe specs, the readable list starts with `# Document types`, t
 - Codes on document types, sections, frames and factors.
 - The number of answers per section, and whether a section's answers can ever be complete.
 
-## Expected Cards
+## Expected cards
 
 Expected cards are in `checker/tests/cards/`. Tests compare the output of `kbp --card` and `kbp --kinds` with the expected cards: JSON by value, Markdown byte for byte.
 

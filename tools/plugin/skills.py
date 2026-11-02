@@ -31,9 +31,9 @@ def payloads(root=ROOT):
         version = plugin.check_versions(root)
         for name in plugin.SKILLS:
             files = {
-                "references/knowledge-bus-directory.md": (
-                    root / "docs/knowledge-bus-directory.md"
-                ).read_bytes(),
+                "references/knowledge-bus-directory.md": plugin.reference_bytes(
+                    root / "docs/knowledge-bus-directory.mdx"
+                ),
                 "LICENSE": (root / "LICENSE").read_bytes(),
             }
             if name != "kb-uncover-decision":

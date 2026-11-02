@@ -1,20 +1,23 @@
-# How Ingest Works
+---
+title: "How ingest works"
+description: "What `/kb-ingest` does with your folder, when it needs your input, and how to read the results."
+---
 
 What `/kb-ingest` does with your folder, when it needs your input, and how to read the results.
 
-## Before You Start
+## Before you start
 
 Markdown and plain text work best. Other formats are listed and flagged so you know which material needs attention. Your folder can contain mixed dates, overlapping topics, and unfinished notes.
 
 Existing source files remain unchanged. Outputs go into `<folder>/.knowledge-bus/`. The skill excludes that directory from its inputs and skips and reports nested folders that contain their own `.knowledge-bus/`. Those folders are ingested separately only when explicitly targeted. When `<folder>/.knowledge-bus/workspace.yaml` lists universe specs of the parent folder under `from_parent`, the skill files answers for those universe specs in `<folder>/.knowledge-bus/`, and writes changes to those universe specs in the parent folder only after you confirm each change.
 
-## The Eight Steps
+## The eight steps
 
-### 1. Choose the Folder
+### 1. Choose the folder
 
 Provide the source folder. The skill reviews the material before proposing what subject or work the definitions should cover.
 
-### 2. Review the Initial Findings
+### 2. Review the initial findings
 
 The skill reports files, dates, and formats before reading in depth. It flags documents using three labels:
 
@@ -24,13 +27,13 @@ The skill reports files, dates, and formats before reading in depth. It flags do
 
 Age alone does not establish that information is wrong. The skill groups questions so you can review the uncertainties together.
 
-### 3. Confirm the Definitions
+### 3. Confirm the definitions
 
 The skill proposes whether to adopt or adapt a bundled universe, or develop definitions for the material. It considers the work's purpose, audience, scale, and requirements.
 
 It may use `/kb-uncover-question` to clarify missing questions or `/kb-evolve` to change document types. You review the initial findings and proposed approach before answers are filed.
 
-### 4. Map Answers and Resolve Conflicts
+### 4. Map answers and resolve conflicts
 
 Each relevant section is mapped to a declared question. The skill keeps track of who supplied an answer and when.
 
@@ -38,13 +41,13 @@ When files provide competing answers, it presents the claims and their sources f
 
 Your decision and reasoning go into `ingest-log.md`. If you leave a conflict unresolved, it remains marked **contested**.
 
-### 5. Review Material That Does Not Fit
+### 5. Review material that does not fit
 
 Content that answers no declared question is flagged rather than assigned to an approximate match.
 
 Repeated gaps around one topic may indicate that the definitions need extending. Other material may simply fall outside the scope. The skill explains the distinction and can offer `/kb-evolve`.
 
-### 6. Write the Outputs
+### 6. Write the outputs
 
 The `.knowledge-bus/` folder contains:
 
@@ -53,17 +56,17 @@ The `.knowledge-bus/` folder contains:
 - `answers.yaml`, containing sourced answers and gaps;
 - `ingest-log.md`, recording decisions made during the review.
 
-### 7. Check the Definition Files
+### 7. Check the definition files
 
 The bundled checker validates the definition and guidance files. Failures are corrected or reported before the final coverage report.
 
 The checker does not yet validate `answers.yaml` or the ingest log. Review those outputs for accuracy.
 
-### 8. Review Coverage
+### 8. Review coverage
 
 The report lists unresolved conflicts first, followed by mapped content, potentially outdated content, material that did not fit, and unanswered questions.
 
-## Reading the Coverage Report
+## Reading the coverage report
 
 | Class     | What it means                                  | What to do                                                                  |
 | --------- | ---------------------------------------------- | --------------------------------------------------------------------------- |

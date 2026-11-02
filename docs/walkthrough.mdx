@@ -1,8 +1,11 @@
-# Walkthrough
+---
+title: "Walkthrough"
+description: "Follow a small example folder through `/kb-ingest`."
+---
 
 Follow a small example folder through `/kb-ingest`. The example includes conflicting notes, outdated information, and content outside the project's scope.
 
-## The Folder
+## The folder
 
 Eight files for a solo side project — a meal-prep planning app — ingested in August 2026:
 
@@ -18,7 +21,7 @@ lunchbox-notes/
 └── todo-scratch.md                half-finished todos
 ```
 
-## The Initial Findings
+## The initial findings
 
 `/kb-ingest lunchbox-notes/` reports before it reads deeply:
 
@@ -27,7 +30,7 @@ lunchbox-notes/
 
 These initial findings flag potential issues. They do not settle which conflicting note to use.
 
-## The Interview
+## The interview
 
 The skill asks three questions that need the owner's input:
 
@@ -43,7 +46,7 @@ The skill asks three questions that need the owner's input:
 
 The owner confirmed which information still held. The review considered both the dates and the content; a newer note did not automatically replace an older one.
 
-## The Outputs
+## The outputs
 
 Outputs go into `lunchbox-notes/.knowledge-bus/`. The original notes remain untouched:
 
@@ -56,7 +59,7 @@ The camping list and todo scratch did not match the chosen definitions and were 
 was filed, but flagged: it carries a conclusion with no alternatives, constraints, or reversal
 condition — a candidate for `/kb-uncover-decision`.
 
-## The Coverage Report
+## The coverage report
 
 | Class     | Content                                                             | Action                                        |
 | --------- | ------------------------------------------------------------------- | --------------------------------------------- |

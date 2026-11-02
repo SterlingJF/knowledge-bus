@@ -1,8 +1,8 @@
 """The card for one document type, built from a loaded universe spec and its guidance.
 
 The card states conditions and never decides whether a condition holds. It takes documents that are
-already loaded and checked, and it opens no files. docs/document-type-card.md describes
-every field, where it comes from, and the readable wording.
+already loaded and checked, and it opens no files. Every field, where it comes from, and the readable
+wording are described at https://knowledge-bus.pdflowlabs.io/docs/document-type-card.
 """
 
 CARD_SCHEMA = "knowledge-bus/card/1"

@@ -1,0 +1,24 @@
+---
+title: "Standalone checker"
+description: "The checker also works without an agent."
+---
+
+```sh
+git clone https://github.com/SterlingJF/knowledge-bus.git
+cd knowledge-bus
+uv run kbp
+```
+
+The checkout can inspect a universe without writing or generate an offline Explorer at an explicit destination:
+
+```sh
+uv run kbp --inspect path/to/.knowledge-bus/
+uv run kbp --explore --output path/to/.knowledge-bus/explorer/<universe-id> path/to/.knowledge-bus/
+```
+
+Print the card for one document type, or list every document type:
+
+```sh
+uv run kbp --card <kind> path/to/.knowledge-bus/
+uv run kbp --kinds path/to/.knowledge-bus/
+```

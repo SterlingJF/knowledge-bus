@@ -1,8 +1,11 @@
-# Knowledge Bus Explorer
+---
+title: "Knowledge Bus Explorer"
+description: "Knowledge Bus Explorer turns a universe into a map you can explore in a browser or embed as an image."
+---
 
 Knowledge Bus Explorer turns a universe into a map you can explore in a browser or embed as an image. It reads definitions that have passed the checker and shows the document types, the knowledge elements they contain, the frames that change what applies, and the relationships declared between them.
 
-## Opening the Map
+## Opening the map
 
 Every render produces a single HTML file. Open it directly: it needs no server and no network. The bundled product-development universe renders to `dist/explorer/product-development.html`.
 
@@ -16,7 +19,7 @@ A universe spec with no elements declares no ordering frame. The Explorer opens 
 
 Selecting the universe's name opens its overview: what it covers, who it is for, what it leaves out, its terms, and a reminder that the map shows declarations without evaluating your situation.
 
-## Reading Connections
+## Reading connections
 
 Each card shows a count of its connections by default. Switching Display to Lines draws the routes instead, labelled with the wording the universe authors declared. Composition can be shown uniformly or with required and situational membership distinguished, with a legend explaining the strokes. Distinctions (`distinct-from`) stay hidden until you select a card or connection that has one, or emphasise them in the menu.
 
@@ -24,7 +27,7 @@ Selecting a card, a connection, a count or a group heading opens its details and
 
 Close the panel, press Escape, or press an empty part of the canvas to return to the overview.
 
-## View Options
+## View options
 
 The menu on the right holds the choices that persist: theme, element grouping, frame and factor filters, connection family, emphasis for one or more relation types, display, and composition line style. Resetting view options keeps whatever is selected. The search button finds an artifact or element by name, alias or question, switching view if the match is not on the current map.
 
@@ -42,7 +45,7 @@ python3 /absolute/runtime/kbp.py --explore --output .knowledge-bus/explorer/<uni
 
 Open `index.html`, then use Export to download SVG. The Explorer works offline. Its SVG fits the browser window when opened and keeps its aspect ratio when embedded. Generation refuses an existing destination unless `--replace` is supplied.
 
-## Rendering Your Own Universe
+## Rendering your own universe
 
 ```bash
 pnpm run build:explorer
@@ -51,8 +54,8 @@ node tools/explorer/render.mjs --input .knowledge-bus/universe.kbp.yaml --html m
 
 Contributor and release rendering validates the universe first and refuses non-conforming input. It requires Node, pnpm, uv, and Playwright Chromium. Generated files remain self-contained.
 
-## What the Map Does Not Decide
+## What the map does not decide
 
 The viewer shows declarations. It does not evaluate a context, so conditional composition and gated artifacts are described as depending on context rather than resolved. Relationship wording comes from the universe; when a relation kind declares no phrasing, the viewer says only what the universe says rather than inventing an inverse.
 
-See [Knowledge Bus Explorer](../explorer/README.md) for the library, commands, checks and limits.
+See [Knowledge Bus Explorer](https://github.com/SterlingJF/knowledge-bus/blob/main/explorer/README.md) for the library, commands, checks and limits.
