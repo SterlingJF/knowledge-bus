@@ -30,11 +30,11 @@ You can change `evals/universe.yaml`, `evals/skills.yaml`, `evals/fixtures/`, `e
 
 Never post transcript text, names, local paths or any line the copy check flags.
 
-[Contributing](../../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
+[Contributing](../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
 
 ## Proof to Bring
 
-Keep one change per pull request, and follow [Commits](../../CONTRIBUTING.md#commits) for commit messages. A model change never shares a commit with a rule or example.
+Keep one change per pull request, and follow [Commits](../CONTRIBUTING.md#commits) for commit messages. A model change never shares a commit with a rule or example.
 
 Run these yourself, with your own model access. If you skipped a grading step because you have no `TYPESAFE_API_KEY` or `claude` CLI, say which.
 
@@ -43,7 +43,7 @@ Run these yourself, with your own model access. If you skipped a grading step be
 - [ ] No disagreement on a changed rule or behaviour in calibration's `report.md`.
 - [ ] Skill behaviour: one scenario run after your change, `just evals-play --scenario <id>`.
 - [ ] Changed `evals/universe.yaml`: `just evals-write` run, rewritten files included.
-- [ ] [Checks every pull request needs](../../CONTRIBUTING.md#every-pull-request).
+- [ ] [Checks every pull request needs](../CONTRIBUTING.md#every-pull-request).
 
 The copy check fails any situation that contains a name, or 7 words in a row from a source in your working folder:
 
@@ -81,7 +81,7 @@ The report compares models from two providers: Anthropic and OpenAI. A new provi
 
 A `model:` pull request changes one model or provider and brings:
 
-- [ ] Calibration on `universe` and `skills` with the model, as in [Running on another vendor](../../evals/README.md#running-on-another-vendor).
+- [ ] Calibration on `universe` and `skills` with the model, as in [Running on another vendor](../evals/README.md#running-on-another-vendor).
 - [ ] Runs added to `evals/runs.yaml` by run id, with `side:` set to `anthropic` or `openai`. Report rebuilt with `just evals-report --run-folders <folder>`, where `<folder>` holds the run folders.
 - [ ] A config row instead of Source kind and People present: provider, model id, date, effort setting, tools, grading step.
 
@@ -89,8 +89,8 @@ Its origin statement is "I ran the commands above myself."
 
 ## Deeper Reading
 
-- [Evals](../../evals/README.md)
-- [Evaluation Report](../../evals/report.md)
+- [Evals](../evals/README.md)
+- [Evaluation Report](../evals/report.md)
 
 ---
 

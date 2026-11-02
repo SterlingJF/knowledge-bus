@@ -31,13 +31,13 @@ Each guide says what is in scope and what proof to bring.
 
 | Path | Covers | Suits | Start with |
 | --- | --- | --- | --- |
-| [Protocol](docs/contributing/protocol.md) | The Knowledge Bus Protocol: what a universe is and how knowledge moves between universes | Spec writers, Python developers | An issue, always |
-| [Universe](docs/contributing/universe.md) | The definitions and guidance in `universe-samples/` | Domain specialists, researchers, writers | An issue for new or changed meaning; a pull request for typos |
-| [Evals](docs/contributing/evals.md) | The rules, examples and models that grade wording and agent behaviour | Evaluators, anyone with a real case | An accepted issue, always |
-| [Checker](docs/contributing/checker.md) | The command that validates files and issues codes | Python developers, QA | A failing test; an issue if an existing file would start failing |
-| [Explorer](docs/contributing/explorer.md) | The offline map of a universe | Frontend, accessibility, design | A screenshot for a bug; an issue for a new view |
-| [Skills](docs/contributing/skills.md) | The agent workflows, such as turning notes into definitions | Prompt and agent engineers | An issue to change what a skill does or when it runs; a pull request for typos |
-| [Other](docs/development.md#other-changes) | Packaging, CI, dependencies, docs-only edits | Developers, devops, writers | An issue for packaging or CI; a pull request for dependencies or docs |
+| [Protocol](contributing/protocol.md) | The Knowledge Bus Protocol: what a universe is and how knowledge moves between universes | Spec writers, Python developers | An issue, always |
+| [Universe](contributing/universe.md) | The definitions and guidance in `universe-samples/` | Domain specialists, researchers, writers | An issue for new or changed meaning; a pull request for typos |
+| [Evals](contributing/evals.md) | The rules, examples and models that grade wording and agent behaviour | Evaluators, anyone with a real case | An accepted issue, always |
+| [Checker](contributing/checker.md) | The command that validates files and issues codes | Python developers, QA | A failing test; an issue if an existing file would start failing |
+| [Explorer](contributing/explorer.md) | The offline map of a universe | Frontend, accessibility, design | A screenshot for a bug; an issue for a new view |
+| [Skills](contributing/skills.md) | The agent workflows, such as turning notes into definitions | Prompt and agent engineers | An issue to change what a skill does or when it runs; a pull request for typos |
+| [Other](contributing/development.md#other-changes) | Packaging, CI, dependencies, docs-only edits | Developers, devops, writers | An issue for packaging or CI; a pull request for dependencies or docs |
 
 Out of scope on every path: MCP servers, chat interfaces, and universe wording tuned to a benchmark.
 
@@ -96,7 +96,7 @@ Maintainers end a review with one of these outcomes:
 
 ## Evals
 
-Maintainers may close a pull request that changes `evals/` or `tools/evals/` if it has no accepted issue or lacks the proof in [Evals Contributions](docs/contributing/evals.md). They close it without review or a personal reply. Closing is not a judgement of you or your idea. To reopen, update the issue, add what was missing, and ask.
+Maintainers may close a pull request that changes `evals/` or `tools/evals/` if it has no accepted issue or lacks the proof in [Evals Contributions](contributing/evals.md). They close it without review or a personal reply. Closing is not a judgement of you or your idea. To reopen, update the issue, add what was missing, and ask.
 
 Before you open the pull request, run the free `just evals-check`, then `just evals-calibrate universe` or `just evals-calibrate skills` for the part you changed, with your own model access. Maintainers run the full grade after a first review. Keep your sources for 12 months, and show them on a screen share if a maintainer asks.
 
@@ -128,7 +128,7 @@ Agent packages combine an adapter with the shared skills, references and runtime
 
 ## Generated Files
 
-The files under `skills/*/references/` and `skills/*/runtime/` are generated. Edit their source instead: `protocol/`, `universe-samples/`, `docs/knowledge-bus-directory.md`, `docs/agent-runtime.md`, the checker or the shared launcher. Then rebuild:
+The files under `skills/*/references/` and `skills/*/runtime/` are generated. Edit their source instead: `protocol/`, `universe-samples/`, `docs/knowledge-bus-directory.md`, `plugins/shared/references/agent-runtime.md`, the checker or the shared launcher. Then rebuild:
 
 ```sh
 just skills-build
@@ -169,7 +169,7 @@ The In Short section is copied from [Philosophy](PHILOSOPHY.md). Edit it there, 
 | Pre-push | Each distinct outgoing branch tip | Full suite; for a copy-only change, `check:fast` and the tests |
 | CI | Checked-out commit | Full suite; for a copy-only change, `check:fast`, the tests and `kbp --validate` |
 
-A copy-only change edits only Markdown files outside `skills/` and `plugins/`. The packaged docs, `docs/agent-runtime.md` and `docs/knowledge-bus-directory.md`, always get the full suite.
+A copy-only change edits only Markdown files outside `skills/` and `plugins/`. The packaged docs, `plugins/shared/references/agent-runtime.md` and `docs/knowledge-bus-directory.md`, always get the full suite.
 
 Git hooks do not load your shell profile, so they can pick up an older Node, often when you commit from a desktop app. Husky reads `~/.config/husky/init.sh` before every hook. Load your version manager in that file. For nvm, add `export NVM_DIR="$HOME/.nvm"` and source `"$NVM_DIR/nvm.sh"`, with Node 22 or newer as the default: `nvm alias default 22`.
 

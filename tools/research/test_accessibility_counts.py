@@ -12,7 +12,7 @@ import pytest
 FIXTURES = counts.FIXTURES
 DOC = (
     Path(__file__).resolve().parents[2]
-    / "docs/research-cognitive-accessibility-2026-10-17.md"
+    / "research/research-cognitive-accessibility-2026-10-17.md"
 )
 
 

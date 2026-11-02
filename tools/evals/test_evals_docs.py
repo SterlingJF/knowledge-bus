@@ -52,7 +52,7 @@ def test_contributing_does_not_claim_evidence_lives_in_evals():
 
 def test_run_records_and_research_docs_give_no_evidence_path():
     """Run records and research docs give run ids and capture dates, never an .evidence path."""
-    research = sorted((ROOT / "docs").glob("research-*.md"))
+    research = sorted((ROOT / "research").glob("research-*.md"))
     for relative in (
         "evals/runs.yaml",
         "evals/report.md",

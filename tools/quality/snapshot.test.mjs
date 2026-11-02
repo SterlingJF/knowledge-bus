@@ -131,7 +131,7 @@ test('copy-only means Markdown outside skills, plugins and the packaged docs', (
   assert.equal(copyOnly(['README.md', 'checker/src/kbp_conform/cli.py']), false);
   assert.equal(copyOnly(['skills/kb-check/SKILL.md']), false);
   assert.equal(copyOnly(['plugins/claude/knowledge-bus/README.md']), false);
-  assert.equal(copyOnly(['docs/agent-runtime.md']), false);
+  assert.equal(copyOnly(['plugins/shared/references/agent-runtime.md']), false);
   assert.equal(copyOnly(['docs/knowledge-bus-directory.md']), false);
   assert.equal(copyOnly([]), false);
 });
@@ -143,7 +143,7 @@ test('pre-push runs only the copy checks for a copy-only commit, and the full su
   git(cwd, 'add', '.');
   git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Readme');
   const copy = git(cwd, 'rev-parse', 'HEAD');
-  write(cwd, 'docs/agent-runtime.md', '# Runtime\n');
+  write(cwd, 'plugins/shared/references/agent-runtime.md', '# Runtime\n');
   git(cwd, 'add', '.');
   git(cwd, '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Packaged doc');
   const packaged = git(cwd, 'rev-parse', 'HEAD');

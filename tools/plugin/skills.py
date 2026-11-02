@@ -40,7 +40,7 @@ def payloads(root=ROOT):
                 files.update(
                     {
                         "references/agent-runtime.md": (
-                            root / "docs/agent-runtime.md"
+                            root / "plugins/shared/references/agent-runtime.md"
                         ).read_bytes(),
                         "references/knowledge-bus-protocol.yaml": (
                             root / "protocol/knowledge-bus-protocol.yaml"

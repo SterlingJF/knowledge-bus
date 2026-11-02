@@ -24,7 +24,7 @@ Run commands from the repository root.
 
 | You edited | Run |
 | --- | --- |
-| `protocol/`, `checker/`, `plugins/shared/runtime/`, `docs/knowledge-bus-directory.md`, `docs/agent-runtime.md` | `just skills-build` |
+| `protocol/`, `checker/`, `plugins/shared/runtime/`, `docs/knowledge-bus-directory.md`, `plugins/shared/references/agent-runtime.md` | `just skills-build` |
 | `universe-samples/product-development/` | `just skills-build`, the fixture command below, then `just explorer-gallery` |
 | `explorer/src/` or `explorer/styles/` | `just explorer-build`, `just skills-build`, then `just explorer-gallery` |
 | `explorer/styles/visual-tokens.json` | `just explorer-tokens` first, then the row above |

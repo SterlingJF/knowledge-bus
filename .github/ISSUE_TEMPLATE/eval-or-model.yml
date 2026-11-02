@@ -4,7 +4,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Wait for a maintainer to accept this issue before you open a pull request. See [Evals Contributions](https://github.com/SterlingJF/knowledge-bus/blob/main/docs/contributing/evals.md).
+        Wait for a maintainer to accept this issue before you open a pull request. See [Evals Contributions](https://github.com/SterlingJF/knowledge-bus/blob/main/contributing/evals.md).
   - type: dropdown
     id: kind
     attributes:

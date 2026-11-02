@@ -17,7 +17,7 @@ Closes #
 
 ## Evidence Card
 
-<!-- Only for changes to `evals/` or `tools/evals/`, or adding or removing a model. Otherwise delete this section. [Evals Contributions](https://github.com/SterlingJF/knowledge-bus/blob/main/docs/contributing/evals.md) says what each line needs. -->
+<!-- Only for changes to `evals/` or `tools/evals/`, or adding or removing a model. Otherwise delete this section. [Evals Contributions](https://github.com/SterlingJF/knowledge-bus/blob/main/contributing/evals.md) says what each line needs. -->
 
 1. **Issue and items:**
 2. **Source kind:**

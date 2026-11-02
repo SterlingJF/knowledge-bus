@@ -18,7 +18,7 @@ Every change must follow these rules:
 - Label a relation only with the universe's own wording. If the universe gives none, leave it unlabelled.
 - Draw only what the files declare. Leave it to the checker to decide which documents apply.
 
-[Contributing](../../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
+[Contributing](../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
 
 ## Run It Locally
 
@@ -59,7 +59,7 @@ For every change:
 
 ## Handing Over
 
-Commit with the `explorer` [scope](../../CONTRIBUTING.md#commits). Open the pull request from the template and bring what [every pull request](../../CONTRIBUTING.md#every-pull-request) needs.
+Commit with the `explorer` [scope](../CONTRIBUTING.md#commits). Open the pull request from the template and bring what [every pull request](../CONTRIBUTING.md#every-pull-request) needs.
 
 ---
 

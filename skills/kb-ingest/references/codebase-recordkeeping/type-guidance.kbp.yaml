@@ -413,7 +413,7 @@ sources:
     checked: 2026-10-08
 
   survey:
-    cite: "Code Repository Universe Research (docs/research-code-repository-universe-2026-10-08.md): 146 public repositories with 3,000 or more stars, frozen 2026-10-08, with file counts and sample reads"
+    cite: "Code Repository Universe Research (research/research-code-repository-universe-2026-10-08.md): 146 public repositories with 3,000 or more stars, frozen 2026-10-08, with file counts and sample reads"
     checked: 2026-10-09
 
 artifacts:

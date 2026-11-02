@@ -15,7 +15,7 @@ protocol version.
   what it should be, and whether it held up. The checker tests run against this universe.
 - `codebase-recordkeeping/` covers the written documents of a codebase: files in the
   repository, commit messages, change descriptions, issue reports and release notes.
-  [Code Repository Universe Research](../docs/research-code-repository-universe-2026-10-08.md)
+  [Code Repository Universe Research](../research/research-code-repository-universe-2026-10-08.md)
   gives the corpus, counts and sources behind each definition.
 
 A universe declares two documents: the universe itself, and the type guidance that says how to

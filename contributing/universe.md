@@ -26,7 +26,7 @@ You can change the definitions and guidance in `universe-samples/codebase-record
 
 Never reuse a definition's code, and never give a code to a different definition.
 
-[Contributing](../../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
+[Contributing](../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
 
 ## Proof to Bring
 
@@ -37,7 +37,7 @@ One change in meaning per pull request.
 - [ ] `uv run kbp` passes.
 - [ ] Rebuilt and included: `just skills-build`.
 - [ ] For `universe-samples/product-development/`, also rebuilt and included: `just explorer-gallery` and the explorer data command below.
-- [ ] [Checks every pull request needs](../../CONTRIBUTING.md#every-pull-request).
+- [ ] [Checks every pull request needs](../CONTRIBUTING.md#every-pull-request).
 
 ```sh
 uv run --locked python tools/explorer/prepare_model.py --input universe-samples/product-development/universe.kbp.yaml --guidance universe-samples/product-development/type-guidance.kbp.yaml --marks universe-samples/product-development/marks.explorer.yaml --output explorer/test/fixtures/product-development.json
@@ -51,7 +51,7 @@ Under "Who builds the change" in the issue, say whether you will build the chang
 
 ## Deeper Reading
 
-- [Adapting the Example](../adapting-the-example.md) — minting codes and citing sources.
-- [Product Development Universe Evolution](../research-product-development-universe-evolution-2026-09-15.md) — a past change in meaning.
-- [Code Repository Universe Research](../research-code-repository-universe-2026-10-08.md) — the corpus, counts and sources behind the codebase-recordkeeping definitions.
-- [Evals](../../evals/README.md) — how wording is graded.
+- [Adapting the Example](../docs/adapting-the-example.md) — minting codes and citing sources.
+- [Product Development Universe Evolution](../research/research-product-development-universe-evolution-2026-09-15.md) — a past change in meaning.
+- [Code Repository Universe Research](../research/research-code-repository-universe-2026-10-08.md) — the corpus, counts and sources behind the codebase-recordkeeping definitions.
+- [Evals](../evals/README.md) — how wording is graded.

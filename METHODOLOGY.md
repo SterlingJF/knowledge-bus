@@ -88,7 +88,7 @@ The report's "Judge pairs across the sides" table pairs one judge from each prov
 
 ## Adding or Removing a Model
 
-To add or remove a model, start with an accepted issue and follow [Evals Contributions](docs/contributing/evals.md). A model change gets its own pull request. It adds or removes one model or provider and changes nothing else. A third provider needs code first.
+To add or remove a model, start with an accepted issue and follow [Evals Contributions](contributing/evals.md). A model change gets its own pull request. It adds or removes one model or provider and changes nothing else. A third provider needs code first.
 
 ## Reporting
 

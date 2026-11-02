@@ -97,7 +97,7 @@ The image shows part of the map; select it to open the full map.
 
 The included codebase-recordkeeping definitions cover the written documents of a codebase: files in the repository, commit messages, change descriptions, issue reports, and release notes. Their document types include READMEs, contributing guides, security policies, agent instructions, and design proposals, with declared relationships between those types and their contents.
 
-The companion guidance attaches advice to those definitions and cites registered sources, including Keep a Changelog, Semantic Versioning, Conventional Commits, Diátaxis, and the OpenSSF Open Source Project Security Baseline. [Code Repository Universe Research](docs/research-code-repository-universe-2026-10-08.md) gives the corpus, counts, and sources behind each definition.
+The companion guidance attaches advice to those definitions and cites registered sources, including Keep a Changelog, Semantic Versioning, Conventional Commits, Diátaxis, and the OpenSSF Open Source Project Security Baseline. [Code Repository Universe Research](research/research-code-repository-universe-2026-10-08.md) gives the corpus, counts, and sources behind each definition.
 
 ## Installation
 

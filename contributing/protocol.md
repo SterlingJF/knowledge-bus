@@ -22,11 +22,11 @@ Say in the issue whether you will build the change. If not, another contributor 
 
 ## What You Can Change
 
-You can change the [protocol definition](../../protocol/knowledge-bus-protocol.yaml), the example files under `protocol/conformance/`, and the checker and explorer code the rule needs.
+You can change the [protocol definition](../protocol/knowledge-bus-protocol.yaml), the example files under `protocol/conformance/`, and the checker and explorer code the rule needs.
 
 If only one subject's definitions need the change, follow [Universe Contributions](universe.md).
 
-[Contributing](../../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
+[Contributing](../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
 
 ## Proof to Bring
 
@@ -40,13 +40,13 @@ Change one rule per pull request. Include its example files and its checker and 
 | Renamed key | A `renamed` entry with the old name and the version it changed in |
 | Key with a changed shape | A `reshaped` entry with the old shape and the version it changed in |
 
-If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](../validation.md#testing-the-checker) to match, or `just test` fails.
+If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](../docs/validation.md#testing-the-checker) to match, or `just test` fails.
 
 - [ ] `just skills-build` run, regenerated files included.
 
 ## Handing Over
 
-Commit with the `protocol` [scope](../../CONTRIBUTING.md#commits). Open the pull request from the template and bring what [every pull request](../../CONTRIBUTING.md#every-pull-request) needs.
+Commit with the `protocol` [scope](../CONTRIBUTING.md#commits). Open the pull request from the template and bring what [every pull request](../CONTRIBUTING.md#every-pull-request) needs.
 
 ---
 

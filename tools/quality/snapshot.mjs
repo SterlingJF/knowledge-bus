@@ -23,7 +23,7 @@ export function nodeVersionProblem(range, version, execPath) {
     + "Git hooks don't load your shell profile: see CONTRIBUTING.md, Git Hooks.";
 }
 
-export const PACKAGED_MARKDOWN = new Set(['docs/agent-runtime.md', 'docs/knowledge-bus-directory.md']);
+export const PACKAGED_MARKDOWN = new Set(['docs/knowledge-bus-directory.md']);
 
 export const COPY_CHECKS = ['check:fast', 'test'];
 

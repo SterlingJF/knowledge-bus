@@ -16,9 +16,9 @@ Every change must follow these rules:
 
 - Don't add a runtime dependency. The checker has none and carries its own copy of PyYAML.
 - Don't edit the generated copies under `skills/*/runtime/` or `skills/*/references/`. Edit the source and rebuild.
-- Follow [Development](../development.md#other-changes) for packaging and CI changes.
+- Follow [Development](development.md#other-changes) for packaging and CI changes.
 
-[Contributing](../../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
+[Contributing](../CONTRIBUTING.md#choose-your-contribution-path) lists what is out of scope on every path.
 
 ## Run It Locally
 
@@ -34,13 +34,13 @@ Fix one problem per pull request, with its test in the same commit.
 | Invalid file accepted | A file in `protocol/conformance/fail/` with only that defect, named after the defect. Add its expected message to `EXPECTED` in `checker/tests/test_conformance.py`. |
 | Crash or unclear message | A test in `checker/tests/` that fails before the fix |
 
-If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](../validation.md#testing-the-checker) to match, or `just test` fails.
+If you add a file to `protocol/conformance/fail/`, raise the count of invalid cases in [Validation](../docs/validation.md#testing-the-checker) to match, or `just test` fails.
 
 - [ ] `just skills-build` run, regenerated files included.
 
 ## Handing Over
 
-Commit with the `checker` [scope](../../CONTRIBUTING.md#commits). Open the pull request from the template and bring what [every pull request](../../CONTRIBUTING.md#every-pull-request) needs.
+Commit with the `checker` [scope](../CONTRIBUTING.md#commits). Open the pull request from the template and bring what [every pull request](../CONTRIBUTING.md#every-pull-request) needs.
 
 ---
 

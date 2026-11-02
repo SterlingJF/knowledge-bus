@@ -53,7 +53,7 @@ def preset_files(root=ROOT):
 
 
 REFERENCES = {
-    "docs/agent-runtime.md": "references/agent-runtime.md",
+    "plugins/shared/references/agent-runtime.md": "references/agent-runtime.md",
     "docs/knowledge-bus-directory.md": "references/knowledge-bus-directory.md",
     "protocol/knowledge-bus-protocol.yaml": "references/knowledge-bus-protocol.yaml",
     **preset_files(),
