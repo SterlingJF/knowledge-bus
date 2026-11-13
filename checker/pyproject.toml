@@ -14,7 +14,7 @@ Repository = "https://github.com/SterlingJF/knowledge-bus"
 kbp = "kbp_conform.cli:run"
 
 [build-system]
-requires = ["hatchling==1.32.4"]
+requires = ["hatchling==1.33.0"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
